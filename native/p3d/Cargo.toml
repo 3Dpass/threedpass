@@ -1,0 +1,26 @@
+[package]
+name = "p3d"
+version = "0.1.0"
+authors = ["mish"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+cgmath = "0.16.1"
+tri-mesh = "0.5.0"
+rust-3d = "0.34.0"
+obj-rs = "0.6"
+rust-crypto = "0.2"
+
+ndarray = { version = "0.13" } #, features = ["blas"] }     # "rayon" - parallel iterators
+# lapacke = { version = "0.2.0" }
+peroxide = { version = "0.27" }
+# ndarray-linalg = { version = "0.12", features = ["openblas"] }
+# openblas-src = { version = "0.9", default-features = false, features = ["cblas", "lapacke", "system"] }
+
+
+# blas-src = { version = "0.6", default-features = false, features = ["openblas"] }
+# lapack-src = { version = "0.6", features = ["openblas"] }
+
