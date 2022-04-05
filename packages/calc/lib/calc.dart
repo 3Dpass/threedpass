@@ -11,16 +11,17 @@ import 'package:flutter/services.dart';
 import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
-
 // For C/Rust
 typedef NativeProgressFunc = Int64 Function(Int64, Int64, Pointer<Utf8>);
 // For Dart
 typedef ProgressFunc = int Function(int, int, Pointer<Utf8>);
 
 // For C/Rust
-typedef NativeCalcFunc = Pointer<Utf8>  Function(Int64 a, Int64 b, Pointer<Utf8> str, Pointer<NativeFunction<NativeProgressFunc>>);
+typedef NativeCalcFunc = Pointer<Utf8> Function(Int64 a, Int64 b,
+    Pointer<Utf8> str, Pointer<NativeFunction<NativeProgressFunc>>);
 // For Dart
-typedef CalcFunc = Pointer<Utf8> Function(int a, int b, Pointer<Utf8> path, Pointer<NativeFunction<NativeProgressFunc>>);
+typedef CalcFunc = Pointer<Utf8> Function(int a, int b, Pointer<Utf8> path,
+    Pointer<NativeFunction<NativeProgressFunc>>);
 
 typedef FreeStringFunc = void Function(Pointer<Utf8>);
 typedef FreeStringFuncNative = Void Function(Pointer<Utf8>);
@@ -33,8 +34,6 @@ class NotSupportedPlatform implements Exception {
 //  print("I got called back from Rust with $pct and $status");
 //  return 0;
 //}
-
-
 
 DynamicLibrary load({String basePath = ''}) {
   if (Platform.isAndroid || Platform.isLinux) {
@@ -51,11 +50,10 @@ DynamicLibrary load({String basePath = ''}) {
   }
 }
 
-
 class Calc {
-
   static DynamicLibrary _lib;
   static SendPort sendPort;
+  // Platform.version;
 
   static init() {
     if (_lib != null) return;
@@ -65,24 +63,21 @@ class Calc {
     } else {
       _lib = load();
     }
-
   }
 
-  static Future<String> start(Function onProgress, path, int par1, int par2) async {
+  static Future<String> start(
+      Function onProgress, path, int par1, int par2) async {
     init();
     print("start");
 
     var receivePort = new ReceivePort();
-    Isolate isolate = await Isolate.spawn(
-          worker,
-          {
-            'port': receivePort.sendPort,
-            'path': path,
-            'par1': par1,
-            'par2': par2,
-            // 'par3': par3,
-          }
-        );
+    Isolate isolate = await Isolate.spawn(worker, {
+      'port': receivePort.sendPort,
+      'path': path,
+      'par1': par1,
+      'par2': par2,
+      // 'par3': par3,
+    });
     isolate.addOnExitListener(receivePort.sendPort);
 
     // Receive the SendPort from the Isolate
@@ -102,8 +97,7 @@ class Calc {
         else if (data.containsKey("pct")) {
           await onProgress(data);
         }
-      }
-      else {
+      } else {
         // onProgress(data);
         continue;
       }
@@ -145,11 +139,10 @@ class Calc {
 //    }
   }
 
-  static String  calc_ffi(int par1, int par2, String path) {
-
+  static String calc_ffi(int par1, int par2, String path) {
     // Callback function -->
-    Pointer<NativeFunction<NativeProgressFunc>> progress_fptr
-                    = Pointer.fromFunction(progress, 0);
+    Pointer<NativeFunction<NativeProgressFunc>> progress_fptr =
+        Pointer.fromFunction(progress, 0);
 
     // <--
 
@@ -178,5 +171,4 @@ class Calc {
 
     return 0;
   }
-
 }
