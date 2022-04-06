@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
 
+part 'store.g.dart';
 
 @HiveType(typeId: 0)
-class HashesModel extends HiveObject {
+class HashesModel {
   @HiveField(0)
   String name;
 
@@ -19,76 +19,114 @@ class HashesModel extends HiveObject {
   @HiveField(2)
   List<String> hashes;
 
-  HashesModel(this.name, this.stamp, this.hashes);
-
+  HashesModel({
+    required this.name,
+    required this.stamp,
+    required this.hashes,
+  });
 }
 
+// class HashesModelAdapter extends TypeAdapter<HashesModel> {
+//   @override
+//   final typeId = 0;
 
-class HashesModelAdapter extends TypeAdapter<HashesModel> {
-  @override
-  final typeId = 0;
+//   @override
+//   HashesModel read(BinaryReader reader) {
+//     var obj = HashesModel(null, null, null);
+//     var numOfFields = reader.readByte();
+//     for (var i = 0; i < numOfFields; i++) {
+//       switch (reader.readByte()) {
+//         case 0:
+//           obj.name = reader.read() as String;
+//           break;
+//         case 1:
+//           obj.stamp = reader.read() as String;
+//           break;
+//         case 2:
+//           obj.hashes = reader.read()?.toList();
+//           break;
+//       }
+//     }
+//     return obj;
+//   }
 
-  @override
-  HashesModel read(BinaryReader reader) {
-    var obj = HashesModel(null, null, null);
-    var numOfFields = reader.readByte();
-    for (var i = 0; i < numOfFields; i++) {
-      switch (reader.readByte()) {
-        case 0:
-          obj.name = reader.read() as String;
-          break;
-        case 1:
-          obj.stamp = reader.read() as String;
-          break;
-        case 2:
-          obj.hashes =
-              reader.read()?.toList();
-          break;
-      }
-    }
-    return obj;
-  }
+//   @override
+//   void write(BinaryWriter writer, HashesModel obj) {
+//     writer.writeByte(3);
+//     writer.writeByte(0);
+//     writer.write(obj.name);
+//     writer.writeByte(1);
+//     writer.write(obj.stamp);
+//     writer.writeByte(2);
+//     writer.write(obj.hashes);
+//   }
+// }
 
-  @override
-  void write(BinaryWriter writer, HashesModel obj) {
-    writer.writeByte(3);
-    writer.writeByte(0);
-    writer.write(obj.name);
-    writer.writeByte(1);
-    writer.write(obj.stamp);
-    writer.writeByte(2);
-    writer.write(obj.hashes);
-  }
-}
+class HiveUniversalStore<T> {
+  late final Box<T> _box;
+  final String _boxName;
 
-
-/// A cache access provider class for shared preferences using Hive library
-class HiveStore {
-  Box _box;
-  final String keyName = 'hashes';
+  HiveUniversalStore({
+    required String boxName,
+  }) : _boxName = boxName;
 
   Future<void> init() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    if (!kIsWeb) {
-      try {
-        Hive.registerAdapter(HashesModelAdapter());
-        Directory defaultDirectory = await getApplicationDocumentsDirectory();
-        Hive.init(defaultDirectory.path);
-    } catch (e) {
-    print(e);
-    }
-    }
-    _box = await Hive.openBox(keyName);
-
-    int len = _box?.values?.length;
-    print("$len");
+    _box = await Hive.openBox(_boxName);
   }
 
-  get keys => getKeys();
+  Future<void> setObject(String key, T value) async {
+    return await _box.put(key, value);
+  }
 
-  get length => _box?.values?.length ?? 0;
+  bool containsKey(String key) {
+    return _box.containsKey(key);
+  }
 
+  Set<String> getKeys<String>() {
+    return _box.keys.cast<String>().toSet();
+  }
 
+  Future<void> remove(String key) async {
+    if (containsKey(key)) {
+      await _box.delete(key);
+    }
+  }
+
+  Future<void> removeAll() async {
+    final keys = getKeys();
+    await _box.deleteAll(keys);
+  }
+
+  T getValue(String key, T defaultValue) {
+    var value = _box.get(key);
+    if (value != null) {
+      return value;
+    }
+    return defaultValue;
+  }
+
+  T? getAt(int index) {
+    return _box.getAt(index);
+  }
+
+  int get length => _box.values.length;
+}
+
+/// A cache access provider class for shared preferences using Hive library
+class HiveStore extends HiveUniversalStore<HashesModel> {
+  HiveStore() : super(boxName: 'hashes');
+
+  // Future<void> init() async {
+  //   //
+
+  //   _box = await Hive.openBox(keyName);
+  //   int len = _box.values.length;
+  //   print("$len");
+  // }
+
+  // get keys => getKeys();
+
+  // get length => _box.values.length;
 
 //  @override
 //  bool getBool(String key) {
@@ -130,42 +168,38 @@ class HiveStore {
 //    return _preferences.put(key, value);
 //  }
 
-  Future<void> setObject<T>(String key, T value) {
-    return _box.put(key, value);
-  }
+  // Future<void> setObject(String key, HashesModel value) async {
+  //   return await _box.put(key, value);
+  // }
 
-  bool containsKey(String key) {
-    return _box.containsKey(key);
-  }
+  // bool containsKey(String key) {
+  //   return _box.containsKey(key);
+  // }
 
-  Set<E> getKeys<E>() {
-    return _box.keys.cast<E>().toSet();
-  }
+  // Set<String> getKeys<String>() {
+  //   return _box.keys.cast<String>().toSet();
+  // }
 
-  Future<void> remove(String key) async {
-    if (containsKey(key)) {
-      await _box.delete(key);
-    }
-  }
+  // Future<void> remove(String key) async {
+  //   if (containsKey(key)) {
+  //     await _box.delete(key);
+  //   }
+  // }
 
-  Future<void> removeAll() async {
-    final keys = getKeys();
-    await _box.deleteAll(keys);
-  }
+  // Future<void> removeAll() async {
+  //   final keys = getKeys();
+  //   await _box.deleteAll(keys);
+  // }
 
-  T getValue<T>(String key, T defaultValue) {
-    var value = _box.get(key);
-    if (value is T) {
-      return value;
-    }
-    return defaultValue;
-  }
+  // HashesModel getValue(String key, HashesModel defaultValue) {
+  //   var value = _box.get(key);
+  //   if (value != null) {
+  //     return value;
+  //   }
+  //   return defaultValue;
+  // }
 
-  T getAt<T>(int index) {
-    var value = _box.getAt(index);
-    if (value is T) {
-      return value;
-    }
-    return null;
-  }
+  // HashesModel? getAt(int index) {
+  //   return _box.getAt(index);
+  // }
 }

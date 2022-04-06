@@ -16,7 +16,11 @@ class Object3D extends StatefulWidget {
   final String path;
   final double zoom;
 
-  Object3D({@required this.size, @required this.path, @required this.zoom});
+  Object3D({
+    required this.size,
+    required this.path,
+    required this.zoom,
+  });
 
   @override
   _Object3DState createState() => _Object3DState();
@@ -28,7 +32,7 @@ class _Object3DState extends State<Object3D> {
   double angleZ = 0.0;
   double zoom = 0.0;
 
-  Model model;
+  late Model model;
 
   /*
    *  Load the 3D  data from a file in our /assets folder.
@@ -65,7 +69,8 @@ class _Object3DState extends State<Object3D> {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: CustomPaint(
-        painter: _ObjectPainter(widget.size, model, angleX, angleY, angleZ, widget.zoom),
+        painter: _ObjectPainter(
+            widget.size, model, angleX, angleY, angleZ, widget.zoom),
         size: widget.size,
       ),
       onHorizontalDragUpdate: (DragUpdateDetails update) => _dragY(update),
@@ -84,8 +89,8 @@ class _ObjectPainter extends CustomPainter {
   double _viewPortY = 0.0;
   double _zoom = 0.0;
 
-  Math.Vector3 camera;
-  Math.Vector3 light;
+  Math.Vector3 camera = Math.Vector3(0.0, 0.0, 0.0);
+  Math.Vector3 light = Math.Vector3(0.0, 0.0, 100.0);
 
   double angleX;
   double angleY;
@@ -93,14 +98,12 @@ class _ObjectPainter extends CustomPainter {
 
   Size size;
 
-  List<Math.Vector3> verts;
+  List<Math.Vector3> verts = <Math.Vector3>[];
 
   final Model model;
 
-  _ObjectPainter(this.size, this.model, this.angleX, this.angleY, this.angleZ, this._zoom) {
-    camera = Math.Vector3(0.0, 0.0, 0.0);
-    light = Math.Vector3(0.0, 0.0, 100.0);
-    verts = List<Math.Vector3>();
+  _ObjectPainter(this.size, this.model, this.angleX, this.angleY, this.angleZ,
+      this._zoom) {
     _viewPortX = (size.width / 2).toDouble();
     _viewPortY = (size.height / 2).toDouble();
   }
@@ -168,18 +171,19 @@ class _ObjectPainter extends CustomPainter {
     }
 
     // Rotate and translate the vertices
-    verts = List<Math.Vector3>();
+    verts = <Math.Vector3>[];
     for (int i = 0; i < model.verts.length; i++) {
       verts.add(_calcVertex(Math.Vector3.copy(model.verts[i])));
     }
 
     // Sort
-    var sorted = List<Map<String, dynamic>>();
+    var sorted = <Map<String, dynamic>>[];
     for (var i = 0; i < model.faces.length; i++) {
       var face = model.faces[i];
       sorted.add({
         "index": i,
-        "order": Utils.zIndex(verts[face[0] - 1], verts[face[1] - 1], verts[face[2] - 1])
+        "order": Utils.zIndex(
+            verts[face[0] - 1], verts[face[1] - 1], verts[face[2] - 1])
       });
     }
     sorted.sort((Map a, Map b) => a["order"].compareTo(b["order"]));

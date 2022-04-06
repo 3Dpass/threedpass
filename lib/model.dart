@@ -7,32 +7,28 @@ import 'package:vector_math/vector_math.dart';
  *  https://en.wikipedia.org/wiki/Wavefront_.obj_file
  */
 class Model {
-  List<Vector3> verts;
-  List<List<int>> faces;
+  final List<Vector3> verts = [];
+  final List<List<int>> faces = [];
 
-  List<Color> colors;
-  Map<String, Color> materials;
+  final List<Color> colors = [];
+  Map<String, Color> materials = {
+    "frontal": _toRGBA(0.848100, 0.607500, 1.000000),
+    "occipital": _toRGBA(1.000000, 0.572600, 0.392400),
+    "parietal": _toRGBA(0.379700, 0.830900, 1.000000),
+    "temporal": _toRGBA(1.000000, 0.930700, 0.468300),
+    "cerebellum": _toRGBA(0.506300, 1.000000, 0.598200),
+    "stem": _toRGBA(0.500000, 0.500000, 0.500000)
+  };
 
   /* 
    *  Converts normalised color values to a Color()
    */
-  Color _toRGBA(double r, double g, double b) {
-    return Color.fromRGBO((r * 255).toInt(), (g * 255).toInt(), (b * 255).toInt(), 1);
+  static Color _toRGBA(double r, double g, double b) {
+    return Color.fromRGBO(
+        (r * 255).toInt(), (g * 255).toInt(), (b * 255).toInt(), 1);
   }
-  
-  Model() {
-    verts = List<Vector3>();
-    faces = List<List<int>>();
-    colors = List<Color>();
-    materials = {
-      "frontal": _toRGBA(0.848100, 0.607500, 1.000000),
-      "occipital": _toRGBA(1.000000, 0.572600, 0.392400),
-      "parietal": _toRGBA(0.379700, 0.830900, 1.000000),
-      "temporal": _toRGBA(1.000000, 0.930700, 0.468300),
-      "cerebellum": _toRGBA(0.506300, 1.000000, 0.598200),
-      "stem": _toRGBA(0.500000, 0.500000, 0.500000)
-    };
-  }
+
+  Model();
 
   /*
    *  Parses the object from a string.
@@ -64,7 +60,6 @@ class Model {
         ]));
         //colors.add(materials[material]);
         colors.add(_toRGBA(0.5, 0.5, 0.5));
-
       }
     });
   }

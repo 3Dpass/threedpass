@@ -11,9 +11,12 @@ import 'main.dart';
 import 'page_cmp.dart';
 import 'object3d.dart';
 
-
 class ResultPage extends StatefulWidget {
-  ResultPage({Key key, this.title, this.home}) : super(key: key);
+  ResultPage({
+    Key? key,
+    required this.title,
+    required this.home,
+  }) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -41,11 +44,9 @@ class _ResultPageState extends State<ResultPage> {
     super.dispose();
   }
 
-
-  goBackToPreviousScreen(BuildContext context){
+  goBackToPreviousScreen(BuildContext context) {
     Navigator.pop(context);
   }
-
 
   _launchURL(url) async {
     if (await canLaunch(url)) {
@@ -72,9 +73,7 @@ class _ResultPageState extends State<ResultPage> {
                         controller: this._controller,
                         onSubmitted: (String value) async {
                           // await widget.home.saveHashes(value, widget.home.result);
-                        }
-                    )
-                ),
+                        })),
               ],
             ),
           ),
@@ -188,17 +187,18 @@ class _ResultPageState extends State<ResultPage> {
         title: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget> [
+          children: <Widget>[
             //Text(widget.title),
             Text("Get a new one"),
             IconButton(
-                icon: Icon(Icons.share, color: Colors.grey),
-                alignment: Alignment.centerRight,
-                onPressed: () { widget.home.share(context, widget.home.result); },
+              icon: Icon(Icons.share, color: Colors.grey),
+              alignment: Alignment.centerRight,
+              onPressed: () {
+                widget.home.share(context, widget.home.result);
+              },
             )
           ],
         ),
-
       ),
       // body: Center(
 
@@ -206,9 +206,8 @@ class _ResultPageState extends State<ResultPage> {
         alignment: Alignment.topCenter,
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-          //padding: EdgeInsets.all(16),
+        //padding: EdgeInsets.all(16),
         child: SingleChildScrollView(
-
           //shrinkWrap: true,
           padding: EdgeInsets.all(5.0),
           // child: Column (
@@ -218,38 +217,39 @@ class _ResultPageState extends State<ResultPage> {
             alignment: WrapAlignment.center,
             runAlignment: WrapAlignment.start,
             children: <Widget>[
-  //            Text(
-  //              'You have pushed the button this many times:',
-  //            ),
-  //            Text(
-  //              '$_counter',
-  //              style: Theme.of(context).textTheme.headline4,
-  //            ),
+              //            Text(
+              //              'You have pushed the button this many times:',
+              //            ),
+              //            Text(
+              //              '$_counter',
+              //              style: Theme.of(context).textTheme.headline4,
+              //            ),
               Container(
 //                  width: 200,
 //                  height: 50,
-                  constraints: BoxConstraints.expand(height: 40),
-                  //color: Colors.yellow,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget> [
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: MarkdownBody(
-                            data: "### 3 mathes [found](http://habr.com)",
-                            onTapLink: (url) {
-                              print("tapped: $url");
-                              //_launchURL(url);
-                              this.widget.home.gotoCmpPage(context);
-                            },
-                          ),
-                        ),
-                      //),
-                    ],
-                  ),
+                constraints: BoxConstraints.expand(height: 40),
+                //color: Colors.yellow,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: MarkdownBody(
+                        data: "### 3 mathes [found](http://habr.com)",
+                        onTapLink: (String text, String? href, String title) {
+                          print("tapped: text=$text href=$href");
+//                           },
+                          //_launchURL(url);
+                          this.widget.home.gotoCmpPage(context);
+                        },
+                      ),
+                    ),
+                    //),
+                  ],
+                ),
 
-                  //image: null,
+                //image: null,
               ),
 //              Container(
 //                padding: EdgeInsets.all(32.0),
@@ -286,77 +286,79 @@ class _ResultPageState extends State<ResultPage> {
                 //color: Colors.yellow,
                 child: Center(
                     child: Column(
-                      children: <Widget> [
-                        SizedBox(
-                          width: 400,
-                          child: RaisedButton(
-                            child: Text('Save this object'),
-                            onPressed: () async {
-                              //String file = await FilePicker.getFilePath();
-                              await showSaveDialog();
-                              //print("Selected file: $file");
+                  children: <Widget>[
+                    SizedBox(
+                      width: 400,
+                      child: RaisedButton(
+                        child: Text('Save this object'),
+                        onPressed: () async {
+                          //String file = await FilePicker.getFilePath();
+                          await showSaveDialog();
+                          //print("Selected file: $file");
 
-                              //goBackToPreviousScreen(context);
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          width: 400,
-                          child: RaisedButton(
-                            child: Text('Remove & clear the cache'),
-                            onPressed: () {
-                              goBackToPreviousScreen(context);
-                            },
-                          ),
-                        ),
-                      ],
-                    )
-                ),
+                          //goBackToPreviousScreen(context);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 400,
+                      child: RaisedButton(
+                        child: Text('Remove & clear the cache'),
+                        onPressed: () {
+                          goBackToPreviousScreen(context);
+                        },
+                      ),
+                    ),
+                  ],
+                )),
               ),
               Container(
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget> [
+                    children: <Widget>[
                       Expanded(
                         child: Container(
-  //                      width: 120,
-  //                      height: 120,
-                        //color: Colors.yellow,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget> [
-                            MarkdownBody(
+                          //                      width: 120,
+                          //                      height: 120,
+                          //color: Colors.yellow,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              MarkdownBody(
 //                              styleSheet: MarkdownStyleSheet(
 //                                s: TextStyle(color: Colors.blue, fontSize: 40),
 //                              ),
-                              data: "### **Hash ID**\n\n\n### [Show and share](show_and_share)",
-                              onTapLink: (url) {
-                                showHashesDialog();
-                                print("tapped: $url");
-                              },
-                            ),
-                          ],
+                                data:
+                                    "### **Hash ID**\n\n\n### [Show and share](show_and_share)",
+                                onTapLink:
+                                    (String text, String? href, String title) {
+                                  print("tapped: text=$text href=$href");
+                                  showHashesDialog();
+                                  // print("tapped: $url");
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: Container(
+                      Expanded(
+                        child: Container(
 //                        width: 120,
 //                        height: 120,
-                        alignment: Alignment.center,
-                        child: QrImage(
-                          data: "1234567890",
-                          version: QrVersions.auto,
-                          size: 120.0,
+                          alignment: Alignment.center,
+                          child: QrImage(
+                            data: "1234567890",
+                            version: QrVersions.auto,
+                            size: 120.0,
+                          ),
+                          //color: Colors.blue,
                         ),
-                        //color: Colors.blue,
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -364,7 +366,6 @@ class _ResultPageState extends State<ResultPage> {
         ),
       ),
       bottomNavigationBar: Container(
-
         color: Colors.black,
 //      Theme(
 //        data: Theme.of(context).copyWith(
@@ -379,7 +380,7 @@ class _ResultPageState extends State<ResultPage> {
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget> [
+          children: <Widget>[
             IconButton(
               icon: Icon(Icons.info, color: Colors.grey),
               onPressed: null,
@@ -387,7 +388,9 @@ class _ResultPageState extends State<ResultPage> {
             ),
             IconButton(
               icon: Icon(Icons.settings, color: Colors.grey),
-              onPressed: () { widget.home.openAppSettings(context); },
+              onPressed: () {
+                widget.home.openAppSettings(context);
+              },
               //title: Container(), //Text("Delete"),
             ),
           ],
@@ -401,8 +404,7 @@ class _ResultPageState extends State<ResultPage> {
     );
   }
 
-  _buildProp() =>
-      SingleChildScrollView(
+  _buildProp() => SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
             Text("Strong"),
@@ -417,5 +419,4 @@ class _ResultPageState extends State<ResultPage> {
           ],
         ),
       );
-
 }

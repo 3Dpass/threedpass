@@ -51,8 +51,8 @@ DynamicLibrary load({String basePath = ''}) {
 }
 
 class Calc {
-  static DynamicLibrary _lib;
-  static SendPort sendPort;
+  static DynamicLibrary? _lib;
+  static SendPort? sendPort;
   // Platform.version;
 
   static init() {
@@ -131,7 +131,7 @@ class Calc {
 //    sendPort.send(res);
 //    sendPort.send(null);
 
-    sendPort.send({"hashes": res});
+    sendPort!.send({"hashes": res});
 
 //    // Listen for messages (optional)
 //    await for (var data in port) {
@@ -146,16 +146,17 @@ class Calc {
 
     // <--
 
-    final FreeStringFunc freeCString = _lib
+    final FreeStringFunc freeCString = _lib!
         .lookup<NativeFunction<FreeStringFuncNative>>("rust_cstr_free")
         .asFunction();
 
-    final p3d = _lib
+    final p3d = _lib!
         .lookup<NativeFunction<NativeCalcFunc>>('calc')
         .asFunction<CalcFunc>();
 
-    final res_ptr = p3d(par1, par2, Utf8.toUtf8(path), progress_fptr);
-    final res = Utf8.fromUtf8(res_ptr);
+    final res_ptr =
+        p3d(par1, par2, StringUtf8Pointer(path).toNativeUtf8(), progress_fptr);
+    final res = res_ptr.toDartString();
 
     freeCString(res_ptr);
     return res;
@@ -164,9 +165,9 @@ class Calc {
   static int progress(int pct, int status, Pointer<Utf8> description) {
     print("I got called back from Rust with $pct and $status");
 
-    String desc = Utf8.fromUtf8(description);
+    String desc = description.toDartString();
 
-    sendPort.send({"pct": pct, "status": status, "desc": desc});
+    sendPort!.send({"pct": pct, "status": status, "desc": desc});
     // sendPort.send("I got called back from Rust with $pct and $status");
 
     return 0;

@@ -1,15 +1,17 @@
 import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart'; // PlatformException
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:sn_progress_dialog/sn_progress_dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
-import 'package:progress_dialog/progress_dialog.dart';
-import 'package:share/share.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'package:calc/calc.dart';
 
@@ -20,22 +22,21 @@ import 'page_cmp.dart';
 import 'app_settings_page.dart';
 import 'store.dart';
 
+// bool _isDarkTheme = true;
+// bool _isUsingHive = true;
 
-bool _isDarkTheme = true;
-bool _isUsingHive = true;
-
-
-Future<void> initSettings() async {
-  await Settings.init(
-    cacheProvider: _isUsingHive ? HiveCache() : SharePreferenceCache(),
-  );
-}
-
+// Future<void> initSettings() async {
+//   await Settings.init(
+//     cacheProvider: _isUsingHive ? HiveCache() : SharePreferenceCache(),
+//   );
+// }
 
 Future<void> main() async {
-//void main() {
-// https://pub.dev/packages/flutter_settings_screens
-  await initSettings();
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Hive.registerAdapter(HashesModelAdapter());
+  Directory defaultDirectory = await getApplicationDocumentsDirectory();
+  Hive.init(defaultDirectory.path);
 
   runApp(ThreeDApp());
 }
@@ -65,9 +66,9 @@ class ThreeDApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
 //        buttonBarTheme: ButtonBarThemeData(
         iconTheme: IconTheme.of(context).copyWith(
-              color: Colors.yellow,
-          ),
+          color: Colors.yellow,
         ),
+      ),
 //      ),
       home: HomePage(title: ''),
       //home: HomePage(),
@@ -76,7 +77,7 @@ class ThreeDApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+  HomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -99,28 +100,29 @@ class HomePageState extends State<HomePage> {
   OpenFileDialogType _dialogType = OpenFileDialogType.image;
   SourceType _sourceType = SourceType.photoLibrary;
   bool _allowEditing = false;
-  File _currentFile;
-  String _savedFilePath;
+  // File _currentFile;
+  // String _savedFilePath;
   bool _localOnly = false;
 
   // settings
   int grid_size = 7;
   int n_sections = 10;
 
-  List<String> _result;
-  ProgressDialog _pr = null;
+  late List<String> _result;
+  ProgressDialog? _pr = null;
 
-  List<String> get result { return _result; }
+  List<String> get result {
+    return _result;
+  }
 
   HiveStore hs = HiveStore();
 
   @override
   void initState() {
     hs.init() // .whenComplete() {
-      .then((result) {
-          print("HiveStore initielized");
-          setState(() {}
-        );
+        .then((result) {
+      print("HiveStore initielized");
+      setState(() {});
     });
     super.initState();
   }
@@ -146,7 +148,7 @@ class HomePageState extends State<HomePage> {
 
   onProgress(dynamic message) async {
     print("onProgress: $message");
-    _pr.update(progress: message["pct"].toDouble(), message: message["desc"]);
+    _pr!.update(value: message["pct"].toDouble(), msg: message["desc"]);
 //    Future.delayed(Duration(seconds: 1)).then((onvalue) {
 //      _pr.update(
 //          progress: 50.0,
@@ -157,156 +159,160 @@ class HomePageState extends State<HomePage> {
     await Future.delayed(Duration(seconds: 5));
   }
 
-  Future<void> _process(BuildContext context) async {
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: false, // user must tap button!
-        builder: (BuildContext context) {
-          return AlertDialog(
-            content: SingleChildScrollView(
-              child: ListBody(
-                children: <Widget>[
-                  Text('Save most probable hashes as:'),
-                  Padding(
-                    padding: EdgeInsets.all(5),
-                    child: LinearProgressIndicator(
-                      value: 0.6,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('Cancel'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-  }
+  // Future<void> _process(BuildContext context) async {
+  //   return showDialog<void>(
+  //     context: context,
+  //     barrierDismissible: false, // user must tap button!
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         content: SingleChildScrollView(
+  //           child: ListBody(
+  //             children: <Widget>[
+  //               Text('Save most probable hashes as:'),
+  //               Padding(
+  //                 padding: EdgeInsets.all(5),
+  //                 child: LinearProgressIndicator(
+  //                   value: 0.6,
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         actions: <Widget>[
+  //           FlatButton(
+  //             child: Text('Cancel'),
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
-  gotoSecondActivity(BuildContext context) async {
+//   gotoSecondActivity(BuildContext context) async {
+//     String path = await _pickFile();
 
-    String path = await _pickFile();
+//     print("Path: $path");
 
-    print("Path: $path");
+//     _pr = ProgressDialog(
+//       context,
+//       // type: ProgressDialogType.Normal,
+//       // isDismissible: false,
+//       // showLogs: false,
+//     );
 
-    _pr =  ProgressDialog(
-      context,
-      type: ProgressDialogType.Normal,
-      isDismissible: false,
-      showLogs: false,
-    );
+//     _pr.style(
+//       message: 'Loading...',
+// //      message:
+// //      'Lets dump some huge text into the progress dialog and check whether it can handle the huge text. If it works then not you or me, flutter is awesome',
+//       borderRadius: 5.0,
+//       backgroundColor: Colors.white,
+//       elevation: 10.0,
+//       insetAnimCurve: Curves.easeInOut,
+//       progress: 0.0,
+//       progressWidgetAlignment: Alignment.center,
+//       maxProgress: 100.0,
+//       progressWidget: Container(
+//           padding: EdgeInsets.all(8.0), child: CircularProgressIndicator()),
+// //      progressTextStyle: TextStyle(
+// //          color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
+// //      messageTextStyle: TextStyle(
+// //          color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
+//     );
 
-    _pr.style(
-      message: 'Loading...',
-//      message:
-//      'Lets dump some huge text into the progress dialog and check whether it can handle the huge text. If it works then not you or me, flutter is awesome',
-      borderRadius: 5.0,
-      backgroundColor: Colors.white,
-      elevation: 10.0,
-      insetAnimCurve: Curves.easeInOut,
-      progress: 0.0,
-      progressWidgetAlignment: Alignment.center,
-      maxProgress: 100.0,
-      progressWidget: Container(
-          padding: EdgeInsets.all(8.0),
-          child: CircularProgressIndicator()),
-//      progressTextStyle: TextStyle(
-//          color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
-//      messageTextStyle: TextStyle(
-//          color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
-    );
+//     await _pr.show();
 
-    await _pr.show();
+//     //String res = await Calc.start((msg) => onProgress(msg))};
+//     String res = await Calc.start(onProgress, path, grid_size, n_sections);
 
-    //String res = await Calc.start((msg) => onProgress(msg))};
-    String res = await Calc.start(onProgress, path, grid_size, n_sections);
+//     _pr.hide().whenComplete(() {
+//       //print("Result: $res");
+//       Navigator.push(
+//         context,
+//         MaterialPageRoute(
+//           builder: (context) => ResultPage(
+//             home: this,
+//             title: 'title',
+//           ),
+//         ),
+//       );
 
-    _pr.hide()
-    .whenComplete(() {
-        //print("Result: $res");
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) =>  ResultPage(home: this)),
-        );
+//       print(_pr.isShowing());
+//     });
 
-        print(_pr.isShowing());
-    });
+//     double percentage = 0.0;
 
-    double percentage = 0.0;
+// //    Future.delayed(Duration(seconds: 1)).then((onvalue) {
+// //      percentage = percentage + 30.0;
+// //      print(percentage);
+// //
+// //      pr.update(
+// //        progress: percentage,
+// //        message: "Parsing...",
+// ////        progressWidget: Container(
+// ////            padding: EdgeInsets.all(8.0),
+// ////            child: CircularProgressIndicator()),
+// //        maxProgress: 100.0,
+// ////        progressTextStyle: TextStyle(
+// ////            color: Colors.black,
+// ////            fontSize: 13.0,
+// ////            fontWeight: FontWeight.w400),
+// ////        messageTextStyle: TextStyle(
+// ////            color: Colors.black,
+// ////            fontSize: 19.0,
+// ////            fontWeight: FontWeight.w600),
+// //      );
+// //      Future.delayed(Duration(seconds: 1)).then((value) {
+// //        percentage = percentage + 30.0;
+// //        pr.update(
+// //            progress: percentage, message: "Processing...");
+// //        print(percentage);
+// //        Future.delayed(Duration(seconds: 1)).then((value) {
+// //          percentage = percentage + 30.0;
+// //          pr.update(progress: percentage, message: "Generating hashes...");
+// //          print(percentage);
+// //
+// //          Future.delayed(Duration(seconds: 1)).then((value) {
+// //            pr.hide().whenComplete(() {
+// //              //print("Result: $res");
+// //              Navigator.push(
+// //                context,
+// //                MaterialPageRoute(builder: (context) =>  ResultPage(home: this)),
+// //              );
+// //
+// //              print(pr.isShowing());
+// //            });
+// //            percentage = 0.0;
+// //          });
+// //        });
+// //      });
+// //    });
 
-//    Future.delayed(Duration(seconds: 1)).then((onvalue) {
-//      percentage = percentage + 30.0;
-//      print(percentage);
-//
-//      pr.update(
-//        progress: percentage,
-//        message: "Parsing...",
-////        progressWidget: Container(
-////            padding: EdgeInsets.all(8.0),
-////            child: CircularProgressIndicator()),
-//        maxProgress: 100.0,
-////        progressTextStyle: TextStyle(
-////            color: Colors.black,
-////            fontSize: 13.0,
-////            fontWeight: FontWeight.w400),
-////        messageTextStyle: TextStyle(
-////            color: Colors.black,
-////            fontSize: 19.0,
-////            fontWeight: FontWeight.w600),
-//      );
-//      Future.delayed(Duration(seconds: 1)).then((value) {
-//        percentage = percentage + 30.0;
-//        pr.update(
-//            progress: percentage, message: "Processing...");
-//        print(percentage);
-//        Future.delayed(Duration(seconds: 1)).then((value) {
-//          percentage = percentage + 30.0;
-//          pr.update(progress: percentage, message: "Generating hashes...");
-//          print(percentage);
-//
-//          Future.delayed(Duration(seconds: 1)).then((value) {
-//            pr.hide().whenComplete(() {
-//              //print("Result: $res");
-//              Navigator.push(
-//                context,
-//                MaterialPageRoute(builder: (context) =>  ResultPage(home: this)),
-//              );
-//
-//              print(pr.isShowing());
-//            });
-//            percentage = 0.0;
-//          });
-//        });
-//      });
-//    });
+//     _result = res.split("\n");
 
-    _result = res.split("\n");
+//     //_process(context);
 
-    //_process(context);
-
-
-//    //print("Result: $res");
-//    Navigator.push(
-//      context,
-//      MaterialPageRoute(builder: (context) =>  ResultPage(home: this)),
-//    );
-  }
+// //    //print("Result: $res");
+// //    Navigator.push(
+// //      context,
+// //      MaterialPageRoute(builder: (context) =>  ResultPage(home: this)),
+// //    );
+//   }
 
   gotoCmpPage(BuildContext context) async {
-
     //String res = await Calc.start((msg) => onProgress(msg))};
     //await Calc.start(onProgress);
 
     //print("Result: $res");
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) =>  CmpPage(home: this)),
+      MaterialPageRoute(
+          builder: (context) => CmpPage(
+                home: this,
+                title: '',
+              )),
     );
   }
 
@@ -319,9 +325,9 @@ class HomePageState extends State<HomePage> {
 //  }
 
   void openAppSettings(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => AppSettings(home: this),
-    ));
+    // Navigator.of(context).push(MaterialPageRoute(
+    //   builder: (context) => AppSettings(home: this),
+    // ));
   }
 
   void share(BuildContext context, data) {
@@ -335,56 +341,65 @@ class HomePageState extends State<HomePage> {
     setState(() {});
   }
 
-  Future<String> _pickFile() async {
-    String result;
-    try {
-      setState(() {
-        _isBusy = true;
-        _currentFile = null;
-      });
-      final params = OpenFileDialogParams(
-        dialogType: _dialogType,
-        sourceType: _sourceType,
-        allowEditing: _allowEditing,
-        localOnly: _localOnly,
-      );
-      result = await FlutterFileDialog.pickFile(params: params);
-      print(result);
-    } on PlatformException catch (e) {
-      print(e);
-    } finally {
-      setState(() {
-        if (result != null) {
-          _currentFile = File(result);
-        } else {
-          _currentFile = null;
-        }
-        _isBusy = false;
-      });
-    }
-    return result;
-  }
+  // Future<String> _pickFile() async {
+  //   FilePickerResult? result = await FilePicker.platform.pickFiles();
 
-  Future<void> _saveFile() async {
-    String result;
-    try {
-      setState(() {
-        _isBusy = true;
-      });
-      final params = SaveFileDialogParams(
-          sourceFilePath: _currentFile.path, localOnly: _localOnly);
-      result = await FlutterFileDialog.saveFile(params: params);
-      print(result);
-    } on PlatformException catch (e) {
-      print(e);
-    } finally {
-      setState(() {
-        _savedFilePath = result ?? _savedFilePath;
-        _isBusy = false;
-      });
-    }
-  }
+  //   if (result != null) {
+  //     File file = File(result.files.single.path!);
+  //   } else {
+  //     // User canceled the picker
+  //   }
+  // }
 
+  // Future<String> _pickFile() async {
+  //   String result;
+  //   try {
+  //     setState(() {
+  //       _isBusy = true;
+  //       _currentFile = null;
+  //     });
+  //     final params = OpenFileDialogParams(
+  //       dialogType: _dialogType,
+  //       sourceType: _sourceType,
+  //       allowEditing: _allowEditing,
+  //       localOnly: _localOnly,
+  //     );
+  //     result = await FlutterFileDialog.pickFile(params: params);
+  //     print(result);
+  //   } on PlatformException catch (e) {
+  //     print(e);
+  //   } finally {
+  //     setState(() {
+  //       if (result != null) {
+  //         _currentFile = File(result);
+  //       } else {
+  //         _currentFile = null;
+  //       }
+  //       _isBusy = false;
+  //     });
+  //   }
+  //   return result;
+  // }
+
+  // Future<void> _saveFile() async {
+  //   String result;
+  //   try {
+  //     setState(() {
+  //       _isBusy = true;
+  //     });
+  //     final params = SaveFileDialogParams(
+  //         sourceFilePath: _currentFile.path, localOnly: _localOnly);
+  //     result = await FlutterFileDialog.saveFile(params: params);
+  //     print(result);
+  //   } on PlatformException catch (e) {
+  //     print(e);
+  //   } finally {
+  //     setState(() {
+  //       _savedFilePath = result ?? _savedFilePath;
+  //       _isBusy = false;
+  //     });
+  //   }
+  // }
 
   Future<void> saveHashes(String name, List<String> hashes) async {
     String result;
@@ -399,10 +414,13 @@ class HomePageState extends State<HomePage> {
 //      print(result);
       final DateFormat formatter = DateFormat('yyyy-MM-dd H:m:s');
 
-      HashesModel hashObj = HashesModel(name, formatter.format(DateTime.now()), hashes);
+      HashesModel hashObj = HashesModel(
+        name: name,
+        stamp: formatter.format(DateTime.now()),
+        hashes: hashes,
+      );
 
       await hs.setObject(name, hashObj);
-
     } on PlatformException catch (e) {
       print(e);
     } finally {
@@ -432,7 +450,7 @@ class HomePageState extends State<HomePage> {
 //        ),
         title: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget> [
+          children: <Widget>[
             //Text(widget.title),
             Text("3DPass  "),
             Text(
@@ -482,51 +500,48 @@ class HomePageState extends State<HomePage> {
 //          ],
 //        ),
         child: Column(
-          children: <Widget> [
+          children: <Widget>[
             Container(
               padding: EdgeInsets.only(left: 15, top: 15, right: 15, bottom: 5),
-              child: Column(
-                children: <Widget> [
-                  Text(
-                    "Add your object's 3D model from file or scan it by camera and get a unique Hash ID."
-                  ),
-                  Text(
-                    "In order to recognize your object add a new one object's 3D model or scan it again."
-                  ),
-                ]
-              ),
+              child: Column(children: <Widget>[
+                Text(
+                    "Add your object's 3D model from file or scan it by camera and get a unique Hash ID."),
+                Text(
+                    "In order to recognize your object add a new one object's 3D model or scan it again."),
+              ]),
             ),
             Container(
               padding: EdgeInsets.all(15.0),
               width: 400,
               //height: 400,
               child: Center(
-                child: Column(
-                  children: <Widget> [
-                    SizedBox(
-                      width: 400,
-                      child: RaisedButton.icon(
-                        icon: Icon(Icons.folder_open),
-                        label: Text('Get from file'),
-                        onPressed: () async {
-                          await gotoSecondActivity(context);
-                        },
-                      ),
+                  child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    width: 400,
+                    child: RaisedButton.icon(
+                      icon: Icon(Icons.folder_open),
+                      label: Text('Get from file'),
+                      onPressed: () async {
+                        // await gotoSecondActivity(context);
+                      },
                     ),
-                    SizedBox(height: 5,),
-                    SizedBox(
-                      width: 400,
-                      child: RaisedButton.icon(
-                        icon: Icon(Icons.camera_alt),
-                        label: Text('Scan by camera'),
-                        onPressed: () async {
-                          await gotoSecondActivity(context);
-                        },
-                      ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  SizedBox(
+                    width: 400,
+                    child: RaisedButton.icon(
+                      icon: Icon(Icons.camera_alt),
+                      label: Text('Scan by camera'),
+                      onPressed: () async {
+                        // await gotoSecondActivity(context);
+                      },
                     ),
-                  ],
-                )
-              ),
+                  ),
+                ],
+              )),
             ),
             Container(
               padding: new EdgeInsets.all(.0),
@@ -534,7 +549,6 @@ class HomePageState extends State<HomePage> {
               child: new Container(
                 alignment: Alignment.topCenter,
                 child: ListView.builder(
-
                   shrinkWrap: true,
                   physics: AlwaysScrollableScrollPhysics(),
                   itemCount: hs.length + 1,
@@ -546,8 +560,6 @@ class HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: Container(
-
-
         color: Colors.black,
 //      Theme(
 //        data: Theme.of(context).copyWith(
@@ -562,7 +574,7 @@ class HomePageState extends State<HomePage> {
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget> [
+          children: <Widget>[
             IconButton(
               icon: Icon(Icons.info, color: Colors.grey),
               onPressed: null,
@@ -570,15 +582,15 @@ class HomePageState extends State<HomePage> {
             ),
             IconButton(
               icon: Icon(Icons.settings, color: Colors.grey),
-              onPressed: () { openAppSettings(context); },
+              onPressed: () {
+                openAppSettings(context);
+              },
               //title: Container(), //Text("Delete"),
             ),
           ],
         ),
       ),
     );
-
-
 
 //      floatingActionButton: FloatingActionButton(
 //        onPressed: _incrementCounter,
@@ -594,7 +606,6 @@ class HomePageState extends State<HomePage> {
   }
 
   Card _buildCards(BuildContext context, int index) {
-
     if (index == 0) {
       return Card(
         child: new Container(
@@ -609,17 +620,24 @@ class HomePageState extends State<HomePage> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: EdgeInsets.only(
-                      left: 10, top: 0, right: 0, bottom: 10),
+                  padding:
+                      EdgeInsets.only(left: 10, top: 0, right: 0, bottom: 10),
                   child: Row(
                     children: [
-                      Icon(Icons.help_center, color: Colors.black,),
-                      SizedBox(width: 5,),
+                      Icon(
+                        Icons.help_center,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
                       MarkdownBody(
                         data: "### [How to use 3DPass](http://habr.com)",
-                        onTapLink: (url) {
-                          print("tapped: $url");
-                          _launchURL(url);
+                        onTapLink: (String text, String? href, String title) {
+                          print("tapped: text=$text href=$href");
+//                           },
+                          // print("tapped: $url");
+                          // _launchURL(url);
                           //showOverlapPage();
                         },
                       ),
@@ -631,37 +649,32 @@ class HomePageState extends State<HomePage> {
           ),
         ),
       );
-    }
-    else {
-      HashesModel hashe = hs.getAt(index - 1);
+    } else {
+      HashesModel hashe = hs.getAt(index - 1)!;
 
       return Card(
           child: new Container(
-            padding: new EdgeInsets.all(16.0),
-            child: Row(
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      //                new Text('Object <scan 1>'),
-                      //                new Text('2020-09-21 11:55')
-                      Text(hashe.name),
-                      Text(hashe.stamp.toString()),
-                    ],
-                  ),
-                  Spacer(),
-                  _cardPopupMenu(index - 1),
+        padding: new EdgeInsets.all(16.0),
+        child: Row(children: <Widget>[
+          Column(
+            children: <Widget>[
+              //                new Text('Object <scan 1>'),
+              //                new Text('2020-09-21 11:55')
+              Text(hashe.name),
+              Text(hashe.stamp.toString()),
+            ],
+          ),
+          Spacer(),
+          _cardPopupMenu(index - 1),
 //                  Container(
 //                      child: IconButton(
 //                        icon: Icon(Icons.more_vert, color: Colors.grey),
 //                        onPressed: () => _cardPopupMenu(),
 //                      )
 //                  ),
-                ]
-            ),
-          )
-      );
+        ]),
+      ));
     }
-
   }
 
   Widget _cardPopupMenu(int index) {
@@ -669,7 +682,7 @@ class HomePageState extends State<HomePage> {
         icon: Icon(Icons.more_vert, color: Colors.grey),
         onSelected: (value) {
           print("$value, $index");
-          HashesModel data = hs.getAt(index);
+          HashesModel data = hs.getAt(index)!; // TODO null check is required
 
           switch (value) {
             case 1:
@@ -681,33 +694,27 @@ class HomePageState extends State<HomePage> {
           }
         },
         itemBuilder: (context) => [
-          PopupMenuItem(
-            value: 1,
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
-                  child: Icon(Icons.share, color: Colors.grey),
-                ),
-                Text('Share')
-              ],
-            )
-          ),
-          PopupMenuItem(
-            value: 2,
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
-                  child: Icon(Icons.delete, color: Colors.grey)
-                ),
-                Text('Delete')
-              ],
-            )
-          )
-        ]
-      );
+              PopupMenuItem(
+                  value: 1,
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+                        child: Icon(Icons.share, color: Colors.grey),
+                      ),
+                      Text('Share')
+                    ],
+                  )),
+              PopupMenuItem(
+                  value: 2,
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+                          child: Icon(Icons.delete, color: Colors.grey)),
+                      Text('Delete')
+                    ],
+                  ))
+            ]);
   }
-
-
 }

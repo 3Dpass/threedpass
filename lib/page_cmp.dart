@@ -10,9 +10,9 @@ import 'page_settings.dart';
 import 'main.dart';
 import 'object3d.dart';
 
-
 class CmpPage extends StatefulWidget {
-  CmpPage({Key key, this.title, this.home}) : super(key: key);
+  CmpPage({Key? key, required this.title, required this.home})
+      : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -43,10 +43,9 @@ class _CmpPageState extends State<CmpPage> {
     super.dispose();
   }
 
-  goBackToPreviousScreen(BuildContext context){
+  goBackToPreviousScreen(BuildContext context) {
     Navigator.pop(context);
   }
-
 
   _launchURL(url) async {
     if (await canLaunch(url)) {
@@ -76,69 +75,75 @@ class _CmpPageState extends State<CmpPage> {
         //alignment: Alignment.topCenter,
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-          //padding: EdgeInsets.all(16),
-        children: <Widget> [
+        //padding: EdgeInsets.all(16),
+        children: <Widget>[
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget> [
+            children: <Widget>[
               Expanded(
                 child: this._buildList(true),
               ),
-              Expanded(child:Text("VS", textAlign: TextAlign.center,)),
+              Expanded(
+                  child: Text(
+                "VS",
+                textAlign: TextAlign.center,
+              )),
               Expanded(
                 child: this._buildList(false),
               ),
             ],
           ),
-          Divider(height: 15, thickness: 3, color: Colors.black,),
+          Divider(
+            height: 15,
+            thickness: 3,
+            color: Colors.black,
+          ),
           Container(
               child: DataTable(
-                columns: const <DataColumn>[
-                  DataColumn(
-                    label: Text(
-                      'Rank',
-                      style: TextStyle(fontStyle: FontStyle.italic),
-                    ),
-                  ),
-                  DataColumn(
-                    label: Text(
-                      'Hash',
-                      style: TextStyle(fontStyle: FontStyle.italic),
-                    ),
-                  ),
-                  DataColumn(
-                    label: Text(
-                      'Rank',
-                      style: TextStyle(fontStyle: FontStyle.italic),
-                    ),
-                  ),
+            columns: const <DataColumn>[
+              DataColumn(
+                label: Text(
+                  'Rank',
+                  style: TextStyle(fontStyle: FontStyle.italic),
+                ),
+              ),
+              DataColumn(
+                label: Text(
+                  'Hash',
+                  style: TextStyle(fontStyle: FontStyle.italic),
+                ),
+              ),
+              DataColumn(
+                label: Text(
+                  'Rank',
+                  style: TextStyle(fontStyle: FontStyle.italic),
+                ),
+              ),
+            ],
+            rows: const <DataRow>[
+              DataRow(
+                cells: <DataCell>[
+                  DataCell(Text('1')),
+                  DataCell(Text('123233e31132dee12345a')),
+                  DataCell(Text('6')),
                 ],
-                rows: const <DataRow>[
-                  DataRow(
-                    cells: <DataCell> [
-                      DataCell(Text('1')),
-                      DataCell(Text('123233e31132dee12345a')),
-                      DataCell(Text('6')),
-                    ],
-                  ),
-                  DataRow(
-                    cells: <DataCell>[
-                      DataCell(Text('2')),
-                      DataCell(Text('4311aa5b1a1345ff251345')),
-                      DataCell(Text('1')),
-                    ],
-                  ),
-                  DataRow(
-                    cells: <DataCell>[
-                      DataCell(Text('3')),
-                      DataCell(Text('87787611288a66282e1345')),
-                      DataCell(Text('3')),
-                    ],
-                  ),
+              ),
+              DataRow(
+                cells: <DataCell>[
+                  DataCell(Text('2')),
+                  DataCell(Text('4311aa5b1a1345ff251345')),
+                  DataCell(Text('1')),
                 ],
-              )
-
-          ),
+              ),
+              DataRow(
+                cells: <DataCell>[
+                  DataCell(Text('3')),
+                  DataCell(Text('87787611288a66282e1345')),
+                  DataCell(Text('3')),
+                ],
+              ),
+            ],
+          )),
         ],
       ),
 //      floatingActionButton: FloatingActionButton(
@@ -153,8 +158,7 @@ class _CmpPageState extends State<CmpPage> {
     String sel = "";
     if (first) {
       sel = _obj1;
-    }
-    else {
+    } else {
       sel = _obj2;
     }
 
@@ -177,15 +181,16 @@ class _CmpPageState extends State<CmpPage> {
             value: 'three',
           ),
         ],
-        onChanged: (String value) {
-          setState(() {
-            if (first) {
-              _obj1 = value;
-            }
-            else {
-              _obj2 = value;
-            }
-          });
+        onChanged: (String? value) {
+          if (value != null) {
+            setState(() {
+              if (first) {
+                _obj1 = value;
+              } else {
+                _obj2 = value;
+              }
+            });
+          }
         },
         hint: Text('Select Item'),
         value: sel,

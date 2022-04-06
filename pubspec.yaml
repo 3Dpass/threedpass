@@ -18,33 +18,37 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  flutter_markdown: ^0.3.4
-  url_launcher: ^5.5.1
-  file_picker: ^1.13.3
-  qr_flutter: ^3.1.0
-  flutter_file_dialog: ^0.0.5
-  flutter_settings_screens: ^0.2.1
-  hive_flutter: ^0.2.1
-  progress_dialog: ^1.2.4
-  ffi: ^0.1.3
-  share: ^0.6.5+4
+  flutter_markdown: ^0.6.9+1
+  url_launcher: ^6.0.20
+  file_picker: ^4.5.1
+  qr_flutter: ^4.0.0
+  flutter_file_dialog: ^2.3.0
+  # flutter_settings_screens: ^0.2.1
+  hive_flutter: ^1.1.0
+  sn_progress_dialog: ^1.0.6
+  ffi: ^1.1.2
+  share_plus: ^4.0.3
   calc:
     path: packages/calc
+  intl: ^0.17.0
+  get_it: ^7.2.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.3
+  # cupertino_icons: ^0.1.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  hive_generator: ^1.1.2
+  build_runner:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
