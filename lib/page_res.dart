@@ -28,7 +28,7 @@ class ResultPage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-  final HomePageState home;
+  final HomePageOLDState home;
 
   @override
   _ResultPageState createState() => _ResultPageState();

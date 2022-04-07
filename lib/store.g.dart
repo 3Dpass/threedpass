@@ -18,7 +18,7 @@ class HashesModelAdapter extends TypeAdapter<HashesModel> {
     };
     return HashesModel(
       name: fields[0] as String,
-      stamp: fields[1] as String,
+      stamp: fields[1] as DateTime,
       hashes: (fields[2] as List).cast<String>(),
     );
   }

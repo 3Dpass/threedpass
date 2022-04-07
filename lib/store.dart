@@ -12,9 +12,7 @@ class HashesModel {
   String name;
 
   @HiveField(1)
-  String stamp;
-
-  // var now = new DateTime.now();
+  DateTime stamp;
 
   @HiveField(2)
   List<String> hashes;
@@ -113,8 +111,8 @@ class HiveUniversalStore<T> {
 }
 
 /// A cache access provider class for shared preferences using Hive library
-class HiveStore extends HiveUniversalStore<HashesModel> {
-  HiveStore() : super(boxName: 'hashes');
+class HiveHashStore extends HiveUniversalStore<HashesModel> {
+  HiveHashStore() : super(boxName: 'hashes');
 
   // Future<void> init() async {
   //   //

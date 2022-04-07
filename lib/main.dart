@@ -4,6 +4,7 @@ import 'package:flutter/services.dart'; // PlatformException
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:sn_progress_dialog/sn_progress_dialog.dart';
+import 'package:threedpass/features/home_page/presentation/pages/home_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -22,6 +23,8 @@ import 'page_cmp.dart';
 import 'app_settings_page.dart';
 import 'store.dart';
 
+import 'package:threedpass/setup.dart' as di_setup;
+
 // bool _isDarkTheme = true;
 // bool _isUsingHive = true;
 
@@ -37,6 +40,8 @@ Future<void> main() async {
   Hive.registerAdapter(HashesModelAdapter());
   Directory defaultDirectory = await getApplicationDocumentsDirectory();
   Hive.init(defaultDirectory.path);
+
+  di_setup.setup();
 
   runApp(ThreeDApp());
 }
@@ -59,25 +64,25 @@ class ThreeDApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
         primaryColor: Colors.black,
-        bottomAppBarColor: Colors.green,
+        // bottomAppBarColor: Colors.green,
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
 //        buttonBarTheme: ButtonBarThemeData(
-        iconTheme: IconTheme.of(context).copyWith(
-          color: Colors.yellow,
-        ),
+        // iconTheme: IconTheme.of(context).copyWith(
+        //   color: Colors.yellow,
+        // ),
       ),
 //      ),
-      home: HomePage(title: ''),
+      home: HomePage(),
       //home: HomePage(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  HomePage({Key? key, required this.title}) : super(key: key);
+class HomePageOLD extends StatefulWidget {
+  HomePageOLD({Key? key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -88,13 +93,13 @@ class HomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
+  // final String title;
 
   @override
-  HomePageState createState() => HomePageState();
+  HomePageOLDState createState() => HomePageOLDState();
 }
 
-class HomePageState extends State<HomePage> {
+class HomePageOLDState extends State<HomePageOLD> {
   int _counter = 0;
   bool _isBusy = false;
   OpenFileDialogType _dialogType = OpenFileDialogType.image;
@@ -115,28 +120,28 @@ class HomePageState extends State<HomePage> {
     return _result;
   }
 
-  HiveStore hs = HiveStore();
+  // HiveStore hs = HiveStore();
 
-  @override
-  void initState() {
-    hs.init() // .whenComplete() {
-        .then((result) {
-      print("HiveStore initielized");
-      setState(() {});
-    });
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   hs.init() // .whenComplete() {
+  //       .then((result) {
+  //     print("HiveStore initielized");
+  //     setState(() {});
+  //   });
+  //   super.initState();
+  // }
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  // void _incrementCounter() {
+  //   setState(() {
+  //     // This call to setState tells the Flutter framework that something has
+  //     // changed in this State, which causes it to rerun the build method below
+  //     // so that the display can reflect the updated values. If we changed
+  //     // _counter without calling setState(), then the build method would not be
+  //     // called again, and so nothing would appear to happen.
+  //     _counter++;
+  //   });
+  // }
 
   _launchURL(url) async {
     if (await canLaunch(url)) {
@@ -337,7 +342,7 @@ class HomePageState extends State<HomePage> {
   }
 
   void deleteHashes(String key) {
-    hs.remove(key);
+    // hs.remove(key);
     setState(() {});
   }
 
@@ -412,15 +417,14 @@ class HomePageState extends State<HomePage> {
 //          sourceFilePath: _currentFile.path, localOnly: _localOnly);
 //      result = await FlutterFileDialog.saveFile(params: params);
 //      print(result);
-      final DateFormat formatter = DateFormat('yyyy-MM-dd H:m:s');
 
       HashesModel hashObj = HashesModel(
         name: name,
-        stamp: formatter.format(DateTime.now()),
+        stamp: DateTime.now(),
         hashes: hashes,
       );
 
-      await hs.setObject(name, hashObj);
+      // await hs.setObject(name, hashObj);
     } on PlatformException catch (e) {
       print(e);
     } finally {
@@ -543,19 +547,19 @@ class HomePageState extends State<HomePage> {
                 ],
               )),
             ),
-            Container(
-              padding: new EdgeInsets.all(.0),
-              height: 300, //Your custom height
-              child: new Container(
-                alignment: Alignment.topCenter,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: AlwaysScrollableScrollPhysics(),
-                  itemCount: hs.length + 1,
-                  itemBuilder: _buildCards,
-                ),
-              ),
-            ),
+            // Container(
+            //   padding: new EdgeInsets.all(.0),
+            //   height: 300, //Your custom height
+            //   child: new Container(
+            //     alignment: Alignment.topCenter,
+            //     child: ListView.builder(
+            //       shrinkWrap: true,
+            //       physics: AlwaysScrollableScrollPhysics(),
+            //       itemCount: hs.length + 1,
+            //       itemBuilder: _buildCards,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -650,7 +654,7 @@ class HomePageState extends State<HomePage> {
         ),
       );
     } else {
-      HashesModel hashe = hs.getAt(index - 1)!;
+      // HashesModel hashe = hs.getAt(index - 1)!;
 
       return Card(
           child: new Container(
@@ -660,8 +664,8 @@ class HomePageState extends State<HomePage> {
             children: <Widget>[
               //                new Text('Object <scan 1>'),
               //                new Text('2020-09-21 11:55')
-              Text(hashe.name),
-              Text(hashe.stamp.toString()),
+              // Text(hashe.name),
+              // Text(hashe.stamp.toString()),
             ],
           ),
           Spacer(),
@@ -682,14 +686,14 @@ class HomePageState extends State<HomePage> {
         icon: Icon(Icons.more_vert, color: Colors.grey),
         onSelected: (value) {
           print("$value, $index");
-          HashesModel data = hs.getAt(index)!; // TODO null check is required
+          // HashesModel data = hs.getAt(index)!; // TODO null check is required
 
           switch (value) {
             case 1:
-              share(context, data.hashes);
+              // share(context, data.hashes);
               break;
             case 2:
-              deleteHashes(data.name);
+              // deleteHashes(data.name);
               break;
           }
         },
