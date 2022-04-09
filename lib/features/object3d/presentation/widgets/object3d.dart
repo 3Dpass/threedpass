@@ -1,18 +1,12 @@
 library flutter_3d_obj;
 
-import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/common/logger.dart';
+import 'package:threedpass/features/object3d/domain/entities/model3d.dart';
 import 'package:threedpass/features/object3d/presentation/cubit/object3d_cubit.dart';
+import 'package:threedpass/utils.dart';
 
-import '../../domain/entities/model3d.dart';
-import '../../../../utils.dart';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:meta/meta.dart';
 import 'package:vector_math/vector_math.dart' as Math;
 
 class Object3D extends StatefulWidget {

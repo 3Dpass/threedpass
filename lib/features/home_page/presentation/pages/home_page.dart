@@ -12,8 +12,6 @@ import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bl
 import 'package:threedpass/features/home_page/presentation/widgets/hash_card.dart';
 import 'package:threedpass/features/result_page/presentation/pages/result_page.dart';
 import 'package:threedpass/features/settings_page/presentation/pages/settings_page.dart';
-import 'package:threedpass/page_res.dart';
-import 'package:threedpass/features/hashes_list/data/repositories/hash_list_store.dart';
 
 class HomePage extends StatelessWidget {
   @override

@@ -7,7 +7,6 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:io' show Platform;
 import 'dart:isolate';
-import 'package:flutter/services.dart';
 import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 

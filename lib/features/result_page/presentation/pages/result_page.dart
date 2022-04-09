@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/pages/compare_page.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
 import 'package:threedpass/features/object3d/presentation/widgets/object3d.dart';

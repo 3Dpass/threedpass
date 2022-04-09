@@ -1,6 +1,4 @@
-import 'package:threedpass/core/errors/storage_error.dart';
 import 'package:threedpass/core/persistence/hive_universal_store.dart';
-import 'package:threedpass/core/utils/either.dart';
 import 'package:threedpass/features/settings_page/data/models/default_settings_config.dart';
 import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
 
