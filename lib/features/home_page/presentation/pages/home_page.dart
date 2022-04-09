@@ -1,9 +1,16 @@
+import 'dart:developer';
+
+import 'package:calc/calc.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:threedpass/common/button_styles.dart';
+import 'package:threedpass/common/logger.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/hash_card.dart';
+import 'package:threedpass/features/result_page/presentation/pages/result_page.dart';
+import 'package:threedpass/page_res.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -56,6 +63,36 @@ class HomePage extends StatelessWidget {
                         label: Text('Get from file'),
                         onPressed: () async {
                           // await gotoSecondActivity(context);
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles(
+                            type: FileType.any,
+                          );
+                          // TODO Validate the file. Check the extention and other stuff...
+                          if (result != null) {
+                            // settings
+                            int grid_size = 7; // TODO Move to real settings
+                            int n_sections = 10;
+                            try {
+                              String res = await Calc.start(
+                                () {
+                                  log('on calc progress');
+                                },
+                                result.paths.first,
+                                grid_size,
+                                n_sections,
+                              );
+                              // TODO Change to auto_route
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ResultPage(),
+                                ),
+                              );
+                            } catch (e) {
+                              // TODO Calc does not work on x86_64 devices
+                              logger.e(e);
+                            }
+                          }
                         },
                       ),
                     ),

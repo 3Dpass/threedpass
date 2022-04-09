@@ -6,7 +6,7 @@ import 'package:vector_math/vector_math.dart';
  *  A very simple Wavefront .OBJ parser.
  *  https://en.wikipedia.org/wiki/Wavefront_.obj_file
  */
-class Model {
+class Model3D {
   final List<Vector3> verts = [];
   final List<List<int>> faces = [];
 
@@ -28,11 +28,12 @@ class Model {
         (r * 255).toInt(), (g * 255).toInt(), (b * 255).toInt(), 1);
   }
 
-  Model();
+  Model3D();
 
   /*
    *  Parses the object from a string.
    */
+  // TODO Make named constructor
   void loadFromString(String string) {
     String material;
     List<String> lines = string.split("\n");

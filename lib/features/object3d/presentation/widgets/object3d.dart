@@ -2,8 +2,12 @@ library flutter_3d_obj;
 
 import 'dart:ui';
 
-import 'model.dart';
-import 'utils.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/common/logger.dart';
+import 'package:threedpass/features/object3d/presentation/cubit/object3d_cubit.dart';
+
+import '../../domain/entities/model3d.dart';
+import '../../../../utils.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,18 +36,12 @@ class _Object3DState extends State<Object3D> {
   double angleZ = 0.0;
   double zoom = 0.0;
 
-  late Model model;
-
   /*
    *  Load the 3D  data from a file in our /assets folder.
    */
   void initState() {
-    rootBundle.loadString(widget.path).then((value) {
-      setState(() {
-        model = Model();
-        model.loadFromString(value);
-      });
-    });
+    BlocProvider.of<Object3dCubit>(context).setInitial();
+    BlocProvider.of<Object3dCubit>(context).loadModel(widget.path);
     super.initState();
   }
 
@@ -67,14 +65,34 @@ class _Object3DState extends State<Object3D> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: CustomPaint(
-        painter: _ObjectPainter(
-            widget.size, model, angleX, angleY, angleZ, widget.zoom),
-        size: widget.size,
-      ),
-      onHorizontalDragUpdate: (DragUpdateDetails update) => _dragY(update),
-      onVerticalDragUpdate: (DragUpdateDetails update) => _dragX(update),
+    return BlocBuilder<Object3dCubit, Object3dState>(
+      builder: (context, state) {
+        if (state is Object3dInitial) {
+          return CircularProgressIndicator();
+        } else if (state is Object3dModelLoaded) {
+          return GestureDetector(
+            child: CustomPaint(
+              painter: _ObjectPainter(
+                widget.size,
+                state.model,
+                angleX,
+                angleY,
+                angleZ,
+                widget.zoom,
+              ),
+              size: widget.size,
+            ),
+            onHorizontalDragUpdate: (DragUpdateDetails update) =>
+                _dragY(update),
+            onVerticalDragUpdate: (DragUpdateDetails update) => _dragX(update),
+          );
+        } else {
+          logger.e(
+            'Undefined state for Object3dCubit type=${state.runtimeType}',
+          );
+          return CircularProgressIndicator();
+        }
+      },
     );
   }
 }
@@ -100,7 +118,7 @@ class _ObjectPainter extends CustomPainter {
 
   List<Math.Vector3> verts = <Math.Vector3>[];
 
-  final Model model;
+  final Model3D model;
 
   _ObjectPainter(this.size, this.model, this.angleX, this.angleY, this.angleZ,
       this._zoom) {
@@ -165,10 +183,10 @@ class _ObjectPainter extends CustomPainter {
    */
   @override
   void paint(Canvas canvas, Size size) {
-    // If we've not loaded the model then there's nothing to render
-    if (model == null) {
-      return;
-    }
+    // // If we've not loaded the model then there's nothing to render
+    // if (model == null) {
+    //   return;
+    // }
 
     // Rotate and translate the vertices
     verts = <Math.Vector3>[];

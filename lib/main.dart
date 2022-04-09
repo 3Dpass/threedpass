@@ -1,10 +1,13 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart'; // PlatformException
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:sn_progress_dialog/sn_progress_dialog.dart';
+import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/home_page/presentation/pages/home_page.dart';
+import 'package:threedpass/features/object3d/presentation/cubit/object3d_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -50,33 +53,20 @@ class ThreeDApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '3DPass',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.green,
-        primaryColor: Colors.black,
-        // bottomAppBarColor: Colors.green,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-//        buttonBarTheme: ButtonBarThemeData(
-        // iconTheme: IconTheme.of(context).copyWith(
-        //   color: Colors.yellow,
-        // ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => HashesListBloc()),
+        BlocProvider(create: (_) => Object3dCubit()),
+      ],
+      child: MaterialApp(
+        title: '3DPass',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+          primaryColor: Colors.black,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: HomePage(),
       ),
-//      ),
-      home: HomePage(),
-      //home: HomePage(),
     );
   }
 }

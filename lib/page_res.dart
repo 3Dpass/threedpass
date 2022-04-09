@@ -9,10 +9,10 @@ import 'package:flutter_file_dialog/flutter_file_dialog.dart';
 import 'page_settings.dart';
 import 'main.dart';
 import 'page_cmp.dart';
-import 'object3d.dart';
+import 'features/object3d/presentation/widgets/object3d.dart';
 
-class ResultPage extends StatefulWidget {
-  ResultPage({
+class ResultPageOLD extends StatefulWidget {
+  ResultPageOLD({
     Key? key,
     required this.title,
     required this.home,
@@ -31,10 +31,10 @@ class ResultPage extends StatefulWidget {
   final HomePageOLDState home;
 
   @override
-  _ResultPageState createState() => _ResultPageState();
+  _ResultPageOLDState createState() => _ResultPageOLDState();
 }
 
-class _ResultPageState extends State<ResultPage> {
+class _ResultPageOLDState extends State<ResultPageOLD> {
   final _controller = TextEditingController();
 
   @override

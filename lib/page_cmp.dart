@@ -8,7 +8,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
 import 'page_settings.dart';
 import 'main.dart';
-import 'object3d.dart';
+import 'features/object3d/presentation/widgets/object3d.dart';
 
 class CmpPage extends StatefulWidget {
   CmpPage({Key? key, required this.title, required this.home})
