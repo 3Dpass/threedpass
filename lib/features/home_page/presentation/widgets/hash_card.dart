@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/hash_card_popup_menu.dart';
-import 'package:threedpass/store.dart';
 
 class HashCard extends StatelessWidget {
   final HashesModel hashesModel;
@@ -20,9 +20,10 @@ class HashCard extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(hashesModel.name),
-                Text(formatter.format(hashesModel.stamp)),
+                Text('Name: ' + hashesModel.name),
+                Text('Stamp: ' + formatter.format(hashesModel.stamp)),
               ],
             ),
             Spacer(),

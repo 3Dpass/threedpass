@@ -5,8 +5,25 @@ abstract class HashesListEvent {
 }
 
 class DeleteHash extends HashesListEvent {
-  final HashesModel model;
   const DeleteHash({
     required this.model,
   });
-} // TODO Unimplemented
+
+  final HashesModel model;
+}
+
+class SaveNewHash extends HashesListEvent {
+  const SaveNewHash({
+    required this.model,
+  });
+
+  final HashesModel model;
+}
+
+class UpdateHashesList extends HashesListEvent {
+  const UpdateHashesList({
+    required this.hashes,
+  });
+
+  final List<HashesModel> hashes;
+}

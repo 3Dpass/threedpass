@@ -1,30 +1,19 @@
 import 'dart:io';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart'; // PlatformException
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:sn_progress_dialog/sn_progress_dialog.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/home_page/presentation/pages/home_page.dart';
-import 'package:threedpass/features/object3d/presentation/cubit/object3d_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
-import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:calc/calc.dart';
-
-import 'cache_provider.dart';
-import 'page_res.dart';
-import 'page_settings.dart';
 import 'page_cmp.dart';
-import 'app_settings_page.dart';
-import 'store.dart';
 
 import 'package:threedpass/setup.dart' as di_setup;
 
@@ -44,7 +33,7 @@ Future<void> main() async {
   Directory defaultDirectory = await getApplicationDocumentsDirectory();
   Hive.init(defaultDirectory.path);
 
-  di_setup.setup();
+  await di_setup.setup();
 
   runApp(ThreeDApp());
 }
@@ -55,8 +44,9 @@ class ThreeDApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => HashesListBloc()),
-        BlocProvider(create: (_) => Object3dCubit()),
+        BlocProvider<HashesListBloc>(
+          create: (_) => di_setup.getIt<HashesListBloc>(),
+        ),
       ],
       child: MaterialApp(
         title: '3DPass',
@@ -104,7 +94,7 @@ class HomePageOLDState extends State<HomePageOLD> {
   int n_sections = 10;
 
   late List<String> _result;
-  ProgressDialog? _pr = null;
+  // ProgressDialog? _pr = null;
 
   List<String> get result {
     return _result;
@@ -143,7 +133,7 @@ class HomePageOLDState extends State<HomePageOLD> {
 
   onProgress(dynamic message) async {
     print("onProgress: $message");
-    _pr!.update(value: message["pct"].toDouble(), msg: message["desc"]);
+    // _pr!.update(value: message["pct"].toDouble(), msg: message["desc"]);
 //    Future.delayed(Duration(seconds: 1)).then((onvalue) {
 //      _pr.update(
 //          progress: 50.0,

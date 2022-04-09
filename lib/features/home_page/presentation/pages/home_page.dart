@@ -7,10 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/common/logger.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/hash_card.dart';
 import 'package:threedpass/features/result_page/presentation/pages/result_page.dart';
 import 'package:threedpass/page_res.dart';
+import 'package:threedpass/features/hashes_list/data/repositories/store.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -85,7 +87,14 @@ class HomePage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => ResultPage(),
+                                  builder: (_) => ResultPage(
+                                    hashesModel: HashesModel(
+                                      name:
+                                          'New object ${DateTime.now().toIso8601String()}',
+                                      hashes: res.split('\n'),
+                                      stamp: DateTime.now(),
+                                    ),
+                                  ),
                                 ),
                               );
                             } catch (e) {

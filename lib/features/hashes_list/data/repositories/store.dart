@@ -1,28 +1,8 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:threedpass/core/errors/storage_error.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
 
-part 'store.g.dart';
-
-@HiveType(typeId: 0)
-class HashesModel {
-  @HiveField(0)
-  String name;
-
-  @HiveField(1)
-  DateTime stamp;
-
-  @HiveField(2)
-  List<String> hashes;
-
-  HashesModel({
-    required this.name,
-    required this.stamp,
-    required this.hashes,
-  });
-}
+// part 'store.g.dart';
 
 // class HashesModelAdapter extends TypeAdapter<HashesModel> {
 //   @override
@@ -72,8 +52,18 @@ class HiveUniversalStore<T> {
     _box = await Hive.openBox(_boxName);
   }
 
+  Future<void> addObject(T value) async {
+    await _box.add(value);
+    return await _box.flush();
+  }
+
+  Future<Iterable<int>> addAllObjects(List<T> list) async {
+    return await _box.addAll(list);
+  }
+
   Future<void> setObject(String key, T value) async {
-    return await _box.put(key, value);
+    await _box.put(key, value);
+    return await _box.flush();
   }
 
   bool containsKey(String key) {
@@ -84,10 +74,24 @@ class HiveUniversalStore<T> {
     return _box.keys.cast<String>().toSet();
   }
 
-  Future<void> remove(String key) async {
+  Future<void> removeAt(String key) async {
     if (containsKey(key)) {
       await _box.delete(key);
+      return await _box.flush();
     }
+  }
+
+  /// Delete object by unknown key
+  Future<StorageError?> removeObject(T value) async {
+    final map = _box.toMap();
+    var key = map.keys.firstWhere((k) => map[k] == value, orElse: () => null);
+
+    if (key != null) {
+      await _box.delete(key);
+      await _box.flush();
+      return null;
+    }
+    return StorageError.impossibleOperation();
   }
 
   Future<void> removeAll() async {
@@ -105,6 +109,10 @@ class HiveUniversalStore<T> {
 
   T? getAt(int index) {
     return _box.getAt(index);
+  }
+
+  Iterable<T> getAll() {
+    return _box.values;
   }
 
   int get length => _box.values.length;

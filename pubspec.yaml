@@ -31,7 +31,7 @@ dependencies:
   flutter_file_dialog: ^2.3.0
   # flutter_settings_screens: ^0.2.1
   hive_flutter: ^1.1.0
-  sn_progress_dialog: ^1.0.6
+  # sn_progress_dialog: ^1.0.6
   ffi: ^1.1.2
   share_plus: ^4.0.3
   calc:
@@ -40,6 +40,9 @@ dependencies:
   get_it: ^7.2.0
   flutter_bloc: ^8.0.1
   logger: ^1.1.0
+  copy_with_extension: ^4.0.0
+  freezed: ^1.1.1
+  equatable: ^2.0.3
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -50,6 +53,7 @@ dev_dependencies:
     sdk: flutter
 
   hive_generator: ^1.1.2
+  copy_with_extension_gen: ^4.0.1
   build_runner:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -8,7 +8,7 @@ class HashProperties extends StatelessWidget {
         children: <Widget>[
           Text("Strong"),
           Padding(
-            padding: EdgeInsets.all(5),
+            padding: EdgeInsets.symmetric(vertical: 5),
             child: LinearProgressIndicator(
               value: 0.6, // TODO How is the strength of a hash counted?
             ),

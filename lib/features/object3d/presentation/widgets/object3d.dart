@@ -36,15 +36,6 @@ class _Object3DState extends State<Object3D> {
   double angleZ = 0.0;
   double zoom = 0.0;
 
-  /*
-   *  Load the 3D  data from a file in our /assets folder.
-   */
-  void initState() {
-    BlocProvider.of<Object3dCubit>(context).setInitial();
-    BlocProvider.of<Object3dCubit>(context).loadModel(widget.path);
-    super.initState();
-  }
-
   _dragX(DragUpdateDetails update) {
     setState(() {
       angleX += update.delta.dy;
@@ -65,34 +56,44 @@ class _Object3DState extends State<Object3D> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<Object3dCubit, Object3dState>(
-      builder: (context, state) {
-        if (state is Object3dInitial) {
-          return CircularProgressIndicator();
-        } else if (state is Object3dModelLoaded) {
-          return GestureDetector(
-            child: CustomPaint(
-              painter: _ObjectPainter(
-                widget.size,
-                state.model,
-                angleX,
-                angleY,
-                angleZ,
-                widget.zoom,
-              ),
-              size: widget.size,
-            ),
-            onHorizontalDragUpdate: (DragUpdateDetails update) =>
-                _dragY(update),
-            onVerticalDragUpdate: (DragUpdateDetails update) => _dragX(update),
+    return BlocProvider(
+      create: (_) => Object3dCubit(),
+      child: Builder(
+        builder: (context) {
+          BlocProvider.of<Object3dCubit>(context).loadModel(widget.path);
+
+          return BlocBuilder<Object3dCubit, Object3dState>(
+            builder: (context, state) {
+              if (state is Object3dInitial) {
+                return CircularProgressIndicator();
+              } else if (state is Object3dModelLoaded) {
+                return GestureDetector(
+                  child: CustomPaint(
+                    painter: _ObjectPainter(
+                      widget.size,
+                      state.model,
+                      angleX,
+                      angleY,
+                      angleZ,
+                      widget.zoom,
+                    ),
+                    size: widget.size,
+                  ),
+                  onHorizontalDragUpdate: (DragUpdateDetails update) =>
+                      _dragY(update),
+                  onVerticalDragUpdate: (DragUpdateDetails update) =>
+                      _dragX(update),
+                );
+              } else {
+                logger.e(
+                  'Undefined state for Object3dCubit type=${state.runtimeType}',
+                );
+                return CircularProgressIndicator();
+              }
+            },
           );
-        } else {
-          logger.e(
-            'Undefined state for Object3dCubit type=${state.runtimeType}',
-          );
-          return CircularProgressIndicator();
-        }
-      },
+        },
+      ),
     );
   }
 }

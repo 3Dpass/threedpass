@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/store.dart';
+import 'package:threedpass/features/hashes_list/data/repositories/store.dart';
 
 class HashCardPopUpMenuButton extends StatelessWidget {
   final HashesModel hashesModel;
