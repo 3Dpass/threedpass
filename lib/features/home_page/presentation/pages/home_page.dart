@@ -11,8 +11,9 @@ import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dar
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/hash_card.dart';
 import 'package:threedpass/features/result_page/presentation/pages/result_page.dart';
+import 'package:threedpass/features/settings_page/presentation/pages/settings_page.dart';
 import 'package:threedpass/page_res.dart';
-import 'package:threedpass/features/hashes_list/data/repositories/store.dart';
+import 'package:threedpass/features/hashes_list/data/repositories/hash_list_store.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -194,7 +195,12 @@ class HomePage extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.settings, color: Colors.grey),
               onPressed: () {
-                // openAppSettings(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => SettingsPage(),
+                  ),
+                );
               },
             ),
           ],

@@ -72,7 +72,7 @@ class _$HashesModelCWProxyImpl implements _$HashesModelCWProxy {
 }
 
 extension $HashesModelCopyWith on HashesModel {
-  /// Returns a callable class that can be used as follows: `instanceOfclass HashesModel.name.copyWith(...)` or like so:`instanceOfclass HashesModel.name.copyWith.fieldName(...)`.
+  /// Returns a callable class that can be used as follows: `instanceOfclass HashesModel extends Equatable.name.copyWith(...)` or like so:`instanceOfclass HashesModel extends Equatable.name.copyWith.fieldName(...)`.
   _$HashesModelCWProxy get copyWith => _$HashesModelCWProxyImpl(this);
 }
 

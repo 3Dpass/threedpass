@@ -21,6 +21,10 @@ class _$StorageErrorTearOff {
   _ImpossibleOperation impossibleOperation() {
     return const _ImpossibleOperation();
   }
+
+  _NoDataStored noDataStored() {
+    return const _NoDataStored();
+  }
 }
 
 /// @nodoc
@@ -31,32 +35,38 @@ mixin _$StorageError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() impossibleOperation,
+    required TResult Function() noDataStored,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? impossibleOperation,
+    TResult Function()? noDataStored,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? impossibleOperation,
+    TResult Function()? noDataStored,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ImpossibleOperation value) impossibleOperation,
+    required TResult Function(_NoDataStored value) noDataStored,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ImpossibleOperation value)? impossibleOperation,
+    TResult Function(_NoDataStored value)? noDataStored,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ImpossibleOperation value)? impossibleOperation,
+    TResult Function(_NoDataStored value)? noDataStored,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +130,7 @@ class _$_ImpossibleOperation implements _ImpossibleOperation {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() impossibleOperation,
+    required TResult Function() noDataStored,
   }) {
     return impossibleOperation();
   }
@@ -128,6 +139,7 @@ class _$_ImpossibleOperation implements _ImpossibleOperation {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? impossibleOperation,
+    TResult Function()? noDataStored,
   }) {
     return impossibleOperation?.call();
   }
@@ -136,6 +148,7 @@ class _$_ImpossibleOperation implements _ImpossibleOperation {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? impossibleOperation,
+    TResult Function()? noDataStored,
     required TResult orElse(),
   }) {
     if (impossibleOperation != null) {
@@ -148,6 +161,7 @@ class _$_ImpossibleOperation implements _ImpossibleOperation {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ImpossibleOperation value) impossibleOperation,
+    required TResult Function(_NoDataStored value) noDataStored,
   }) {
     return impossibleOperation(this);
   }
@@ -156,6 +170,7 @@ class _$_ImpossibleOperation implements _ImpossibleOperation {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ImpossibleOperation value)? impossibleOperation,
+    TResult Function(_NoDataStored value)? noDataStored,
   }) {
     return impossibleOperation?.call(this);
   }
@@ -164,6 +179,7 @@ class _$_ImpossibleOperation implements _ImpossibleOperation {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ImpossibleOperation value)? impossibleOperation,
+    TResult Function(_NoDataStored value)? noDataStored,
     required TResult orElse(),
   }) {
     if (impossibleOperation != null) {
@@ -175,4 +191,108 @@ class _$_ImpossibleOperation implements _ImpossibleOperation {
 
 abstract class _ImpossibleOperation implements StorageError {
   const factory _ImpossibleOperation() = _$_ImpossibleOperation;
+}
+
+/// @nodoc
+abstract class _$NoDataStoredCopyWith<$Res> {
+  factory _$NoDataStoredCopyWith(
+          _NoDataStored value, $Res Function(_NoDataStored) then) =
+      __$NoDataStoredCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$NoDataStoredCopyWithImpl<$Res> extends _$StorageErrorCopyWithImpl<$Res>
+    implements _$NoDataStoredCopyWith<$Res> {
+  __$NoDataStoredCopyWithImpl(
+      _NoDataStored _value, $Res Function(_NoDataStored) _then)
+      : super(_value, (v) => _then(v as _NoDataStored));
+
+  @override
+  _NoDataStored get _value => super._value as _NoDataStored;
+}
+
+/// @nodoc
+
+class _$_NoDataStored implements _NoDataStored {
+  const _$_NoDataStored();
+
+  @override
+  String toString() {
+    return 'StorageError.noDataStored()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _NoDataStored);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() impossibleOperation,
+    required TResult Function() noDataStored,
+  }) {
+    return noDataStored();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? impossibleOperation,
+    TResult Function()? noDataStored,
+  }) {
+    return noDataStored?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? impossibleOperation,
+    TResult Function()? noDataStored,
+    required TResult orElse(),
+  }) {
+    if (noDataStored != null) {
+      return noDataStored();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ImpossibleOperation value) impossibleOperation,
+    required TResult Function(_NoDataStored value) noDataStored,
+  }) {
+    return noDataStored(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ImpossibleOperation value)? impossibleOperation,
+    TResult Function(_NoDataStored value)? noDataStored,
+  }) {
+    return noDataStored?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ImpossibleOperation value)? impossibleOperation,
+    TResult Function(_NoDataStored value)? noDataStored,
+    required TResult orElse(),
+  }) {
+    if (noDataStored != null) {
+      return noDataStored(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoDataStored implements StorageError {
+  const factory _NoDataStored() = _$_NoDataStored;
 }

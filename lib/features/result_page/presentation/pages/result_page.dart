@@ -9,6 +9,7 @@ import 'package:threedpass/features/result_page/presentation/widgets/delete_obje
 import 'package:threedpass/features/result_page/presentation/widgets/hash_properties.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/more_info.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/save_object_button.dart';
+import 'package:threedpass/features/settings_page/presentation/pages/settings_page.dart';
 
 class ResultPage extends StatelessWidget {
   final HashesModel hashesModel;
@@ -106,7 +107,12 @@ class ResultPage extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.settings, color: Colors.grey),
               onPressed: () {
-                // widget.home.openAppSettings(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => SettingsPage(),
+                  ),
+                );
               },
               //title: Container(), //Text("Delete"),
             ),

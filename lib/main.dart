@@ -6,6 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/home_page/presentation/pages/home_page.dart';
+import 'package:threedpass/features/settings_page/presentation/cubit/settings_page_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/material.dart';
@@ -46,6 +47,9 @@ class ThreeDApp extends StatelessWidget {
       providers: [
         BlocProvider<HashesListBloc>(
           create: (_) => di_setup.getIt<HashesListBloc>(),
+        ),
+        BlocProvider<SettingsConfigCubit>(
+          create: (_) => di_setup.getIt<SettingsConfigCubit>(),
         ),
       ],
       child: MaterialApp(
