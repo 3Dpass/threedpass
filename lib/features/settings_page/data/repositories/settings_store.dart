@@ -18,6 +18,6 @@ class HiveSettingsStore extends HiveUniversalStore<SettingsConfig> {
   }
 
   Future<void> setSettings(SettingsConfig config) async {
-    return await putAt(0, config);
+    return await putAt0(config);
   }
 }

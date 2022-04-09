@@ -6,6 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/home_page/presentation/pages/home_page.dart';
+import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
 import 'package:threedpass/features/settings_page/presentation/cubit/settings_page_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -31,6 +32,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Hive.registerAdapter(HashesModelAdapter());
+  Hive.registerAdapter(SettingsConfigAdapter());
+  Hive.registerAdapter(AlgorithmAdapter());
   Directory defaultDirectory = await getApplicationDocumentsDirectory();
   Hive.init(defaultDirectory.path);
 

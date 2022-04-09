@@ -81,6 +81,15 @@ class HiveUniversalStore<T> {
     return await _box.flush();
   }
 
+  Future<void> putAt0(T value) async {
+    if (_box.isEmpty) {
+      _box.add(value);
+    } else {
+      await _box.putAt(0, value);
+    }
+    return await _box.flush();
+  }
+
   Iterable<T> getAll() {
     return _box.values;
   }
