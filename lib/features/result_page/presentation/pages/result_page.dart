@@ -70,7 +70,9 @@ class ResultPage extends StatelessWidget {
                   ),
                   zoom: 2.0,
                   //path: "assets/brain.obj",
-                  path: "assets/scan1_low.obj",
+                  path: hashesModel.externalPathToObj == null
+                      ? "assets/scan1_low.obj"
+                      : hashesModel.externalPathToObj!,
                 ),
               ),
               Container(

@@ -9,6 +9,7 @@ import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/common/logger.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
+import 'package:threedpass/features/home_page/presentation/widgets/get_object_from_file_button.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/hash_card.dart';
 import 'package:threedpass/features/result_page/presentation/pages/result_page.dart';
 import 'package:threedpass/features/settings_page/presentation/pages/settings_page.dart';
@@ -56,54 +57,7 @@ class HomePage extends StatelessWidget {
               child: Center(
                 child: Column(
                   children: <Widget>[
-                    SizedBox(
-                      // width: 400,
-                      child: ElevatedButton.icon(
-                        style: AppButtonStyles.primaryButton,
-                        icon: Icon(Icons.folder_open),
-                        label: Text('Get from file'),
-                        onPressed: () async {
-                          // await gotoSecondActivity(context);
-                          FilePickerResult? result =
-                              await FilePicker.platform.pickFiles(
-                            type: FileType.any,
-                          );
-                          // TODO Validate the file. Check the extention and other stuff...
-                          if (result != null) {
-                            // settings
-                            int grid_size = 7; // TODO Move to real settings
-                            int n_sections = 10;
-                            try {
-                              String res = await Calc.start(
-                                () {
-                                  log('on calc progress');
-                                },
-                                result.paths.first,
-                                grid_size,
-                                n_sections,
-                              );
-                              // TODO Change to auto_route
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => ResultPage(
-                                    hashesModel: HashesModel(
-                                      name:
-                                          'New object ${DateTime.now().toIso8601String()}',
-                                      hashes: res.split('\n'),
-                                      stamp: DateTime.now(),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            } catch (e) {
-                              // TODO Calc does not work on x86_64 devices
-                              logger.e(e);
-                            }
-                          }
-                        },
-                      ),
-                    ),
+                    GetObjectFromFileButton(),
                     SizedBox(
                       height: 5,
                     ),

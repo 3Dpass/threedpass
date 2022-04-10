@@ -16,10 +16,14 @@ class HashesModel extends Equatable {
   @HiveField(2)
   final List<String> hashes;
 
+  @HiveField(3)
+  final String? externalPathToObj;
+
   const HashesModel({
     required this.name,
     required this.stamp,
     required this.hashes,
+    this.externalPathToObj,
   });
 
   String get shareText => hashes.join('\n');

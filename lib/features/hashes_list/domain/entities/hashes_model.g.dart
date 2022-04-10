@@ -7,6 +7,8 @@ part of 'hashes_model.dart';
 // **************************************************************************
 
 abstract class _$HashesModelCWProxy {
+  HashesModel externalPathToObj(String? externalPathToObj);
+
   HashesModel hashes(List<String> hashes);
 
   HashesModel name(String name);
@@ -20,6 +22,7 @@ abstract class _$HashesModelCWProxy {
   /// HashesModel(...).copyWith(id: 12, name: "My name")
   /// ````
   HashesModel call({
+    String? externalPathToObj,
     List<String>? hashes,
     String? name,
     DateTime? stamp,
@@ -31,6 +34,10 @@ class _$HashesModelCWProxyImpl implements _$HashesModelCWProxy {
   final HashesModel _value;
 
   const _$HashesModelCWProxyImpl(this._value);
+
+  @override
+  HashesModel externalPathToObj(String? externalPathToObj) =>
+      this(externalPathToObj: externalPathToObj);
 
   @override
   HashesModel hashes(List<String> hashes) => this(hashes: hashes);
@@ -50,11 +57,16 @@ class _$HashesModelCWProxyImpl implements _$HashesModelCWProxy {
   /// HashesModel(...).copyWith(id: 12, name: "My name")
   /// ````
   HashesModel call({
+    Object? externalPathToObj = const $CopyWithPlaceholder(),
     Object? hashes = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? stamp = const $CopyWithPlaceholder(),
   }) {
     return HashesModel(
+      externalPathToObj: externalPathToObj == const $CopyWithPlaceholder()
+          ? _value.externalPathToObj
+          // ignore: cast_nullable_to_non_nullable
+          : externalPathToObj as String?,
       hashes: hashes == const $CopyWithPlaceholder() || hashes == null
           ? _value.hashes
           // ignore: cast_nullable_to_non_nullable
@@ -94,19 +106,22 @@ class HashesModelAdapter extends TypeAdapter<HashesModel> {
       name: fields[0] as String,
       stamp: fields[1] as DateTime,
       hashes: (fields[2] as List).cast<String>(),
+      externalPathToObj: fields[3] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, HashesModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
       ..write(obj.stamp)
       ..writeByte(2)
-      ..write(obj.hashes);
+      ..write(obj.hashes)
+      ..writeByte(3)
+      ..write(obj.externalPathToObj);
   }
 
   @override
