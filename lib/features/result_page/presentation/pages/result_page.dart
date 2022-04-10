@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cube/flutter_cube.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/pages/compare_page.dart';
@@ -62,17 +63,19 @@ class ResultPage extends StatelessWidget {
               ),
               Container(
                 color: Colors.grey,
-                child: Object3D(
-                  size: Size(
-                    // 16 * 2 is a padding
-                    MediaQuery.of(context).size.width - 16 * 2,
-                    150.0,
-                  ),
-                  zoom: 2.0,
-                  //path: "assets/brain.obj",
-                  path: hashesModel.externalPathToObj == null
-                      ? "assets/scan1_low.obj"
-                      : hashesModel.externalPathToObj!,
+                width: MediaQuery.of(context).size.width - 16 * 2,
+                height: 150.0,
+                child: Cube(
+                  onSceneCreated: (Scene scene) {
+                    // scene.camera.zoom = ;
+                    scene.camera.zoom = 5;
+                    scene.world.add(
+                      Object(
+                        fileName: hashesModel.externalPathToObj!,
+                        isAsset: false,
+                      ),
+                    );
+                  },
                 ),
               ),
               Container(

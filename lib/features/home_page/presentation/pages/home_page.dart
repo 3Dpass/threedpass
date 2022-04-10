@@ -11,6 +11,7 @@ import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dar
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/get_object_from_file_button.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/hash_card.dart';
+import 'package:threedpass/features/object3d/presentation/pages/3dpage_experimental.dart';
 import 'package:threedpass/features/result_page/presentation/pages/result_page.dart';
 import 'package:threedpass/features/settings_page/presentation/pages/settings_page.dart';
 
@@ -68,6 +69,10 @@ class HomePage extends StatelessWidget {
                         icon: Icon(Icons.camera_alt),
                         label: Text('Scan by camera'),
                         onPressed: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => Experimental()),
+                          );
                           // await gotoSecondActivity(context);
                         },
                       ),
