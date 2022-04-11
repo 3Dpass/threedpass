@@ -18,9 +18,6 @@ class MoreInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         MarkdownBody(
-//                              styleSheet: MarkdownStyleSheet(
-//                                s: TextStyle(color: Colors.blue, fontSize: 40),
-//                              ),
           data: "### **Hash ID**\n\n\n### [Show and share](show_and_share)",
           onTapLink: (String text, String? href, String title) {
             print("tapped: text=$text href=$href");

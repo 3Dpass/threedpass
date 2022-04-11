@@ -178,11 +178,6 @@ class _ObjectPainter extends CustomPainter {
    */
   @override
   void paint(Canvas canvas, Size size) {
-    // // If we've not loaded the model then there's nothing to render
-    // if (model == null) {
-    //   return;
-    // }
-
     // Rotate and translate the vertices
     verts = <Math.Vector3>[];
     for (int i = 0; i < model.verts.length; i++) {

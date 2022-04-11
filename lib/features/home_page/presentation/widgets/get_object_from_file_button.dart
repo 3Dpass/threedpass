@@ -77,7 +77,7 @@ class GetObjectFromFileButton extends StatelessWidget {
         );
 
         Navigator.pop(context);
-        // Navigator.pop(context);
+
         // TODO Change to auto_route
         Navigator.push(
           context,
