@@ -1,14 +1,12 @@
 library flutter_3d_obj;
 
-import 'dart:ui';
-
-import 'model.dart';
-import 'utils.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/common/logger.dart';
+import 'package:threedpass/features/object3d/domain/entities/model3d.dart';
+import 'package:threedpass/features/object3d/presentation/cubit/object3d_cubit.dart';
+import 'package:threedpass/utils.dart';
+
 import 'package:vector_math/vector_math.dart' as Math;
 
 class Object3D extends StatefulWidget {
@@ -16,7 +14,11 @@ class Object3D extends StatefulWidget {
   final String path;
   final double zoom;
 
-  Object3D({@required this.size, @required this.path, @required this.zoom});
+  Object3D({
+    required this.size,
+    required this.path,
+    required this.zoom,
+  });
 
   @override
   _Object3DState createState() => _Object3DState();
@@ -27,21 +29,6 @@ class _Object3DState extends State<Object3D> {
   double angleY = 0.0;
   double angleZ = 0.0;
   double zoom = 0.0;
-
-  Model model;
-
-  /*
-   *  Load the 3D  data from a file in our /assets folder.
-   */
-  void initState() {
-    rootBundle.loadString(widget.path).then((value) {
-      setState(() {
-        model = Model();
-        model.loadFromString(value);
-      });
-    });
-    super.initState();
-  }
 
   _dragX(DragUpdateDetails update) {
     setState(() {
@@ -63,13 +50,44 @@ class _Object3DState extends State<Object3D> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: CustomPaint(
-        painter: _ObjectPainter(widget.size, model, angleX, angleY, angleZ, widget.zoom),
-        size: widget.size,
+    return BlocProvider(
+      create: (_) => Object3dCubit(),
+      child: Builder(
+        builder: (context) {
+          BlocProvider.of<Object3dCubit>(context).loadModel(widget.path);
+
+          return BlocBuilder<Object3dCubit, Object3dState>(
+            builder: (context, state) {
+              if (state is Object3dInitial) {
+                return CircularProgressIndicator();
+              } else if (state is Object3dModelLoaded) {
+                return GestureDetector(
+                  child: CustomPaint(
+                    painter: _ObjectPainter(
+                      widget.size,
+                      state.model,
+                      angleX,
+                      angleY,
+                      angleZ,
+                      widget.zoom,
+                    ),
+                    size: widget.size,
+                  ),
+                  onHorizontalDragUpdate: (DragUpdateDetails update) =>
+                      _dragY(update),
+                  onVerticalDragUpdate: (DragUpdateDetails update) =>
+                      _dragX(update),
+                );
+              } else {
+                logger.e(
+                  'Undefined state for Object3dCubit type=${state.runtimeType}',
+                );
+                return CircularProgressIndicator();
+              }
+            },
+          );
+        },
       ),
-      onHorizontalDragUpdate: (DragUpdateDetails update) => _dragY(update),
-      onVerticalDragUpdate: (DragUpdateDetails update) => _dragX(update),
     );
   }
 }
@@ -84,8 +102,8 @@ class _ObjectPainter extends CustomPainter {
   double _viewPortY = 0.0;
   double _zoom = 0.0;
 
-  Math.Vector3 camera;
-  Math.Vector3 light;
+  Math.Vector3 camera = Math.Vector3(0.0, 0.0, 0.0);
+  Math.Vector3 light = Math.Vector3(0.0, 0.0, 100.0);
 
   double angleX;
   double angleY;
@@ -93,14 +111,12 @@ class _ObjectPainter extends CustomPainter {
 
   Size size;
 
-  List<Math.Vector3> verts;
+  List<Math.Vector3> verts = <Math.Vector3>[];
 
-  final Model model;
+  final Model3D model;
 
-  _ObjectPainter(this.size, this.model, this.angleX, this.angleY, this.angleZ, this._zoom) {
-    camera = Math.Vector3(0.0, 0.0, 0.0);
-    light = Math.Vector3(0.0, 0.0, 100.0);
-    verts = List<Math.Vector3>();
+  _ObjectPainter(this.size, this.model, this.angleX, this.angleY, this.angleZ,
+      this._zoom) {
     _viewPortX = (size.width / 2).toDouble();
     _viewPortY = (size.height / 2).toDouble();
   }
@@ -162,24 +178,20 @@ class _ObjectPainter extends CustomPainter {
    */
   @override
   void paint(Canvas canvas, Size size) {
-    // If we've not loaded the model then there's nothing to render
-    if (model == null) {
-      return;
-    }
-
     // Rotate and translate the vertices
-    verts = List<Math.Vector3>();
+    verts = <Math.Vector3>[];
     for (int i = 0; i < model.verts.length; i++) {
       verts.add(_calcVertex(Math.Vector3.copy(model.verts[i])));
     }
 
     // Sort
-    var sorted = List<Map<String, dynamic>>();
+    var sorted = <Map<String, dynamic>>[];
     for (var i = 0; i < model.faces.length; i++) {
       var face = model.faces[i];
       sorted.add({
         "index": i,
-        "order": Utils.zIndex(verts[face[0] - 1], verts[face[1] - 1], verts[face[2] - 1])
+        "order": Utils.zIndex(
+            verts[face[0] - 1], verts[face[1] - 1], verts[face[2] - 1])
       });
     }
     sorted.sort((Map a, Map b) => a["order"].compareTo(b["order"]));

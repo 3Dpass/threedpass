@@ -7,9 +7,14 @@
          FlutterApplication and put your custom class here. -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
-        android:name="io.flutter.app.FlutterApplication"
+        android:name="${applicationName}"
         android:label="3DPass"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data
+          android:name="flutterEmbedding"
+          android:value="2" />
+          
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

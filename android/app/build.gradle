@@ -26,7 +26,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 31
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -46,8 +46,8 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.threedpass"
-        minSdkVersion 19
-        targetSdkVersion 28
+        minSdkVersion 21
+        targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -57,19 +57,19 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
-            applicationVariants.all { variant ->
-                variant.outputs.all {
-                    def appName = "threedpass_"
-                    def buildType = variant.variantData.variantConfiguration.buildType.name
-                    def newName
-                    if (buildType == 'debug'){
-                        newName = "app-debug.apk"
-                    } else {
-                        newName = "${appName}${defaultConfig.versionName}.apk"
-                    }
-                    outputFileName = newName
-                }
-            }
+            // applicationVariants.all { variant ->
+            //     variant.outputs.all {
+            //         def appName = "threedpass_"
+            //         def buildType = variant.variantData.variantConfiguration.buildType.name
+            //         def newName
+            //         if (buildType == 'debug'){
+            //             newName = "app-debug.apk"
+            //         } else {
+            //             newName = "${appName}${defaultConfig.versionName}.apk"
+            //         }
+            //         outputFileName = newName
+            //     }
+            // }
         }
     }
 
