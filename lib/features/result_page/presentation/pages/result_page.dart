@@ -4,7 +4,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/pages/compare_page.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
-import 'package:threedpass/features/object3d/presentation/widgets/object3d.dart';
+import 'package:threedpass/features/result_page/presentation/widgets/3d_scene.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/delete_object_button.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/hash_properties.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/more_info.dart';
@@ -61,22 +61,8 @@ class ResultPage extends StatelessWidget {
                   },
                 ),
               ),
-              Container(
-                color: Colors.grey,
-                width: MediaQuery.of(context).size.width - 16 * 2,
-                height: 150.0,
-                child: Cube(
-                  onSceneCreated: (Scene scene) {
-                    // scene.camera.zoom = ;
-                    scene.camera.zoom = 5;
-                    scene.world.add(
-                      Object(
-                        fileName: hashesModel.externalPathToObj!,
-                        isAsset: false,
-                      ),
-                    );
-                  },
-                ),
+              ObjectPreview(
+                hashesModel: hashesModel,
               ),
               Container(
                 padding: EdgeInsets.only(top: 16, bottom: 16),

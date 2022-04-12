@@ -5,11 +5,11 @@ import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dar
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 
 class HashCardPopUpMenuButton extends StatelessWidget {
-  final HashesModel hashesModel;
-
   const HashCardPopUpMenuButton({
     required this.hashesModel,
   });
+
+  final HashesModel hashesModel;
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +31,17 @@ class HashCardPopUpMenuButton extends StatelessWidget {
       },
       itemBuilder: (context) => [
         PopupMenuItem(
-            value: 1,
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
-                  child: Icon(Icons.share, color: Colors.grey),
-                ),
-                Text('Share')
-              ],
-            )),
+          value: 1,
+          child: Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+                child: Icon(Icons.share, color: Colors.grey),
+              ),
+              Text('Share')
+            ],
+          ),
+        ),
         PopupMenuItem(
           value: 2,
           child: Row(
