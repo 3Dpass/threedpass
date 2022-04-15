@@ -66,7 +66,6 @@ class ResultPage extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.only(top: 16, bottom: 16),
-                // constraints: BoxConstraints.expand(height: 90),
                 child: HashProperties(),
               ),
               SaveObjectButton(

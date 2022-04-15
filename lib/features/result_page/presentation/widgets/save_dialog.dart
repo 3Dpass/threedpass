@@ -15,7 +15,6 @@ class SaveDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      // title: Text('Save hashes'),
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),

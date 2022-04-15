@@ -52,8 +52,6 @@ class HomePage extends StatelessWidget {
             ),
             Container(
               padding: EdgeInsets.all(15.0),
-              // width: 400,
-              //height: 400,
               child: Center(
                 child: Column(
                   children: <Widget>[
@@ -62,7 +60,6 @@ class HomePage extends StatelessWidget {
                       height: 5,
                     ),
                     SizedBox(
-                      // width: 400,
                       child: ElevatedButton.icon(
                         style: AppButtonStyles.primaryButton,
                         icon: Icon(Icons.camera_alt),
