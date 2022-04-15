@@ -49,8 +49,8 @@ class SaveDialog extends StatelessWidget {
                       Navigator.of(context).pop();
                       String value = controller.text;
 
-                      final newNamedModel = hashesModelToSave.copyWith(
-                          name: value, externalPathToObj: null);
+                      final newNamedModel =
+                          hashesModelToSave.copyWith(name: value);
 
                       BlocProvider.of<HashesListBloc>(context).add(
                         SaveNewHash(
