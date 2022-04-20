@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cube/flutter_cube.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/pages/compare_page.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
-import 'package:threedpass/features/object3d/presentation/widgets/object3d.dart';
+import 'package:threedpass/features/result_page/presentation/widgets/3d_scene.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/delete_object_button.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/hash_properties.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/more_info.dart';
@@ -60,20 +61,8 @@ class ResultPage extends StatelessWidget {
                   },
                 ),
               ),
-              Container(
-                color: Colors.grey,
-                child: Object3D(
-                  size: Size(
-                    // 16 * 2 is a padding
-                    MediaQuery.of(context).size.width - 16 * 2,
-                    150.0,
-                  ),
-                  zoom: 2.0,
-                  //path: "assets/brain.obj",
-                  path: hashesModel.externalPathToObj == null
-                      ? "assets/scan1_low.obj"
-                      : hashesModel.externalPathToObj!,
-                ),
+              ObjectPreview(
+                hashesModel: hashesModel,
               ),
               Container(
                 padding: EdgeInsets.only(top: 16, bottom: 16),

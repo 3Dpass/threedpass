@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
@@ -18,7 +19,7 @@ Future<void> main() async {
   Hive.registerAdapter(SettingsConfigAdapter());
   Hive.registerAdapter(AlgorithmAdapter());
   Directory defaultDirectory = await getApplicationDocumentsDirectory();
-  Hive.init(defaultDirectory.path);
+  Hive.init(defaultDirectory.path + '/storages');
 
   await di_setup.setup();
 
@@ -28,6 +29,11 @@ Future<void> main() async {
 class ThreeDApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
+
     return MultiBlocProvider(
       providers: [
         BlocProvider<HashesListBloc>(

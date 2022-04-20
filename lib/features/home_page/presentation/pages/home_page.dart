@@ -65,7 +65,7 @@ class HomePage extends StatelessWidget {
                         icon: Icon(Icons.camera_alt),
                         label: Text('Scan by camera'),
                         onPressed: () async {
-                          // await gotoSecondActivity(context);
+                          log('on scan pressed');
                         },
                       ),
                     ),

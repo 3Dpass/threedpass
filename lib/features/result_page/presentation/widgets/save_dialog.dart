@@ -5,13 +5,12 @@ import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bl
 import 'package:threedpass/features/result_page/presentation/pages/result_page.dart';
 
 class SaveDialog extends StatelessWidget {
-  final HashesModel hashesModelToSave;
-
   SaveDialog({
     required this.hashesModelToSave,
   });
 
   final controller = TextEditingController();
+  final HashesModel hashesModelToSave;
 
   @override
   Widget build(BuildContext context) {
