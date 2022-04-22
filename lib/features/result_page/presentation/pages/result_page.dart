@@ -13,11 +13,11 @@ import 'package:threedpass/features/result_page/presentation/widgets/save_object
 import 'package:threedpass/features/settings_page/presentation/pages/settings_page.dart';
 
 class ResultPage extends StatelessWidget {
-  final HashesModel hashesModel;
-
   const ResultPage({
     required this.hashesModel,
   });
+
+  final HashesModel hashesModel;
 
   @override
   Widget build(BuildContext context) {

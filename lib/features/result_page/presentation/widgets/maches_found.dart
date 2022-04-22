@@ -8,9 +8,9 @@ import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bl
 import 'package:url_launcher/url_launcher.dart';
 
 class MatchesFound extends StatelessWidget {
-  final HashesModel currentModel;
-
   const MatchesFound({required this.currentModel});
+
+  final HashesModel currentModel;
 
   Future<List<HashesModel>> getMatches(BuildContext context) async {
     final res = Set<HashesModel>();
@@ -84,15 +84,15 @@ class MatchesFound extends StatelessWidget {
 //                   ),
 //                 );
 class _ClickableText extends StatelessWidget {
-  final String mainText;
-  final String clickable;
-  final void Function() onTap;
-
   _ClickableText({
     required this.clickable,
     required this.mainText,
     required this.onTap,
   });
+
+  final String clickable;
+  final String mainText;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
