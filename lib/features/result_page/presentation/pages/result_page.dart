@@ -7,6 +7,7 @@ import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dar
 import 'package:threedpass/features/result_page/presentation/widgets/3d_scene.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/delete_object_button.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/hash_properties.dart';
+import 'package:threedpass/features/result_page/presentation/widgets/maches_found.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/more_info.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/save_object_button.dart';
 import 'package:threedpass/features/settings_page/presentation/pages/settings_page.dart';
@@ -47,18 +48,8 @@ class ResultPage extends StatelessWidget {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(top: 16, bottom: 8),
-                child: MarkdownBody(
-                  data: "### 3 mathes [found](http://habr.com)",
-                  onTapLink: (String text, String? href, String title) {
-                    print("tapped: text=$text href=$href");
-
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => ComparePage(),
-                      ),
-                    );
-                  },
+                child: MatchesFound(
+                  currentModel: hashesModel,
                 ),
               ),
               ObjectPreview(

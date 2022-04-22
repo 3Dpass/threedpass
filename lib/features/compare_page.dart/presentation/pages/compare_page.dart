@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
 
 class ComparePage extends StatefulWidget {
+  final HashesModel origObj;
+  final List<HashesModel> comparisons;
+
+  const ComparePage({
+    required this.origObj,
+    required this.comparisons,
+  });
+
   @override
   State<StatefulWidget> createState() => _State();
 }
