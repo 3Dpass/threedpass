@@ -5,7 +5,10 @@ import 'package:flutter_cube/flutter_cube.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
 
 class ObjectPreview extends StatelessWidget {
-  const ObjectPreview({required this.hashesModel});
+  const ObjectPreview({
+    Key? key,
+    required this.hashesModel,
+  }) : super(key: key);
 
   final HashesModel hashesModel;
 

@@ -5,9 +5,10 @@ import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dar
 
 class ComparePage extends StatefulWidget {
   const ComparePage({
+    Key? key,
     required this.origObj,
     required this.comparisons,
-  });
+  }) : super(key: key);
 
   final List<HashesModel> comparisons;
   final HashesModel origObj;
@@ -30,12 +31,12 @@ class _State extends State<ComparePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text("Compare top hashes"),
+        title: const Text("Compare top hashes"),
       ),
       body: Column(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,7 +48,7 @@ class _State extends State<ComparePage> {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Flexible(
+                const Flexible(
                   child: Text(
                     "VS",
                     textAlign: TextAlign.center,
@@ -70,7 +71,7 @@ class _State extends State<ComparePage> {
               ],
             ),
           ),
-          Divider(
+          const Divider(
             height: 15,
             thickness: 3,
             color: Colors.black,

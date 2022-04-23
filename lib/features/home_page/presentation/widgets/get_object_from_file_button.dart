@@ -13,6 +13,8 @@ import 'package:threedpass/features/settings_page/presentation/cubit/settings_pa
 class GetObjectFromFileButton extends StatelessWidget {
   static const allowedExtentions = ['obj', 'stl'];
 
+  const GetObjectFromFileButton({Key? key}) : super(key: key);
+
   /// Get and validate file
   Future<FilePickerResult?> pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -47,13 +49,13 @@ class GetObjectFromFileButton extends StatelessWidget {
       barrierDismissible: false,
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        content: new Row(
+        content: Row(
           children: [
-            CircularProgressIndicator(),
+            const CircularProgressIndicator(),
             Flexible(
               child: Container(
-                margin: EdgeInsets.only(left: 16),
-                child: Text("Calculating hashes..."),
+                margin: const EdgeInsets.only(left: 16),
+                child: const Text("Calculating hashes..."),
               ),
             ),
           ],
@@ -98,8 +100,8 @@ class GetObjectFromFileButton extends StatelessWidget {
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('File picker error'),
+        const SnackBar(
+          content: Text('File picker error'),
         ),
       );
     }
@@ -109,8 +111,8 @@ class GetObjectFromFileButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       style: AppButtonStyles.primaryButton,
-      icon: Icon(Icons.folder_open),
-      label: Text('Get from file'),
+      icon: const Icon(Icons.folder_open),
+      label: const Text('Get from file'),
       onPressed: () => createHashFromFile(context),
     );
   }

@@ -8,7 +8,9 @@ import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bl
 import 'package:url_launcher/url_launcher.dart';
 
 class MatchesFound extends StatelessWidget {
-  const MatchesFound({required this.currentModel});
+  const MatchesFound({
+    required this.currentModel,
+  });
 
   final HashesModel currentModel;
 

@@ -5,15 +5,18 @@ import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dar
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 
 class DeleteObjectButton extends StatelessWidget {
-  final HashesModel hashesModel;
-  DeleteObjectButton({
+  const DeleteObjectButton({
+    Key? key,
     required this.hashesModel,
-  });
+  }) : super(key: key);
+
+  final HashesModel hashesModel;
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: AppButtonStyles.primaryButton,
-      child: Text('Remove & clear the cache'),
+      child: const Text('Remove & clear the cache'),
       onPressed: () {
         BlocProvider.of<HashesListBloc>(context).add(
           DeleteHash(

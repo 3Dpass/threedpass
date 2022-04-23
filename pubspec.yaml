@@ -59,6 +59,7 @@ dev_dependencies:
   hive_generator: ^1.1.2
   copy_with_extension_gen: ^4.0.1
   build_runner:
+  flutter_lints: ^1.0.4
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

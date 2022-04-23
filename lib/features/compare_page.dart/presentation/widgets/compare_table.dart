@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/common/app_text_styles.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
 
 class CompareTable extends StatelessWidget {
@@ -11,25 +12,15 @@ class CompareTable extends StatelessWidget {
   final HashesModel comparable;
   final HashesModel mainObject;
 
-  List<DataRow> buildRows() {
-    final res = <DataRow>[];
+  List<_RowData> get rowsData {
+    final res = <_RowData>[];
     for (var mainHash in mainObject.hashes) {
       if (comparable.hashes.contains(mainHash)) {
         res.add(
-          DataRow(
-            cells: <DataCell>[
-              DataCell(
-                Text((mainObject.hashes.indexOf(mainHash) + 1).toString()),
-              ),
-              DataCell(
-                Text(
-                  mainHash,
-                ),
-              ),
-              DataCell(
-                Text((comparable.hashes.indexOf(mainHash) + 1).toString()),
-              ),
-            ],
+          _RowData(
+            rank1: (mainObject.hashes.indexOf(mainHash) + 1).toString(),
+            hash: mainHash,
+            rank2: (comparable.hashes.indexOf(mainHash) + 1).toString(),
           ),
         );
       }
@@ -39,30 +30,82 @@ class CompareTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: DataTable(
-        columns: const <DataColumn>[
-          DataColumn(
-            label: Text(
-              'Rank',
-              style: TextStyle(fontStyle: FontStyle.italic),
-            ),
+    final rows = rowsData;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(
+          height: 16,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text(
+                'Rank',
+                style: AppTextStyles.tableHeader,
+              ),
+              Text(
+                'Hash',
+                style: AppTextStyles.tableHeader,
+              ),
+              Text(
+                'Rank',
+                style: AppTextStyles.tableHeader,
+              ),
+            ],
           ),
-          DataColumn(
-            label: Text(
-              'Hash',
-              style: TextStyle(fontStyle: FontStyle.italic),
-            ),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        ListView.separated(
+          shrinkWrap: true,
+          itemBuilder: (context, index) => _TableRow(rowData: rows[index]),
+          separatorBuilder: (_, __) => const Divider(color: Colors.grey),
+          itemCount: rows.length,
+        ),
+      ],
+    );
+  }
+}
+
+class _RowData {
+  final String rank1;
+  final String rank2;
+  final String hash;
+
+  const _RowData({
+    required this.rank1,
+    required this.hash,
+    required this.rank2,
+  });
+}
+
+class _TableRow extends StatelessWidget {
+  final _RowData rowData;
+
+  const _TableRow({required this.rowData});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        children: [
+          Text(rowData.rank1),
+          const SizedBox(
+            width: 48,
           ),
-          DataColumn(
-            label: Text(
-              'Rank',
-              style: TextStyle(fontStyle: FontStyle.italic),
-            ),
+          Flexible(
+            child: Text(rowData.hash),
           ),
+          const SizedBox(
+            width: 48,
+          ),
+          Text(rowData.rank2),
         ],
-        rows: buildRows(),
       ),
     );
   }

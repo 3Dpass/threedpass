@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
 
 class ChooseList extends StatelessWidget {
-  ChooseList({
+  const ChooseList({
+    Key? key,
     required this.list,
     required this.onChoose,
     required this.chosen,
-  });
+  }) : super(key: key);
 
   final List<HashesModel> list;
   final HashesModel chosen;

@@ -6,15 +6,16 @@ import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bl
 
 class HashCardPopUpMenuButton extends StatelessWidget {
   const HashCardPopUpMenuButton({
+    Key? key,
     required this.hashesModel,
-  });
+  }) : super(key: key);
 
   final HashesModel hashesModel;
 
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
-      icon: Icon(Icons.more_vert, color: Colors.grey),
+      icon: const Icon(Icons.more_vert, color: Colors.grey),
       onSelected: (value) {
         switch (value) {
           case 1:
@@ -33,9 +34,9 @@ class HashCardPopUpMenuButton extends StatelessWidget {
         PopupMenuItem(
           value: 1,
           child: Row(
-            children: <Widget>[
+            children: const [
               Padding(
-                padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+                padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
                 child: Icon(Icons.share, color: Colors.grey),
               ),
               Text('Share')
@@ -45,9 +46,9 @@ class HashCardPopUpMenuButton extends StatelessWidget {
         PopupMenuItem(
           value: 2,
           child: Row(
-            children: <Widget>[
+            children: const [
               Padding(
-                  padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+                  padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
                   child: Icon(Icons.delete, color: Colors.grey)),
               Text('Delete')
             ],
