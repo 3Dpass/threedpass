@@ -109,19 +109,21 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            BlocBuilder<HashesListBloc, HashesListState>(
-              builder: (context, state) {
-                if (state is HashesListLoaded) {
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: state.hashes.length,
-                    itemBuilder: (context, index) => HashCard(
-                      hashesModel: state.hashes[index],
-                    ),
-                  );
-                }
-                return const SizedBox();
-              },
+            Flexible(
+              child: BlocBuilder<HashesListBloc, HashesListState>(
+                builder: (context, state) {
+                  if (state is HashesListLoaded) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.hashes.length,
+                      itemBuilder: (context, index) => HashCard(
+                        hashesModel: state.hashes[index],
+                      ),
+                    );
+                  }
+                  return const SizedBox();
+                },
+              ),
             ),
           ],
         ),

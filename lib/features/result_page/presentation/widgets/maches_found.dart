@@ -9,20 +9,23 @@ import 'package:url_launcher/url_launcher.dart';
 
 class MatchesFound extends StatelessWidget {
   const MatchesFound({
+    Key? key,
     required this.currentModel,
-  });
+  }) : super(key: key);
 
   final HashesModel currentModel;
 
   Future<List<HashesModel>> getMatches(BuildContext context) async {
-    final res = Set<HashesModel>();
+    final res = <HashesModel>{};
     final state =
         (BlocProvider.of<HashesListBloc>(context).state as HashesListLoaded);
 
     for (var hashModel in state.hashes) {
-      for (var hash in hashModel.hashes) {
-        if (currentModel.hashes.contains(hash)) {
-          res.add(hashModel);
+      if (hashModel != currentModel) {
+        for (var hash in hashModel.hashes) {
+          if (currentModel.hashes.contains(hash)) {
+            res.add(hashModel);
+          }
         }
       }
     }
@@ -86,7 +89,7 @@ class MatchesFound extends StatelessWidget {
 //                   ),
 //                 );
 class _ClickableText extends StatelessWidget {
-  _ClickableText({
+  const _ClickableText({
     required this.clickable,
     required this.mainText,
     required this.onTap,
@@ -98,8 +101,8 @@ class _ClickableText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle defaultStyle = TextStyle(color: Colors.black);
-    TextStyle linkStyle = TextStyle(color: Colors.blue);
+    TextStyle defaultStyle = const TextStyle(color: Colors.black);
+    TextStyle linkStyle = const TextStyle(color: Colors.blue);
 
     return RichText(
       text: TextSpan(
