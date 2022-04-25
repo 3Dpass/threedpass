@@ -50,7 +50,7 @@ class ThreeDApp extends StatelessWidget {
           primaryColor: Colors.black,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: HomePage(),
+        home: const HomePage(),
       ),
     );
   }

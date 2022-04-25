@@ -6,7 +6,7 @@ part 'hashes_model.g.dart';
 
 @CopyWith()
 @HiveType(typeId: 0)
-class HashesModel extends Equatable {
+class HashesModel {
   @HiveField(0)
   final String name;
 
@@ -28,6 +28,6 @@ class HashesModel extends Equatable {
 
   String get shareText => hashes.join('\n');
 
-  @override
-  List<Object?> get props => [name, stamp, hashes.join()];
+  // @override
+  // List<Object?> get props => [name, stamp, hashes.join()];
 }

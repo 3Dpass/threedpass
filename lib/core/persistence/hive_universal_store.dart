@@ -52,7 +52,7 @@ class HiveUniversalStore<T> {
       await _box.flush();
       return null;
     }
-    return StorageError.impossibleOperation();
+    return const StorageError.impossibleOperation();
   }
 
   Future<void> removeAll() async {

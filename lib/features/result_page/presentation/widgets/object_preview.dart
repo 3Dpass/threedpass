@@ -5,19 +5,23 @@ import 'package:flutter_cube/flutter_cube.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
 
 class ObjectPreview extends StatelessWidget {
-  final HashesModel hashesModel;
-  const ObjectPreview({required this.hashesModel});
+  const ObjectPreview({
+    Key? key,
+    required this.hashesModel,
+  }) : super(key: key);
 
-  bool _objectFileExists() {
-    return hashesModel.externalPathToObj != null &&
-        File(hashesModel.externalPathToObj!).existsSync();
-  }
+  final HashesModel hashesModel;
 
   SnackBar errorSnackBar() => SnackBar(
         content: Text(
           '.obj file for "${hashesModel.name}" does not exists. Path: ${hashesModel.externalPathToObj}',
         ),
       );
+
+  bool _objectFileExists() {
+    return hashesModel.externalPathToObj != null &&
+        File(hashesModel.externalPathToObj!).existsSync();
+  }
 
   @override
   Widget build(BuildContext context) {

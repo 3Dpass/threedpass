@@ -3,8 +3,9 @@ import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dar
 
 class HashesPrimitiveList extends StatelessWidget {
   const HashesPrimitiveList({
+    Key? key,
     required this.hashesModel,
-  });
+  }) : super(key: key);
 
   final HashesModel hashesModel;
 

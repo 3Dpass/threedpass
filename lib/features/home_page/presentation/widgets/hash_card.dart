@@ -26,7 +26,7 @@ class HashCard extends StatelessWidget {
           );
         },
         child: Container(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Row(
             children: <Widget>[
               Column(
@@ -36,7 +36,7 @@ class HashCard extends StatelessWidget {
                   Text('Stamp: ' + formatter.format(hashesModel.stamp)),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               HashCardPopUpMenuButton(hashesModel: hashesModel),
             ],
           ),

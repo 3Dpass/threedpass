@@ -7,10 +7,13 @@ import 'package:threedpass/features/hashes_list/presentation/widgets/hashes_prim
 import 'package:threedpass/features/result_page/presentation/widgets/save_dialog.dart';
 
 class MoreInfo extends StatelessWidget {
-  final HashesModel hashesModel;
   const MoreInfo({
+    Key? key,
     required this.hashesModel,
-  });
+  }) : super(key: key);
+
+  final HashesModel hashesModel;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,7 +23,6 @@ class MoreInfo extends StatelessWidget {
         MarkdownBody(
           data: "### **Hash ID**\n\n\n### [Show and share](show_and_share)",
           onTapLink: (String text, String? href, String title) {
-            print("tapped: text=$text href=$href");
             showHashesDialog(context, hashesModel);
           },
         ),
@@ -28,7 +30,7 @@ class MoreInfo extends StatelessWidget {
           alignment: Alignment.center,
           child: QrImage(
             padding: EdgeInsets.zero,
-            data: "1234567890", // TODO What should be encoded?
+            data: hashesModel.hashes.join('\n'),
             version: QrVersions.auto,
             size: 120.0,
           ),
@@ -45,7 +47,7 @@ Future<void> showHashesDialog(
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Top 10 hashes'),
+        title: const Text('Top 10 hashes'),
         content: SingleChildScrollView(
           child: HashesPrimitiveList(
             hashesModel: hashesModel,
@@ -53,13 +55,13 @@ Future<void> showHashesDialog(
         ),
         actions: <Widget>[
           TextButton(
-            child: Text('Cancel'),
+            child: const Text('Cancel'),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
           TextButton(
-            child: Text('Share'),
+            child: const Text('Share'),
             onPressed: () {
               Navigator.of(context).pop();
               Share.share(hashesModel.shareText);
