@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_cube/flutter_cube.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class ObjectPreview extends StatelessWidget {
   const ObjectPreview({
@@ -10,7 +10,7 @@ class ObjectPreview extends StatelessWidget {
     required this.hashesModel,
   }) : super(key: key);
 
-  final HashesModel hashesModel;
+  final Snapshot hashesModel;
 
   SnackBar errorSnackBar() => SnackBar(
         content: Text(

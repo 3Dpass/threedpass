@@ -1,12 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 
-part 'hashes_model.g.dart';
+part 'snapshot.g.dart';
 
 @CopyWith()
 @HiveType(typeId: 0)
-class HashesModel {
+class Snapshot {
   @HiveField(0)
   final String name;
 
@@ -19,7 +20,7 @@ class HashesModel {
   @HiveField(3)
   final String? externalPathToObj;
 
-  const HashesModel({
+  const Snapshot({
     required this.name,
     required this.stamp,
     required this.hashes,
@@ -28,6 +29,19 @@ class HashesModel {
 
   String get shareText => hashes.join('\n');
 
-  // @override
-  // List<Object?> get props => [name, stamp, hashes.join()];
+  bool belongsToObject(HashObject hashObject) {
+    final Set<String> setOfHashes = {};
+    for (var snap in hashObject.snapshots) {
+      setOfHashes.addAll(snap.hashes);
+    }
+
+    bool hasCommonHash = false;
+    for (var hash in hashes) {
+      if (setOfHashes.contains(hash)) {
+        hasCommonHash = true;
+      }
+    }
+
+    return hasCommonHash;
+  }
 }

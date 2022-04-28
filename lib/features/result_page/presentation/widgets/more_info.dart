@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/widgets/hashes_primitive_list.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/save_dialog.dart';
 
@@ -12,7 +12,7 @@ class MoreInfo extends StatelessWidget {
     required this.hashesModel,
   }) : super(key: key);
 
-  final HashesModel hashesModel;
+  final Snapshot hashesModel;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class MoreInfo extends StatelessWidget {
 }
 
 Future<void> showHashesDialog(
-    BuildContext context, HashesModel hashesModel) async {
+    BuildContext context, Snapshot hashesModel) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!

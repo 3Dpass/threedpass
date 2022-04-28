@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/common/app_text_styles.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class CompareTable extends StatelessWidget {
   const CompareTable({
@@ -9,8 +9,8 @@ class CompareTable extends StatelessWidget {
     required this.mainObject,
   }) : super(key: key);
 
-  final HashesModel comparable;
-  final HashesModel mainObject;
+  final Snapshot comparable;
+  final Snapshot mainObject;
 
   List<_RowData> get rowsData {
     final res = <_RowData>[];

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/widgets/choose_list.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/widgets/compare_table.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class ComparePage extends StatefulWidget {
   const ComparePage({
@@ -10,15 +10,15 @@ class ComparePage extends StatefulWidget {
     required this.comparisons,
   }) : super(key: key);
 
-  final List<HashesModel> comparisons;
-  final HashesModel origObj;
+  final List<Snapshot> comparisons;
+  final Snapshot origObj;
 
   @override
   State<StatefulWidget> createState() => _State();
 }
 
 class _State extends State<ComparePage> {
-  late HashesModel comparable;
+  late Snapshot comparable;
 
   @override
   void initState() {

@@ -1,19 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'hashes_model.dart';
+part of 'snapshot.dart';
 
 // **************************************************************************
 // CopyWithGenerator
 // **************************************************************************
 
 abstract class _$HashesModelCWProxy {
-  HashesModel externalPathToObj(String? externalPathToObj);
+  Snapshot externalPathToObj(String? externalPathToObj);
 
-  HashesModel hashes(List<String> hashes);
+  Snapshot hashes(List<String> hashes);
 
-  HashesModel name(String name);
+  Snapshot name(String name);
 
-  HashesModel stamp(DateTime stamp);
+  Snapshot stamp(DateTime stamp);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `HashesModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -21,7 +21,7 @@ abstract class _$HashesModelCWProxy {
   /// ```dart
   /// HashesModel(...).copyWith(id: 12, name: "My name")
   /// ````
-  HashesModel call({
+  Snapshot call({
     String? externalPathToObj,
     List<String>? hashes,
     String? name,
@@ -31,22 +31,22 @@ abstract class _$HashesModelCWProxy {
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfHashesModel.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfHashesModel.copyWith.fieldName(...)`
 class _$HashesModelCWProxyImpl implements _$HashesModelCWProxy {
-  final HashesModel _value;
+  final Snapshot _value;
 
   const _$HashesModelCWProxyImpl(this._value);
 
   @override
-  HashesModel externalPathToObj(String? externalPathToObj) =>
+  Snapshot externalPathToObj(String? externalPathToObj) =>
       this(externalPathToObj: externalPathToObj);
 
   @override
-  HashesModel hashes(List<String> hashes) => this(hashes: hashes);
+  Snapshot hashes(List<String> hashes) => this(hashes: hashes);
 
   @override
-  HashesModel name(String name) => this(name: name);
+  Snapshot name(String name) => this(name: name);
 
   @override
-  HashesModel stamp(DateTime stamp) => this(stamp: stamp);
+  Snapshot stamp(DateTime stamp) => this(stamp: stamp);
 
   @override
 
@@ -56,13 +56,13 @@ class _$HashesModelCWProxyImpl implements _$HashesModelCWProxy {
   /// ```dart
   /// HashesModel(...).copyWith(id: 12, name: "My name")
   /// ````
-  HashesModel call({
+  Snapshot call({
     Object? externalPathToObj = const $CopyWithPlaceholder(),
     Object? hashes = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? stamp = const $CopyWithPlaceholder(),
   }) {
-    return HashesModel(
+    return Snapshot(
       externalPathToObj: externalPathToObj == const $CopyWithPlaceholder()
           ? _value.externalPathToObj
           // ignore: cast_nullable_to_non_nullable
@@ -83,7 +83,7 @@ class _$HashesModelCWProxyImpl implements _$HashesModelCWProxy {
   }
 }
 
-extension $HashesModelCopyWith on HashesModel {
+extension $HashesModelCopyWith on Snapshot {
   /// Returns a callable class that can be used as follows: `instanceOfclass HashesModel extends Equatable.name.copyWith(...)` or like so:`instanceOfclass HashesModel extends Equatable.name.copyWith.fieldName(...)`.
   _$HashesModelCWProxy get copyWith => _$HashesModelCWProxyImpl(this);
 }
@@ -92,17 +92,17 @@ extension $HashesModelCopyWith on HashesModel {
 // TypeAdapterGenerator
 // **************************************************************************
 
-class HashesModelAdapter extends TypeAdapter<HashesModel> {
+class HashesModelAdapter extends TypeAdapter<Snapshot> {
   @override
   final int typeId = 0;
 
   @override
-  HashesModel read(BinaryReader reader) {
+  Snapshot read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return HashesModel(
+    return Snapshot(
       name: fields[0] as String,
       stamp: fields[1] as DateTime,
       hashes: (fields[2] as List).cast<String>(),
@@ -111,7 +111,7 @@ class HashesModelAdapter extends TypeAdapter<HashesModel> {
   }
 
   @override
-  void write(BinaryWriter writer, HashesModel obj) {
+  void write(BinaryWriter writer, Snapshot obj) {
     writer
       ..writeByte(4)
       ..writeByte(0)

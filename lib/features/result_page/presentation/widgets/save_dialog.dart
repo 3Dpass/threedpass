@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/result_page/presentation/pages/result_page.dart';
 
@@ -10,7 +10,7 @@ class SaveDialog extends StatelessWidget {
   });
 
   final controller = TextEditingController();
-  final HashesModel hashesModelToSave;
+  final Snapshot hashesModelToSave;
 
   @override
   Widget build(BuildContext context) {

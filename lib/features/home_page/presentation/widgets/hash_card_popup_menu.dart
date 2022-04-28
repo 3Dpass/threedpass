@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 
 class HashCardPopUpMenuButton extends StatelessWidget {
@@ -10,7 +10,7 @@ class HashCardPopUpMenuButton extends StatelessWidget {
     required this.hashesModel,
   }) : super(key: key);
 
-  final HashesModel hashesModel;
+  final Snapshot hashesModel;
 
   @override
   Widget build(BuildContext context) {

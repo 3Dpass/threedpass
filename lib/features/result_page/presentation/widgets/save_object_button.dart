@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/common/button_styles.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/save_dialog.dart';
 
 class SaveObjectButton extends StatelessWidget {
@@ -8,7 +8,7 @@ class SaveObjectButton extends StatelessWidget {
     required this.hashesModel,
   });
 
-  final HashesModel hashesModel;
+  final Snapshot hashesModel;
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/common/logger.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/result_page/presentation/pages/result_page.dart';
 import 'package:threedpass/features/settings_page/presentation/cubit/settings_page_cubit.dart';
 
@@ -85,7 +85,7 @@ class GetObjectFromFileButton extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (_) => ResultPage(
-              hashesModel: HashesModel(
+              hashesModel: Snapshot(
                 name: 'New object ${DateTime.now().toIso8601String()}',
                 hashes: hashes.split('\n'),
                 stamp: DateTime.now(),

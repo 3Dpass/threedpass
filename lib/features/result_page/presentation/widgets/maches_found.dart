@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/pages/compare_page.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -13,10 +13,10 @@ class MatchesFound extends StatelessWidget {
     required this.currentModel,
   }) : super(key: key);
 
-  final HashesModel currentModel;
+  final Snapshot currentModel;
 
-  Future<List<HashesModel>> getMatches(BuildContext context) async {
-    final res = <HashesModel>{};
+  Future<List<Snapshot>> getMatches(BuildContext context) async {
+    final res = <Snapshot>{};
     final state =
         (BlocProvider.of<HashesListBloc>(context).state as HashesListLoaded);
 
@@ -36,7 +36,7 @@ class MatchesFound extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: getMatches(context),
-      builder: (context, AsyncSnapshot<List<HashesModel>> snapshot) {
+      builder: (context, AsyncSnapshot<List<Snapshot>> snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data!.isNotEmpty) {
             return _ClickableText(
@@ -78,16 +78,6 @@ class MatchesFound extends StatelessWidget {
   }
 }
 
-//snapshot.data!.length.toString() + ' matches '
-//  Navigator.push(
-//                   context,
-//                   MaterialPageRoute(
-//                     builder: (context) => ComparePage(
-//                       origObj: currentModel,
-//                       comparisons: snapshot.data!,
-//                     ),
-//                   ),
-//                 );
 class _ClickableText extends StatelessWidget {
   const _ClickableText({
     required this.clickable,
