@@ -44,6 +44,7 @@ dependencies:
   freezed: ^1.1.1
   equatable: ^2.0.3
   flutter_cube: ^0.1.1
+  auto_route: ^3.2.4
 
   ### UI
   progress_indicators: ^1.0.0
@@ -60,6 +61,7 @@ dev_dependencies:
   copy_with_extension_gen: ^4.0.1
   build_runner:
   flutter_lints: ^1.0.4
+  auto_route_generator: ^3.2.3
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

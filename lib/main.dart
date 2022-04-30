@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/home_page/presentation/pages/home_page.dart';
@@ -15,7 +16,7 @@ import 'package:threedpass/setup.dart' as di_setup;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Hive.registerAdapter(HashesModelAdapter());
+  Hive.registerAdapter(HashObjectAdapter());
   Hive.registerAdapter(SettingsConfigAdapter());
   Hive.registerAdapter(AlgorithmAdapter());
   Directory defaultDirectory = await getApplicationDocumentsDirectory();
@@ -23,10 +24,12 @@ Future<void> main() async {
 
   await di_setup.setup();
 
-  runApp(ThreeDApp());
+  runApp(const ThreeDApp());
 }
 
 class ThreeDApp extends StatelessWidget {
+  const ThreeDApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([

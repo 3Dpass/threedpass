@@ -6,7 +6,7 @@ part of 'snapshot.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$HashesModelCWProxy {
+abstract class _$SnapshotCWProxy {
   Snapshot externalPathToObj(String? externalPathToObj);
 
   Snapshot hashes(List<String> hashes);
@@ -15,11 +15,11 @@ abstract class _$HashesModelCWProxy {
 
   Snapshot stamp(DateTime stamp);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `HashesModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Snapshot(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
-  /// HashesModel(...).copyWith(id: 12, name: "My name")
+  /// Snapshot(...).copyWith(id: 12, name: "My name")
   /// ````
   Snapshot call({
     String? externalPathToObj,
@@ -29,11 +29,11 @@ abstract class _$HashesModelCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfHashesModel.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfHashesModel.copyWith.fieldName(...)`
-class _$HashesModelCWProxyImpl implements _$HashesModelCWProxy {
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfSnapshot.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfSnapshot.copyWith.fieldName(...)`
+class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
   final Snapshot _value;
 
-  const _$HashesModelCWProxyImpl(this._value);
+  const _$SnapshotCWProxyImpl(this._value);
 
   @override
   Snapshot externalPathToObj(String? externalPathToObj) =>
@@ -50,11 +50,11 @@ class _$HashesModelCWProxyImpl implements _$HashesModelCWProxy {
 
   @override
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `HashesModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Snapshot(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
-  /// HashesModel(...).copyWith(id: 12, name: "My name")
+  /// Snapshot(...).copyWith(id: 12, name: "My name")
   /// ````
   Snapshot call({
     Object? externalPathToObj = const $CopyWithPlaceholder(),
@@ -83,16 +83,16 @@ class _$HashesModelCWProxyImpl implements _$HashesModelCWProxy {
   }
 }
 
-extension $HashesModelCopyWith on Snapshot {
-  /// Returns a callable class that can be used as follows: `instanceOfclass HashesModel extends Equatable.name.copyWith(...)` or like so:`instanceOfclass HashesModel extends Equatable.name.copyWith.fieldName(...)`.
-  _$HashesModelCWProxy get copyWith => _$HashesModelCWProxyImpl(this);
+extension $SnapshotCopyWith on Snapshot {
+  /// Returns a callable class that can be used as follows: `instanceOfclass Snapshot.name.copyWith(...)` or like so:`instanceOfclass Snapshot.name.copyWith.fieldName(...)`.
+  _$SnapshotCWProxy get copyWith => _$SnapshotCWProxyImpl(this);
 }
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class HashesModelAdapter extends TypeAdapter<Snapshot> {
+class SnapshotAdapter extends TypeAdapter<Snapshot> {
   @override
   final int typeId = 0;
 
@@ -130,7 +130,7 @@ class HashesModelAdapter extends TypeAdapter<Snapshot> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is HashesModelAdapter &&
+      other is SnapshotAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/widgets/hashes_primitive_list.dart';
-import 'package:threedpass/features/result_page/presentation/widgets/save_dialog.dart';
+import 'package:threedpass/features/result_page/presentation/widgets/save_hash_dialog.dart';
+import 'package:threedpass/features/result_page/presentation/widgets/save_object_dialog.dart';
 
 class MoreInfo extends StatelessWidget {
   const MoreInfo({
@@ -40,8 +42,11 @@ class MoreInfo extends StatelessWidget {
   }
 }
 
-Future<void> showHashesDialog(
-    BuildContext context, Snapshot hashesModel) async {
+Future<void> showHashesDialog({
+  required BuildContext context,
+  required Snapshot snapshot,
+  required HashObject? hashObject,
+}) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!
@@ -50,7 +55,7 @@ Future<void> showHashesDialog(
         title: const Text('Top 10 hashes'),
         content: SingleChildScrollView(
           child: HashesPrimitiveList(
-            hashesModel: hashesModel,
+            hashesModel: snapshot,
           ),
         ),
         actions: <Widget>[
@@ -64,7 +69,7 @@ Future<void> showHashesDialog(
             child: const Text('Share'),
             onPressed: () {
               Navigator.of(context).pop();
-              Share.share(hashesModel.shareText);
+              Share.share(snapshot.shareText);
             },
           ),
           TextButton(
@@ -74,9 +79,14 @@ Future<void> showHashesDialog(
               showDialog(
                 context: context,
                 barrierDismissible: false, // user must tap button!
-                builder: (BuildContext context) => SaveDialog(
-                  hashesModelToSave: hashesModel,
-                ),
+                builder: (BuildContext context) => hashObject != null
+                    ? SaveHashDialog(
+                        hashesModelToSave: snapshot,
+                        hashObject: hashObject!,
+                      )
+                    : SaveObjectDialog(
+                        snapshot: snapshot,
+                      ),
               );
             },
           ),

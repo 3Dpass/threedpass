@@ -4,6 +4,8 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
+part 'hash_object.g.dart';
+
 @CopyWith()
 @HiveType(typeId: 1)
 class HashObject {

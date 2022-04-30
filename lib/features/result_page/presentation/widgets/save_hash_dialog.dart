@@ -1,16 +1,22 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/features/result_page/presentation/pages/result_page.dart';
+import 'package:threedpass/features/result_page/presentation/pages/preview_page.dart';
+import 'package:threedpass/router/router.gr.dart';
 
-class SaveDialog extends StatelessWidget {
-  SaveDialog({
+class SaveHashDialog extends StatelessWidget {
+  SaveHashDialog({
+    Key? key,
     required this.hashesModelToSave,
-  });
+    required this.hashObject,
+  }):super(key: key);
 
   final controller = TextEditingController();
   final Snapshot hashesModelToSave;
+  final HashObject hashObject;
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +62,9 @@ class SaveDialog extends StatelessWidget {
                           model: newNamedModel,
                         ),
                       );
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => ResultPage(
-                            hashesModel: newNamedModel,
-                          ),
-                        ),
-                      );
+                      
+                      context.router.replace(PreviewRoute(hashObject: hashObject, snapshot: snapshot))
+                     
                     },
                   ),
                 ],

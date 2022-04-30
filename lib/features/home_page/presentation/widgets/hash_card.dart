@@ -1,28 +1,30 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/hash_card_popup_menu.dart';
-import 'package:threedpass/features/result_page/presentation/pages/result_page.dart';
+import 'package:threedpass/features/result_page/presentation/pages/preview_page.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 class HashCard extends StatelessWidget {
   HashCard({
     Key? key,
-    required this.hashesModel,
+    required this.snapshot,
+    required this.hashObject,
   }) : super(key: key);
 
   final DateFormat formatter = DateFormat('yyyy-MM-dd H:m:s');
-  final Snapshot hashesModel;
+  final Snapshot snapshot;
+  final HashObject hashObject;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => ResultPage(hashesModel: hashesModel),
-            ),
+          context.router.push(
+            PreviewRoute(hashObject: hashObject, snapshot: snapshot),
           );
         },
         child: Container(
@@ -32,12 +34,15 @@ class HashCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('Name: ' + hashesModel.name),
-                  Text('Stamp: ' + formatter.format(hashesModel.stamp)),
+                  Text('Name: ' + snapshot.name),
+                  Text('Stamp: ' + formatter.format(snapshot.stamp)),
                 ],
               ),
               const Spacer(),
-              HashCardPopUpMenuButton(hashesModel: hashesModel),
+              HashCardPopUpMenuButton(
+                hashObject: hashObject,
+                snapshot: snapshot,
+              ),
             ],
           ),
         ),

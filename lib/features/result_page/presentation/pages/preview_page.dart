@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/result_page/presentation/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/object_preview.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/delete_object_button.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/hash_properties.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/maches_found.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/more_info.dart';
-import 'package:threedpass/features/result_page/presentation/widgets/save_object_button.dart';
+import 'package:threedpass/features/result_page/presentation/widgets/preview_save_button.dart';
 import 'package:threedpass/features/settings_page/presentation/pages/settings_page.dart';
 
-class ResultPage extends StatelessWidget {
-  const ResultPage({
+class PreviewPage extends StatelessWidget {
+  const PreviewPage({
     Key? key,
-    required this.hashesModel,
   }) : super(key: key);
-
-  final Snapshot hashesModel;
 
   @override
   Widget build(BuildContext context) {
+    final hashObject =
+        BlocProvider.of<PreviewPageCubit>(context).state.hashObject;
+    final snapshot = BlocProvider.of<PreviewPageCubit>(context).state.snapshot;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -31,7 +33,7 @@ class ResultPage extends StatelessWidget {
               icon: const Icon(Icons.share, color: Colors.grey),
               alignment: Alignment.centerRight,
               onPressed: () {
-                Share.share(hashesModel.shareText);
+                Share.share(snapshot.shareText);
               },
             )
           ],
@@ -47,25 +49,28 @@ class ResultPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, bottom: 8),
                 child: MatchesFound(
-                  currentModel: hashesModel,
+                  snapshot: snapshot,
+                  hashObject: hashObject,
                 ),
               ),
               ObjectPreview(
-                hashesModel: hashesModel,
+                snapshot: snapshot,
               ),
               Container(
                 padding: const EdgeInsets.only(top: 16, bottom: 16),
-                child: HashProperties(),
+                child: const HashProperties(),
               ),
-              SaveObjectButton(
-                hashesModel: hashesModel,
+              PreviewSaveButton(
+                snapshot: snapshot,
+                hashObject: hashObject,
               ),
-              DeleteObjectButton(
-                hashesModel: hashesModel,
+              DeleteSnapshotButton(
+                snapshot: snapshot,
+                hashObject: hashObject,
               ),
               const Padding(padding: EdgeInsets.only(top: 16)),
               MoreInfo(
-                hashesModel: hashesModel,
+                hashesModel: snapshot,
               ),
             ],
           ),

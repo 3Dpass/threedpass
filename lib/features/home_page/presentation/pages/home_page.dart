@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -7,7 +8,9 @@ import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/get_object_from_file_button.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/hash_card.dart';
+import 'package:threedpass/features/home_page/presentation/widgets/objects_list.dart';
 import 'package:threedpass/features/settings_page/presentation/pages/settings_page.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -109,21 +112,8 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Flexible(
-              child: BlocBuilder<HashesListBloc, HashesListState>(
-                builder: (context, state) {
-                  if (state is HashesListLoaded) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: state.hashes.length,
-                      itemBuilder: (context, index) => HashCard(
-                        hashesModel: state.hashes[index],
-                      ),
-                    );
-                  }
-                  return const SizedBox();
-                },
-              ),
+            const Flexible(
+              child: ObjectsList(),
             ),
           ],
         ),
@@ -142,12 +132,7 @@ class HomePage extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.settings, color: Colors.grey),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const SettingsPage(),
-                  ),
-                );
+                context.router.push(const SettingsRoute());
               },
             ),
           ],
