@@ -14,7 +14,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
   }) : super(HashesListInitial()) {
     on<DeleteHash>(_deleteHash);
     on<DeleteObject>(_deleteObject);
-    on<SaveObject>(_saveObject);
+    on<AddObject>(_saveObject);
     on<SaveSnapshot>(_saveSnapshot);
     on<UpdateHashesList>(_updateList);
   }
@@ -37,13 +37,17 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     DeleteHash event,
     Emitter<HashesListState> emit,
   ) async {
-    await hashesRepository.saveObject(event.object);
-
     if (state is HashesListLoaded) {
       final list = (state as HashesListLoaded).objects;
       bool f = false;
       for (var obj in list) {
         if (obj.localId == event.object.localId) {
+          // if only one snapshot, delete whole object
+          if (obj.snapshots.length == 1) {
+            add(DeleteObject(object: obj));
+            return;
+          }
+
           obj.snapshots.removeWhere(
               (snap) => listEquals(event.hash.hashes, snap.hashes));
           f = true;
@@ -73,7 +77,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
   }
 
   Future<void> _saveObject(
-    SaveObject event,
+    AddObject event,
     Emitter<HashesListState> emit,
   ) async {
     hashesRepository.saveObject(event.object);

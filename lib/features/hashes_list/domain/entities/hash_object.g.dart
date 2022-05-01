@@ -71,7 +71,7 @@ extension $HashObjectCopyWith on HashObject {
 
 class HashObjectAdapter extends TypeAdapter<HashObject> {
   @override
-  final int typeId = 1;
+  final int typeId = 3;
 
   @override
   HashObject read(BinaryReader reader) {

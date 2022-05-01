@@ -1,13 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:progress_indicators/progress_indicators.dart';
-import 'package:threedpass/features/compare_page.dart/presentation/pages/compare_page.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/router/router.gr.dart';
+import 'package:threedpass/router/router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MatchesFound extends StatelessWidget {
@@ -28,7 +24,7 @@ class MatchesFound extends StatelessWidget {
         clickable: 'found',
         onTap: () {
           context.router.push(
-            CompareRoute(
+            CompareRouteWrapper(
               origObj: snapshot,
               comparisons: hashObject!.snapshots,
             ),

@@ -4,8 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/hash_card_popup_menu.dart';
-import 'package:threedpass/features/result_page/presentation/pages/preview_page.dart';
-import 'package:threedpass/router/router.gr.dart';
+import 'package:threedpass/router/router.dart';
 
 class HashCard extends StatelessWidget {
   HashCard({
@@ -24,7 +23,10 @@ class HashCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           context.router.push(
-            PreviewRoute(hashObject: hashObject, snapshot: snapshot),
+            PreviewPageWrapperRoute(
+              hashObject: hashObject,
+              snapshot: snapshot,
+            ),
           );
         },
         child: Container(

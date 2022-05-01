@@ -10,7 +10,7 @@ import 'package:threedpass/features/home_page/presentation/widgets/get_object_fr
 import 'package:threedpass/features/home_page/presentation/widgets/hash_card.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/objects_list.dart';
 import 'package:threedpass/features/settings_page/presentation/pages/settings_page.dart';
-import 'package:threedpass/router/router.gr.dart';
+import 'package:threedpass/router/router.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

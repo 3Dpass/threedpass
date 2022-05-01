@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/result_page/presentation/widgets/save_hash_dialog.dart';
-import 'package:threedpass/features/result_page/presentation/widgets/save_object_dialog.dart';
+import 'package:threedpass/router/router.dart';
 
 class PreviewSaveButton extends StatelessWidget {
   const PreviewSaveButton({
@@ -21,18 +20,27 @@ class PreviewSaveButton extends StatelessWidget {
       style: AppButtonStyles.primaryButton,
       child: const Text('Save this object'),
       onPressed: () async {
-        showDialog(
-          context: context,
-          barrierDismissible: false, // user must tap button!
-          builder: (BuildContext context) => hashObject != null
-              ? SaveHashDialog(
-                  hashesModelToSave: snapshot,
-                  hashObject: hashObject!,
-                )
-              : SaveObjectDialog(
-                  snapshot: snapshot,
-                ),
-        );
+        // showDialog(
+        //   context: context,
+        //   barrierDismissible: false, // user must tap button!
+        //   builder: (BuildContext context) => hashObject != null
+        //       ? SaveHashDialog(
+        //           hashesModelToSave: snapshot,
+        //           hashObject: hashObject!,
+        //         )
+        //       : SaveObjectDialog(
+        //           snapshot: snapshot,
+        //         ),
+        // );
+
+        hashObject != null
+            ? SaveHashDialogRoute(
+                hashesModelToSave: snapshot,
+                hashObject: hashObject!,
+              ).show(context)
+            : SaveObjectDialogRoute(
+                snapshot: snapshot,
+              ).show(context);
       },
     );
   }

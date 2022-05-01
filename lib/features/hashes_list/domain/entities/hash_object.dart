@@ -7,7 +7,7 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 part 'hash_object.g.dart';
 
 @CopyWith()
-@HiveType(typeId: 1)
+@HiveType(typeId: 3)
 class HashObject {
   HashObject({
     required this.name,

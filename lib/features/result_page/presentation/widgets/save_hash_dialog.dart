@@ -4,15 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/features/result_page/presentation/pages/preview_page.dart';
-import 'package:threedpass/router/router.gr.dart';
+import 'package:threedpass/router/router.dart';
 
 class SaveHashDialog extends StatelessWidget {
   SaveHashDialog({
     Key? key,
     required this.hashesModelToSave,
     required this.hashObject,
-  }):super(key: key);
+  }) : super(key: key);
 
   final controller = TextEditingController();
   final Snapshot hashesModelToSave;
@@ -23,7 +22,7 @@ class SaveHashDialog extends StatelessWidget {
     return Dialog(
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           child: Column(
             children: <Widget>[
               Text(
@@ -31,9 +30,9 @@ class SaveHashDialog extends StatelessWidget {
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 8, right: 8, bottom: 16),
+                padding: const EdgeInsets.only(left: 8, right: 8, bottom: 16),
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     isCollapsed: false,
                   ),
                   controller: controller,
@@ -58,13 +57,18 @@ class SaveHashDialog extends StatelessWidget {
                           hashesModelToSave.copyWith(name: value);
 
                       BlocProvider.of<HashesListBloc>(context).add(
-                        SaveNewHash(
-                          model: newNamedModel,
+                        SaveSnapshot(
+                          hash: newNamedModel,
+                          object: hashObject,
                         ),
                       );
-                      
-                      context.router.replace(PreviewRoute(hashObject: hashObject, snapshot: snapshot))
-                     
+
+                      context.router.replace(
+                        PreviewPageWrapperRoute(
+                          hashObject: hashObject,
+                          snapshot: newNamedModel,
+                        ),
+                      );
                     },
                   ),
                 ],

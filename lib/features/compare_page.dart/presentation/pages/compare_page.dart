@@ -3,8 +3,28 @@ import 'package:threedpass/features/compare_page.dart/presentation/widgets/choos
 import 'package:threedpass/features/compare_page.dart/presentation/widgets/compare_table.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
-class ComparePage extends StatefulWidget {
-  const ComparePage({
+class ComparePageWrapper extends StatelessWidget {
+  const ComparePageWrapper({
+    Key? key,
+    required this.origObj,
+    required this.comparisons,
+  }) : super(key: key);
+
+  final List<Snapshot> comparisons;
+  final Snapshot origObj;
+
+  @override
+  Widget build(BuildContext context) {
+    return _ComparePage(
+      origObj: origObj,
+      comparisons: comparisons,
+    );
+  }
+}
+
+// TODO Rewrite stateful to cubit
+class _ComparePage extends StatefulWidget {
+  const _ComparePage({
     Key? key,
     required this.origObj,
     required this.comparisons,
@@ -17,7 +37,7 @@ class ComparePage extends StatefulWidget {
   State<StatefulWidget> createState() => _State();
 }
 
-class _State extends State<ComparePage> {
+class _State extends State<_ComparePage> {
   late Snapshot comparable;
 
   @override

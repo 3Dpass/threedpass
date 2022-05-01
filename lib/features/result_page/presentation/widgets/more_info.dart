@@ -11,10 +11,12 @@ import 'package:threedpass/features/result_page/presentation/widgets/save_object
 class MoreInfo extends StatelessWidget {
   const MoreInfo({
     Key? key,
-    required this.hashesModel,
+    required this.snapshot,
+    required this.hashObject,
   }) : super(key: key);
 
-  final Snapshot hashesModel;
+  final Snapshot snapshot;
+  final HashObject? hashObject;
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +27,18 @@ class MoreInfo extends StatelessWidget {
         MarkdownBody(
           data: "### **Hash ID**\n\n\n### [Show and share](show_and_share)",
           onTapLink: (String text, String? href, String title) {
-            showHashesDialog(context, hashesModel);
+            showHashesDialog(
+              context: context,
+              snapshot: snapshot,
+              hashObject: hashObject,
+            );
           },
         ),
         Container(
           alignment: Alignment.center,
           child: QrImage(
             padding: EdgeInsets.zero,
-            data: hashesModel.hashes.join('\n'),
+            data: snapshot.hashes.join('\n'),
             version: QrVersions.auto,
             size: 120.0,
           ),
@@ -82,7 +88,7 @@ Future<void> showHashesDialog({
                 builder: (BuildContext context) => hashObject != null
                     ? SaveHashDialog(
                         hashesModelToSave: snapshot,
-                        hashObject: hashObject!,
+                        hashObject: hashObject,
                       )
                     : SaveObjectDialog(
                         snapshot: snapshot,

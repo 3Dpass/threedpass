@@ -70,7 +70,8 @@ class PreviewPage extends StatelessWidget {
               ),
               const Padding(padding: EdgeInsets.only(top: 16)),
               MoreInfo(
-                hashesModel: snapshot,
+                snapshot: snapshot,
+                hashObject: hashObject,
               ),
             ],
           ),

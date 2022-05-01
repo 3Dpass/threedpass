@@ -6,4 +6,8 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.bold,
     fontStyle: FontStyle.italic,
   );
+
+  static const subtitle = TextStyle(
+    fontSize: 18,
+  );
 }

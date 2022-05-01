@@ -10,7 +10,7 @@ import 'package:threedpass/common/logger.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/result_page/presentation/pages/preview_page.dart';
 import 'package:threedpass/features/settings_page/presentation/cubit/settings_page_cubit.dart';
-import 'package:threedpass/router/router.gr.dart';
+import 'package:threedpass/router/router.dart';
 
 class GetObjectFromFileButton extends StatelessWidget {
   static const allowedExtentions = ['obj', 'stl'];
@@ -46,31 +46,11 @@ class GetObjectFromFileButton extends StatelessWidget {
     );
   }
 
-  void showProgressDialog(BuildContext context) {
-    showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        content: Row(
-          children: [
-            const CircularProgressIndicator(),
-            Flexible(
-              child: Container(
-                margin: const EdgeInsets.only(left: 16),
-                child: const Text("Calculating hashes..."),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   /// Calc object
   Future<void> createHashFromFile(BuildContext context) async {
     final pickerRes = await pickFile();
     if (pickerRes != null) {
-      showProgressDialog(context);
+      context.router.push(const CalcHashLoadingWidgetRoute());
 
       final objPath = pickerRes.paths.first!;
 
@@ -79,11 +59,13 @@ class GetObjectFromFileButton extends StatelessWidget {
         objPath,
       );
 
+      final snapName = objPath.split('/').last;
+
       context.router.replace(
-        PreviewRoute(
+        PreviewPageWrapperRoute(
           hashObject: null,
           snapshot: Snapshot(
-            name: 'New object ${DateTime.now().toIso8601String()}',
+            name: '$snapName ${DateTime.now().toIso8601String()}',
             hashes: hashes.split('\n'),
             stamp: DateTime.now(),
             externalPathToObj: objPath,

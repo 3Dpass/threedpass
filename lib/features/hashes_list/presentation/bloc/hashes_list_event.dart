@@ -32,8 +32,8 @@ class SaveSnapshot extends HashesListEvent {
   final HashObject object;
 }
 
-class SaveObject extends HashesListEvent {
-  const SaveObject({
+class AddObject extends HashesListEvent {
+  const AddObject({
     required this.object,
   });
 

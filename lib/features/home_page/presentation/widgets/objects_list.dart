@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/common/app_text_styles.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/hash_card.dart';
 
@@ -18,10 +19,23 @@ class ObjectsList extends StatelessWidget {
                 final currentObject = state.objects[objIndex];
 
                 return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(currentObject.name),
+                    Padding(
+                      child: Text(
+                        currentObject.name,
+                        style: AppTextStyles.subtitle,
+                      ),
+                      padding: EdgeInsets.only(
+                        top: 16,
+                        bottom: 8,
+                        left: 16,
+                        right: 16,
+                      ),
+                    ),
                     ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: currentObject.snapshots.length,
                       itemBuilder: (context, hashIndex) => HashCard(
