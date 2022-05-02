@@ -26,6 +26,7 @@ class HashCard extends StatelessWidget {
             PreviewPageWrapperRoute(
               hashObject: hashObject,
               snapshot: snapshot,
+              isSaved: true,
             ),
           );
         },

@@ -28,7 +28,8 @@ class _$AppRouter extends RootStackRouter {
           child: PreviewPageWrapper(
               key: args.key,
               hashObject: args.hashObject,
-              snapshot: args.snapshot));
+              snapshot: args.snapshot,
+              isSaved: args.isSaved));
     },
     SettingsRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -118,11 +119,15 @@ class PreviewPageWrapperRoute
       {Key? key,
       required HashObject? hashObject,
       required Snapshot snapshot,
+      required bool isSaved,
       List<PageRouteInfo>? children})
       : super(PreviewPageWrapperRoute.name,
             path: '/preview-page-wrapper',
             args: PreviewPageWrapperRouteArgs(
-                key: key, hashObject: hashObject, snapshot: snapshot),
+                key: key,
+                hashObject: hashObject,
+                snapshot: snapshot,
+                isSaved: isSaved),
             initialChildren: children);
 
   static const String name = 'PreviewPageWrapperRoute';
@@ -130,7 +135,10 @@ class PreviewPageWrapperRoute
 
 class PreviewPageWrapperRouteArgs {
   const PreviewPageWrapperRouteArgs(
-      {this.key, required this.hashObject, required this.snapshot});
+      {this.key,
+      required this.hashObject,
+      required this.snapshot,
+      required this.isSaved});
 
   final Key? key;
 
@@ -138,9 +146,11 @@ class PreviewPageWrapperRouteArgs {
 
   final Snapshot snapshot;
 
+  final bool isSaved;
+
   @override
   String toString() {
-    return 'PreviewPageWrapperRouteArgs{key: $key, hashObject: $hashObject, snapshot: $snapshot}';
+    return 'PreviewPageWrapperRouteArgs{key: $key, hashObject: $hashObject, snapshot: $snapshot, isSaved: $isSaved}';
   }
 }
 

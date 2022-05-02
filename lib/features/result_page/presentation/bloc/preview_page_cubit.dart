@@ -7,36 +7,16 @@ class PreviewPageCubit extends Cubit<PreviewPageCubitState> {
       : super(previewPageLoading);
 }
 
-abstract class PreviewPageCubitState {
-  const PreviewPageCubitState();
-
-  HashObject? get hashObject;
-
-  Snapshot get snapshot;
-}
-
-class PreviewPageLoading extends PreviewPageCubitState {
-  const PreviewPageLoading({
+class PreviewPageCubitState {
+  const PreviewPageCubitState({
     required this.hashObject,
     required this.snapshot,
+    required this.isSaved,
   });
 
-  @override
   final HashObject? hashObject;
 
-  @override
   final Snapshot snapshot;
-}
 
-class PreviewPageLoaded extends PreviewPageCubitState {
-  const PreviewPageLoaded({
-    required this.hashObject,
-    required this.snapshot,
-  });
-
-  @override
-  final HashObject? hashObject;
-
-  @override
-  final Snapshot snapshot;
+  final bool isSaved;
 }

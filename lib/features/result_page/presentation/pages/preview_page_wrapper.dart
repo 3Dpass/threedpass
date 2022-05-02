@@ -10,18 +10,22 @@ class PreviewPageWrapper extends StatelessWidget {
     Key? key,
     required this.hashObject,
     required this.snapshot,
+    required this.isSaved,
   }) : super(key: key);
 
   final HashObject? hashObject;
   final Snapshot snapshot;
+  final bool isSaved;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<PreviewPageCubit>(
       create: (context) => PreviewPageCubit(
-        hashObject != null
-            ? PreviewPageLoaded(hashObject: hashObject, snapshot: snapshot)
-            : PreviewPageLoading(hashObject: hashObject, snapshot: snapshot),
+        PreviewPageCubitState(
+          hashObject: hashObject,
+          snapshot: snapshot,
+          isSaved: isSaved,
+        ),
       ),
       child: const AutoRouter(),
     );
