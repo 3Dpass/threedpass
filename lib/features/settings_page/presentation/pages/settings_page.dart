@@ -21,7 +21,7 @@ class SettingsPage extends StatelessWidget {
       ),
       body: BlocBuilder<SettingsConfigCubit, SettingsConfigState>(
         builder: (context, state) => Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
               DropdownButtonFormField<Algorithm>(
