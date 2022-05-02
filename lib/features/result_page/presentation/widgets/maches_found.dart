@@ -11,28 +11,23 @@ class MatchesFound extends StatelessWidget {
     Key? key,
     required this.snapshot,
     required this.hashObject,
-    required this.isSaved,
   }) : super(key: key);
 
   final Snapshot snapshot;
   final HashObject? hashObject;
-  final bool isSaved;
 
   @override
   Widget build(BuildContext context) {
     if (hashObject != null) {
       return _ClickableText(
         // if object is saved then substract 1 cause it is counted in snapshots.length
-        mainText:
-            (hashObject!.snapshots.length - (isSaved ? 1 : 0)).toString() +
-                ' matches ',
+        mainText: (hashObject!.snapshots.length - 1).toString() + ' matches ',
         clickable: 'found',
         onTap: () {
           context.router.push(
             CompareRouteWrapper(
               origObj: snapshot,
-              comparisons: hashObject!.snapshots
-                ..removeWhere((element) => element.name == snapshot.name),
+              hashObject: hashObject!,
             ),
           );
         },

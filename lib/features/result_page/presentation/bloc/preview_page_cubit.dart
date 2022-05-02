@@ -11,12 +11,9 @@ class PreviewPageCubitState {
   const PreviewPageCubitState({
     required this.hashObject,
     required this.snapshot,
-    required this.isSaved,
   });
 
   final HashObject? hashObject;
 
   final Snapshot snapshot;
-
-  final bool isSaved;
 }

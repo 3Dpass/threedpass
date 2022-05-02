@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:threedpass/core/utils/hash2.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 
 part 'snapshot.g.dart';
@@ -27,6 +29,18 @@ class Snapshot {
   });
 
   String get shareText => hashes.join('\n');
+
+  @override
+  bool operator ==(other) {
+    if (other is Snapshot) {
+      return name == other.name && listEquals(hashes, other.hashes);
+    } else {
+      return false;
+    }
+  }
+
+  @override
+  int get hashCode => hash2(name.hashCode, hashes.hashCode);
 
   bool belongsToObject(HashObject hashObject) {
     final Set<String> setOfHashes = {};

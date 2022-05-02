@@ -10,12 +10,10 @@ class PreviewPageWrapper extends StatelessWidget {
     Key? key,
     required this.hashObject,
     required this.snapshot,
-    required this.isSaved,
   }) : super(key: key);
 
   final HashObject? hashObject;
   final Snapshot snapshot;
-  final bool isSaved;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +22,6 @@ class PreviewPageWrapper extends StatelessWidget {
         PreviewPageCubitState(
           hashObject: hashObject,
           snapshot: snapshot,
-          isSaved: isSaved,
         ),
       ),
       child: const AutoRouter(),

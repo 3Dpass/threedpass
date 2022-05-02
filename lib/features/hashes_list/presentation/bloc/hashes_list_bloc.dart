@@ -47,9 +47,9 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
             add(DeleteObject(object: obj));
             return;
           }
-
           obj.snapshots.removeWhere(
-              (snap) => listEquals(event.hash.hashes, snap.hashes));
+            (snap) => snap == event.hash,
+          );
           f = true;
           break;
         }

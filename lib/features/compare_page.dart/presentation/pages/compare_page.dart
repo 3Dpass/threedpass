@@ -2,23 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/core/utils/cut_string.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/widgets/choose_list.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/widgets/compare_table.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class ComparePageWrapper extends StatelessWidget {
   const ComparePageWrapper({
     Key? key,
     required this.origObj,
-    required this.comparisons,
+    required this.hashObject,
   }) : super(key: key);
 
-  final List<Snapshot> comparisons;
+  final HashObject hashObject;
   final Snapshot origObj;
 
   @override
   Widget build(BuildContext context) {
     return _ComparePage(
       origObj: origObj,
-      comparisons: comparisons,
+      comparisons: hashObject.snapshots
+        ..removeWhere((element) => element == origObj),
     );
   }
 }

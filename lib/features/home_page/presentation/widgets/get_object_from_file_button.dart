@@ -79,7 +79,11 @@ class GetObjectFromFileButton extends StatelessWidget {
         for (var obj in hashListState.objects) {
           if (newSnapshot.belongsToObject(obj)) {
             // obj.snapshots.add(newSnapshot);
-            hashObject = obj;
+            hashObject = HashObject(
+              localId: obj.localId,
+              name: obj.name,
+              snapshots: [...obj.snapshots, newSnapshot],
+            );
             break;
           }
         }
@@ -96,7 +100,6 @@ class GetObjectFromFileButton extends StatelessWidget {
           PreviewPageWrapperRoute(
             hashObject: hashObject,
             snapshot: newSnapshot,
-            isSaved: false,
           ),
         );
       } else {

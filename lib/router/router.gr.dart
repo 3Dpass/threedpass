@@ -28,8 +28,7 @@ class _$AppRouter extends RootStackRouter {
           child: PreviewPageWrapper(
               key: args.key,
               hashObject: args.hashObject,
-              snapshot: args.snapshot,
-              isSaved: args.isSaved));
+              snapshot: args.snapshot));
     },
     SettingsRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -54,7 +53,7 @@ class _$AppRouter extends RootStackRouter {
           child: ComparePageWrapper(
               key: args.key,
               origObj: args.origObj,
-              comparisons: args.comparisons));
+              hashObject: args.hashObject));
     },
     SaveObjectDialogRoute.name: (routeData) {
       final args = routeData.argsAs<SaveObjectDialogRouteArgs>();
@@ -119,15 +118,11 @@ class PreviewPageWrapperRoute
       {Key? key,
       required HashObject? hashObject,
       required Snapshot snapshot,
-      required bool isSaved,
       List<PageRouteInfo>? children})
       : super(PreviewPageWrapperRoute.name,
             path: '/preview-page-wrapper',
             args: PreviewPageWrapperRouteArgs(
-                key: key,
-                hashObject: hashObject,
-                snapshot: snapshot,
-                isSaved: isSaved),
+                key: key, hashObject: hashObject, snapshot: snapshot),
             initialChildren: children);
 
   static const String name = 'PreviewPageWrapperRoute';
@@ -135,10 +130,7 @@ class PreviewPageWrapperRoute
 
 class PreviewPageWrapperRouteArgs {
   const PreviewPageWrapperRouteArgs(
-      {this.key,
-      required this.hashObject,
-      required this.snapshot,
-      required this.isSaved});
+      {this.key, required this.hashObject, required this.snapshot});
 
   final Key? key;
 
@@ -146,11 +138,9 @@ class PreviewPageWrapperRouteArgs {
 
   final Snapshot snapshot;
 
-  final bool isSaved;
-
   @override
   String toString() {
-    return 'PreviewPageWrapperRouteArgs{key: $key, hashObject: $hashObject, snapshot: $snapshot, isSaved: $isSaved}';
+    return 'PreviewPageWrapperRouteArgs{key: $key, hashObject: $hashObject, snapshot: $snapshot}';
   }
 }
 
@@ -184,30 +174,28 @@ class PreviewPageRoute extends PageRouteInfo<void> {
 /// [ComparePageWrapper]
 class CompareRouteWrapper extends PageRouteInfo<CompareRouteWrapperArgs> {
   CompareRouteWrapper(
-      {Key? key,
-      required Snapshot origObj,
-      required List<Snapshot> comparisons})
+      {Key? key, required Snapshot origObj, required HashObject hashObject})
       : super(CompareRouteWrapper.name,
             path: 'compare-page-wrapper',
             args: CompareRouteWrapperArgs(
-                key: key, origObj: origObj, comparisons: comparisons));
+                key: key, origObj: origObj, hashObject: hashObject));
 
   static const String name = 'CompareRouteWrapper';
 }
 
 class CompareRouteWrapperArgs {
   const CompareRouteWrapperArgs(
-      {this.key, required this.origObj, required this.comparisons});
+      {this.key, required this.origObj, required this.hashObject});
 
   final Key? key;
 
   final Snapshot origObj;
 
-  final List<Snapshot> comparisons;
+  final HashObject hashObject;
 
   @override
   String toString() {
-    return 'CompareRouteWrapperArgs{key: $key, origObj: $origObj, comparisons: $comparisons}';
+    return 'CompareRouteWrapperArgs{key: $key, origObj: $origObj, hashObject: $hashObject}';
   }
 }
 

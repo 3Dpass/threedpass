@@ -20,7 +20,6 @@ class PreviewPage extends StatelessWidget {
     final hashObject =
         BlocProvider.of<PreviewPageCubit>(context).state.hashObject;
     final snapshot = BlocProvider.of<PreviewPageCubit>(context).state.snapshot;
-    final isSaved = BlocProvider.of<PreviewPageCubit>(context).state.isSaved;
 
     return Scaffold(
       appBar: AppBar(
@@ -52,7 +51,6 @@ class PreviewPage extends StatelessWidget {
                 child: MatchesFound(
                   snapshot: snapshot,
                   hashObject: hashObject,
-                  isSaved: isSaved,
                 ),
               ),
               ObjectPreview(

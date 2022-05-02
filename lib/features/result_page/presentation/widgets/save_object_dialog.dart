@@ -85,7 +85,6 @@ class SaveObjectDialog extends StatelessWidget {
                         PreviewPageWrapperRoute(
                           hashObject: newObject,
                           snapshot: newNamedModel,
-                          isSaved: true,
                         ),
                       );
                     },
