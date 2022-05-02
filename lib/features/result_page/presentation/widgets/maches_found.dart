@@ -26,7 +26,8 @@ class MatchesFound extends StatelessWidget {
           context.router.push(
             CompareRouteWrapper(
               origObj: snapshot,
-              comparisons: hashObject!.snapshots,
+              comparisons: hashObject!.snapshots
+                ..removeWhere((element) => element.name == snapshot.name),
             ),
           );
         },

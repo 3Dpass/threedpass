@@ -68,7 +68,7 @@ class SaveObjectDialog extends StatelessWidget {
                       final newNamedModel =
                           snapshot.copyWith(name: snapshotNameController.text);
 
-                      final newObject = HashObject(
+                      final newObject = HashObject.create(
                         name: objectNameController.text,
                         snapshots: [
                           newNamedModel,

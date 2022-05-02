@@ -14,20 +14,20 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
   }) : super(HashesListInitial()) {
     on<DeleteHash>(_deleteHash);
     on<DeleteObject>(_deleteObject);
-    on<AddObject>(_saveObject);
+    on<AddObject>(_addObject);
     on<SaveSnapshot>(_saveSnapshot);
-    on<UpdateHashesList>(_updateList);
+    on<_LoadHashesList>(_loadList);
   }
 
   final HashesRepository hashesRepository;
 
   Future<void> init() async {
     final objects = hashesRepository.getAll();
-    add(UpdateHashesList(objects: objects));
+    add(_LoadHashesList(objects: objects));
   }
 
-  Future<void> _updateList(
-    UpdateHashesList event,
+  Future<void> _loadList(
+    _LoadHashesList event,
     Emitter<HashesListState> emit,
   ) async {
     emit(HashesListLoaded(objects: event.objects));
@@ -54,10 +54,13 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
           break;
         }
       }
+
       if (!f) {
         logger.e(
           'Not found an object with id=${event.object.localId} name=${event.object.name}',
         );
+      } else {
+        await hashesRepository.replaceObject(event.object);
       }
       emit(HashesListLoaded(objects: list));
     }
@@ -76,11 +79,11 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     }
   }
 
-  Future<void> _saveObject(
+  Future<void> _addObject(
     AddObject event,
     Emitter<HashesListState> emit,
   ) async {
-    hashesRepository.saveObject(event.object);
+    await hashesRepository.addObject(event.object);
 
     if (state is HashesListLoaded) {
       final list = (state as HashesListLoaded).objects;
@@ -93,8 +96,6 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     SaveSnapshot event,
     Emitter<HashesListState> emit,
   ) async {
-    await hashesRepository.saveObject(event.object);
-
     if (state is HashesListLoaded) {
       final list = (state as HashesListLoaded).objects;
       bool f = false;
@@ -109,6 +110,8 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
         logger.e(
           'Not found an object with id=${event.object.localId} name=${event.object.name}',
         );
+      } else {
+        await hashesRepository.replaceObject(event.object);
       }
       emit(HashesListLoaded(objects: list));
     }

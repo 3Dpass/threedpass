@@ -11,8 +11,8 @@ class PreviewSaveButton extends StatelessWidget {
     required this.hashObject,
   }) : super(key: key);
 
-  final Snapshot snapshot;
   final HashObject? hashObject;
+  final Snapshot snapshot;
 
   @override
   Widget build(BuildContext context) {
@@ -20,19 +20,6 @@ class PreviewSaveButton extends StatelessWidget {
       style: AppButtonStyles.primaryButton,
       child: const Text('Save this object'),
       onPressed: () async {
-        // showDialog(
-        //   context: context,
-        //   barrierDismissible: false, // user must tap button!
-        //   builder: (BuildContext context) => hashObject != null
-        //       ? SaveHashDialog(
-        //           hashesModelToSave: snapshot,
-        //           hashObject: hashObject!,
-        //         )
-        //       : SaveObjectDialog(
-        //           snapshot: snapshot,
-        //         ),
-        // );
-
         hashObject != null
             ? SaveHashDialogRoute(
                 hashesModelToSave: snapshot,

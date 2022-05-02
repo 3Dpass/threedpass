@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/utils/cut_string.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/widgets/choose_list.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/widgets/compare_table.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -64,7 +65,7 @@ class _State extends State<_ComparePage> {
                 Flexible(
                   flex: 2,
                   child: Text(
-                    widget.origObj.name,
+                    cutString(widget.origObj.name, 16),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),

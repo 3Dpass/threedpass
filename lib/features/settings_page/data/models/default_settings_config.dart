@@ -5,6 +5,6 @@ class DefaultSettingsConfig extends SettingsConfig {
       : super(
           gridSize: 7,
           nSections: 10,
-          algorithm: Algorithm.Grid,
+          algorithm: Algorithm.grid,
         );
 }

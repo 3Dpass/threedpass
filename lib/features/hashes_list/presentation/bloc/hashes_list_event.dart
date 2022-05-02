@@ -40,8 +40,8 @@ class AddObject extends HashesListEvent {
   final HashObject object;
 }
 
-class UpdateHashesList extends HashesListEvent {
-  const UpdateHashesList({
+class _LoadHashesList extends HashesListEvent {
+  const _LoadHashesList({
     required this.objects,
   });
 

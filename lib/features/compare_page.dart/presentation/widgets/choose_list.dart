@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/utils/cut_string.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class ChooseList extends StatelessWidget {
@@ -22,7 +23,7 @@ class ChooseList extends StatelessWidget {
             (e) => DropdownMenuItem<Snapshot>(
               value: e,
               child: Text(
-                e.name,
+                cutString(e.name, 16),
                 overflow: TextOverflow.ellipsis,
               ),
             ),

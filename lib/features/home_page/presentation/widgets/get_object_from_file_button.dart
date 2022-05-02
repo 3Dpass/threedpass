@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/common/logger.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/result_page/presentation/pages/preview_page.dart';
 import 'package:threedpass/features/settings_page/presentation/cubit/settings_page_cubit.dart';
 import 'package:threedpass/router/router.dart';
@@ -59,19 +61,54 @@ class GetObjectFromFileButton extends StatelessWidget {
         objPath,
       );
 
-      final snapName = objPath.split('/').last;
+      final rawObjName = objPath.split('/').last;
+      final snapName = '$rawObjName ${DateTime.now().toIso8601String()}';
 
-      context.router.replace(
-        PreviewPageWrapperRoute(
-          hashObject: null,
-          snapshot: Snapshot(
-            name: '$snapName ${DateTime.now().toIso8601String()}',
-            hashes: hashes.split('\n'),
-            stamp: DateTime.now(),
-            externalPathToObj: objPath,
+      logger.i('Calculated hashes for the object $snapName');
+
+      var hashListState = BlocProvider.of<HashesListBloc>(context).state;
+      if (hashListState is HashesListLoaded) {
+        final newSnapshot = Snapshot(
+          name: snapName,
+          hashes: hashes.split('\n'),
+          stamp: DateTime.now(),
+          externalPathToObj: objPath,
+        );
+
+        HashObject? hashObject;
+        for (var obj in hashListState.objects) {
+          if (newSnapshot.belongsToObject(obj)) {
+            obj.snapshots.add(newSnapshot);
+            hashObject = obj;
+            break;
+          }
+        }
+
+        if (hashObject != null) {
+          logger.i(
+            'New snaphost $snapName belongs to the object ${hashObject.name}',
+          );
+        } else {
+          logger.i('Snapshot $snapName is unique');
+        }
+
+        context.router.replace(
+          PreviewPageWrapperRoute(
+            hashObject: hashObject,
+            snapshot: newSnapshot,
           ),
-        ),
-      );
+        );
+      } else {
+        logger.w(
+          'Hashes list was not initalized when user tried to create new snapshot',
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Hashes list is not initalized :('),
+          ),
+        );
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
