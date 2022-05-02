@@ -25,7 +25,7 @@ class SaveObjectDialog extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Text(
-                'Save object',
+                'Create new object',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               Padding(
@@ -57,14 +57,12 @@ class SaveObjectDialog extends StatelessWidget {
                   TextButton(
                     child: Text('Cancel'),
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      context.router.pop();
                     },
                   ),
                   TextButton(
                     child: Text('Save'),
                     onPressed: () async {
-                      Navigator.of(context).pop();
-
                       final newNamedModel =
                           snapshot.copyWith(name: snapshotNameController.text);
 
@@ -81,7 +79,10 @@ class SaveObjectDialog extends StatelessWidget {
                         ),
                       );
 
-                      context.router.replace(
+                      // replace does not work, because we don't use keys as path
+                      context.router.pop();
+                      context.router.pop();
+                      context.router.push(
                         PreviewPageWrapperRoute(
                           hashObject: newObject,
                           snapshot: newNamedModel,

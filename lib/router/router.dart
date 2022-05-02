@@ -9,6 +9,7 @@ import 'package:threedpass/features/result_page/presentation/pages/preview_page.
 import 'package:threedpass/features/result_page/presentation/pages/preview_page_wrapper.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/save_hash_dialog.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/save_object_dialog.dart';
+import 'package:threedpass/features/result_page/presentation/widgets/save_top_hashes_dialog.dart';
 import 'package:threedpass/features/settings_page/presentation/pages/settings_page.dart';
 
 part 'router.gr.dart';
@@ -31,6 +32,11 @@ part 'router.gr.dart';
         ),
         AutoRoute(
           page: ComparePageWrapper,
+        ),
+        CustomRoute(
+          name: 'SaveTopHashesDialogRoute',
+          page: SaveTopHashesDialog,
+          customRouteBuilder: dialogBuilder,
         ),
         CustomRoute(
           name: 'SaveObjectDialogRoute',

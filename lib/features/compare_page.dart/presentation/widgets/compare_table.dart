@@ -7,10 +7,12 @@ class CompareTable extends StatelessWidget {
     Key? key,
     required this.comparable,
     required this.mainObject,
+    required this.stableHashes,
   }) : super(key: key);
 
   final Snapshot comparable;
   final Snapshot mainObject;
+  final List<String> stableHashes;
 
   List<_RowData> get rowsData {
     final res = <_RowData>[];
@@ -21,6 +23,7 @@ class CompareTable extends StatelessWidget {
             rank1: (mainObject.hashes.indexOf(mainHash) + 1).toString(),
             hash: mainHash,
             rank2: (comparable.hashes.indexOf(mainHash) + 1).toString(),
+            isStableHash: stableHashes.contains(mainHash),
           ),
         );
       }
@@ -75,11 +78,13 @@ class _RowData {
   final String rank1;
   final String rank2;
   final String hash;
+  final bool isStableHash;
 
   const _RowData({
     required this.rank1,
     required this.hash,
     required this.rank2,
+    required this.isStableHash,
   });
 }
 
@@ -99,7 +104,12 @@ class _TableRow extends StatelessWidget {
             width: 48,
           ),
           Flexible(
-            child: Text(rowData.hash),
+            child: Text(
+              rowData.hash,
+              style: AppTextStyles.bodyText2.copyWith(
+                fontWeight: rowData.isStableHash ? FontWeight.bold : null,
+              ),
+            ),
           ),
           const SizedBox(
             width: 48,

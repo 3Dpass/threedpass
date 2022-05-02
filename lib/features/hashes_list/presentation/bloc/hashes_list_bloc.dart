@@ -101,6 +101,9 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       bool f = false;
       for (var obj in list) {
         if (obj.localId == event.object.localId) {
+          obj.snapshots.removeWhere(
+            (element) => listEquals(element.hashes, event.hash.hashes),
+          );
           obj.snapshots.add(event.hash);
           f = true;
           break;

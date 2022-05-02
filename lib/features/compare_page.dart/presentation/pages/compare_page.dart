@@ -17,10 +17,12 @@ class ComparePageWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final comparisons = <Snapshot>[...hashObject.snapshots]
+      ..removeWhere((element) => element == origObj);
     return _ComparePage(
       origObj: origObj,
-      comparisons: hashObject.snapshots
-        ..removeWhere((element) => element == origObj),
+      comparisons: comparisons,
+      stableHashes: hashObject.stableHashes.toList(),
     );
   }
 }
@@ -31,10 +33,12 @@ class _ComparePage extends StatefulWidget {
     Key? key,
     required this.origObj,
     required this.comparisons,
+    required this.stableHashes,
   }) : super(key: key);
 
   final List<Snapshot> comparisons;
   final Snapshot origObj;
+  final List<String> stableHashes;
 
   @override
   State<StatefulWidget> createState() => _State();
@@ -102,6 +106,7 @@ class _State extends State<_ComparePage> {
           CompareTable(
             comparable: comparable,
             mainObject: widget.origObj,
+            stableHashes: widget.stableHashes,
           ),
         ],
       ),

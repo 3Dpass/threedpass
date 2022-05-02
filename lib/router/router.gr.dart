@@ -55,6 +55,18 @@ class _$AppRouter extends RootStackRouter {
               origObj: args.origObj,
               hashObject: args.hashObject));
     },
+    SaveTopHashesDialogRoute.name: (routeData) {
+      final args = routeData.argsAs<SaveTopHashesDialogRouteArgs>();
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: SaveTopHashesDialog(
+              key: args.key,
+              hashObject: args.hashObject,
+              snapshot: args.snapshot),
+          customRouteBuilder: dialogBuilder,
+          opaque: true,
+          barrierDismissible: false);
+    },
     SaveObjectDialogRoute.name: (routeData) {
       final args = routeData.argsAs<SaveObjectDialogRouteArgs>();
       return CustomPage<dynamic>(
@@ -88,6 +100,9 @@ class _$AppRouter extends RootStackRouter {
                   path: '', parent: PreviewPageWrapperRoute.name),
               RouteConfig(CompareRouteWrapper.name,
                   path: 'compare-page-wrapper',
+                  parent: PreviewPageWrapperRoute.name),
+              RouteConfig(SaveTopHashesDialogRoute.name,
+                  path: 'save-top-hashes-dialog',
                   parent: PreviewPageWrapperRoute.name),
               RouteConfig(SaveObjectDialogRoute.name,
                   path: 'save-object-dialog',
@@ -196,6 +211,36 @@ class CompareRouteWrapperArgs {
   @override
   String toString() {
     return 'CompareRouteWrapperArgs{key: $key, origObj: $origObj, hashObject: $hashObject}';
+  }
+}
+
+/// generated route for
+/// [SaveTopHashesDialog]
+class SaveTopHashesDialogRoute
+    extends PageRouteInfo<SaveTopHashesDialogRouteArgs> {
+  SaveTopHashesDialogRoute(
+      {Key? key, required HashObject? hashObject, required Snapshot snapshot})
+      : super(SaveTopHashesDialogRoute.name,
+            path: 'save-top-hashes-dialog',
+            args: SaveTopHashesDialogRouteArgs(
+                key: key, hashObject: hashObject, snapshot: snapshot));
+
+  static const String name = 'SaveTopHashesDialogRoute';
+}
+
+class SaveTopHashesDialogRouteArgs {
+  const SaveTopHashesDialogRouteArgs(
+      {this.key, required this.hashObject, required this.snapshot});
+
+  final Key? key;
+
+  final HashObject? hashObject;
+
+  final Snapshot snapshot;
+
+  @override
+  String toString() {
+    return 'SaveTopHashesDialogRouteArgs{key: $key, hashObject: $hashObject, snapshot: $snapshot}';
   }
 }
 

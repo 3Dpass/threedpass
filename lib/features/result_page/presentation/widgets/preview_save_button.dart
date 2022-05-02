@@ -14,11 +14,15 @@ class PreviewSaveButton extends StatelessWidget {
   final HashObject? hashObject;
   final Snapshot snapshot;
 
+  String get entity {
+    return hashObject != null ? 'snapshot' : 'object';
+  }
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: AppButtonStyles.primaryButton,
-      child: const Text('Save this object'),
+      child: Text('Save this $entity'),
       onPressed: () async {
         hashObject != null
             ? SaveHashDialogRoute(

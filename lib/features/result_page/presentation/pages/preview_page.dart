@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:threedpass/common/app_text_styles.dart';
 import 'package:threedpass/features/result_page/presentation/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/object_preview.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/delete_object_button.dart';
@@ -28,7 +29,17 @@ class PreviewPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            const Text("Get a new one"),
+            hashObject != null
+                ? Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 16),
+                      child: Text(
+                        hashObject.name,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  )
+                : const Text("Get a new one"),
             IconButton(
               icon: const Icon(Icons.share, color: Colors.grey),
               alignment: Alignment.centerRight,
@@ -44,15 +55,34 @@ class PreviewPage extends StatelessWidget {
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 16, bottom: 8),
-                child: MatchesFound(
-                  snapshot: snapshot,
-                  hashObject: hashObject,
+              const SizedBox(height: 16),
+              Flexible(
+                child: Text.rich(
+                  TextSpan(
+                    text: 'Snapshot: ',
+                    children: [
+                      TextSpan(
+                        text: snapshot.name,
+                        style: AppTextStyles.bodyText1.copyWith(
+                          fontStyle: FontStyle.normal,
+                        ),
+                      ),
+                    ],
+                  ),
+                  style: AppTextStyles.bodyText2.copyWith(
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ),
+              const SizedBox(height: 8),
+              MatchesFound(
+                snapshot: snapshot,
+                hashObject: hashObject,
+              ),
+              const SizedBox(height: 8),
               ObjectPreview(
                 snapshot: snapshot,
               ),

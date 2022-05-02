@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:threedpass/core/utils/hash2.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -21,7 +20,6 @@ class HashObject {
     required this.name,
     required this.snapshots,
   }) : localId = Random().nextInt(1 << 32);
-  //  _stableHashes = calcStable();
 
   @HiveField(0)
   final int localId;
@@ -31,12 +29,6 @@ class HashObject {
 
   @HiveField(2)
   final List<Snapshot> snapshots;
-
-  // List<String> get stableHashes => _stableHashes;
-
-  // List<String> _stableHashes;
-
-  // static List<String> calcStable() => [];
 
   @override
   bool operator ==(other) {
@@ -50,11 +42,20 @@ class HashObject {
   @override
   int get hashCode => hash2(0, localId);
 
-  // List<String> get stableHashes {
-  //   final res = <String>[];
-  //   final Map<String, int> hashFreq = {};
+  Iterable<String> get stableHashes {
+    final Map<String, int> hashFreq = {};
 
-  //   for ()
-  //   return res;
-  // }
+    for (var snapshot in snapshots) {
+      for (var hash in snapshot.hashes) {
+        if (hashFreq[hash] == null) {
+          hashFreq[hash] = 1;
+        } else {
+          final freq = hashFreq[hash]!;
+          hashFreq[hash] = freq + 1;
+        }
+      }
+    }
+
+    return hashFreq.keys.where((hash) => hashFreq[hash]! > 2);
+  }
 }

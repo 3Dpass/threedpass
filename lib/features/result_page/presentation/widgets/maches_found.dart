@@ -18,7 +18,7 @@ class MatchesFound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (hashObject != null) {
+    if (hashObject != null && hashObject!.snapshots.length > 1) {
       return _ClickableText(
         // if object is saved then substract 1 cause it is counted in snapshots.length
         mainText: (hashObject!.snapshots.length - 1).toString() + ' matches ',
@@ -35,7 +35,7 @@ class MatchesFound extends StatelessWidget {
     } else {
       return _ClickableText(
         clickable: 'Why?',
-        mainText: 'No mathes found ',
+        mainText: 'No matches found ',
         onTap: () {
           launch('https://3dpass.org/features.html#3D_object_recognition');
         },

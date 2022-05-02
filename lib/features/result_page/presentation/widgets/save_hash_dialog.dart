@@ -26,7 +26,7 @@ class SaveHashDialog extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Text(
-                'Save top hashes as',
+                'Save hash',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               Padding(
@@ -44,13 +44,12 @@ class SaveHashDialog extends StatelessWidget {
                   TextButton(
                     child: Text('Cancel'),
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      context.router.pop();
                     },
                   ),
                   TextButton(
                     child: Text('Save'),
                     onPressed: () async {
-                      Navigator.of(context).pop();
                       String value = controller.text;
 
                       final newNamedModel =
@@ -63,7 +62,10 @@ class SaveHashDialog extends StatelessWidget {
                         ),
                       );
 
-                      context.router.replace(
+                      // replace does not work, because we don't use keys as path
+                      context.router.pop();
+                      context.router.pop();
+                      context.router.push(
                         PreviewPageWrapperRoute(
                           hashObject: hashObject,
                           snapshot: newNamedModel,

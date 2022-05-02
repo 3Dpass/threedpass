@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/common/logger.dart';
+import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
@@ -62,7 +63,8 @@ class GetObjectFromFileButton extends StatelessWidget {
       );
 
       final rawObjName = objPath.split('/').last;
-      final snapName = '$rawObjName ${DateTime.now().toIso8601String()}';
+
+      final snapName = '$rawObjName ${basicDateFormat.format(DateTime.now())}';
 
       logger.i('Calculated hashes for the object $snapName');
 
@@ -78,7 +80,6 @@ class GetObjectFromFileButton extends StatelessWidget {
         HashObject? hashObject;
         for (var obj in hashListState.objects) {
           if (newSnapshot.belongsToObject(obj)) {
-            // obj.snapshots.add(newSnapshot);
             hashObject = HashObject(
               localId: obj.localId,
               name: obj.name,
