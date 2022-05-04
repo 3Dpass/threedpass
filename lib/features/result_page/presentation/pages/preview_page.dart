@@ -88,7 +88,9 @@ class PreviewPage extends StatelessWidget {
               ),
               Container(
                 padding: const EdgeInsets.only(top: 16, bottom: 16),
-                child: const HashProperties(),
+                child: HashProperties(
+                  snapshot: snapshot,
+                ),
               ),
               PreviewSaveButton(
                 snapshot: snapshot,

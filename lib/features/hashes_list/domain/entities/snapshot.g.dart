@@ -13,6 +13,8 @@ abstract class _$SnapshotCWProxy {
 
   Snapshot name(String name);
 
+  Snapshot settingsConfig(SettingsConfig? settingsConfig);
+
   Snapshot stamp(DateTime stamp);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Snapshot(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -25,6 +27,7 @@ abstract class _$SnapshotCWProxy {
     String? externalPathToObj,
     List<String>? hashes,
     String? name,
+    SettingsConfig? settingsConfig,
     DateTime? stamp,
   });
 }
@@ -46,6 +49,10 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
   Snapshot name(String name) => this(name: name);
 
   @override
+  Snapshot settingsConfig(SettingsConfig? settingsConfig) =>
+      this(settingsConfig: settingsConfig);
+
+  @override
   Snapshot stamp(DateTime stamp) => this(stamp: stamp);
 
   @override
@@ -60,6 +67,7 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
     Object? externalPathToObj = const $CopyWithPlaceholder(),
     Object? hashes = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
+    Object? settingsConfig = const $CopyWithPlaceholder(),
     Object? stamp = const $CopyWithPlaceholder(),
   }) {
     return Snapshot(
@@ -75,6 +83,10 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
           : name as String,
+      settingsConfig: settingsConfig == const $CopyWithPlaceholder()
+          ? _value.settingsConfig
+          // ignore: cast_nullable_to_non_nullable
+          : settingsConfig as SettingsConfig?,
       stamp: stamp == const $CopyWithPlaceholder() || stamp == null
           ? _value.stamp
           // ignore: cast_nullable_to_non_nullable
@@ -107,13 +119,14 @@ class SnapshotAdapter extends TypeAdapter<Snapshot> {
       stamp: fields[1] as DateTime,
       hashes: (fields[2] as List).cast<String>(),
       externalPathToObj: fields[3] as String?,
+      settingsConfig: fields[4] as SettingsConfig?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Snapshot obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -121,7 +134,9 @@ class SnapshotAdapter extends TypeAdapter<Snapshot> {
       ..writeByte(2)
       ..write(obj.hashes)
       ..writeByte(3)
-      ..write(obj.externalPathToObj);
+      ..write(obj.externalPathToObj)
+      ..writeByte(4)
+      ..write(obj.settingsConfig);
   }
 
   @override

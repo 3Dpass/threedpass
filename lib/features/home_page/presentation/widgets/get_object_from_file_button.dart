@@ -75,6 +75,8 @@ class GetObjectFromFileButton extends StatelessWidget {
           hashes: hashes.split('\n'),
           stamp: DateTime.now(),
           externalPathToObj: objPath,
+          settingsConfig:
+              BlocProvider.of<SettingsConfigCubit>(context).state.settings,
         );
 
         HashObject? hashObject;

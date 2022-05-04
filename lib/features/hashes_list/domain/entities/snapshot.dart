@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:threedpass/core/utils/hash2.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
+import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
 
 part 'snapshot.g.dart';
 
@@ -21,11 +22,15 @@ class Snapshot {
   @HiveField(3)
   final String? externalPathToObj;
 
+  @HiveField(4)
+  final SettingsConfig? settingsConfig;
+
   const Snapshot({
     required this.name,
     required this.stamp,
     required this.hashes,
     this.externalPathToObj,
+    required this.settingsConfig,
   });
 
   String get shareText => hashes.join('\n');

@@ -4,14 +4,14 @@ import 'package:threedpass/features/settings_page/domain/entities/settings_confi
 import 'package:threedpass/features/settings_page/presentation/cubit/settings_page_cubit.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage();
+  const SettingsPage({
+    Key? key,
+  }) : super(key: key);
 
   void updateSettings(BuildContext context, SettingsConfig config) {
     BlocProvider.of<SettingsConfigCubit>(context).updateSettings(config);
   }
 
-  //  Map<String, Map<String, String>> result = jsonResponse
-  // .map((key, value) => MapEntry(key, value as Map<String, String>));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,28 +68,29 @@ class SettingsPage extends StatelessWidget {
                     )
                     .toList(),
               ),
-              DropdownButtonFormField<int>(
-                decoration: InputDecoration(
-                  label: Text('N Sections'),
+              TextField(
+                controller: TextEditingController(
+                  text: BlocProvider.of<SettingsConfigCubit>(context)
+                      .state
+                      .settings
+                      .nSections
+                      .toString(),
                 ),
-                value: state.settings.nSections,
-                onChanged: (int? newValue) {
-                  if (newValue != null) {
+                onChanged: (String? newValue) {
+                  if (newValue != null && int.tryParse(newValue) != null) {
                     updateSettings(
                       context,
-                      state.settings.copyWith(nSections: newValue),
+                      state.settings.copyWith(
+                        nSections: int.tryParse(newValue),
+                      ),
                     );
                   }
                 },
-                items: List.generate(10, (index) => index + 1)
-                    .map(
-                      (e) => DropdownMenuItem<int>(
-                        value: e,
-                        child: Text('$e'),
-                      ),
-                    )
-                    .toList(),
-              )
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  label: Text('N Sections'),
+                ),
+              ),
             ],
           ),
         ),
