@@ -6,24 +6,44 @@ abstract class HashesListEvent {
 
 class DeleteHash extends HashesListEvent {
   const DeleteHash({
-    required this.model,
+    required this.hash,
+    required this.object,
   });
 
-  final HashesModel model;
+  final Snapshot hash;
+  final HashObject object;
 }
 
-class SaveNewHash extends HashesListEvent {
-  const SaveNewHash({
-    required this.model,
+class DeleteObject extends HashesListEvent {
+  const DeleteObject({
+    required this.object,
   });
 
-  final HashesModel model;
+  final HashObject object;
 }
 
-class UpdateHashesList extends HashesListEvent {
-  const UpdateHashesList({
-    required this.hashes,
+class SaveSnapshot extends HashesListEvent {
+  const SaveSnapshot({
+    required this.hash,
+    required this.object,
   });
 
-  final List<HashesModel> hashes;
+  final Snapshot hash;
+  final HashObject object;
+}
+
+class AddObject extends HashesListEvent {
+  const AddObject({
+    required this.object,
+  });
+
+  final HashObject object;
+}
+
+class _LoadHashesList extends HashesListEvent {
+  const _LoadHashesList({
+    required this.objects,
+  });
+
+  final List<HashObject> objects;
 }

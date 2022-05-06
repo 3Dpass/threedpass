@@ -1,18 +1,20 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
-import 'package:threedpass/features/hashes_list/presentation/widgets/hashes_primitive_list.dart';
-import 'package:threedpass/features/result_page/presentation/widgets/save_dialog.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/router/router.dart';
 
 class MoreInfo extends StatelessWidget {
   const MoreInfo({
     Key? key,
-    required this.hashesModel,
+    required this.snapshot,
+    required this.hashObject,
   }) : super(key: key);
 
-  final HashesModel hashesModel;
+  final Snapshot snapshot;
+  final HashObject? hashObject;
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +25,19 @@ class MoreInfo extends StatelessWidget {
         MarkdownBody(
           data: "### **Hash ID**\n\n\n### [Show and share](show_and_share)",
           onTapLink: (String text, String? href, String title) {
-            showHashesDialog(context, hashesModel);
+            context.router.push(
+              SaveTopHashesDialogRoute(
+                hashObject: hashObject,
+                snapshot: snapshot,
+              ),
+            );
           },
         ),
         Container(
           alignment: Alignment.center,
           child: QrImage(
             padding: EdgeInsets.zero,
-            data: hashesModel.hashes.join('\n'),
+            data: snapshot.hashes.join('\n'),
             version: QrVersions.auto,
             size: 120.0,
           ),
@@ -38,50 +45,4 @@ class MoreInfo extends StatelessWidget {
       ],
     );
   }
-}
-
-Future<void> showHashesDialog(
-    BuildContext context, HashesModel hashesModel) async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Top 10 hashes'),
-        content: SingleChildScrollView(
-          child: HashesPrimitiveList(
-            hashesModel: hashesModel,
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            child: const Text('Cancel'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          TextButton(
-            child: const Text('Share'),
-            onPressed: () {
-              Navigator.of(context).pop();
-              Share.share(hashesModel.shareText);
-            },
-          ),
-          TextButton(
-            child: Text('Save'),
-            onPressed: () async {
-              Navigator.of(context).pop();
-              showDialog(
-                context: context,
-                barrierDismissible: false, // user must tap button!
-                builder: (BuildContext context) => SaveDialog(
-                  hashesModelToSave: hashesModel,
-                ),
-              );
-            },
-          ),
-        ],
-      );
-    },
-  );
 }

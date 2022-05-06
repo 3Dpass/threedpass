@@ -7,8 +7,9 @@ abstract class HashesListState {
 class HashesListInitial extends HashesListState {}
 
 class HashesListLoaded extends HashesListState {
-  final List<HashesModel> hashes;
   const HashesListLoaded({
-    required this.hashes,
+    required this.objects,
   });
+
+  final List<HashObject> objects;
 }

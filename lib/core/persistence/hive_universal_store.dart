@@ -1,4 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:threedpass/common/logger.dart';
 import 'package:threedpass/core/errors/storage_error.dart';
 
 class HiveUniversalStore<T> {
@@ -58,6 +59,22 @@ class HiveUniversalStore<T> {
   Future<void> removeAll() async {
     final keys = getKeys();
     await _box.deleteAll(keys);
+  }
+
+  Future<void> replace(T value) async {
+    var index = -1;
+    for (int i = 0; i < _box.length; ++i) {
+      if (_box.values.elementAt(i) == value) {
+        index = i;
+        break;
+      }
+    }
+
+    if (index == -1) {
+      logger.e("Couldn't find object $value to replace");
+    } else {
+      await _box.putAt(index, value);
+    }
   }
 
   T getValue(String key, T defaultValue) {

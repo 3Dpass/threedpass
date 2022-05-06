@@ -1,33 +1,38 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/features/result_page/presentation/pages/result_page.dart';
+import 'package:threedpass/router/router.dart';
 
-class SaveDialog extends StatelessWidget {
-  SaveDialog({
+class SaveHashDialog extends StatelessWidget {
+  SaveHashDialog({
+    Key? key,
     required this.hashesModelToSave,
-  });
+    required this.hashObject,
+  }) : super(key: key);
 
   final controller = TextEditingController();
-  final HashesModel hashesModelToSave;
+  final Snapshot hashesModelToSave;
+  final HashObject hashObject;
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           child: Column(
             children: <Widget>[
               Text(
-                'Save top hashes as',
+                'Save hash',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 8, right: 8, bottom: 16),
+                padding: const EdgeInsets.only(left: 8, right: 8, bottom: 16),
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     isCollapsed: false,
                   ),
                   controller: controller,
@@ -39,29 +44,31 @@ class SaveDialog extends StatelessWidget {
                   TextButton(
                     child: Text('Cancel'),
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      context.router.pop();
                     },
                   ),
                   TextButton(
                     child: Text('Save'),
                     onPressed: () async {
-                      Navigator.of(context).pop();
                       String value = controller.text;
 
                       final newNamedModel =
                           hashesModelToSave.copyWith(name: value);
 
                       BlocProvider.of<HashesListBloc>(context).add(
-                        SaveNewHash(
-                          model: newNamedModel,
+                        SaveSnapshot(
+                          hash: newNamedModel,
+                          object: hashObject,
                         ),
                       );
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => ResultPage(
-                            hashesModel: newNamedModel,
-                          ),
+
+                      // replace does not work, because we don't use keys as path
+                      context.router.pop();
+                      context.router.pop();
+                      context.router.push(
+                        PreviewPageWrapperRoute(
+                          hashObject: hashObject,
+                          snapshot: newNamedModel,
                         ),
                       );
                     },

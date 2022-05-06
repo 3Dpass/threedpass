@@ -72,7 +72,7 @@ class _$SettingsConfigCWProxyImpl implements _$SettingsConfigCWProxy {
 }
 
 extension $SettingsConfigCopyWith on SettingsConfig {
-  /// Returns a callable class that can be used as follows: `instanceOfclass SettingsConfig.name.copyWith(...)` or like so:`instanceOfclass SettingsConfig.name.copyWith.fieldName(...)`.
+  /// Returns a callable class that can be used as follows: `instanceOfclass SettingsConfig extends Equatable.name.copyWith(...)` or like so:`instanceOfclass SettingsConfig extends Equatable.name.copyWith.fieldName(...)`.
   _$SettingsConfigCWProxy get copyWith => _$SettingsConfigCWProxyImpl(this);
 }
 
@@ -128,21 +128,21 @@ class AlgorithmAdapter extends TypeAdapter<Algorithm> {
   Algorithm read(BinaryReader reader) {
     switch (reader.readByte()) {
       case 0:
-        return Algorithm.Spectrum;
+        return Algorithm.spectrum;
       case 1:
-        return Algorithm.Grid;
+        return Algorithm.grid;
       default:
-        return Algorithm.Spectrum;
+        return Algorithm.spectrum;
     }
   }
 
   @override
   void write(BinaryWriter writer, Algorithm obj) {
     switch (obj) {
-      case Algorithm.Spectrum:
+      case Algorithm.spectrum:
         writer.writeByte(0);
         break;
-      case Algorithm.Grid:
+      case Algorithm.grid:
         writer.writeByte(1);
         break;
     }

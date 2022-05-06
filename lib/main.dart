@@ -2,20 +2,23 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/features/home_page/presentation/pages/home_page.dart';
 import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
 import 'package:threedpass/features/settings_page/presentation/cubit/settings_page_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:threedpass/router/router.dart';
 
 import 'package:threedpass/setup.dart' as di_setup;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Hive.registerAdapter(HashesModelAdapter());
+  // TODO Move out hive init
+  Hive.registerAdapter(HashObjectAdapter());
+  Hive.registerAdapter(SnapshotAdapter());
   Hive.registerAdapter(SettingsConfigAdapter());
   Hive.registerAdapter(AlgorithmAdapter());
   Directory defaultDirectory = await getApplicationDocumentsDirectory();
@@ -27,6 +30,10 @@ Future<void> main() async {
 }
 
 class ThreeDApp extends StatelessWidget {
+  ThreeDApp({Key? key}) : super(key: key);
+
+  final _appRouter = AppRouter();
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -43,14 +50,15 @@ class ThreeDApp extends StatelessWidget {
           create: (_) => di_setup.getIt<SettingsConfigCubit>(),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         title: '3DPass',
         theme: ThemeData(
           primarySwatch: Colors.green,
           primaryColor: Colors.black,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: const HomePage(),
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
       ),
     );
   }

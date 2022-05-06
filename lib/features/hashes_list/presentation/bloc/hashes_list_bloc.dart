@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
+import 'package:flutter/foundation.dart';
+import 'package:threedpass/common/logger.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/domain/repositories/hashes_repository.dart';
 
 part 'hashes_list_event.dart';
@@ -10,47 +13,110 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     required this.hashesRepository,
   }) : super(HashesListInitial()) {
     on<DeleteHash>(_deleteHash);
-    on<SaveNewHash>(_saveHash);
-    on<UpdateHashesList>(_updateList);
+    on<DeleteObject>(_deleteObject);
+    on<AddObject>(_addObject);
+    on<SaveSnapshot>(_saveSnapshot);
+    on<_LoadHashesList>(_loadList);
   }
 
   final HashesRepository hashesRepository;
 
   Future<void> init() async {
-    final hashes = hashesRepository.getAll();
-    add(UpdateHashesList(hashes: hashes));
+    final objects = hashesRepository.getAll();
+    add(_LoadHashesList(objects: objects));
   }
 
-  Future<void> _updateList(
-    UpdateHashesList event,
+  Future<void> _loadList(
+    _LoadHashesList event,
     Emitter<HashesListState> emit,
   ) async {
-    emit(HashesListLoaded(hashes: event.hashes));
+    emit(HashesListLoaded(objects: event.objects));
   }
 
   Future<void> _deleteHash(
     DeleteHash event,
     Emitter<HashesListState> emit,
   ) async {
-    await hashesRepository.deleteHash(event.model);
-
     if (state is HashesListLoaded) {
-      final list = (state as HashesListLoaded).hashes;
-      list.removeWhere((element) => element == event.model);
-      emit(HashesListLoaded(hashes: list));
+      final list = (state as HashesListLoaded).objects;
+      bool f = false;
+      for (var obj in list) {
+        if (obj.localId == event.object.localId) {
+          // if only one snapshot, delete whole object
+          if (obj.snapshots.length == 1) {
+            add(DeleteObject(object: obj));
+            return;
+          }
+          obj.snapshots.removeWhere(
+            (snap) => snap == event.hash,
+          );
+          f = true;
+          break;
+        }
+      }
+
+      if (!f) {
+        logger.e(
+          'Not found an object with id=${event.object.localId} name=${event.object.name}',
+        );
+      } else {
+        await hashesRepository.replaceObject(event.object);
+      }
+      emit(HashesListLoaded(objects: list));
     }
   }
 
-  Future<void> _saveHash(
-    SaveNewHash event,
+  Future<void> _deleteObject(
+    DeleteObject event,
     Emitter<HashesListState> emit,
   ) async {
-    await hashesRepository.saveHash(event.model);
+    await hashesRepository.deleteObject(event.object);
 
     if (state is HashesListLoaded) {
-      final list = (state as HashesListLoaded).hashes;
-      list.add(event.model);
-      emit(HashesListLoaded(hashes: list));
+      final list = (state as HashesListLoaded).objects;
+      list.removeWhere((element) => element.localId == event.object.localId);
+      emit(HashesListLoaded(objects: list));
+    }
+  }
+
+  Future<void> _addObject(
+    AddObject event,
+    Emitter<HashesListState> emit,
+  ) async {
+    await hashesRepository.addObject(event.object);
+
+    if (state is HashesListLoaded) {
+      final list = (state as HashesListLoaded).objects;
+      list.add(event.object);
+      emit(HashesListLoaded(objects: list));
+    }
+  }
+
+  Future<void> _saveSnapshot(
+    SaveSnapshot event,
+    Emitter<HashesListState> emit,
+  ) async {
+    if (state is HashesListLoaded) {
+      final list = (state as HashesListLoaded).objects;
+      bool f = false;
+      for (var obj in list) {
+        if (obj.localId == event.object.localId) {
+          obj.snapshots.removeWhere(
+            (element) => listEquals(element.hashes, event.hash.hashes),
+          );
+          obj.snapshots.add(event.hash);
+          f = true;
+          break;
+        }
+      }
+      if (!f) {
+        logger.e(
+          'Not found an object with id=${event.object.localId} name=${event.object.name}',
+        );
+      } else {
+        await hashesRepository.replaceObject(event.object);
+      }
+      emit(HashesListLoaded(objects: list));
     }
   }
 }

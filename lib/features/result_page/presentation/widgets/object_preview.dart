@@ -2,25 +2,25 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_cube/flutter_cube.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hashes_model.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class ObjectPreview extends StatelessWidget {
   const ObjectPreview({
     Key? key,
-    required this.hashesModel,
+    required this.snapshot,
   }) : super(key: key);
 
-  final HashesModel hashesModel;
+  final Snapshot snapshot;
 
   SnackBar errorSnackBar() => SnackBar(
         content: Text(
-          '.obj file for "${hashesModel.name}" does not exists. Path: ${hashesModel.externalPathToObj}',
+          '.obj file for "${snapshot.name}" does not exists. Path: ${snapshot.externalPathToObj}',
         ),
       );
 
   bool _objectFileExists() {
-    return hashesModel.externalPathToObj != null &&
-        File(hashesModel.externalPathToObj!).existsSync();
+    return snapshot.externalPathToObj != null &&
+        File(snapshot.externalPathToObj!).existsSync();
   }
 
   @override
@@ -36,7 +36,7 @@ class ObjectPreview extends StatelessWidget {
           if (_objectFileExists()) {
             scene.world.add(
               Object(
-                fileName: hashesModel.externalPathToObj!,
+                fileName: snapshot.externalPathToObj!,
                 isAsset: false,
               ),
             );
