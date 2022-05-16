@@ -9,6 +9,8 @@ part of 'snapshot.dart';
 abstract class _$SnapshotCWProxy {
   Snapshot externalPathToObj(String? externalPathToObj);
 
+  Snapshot fileHash(int fileHash);
+
   Snapshot hashes(List<String> hashes);
 
   Snapshot name(String name);
@@ -25,6 +27,7 @@ abstract class _$SnapshotCWProxy {
   /// ````
   Snapshot call({
     String? externalPathToObj,
+    int? fileHash,
     List<String>? hashes,
     String? name,
     SettingsConfig? settingsConfig,
@@ -41,6 +44,9 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
   @override
   Snapshot externalPathToObj(String? externalPathToObj) =>
       this(externalPathToObj: externalPathToObj);
+
+  @override
+  Snapshot fileHash(int fileHash) => this(fileHash: fileHash);
 
   @override
   Snapshot hashes(List<String> hashes) => this(hashes: hashes);
@@ -65,6 +71,7 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
   /// ````
   Snapshot call({
     Object? externalPathToObj = const $CopyWithPlaceholder(),
+    Object? fileHash = const $CopyWithPlaceholder(),
     Object? hashes = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? settingsConfig = const $CopyWithPlaceholder(),
@@ -75,6 +82,10 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
           ? _value.externalPathToObj
           // ignore: cast_nullable_to_non_nullable
           : externalPathToObj as String?,
+      fileHash: fileHash == const $CopyWithPlaceholder() || fileHash == null
+          ? _value.fileHash
+          // ignore: cast_nullable_to_non_nullable
+          : fileHash as int,
       hashes: hashes == const $CopyWithPlaceholder() || hashes == null
           ? _value.hashes
           // ignore: cast_nullable_to_non_nullable
@@ -120,13 +131,14 @@ class SnapshotAdapter extends TypeAdapter<Snapshot> {
       hashes: (fields[2] as List).cast<String>(),
       externalPathToObj: fields[3] as String?,
       settingsConfig: fields[4] as SettingsConfig?,
+      fileHash: fields[5] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, Snapshot obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -136,7 +148,9 @@ class SnapshotAdapter extends TypeAdapter<Snapshot> {
       ..writeByte(3)
       ..write(obj.externalPathToObj)
       ..writeByte(4)
-      ..write(obj.settingsConfig);
+      ..write(obj.settingsConfig)
+      ..writeByte(5)
+      ..write(obj.fileHash);
   }
 
   @override

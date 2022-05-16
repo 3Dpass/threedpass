@@ -32,7 +32,7 @@ class _$AppRouter extends RootStackRouter {
     },
     SettingsRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: SettingsPage());
+          routeData: routeData, child: const SettingsPage());
     },
     CalcHashLoadingWidgetRoute.name: (routeData) {
       return CustomPage<dynamic>(

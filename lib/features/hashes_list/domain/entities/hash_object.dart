@@ -30,6 +30,14 @@ class HashObject {
   @HiveField(2)
   final List<Snapshot> snapshots;
 
+  Set<int> get fileHashes {
+    final res = <int>{};
+    for (var snapshot in snapshots) {
+      res.add(snapshot.fileHash);
+    }
+    return res;
+  }
+
   @override
   bool operator ==(other) {
     if (other is HashObject) {

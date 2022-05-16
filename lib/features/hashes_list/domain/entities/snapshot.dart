@@ -25,12 +25,16 @@ class Snapshot {
   @HiveField(4)
   final SettingsConfig? settingsConfig;
 
+  @HiveField(5)
+  final int fileHash;
+
   const Snapshot({
     required this.name,
     required this.stamp,
     required this.hashes,
     this.externalPathToObj,
     required this.settingsConfig,
+    required this.fileHash,
   });
 
   String get shareText => hashes.join('\n');
