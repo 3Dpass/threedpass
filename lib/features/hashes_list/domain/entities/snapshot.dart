@@ -52,11 +52,19 @@ class Snapshot {
   int get hashCode => hash2(name.hashCode, hashes.hashCode);
 
   bool belongsToObject(HashObject hashObject) {
+    // check file hashes
+    if (hashObject.fileHashes.contains(fileHash)) {
+      return true;
+    }
+
+    // check snapshot hashes
     final Set<String> setOfHashes = {};
+    // get all hashes from all snapshots
     for (var snap in hashObject.snapshots) {
       setOfHashes.addAll(snap.hashes);
     }
 
+    // find at least one common hash
     bool hasCommonHash = false;
     for (var hash in hashes) {
       if (setOfHashes.contains(hash)) {

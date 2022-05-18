@@ -8,10 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/common/logger.dart';
 import 'package:threedpass/core/utils/formatters.dart';
+import 'package:threedpass/core/utils/hash_file.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/features/result_page/presentation/pages/preview_page.dart';
 import 'package:threedpass/features/settings_page/presentation/cubit/settings_page_cubit.dart';
 import 'package:threedpass/router/router.dart';
 
@@ -77,18 +77,14 @@ class GetObjectFromFileButton extends StatelessWidget {
           externalPathToObj: objPath,
           settingsConfig:
               BlocProvider.of<SettingsConfigCubit>(context).state.settings,
+          fileHash: hashFile(objPath),
         );
 
         HashObject? hashObject;
-        for (var obj in hashListState.objects) {
-          if (newSnapshot.belongsToObject(obj)) {
-            hashObject = HashObject(
-              localId: obj.localId,
-              name: obj.name,
-              snapshots: [...obj.snapshots, newSnapshot],
-            );
-            break;
-          }
+        final index = hashListState.objects
+            .indexWhere((element) => newSnapshot.belongsToObject(element));
+        if (index != -1) {
+          hashObject = hashListState.objects[index];
         }
 
         if (hashObject != null) {
