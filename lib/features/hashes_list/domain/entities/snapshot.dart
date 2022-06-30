@@ -1,11 +1,23 @@
+import 'dart:developer';
+
+import 'package:calc/calc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:threedpass/common/logger.dart';
+import 'package:threedpass/core/utils/either.dart';
+import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/utils/hash2.dart';
+import 'package:threedpass/core/utils/hash_file.dart';
+import 'package:threedpass/core/utils/pair.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
+import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
 
 part 'snapshot.g.dart';
+part 'snapshot_create_from_file.dart';
 
 @CopyWith()
 @HiveType(typeId: 0)

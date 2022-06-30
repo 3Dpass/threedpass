@@ -132,7 +132,7 @@ class HomePage extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.settings, color: Colors.grey),
               onPressed: () {
-                context.router.push(const SettingsRoute());
+                context.router.push(const SettingsPageRoute());
               },
             ),
           ],

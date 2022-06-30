@@ -17,7 +17,7 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    HomeRoute.name: (routeData) {
+    HomePageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const HomePage());
     },
@@ -30,11 +30,11 @@ class _$AppRouter extends RootStackRouter {
               hashObject: args.hashObject,
               snapshot: args.snapshot));
     },
-    SettingsRoute.name: (routeData) {
+    SettingsPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const SettingsPage());
     },
-    CalcHashLoadingWidgetRoute.name: (routeData) {
+    CalcHashLoadingDialogRoute.name: (routeData) {
       return CustomPage<dynamic>(
           routeData: routeData,
           child: const CalcHashLoadingWidget(),
@@ -46,8 +46,8 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const PreviewPage());
     },
-    CompareRouteWrapper.name: (routeData) {
-      final args = routeData.argsAs<CompareRouteWrapperArgs>();
+    ComparePageWrapperRoute.name: (routeData) {
+      final args = routeData.argsAs<ComparePageWrapperRouteArgs>();
       return MaterialPageX<dynamic>(
           routeData: routeData,
           child: ComparePageWrapper(
@@ -92,13 +92,13 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(HomeRoute.name, path: '/'),
+        RouteConfig(HomePageRoute.name, path: '/'),
         RouteConfig(PreviewPageWrapperRoute.name,
             path: '/preview-page-wrapper',
             children: [
               RouteConfig(PreviewPageRoute.name,
                   path: '', parent: PreviewPageWrapperRoute.name),
-              RouteConfig(CompareRouteWrapper.name,
+              RouteConfig(ComparePageWrapperRoute.name,
                   path: 'compare-page-wrapper',
                   parent: PreviewPageWrapperRoute.name),
               RouteConfig(SaveTopHashesDialogRoute.name,
@@ -111,18 +111,18 @@ class _$AppRouter extends RootStackRouter {
                   path: 'save-hash-dialog',
                   parent: PreviewPageWrapperRoute.name)
             ]),
-        RouteConfig(SettingsRoute.name, path: '/settings-page'),
-        RouteConfig(CalcHashLoadingWidgetRoute.name,
+        RouteConfig(SettingsPageRoute.name, path: '/settings-page'),
+        RouteConfig(CalcHashLoadingDialogRoute.name,
             path: '/calc-hash-loading-widget')
       ];
 }
 
 /// generated route for
 /// [HomePage]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute() : super(HomeRoute.name, path: '/');
+class HomePageRoute extends PageRouteInfo<void> {
+  const HomePageRoute() : super(HomePageRoute.name, path: '/');
 
-  static const String name = 'HomeRoute';
+  static const String name = 'HomePageRoute';
 }
 
 /// generated route for
@@ -161,20 +161,21 @@ class PreviewPageWrapperRouteArgs {
 
 /// generated route for
 /// [SettingsPage]
-class SettingsRoute extends PageRouteInfo<void> {
-  const SettingsRoute() : super(SettingsRoute.name, path: '/settings-page');
+class SettingsPageRoute extends PageRouteInfo<void> {
+  const SettingsPageRoute()
+      : super(SettingsPageRoute.name, path: '/settings-page');
 
-  static const String name = 'SettingsRoute';
+  static const String name = 'SettingsPageRoute';
 }
 
 /// generated route for
 /// [CalcHashLoadingWidget]
-class CalcHashLoadingWidgetRoute extends PageRouteInfo<void> {
-  const CalcHashLoadingWidgetRoute()
-      : super(CalcHashLoadingWidgetRoute.name,
+class CalcHashLoadingDialogRoute extends PageRouteInfo<void> {
+  const CalcHashLoadingDialogRoute()
+      : super(CalcHashLoadingDialogRoute.name,
             path: '/calc-hash-loading-widget');
 
-  static const String name = 'CalcHashLoadingWidgetRoute';
+  static const String name = 'CalcHashLoadingDialogRoute';
 }
 
 /// generated route for
@@ -187,19 +188,20 @@ class PreviewPageRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ComparePageWrapper]
-class CompareRouteWrapper extends PageRouteInfo<CompareRouteWrapperArgs> {
-  CompareRouteWrapper(
+class ComparePageWrapperRoute
+    extends PageRouteInfo<ComparePageWrapperRouteArgs> {
+  ComparePageWrapperRoute(
       {Key? key, required Snapshot origObj, required HashObject hashObject})
-      : super(CompareRouteWrapper.name,
+      : super(ComparePageWrapperRoute.name,
             path: 'compare-page-wrapper',
-            args: CompareRouteWrapperArgs(
+            args: ComparePageWrapperRouteArgs(
                 key: key, origObj: origObj, hashObject: hashObject));
 
-  static const String name = 'CompareRouteWrapper';
+  static const String name = 'ComparePageWrapperRoute';
 }
 
-class CompareRouteWrapperArgs {
-  const CompareRouteWrapperArgs(
+class ComparePageWrapperRouteArgs {
+  const ComparePageWrapperRouteArgs(
       {this.key, required this.origObj, required this.hashObject});
 
   final Key? key;
@@ -210,7 +212,7 @@ class CompareRouteWrapperArgs {
 
   @override
   String toString() {
-    return 'CompareRouteWrapperArgs{key: $key, origObj: $origObj, hashObject: $hashObject}';
+    return 'ComparePageWrapperRouteArgs{key: $key, origObj: $origObj, hashObject: $hashObject}';
   }
 }
 

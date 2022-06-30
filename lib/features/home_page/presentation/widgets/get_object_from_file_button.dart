@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:calc/calc.dart';
 import 'package:file_picker/file_picker.dart';
@@ -34,84 +32,38 @@ class GetObjectFromFileButton extends StatelessWidget {
     return null;
   }
 
-  /// Calc hashes
-  Future<String> calcHashes(BuildContext context, String filePath) async {
-    final settings =
-        BlocProvider.of<SettingsConfigCubit>(context).state.settings;
-
-    return await Calc.start(
-      () {
-        log('on calc progress');
-      },
-      filePath,
-      settings.gridSize,
-      settings.nSections,
-    );
-  }
-
   /// Calc object
   Future<void> createHashFromFile(BuildContext context) async {
+    // get file
     final pickerRes = await pickFile();
-    if (pickerRes != null) {
-      context.router.push(const CalcHashLoadingWidgetRoute());
-
-      final objPath = pickerRes.paths.first!;
-
-      final hashes = await calcHashes(
-        context,
-        objPath,
+    if (pickerRes != null && pickerRes.files.isNotEmpty) {
+      context.router.push(const CalcHashLoadingDialogRoute());
+      // file found so create snapshot
+      final either = await SnapshotFileFactory.createSnapshotFromFile(
+        filePath: pickerRes.files.first.path!,
+        settings: BlocProvider.of<SettingsConfigCubit>(context).state.settings,
+        context: context,
       );
+      context.router.pop();
 
-      final rawObjName = objPath.split('/').last;
-
-      final snapName = '$rawObjName ${basicDateFormat.format(DateTime.now())}';
-
-      logger.i('Calculated hashes for the object $snapName');
-
-      var hashListState = BlocProvider.of<HashesListBloc>(context).state;
-      if (hashListState is HashesListLoaded) {
-        final newSnapshot = Snapshot(
-          name: snapName,
-          hashes: hashes.split('\n'),
-          stamp: DateTime.now(),
-          externalPathToObj: objPath,
-          settingsConfig:
-              BlocProvider.of<SettingsConfigCubit>(context).state.settings,
-          fileHash: hashFile(objPath),
-        );
-
-        HashObject? hashObject;
-        final index = hashListState.objects
-            .indexWhere((element) => newSnapshot.belongsToObject(element));
-        if (index != -1) {
-          hashObject = hashListState.objects[index];
-        }
-
-        if (hashObject != null) {
-          logger.i(
-            'New snaphost $snapName belongs to the object ${hashObject.name}',
+      // handle result
+      either.when(
+        left: (err) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Hashes list is not initalized :('),
+            ),
           );
-        } else {
-          logger.i('Snapshot $snapName is unique');
-        }
-
-        context.router.replace(
-          PreviewPageWrapperRoute(
-            hashObject: hashObject,
-            snapshot: newSnapshot,
-          ),
-        );
-      } else {
-        logger.w(
-          'Hashes list was not initalized when user tried to create new snapshot',
-        );
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Hashes list is not initalized :('),
-          ),
-        );
-      }
+        },
+        right: (pair) {
+          context.router.replace(
+            PreviewPageWrapperRoute(
+              hashObject: pair.left,
+              snapshot: pair.right,
+            ),
+          );
+        },
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
