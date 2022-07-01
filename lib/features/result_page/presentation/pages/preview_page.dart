@@ -22,6 +22,9 @@ class PreviewPage extends StatelessWidget {
         BlocProvider.of<PreviewPageCubit>(context).state.hashObject;
     final snapshot = BlocProvider.of<PreviewPageCubit>(context).state.snapshot;
 
+    final previewPageCubitState =
+        BlocProvider.of<PreviewPageCubit>(context).state;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -93,8 +96,7 @@ class PreviewPage extends StatelessWidget {
                 ),
               ),
               PreviewSaveButton(
-                snapshot: snapshot,
-                hashObject: hashObject,
+                state: previewPageCubitState,
               ),
               DeleteSnapshotButton(
                 snapshot: snapshot,

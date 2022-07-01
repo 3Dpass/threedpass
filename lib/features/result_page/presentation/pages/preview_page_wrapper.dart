@@ -16,17 +16,28 @@ class PreviewPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   final HashObject? hashObject;
   final Snapshot snapshot;
 
+  bool snapshotExists() => hashObject?.containsSnapshot(snapshot) ?? false;
+
   @override
   Widget wrappedRoute(BuildContext context) {
     return MultiBlocProvider(providers: [
+      // Snapshot data
       BlocProvider<PreviewPageCubit>(
         create: (context) => PreviewPageCubit(
-          PreviewPageCubitState(
-            hashObject: hashObject,
-            snapshot: snapshot,
-          ),
+          hashObject != null
+              ? snapshotExists()
+                  ? PreviewExistingSnapshot(
+                      hashObject: hashObject!,
+                      snapshot: snapshot,
+                    )
+                  : PreviewNewSnapshot(
+                      hashObject: hashObject!, snapshot: snapshot)
+              : PreviewNewObject(
+                  snapshot: snapshot,
+                ),
         ),
       ),
+      // Context to return to menu.
       BlocProvider<OuterContextCubit>(
         create: (_) => OuterContextCubit(context),
         lazy: false,
@@ -36,6 +47,6 @@ class PreviewPageWrapper extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    return AutoRouter();
+    return const AutoRouter();
   }
 }

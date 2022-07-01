@@ -7,6 +7,7 @@ import 'package:threedpass/features/home_page/presentation/pages/home_page.dart'
 import 'package:threedpass/features/home_page/presentation/widgets/calc_hash_loading_dialog.dart';
 import 'package:threedpass/features/result_page/presentation/pages/preview_page.dart';
 import 'package:threedpass/features/result_page/presentation/pages/preview_page_wrapper.dart';
+import 'package:threedpass/features/result_page/presentation/widgets/rename_snapshot_dialog.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/save_hash_dialog.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/save_object_dialog.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/save_top_hashes_dialog.dart';
@@ -49,6 +50,11 @@ part 'router.gr.dart';
         CustomRoute(
           name: RouteNames.saveHashDialog,
           page: SaveHashDialog,
+          customRouteBuilder: dialogBuilder,
+        ),
+        CustomRoute(
+          name: RouteNames.renameSnapshotDialog,
+          page: RenameSnapshotDialog,
           customRouteBuilder: dialogBuilder,
         ),
       ],

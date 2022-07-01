@@ -8,4 +8,5 @@ class RouteNames {
   static const saveHashDialog = 'SaveHashDialogRoute';
   static const settingsPage = 'SettingsPageRoute';
   static const calcHashLoadingDialog = 'CalcHashLoadingDialogRoute';
+  static const renameSnapshotDialog = 'RenameSnapshotDialogRoute';
 }

@@ -7,20 +7,41 @@ class PreviewPageCubit extends Cubit<PreviewPageCubitState> {
       : super(previewPageLoading);
 }
 
-class PreviewPageCubitState {
+abstract class PreviewPageCubitState {
   const PreviewPageCubitState({
-    required this.hashObject,
     required this.snapshot,
   });
 
-  final HashObject? hashObject;
+  HashObject? get hashObject;
 
   final Snapshot snapshot;
 }
 
+class PreviewNewObject extends PreviewPageCubitState {
+  const PreviewNewObject({
+    required Snapshot snapshot,
+  }) : super(snapshot: snapshot);
+
+  @override
+  HashObject? get hashObject => null;
+}
+
+class PreviewNewSnapshot extends PreviewPageCubitState {
+  const PreviewNewSnapshot({
+    required this.hashObject,
+    required Snapshot snapshot,
+  }) : super(snapshot: snapshot);
+
+  @override
+  final HashObject hashObject;
+}
+
 class PreviewExistingSnapshot extends PreviewPageCubitState {
   const PreviewExistingSnapshot({
-    required HashObject hashObject,
+    required this.hashObject,
     required Snapshot snapshot,
-  }) : super(hashObject: hashObject, snapshot: snapshot);
+  }) : super(snapshot: snapshot);
+
+  @override
+  final HashObject hashObject;
 }

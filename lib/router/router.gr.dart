@@ -87,6 +87,18 @@ class _$AppRouter extends RootStackRouter {
           customRouteBuilder: dialogBuilder,
           opaque: true,
           barrierDismissible: false);
+    },
+    RenameSnapshotDialogRoute.name: (routeData) {
+      final args = routeData.argsAs<RenameSnapshotDialogRouteArgs>();
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: RenameSnapshotDialog(
+              key: args.key,
+              hashesModelToSave: args.hashesModelToSave,
+              hashObject: args.hashObject),
+          customRouteBuilder: dialogBuilder,
+          opaque: true,
+          barrierDismissible: false);
     }
   };
 
@@ -109,6 +121,9 @@ class _$AppRouter extends RootStackRouter {
                   parent: PreviewPageWrapperRoute.name),
               RouteConfig(SaveHashDialogRoute.name,
                   path: 'save-hash-dialog',
+                  parent: PreviewPageWrapperRoute.name),
+              RouteConfig(RenameSnapshotDialogRoute.name,
+                  path: 'rename-snapshot-dialog',
                   parent: PreviewPageWrapperRoute.name)
             ]),
         RouteConfig(SettingsPageRoute.name, path: '/settings-page'),
@@ -300,5 +315,39 @@ class SaveHashDialogRouteArgs {
   @override
   String toString() {
     return 'SaveHashDialogRouteArgs{key: $key, hashesModelToSave: $hashesModelToSave, hashObject: $hashObject}';
+  }
+}
+
+/// generated route for
+/// [RenameSnapshotDialog]
+class RenameSnapshotDialogRoute
+    extends PageRouteInfo<RenameSnapshotDialogRouteArgs> {
+  RenameSnapshotDialogRoute(
+      {Key? key,
+      required Snapshot hashesModelToSave,
+      required HashObject hashObject})
+      : super(RenameSnapshotDialogRoute.name,
+            path: 'rename-snapshot-dialog',
+            args: RenameSnapshotDialogRouteArgs(
+                key: key,
+                hashesModelToSave: hashesModelToSave,
+                hashObject: hashObject));
+
+  static const String name = 'RenameSnapshotDialogRoute';
+}
+
+class RenameSnapshotDialogRouteArgs {
+  const RenameSnapshotDialogRouteArgs(
+      {this.key, required this.hashesModelToSave, required this.hashObject});
+
+  final Key? key;
+
+  final Snapshot hashesModelToSave;
+
+  final HashObject hashObject;
+
+  @override
+  String toString() {
+    return 'RenameSnapshotDialogRouteArgs{key: $key, hashesModelToSave: $hashesModelToSave, hashObject: $hashObject}';
   }
 }

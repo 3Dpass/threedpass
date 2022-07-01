@@ -16,6 +16,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     on<DeleteObject>(_deleteObject);
     on<AddObject>(_addObject);
     on<SaveSnapshot>(_saveSnapshot);
+    on<ReplaceSnapshot>(_replaceSnapshot);
     on<_LoadHashesList>(_loadList);
   }
 
@@ -94,6 +95,31 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
 
   Future<void> _saveSnapshot(
     SaveSnapshot event,
+    Emitter<HashesListState> emit,
+  ) async {
+    if (state is HashesListLoaded) {
+      final list = (state as HashesListLoaded).objects;
+      bool f = false;
+      for (var obj in list) {
+        if (obj.localId == event.object.localId) {
+          obj.snapshots.add(event.hash);
+          f = true;
+          break;
+        }
+      }
+      if (!f) {
+        logger.e(
+          'Not found an object with id=${event.object.localId} name=${event.object.name}',
+        );
+      } else {
+        await hashesRepository.addObject(event.object);
+      }
+      emit(HashesListLoaded(objects: list));
+    }
+  }
+
+  Future<void> _replaceSnapshot(
+    ReplaceSnapshot event,
     Emitter<HashesListState> emit,
   ) async {
     if (state is HashesListLoaded) {
