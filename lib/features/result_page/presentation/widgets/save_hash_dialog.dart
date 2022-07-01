@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
+import 'package:threedpass/features/result_page/presentation/bloc/outer_context_cubit.dart';
+import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/router.dart';
 
 class SaveHashDialog extends StatelessWidget {
@@ -26,7 +28,7 @@ class SaveHashDialog extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Text(
-                'Save hash',
+                'Save snapshot',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               Padding(
@@ -62,10 +64,13 @@ class SaveHashDialog extends StatelessWidget {
                         ),
                       );
 
-                      // replace does not work, because we don't use keys as path
-                      context.router.pop();
-                      context.router.pop();
-                      context.router.push(
+                      final outerContext =
+                          BlocProvider.of<OuterContextCubit>(context).state;
+
+                      outerContext.router
+                          .popUntilRouteWithName(RouteNames.homePage);
+
+                      outerContext.router.push(
                         PreviewPageWrapperRoute(
                           hashObject: hashObject,
                           snapshot: newNamedModel,

@@ -17,3 +17,10 @@ class PreviewPageCubitState {
 
   final Snapshot snapshot;
 }
+
+class PreviewExistingSnapshot extends PreviewPageCubitState {
+  const PreviewExistingSnapshot({
+    required HashObject hashObject,
+    required Snapshot snapshot,
+  }) : super(hashObject: hashObject, snapshot: snapshot);
+}
