@@ -1,6 +1,5 @@
 import 'package:threedpass/features/hashes_list/data/repositories/hash_list_store.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 abstract class HashesRepository {
   List<HashObject> getAll();

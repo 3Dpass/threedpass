@@ -10,25 +10,25 @@ import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/router.dart';
 
 class RenameSnapshotDialog extends StatelessWidget {
-  RenameSnapshotDialog({
+  const RenameSnapshotDialog({
     Key? key,
-    required this.hashesModelToSave,
+    required this.snapshot,
     required this.hashObject,
   }) : super(key: key);
 
-  final controller = TextEditingController();
   final HashObject hashObject;
-  final Snapshot hashesModelToSave;
+  final Snapshot snapshot;
 
   @override
   Widget build(BuildContext context) {
     return CommonDialog(
-      hashesModelToSave: hashesModelToSave,
+      snapshot: snapshot,
       hashObject: hashObject,
+      initialText: snapshot.name,
       title: 'Rename snapshot',
       actionText: 'Rename',
       action: (value) async {
-        final newNamedModel = hashesModelToSave.copyWith(name: value);
+        final newNamedModel = snapshot.copyWith(name: value);
 
         BlocProvider.of<HashesListBloc>(context).add(
           ReplaceSnapshot(

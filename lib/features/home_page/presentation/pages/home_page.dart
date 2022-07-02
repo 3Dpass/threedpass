@@ -17,8 +17,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
+        titleSpacing: 16,
         title: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: const [
             Text("3DPass  "),
             Text(
@@ -35,66 +37,37 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Column(
           children: <Widget>[
-            Container(
-              padding: const EdgeInsets.all(15.0),
-              child: Center(
-                child: Column(
-                  children: const [
-                    GetObjectFromFileButton(),
-                    // const SizedBox(
-                    //   height: 5,
-                    // ),
-                    // SizedBox(
-                    //   child: ElevatedButton.icon(
-                    //     style: AppButtonStyles.primaryButton,
-                    //     icon: const Icon(Icons.camera_alt),
-                    //     label: const Text('Scan by camera'),
-                    //     onPressed: () async {
-                    //       log('on scan pressed');
-                    //     },
-                    //   ),
-                    // ),
-                  ],
-                ),
-              ),
-            ),
             Card(
-              child: Container(
-                padding: const EdgeInsets.all(1.0),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Column(
-                  children: <Widget>[
-                    const Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Text(
-                          'Use \'Generate from file\' if you\'ve got already a 3D model of your object'),
+                  children: [
+                    const GetObjectFromFileButton(),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Use \'Generate from file\' if you\'ve got already a 3D model of your object',
                     ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 10, top: 0, right: 0, bottom: 10),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.help_center,
-                              color: Colors.black,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            MarkdownBody(
-                              data:
-                                  "### [How to use 3DPass](https://3dpass.org/)",
-                              onTapLink:
-                                  (String text, String? href, String title) {
-                                log("tapped: text=$text href=$href");
-                                launch('https://3dpass.org/');
-                              },
-                            ),
-                          ],
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.help_center,
+                          color: Colors.black,
                         ),
-                      ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        MarkdownBody(
+                          data: "### [How to use 3DPass](https://3dpass.org/)",
+                          onTapLink: (String text, String? href, String title) {
+                            log("tapped: text=$text href=$href");
+                            launch('https://3dpass.org/');
+                          },
+                        ),
+                      ],
                     ),
+                    const SizedBox(height: 8),
                   ],
                 ),
               ),

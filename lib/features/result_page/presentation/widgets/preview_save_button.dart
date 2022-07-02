@@ -34,12 +34,12 @@ class PreviewSaveButton extends StatelessWidget {
       case PreviewNewSnapshot:
         return SaveHashDialogRoute(
           hashObject: state.hashObject!,
-          hashesModelToSave: state.snapshot,
+          snapshot: state.snapshot,
         );
       case PreviewExistingSnapshot:
         return RenameSnapshotDialogRoute(
           hashObject: state.hashObject!,
-          hashesModelToSave: state.snapshot,
+          snapshot: state.snapshot,
         );
       default:
         throw Exception('Unknown state type');

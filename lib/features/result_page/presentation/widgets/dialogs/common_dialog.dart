@@ -7,14 +7,16 @@ class CommonDialog extends StatelessWidget {
   CommonDialog({
     Key? key,
     required this.hashObject,
-    required this.hashesModelToSave,
+    required this.snapshot,
     required this.action,
     required this.actionText,
     required this.title,
-  }) : super(key: key);
+    String initialText = '',
+  })  : controller = TextEditingController(text: initialText),
+        super(key: key);
 
-  final controller = TextEditingController();
-  final Snapshot hashesModelToSave;
+  final TextEditingController controller;
+  final Snapshot snapshot;
   final HashObject hashObject;
   final String title;
   final String actionText;

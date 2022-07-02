@@ -27,7 +27,7 @@ class ObjectsList extends StatelessWidget {
                         currentObject.name,
                         style: AppTextStyles.subtitle,
                       ),
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         top: 16,
                         bottom: 8,
                         left: 16,

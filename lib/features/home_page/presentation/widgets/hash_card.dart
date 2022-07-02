@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:threedpass/common/app_text_styles.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/hash_card_popup_menu.dart';
+import 'package:threedpass/features/settings_page/presentation/widgets/settings_text.dart';
 import 'package:threedpass/router/router.dart';
 
 class HashCard extends StatelessWidget {
@@ -36,8 +38,18 @@ class HashCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('Name: ' + snapshot.name),
-                  Text('Stamp: ' + formatter.format(snapshot.stamp)),
+                  Text(
+                    'Name: ' + snapshot.name,
+                    style: AppTextStyles.bodyText1,
+                  ),
+                  Text(
+                    'Stamp: ' + formatter.format(snapshot.stamp),
+                    style: AppTextStyles.bodyText1,
+                  ),
+                  const SizedBox(height: 8),
+                  snapshot.settingsConfig != null
+                      ? Text.rich(snapshot.settingsConfig!.textSpan)
+                      : const SizedBox(),
                 ],
               ),
               const Spacer(),

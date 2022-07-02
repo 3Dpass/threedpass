@@ -83,7 +83,7 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData,
           child: SaveHashDialog(
               key: args.key,
-              hashesModelToSave: args.hashesModelToSave,
+              snapshot: args.snapshot,
               hashObject: args.hashObject),
           customRouteBuilder: dialogBuilder,
           opaque: true,
@@ -95,7 +95,7 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData,
           child: RenameSnapshotDialog(
               key: args.key,
-              hashesModelToSave: args.hashesModelToSave,
+              snapshot: args.snapshot,
               hashObject: args.hashObject),
           customRouteBuilder: dialogBuilder,
           opaque: true,
@@ -294,32 +294,28 @@ class SaveObjectDialogRouteArgs {
 /// [SaveHashDialog]
 class SaveHashDialogRoute extends PageRouteInfo<SaveHashDialogRouteArgs> {
   SaveHashDialogRoute(
-      {Key? key,
-      required Snapshot hashesModelToSave,
-      required HashObject hashObject})
+      {Key? key, required Snapshot snapshot, required HashObject hashObject})
       : super(SaveHashDialogRoute.name,
             path: 'save-hash-dialog',
             args: SaveHashDialogRouteArgs(
-                key: key,
-                hashesModelToSave: hashesModelToSave,
-                hashObject: hashObject));
+                key: key, snapshot: snapshot, hashObject: hashObject));
 
   static const String name = 'SaveHashDialogRoute';
 }
 
 class SaveHashDialogRouteArgs {
   const SaveHashDialogRouteArgs(
-      {this.key, required this.hashesModelToSave, required this.hashObject});
+      {this.key, required this.snapshot, required this.hashObject});
 
   final Key? key;
 
-  final Snapshot hashesModelToSave;
+  final Snapshot snapshot;
 
   final HashObject hashObject;
 
   @override
   String toString() {
-    return 'SaveHashDialogRouteArgs{key: $key, hashesModelToSave: $hashesModelToSave, hashObject: $hashObject}';
+    return 'SaveHashDialogRouteArgs{key: $key, snapshot: $snapshot, hashObject: $hashObject}';
   }
 }
 
@@ -328,31 +324,27 @@ class SaveHashDialogRouteArgs {
 class RenameSnapshotDialogRoute
     extends PageRouteInfo<RenameSnapshotDialogRouteArgs> {
   RenameSnapshotDialogRoute(
-      {Key? key,
-      required Snapshot hashesModelToSave,
-      required HashObject hashObject})
+      {Key? key, required Snapshot snapshot, required HashObject hashObject})
       : super(RenameSnapshotDialogRoute.name,
             path: 'rename-snapshot-dialog',
             args: RenameSnapshotDialogRouteArgs(
-                key: key,
-                hashesModelToSave: hashesModelToSave,
-                hashObject: hashObject));
+                key: key, snapshot: snapshot, hashObject: hashObject));
 
   static const String name = 'RenameSnapshotDialogRoute';
 }
 
 class RenameSnapshotDialogRouteArgs {
   const RenameSnapshotDialogRouteArgs(
-      {this.key, required this.hashesModelToSave, required this.hashObject});
+      {this.key, required this.snapshot, required this.hashObject});
 
   final Key? key;
 
-  final Snapshot hashesModelToSave;
+  final Snapshot snapshot;
 
   final HashObject hashObject;
 
   @override
   String toString() {
-    return 'RenameSnapshotDialogRouteArgs{key: $key, hashesModelToSave: $hashesModelToSave, hashObject: $hashObject}';
+    return 'RenameSnapshotDialogRouteArgs{key: $key, snapshot: $snapshot, hashObject: $hashObject}';
   }
 }

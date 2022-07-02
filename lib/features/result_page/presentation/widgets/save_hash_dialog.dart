@@ -10,25 +10,25 @@ import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/router.dart';
 
 class SaveHashDialog extends StatelessWidget {
-  SaveHashDialog({
+  const SaveHashDialog({
     Key? key,
-    required this.hashesModelToSave,
+    required this.snapshot,
     required this.hashObject,
   }) : super(key: key);
 
-  final controller = TextEditingController();
   final HashObject hashObject;
-  final Snapshot hashesModelToSave;
+  final Snapshot snapshot;
 
   @override
   Widget build(BuildContext context) {
     return CommonDialog(
-      hashesModelToSave: hashesModelToSave,
+      snapshot: snapshot,
       hashObject: hashObject,
+      initialText: snapshot.name,
       title: 'Save snapshot',
       actionText: 'Save',
       action: (value) async {
-        final newNamedModel = hashesModelToSave.copyWith(name: value);
+        final newNamedModel = snapshot.copyWith(name: value);
 
         BlocProvider.of<HashesListBloc>(context).add(
           SaveSnapshot(

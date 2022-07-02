@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
@@ -9,7 +10,6 @@ import 'package:threedpass/features/result_page/presentation/widgets/hash_proper
 import 'package:threedpass/features/result_page/presentation/widgets/maches_found.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/more_info.dart';
 import 'package:threedpass/features/result_page/presentation/widgets/preview_save_button.dart';
-import 'package:threedpass/features/settings_page/presentation/pages/settings_page.dart';
 
 class PreviewPage extends StatelessWidget {
   const PreviewPage({
@@ -28,10 +28,19 @@ class PreviewPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
+        titleSpacing: 16,
         title: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
+            IconButton(
+              padding: EdgeInsets.zero,
+              icon: const BackButtonIcon(),
+              alignment: Alignment.centerLeft,
+              // color: color,
+              tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+              onPressed: () => context.router.pop(),
+            ),
             hashObject != null
                 ? Flexible(
                     child: Padding(
@@ -44,7 +53,8 @@ class PreviewPage extends StatelessWidget {
                   )
                 : const Text("Get a new one"),
             IconButton(
-              icon: const Icon(Icons.share, color: Colors.grey),
+              padding: EdgeInsets.zero,
+              icon: const Icon(Icons.share),
               alignment: Alignment.centerRight,
               onPressed: () {
                 Share.share(snapshot.shareText);
@@ -109,32 +119,6 @@ class PreviewPage extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ),
-      bottomNavigationBar: Container(
-        color: Colors.black,
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            const IconButton(
-              icon: Icon(Icons.info, color: Colors.grey),
-              onPressed: null,
-              //title: Container(), //Text("Add"),
-            ),
-            IconButton(
-              icon: const Icon(Icons.settings, color: Colors.grey),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const SettingsPage(),
-                  ),
-                );
-              },
-              //title: Container(), //Text("Delete"),
-            ),
-          ],
         ),
       ),
     );
