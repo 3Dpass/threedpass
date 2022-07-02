@@ -88,7 +88,7 @@ class SaveObjectDialog extends StatelessWidget {
                           .popUntilRouteWithName(RouteNames.homePage);
 
                       outerContext.router.push(
-                        PreviewPageWrapperRoute(
+                        PreviewWrapperRoute(
                           hashObject: newObject,
                           snapshot: newNamedModel,
                         ),

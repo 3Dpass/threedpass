@@ -23,7 +23,7 @@ class HashCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           context.router.push(
-            PreviewPageWrapperRoute(
+            PreviewWrapperRoute(
               hashObject: hashObject,
               snapshot: snapshot,
             ),

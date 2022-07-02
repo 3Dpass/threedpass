@@ -2,15 +2,12 @@ import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:threedpass/common/button_styles.dart';
-import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/get_object_from_file_button.dart';
-import 'package:threedpass/features/home_page/presentation/widgets/hash_card.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/objects_list.dart';
-import 'package:threedpass/features/settings_page/presentation/pages/settings_page.dart';
 import 'package:threedpass/router/router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -39,36 +36,24 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Container(
-              padding: const EdgeInsets.only(
-                  left: 15, top: 15, right: 15, bottom: 5),
-              child: Column(
-                children: const [
-                  Text(
-                      "Add your object's 3D model from file or scan it by camera and get a unique Hash ID."),
-                  Text(
-                      "In order to recognize your object add a new one object's 3D model or scan it again."),
-                ],
-              ),
-            ),
-            Container(
               padding: const EdgeInsets.all(15.0),
               child: Center(
                 child: Column(
-                  children: <Widget>[
-                    const GetObjectFromFileButton(),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    SizedBox(
-                      child: ElevatedButton.icon(
-                        style: AppButtonStyles.primaryButton,
-                        icon: const Icon(Icons.camera_alt),
-                        label: const Text('Scan by camera'),
-                        onPressed: () async {
-                          log('on scan pressed');
-                        },
-                      ),
-                    ),
+                  children: const [
+                    GetObjectFromFileButton(),
+                    // const SizedBox(
+                    //   height: 5,
+                    // ),
+                    // SizedBox(
+                    //   child: ElevatedButton.icon(
+                    //     style: AppButtonStyles.primaryButton,
+                    //     icon: const Icon(Icons.camera_alt),
+                    //     label: const Text('Scan by camera'),
+                    //     onPressed: () async {
+                    //       log('on scan pressed');
+                    //     },
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -98,10 +83,12 @@ class HomePage extends StatelessWidget {
                               width: 5,
                             ),
                             MarkdownBody(
-                              data: "### [How to use 3DPass](http://habr.com)",
+                              data:
+                                  "### [How to use 3DPass](https://3dpass.org/)",
                               onTapLink:
                                   (String text, String? href, String title) {
                                 log("tapped: text=$text href=$href");
+                                launch('https://3dpass.org/');
                               },
                             ),
                           ],
@@ -132,7 +119,7 @@ class HomePage extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.settings, color: Colors.grey),
               onPressed: () {
-                context.router.push(const SettingsPageRoute());
+                context.router.push(const SettingsRoute());
               },
             ),
           ],

@@ -25,7 +25,7 @@ class MatchesFound extends StatelessWidget {
         clickable: 'found',
         onTap: () {
           context.router.push(
-            ComparePageWrapperRoute(
+            CompareWrapperRoute(
               origObj: snapshot,
               hashObject: hashObject!,
             ),

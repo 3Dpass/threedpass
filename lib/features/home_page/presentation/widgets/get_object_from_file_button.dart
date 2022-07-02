@@ -1,15 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:calc/calc.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/common/button_styles.dart';
-import 'package:threedpass/common/logger.dart';
-import 'package:threedpass/core/utils/formatters.dart';
-import 'package:threedpass/core/utils/hash_file.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/settings_page/presentation/cubit/settings_page_cubit.dart';
 import 'package:threedpass/router/router.dart';
 
@@ -57,9 +51,10 @@ class GetObjectFromFileButton extends StatelessWidget {
         },
         right: (pair) {
           context.router.replace(
-            PreviewPageWrapperRoute(
+            PreviewWrapperRoute(
               hashObject: pair.left,
               snapshot: pair.right,
+              createNewAnyway: true,
             ),
           );
         },

@@ -71,7 +71,7 @@ class _State extends State<_ComparePage> {
                 Flexible(
                   flex: 2,
                   child: Text(
-                    cutString(widget.origObj.name, 16),
+                    widget.origObj.name.cut(16),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),

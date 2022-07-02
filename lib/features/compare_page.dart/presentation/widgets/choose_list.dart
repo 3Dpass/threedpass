@@ -23,7 +23,7 @@ class ChooseList extends StatelessWidget {
             (e) => DropdownMenuItem<Snapshot>(
               value: e,
               child: Text(
-                cutString(e.name, 16),
+                e.name.cut(16),
                 overflow: TextOverflow.ellipsis,
               ),
             ),

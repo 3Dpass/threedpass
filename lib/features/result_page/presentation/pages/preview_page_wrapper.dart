@@ -11,10 +11,14 @@ class PreviewPageWrapper extends StatelessWidget implements AutoRouteWrapper {
     Key? key,
     required this.hashObject,
     required this.snapshot,
+    this.createNewAnyway = false,
   }) : super(key: key);
 
   final HashObject? hashObject;
   final Snapshot snapshot;
+
+  /// Guarantee to create a new snapshot
+  final bool createNewAnyway;
 
   bool snapshotExists() => hashObject?.containsSnapshot(snapshot) ?? false;
 
@@ -25,7 +29,7 @@ class PreviewPageWrapper extends StatelessWidget implements AutoRouteWrapper {
       BlocProvider<PreviewPageCubit>(
         create: (context) => PreviewPageCubit(
           hashObject != null
-              ? snapshotExists()
+              ? snapshotExists() && !createNewAnyway
                   ? PreviewExistingSnapshot(
                       hashObject: hashObject!,
                       snapshot: snapshot,

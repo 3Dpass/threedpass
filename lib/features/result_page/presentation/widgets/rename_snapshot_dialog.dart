@@ -42,7 +42,7 @@ class RenameSnapshotDialog extends StatelessWidget {
         outerContext.router.popUntilRouteWithName(RouteNames.homePage);
 
         outerContext.router.push(
-          PreviewPageWrapperRoute(
+          PreviewWrapperRoute(
             hashObject: hashObject,
             snapshot: newNamedModel,
           ),

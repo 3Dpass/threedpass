@@ -17,20 +17,21 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    HomePageRoute.name: (routeData) {
+    HomeRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const HomePage());
     },
-    PreviewPageWrapperRoute.name: (routeData) {
-      final args = routeData.argsAs<PreviewPageWrapperRouteArgs>();
+    PreviewWrapperRoute.name: (routeData) {
+      final args = routeData.argsAs<PreviewWrapperRouteArgs>();
       return MaterialPageX<dynamic>(
           routeData: routeData,
           child: PreviewPageWrapper(
               key: args.key,
               hashObject: args.hashObject,
-              snapshot: args.snapshot));
+              snapshot: args.snapshot,
+              createNewAnyway: args.createNewAnyway));
     },
-    SettingsPageRoute.name: (routeData) {
+    SettingsRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const SettingsPage());
     },
@@ -42,12 +43,12 @@ class _$AppRouter extends RootStackRouter {
           opaque: true,
           barrierDismissible: false);
     },
-    PreviewPageRoute.name: (routeData) {
+    PreviewRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const PreviewPage());
     },
-    ComparePageWrapperRoute.name: (routeData) {
-      final args = routeData.argsAs<ComparePageWrapperRouteArgs>();
+    CompareWrapperRoute.name: (routeData) {
+      final args = routeData.argsAs<CompareWrapperRouteArgs>();
       return MaterialPageX<dynamic>(
           routeData: routeData,
           child: ComparePageWrapper(
@@ -104,29 +105,27 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(HomePageRoute.name, path: '/'),
-        RouteConfig(PreviewPageWrapperRoute.name,
+        RouteConfig(HomeRoute.name, path: '/'),
+        RouteConfig(PreviewWrapperRoute.name,
             path: '/preview-page-wrapper',
             children: [
-              RouteConfig(PreviewPageRoute.name,
-                  path: '', parent: PreviewPageWrapperRoute.name),
-              RouteConfig(ComparePageWrapperRoute.name,
+              RouteConfig(PreviewRoute.name,
+                  path: '', parent: PreviewWrapperRoute.name),
+              RouteConfig(CompareWrapperRoute.name,
                   path: 'compare-page-wrapper',
-                  parent: PreviewPageWrapperRoute.name),
+                  parent: PreviewWrapperRoute.name),
               RouteConfig(SaveTopHashesDialogRoute.name,
                   path: 'save-top-hashes-dialog',
-                  parent: PreviewPageWrapperRoute.name),
+                  parent: PreviewWrapperRoute.name),
               RouteConfig(SaveObjectDialogRoute.name,
-                  path: 'save-object-dialog',
-                  parent: PreviewPageWrapperRoute.name),
+                  path: 'save-object-dialog', parent: PreviewWrapperRoute.name),
               RouteConfig(SaveHashDialogRoute.name,
-                  path: 'save-hash-dialog',
-                  parent: PreviewPageWrapperRoute.name),
+                  path: 'save-hash-dialog', parent: PreviewWrapperRoute.name),
               RouteConfig(RenameSnapshotDialogRoute.name,
                   path: 'rename-snapshot-dialog',
-                  parent: PreviewPageWrapperRoute.name)
+                  parent: PreviewWrapperRoute.name)
             ]),
-        RouteConfig(SettingsPageRoute.name, path: '/settings-page'),
+        RouteConfig(SettingsRoute.name, path: '/settings-page'),
         RouteConfig(CalcHashLoadingDialogRoute.name,
             path: '/calc-hash-loading-widget')
       ];
@@ -134,33 +133,39 @@ class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [HomePage]
-class HomePageRoute extends PageRouteInfo<void> {
-  const HomePageRoute() : super(HomePageRoute.name, path: '/');
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute() : super(HomeRoute.name, path: '/');
 
-  static const String name = 'HomePageRoute';
+  static const String name = 'HomeRoute';
 }
 
 /// generated route for
 /// [PreviewPageWrapper]
-class PreviewPageWrapperRoute
-    extends PageRouteInfo<PreviewPageWrapperRouteArgs> {
-  PreviewPageWrapperRoute(
+class PreviewWrapperRoute extends PageRouteInfo<PreviewWrapperRouteArgs> {
+  PreviewWrapperRoute(
       {Key? key,
       required HashObject? hashObject,
       required Snapshot snapshot,
+      bool createNewAnyway = false,
       List<PageRouteInfo>? children})
-      : super(PreviewPageWrapperRoute.name,
+      : super(PreviewWrapperRoute.name,
             path: '/preview-page-wrapper',
-            args: PreviewPageWrapperRouteArgs(
-                key: key, hashObject: hashObject, snapshot: snapshot),
+            args: PreviewWrapperRouteArgs(
+                key: key,
+                hashObject: hashObject,
+                snapshot: snapshot,
+                createNewAnyway: createNewAnyway),
             initialChildren: children);
 
-  static const String name = 'PreviewPageWrapperRoute';
+  static const String name = 'PreviewWrapperRoute';
 }
 
-class PreviewPageWrapperRouteArgs {
-  const PreviewPageWrapperRouteArgs(
-      {this.key, required this.hashObject, required this.snapshot});
+class PreviewWrapperRouteArgs {
+  const PreviewWrapperRouteArgs(
+      {this.key,
+      required this.hashObject,
+      required this.snapshot,
+      this.createNewAnyway = false});
 
   final Key? key;
 
@@ -168,19 +173,20 @@ class PreviewPageWrapperRouteArgs {
 
   final Snapshot snapshot;
 
+  final bool createNewAnyway;
+
   @override
   String toString() {
-    return 'PreviewPageWrapperRouteArgs{key: $key, hashObject: $hashObject, snapshot: $snapshot}';
+    return 'PreviewWrapperRouteArgs{key: $key, hashObject: $hashObject, snapshot: $snapshot, createNewAnyway: $createNewAnyway}';
   }
 }
 
 /// generated route for
 /// [SettingsPage]
-class SettingsPageRoute extends PageRouteInfo<void> {
-  const SettingsPageRoute()
-      : super(SettingsPageRoute.name, path: '/settings-page');
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute() : super(SettingsRoute.name, path: '/settings-page');
 
-  static const String name = 'SettingsPageRoute';
+  static const String name = 'SettingsRoute';
 }
 
 /// generated route for
@@ -195,28 +201,27 @@ class CalcHashLoadingDialogRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [PreviewPage]
-class PreviewPageRoute extends PageRouteInfo<void> {
-  const PreviewPageRoute() : super(PreviewPageRoute.name, path: '');
+class PreviewRoute extends PageRouteInfo<void> {
+  const PreviewRoute() : super(PreviewRoute.name, path: '');
 
-  static const String name = 'PreviewPageRoute';
+  static const String name = 'PreviewRoute';
 }
 
 /// generated route for
 /// [ComparePageWrapper]
-class ComparePageWrapperRoute
-    extends PageRouteInfo<ComparePageWrapperRouteArgs> {
-  ComparePageWrapperRoute(
+class CompareWrapperRoute extends PageRouteInfo<CompareWrapperRouteArgs> {
+  CompareWrapperRoute(
       {Key? key, required Snapshot origObj, required HashObject hashObject})
-      : super(ComparePageWrapperRoute.name,
+      : super(CompareWrapperRoute.name,
             path: 'compare-page-wrapper',
-            args: ComparePageWrapperRouteArgs(
+            args: CompareWrapperRouteArgs(
                 key: key, origObj: origObj, hashObject: hashObject));
 
-  static const String name = 'ComparePageWrapperRoute';
+  static const String name = 'CompareWrapperRoute';
 }
 
-class ComparePageWrapperRouteArgs {
-  const ComparePageWrapperRouteArgs(
+class CompareWrapperRouteArgs {
+  const CompareWrapperRouteArgs(
       {this.key, required this.origObj, required this.hashObject});
 
   final Key? key;
@@ -227,7 +232,7 @@ class ComparePageWrapperRouteArgs {
 
   @override
   String toString() {
-    return 'ComparePageWrapperRouteArgs{key: $key, origObj: $origObj, hashObject: $hashObject}';
+    return 'CompareWrapperRouteArgs{key: $key, origObj: $origObj, hashObject: $hashObject}';
   }
 }
 
