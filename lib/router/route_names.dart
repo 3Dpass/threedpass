@@ -9,4 +9,5 @@ class RouteNames {
   static const settingsPage = 'SettingsRoute';
   static const calcHashLoadingDialog = 'CalcHashLoadingDialogRoute';
   static const renameSnapshotDialog = 'RenameSnapshotDialogRoute';
+  static const exolorerPage = 'ExplorerRoute';
 }

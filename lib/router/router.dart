@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/pages/compare_page.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/home_page/presentation/pages/explorer_page.dart';
 import 'package:threedpass/features/home_page/presentation/pages/home_page.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/calc_hash_loading_dialog.dart';
 import 'package:threedpass/features/result_page/presentation/pages/preview_page.dart';
@@ -62,6 +63,10 @@ part 'router.gr.dart';
     AutoRoute(
       page: SettingsPage,
       name: RouteNames.settingsPage,
+    ),
+    AutoRoute(
+      page: ExplorerPage,
+      name: RouteNames.exolorerPage,
     ),
     CustomRoute(
       name: RouteNames.calcHashLoadingDialog,

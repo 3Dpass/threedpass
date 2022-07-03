@@ -35,6 +35,12 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const SettingsPage());
     },
+    ExplorerRoute.name: (routeData) {
+      final args = routeData.argsAs<ExplorerRouteArgs>();
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: ExplorerPage(key: args.key, initialUrl: args.initialUrl));
+    },
     CalcHashLoadingDialogRoute.name: (routeData) {
       return CustomPage<dynamic>(
           routeData: routeData,
@@ -126,6 +132,7 @@ class _$AppRouter extends RootStackRouter {
                   parent: PreviewWrapperRoute.name)
             ]),
         RouteConfig(SettingsRoute.name, path: '/settings-page'),
+        RouteConfig(ExplorerRoute.name, path: '/explorer-page'),
         RouteConfig(CalcHashLoadingDialogRoute.name,
             path: '/calc-hash-loading-widget')
       ];
@@ -187,6 +194,30 @@ class SettingsRoute extends PageRouteInfo<void> {
   const SettingsRoute() : super(SettingsRoute.name, path: '/settings-page');
 
   static const String name = 'SettingsRoute';
+}
+
+/// generated route for
+/// [ExplorerPage]
+class ExplorerRoute extends PageRouteInfo<ExplorerRouteArgs> {
+  ExplorerRoute({Key? key, required String initialUrl})
+      : super(ExplorerRoute.name,
+            path: '/explorer-page',
+            args: ExplorerRouteArgs(key: key, initialUrl: initialUrl));
+
+  static const String name = 'ExplorerRoute';
+}
+
+class ExplorerRouteArgs {
+  const ExplorerRouteArgs({this.key, required this.initialUrl});
+
+  final Key? key;
+
+  final String initialUrl;
+
+  @override
+  String toString() {
+    return 'ExplorerRouteArgs{key: $key, initialUrl: $initialUrl}';
+  }
 }
 
 /// generated route for

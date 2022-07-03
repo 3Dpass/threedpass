@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:threedpass/common/app_text_styles.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/home_page/presentation/widgets/hash_card_popup_menu.dart';
+import 'package:threedpass/features/home_page/presentation/widgets/object_list/hash_card_popup_menu.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/settings_text.dart';
 import 'package:threedpass/router/router.dart';
 
