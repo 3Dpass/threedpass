@@ -21,20 +21,27 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const HomePage());
     },
-    PreviewPageWrapperRoute.name: (routeData) {
-      final args = routeData.argsAs<PreviewPageWrapperRouteArgs>();
+    PreviewWrapperRoute.name: (routeData) {
+      final args = routeData.argsAs<PreviewWrapperRouteArgs>();
       return MaterialPageX<dynamic>(
           routeData: routeData,
           child: PreviewPageWrapper(
               key: args.key,
               hashObject: args.hashObject,
-              snapshot: args.snapshot));
+              snapshot: args.snapshot,
+              createNewAnyway: args.createNewAnyway));
     },
     SettingsRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: SettingsPage());
+          routeData: routeData, child: const SettingsPage());
     },
-    CalcHashLoadingWidgetRoute.name: (routeData) {
+    ExplorerRoute.name: (routeData) {
+      final args = routeData.argsAs<ExplorerRouteArgs>();
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: ExplorerPage(key: args.key, initialUrl: args.initialUrl));
+    },
+    CalcHashLoadingDialogRoute.name: (routeData) {
       return CustomPage<dynamic>(
           routeData: routeData,
           child: const CalcHashLoadingWidget(),
@@ -42,12 +49,12 @@ class _$AppRouter extends RootStackRouter {
           opaque: true,
           barrierDismissible: false);
     },
-    PreviewPageRoute.name: (routeData) {
+    PreviewRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const PreviewPage());
     },
-    CompareRouteWrapper.name: (routeData) {
-      final args = routeData.argsAs<CompareRouteWrapperArgs>();
+    CompareWrapperRoute.name: (routeData) {
+      final args = routeData.argsAs<CompareWrapperRouteArgs>();
       return MaterialPageX<dynamic>(
           routeData: routeData,
           child: ComparePageWrapper(
@@ -82,7 +89,19 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData,
           child: SaveHashDialog(
               key: args.key,
-              hashesModelToSave: args.hashesModelToSave,
+              snapshot: args.snapshot,
+              hashObject: args.hashObject),
+          customRouteBuilder: dialogBuilder,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    RenameSnapshotDialogRoute.name: (routeData) {
+      final args = routeData.argsAs<RenameSnapshotDialogRouteArgs>();
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: RenameSnapshotDialog(
+              key: args.key,
+              snapshot: args.snapshot,
               hashObject: args.hashObject),
           customRouteBuilder: dialogBuilder,
           opaque: true,
@@ -93,26 +112,28 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(HomeRoute.name, path: '/'),
-        RouteConfig(PreviewPageWrapperRoute.name,
+        RouteConfig(PreviewWrapperRoute.name,
             path: '/preview-page-wrapper',
             children: [
-              RouteConfig(PreviewPageRoute.name,
-                  path: '', parent: PreviewPageWrapperRoute.name),
-              RouteConfig(CompareRouteWrapper.name,
+              RouteConfig(PreviewRoute.name,
+                  path: '', parent: PreviewWrapperRoute.name),
+              RouteConfig(CompareWrapperRoute.name,
                   path: 'compare-page-wrapper',
-                  parent: PreviewPageWrapperRoute.name),
+                  parent: PreviewWrapperRoute.name),
               RouteConfig(SaveTopHashesDialogRoute.name,
                   path: 'save-top-hashes-dialog',
-                  parent: PreviewPageWrapperRoute.name),
+                  parent: PreviewWrapperRoute.name),
               RouteConfig(SaveObjectDialogRoute.name,
-                  path: 'save-object-dialog',
-                  parent: PreviewPageWrapperRoute.name),
+                  path: 'save-object-dialog', parent: PreviewWrapperRoute.name),
               RouteConfig(SaveHashDialogRoute.name,
-                  path: 'save-hash-dialog',
-                  parent: PreviewPageWrapperRoute.name)
+                  path: 'save-hash-dialog', parent: PreviewWrapperRoute.name),
+              RouteConfig(RenameSnapshotDialogRoute.name,
+                  path: 'rename-snapshot-dialog',
+                  parent: PreviewWrapperRoute.name)
             ]),
         RouteConfig(SettingsRoute.name, path: '/settings-page'),
-        RouteConfig(CalcHashLoadingWidgetRoute.name,
+        RouteConfig(ExplorerRoute.name, path: '/explorer-page'),
+        RouteConfig(CalcHashLoadingDialogRoute.name,
             path: '/calc-hash-loading-widget')
       ];
 }
@@ -127,25 +148,31 @@ class HomeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [PreviewPageWrapper]
-class PreviewPageWrapperRoute
-    extends PageRouteInfo<PreviewPageWrapperRouteArgs> {
-  PreviewPageWrapperRoute(
+class PreviewWrapperRoute extends PageRouteInfo<PreviewWrapperRouteArgs> {
+  PreviewWrapperRoute(
       {Key? key,
       required HashObject? hashObject,
       required Snapshot snapshot,
+      bool createNewAnyway = false,
       List<PageRouteInfo>? children})
-      : super(PreviewPageWrapperRoute.name,
+      : super(PreviewWrapperRoute.name,
             path: '/preview-page-wrapper',
-            args: PreviewPageWrapperRouteArgs(
-                key: key, hashObject: hashObject, snapshot: snapshot),
+            args: PreviewWrapperRouteArgs(
+                key: key,
+                hashObject: hashObject,
+                snapshot: snapshot,
+                createNewAnyway: createNewAnyway),
             initialChildren: children);
 
-  static const String name = 'PreviewPageWrapperRoute';
+  static const String name = 'PreviewWrapperRoute';
 }
 
-class PreviewPageWrapperRouteArgs {
-  const PreviewPageWrapperRouteArgs(
-      {this.key, required this.hashObject, required this.snapshot});
+class PreviewWrapperRouteArgs {
+  const PreviewWrapperRouteArgs(
+      {this.key,
+      required this.hashObject,
+      required this.snapshot,
+      this.createNewAnyway = false});
 
   final Key? key;
 
@@ -153,9 +180,11 @@ class PreviewPageWrapperRouteArgs {
 
   final Snapshot snapshot;
 
+  final bool createNewAnyway;
+
   @override
   String toString() {
-    return 'PreviewPageWrapperRouteArgs{key: $key, hashObject: $hashObject, snapshot: $snapshot}';
+    return 'PreviewWrapperRouteArgs{key: $key, hashObject: $hashObject, snapshot: $snapshot, createNewAnyway: $createNewAnyway}';
   }
 }
 
@@ -168,38 +197,62 @@ class SettingsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ExplorerPage]
+class ExplorerRoute extends PageRouteInfo<ExplorerRouteArgs> {
+  ExplorerRoute({Key? key, required String initialUrl})
+      : super(ExplorerRoute.name,
+            path: '/explorer-page',
+            args: ExplorerRouteArgs(key: key, initialUrl: initialUrl));
+
+  static const String name = 'ExplorerRoute';
+}
+
+class ExplorerRouteArgs {
+  const ExplorerRouteArgs({this.key, required this.initialUrl});
+
+  final Key? key;
+
+  final String initialUrl;
+
+  @override
+  String toString() {
+    return 'ExplorerRouteArgs{key: $key, initialUrl: $initialUrl}';
+  }
+}
+
+/// generated route for
 /// [CalcHashLoadingWidget]
-class CalcHashLoadingWidgetRoute extends PageRouteInfo<void> {
-  const CalcHashLoadingWidgetRoute()
-      : super(CalcHashLoadingWidgetRoute.name,
+class CalcHashLoadingDialogRoute extends PageRouteInfo<void> {
+  const CalcHashLoadingDialogRoute()
+      : super(CalcHashLoadingDialogRoute.name,
             path: '/calc-hash-loading-widget');
 
-  static const String name = 'CalcHashLoadingWidgetRoute';
+  static const String name = 'CalcHashLoadingDialogRoute';
 }
 
 /// generated route for
 /// [PreviewPage]
-class PreviewPageRoute extends PageRouteInfo<void> {
-  const PreviewPageRoute() : super(PreviewPageRoute.name, path: '');
+class PreviewRoute extends PageRouteInfo<void> {
+  const PreviewRoute() : super(PreviewRoute.name, path: '');
 
-  static const String name = 'PreviewPageRoute';
+  static const String name = 'PreviewRoute';
 }
 
 /// generated route for
 /// [ComparePageWrapper]
-class CompareRouteWrapper extends PageRouteInfo<CompareRouteWrapperArgs> {
-  CompareRouteWrapper(
+class CompareWrapperRoute extends PageRouteInfo<CompareWrapperRouteArgs> {
+  CompareWrapperRoute(
       {Key? key, required Snapshot origObj, required HashObject hashObject})
-      : super(CompareRouteWrapper.name,
+      : super(CompareWrapperRoute.name,
             path: 'compare-page-wrapper',
-            args: CompareRouteWrapperArgs(
+            args: CompareWrapperRouteArgs(
                 key: key, origObj: origObj, hashObject: hashObject));
 
-  static const String name = 'CompareRouteWrapper';
+  static const String name = 'CompareWrapperRoute';
 }
 
-class CompareRouteWrapperArgs {
-  const CompareRouteWrapperArgs(
+class CompareWrapperRouteArgs {
+  const CompareWrapperRouteArgs(
       {this.key, required this.origObj, required this.hashObject});
 
   final Key? key;
@@ -210,7 +263,7 @@ class CompareRouteWrapperArgs {
 
   @override
   String toString() {
-    return 'CompareRouteWrapperArgs{key: $key, origObj: $origObj, hashObject: $hashObject}';
+    return 'CompareWrapperRouteArgs{key: $key, origObj: $origObj, hashObject: $hashObject}';
   }
 }
 
@@ -272,31 +325,57 @@ class SaveObjectDialogRouteArgs {
 /// [SaveHashDialog]
 class SaveHashDialogRoute extends PageRouteInfo<SaveHashDialogRouteArgs> {
   SaveHashDialogRoute(
-      {Key? key,
-      required Snapshot hashesModelToSave,
-      required HashObject hashObject})
+      {Key? key, required Snapshot snapshot, required HashObject hashObject})
       : super(SaveHashDialogRoute.name,
             path: 'save-hash-dialog',
             args: SaveHashDialogRouteArgs(
-                key: key,
-                hashesModelToSave: hashesModelToSave,
-                hashObject: hashObject));
+                key: key, snapshot: snapshot, hashObject: hashObject));
 
   static const String name = 'SaveHashDialogRoute';
 }
 
 class SaveHashDialogRouteArgs {
   const SaveHashDialogRouteArgs(
-      {this.key, required this.hashesModelToSave, required this.hashObject});
+      {this.key, required this.snapshot, required this.hashObject});
 
   final Key? key;
 
-  final Snapshot hashesModelToSave;
+  final Snapshot snapshot;
 
   final HashObject hashObject;
 
   @override
   String toString() {
-    return 'SaveHashDialogRouteArgs{key: $key, hashesModelToSave: $hashesModelToSave, hashObject: $hashObject}';
+    return 'SaveHashDialogRouteArgs{key: $key, snapshot: $snapshot, hashObject: $hashObject}';
+  }
+}
+
+/// generated route for
+/// [RenameSnapshotDialog]
+class RenameSnapshotDialogRoute
+    extends PageRouteInfo<RenameSnapshotDialogRouteArgs> {
+  RenameSnapshotDialogRoute(
+      {Key? key, required Snapshot snapshot, required HashObject hashObject})
+      : super(RenameSnapshotDialogRoute.name,
+            path: 'rename-snapshot-dialog',
+            args: RenameSnapshotDialogRouteArgs(
+                key: key, snapshot: snapshot, hashObject: hashObject));
+
+  static const String name = 'RenameSnapshotDialogRoute';
+}
+
+class RenameSnapshotDialogRouteArgs {
+  const RenameSnapshotDialogRouteArgs(
+      {this.key, required this.snapshot, required this.hashObject});
+
+  final Key? key;
+
+  final Snapshot snapshot;
+
+  final HashObject hashObject;
+
+  @override
+  String toString() {
+    return 'RenameSnapshotDialogRouteArgs{key: $key, snapshot: $snapshot, hashObject: $hashObject}';
   }
 }

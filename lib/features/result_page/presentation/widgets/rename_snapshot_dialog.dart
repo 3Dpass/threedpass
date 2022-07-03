@@ -9,8 +9,8 @@ import 'package:threedpass/features/result_page/presentation/widgets/dialogs/com
 import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/router.dart';
 
-class SaveHashDialog extends StatelessWidget {
-  const SaveHashDialog({
+class RenameSnapshotDialog extends StatelessWidget {
+  const RenameSnapshotDialog({
     Key? key,
     required this.snapshot,
     required this.hashObject,
@@ -25,13 +25,13 @@ class SaveHashDialog extends StatelessWidget {
       snapshot: snapshot,
       hashObject: hashObject,
       initialText: snapshot.name,
-      title: 'Save snapshot',
-      actionText: 'Save',
+      title: 'Rename snapshot',
+      actionText: 'Rename',
       action: (value) async {
         final newNamedModel = snapshot.copyWith(name: value);
 
         BlocProvider.of<HashesListBloc>(context).add(
-          SaveSnapshot(
+          ReplaceSnapshot(
             hash: newNamedModel,
             object: hashObject,
           ),

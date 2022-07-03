@@ -20,6 +20,7 @@ class SettingsPage extends StatelessWidget {
         title: Text('Settings'),
       ),
       body: BlocBuilder<SettingsConfigCubit, SettingsConfigState>(
+        buildWhen: (previous, current) => false,
         builder: (context, state) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(

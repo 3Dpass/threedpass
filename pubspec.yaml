@@ -51,6 +51,9 @@ dependencies:
   share_plus: ^4.0.3
   logger: ^1.1.0
 
+  ## Special
+  webview_flutter: ^3.0.4
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   # cupertino_icons: ^0.1.3

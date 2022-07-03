@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:threedpass/core/utils/hash2.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -29,6 +30,25 @@ class HashObject {
 
   @HiveField(2)
   final List<Snapshot> snapshots;
+
+  Set<int> get fileHashes {
+    final res = <int>{};
+    for (var snapshot in snapshots) {
+      res.add(snapshot.fileHash);
+    }
+    return res;
+  }
+
+  /// if object contains snapshot with all equal hashes, but any name
+  bool containsSnapshot(Snapshot snapshot) {
+    for (var s in snapshots) {
+      if (listEquals(s.hashes, snapshot.hashes)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 
   @override
   bool operator ==(other) {

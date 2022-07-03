@@ -46,7 +46,7 @@ class SaveTopHashesDialog extends StatelessWidget {
             hashObject != null
                 ? context.router.replace(
                     SaveHashDialogRoute(
-                      hashesModelToSave: snapshot,
+                      snapshot: snapshot,
                       hashObject: hashObject!,
                     ),
                   )
