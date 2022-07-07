@@ -92,8 +92,7 @@ class PreviewPage extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               MatchesFound(
-                snapshot: snapshot,
-                hashObject: hashObject,
+                state: previewPageCubitState,
               ),
               const SizedBox(height: 8),
               ObjectPreview(

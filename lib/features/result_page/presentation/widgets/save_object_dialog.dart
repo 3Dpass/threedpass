@@ -12,9 +12,10 @@ class SaveObjectDialog extends StatelessWidget {
   SaveObjectDialog({
     Key? key,
     required this.snapshot,
-  }) : super(key: key);
+  })  : snapshotNameController = TextEditingController(text: snapshot.name),
+        super(key: key);
 
-  final snapshotNameController = TextEditingController();
+  final TextEditingController snapshotNameController;
   final objectNameController = TextEditingController();
   final Snapshot snapshot;
 
