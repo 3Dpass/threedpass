@@ -1,0 +1,5 @@
+flutter_icons:
+  android: true
+  ios: "AppIcon" # Crucial step
+  image_path: "assets/AppIcon.png"
+  remove_alpha_ios: true
