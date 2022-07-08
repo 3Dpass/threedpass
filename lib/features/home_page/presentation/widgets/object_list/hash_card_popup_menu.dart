@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
@@ -38,24 +39,24 @@ class HashCardPopUpMenuButton extends StatelessWidget {
         PopupMenuItem(
           value: 1,
           child: Row(
-            children: const [
-              Padding(
+            children: [
+              const Padding(
                 padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
                 child: Icon(Icons.share, color: Colors.grey),
               ),
-              Text('Share')
+              Text('Share'.tr())
             ],
           ),
         ),
         PopupMenuItem(
           value: 2,
           child: Row(
-            children: const [
-              Padding(
+            children: [
+              const Padding(
                 padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
                 child: Icon(Icons.delete, color: Colors.grey),
               ),
-              Text('Delete')
+              Text('Delete'.tr())
             ],
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
@@ -25,8 +26,8 @@ class RenameSnapshotDialog extends StatelessWidget {
       snapshot: snapshot,
       hashObject: hashObject,
       initialText: snapshot.name,
-      title: 'Rename snapshot',
-      actionText: 'Rename',
+      title: 'rename_snapshot_title'.tr(),
+      actionText: 'rename_action'.tr(),
       action: (value) async {
         final newNamedModel = snapshot.copyWith(name: value);
 

@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.16.0 <3.0.0"
+  sdk: ">=2.16.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -42,12 +42,13 @@ dependencies:
   
 
   ## Code gen
-  copy_with_extension: ^4.0.0
-  freezed: ^1.1.1
+  copy_with_extension: ^4.0.2
+  freezed: ^2.0.4
   equatable: ^2.0.3
 
   ## Utils
   intl: ^0.17.0
+  easy_localization: ^3.0.0
   share_plus: ^4.0.3
   logger: ^1.1.0
 
@@ -84,11 +85,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-    - assets/brain.obj
-    - assets/brain.mtl
-    - assets/scan1_low.stl
-    - assets/scan1_low.obj
-    - assets/st1.obj
+    - assets/translations/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

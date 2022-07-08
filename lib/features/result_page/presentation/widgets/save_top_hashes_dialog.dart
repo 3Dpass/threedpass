@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
@@ -19,7 +20,7 @@ class SaveTopHashesDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Top 10 hashes'),
+      title: Text('top_10_hashes'.tr()),
       content: SingleChildScrollView(
         child: HashesPrimitiveList(
           hashesModel: snapshot,
@@ -27,20 +28,20 @@ class SaveTopHashesDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         TextButton(
-          child: const Text('Cancel'),
+          child: Text('Cancel'.tr()),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         TextButton(
-          child: const Text('Share'),
+          child: Text('Share'.tr()),
           onPressed: () {
             Navigator.of(context).pop();
             Share.share(snapshot.shareText);
           },
         ),
         TextButton(
-          child: Text('Save'),
+          child: Text('Save'.tr()),
           onPressed: () async {
             // TODO Why it's not possible to place context.router.replace outsite conditional op?
             hashObject != null

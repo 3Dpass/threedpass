@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/error_page.dart';
@@ -6,6 +7,7 @@ import 'package:threedpass/core/widgets/error_page.dart';
 import 'package:threedpass/features/result_page/presentation/bloc/preview_page_cubit.dart';
 import 'package:threedpass/router/router.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class MatchesFound extends StatelessWidget {
   const MatchesFound({
@@ -31,7 +33,7 @@ class MatchesFound extends StatelessWidget {
           number: state.hashObject!.snapshots.length - 1,
         );
       default:
-        return ErrorPage(
+        return const ErrorPage(
           error: '[MatchesFound] Unknown state for PreviewPageCubitState',
         );
     }
@@ -51,9 +53,8 @@ class _MatchesFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _ClickableText(
-      // if object is saved then substract 1 cause it is counted in snapshots.length
-      mainText: number.toString() + ' matches ',
-      clickable: 'found',
+      mainText: plural('MATCHES_number_plural', number),
+      clickable: 'matches_FOUND'.tr(),
       onTap: () {
         context.router.push(
           CompareWrapperRoute(
@@ -73,10 +74,11 @@ class _NoMatchesFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _ClickableText(
-      mainText: 'No matches found ',
-      clickable: 'Why?',
+      mainText: plural('MATCHES_number_plural', 0),
+      clickable: 'WHY_not_found'.tr(),
       onTap: () {
-        launch('https://3dpass.org/features.html#3D_object_recognition');
+        launchUrlString(
+            'https://3dpass.org/features.html#3D_object_recognition');
       },
     );
   }

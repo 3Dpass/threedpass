@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/common/app_text_styles.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -44,17 +45,17 @@ class CompareTable extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
-                'Rank',
+                'Rank'.tr(),
                 style: AppTextStyles.tableHeader,
               ),
               Text(
-                'Hash',
+                'Hash'.tr(),
                 style: AppTextStyles.tableHeader,
               ),
               Text(
-                'Rank',
+                'Rank'.tr(),
                 style: AppTextStyles.tableHeader,
               ),
             ],
