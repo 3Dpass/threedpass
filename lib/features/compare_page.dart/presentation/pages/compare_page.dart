@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/utils/cut_string.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/widgets/choose_list.dart';
@@ -58,7 +59,7 @@ class _State extends State<_ComparePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text("Compare top hashes"),
+        title: Text('compare_page_appbar'.tr()),
       ),
       body: Column(
         children: <Widget>[
@@ -77,7 +78,7 @@ class _State extends State<_ComparePage> {
                 ),
                 const Flexible(
                   child: Text(
-                    "VS",
+                    'VS',
                     textAlign: TextAlign.center,
                   ),
                 ),

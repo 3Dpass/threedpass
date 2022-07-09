@@ -4,6 +4,7 @@
     },
     "Rank": "Rank",
     "Hash": "Hash",
+    "compare_page_appbar": "Compare top hashes",
 
     "@global":{
     },
@@ -13,6 +14,16 @@
     "Cancel": "Cancel",
 
     "@home_page":{
+    },
+    "calc_hashes_loader_text":"Calculating hashes...",
+    "snap_card_name": "Name: ",
+    "snap_card_stamp": "Stamp: ",
+
+    "recognize your objects":"recognize your objects",
+    "open_explorer_button_label": "Open Explorer",
+    "get_from_file_button_label": "Get from file",
+
+    "@preview_page":{
     },
     "MATCHES_number_plural":{
         "zero": "No matches found ",
@@ -24,17 +35,12 @@
     },
     "matches_FOUND": "found",
     "WHY_not_found": "Why?",
-
-    "recognize your objects":"recognize your objects",
-    "open_explorer_button_label": "Open Explorer",
-    "get_from_file_button_label": "Get from file",
-
-    "@preview_page":{
-    },
     "save_this_object_button_label":"Save this object",
     "save_this_snapshot_button_label":"Save this snapshot",
     "rename_this_snapshot_button_label":"Rename this snapshot",
     "top_10_hashes": "Top 10 hashes",
+    "get_new_object_appbar": "Get a new one",
+    "show_and_share_dialog_button": "Show and share",
 
     "@rename_snap_dialog":{
     },
@@ -61,7 +67,7 @@
     "grid_size_label": "Grid size",
     "n_sections_label": "N Sections",
     
-    "algorythm_span": "Algorithm",
+    "algorithm_span": "Algorithm",
     "grid_span":"Grid",
     "n_sections_span": "nSections"
 }

@@ -10,10 +10,10 @@ extension ToText on SettingsConfig {
       style: AppTextStyles.bodyText1,
       children: [
         TextSpan(
-          text: '- ' + 'algorythm_span'.tr() + ':' + algorithm.name + '\n',
+          text: '- ' + 'algorithm_span'.tr() + ':' + algorithm.name + '\n',
         ),
         TextSpan(
-          text: '- ' + 'grid_span+'.tr() + ': ${gridSize}x$gridSize\n',
+          text: '- ' + 'grid_span'.tr() + ': ${gridSize}x$gridSize\n',
         ),
         TextSpan(
           text: '- ' + 'n_sections_span'.tr() + ': $nSections\n',

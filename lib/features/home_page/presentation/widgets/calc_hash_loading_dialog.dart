@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class CalcHashLoadingWidget extends StatelessWidget {
@@ -12,7 +13,7 @@ class CalcHashLoadingWidget extends StatelessWidget {
           Flexible(
             child: Container(
               margin: const EdgeInsets.only(left: 16),
-              child: const Text("Calculating hashes..."),
+              child: Text('calc_hashes_loader_text'.tr()),
             ),
           ),
         ],
