@@ -9,4 +9,26 @@
 
 In order to create a 3D model of real objects by smartphone camera please use 3D scanning mobile applications, which are many. Then you should export your 3D model as .obj. You can also download some free .obj models from public catalogs.  
 
-[![logo](https://3dpass.org/assets/img/slides/refine/slide2_phone.png)](https://3dpass.org/features.html#3D_object_recognition) 
+[![logo](https://3dpass.org/assets/img/slides/refine/slide2_phone.png)](https://3dpass.org/features.html#3D_object_recognition)
+
+## How to translate
+
+If English is not your native language, you may wish to contribute as a translator.
+Follow this short instruction or [read more](https://pub.dev/packages/easy_localization):
+
+1. Add ```LANG_CODE.json``` file to ```assets/translations/``` 
+2. Add locale info in ```lib/main.dart```
+```
+EasyLocalization(
+      supportedLocales: const [Locale('en')], // Add new locale here
+      ...
+)
+```
+3. Add LANG_CODE in ```ios/Runner/Info.plist``` as described here:
+```
+<key>CFBundleLocalizations</key>
+<array>
+	<string>en</string>
+	<string>nb</string>
+</array>
+```

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/features/result_page/presentation/bloc/preview_page_cubit.dart';
@@ -15,11 +16,11 @@ class PreviewSaveButton extends StatelessWidget {
   String get title {
     switch (state.runtimeType) {
       case PreviewNewObject:
-        return 'Save this object';
+        return 'save_this_object_button_label'.tr();
       case PreviewNewSnapshot:
-        return 'Save this snapshot';
+        return 'save_this_snapshot_button_label'.tr();
       case PreviewExistingSnapshot:
-        return 'Rename this snapshot';
+        return 'rename_this_snapshot_button_label'.tr();
       default:
         return 'Error';
     }

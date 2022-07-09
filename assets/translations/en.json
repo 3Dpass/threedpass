@@ -1,0 +1,73 @@
+{
+    "appTitle": "3DPass",
+    "@compare_page":{
+    },
+    "Rank": "Rank",
+    "Hash": "Hash",
+    "compare_page_appbar": "Compare top hashes",
+
+    "@global":{
+    },
+    "Share": "Share",
+    "Delete": "Delete",
+    "Save": "Save",
+    "Cancel": "Cancel",
+
+    "@home_page":{
+    },
+    "calc_hashes_loader_text":"Calculating hashes...",
+    "snap_card_name": "Name: ",
+    "snap_card_stamp": "Stamp: ",
+
+    "recognize your objects":"recognize your objects",
+    "open_explorer_button_label": "Open Explorer",
+    "get_from_file_button_label": "Get from file",
+
+    "@preview_page":{
+    },
+    "MATCHES_number_plural":{
+        "zero": "No matches found ",
+        "one": "{} match ",
+        "two": "{} matches ",
+        "few": "{} matches ",
+        "many": "{} matches ",
+        "other": "{} matches "
+    },
+    "matches_FOUND": "found",
+    "WHY_not_found": "Why?",
+    "save_this_object_button_label":"Save this object",
+    "save_this_snapshot_button_label":"Save this snapshot",
+    "rename_this_snapshot_button_label":"Rename this snapshot",
+    "top_10_hashes": "Top 10 hashes",
+    "get_new_object_appbar": "Get a new one",
+    "show_and_share_dialog_button": "Show and share",
+
+    "@rename_snap_dialog":{
+    },
+    "rename_snapshot_title" : "Rename snapshot",
+    "rename_action": "Rename",
+
+    "@save_snap_dialog":{
+    },
+    "save_snapshot_title" : "Save snapshot",
+
+    "@create_object_dialog":{
+    },
+    "create_object_title" : "Create new object",
+    "create_object_input_label":"Object name",
+    "create_object_input_hint":"Enter object name",
+    "create_object_snap_input_label":"Snapshot name",
+    "create_object_snap_input_hint":"Enter snapshot name",
+    "create_action": "Create",
+    
+    "@settings_page":{
+    },
+    "settings_title": "Settings",
+    "choose_algorithm_label": "Choose algorithm",
+    "grid_size_label": "Grid size",
+    "n_sections_label": "N Sections",
+    
+    "algorithm_span": "Algorithm",
+    "grid_span":"Grid",
+    "n_sections_span": "nSections"
+}

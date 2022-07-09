@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
@@ -51,7 +52,7 @@ class PreviewPage extends StatelessWidget {
                       ),
                     ),
                   )
-                : const Text("Get a new one"),
+                : Text('get_new_object_appbar'.tr()),
             IconButton(
               padding: EdgeInsets.zero,
               icon: const Icon(Icons.share),
@@ -92,8 +93,7 @@ class PreviewPage extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               MatchesFound(
-                snapshot: snapshot,
-                hashObject: hashObject,
+                state: previewPageCubitState,
               ),
               const SizedBox(height: 8),
               ObjectPreview(

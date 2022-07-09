@@ -27,7 +27,8 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await Calc.platformVersion;
+      platformVersion = 'Failed to get platform version.';
+      // platformVersion = await Calc.platformVersion;
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }

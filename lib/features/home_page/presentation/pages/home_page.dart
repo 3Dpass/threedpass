@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/get_object_card.dart';
 import 'package:threedpass/features/home_page/presentation/widgets/objects_list.dart';
@@ -17,10 +18,11 @@ class HomePage extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            Text("3DPass  "),
+          children: [
+            Text('appTitle'.tr()),
+            const SizedBox(width: 4),
             Text(
-              "recognize your objects",
+              'recognize your objects'.tr(),
               textAlign: TextAlign.end,
               style: TextStyle(
                 fontSize: 16,

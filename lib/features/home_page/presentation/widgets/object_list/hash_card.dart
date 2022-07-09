@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:threedpass/common/app_text_styles.dart';
@@ -39,11 +40,11 @@ class HashCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'Name: ' + snapshot.name,
+                    'snap_card_name'.tr() + snapshot.name,
                     style: AppTextStyles.bodyText1,
                   ),
                   Text(
-                    'Stamp: ' + formatter.format(snapshot.stamp),
+                    'snap_card_stamp'.tr() + formatter.format(snapshot.stamp),
                     style: AppTextStyles.bodyText1,
                   ),
                   const SizedBox(height: 8),

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
@@ -12,9 +13,10 @@ class SaveObjectDialog extends StatelessWidget {
   SaveObjectDialog({
     Key? key,
     required this.snapshot,
-  }) : super(key: key);
+  })  : snapshotNameController = TextEditingController(text: snapshot.name),
+        super(key: key);
 
-  final snapshotNameController = TextEditingController();
+  final TextEditingController snapshotNameController;
   final objectNameController = TextEditingController();
   final Snapshot snapshot;
 
@@ -27,16 +29,16 @@ class SaveObjectDialog extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Text(
-                'Create new object',
+                'create_object_title'.tr(),
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               Padding(
                 padding: const EdgeInsets.only(
                     left: 8, right: 8, bottom: 8, top: 16),
                 child: TextField(
-                  decoration: const InputDecoration(
-                    label: Text('object'),
-                    hintText: 'Enter object name',
+                  decoration: InputDecoration(
+                    label: Text('create_object_input_label'.tr()),
+                    hintText: 'create_object_input_hint'.tr(),
                     isCollapsed: false,
                   ),
                   controller: objectNameController,
@@ -45,9 +47,9 @@ class SaveObjectDialog extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 8, right: 8, bottom: 16),
                 child: TextField(
-                  decoration: const InputDecoration(
-                    label: Text('snapshot'),
-                    hintText: 'Enter snapshot name',
+                  decoration: InputDecoration(
+                    label: Text('create_object_snap_input_label'.tr()),
+                    hintText: 'create_object_snap_input_hint'.tr(),
                     isCollapsed: false,
                   ),
                   controller: snapshotNameController,
@@ -57,13 +59,13 @@ class SaveObjectDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                    child: Text('Cancel'),
+                    child: Text('Cancel'.tr()),
                     onPressed: () {
                       context.router.pop();
                     },
                   ),
                   TextButton(
-                    child: Text('Save'),
+                    child: Text('Save'.tr()),
                     onPressed: () async {
                       final newNamedModel =
                           snapshot.copyWith(name: snapshotNameController.text);

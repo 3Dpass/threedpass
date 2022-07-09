@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/router/router.dart';
@@ -11,7 +12,7 @@ class OpenExplorerButton extends StatelessWidget {
     return ElevatedButton.icon(
       style: AppButtonStyles.primaryButton,
       icon: const Icon(Icons.explore),
-      label: const Text('Open explorer'),
+      label: Text('open_explorer_button_label'.tr()),
       onPressed: () => context.router.push(
         ExplorerRoute(initialUrl: 'https://explorer.3dpass.org/'),
       ),

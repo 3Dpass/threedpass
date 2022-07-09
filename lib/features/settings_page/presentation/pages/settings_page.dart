@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
@@ -17,7 +18,7 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text('Settings'),
+        title: Text('settings_title'.tr()),
       ),
       body: BlocBuilder<SettingsConfigCubit, SettingsConfigState>(
         buildWhen: (previous, current) => false,
@@ -27,7 +28,7 @@ class SettingsPage extends StatelessWidget {
             children: [
               DropdownButtonFormField<Algorithm>(
                 decoration: InputDecoration(
-                  label: Text('Choose Algorithm'),
+                  label: Text('choose_algorithm_label'.tr()),
                 ),
                 value: state.settings.algorithm,
                 onChanged: (Algorithm? newValue) {
@@ -49,7 +50,7 @@ class SettingsPage extends StatelessWidget {
               ),
               DropdownButtonFormField<int>(
                 decoration: InputDecoration(
-                  label: Text('Grid Size'),
+                  label: Text('grid_size_label'.tr()),
                 ),
                 value: state.settings.gridSize,
                 onChanged: (int? newValue) {
@@ -60,7 +61,7 @@ class SettingsPage extends StatelessWidget {
                     );
                   }
                 },
-                items: [6, 7, 8]
+                items: [6, 7, 8] // TODO Move to external constant
                     .map(
                       (e) => DropdownMenuItem<int>(
                         value: e,
@@ -89,7 +90,7 @@ class SettingsPage extends StatelessWidget {
                 },
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  label: Text('N Sections'),
+                  label: Text('n_sections_label'.tr()),
                 ),
               ),
             ],

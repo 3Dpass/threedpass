@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -23,7 +24,9 @@ class MoreInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         MarkdownBody(
-          data: "### **Hash ID**\n\n\n### [Show and share](show_and_share)",
+          data: '### **Hash ID**\n### [' +
+              'show_and_share_dialog_button'.tr() +
+              '](pseudo_link)',
           onTapLink: (String text, String? href, String title) {
             context.router.push(
               SaveTopHashesDialogRoute(

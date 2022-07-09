@@ -10,8 +10,8 @@ class HiveSettingsStore extends HiveUniversalStore<SettingsConfig> {
     if (currentData != null) {
       return currentData;
     } else {
-      setSettings(DefaultSettingsConfig());
-      return DefaultSettingsConfig();
+      setSettings(const DefaultSettingsConfig());
+      return const DefaultSettingsConfig();
     }
   }
 

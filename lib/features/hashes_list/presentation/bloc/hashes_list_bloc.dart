@@ -112,7 +112,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
           'Not found an object with id=${event.object.localId} name=${event.object.name}',
         );
       } else {
-        await hashesRepository.addObject(event.object);
+        await hashesRepository.replaceObject(event.object);
       }
       emit(HashesListLoaded(objects: list));
     }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -26,7 +27,16 @@ Future<void> main() async {
 
   await di_setup.setup();
 
-  runApp(ThreeDApp());
+  await EasyLocalization.ensureInitialized();
+
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      child: ThreeDApp(),
+    ),
+  );
 }
 
 class ThreeDApp extends StatelessWidget {
@@ -51,7 +61,7 @@ class ThreeDApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
-        title: '3DPass',
+        title: 'appTitle'.tr(),
         theme: ThemeData(
           primarySwatch: Colors.green,
           primaryColor: Colors.black,
@@ -59,6 +69,9 @@ class ThreeDApp extends StatelessWidget {
         ),
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
       ),
     );
   }
