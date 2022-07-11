@@ -11,4 +11,7 @@ class RouteNames {
   static const renameSnapshotDialog = 'RenameSnapshotDialogRoute';
   static const exolorerPage = 'ExplorerRoute';
   static const errorPage = 'ErrorRoute';
+  static const scanPageWrapper = 'ScanWrapperRoute';
+  static const scanPage = 'ScanRoute';
+  static const walletPage = 'WalletRoute';
 }

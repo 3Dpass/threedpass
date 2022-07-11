@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/features/home_page/presentation/widgets/explorer_card/open_explorer_button.dart';
+import 'package:threedpass/features/scan_page/presentation/widgets/explorer_card/open_explorer_button.dart';
 
 class OpenExplorerCard extends StatelessWidget {
   const OpenExplorerCard({Key? key}) : super(key: key);

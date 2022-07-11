@@ -1,7 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:threedpass/features/home_page/presentation/widgets/get_object_card/get_object_from_file_button.dart';
+import 'package:threedpass/features/scan_page/presentation/widgets/get_object_card/get_object_from_file_button.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class GetObjectCard extends StatelessWidget {
@@ -16,10 +15,6 @@ class GetObjectCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const GetObjectFromFileButton(),
-            const SizedBox(height: 8),
-            const Text(
-              'Use \'Get from file\' if you\'ve got already a 3D model of your object',
-            ),
             const SizedBox(height: 8),
             Row(
               children: [

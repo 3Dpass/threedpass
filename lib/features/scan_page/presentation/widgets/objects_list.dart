@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/common/app_text_styles.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/features/home_page/presentation/widgets/object_list/hash_card.dart';
+import 'package:threedpass/features/scan_page/presentation/widgets/object_list/hash_card.dart';
 
 class ObjectsList extends StatelessWidget {
   const ObjectsList({Key? key}) : super(key: key);
@@ -13,6 +13,7 @@ class ObjectsList extends StatelessWidget {
       builder: (context, state) {
         if (state is HashesListLoaded) {
           return ListView.builder(
+              physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
               itemCount: state.objects.length,
               itemBuilder: (context, objIndex) {

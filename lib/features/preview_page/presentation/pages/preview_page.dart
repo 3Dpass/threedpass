@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:threedpass/common/app_text_styles.dart';
-import 'package:threedpass/features/result_page/presentation/bloc/preview_page_cubit.dart';
-import 'package:threedpass/features/result_page/presentation/widgets/object_preview.dart';
-import 'package:threedpass/features/result_page/presentation/widgets/delete_object_button.dart';
-import 'package:threedpass/features/result_page/presentation/widgets/hash_properties.dart';
-import 'package:threedpass/features/result_page/presentation/widgets/maches_found.dart';
-import 'package:threedpass/features/result_page/presentation/widgets/more_info.dart';
-import 'package:threedpass/features/result_page/presentation/widgets/preview_save_button.dart';
+import 'package:threedpass/features/preview_page/presentation/bloc/preview_page_cubit.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/object_preview.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/delete_object_button.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/hash_properties.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/maches_found.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/more_info.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/preview_save_button.dart';
 
 class PreviewPage extends StatelessWidget {
   const PreviewPage({
@@ -29,7 +29,7 @@ class PreviewPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        titleSpacing: 16,
+        titleSpacing: 0,
         title: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,7 +37,7 @@ class PreviewPage extends StatelessWidget {
             IconButton(
               padding: EdgeInsets.zero,
               icon: const BackButtonIcon(),
-              alignment: Alignment.centerLeft,
+              // alignment: Alignment.centerLeft,
               // color: color,
               tooltip: MaterialLocalizations.of(context).backButtonTooltip,
               onPressed: () => context.router.pop(),
@@ -56,7 +56,7 @@ class PreviewPage extends StatelessWidget {
             IconButton(
               padding: EdgeInsets.zero,
               icon: const Icon(Icons.share),
-              alignment: Alignment.centerRight,
+              alignment: Alignment.center,
               onPressed: () {
                 Share.share(snapshot.shareText);
               },

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/result_page/presentation/bloc/outer_context_cubit.dart';
-import 'package:threedpass/features/result_page/presentation/bloc/preview_page_cubit.dart';
+import 'package:threedpass/features/preview_page/presentation/bloc/outer_context_cubit.dart';
+import 'package:threedpass/features/preview_page/presentation/bloc/preview_page_cubit.dart';
 
 class PreviewPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   const PreviewPageWrapper({

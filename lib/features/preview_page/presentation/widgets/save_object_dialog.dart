@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/features/result_page/presentation/bloc/outer_context_cubit.dart';
+import 'package:threedpass/features/preview_page/presentation/bloc/outer_context_cubit.dart';
 import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/router.dart';
 
@@ -87,7 +87,7 @@ class SaveObjectDialog extends StatelessWidget {
                           BlocProvider.of<OuterContextCubit>(context).state;
 
                       outerContext.router
-                          .popUntilRouteWithName(RouteNames.homePage);
+                          .popUntilRouteWithName(RouteNames.scanPage);
 
                       outerContext.router.push(
                         PreviewWrapperRoute(

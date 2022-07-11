@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:threedpass/common/logger.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -126,12 +125,19 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       final list = (state as HashesListLoaded).objects;
       bool f = false;
       for (var obj in list) {
+        // find object
         if (obj.localId == event.object.localId) {
-          obj.snapshots.removeWhere(
-            (element) => listEquals(element.hashes, event.hash.hashes),
-          );
-          obj.snapshots.add(event.hash);
-          f = true;
+          // find old snapshot place
+          final oldSnapIndex = obj.snapshots.indexOf(event.oldSnapshot);
+          // replace it with new one
+          if (oldSnapIndex != -1) {
+            obj.snapshots[oldSnapIndex] = event.newSnapshot;
+            f = true;
+          } else {
+            logger.e(
+              'Not found a snapshot in object ${obj.name}. Old snapshot name=${event.oldSnapshot.name}',
+            );
+          }
           break;
         }
       }

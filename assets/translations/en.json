@@ -18,8 +18,9 @@
     "calc_hashes_loader_text":"Calculating hashes...",
     "snap_card_name": "Name: ",
     "snap_card_stamp": "Stamp: ",
+    "saved_objects_header": "Saved objects",
 
-    "recognize your objects":"recognize your objects",
+    "recognize_your_objects":"recognize your objects",
     "open_explorer_button_label": "Open Explorer",
     "get_from_file_button_label": "Get from file",
 

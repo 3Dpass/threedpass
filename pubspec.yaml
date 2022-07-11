@@ -39,11 +39,12 @@ dependencies:
   get_it: ^7.2.0
   flutter_bloc: ^8.0.1
   hive_flutter: ^1.1.0
+  polkawallet_sdk: ^0.4.8
   
 
   ## Code gen
   copy_with_extension: ^4.0.2
-  freezed: ^2.0.4
+  freezed: ^1.1.1
   equatable: ^2.0.3
 
   ## Utils

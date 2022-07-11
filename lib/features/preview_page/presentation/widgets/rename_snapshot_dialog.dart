@@ -5,13 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/features/result_page/presentation/bloc/outer_context_cubit.dart';
-import 'package:threedpass/features/result_page/presentation/widgets/dialogs/common_dialog.dart';
+import 'package:threedpass/features/preview_page/presentation/bloc/outer_context_cubit.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/dialogs/common_dialog.dart';
 import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/router.dart';
 
-class SaveHashDialog extends StatelessWidget {
-  const SaveHashDialog({
+class RenameSnapshotDialog extends StatelessWidget {
+  const RenameSnapshotDialog({
     Key? key,
     required this.snapshot,
     required this.hashObject,
@@ -26,21 +26,22 @@ class SaveHashDialog extends StatelessWidget {
       snapshot: snapshot,
       hashObject: hashObject,
       initialText: snapshot.name,
-      title: 'save_snapshot_title'.tr(),
-      actionText: 'Save'.tr(),
+      title: 'rename_snapshot_title'.tr(),
+      actionText: 'rename_action'.tr(),
       action: (value) async {
         final newNamedModel = snapshot.copyWith(name: value);
 
         BlocProvider.of<HashesListBloc>(context).add(
-          SaveSnapshot(
-            hash: newNamedModel,
+          ReplaceSnapshot(
+            oldSnapshot: snapshot,
+            newSnapshot: newNamedModel,
             object: hashObject,
           ),
         );
 
         final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
 
-        outerContext.router.popUntilRouteWithName(RouteNames.homePage);
+        outerContext.router.popUntilRouteWithName(RouteNames.scanPage);
 
         outerContext.router.push(
           PreviewWrapperRoute(

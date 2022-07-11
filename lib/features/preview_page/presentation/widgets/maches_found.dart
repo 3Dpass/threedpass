@@ -4,7 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/error_page.dart';
 
-import 'package:threedpass/features/result_page/presentation/bloc/preview_page_cubit.dart';
+import 'package:threedpass/features/preview_page/presentation/bloc/preview_page_cubit.dart';
 import 'package:threedpass/router/router.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';

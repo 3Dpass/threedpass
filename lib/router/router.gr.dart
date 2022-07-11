@@ -21,6 +21,42 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const HomePage());
     },
+    ExplorerRoute.name: (routeData) {
+      final args = routeData.argsAs<ExplorerRouteArgs>();
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: ExplorerPage(key: args.key, initialUrl: args.initialUrl));
+    },
+    ErrorRoute.name: (routeData) {
+      final args = routeData.argsAs<ErrorRouteArgs>();
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: ErrorPage(key: args.key, error: args.error));
+    },
+    ScanWrapperRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const ScanPageWrapper());
+    },
+    WalletRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const WalletPage());
+    },
+    SettingsRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const SettingsPage());
+    },
+    CalcHashLoadingDialogRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: const CalcHashLoadingWidget(),
+          customRouteBuilder: dialogBuilder,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    ScanRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const ScanPage());
+    },
     PreviewWrapperRoute.name: (routeData) {
       final args = routeData.argsAs<PreviewWrapperRouteArgs>();
       return MaterialPageX<dynamic>(
@@ -30,24 +66,6 @@ class _$AppRouter extends RootStackRouter {
               hashObject: args.hashObject,
               snapshot: args.snapshot,
               createNewAnyway: args.createNewAnyway));
-    },
-    SettingsRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-          routeData: routeData, child: const SettingsPage());
-    },
-    ExplorerRoute.name: (routeData) {
-      final args = routeData.argsAs<ExplorerRouteArgs>();
-      return MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: ExplorerPage(key: args.key, initialUrl: args.initialUrl));
-    },
-    CalcHashLoadingDialogRoute.name: (routeData) {
-      return CustomPage<dynamic>(
-          routeData: routeData,
-          child: const CalcHashLoadingWidget(),
-          customRouteBuilder: dialogBuilder,
-          opaque: true,
-          barrierDismissible: false);
     },
     PreviewRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -111,39 +129,146 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(HomeRoute.name, path: '/'),
-        RouteConfig(PreviewWrapperRoute.name,
-            path: '/preview-page-wrapper',
-            children: [
-              RouteConfig(PreviewRoute.name,
-                  path: '', parent: PreviewWrapperRoute.name),
-              RouteConfig(CompareWrapperRoute.name,
-                  path: 'compare-page-wrapper',
-                  parent: PreviewWrapperRoute.name),
-              RouteConfig(SaveTopHashesDialogRoute.name,
-                  path: 'save-top-hashes-dialog',
-                  parent: PreviewWrapperRoute.name),
-              RouteConfig(SaveObjectDialogRoute.name,
-                  path: 'save-object-dialog', parent: PreviewWrapperRoute.name),
-              RouteConfig(SaveHashDialogRoute.name,
-                  path: 'save-hash-dialog', parent: PreviewWrapperRoute.name),
-              RouteConfig(RenameSnapshotDialogRoute.name,
-                  path: 'rename-snapshot-dialog',
-                  parent: PreviewWrapperRoute.name)
-            ]),
-        RouteConfig(SettingsRoute.name, path: '/settings-page'),
+        RouteConfig(HomeRoute.name, path: '/', children: [
+          RouteConfig(ScanWrapperRoute.name,
+              path: 'scan-page-wrapper',
+              parent: HomeRoute.name,
+              children: [
+                RouteConfig(ScanRoute.name,
+                    path: '', parent: ScanWrapperRoute.name),
+                RouteConfig(PreviewWrapperRoute.name,
+                    path: 'preview-page-wrapper',
+                    parent: ScanWrapperRoute.name,
+                    children: [
+                      RouteConfig(PreviewRoute.name,
+                          path: '', parent: PreviewWrapperRoute.name),
+                      RouteConfig(CompareWrapperRoute.name,
+                          path: 'compare-page-wrapper',
+                          parent: PreviewWrapperRoute.name),
+                      RouteConfig(SaveTopHashesDialogRoute.name,
+                          path: 'save-top-hashes-dialog',
+                          parent: PreviewWrapperRoute.name),
+                      RouteConfig(SaveObjectDialogRoute.name,
+                          path: 'save-object-dialog',
+                          parent: PreviewWrapperRoute.name),
+                      RouteConfig(SaveHashDialogRoute.name,
+                          path: 'save-hash-dialog',
+                          parent: PreviewWrapperRoute.name),
+                      RouteConfig(RenameSnapshotDialogRoute.name,
+                          path: 'rename-snapshot-dialog',
+                          parent: PreviewWrapperRoute.name)
+                    ])
+              ]),
+          RouteConfig(WalletRoute.name,
+              path: 'wallet-page', parent: HomeRoute.name),
+          RouteConfig(SettingsRoute.name,
+              path: 'settings-page', parent: HomeRoute.name),
+          RouteConfig(CalcHashLoadingDialogRoute.name,
+              path: 'calc-hash-loading-widget', parent: HomeRoute.name)
+        ]),
         RouteConfig(ExplorerRoute.name, path: '/explorer-page'),
-        RouteConfig(CalcHashLoadingDialogRoute.name,
-            path: '/calc-hash-loading-widget')
+        RouteConfig(ErrorRoute.name, path: '/error-page')
       ];
 }
 
 /// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute() : super(HomeRoute.name, path: '/');
+  const HomeRoute({List<PageRouteInfo>? children})
+      : super(HomeRoute.name, path: '/', initialChildren: children);
 
   static const String name = 'HomeRoute';
+}
+
+/// generated route for
+/// [ExplorerPage]
+class ExplorerRoute extends PageRouteInfo<ExplorerRouteArgs> {
+  ExplorerRoute({Key? key, required String initialUrl})
+      : super(ExplorerRoute.name,
+            path: '/explorer-page',
+            args: ExplorerRouteArgs(key: key, initialUrl: initialUrl));
+
+  static const String name = 'ExplorerRoute';
+}
+
+class ExplorerRouteArgs {
+  const ExplorerRouteArgs({this.key, required this.initialUrl});
+
+  final Key? key;
+
+  final String initialUrl;
+
+  @override
+  String toString() {
+    return 'ExplorerRouteArgs{key: $key, initialUrl: $initialUrl}';
+  }
+}
+
+/// generated route for
+/// [ErrorPage]
+class ErrorRoute extends PageRouteInfo<ErrorRouteArgs> {
+  ErrorRoute({Key? key, required Object error})
+      : super(ErrorRoute.name,
+            path: '/error-page', args: ErrorRouteArgs(key: key, error: error));
+
+  static const String name = 'ErrorRoute';
+}
+
+class ErrorRouteArgs {
+  const ErrorRouteArgs({this.key, required this.error});
+
+  final Key? key;
+
+  final Object error;
+
+  @override
+  String toString() {
+    return 'ErrorRouteArgs{key: $key, error: $error}';
+  }
+}
+
+/// generated route for
+/// [ScanPageWrapper]
+class ScanWrapperRoute extends PageRouteInfo<void> {
+  const ScanWrapperRoute({List<PageRouteInfo>? children})
+      : super(ScanWrapperRoute.name,
+            path: 'scan-page-wrapper', initialChildren: children);
+
+  static const String name = 'ScanWrapperRoute';
+}
+
+/// generated route for
+/// [WalletPage]
+class WalletRoute extends PageRouteInfo<void> {
+  const WalletRoute() : super(WalletRoute.name, path: 'wallet-page');
+
+  static const String name = 'WalletRoute';
+}
+
+/// generated route for
+/// [SettingsPage]
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute() : super(SettingsRoute.name, path: 'settings-page');
+
+  static const String name = 'SettingsRoute';
+}
+
+/// generated route for
+/// [CalcHashLoadingWidget]
+class CalcHashLoadingDialogRoute extends PageRouteInfo<void> {
+  const CalcHashLoadingDialogRoute()
+      : super(CalcHashLoadingDialogRoute.name,
+            path: 'calc-hash-loading-widget');
+
+  static const String name = 'CalcHashLoadingDialogRoute';
+}
+
+/// generated route for
+/// [ScanPage]
+class ScanRoute extends PageRouteInfo<void> {
+  const ScanRoute() : super(ScanRoute.name, path: '');
+
+  static const String name = 'ScanRoute';
 }
 
 /// generated route for
@@ -156,7 +281,7 @@ class PreviewWrapperRoute extends PageRouteInfo<PreviewWrapperRouteArgs> {
       bool createNewAnyway = false,
       List<PageRouteInfo>? children})
       : super(PreviewWrapperRoute.name,
-            path: '/preview-page-wrapper',
+            path: 'preview-page-wrapper',
             args: PreviewWrapperRouteArgs(
                 key: key,
                 hashObject: hashObject,
@@ -186,48 +311,6 @@ class PreviewWrapperRouteArgs {
   String toString() {
     return 'PreviewWrapperRouteArgs{key: $key, hashObject: $hashObject, snapshot: $snapshot, createNewAnyway: $createNewAnyway}';
   }
-}
-
-/// generated route for
-/// [SettingsPage]
-class SettingsRoute extends PageRouteInfo<void> {
-  const SettingsRoute() : super(SettingsRoute.name, path: '/settings-page');
-
-  static const String name = 'SettingsRoute';
-}
-
-/// generated route for
-/// [ExplorerPage]
-class ExplorerRoute extends PageRouteInfo<ExplorerRouteArgs> {
-  ExplorerRoute({Key? key, required String initialUrl})
-      : super(ExplorerRoute.name,
-            path: '/explorer-page',
-            args: ExplorerRouteArgs(key: key, initialUrl: initialUrl));
-
-  static const String name = 'ExplorerRoute';
-}
-
-class ExplorerRouteArgs {
-  const ExplorerRouteArgs({this.key, required this.initialUrl});
-
-  final Key? key;
-
-  final String initialUrl;
-
-  @override
-  String toString() {
-    return 'ExplorerRouteArgs{key: $key, initialUrl: $initialUrl}';
-  }
-}
-
-/// generated route for
-/// [CalcHashLoadingWidget]
-class CalcHashLoadingDialogRoute extends PageRouteInfo<void> {
-  const CalcHashLoadingDialogRoute()
-      : super(CalcHashLoadingDialogRoute.name,
-            path: '/calc-hash-loading-widget');
-
-  static const String name = 'CalcHashLoadingDialogRoute';
 }
 
 /// generated route for
