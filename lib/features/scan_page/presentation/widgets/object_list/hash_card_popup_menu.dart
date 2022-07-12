@@ -44,7 +44,7 @@ class HashCardPopUpMenuButton extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
                 child: Icon(Icons.share, color: Colors.grey),
               ),
-              Text('Share'.tr())
+              Text('Share'.tr()),
             ],
           ),
         ),
@@ -56,7 +56,7 @@ class HashCardPopUpMenuButton extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
                 child: Icon(Icons.delete, color: Colors.grey),
               ),
-              Text('Delete'.tr())
+              Text('Delete'.tr()),
             ],
           ),
         ),

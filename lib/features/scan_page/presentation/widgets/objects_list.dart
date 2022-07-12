@@ -13,40 +13,41 @@ class ObjectsList extends StatelessWidget {
       builder: (context, state) {
         if (state is HashesListLoaded) {
           return ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: state.objects.length,
-              itemBuilder: (context, objIndex) {
-                final currentObject = state.objects[objIndex];
+            physics: const BouncingScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: state.objects.length,
+            itemBuilder: (context, objIndex) {
+              final currentObject = state.objects[objIndex];
 
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Padding(
-                      child: Text(
-                        currentObject.name,
-                        style: AppTextStyles.subtitle,
-                      ),
-                      padding: const EdgeInsets.only(
-                        top: 16,
-                        bottom: 8,
-                        left: 16,
-                        right: 16,
-                      ),
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    child: Text(
+                      currentObject.name,
+                      style: AppTextStyles.subtitle,
                     ),
-                    ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: currentObject.snapshots.length,
-                      itemBuilder: (context, hashIndex) => HashCard(
-                        snapshot: currentObject.snapshots[hashIndex],
-                        hashObject: currentObject,
-                      ),
+                    padding: const EdgeInsets.only(
+                      top: 16,
+                      bottom: 8,
+                      left: 16,
+                      right: 16,
                     ),
-                  ],
-                );
-              });
+                  ),
+                  ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: currentObject.snapshots.length,
+                    itemBuilder: (context, hashIndex) => HashCard(
+                      snapshot: currentObject.snapshots[hashIndex],
+                      hashObject: currentObject,
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
         }
         return const SizedBox();
       },

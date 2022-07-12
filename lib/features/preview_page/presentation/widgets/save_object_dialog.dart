@@ -34,7 +34,11 @@ class SaveObjectDialog extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    left: 8, right: 8, bottom: 8, top: 16),
+                  left: 8,
+                  right: 8,
+                  bottom: 8,
+                  top: 16,
+                ),
                 child: TextField(
                   decoration: InputDecoration(
                     label: Text('create_object_input_label'.tr()),
@@ -60,9 +64,7 @@ class SaveObjectDialog extends StatelessWidget {
                 children: [
                   TextButton(
                     child: Text('Cancel'.tr()),
-                    onPressed: () {
-                      context.router.pop();
-                    },
+                    onPressed: () => context.router.pop(),
                   ),
                   TextButton(
                     child: Text('Save'.tr()),

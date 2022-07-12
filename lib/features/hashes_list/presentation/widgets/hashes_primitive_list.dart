@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/hashes_list/presentation/widgets/hash_primitive_item.dart';
 
 class HashesPrimitiveList extends StatelessWidget {
   const HashesPrimitiveList({
@@ -17,9 +18,7 @@ class HashesPrimitiveList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List<Widget>.generate(
         len,
-        (int index) {
-          return Text(hashesModel.hashes[index]);
-        },
+        (int index) => HashPrimitiveItem(hash: hashesModel.hashes[index],), 
       ),
     );
   }

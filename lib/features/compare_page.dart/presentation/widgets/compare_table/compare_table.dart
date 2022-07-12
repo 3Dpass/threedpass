@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/common/app_text_styles.dart';
+import 'package:threedpass/features/compare_page.dart/domain/entities/row_data.dart';
+import 'package:threedpass/features/compare_page.dart/presentation/widgets/compare_table/app_table_row.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class CompareTable extends StatelessWidget {
@@ -15,12 +17,12 @@ class CompareTable extends StatelessWidget {
   final Snapshot mainObject;
   final List<String> stableHashes;
 
-  List<_RowData> get rowsData {
-    final res = <_RowData>[];
+  List<RowData> get rowsData {
+    final res = <RowData>[];
     for (var mainHash in mainObject.hashes) {
       if (comparable.hashes.contains(mainHash)) {
         res.add(
-          _RowData(
+          RowData(
             rank1: (mainObject.hashes.indexOf(mainHash) + 1).toString(),
             hash: mainHash,
             rank2: (comparable.hashes.indexOf(mainHash) + 1).toString(),
@@ -34,7 +36,6 @@ class CompareTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final rows = rowsData;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -66,58 +67,12 @@ class CompareTable extends StatelessWidget {
         ),
         ListView.separated(
           shrinkWrap: true,
-          itemBuilder: (context, index) => _TableRow(rowData: rows[index]),
+          itemBuilder: (context, index) =>
+              AppTableRow(rowData: rowsData[index]),
           separatorBuilder: (_, __) => const Divider(color: Colors.grey),
-          itemCount: rows.length,
+          itemCount: rowsData.length,
         ),
       ],
-    );
-  }
-}
-
-class _RowData {
-  final String rank1;
-  final String rank2;
-  final String hash;
-  final bool isStableHash;
-
-  const _RowData({
-    required this.rank1,
-    required this.hash,
-    required this.rank2,
-    required this.isStableHash,
-  });
-}
-
-class _TableRow extends StatelessWidget {
-  final _RowData rowData;
-
-  const _TableRow({required this.rowData});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        children: [
-          Text(rowData.rank1),
-          const SizedBox(
-            width: 48,
-          ),
-          Flexible(
-            child: Text(
-              rowData.hash,
-              style: AppTextStyles.bodyText2.copyWith(
-                fontWeight: rowData.isStableHash ? FontWeight.bold : null,
-              ),
-            ),
-          ),
-          const SizedBox(
-            width: 48,
-          ),
-          Text(rowData.rank2),
-        ],
-      ),
     );
   }
 }

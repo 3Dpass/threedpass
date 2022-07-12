@@ -20,33 +20,46 @@ class PreviewPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   /// Guarantee to create a new snapshot
   final bool createNewAnyway;
 
-  bool snapshotExists() => hashObject?.containsSnapshot(snapshot) ?? false;
+  bool get _snapshotExists => hashObject?.containsSnapshot(snapshot) ?? false;
+
+  PreviewPageCubitState get _previewPageCubitState {
+    if (hashObject != null) {
+      /// Object exists
+      return !_snapshotExists || createNewAnyway
+          ? PreviewNewSnapshot(
+              hashObject: hashObject!,
+              snapshot: snapshot,
+            )
+          : PreviewExistingSnapshot(
+              hashObject: hashObject!,
+              snapshot: snapshot,
+            );
+    } else {
+      /// Object does not exist
+      return PreviewNewObject(
+        snapshot: snapshot,
+      );
+    }
+  }
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return MultiBlocProvider(providers: [
-      // Snapshot data
-      BlocProvider<PreviewPageCubit>(
-        create: (context) => PreviewPageCubit(
-          hashObject != null
-              ? snapshotExists() && !createNewAnyway
-                  ? PreviewExistingSnapshot(
-                      hashObject: hashObject!,
-                      snapshot: snapshot,
-                    )
-                  : PreviewNewSnapshot(
-                      hashObject: hashObject!, snapshot: snapshot)
-              : PreviewNewObject(
-                  snapshot: snapshot,
-                ),
+    return MultiBlocProvider(
+      providers: [
+        // Snapshot data
+        BlocProvider<PreviewPageCubit>(
+          create: (context) => PreviewPageCubit(
+            _previewPageCubitState,
+          ),
         ),
-      ),
-      // Context to return to menu.
-      BlocProvider<OuterContextCubit>(
-        create: (_) => OuterContextCubit(context),
-        lazy: false,
-      ),
-    ], child: this);
+        // Context to return to menu.
+        BlocProvider<OuterContextCubit>(
+          create: (_) => OuterContextCubit(context),
+          lazy: false,
+        ),
+      ],
+      child: this,
+    );
   }
 
   @override

@@ -30,6 +30,7 @@ class ObjectPreview extends StatelessWidget {
       width: MediaQuery.of(context).size.width - 16 * 2,
       height: 150.0,
       child: Cube(
+        // TODO Use Three_dart for this
         onSceneCreated: (Scene scene) {
           // scene.camera.zoom = ;
           scene.camera.zoom = 5;

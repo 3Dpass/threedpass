@@ -61,7 +61,7 @@ class ThreeDApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
-        title: 'appTitle'.tr(),
+        title: '3D pass',
         theme: ThemeData(
           primarySwatch: Colors.green,
           primaryColor: Colors.black,

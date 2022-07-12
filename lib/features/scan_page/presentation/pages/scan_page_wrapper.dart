@@ -10,13 +10,16 @@ class ScanPageWrapper extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return MultiBlocProvider(providers: [
-      // Context to return to menu.
-      BlocProvider<OuterContextCubit>(
-        create: (_) => OuterContextCubit(context),
-        lazy: false,
-      ),
-    ], child: this);
+    return MultiBlocProvider(
+      providers: [
+        // Context to return to menu.
+        BlocProvider<OuterContextCubit>(
+          create: (_) => OuterContextCubit(context),
+          lazy: false,
+        ),
+      ],
+      child: this,
+    );
   }
 
   @override

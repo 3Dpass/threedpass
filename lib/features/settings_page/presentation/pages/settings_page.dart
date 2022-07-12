@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/widgets/common_appbar.dart';
 import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
 import 'package:threedpass/features/settings_page/presentation/cubit/settings_page_cubit.dart';
 
@@ -16,9 +17,8 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text('settings_title'.tr()),
+      appBar: CommonAppbar(
+        title: 'settings_title'.tr(),
       ),
       body: BlocBuilder<SettingsConfigCubit, SettingsConfigState>(
         buildWhen: (previous, current) => false,

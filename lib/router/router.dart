@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/error_page.dart';
-import 'package:threedpass/features/compare_page.dart/presentation/pages/compare_page.dart';
+import 'package:threedpass/features/compare_page.dart/presentation/pages/compare_page_wrapper.dart';
+
 import 'package:threedpass/features/explorer/presentation/pages/explorer_page.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -106,7 +107,10 @@ part 'router.gr.dart';
 class AppRouter extends _$AppRouter {}
 
 Route<T> dialogBuilder<T>(
-    BuildContext context, Widget child, CustomPage<T> page) {
+  BuildContext context,
+  Widget child,
+  CustomPage<T> page,
+) {
   return DialogRoute(
     context: context,
     builder: (context) => child,

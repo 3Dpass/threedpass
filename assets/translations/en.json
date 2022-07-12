@@ -42,6 +42,7 @@
     "top_10_hashes": "Top 10 hashes",
     "get_new_object_appbar": "Get a new one",
     "show_and_share_dialog_button": "Show and share",
+    "delete_snapshot_button": "Remove & clear the cache",
 
     "@rename_snap_dialog":{
     },
@@ -70,5 +71,15 @@
     
     "algorithm_span": "Algorithm",
     "grid_span":"Grid",
-    "n_sections_span": "nSections"
+    "n_sections_span": "nSections",
+
+    "@wallet_base":{
+    },
+    "wallet_header_title": "Wallet",
+
+    "@navigation":{
+    },
+    "bottom_label_scan": "Scan",
+    "bottom_label_wallet": "Wallet",
+    "bottom_label_settings": "Settings"
 }

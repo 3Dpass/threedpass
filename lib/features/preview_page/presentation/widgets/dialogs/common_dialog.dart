@@ -49,9 +49,7 @@ class CommonDialog extends StatelessWidget {
                 children: [
                   TextButton(
                     child: Text('Cancel'.tr()),
-                    onPressed: () {
-                      context.router.pop();
-                    },
+                    onPressed: () => context.router.pop(),
                   ),
                   TextButton(
                     child: Text(actionText),
