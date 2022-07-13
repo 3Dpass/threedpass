@@ -5,5 +5,8 @@ abstract class AppButtonStyles {
     minimumSize: MaterialStateProperty.all(
       const Size.fromHeight(46),
     ),
+    maximumSize: MaterialStateProperty.all(
+      const Size.fromHeight(46),
+    ),
   );
 }

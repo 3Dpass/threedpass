@@ -14,6 +14,7 @@
     "Cancel": "Cancel",
     "Saved": "Saved",
     "Next": "Next",
+    "Coming soon": "Coming soon",
 
     "@home_page":{
     },
@@ -22,9 +23,10 @@
     "snap_card_stamp": "Stamp: ",
     "saved_objects_header": "Saved objects",
 
-    "recognize_your_objects":"recognize your objects",
+    "recognize_your_objects":"Recognize your objects",
     "open_explorer_button_label": "Open web Explorer",
     "get_from_file_button_label": "Get from file",
+    "no_saved_objects_placeholder": "No saved objects avaliable",
 
     "@preview_page":{
     },
@@ -79,6 +81,7 @@
     },
     "wallet_header_title": "Wallet",
     "create_account_button_label": "Create account",
+    "import_account_button_label": "Import account",
 
     "@navigation":{
     },

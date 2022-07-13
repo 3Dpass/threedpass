@@ -13,10 +13,12 @@ class WalletPage extends StatelessWidget {
         title: 'wallet_header_title'.tr(),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
           OpenExplorerCard(),
-          SizedBox(height: 8),
+          // SizedBox(height: 8),
           AccountCard(),
+          SizedBox(),
         ],
       ),
     );

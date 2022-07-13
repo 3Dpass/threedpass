@@ -4,6 +4,7 @@ import 'package:threedpass/core/widgets/error_page.dart';
 import 'package:threedpass/features/accounts/router/create_account_page_route.dart';
 import 'package:threedpass/features/explorer/router/explorer_page_route.dart';
 import 'package:threedpass/features/home_page/router/home_page_route.dart';
+import 'package:threedpass/features/preview_page/router/preview_page_route.dart';
 import 'package:threedpass/features/scan_page/router/calc_hash_loading_widget_route.dart';
 
 // part 'router.gr.dart';
@@ -13,6 +14,8 @@ import 'package:threedpass/features/scan_page/router/calc_hash_loading_widget_ro
   routes: <AutoRoute>[
     // Root route with bottom bar
     homePageAutoRoute,
+    // Preview snapshots
+    previewPageRoute,
     // web explorer page
     explorerPageRoute,
     // Create account way

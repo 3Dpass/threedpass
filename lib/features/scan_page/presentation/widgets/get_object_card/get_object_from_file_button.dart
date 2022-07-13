@@ -3,15 +3,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/settings_page/presentation/cubit/settings_page_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 
-class GetObjectFromFileButton extends StatelessWidget {
+class GetObjectFromFileFloatingButton extends StatelessWidget {
   static const allowedExtentions = ['obj', 'stl'];
 
-  const GetObjectFromFileButton({Key? key}) : super(key: key);
+  const GetObjectFromFileFloatingButton({Key? key}) : super(key: key);
 
   /// Get and validate file
   Future<FilePickerResult?> pickFile() async {
@@ -71,8 +70,8 @@ class GetObjectFromFileButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      style: AppButtonStyles.primaryButton,
+    return FloatingActionButton.extended(
+      // style: AppButtonStyles.primaryButton,
       icon: const Icon(Icons.folder_open),
       label: Text('get_from_file_button_label'.tr()),
       onPressed: () => createHashFromFile(context),
