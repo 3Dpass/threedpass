@@ -30,7 +30,6 @@ dependencies:
   url_launcher: ^6.0.20
   file_picker: ^4.5.1
   qr_flutter: ^4.0.0
-  polkawallet_ui: ^0.4.8
 
   ## Core
   auto_route: ^3.2.4

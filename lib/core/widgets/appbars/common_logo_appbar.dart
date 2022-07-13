@@ -1,12 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/widgets/appbars/common_appbar.dart';
 
-class CommonAppbar extends AppBar {
-  CommonAppbar({Key? key, required String title})
+class CommonLogoAppbar extends CommonAppbar {
+  CommonLogoAppbar({Key? key, required String title})
       : super(
           key: key,
-          backgroundColor: Colors.black,
-          titleSpacing: 16,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,

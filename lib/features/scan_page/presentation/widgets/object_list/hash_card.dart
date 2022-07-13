@@ -6,10 +6,10 @@ import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/object_list/hash_card_popup_menu.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/settings_text.dart';
-import 'package:threedpass/router/router.dart';
+import 'package:threedpass/router/router.gr.dart';
 
-class HashCard extends StatelessWidget {
-  HashCard({
+class SnapshotCard extends StatelessWidget {
+  SnapshotCard({
     Key? key,
     required this.snapshot,
     required this.hashObject,
@@ -23,14 +23,12 @@ class HashCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
-        onTap: () {
-          context.router.push(
-            PreviewWrapperRoute(
-              hashObject: hashObject,
-              snapshot: snapshot,
-            ),
-          );
-        },
+        onTap: () => context.router.push(
+          PreviewWrapperRoute(
+            hashObject: hashObject,
+            snapshot: snapshot,
+          ),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Row(

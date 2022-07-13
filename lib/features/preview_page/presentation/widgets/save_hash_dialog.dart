@@ -8,7 +8,7 @@ import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bl
 import 'package:threedpass/features/preview_page/presentation/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/dialogs/common_dialog.dart';
 import 'package:threedpass/router/route_names.dart';
-import 'package:threedpass/router/router.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 class SaveHashDialog extends StatelessWidget {
   const SaveHashDialog({
@@ -20,6 +20,28 @@ class SaveHashDialog extends StatelessWidget {
   final HashObject hashObject;
   final Snapshot snapshot;
 
+  Future<void> saveSnapshot(String name, BuildContext context) async {
+    final newNamedModel = snapshot.copyWith(name: name);
+
+    BlocProvider.of<HashesListBloc>(context).add(
+      SaveSnapshot(
+        hash: newNamedModel,
+        object: hashObject,
+      ),
+    );
+
+    final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
+
+    outerContext.router.popUntilRouteWithName(RouteNames.scanPage);
+
+    outerContext.router.push(
+      PreviewWrapperRoute(
+        hashObject: hashObject,
+        snapshot: newNamedModel,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return CommonDialog(
@@ -28,27 +50,7 @@ class SaveHashDialog extends StatelessWidget {
       initialText: snapshot.name,
       title: 'save_snapshot_title'.tr(),
       actionText: 'Save'.tr(),
-      action: (value) async {
-        final newNamedModel = snapshot.copyWith(name: value);
-
-        BlocProvider.of<HashesListBloc>(context).add(
-          SaveSnapshot(
-            hash: newNamedModel,
-            object: hashObject,
-          ),
-        );
-
-        final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
-
-        outerContext.router.popUntilRouteWithName(RouteNames.scanPage);
-
-        outerContext.router.push(
-          PreviewWrapperRoute(
-            hashObject: hashObject,
-            snapshot: newNamedModel,
-          ),
-        );
-      },
+      action: (value) => saveSnapshot(value, context),
     );
   }
 }

@@ -16,25 +16,27 @@ class HashCardPopUpMenuButton extends StatelessWidget {
   final Snapshot snapshot;
   final HashObject hashObject;
 
+  void onSelected(int? value, BuildContext context) {
+    switch (value) {
+      case 1:
+        Share.share(snapshot.hashes.join('\n'));
+        break;
+      case 2:
+        BlocProvider.of<HashesListBloc>(context).add(
+          DeleteHash(
+            hash: snapshot,
+            object: hashObject,
+          ),
+        );
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
       icon: const Icon(Icons.more_vert, color: Colors.grey),
-      onSelected: (value) {
-        switch (value) {
-          case 1:
-            Share.share(snapshot.hashes.join("\n"));
-            break;
-          case 2:
-            BlocProvider.of<HashesListBloc>(context).add(
-              DeleteHash(
-                hash: snapshot,
-                object: hashObject,
-              ),
-            );
-            break;
-        }
-      },
+      onSelected: (int? value) => onSelected(value, context),
       itemBuilder: (context) => [
         PopupMenuItem(
           value: 1,

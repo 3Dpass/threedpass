@@ -11,6 +11,7 @@ import 'package:threedpass/features/settings_page/presentation/cubit/settings_pa
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:threedpass/router/router.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 import 'package:threedpass/setup.dart' as di_setup;
 

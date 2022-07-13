@@ -26,11 +26,9 @@ class GetObjectCard extends StatelessWidget {
                   width: 5,
                 ),
                 MarkdownBody(
-                  data: "### [How to use 3DPass](https://3dpass.org/)",
-                  onTapLink: (String text, String? href, String title) {
-                    // log("tapped: text=$text href=$href");
-                    launchUrlString('https://3dpass.org/');
-                  },
+                  data: '### [How to use 3DPass](https://3dpass.org/)',
+                  onTapLink: (String text, String? href, String title) =>
+                      launchUrlString('https://3dpass.org/'),
                 ),
               ],
             ),

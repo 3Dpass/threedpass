@@ -67,14 +67,14 @@ class PreviewPage extends StatelessWidget {
             PreviewSaveButton(
               state: previewPageCubitState,
             ),
+            const SizedBox(height: 4),
             DeleteSnapshotButton(
               snapshot: previewPageCubitState.snapshot,
               hashObject: previewPageCubitState.hashObject,
             ),
             const Padding(padding: EdgeInsets.only(top: 16)),
             MoreInfo(
-              snapshot: previewPageCubitState.snapshot,
-              hashObject: previewPageCubitState.hashObject,
+              state: previewPageCubitState,
             ),
           ],
         ),

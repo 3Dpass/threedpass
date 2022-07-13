@@ -31,6 +31,7 @@ class ObjectPreview extends StatelessWidget {
       height: 150.0,
       child: Cube(
         // TODO Use Three_dart for this
+        // ignore: prefer-extracting-callbacks
         onSceneCreated: (Scene scene) {
           // scene.camera.zoom = ;
           scene.camera.zoom = 5;

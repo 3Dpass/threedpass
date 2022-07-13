@@ -39,7 +39,7 @@ class ObjectsList extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: currentObject.snapshots.length,
-                    itemBuilder: (context, hashIndex) => HashCard(
+                    itemBuilder: (context, hashIndex) => SnapshotCard(
                       snapshot: currentObject.snapshots[hashIndex],
                       hashObject: currentObject,
                     ),

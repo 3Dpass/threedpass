@@ -8,7 +8,7 @@ part 'settings_page_state.dart';
 class SettingsConfigCubit extends Cubit<SettingsConfigState> {
   SettingsConfigCubit({
     required this.settingsRepository,
-  }) : super(SettingsConfigInitial());
+  }) : super(const SettingsConfigInitial());
 
   final SettingsRepository settingsRepository;
 

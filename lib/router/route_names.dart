@@ -14,4 +14,8 @@ class RouteNames {
   static const scanPageWrapper = 'ScanWrapperRoute';
   static const scanPage = 'ScanRoute';
   static const walletPage = 'WalletRoute';
+  static const walletPageWrapper = 'WalletWrapperRoute';
+  static const createAccountWrapper = 'CreateAccountWrapperRoute';
+  static const createAccountInfoPage = 'CreateAccountInfoRoute';
+  static const mnemonicGen = 'MnemonicGenRoute';
 }

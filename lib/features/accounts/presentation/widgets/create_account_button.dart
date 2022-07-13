@@ -4,17 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/router/router.gr.dart';
 
-class OpenExplorerButton extends StatelessWidget {
-  const OpenExplorerButton({Key? key}) : super(key: key);
+class CreateAccountButton extends StatelessWidget {
+  const CreateAccountButton({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       style: AppButtonStyles.primaryButton,
-      icon: const Icon(Icons.explore),
-      label: Text('open_explorer_button_label'.tr()),
+      icon: const Icon(Icons.add),
+      label: Text('create_account_button_label'.tr()),
       onPressed: () => context.router.push(
-        ExplorerRoute(initialUrl: 'https://explorer.3dpass.org/'),
+        const CreateAccountWrapperRoute(),
       ),
     );
   }

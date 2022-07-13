@@ -7,7 +7,7 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/preview_page/presentation/bloc/outer_context_cubit.dart';
 import 'package:threedpass/router/route_names.dart';
-import 'package:threedpass/router/router.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 class SaveObjectDialog extends StatelessWidget {
   SaveObjectDialog({
@@ -16,9 +16,37 @@ class SaveObjectDialog extends StatelessWidget {
   })  : snapshotNameController = TextEditingController(text: snapshot.name),
         super(key: key);
 
-  final TextEditingController snapshotNameController;
   final objectNameController = TextEditingController();
   final Snapshot snapshot;
+  final TextEditingController snapshotNameController;
+
+  Future<void> saveObject(BuildContext context) async {
+    final newNamedModel = snapshot.copyWith(name: snapshotNameController.text);
+
+    final newObject = HashObject.create(
+      name: objectNameController.text,
+      snapshots: [
+        newNamedModel,
+      ],
+    );
+
+    BlocProvider.of<HashesListBloc>(context).add(
+      AddObject(
+        object: newObject,
+      ),
+    );
+
+    final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
+
+    outerContext.router.popUntilRouteWithName(RouteNames.scanPage);
+
+    outerContext.router.push(
+      PreviewWrapperRoute(
+        hashObject: newObject,
+        snapshot: newNamedModel,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,36 +96,7 @@ class SaveObjectDialog extends StatelessWidget {
                   ),
                   TextButton(
                     child: Text('Save'.tr()),
-                    onPressed: () async {
-                      final newNamedModel =
-                          snapshot.copyWith(name: snapshotNameController.text);
-
-                      final newObject = HashObject.create(
-                        name: objectNameController.text,
-                        snapshots: [
-                          newNamedModel,
-                        ],
-                      );
-
-                      BlocProvider.of<HashesListBloc>(context).add(
-                        AddObject(
-                          object: newObject,
-                        ),
-                      );
-
-                      final outerContext =
-                          BlocProvider.of<OuterContextCubit>(context).state;
-
-                      outerContext.router
-                          .popUntilRouteWithName(RouteNames.scanPage);
-
-                      outerContext.router.push(
-                        PreviewWrapperRoute(
-                          hashObject: newObject,
-                          snapshot: newNamedModel,
-                        ),
-                      );
-                    },
+                    onPressed: () => saveObject(context),
                   ),
                 ],
               ),

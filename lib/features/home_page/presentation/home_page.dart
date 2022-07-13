@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/router/router.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
     return AutoTabsScaffold(
       routes: const [
         ScanWrapperRoute(),
-        WalletRoute(),
+        WalletWrapperRoute(),
         SettingsRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {

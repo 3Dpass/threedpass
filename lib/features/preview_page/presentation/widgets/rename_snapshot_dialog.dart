@@ -8,7 +8,7 @@ import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bl
 import 'package:threedpass/features/preview_page/presentation/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/dialogs/common_dialog.dart';
 import 'package:threedpass/router/route_names.dart';
-import 'package:threedpass/router/router.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 class RenameSnapshotDialog extends StatelessWidget {
   const RenameSnapshotDialog({
@@ -20,6 +20,29 @@ class RenameSnapshotDialog extends StatelessWidget {
   final HashObject hashObject;
   final Snapshot snapshot;
 
+  Future<void> renameSnapshot(String newName, BuildContext context) async {
+    final newNamedModel = snapshot.copyWith(name: newName);
+
+    BlocProvider.of<HashesListBloc>(context).add(
+      ReplaceSnapshot(
+        oldSnapshot: snapshot,
+        newSnapshot: newNamedModel,
+        object: hashObject,
+      ),
+    );
+
+    final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
+
+    outerContext.router.popUntilRouteWithName(RouteNames.scanPage);
+
+    outerContext.router.push(
+      PreviewWrapperRoute(
+        hashObject: hashObject,
+        snapshot: newNamedModel,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return CommonDialog(
@@ -28,28 +51,7 @@ class RenameSnapshotDialog extends StatelessWidget {
       initialText: snapshot.name,
       title: 'rename_snapshot_title'.tr(),
       actionText: 'rename_action'.tr(),
-      action: (value) async {
-        final newNamedModel = snapshot.copyWith(name: value);
-
-        BlocProvider.of<HashesListBloc>(context).add(
-          ReplaceSnapshot(
-            oldSnapshot: snapshot,
-            newSnapshot: newNamedModel,
-            object: hashObject,
-          ),
-        );
-
-        final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
-
-        outerContext.router.popUntilRouteWithName(RouteNames.scanPage);
-
-        outerContext.router.push(
-          PreviewWrapperRoute(
-            hashObject: hashObject,
-            snapshot: newNamedModel,
-          ),
-        );
-      },
+      action: (value) => renameSnapshot(value, context),
     );
   }
 }

@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/settings_page/presentation/cubit/settings_page_cubit.dart';
-import 'package:threedpass/router/router.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 class GetObjectFromFileButton extends StatelessWidget {
   static const allowedExtentions = ['obj', 'stl'];
@@ -51,7 +51,7 @@ class GetObjectFromFileButton extends StatelessWidget {
           );
         },
         right: (pair) {
-          context.router.replace(
+          context.router.push(
             PreviewWrapperRoute(
               hashObject: pair.left,
               snapshot: pair.right,
