@@ -7,14 +7,28 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "38.0.0"
+    version: "34.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.4.1"
+    version: "3.2.0"
+  analyzer_plugin:
+    dependency: transitive
+    description:
+      name: analyzer_plugin
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.0"
+  ansicolor:
+    dependency: transitive
+    description:
+      name: ansicolor
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   archive:
     dependency: transitive
     description:
@@ -36,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.2"
+  auth_header:
+    dependency: transitive
+    description:
+      name: auth_header
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   auto_route:
     dependency: "direct main"
     description:
@@ -148,6 +169,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  cli_util:
+    dependency: transitive
+    description:
+      name: cli_util
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.5"
   clock:
     dependency: transitive
     description:
@@ -204,13 +232,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.1"
+  dart_code_metrics:
+    dependency: "direct dev"
+    description:
+      name: dart_code_metrics
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.16.0"
   dart_style:
     dependency: transitive
     description:
       name: dart_style
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.2"
+    version: "2.2.1"
   easy_localization:
     dependency: "direct main"
     description:
@@ -272,6 +307,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_aes_ecb_pkcs5:
+    dependency: transitive
+    description:
+      name: flutter_aes_ecb_pkcs5
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2"
   flutter_bloc:
     dependency: "direct main"
     description:
@@ -286,6 +328,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1"
+  flutter_inappwebview:
+    dependency: transitive
+    description:
+      name: flutter_inappwebview
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.4.3+7"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -335,14 +384,14 @@ packages:
       name: freezed
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "1.1.1"
   freezed_annotation:
     dependency: transitive
     description:
       name: freezed_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "1.1.0"
   frontend_server_client:
     dependency: transitive
     description:
@@ -350,6 +399,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  get:
+    dependency: transitive
+    description:
+      name: get
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.6.5"
   get_it:
     dependency: "direct main"
     description:
@@ -357,6 +413,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.2.0"
+  get_storage:
+    dependency: transitive
+    description:
+      name: get_storage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
   glob:
     dependency: transitive
     description:
@@ -399,6 +462,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.0"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.13.4"
   http_multi_server:
     dependency: transitive
     description:
@@ -413,6 +483,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  http_server:
+    dependency: transitive
+    description:
+      name: http_server
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   image:
     dependency: transitive
     description:
@@ -434,6 +511,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  jaguar:
+    dependency: transitive
+    description:
+      name: jaguar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.12"
+  jaguar_common:
+    dependency: transitive
+    description:
+      name: jaguar_common
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
+  jaguar_flutter_asset:
+    dependency: transitive
+    description:
+      name: jaguar_flutter_asset
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   js:
     dependency: transitive
     description:
@@ -504,6 +602,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  mobx:
+    dependency: transitive
+    description:
+      name: mobx
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.7"
   nested:
     dependency: transitive
     description:
@@ -574,6 +679,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
+  path_tree:
+    dependency: transitive
+    description:
+      name: path_tree
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   petitparser:
     dependency: transitive
     description:
@@ -595,6 +707,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  polkawallet_sdk:
+    dependency: "direct main"
+    description:
+      name: polkawallet_sdk
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.8"
   pool:
     dependency: transitive
     description:

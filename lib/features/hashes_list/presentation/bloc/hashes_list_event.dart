@@ -34,11 +34,13 @@ class SaveSnapshot extends HashesListEvent {
 
 class ReplaceSnapshot extends HashesListEvent {
   const ReplaceSnapshot({
-    required this.hash,
+    required this.oldSnapshot,
+    required this.newSnapshot,
     required this.object,
   });
 
-  final Snapshot hash;
+  final Snapshot newSnapshot;
+  final Snapshot oldSnapshot;
   final HashObject object;
 }
 

@@ -11,4 +11,11 @@ class RouteNames {
   static const renameSnapshotDialog = 'RenameSnapshotDialogRoute';
   static const exolorerPage = 'ExplorerRoute';
   static const errorPage = 'ErrorRoute';
+  static const scanPageWrapper = 'ScanWrapperRoute';
+  static const scanPage = 'ScanRoute';
+  static const walletPage = 'WalletRoute';
+  static const walletPageWrapper = 'WalletWrapperRoute';
+  static const createAccountWrapper = 'CreateAccountWrapperRoute';
+  static const createAccountInfoPage = 'CreateAccountInfoRoute';
+  static const mnemonicGen = 'MnemonicGenRoute';
 }

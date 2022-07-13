@@ -54,7 +54,9 @@ extension SnapshotFileFactory on Snapshot {
 
   /// Calc hashes
   static Future<String> calcHashes(
-      SettingsConfig settings, String filePath) async {
+    SettingsConfig settings,
+    String filePath,
+  ) async {
     return await Calc.start(
       () {
         log('on calc progress');

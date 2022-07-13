@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 abstract class AppButtonStyles {
   static final primaryButton = ButtonStyle(
     minimumSize: MaterialStateProperty.all(
-      const Size.fromHeight(40),
+      const Size.fromHeight(46),
+    ),
+    maximumSize: MaterialStateProperty.all(
+      const Size.fromHeight(46),
     ),
   );
 }

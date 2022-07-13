@@ -16,6 +16,7 @@ Future<void> setup() async {
   getIt.registerSingleton<HiveSettingsStore>(
     HiveSettingsStore(),
   );
+
   // open boxes
   await getIt<HiveHashStore>().init();
   await getIt<HiveSettingsStore>().init();

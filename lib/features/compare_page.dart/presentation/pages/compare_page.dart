@@ -2,35 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/utils/cut_string.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/widgets/choose_list.dart';
-import 'package:threedpass/features/compare_page.dart/presentation/widgets/compare_table.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
+import 'package:threedpass/features/compare_page.dart/presentation/widgets/compare_table/compare_table.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
-class ComparePageWrapper extends StatelessWidget {
-  const ComparePageWrapper({
-    Key? key,
-    required this.origObj,
-    required this.hashObject,
-  }) : super(key: key);
-
-  final HashObject hashObject;
-  final Snapshot origObj;
-
-  @override
-  Widget build(BuildContext context) {
-    final comparisons = <Snapshot>[...hashObject.snapshots]
-      ..removeWhere((element) => element == origObj);
-    return _ComparePage(
-      origObj: origObj,
-      comparisons: comparisons,
-      stableHashes: hashObject.stableHashes.toList(),
-    );
-  }
-}
-
 // TODO Rewrite stateful to cubit
-class _ComparePage extends StatefulWidget {
-  const _ComparePage({
+class ComparePage extends StatefulWidget {
+  const ComparePage({
     Key? key,
     required this.origObj,
     required this.comparisons,
@@ -45,13 +22,21 @@ class _ComparePage extends StatefulWidget {
   State<StatefulWidget> createState() => _State();
 }
 
-class _State extends State<_ComparePage> {
+class _State extends State<ComparePage> {
   late Snapshot comparable;
 
   @override
   void initState() {
     comparable = widget.comparisons.first;
     super.initState();
+  }
+
+  void onChoose(Snapshot? model) {
+    if (model != null) {
+      setState(() {
+        comparable = model;
+      });
+    }
   }
 
   @override
@@ -87,13 +72,7 @@ class _State extends State<_ComparePage> {
                   child: ChooseList(
                     chosen: comparable,
                     list: widget.comparisons,
-                    onChoose: (model) {
-                      if (model != null) {
-                        setState(() {
-                          comparable = model;
-                        });
-                      }
-                    },
+                    onChoose: (model) => onChoose(model),
                   ),
                 ),
               ],
