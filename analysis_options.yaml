@@ -1,6 +1,9 @@
 # This file configures the analyzer, which statically analyzes Dart code to
 # check for errors, warnings, and lints.
 
+# Get result
+# flutter pub run dart_code_metrics:metrics analyze lib    
+
 include: package:flutter_lints/flutter.yaml
 
 linter:
@@ -24,7 +27,7 @@ analyzer:
 dart_code_metrics:
   metrics:
     cyclomatic-complexity: 10
-    halstead-volume: 400
+    halstead-volume: 500
     lines-of-code: 80
     maintainability-index: 40
     maximum-nesting-level: 5

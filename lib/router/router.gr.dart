@@ -24,8 +24,7 @@ import '../features/explorer/presentation/pages/explorer_page.dart' as _i3;
 import '../features/hashes_list/domain/entities/hash_object.dart' as _i21;
 import '../features/hashes_list/domain/entities/snapshot.dart' as _i22;
 import '../features/home_page/presentation/home_page.dart' as _i1;
-import '../features/preview_page/presentation/bloc/preview_page_cubit.dart'
-    as _i23;
+import '../features/preview_page/bloc/preview_page_cubit.dart' as _i23;
 import '../features/preview_page/presentation/pages/preview_page.dart' as _i11;
 import '../features/preview_page/presentation/pages/preview_page_wrapper.dart'
     as _i2;

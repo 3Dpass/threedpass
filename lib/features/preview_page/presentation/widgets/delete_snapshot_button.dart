@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
+import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 
 class DeleteSnapshotButton extends StatelessWidget {
   const DeleteSnapshotButton({

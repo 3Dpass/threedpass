@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
+import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 
 class ObjectsListHeader extends StatelessWidget {
   const ObjectsListHeader({
