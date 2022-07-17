@@ -1,10 +1,13 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:threedpass/features/accounts/presentation/pages/create_account_credentials.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account_info_page.dart';
-import 'package:threedpass/features/accounts/presentation/pages/create_account_mnemonic_gen.dart';
+import 'package:threedpass/features/accounts/presentation/pages/create_account_mnemonic_backup.dart';
+import 'package:threedpass/features/accounts/presentation/pages/create_account_mnemonic_confirm.dart';
+import 'package:threedpass/features/accounts/presentation/pages/create_account_wrapper.dart';
 import 'package:threedpass/router/route_names.dart';
 
 const AutoRoute createAccountPageRoute = AutoRoute(
-  page: EmptyRouterPage,
+  page: CreateAccountWrapper,
   name: RouteNames.createAccountWrapper,
   children: [
     AutoRoute(
@@ -13,8 +16,16 @@ const AutoRoute createAccountPageRoute = AutoRoute(
       path: '',
     ),
     AutoRoute(
-      page: CreateAccountMnemonicGen,
-      name: RouteNames.mnemonicGen,
+      page: CreateAccountMnemonicBackup,
+      name: RouteNames.mnemonicBackup,
+    ),
+    AutoRoute(
+      page: CreateAccountMnemonicConfirm,
+      name: RouteNames.mnemonicConfirm,
+    ),
+    AutoRoute(
+      page: CreateAccountCredentials,
+      name: RouteNames.createAccountCredentials,
     ),
   ],
 );

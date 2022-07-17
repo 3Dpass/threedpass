@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
@@ -57,6 +58,9 @@ class ThreeDApp extends StatelessWidget {
         ),
         BlocProvider<SettingsConfigCubit>(
           create: (_) => di_setup.getIt<SettingsConfigCubit>(),
+        ),
+        BlocProvider<AppServiceCubit>(
+          create: (_) => di_setup.getIt<AppServiceCubit>(),
         ),
       ],
       child: MaterialApp.router(

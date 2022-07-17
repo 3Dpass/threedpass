@@ -15,6 +15,7 @@
     "Saved": "Saved",
     "Next": "Next",
     "Coming soon": "Coming soon",
+    "Reset": "Reset",
 
     "@home_page":{
     },
@@ -106,5 +107,11 @@
         "Anyone who has your mnemonic has full access to your account.",
     "create_warn4_header": "Do not take screenshots",
     "create_warn4_text":
-        "Do not take screenshots, which may be collected by third-party malware, resulting in asset loss."
+        "Do not take screenshots, which may be collected by third-party malware, resulting in asset loss.",
+
+    "backup_warn1_header": "Backup mnemonic",
+    "backup_warn1_text": "Please write down your mnemonic seed and keep it in a safe place.",
+
+    "backup_confirm_header": "Confirm the mnemonic",
+    "backup_confirm_text": "Please click on the mnemonic in the correct order to confirm that the backup is correct"
 }
