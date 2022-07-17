@@ -9,5 +9,6 @@ class CommonAppbar extends AppBar {
           backgroundColor: Colors.black,
           titleSpacing: 16,
           title: title,
+          automaticallyImplyLeading: false,
         );
 }

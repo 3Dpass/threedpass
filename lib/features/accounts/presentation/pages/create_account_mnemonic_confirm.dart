@@ -40,8 +40,7 @@ class CreateAccountMnemonicConfirm extends StatelessWidget {
         submitButton: BlocBuilder<MnemonicInputCubit, MnemonicInputState>(
           builder: (context, state) => ElevatedButton(
             onPressed: state.words.isEmpty && state.result == mnemonic
-                ? () =>
-                    context.router.push(const CreateAccountCredentialsRoute())
+                ? () => context.router.push(CreateAccountCredentialsRoute())
                 : null,
             child: Text('Next'.tr()),
           ),

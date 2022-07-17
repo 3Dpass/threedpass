@@ -31,15 +31,14 @@ class SaveHashDialog extends StatelessWidget {
     );
 
     final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
+    outerContext.router.popUntilRouteWithName(RouteNames.homePage);
 
-    outerContext.router.popUntilRouteWithName(RouteNames.scanPage);
-
-    outerContext.router.push(
-      PreviewWrapperRoute(
-        hashObject: hashObject,
-        snapshot: newNamedModel,
-      ),
-    );
+    // outerContext.router.push(
+    //   PreviewWrapperRoute(
+    //     hashObject: hashObject,
+    //     snapshot: newNamedModel,
+    //   ),
+    // );
   }
 
   @override

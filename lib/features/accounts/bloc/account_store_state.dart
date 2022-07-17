@@ -19,7 +19,7 @@ class AccountCreate {
 }
 
 @CopyWith()
-abstract class AccountStoreState {
+class AccountStoreState {
   const AccountStoreState({
     required this.accountCreated,
     required this.addressIconsMap,

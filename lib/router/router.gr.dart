@@ -185,8 +185,11 @@ class AppRouter extends _i8.RootStackRouter {
           child: const _i20.CreateAccountMnemonicConfirm());
     },
     CreateAccountCredentialsRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateAccountCredentialsRouteArgs>(
+          orElse: () => const CreateAccountCredentialsRouteArgs());
       return _i8.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i21.CreateAccountCredentials());
+          routeData: routeData,
+          child: _i21.CreateAccountCredentials(key: args.key));
     }
   };
 
@@ -596,10 +599,23 @@ class MnemonicConfirmRoute extends _i8.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i21.CreateAccountCredentials]
-class CreateAccountCredentialsRoute extends _i8.PageRouteInfo<void> {
-  const CreateAccountCredentialsRoute()
+class CreateAccountCredentialsRoute
+    extends _i8.PageRouteInfo<CreateAccountCredentialsRouteArgs> {
+  CreateAccountCredentialsRoute({_i22.Key? key})
       : super(CreateAccountCredentialsRoute.name,
-            path: 'create-account-credentials');
+            path: 'create-account-credentials',
+            args: CreateAccountCredentialsRouteArgs(key: key));
 
   static const String name = 'CreateAccountCredentialsRoute';
+}
+
+class CreateAccountCredentialsRouteArgs {
+  const CreateAccountCredentialsRouteArgs({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return 'CreateAccountCredentialsRouteArgs{key: $key}';
+  }
 }

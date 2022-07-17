@@ -32,7 +32,7 @@
     "@preview_page":{
     },
     "MATCHES_number_plural":{
-        "zero": "No matches found ",
+        "zero": "No matches ",
         "one": "{} match ",
         "two": "{} matches ",
         "few": "{} matches ",
@@ -113,5 +113,12 @@
     "backup_warn1_text": "Please write down your mnemonic seed and keep it in a safe place.",
 
     "backup_confirm_header": "Confirm the mnemonic",
-    "backup_confirm_text": "Please click on the mnemonic in the correct order to confirm that the backup is correct"
+    "backup_confirm_text": "Please click on the mnemonic in the correct order to confirm that the backup is correct",
+
+    "create_credentials_name": "Name",
+    "create_credentials_name_error": "Name can not be empty",
+    "create_credentials_password": "Password",
+    "create_credentials_password_error": "6 to 18 digits and contains numbers and letters",
+    "create_credentials_password2": "Confirm Password",
+    "create_credentials_password2_error": "Inconsistent passwords"
 }

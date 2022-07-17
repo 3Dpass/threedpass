@@ -33,7 +33,7 @@ class RenameSnapshotDialog extends StatelessWidget {
 
     final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
 
-    outerContext.router.popUntilRouteWithName(RouteNames.scanPage);
+    outerContext.router.popUntilRouteWithName(RouteNames.homePage);
 
     outerContext.router.push(
       PreviewWrapperRoute(

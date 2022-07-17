@@ -203,7 +203,7 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
 }
 
 extension $AccountStoreStateCopyWith on AccountStoreState {
-  /// Returns a callable class that can be used as follows: `instanceOfabstract class AccountStoreState.name.copyWith(...)` or like so:`instanceOfabstract class AccountStoreState.name.copyWith.fieldName(...)`.
+  /// Returns a callable class that can be used as follows: `instanceOfclass AccountStoreState.name.copyWith(...)` or like so:`instanceOfclass AccountStoreState.name.copyWith.fieldName(...)`.
   _$AccountStoreStateCWProxy get copyWith =>
       _$AccountStoreStateCWProxyImpl(this);
 }
