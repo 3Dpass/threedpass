@@ -1,6 +1,34 @@
 part of 'snapshot.dart';
 
 extension SnapshotFileFactory on Snapshot {
+  static String snapshotName(String rawObjName) {
+    return '$rawObjName ${basicDateFormat.format(DateTime.now())}';
+  }
+
+  static HashObject? insertSnapIntoHashObject(
+    HashesListLoaded hashListState,
+    Snapshot newSnapshot,
+  ) {
+    final snapName = newSnapshot.name;
+
+    HashObject? hashObject;
+    final index = hashListState.objects
+        .indexWhere((element) => newSnapshot.belongsToObject(element));
+    if (index != -1) {
+      hashObject = hashListState.objects[index];
+    }
+
+    if (hashObject != null) {
+      logger.i(
+        'New snaphost $snapName belongs to the object ${hashObject.name}',
+      );
+    } else {
+      logger.i('Snapshot $snapName is unique');
+    }
+
+    return hashObject;
+  }
+
   static Future<Either<String, Pair<HashObject?, Snapshot>>>
       createSnapshotFromFile({
     required String filePath,
@@ -13,8 +41,7 @@ extension SnapshotFileFactory on Snapshot {
     );
 
     final rawObjName = filePath.split('/').last;
-
-    final snapName = '$rawObjName ${basicDateFormat.format(DateTime.now())}';
+    final snapName = snapshotName(rawObjName);
 
     logger.i('Calculated hashes for the object $snapName');
 
@@ -29,20 +56,7 @@ extension SnapshotFileFactory on Snapshot {
         fileHash: hashFile(filePath),
       );
 
-      HashObject? hashObject;
-      final index = hashListState.objects
-          .indexWhere((element) => newSnapshot.belongsToObject(element));
-      if (index != -1) {
-        hashObject = hashListState.objects[index];
-      }
-
-      if (hashObject != null) {
-        logger.i(
-          'New snaphost $snapName belongs to the object ${hashObject.name}',
-        );
-      } else {
-        logger.i('Snapshot $snapName is unique');
-      }
+      final hashObject = insertSnapIntoHashObject(hashListState, newSnapshot);
 
       return Either.right(
         Pair<HashObject?, Snapshot>(hashObject, newSnapshot),
