@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
+import 'package:threedpass/core/polkawallet/constants.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
 import 'package:threedpass/features/hashes_list/data/repositories/hash_list_store.dart';
@@ -25,9 +26,8 @@ Future<void> setup() async {
   await getIt<HiveSettingsStore>().init();
 
   // Plugins
-  getIt.registerSingleton<D3pLiveNetPlugin>(
-    D3pLiveNetPlugin(),
-  );
+  getIt.registerSingleton<Keyring>(Keyring());
+  getIt.registerSingleton<D3pLiveNetPlugin>(D3pLiveNetPlugin());
 
   // Repos
   getIt.registerSingleton<HashesRepository>(
@@ -55,13 +55,10 @@ Future<void> setup() async {
     )..init(),
   );
 
-  getIt.registerFactory<AppServiceCubit>(
-    () => AppServiceCubit(
+  getIt.registerFactory<AppServiceLoaderCubit>(
+    () => AppServiceLoaderCubit(
       polkawalletPlugin: getIt<D3pLiveNetPlugin>(),
-      keyring: Keyring()
-        ..init(
-          [getIt<D3pLiveNetPlugin>().basic.ss58!],
-        ),
+      keyring: getIt<Keyring>(),
     ),
   );
 }

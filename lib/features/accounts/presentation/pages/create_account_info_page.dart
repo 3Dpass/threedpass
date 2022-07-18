@@ -2,10 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/widgets/appbars/common_string_appbar.dart';
+import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc.dart';
-import 'package:threedpass/features/accounts/presentation/pages/create_account_mnemonic_backup.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account_page_template.dart';
 import 'package:threedpass/router/router.gr.dart';
 
@@ -14,8 +12,10 @@ class CreateAccountInfoPage extends StatelessWidget {
 
   /// There is an opportunity to generage menmonic using [key] seed
   Future<void> onNextPressed(BuildContext context, [String key = '']) async {
-    final service = BlocProvider.of<AppServiceCubit>(context).state;
+    final service = context.read<AppService>();
+    // final service = BlocProvider.of<AppServiceLoaderCubit>(context).state;
 
+    // if (service is AppService) {
     final addressInfo = await service.plugin.sdk.api.keyring.generateMnemonic(
       service.plugin.basic.ss58!,
       key: key,
@@ -38,6 +38,11 @@ class CreateAccountInfoPage extends StatelessWidget {
       );
       context.router.pop();
     }
+    // } else {
+    //   logger.e(
+    //     '[CreateAccountInfoPage] BlocProvider.of<AppServiceCubit>(context).state is NOT AppService. It is: ${service.runtimeType}',
+    //   );
+    // }
   }
 
   @override
@@ -73,10 +78,11 @@ class CreateAccountInfoPage extends StatelessWidget {
           bigBottomPadding: true,
         ),
       ],
-      onSubmitPressed: () => context.router.push(
-        const MnemonicBackupRoute(),
-      ),
-      // () => onNextPressed(context),
+      onSubmitPressed:
+          // () => context.router.push(
+          //   const MnemonicBackupRoute(),
+          // ),
+          () => onNextPressed(context),
     );
   }
 }

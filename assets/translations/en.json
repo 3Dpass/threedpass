@@ -25,7 +25,7 @@
     "saved_objects_header": "Saved objects",
 
     "recognize_your_objects":"Recognize your objects",
-    "open_explorer_button_label": "Open web Explorer",
+    "open_web_wallet_button_label": "Open web wallet",
     "get_from_file_button_label": "Get from file",
     "no_saved_objects_placeholder": "No saved objects avaliable",
 
@@ -83,6 +83,11 @@
     "wallet_header_title": "Wallet",
     "create_account_button_label": "Create account",
     "import_account_button_label": "Import account",
+
+    "init_status_sdk": "Initializating polkadot SDK",
+    "init_status_connecting_to_node": "Connecting to node",
+    "init_status_completed": "Successfully connected",
+    "init_status_connecting_to_node_failed": "Connecting to node failed",
 
     "@navigation":{
     },

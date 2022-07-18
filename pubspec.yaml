@@ -38,6 +38,7 @@ dependencies:
     path: packages/calc
   get_it: ^7.2.0
   flutter_bloc: ^8.0.1
+  provider: ^6.0.3
   hive_flutter: ^1.1.0
   polkawallet_sdk: ^0.4.8
   

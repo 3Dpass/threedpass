@@ -13,7 +13,8 @@
 import 'package:auto_route/auto_route.dart' as _i8;
 import 'package:flutter/material.dart' as _i22;
 
-import '../core/widgets/error_page.dart' as _i5;
+import '../core/polkawallet/app_service.dart' as _i26;
+import '../core/widgets/error_page.dart' as _i4;
 import '../features/accounts/presentation/pages/create_account_credentials.dart'
     as _i21;
 import '../features/accounts/presentation/pages/create_account_info_page.dart'
@@ -23,14 +24,14 @@ import '../features/accounts/presentation/pages/create_account_mnemonic_backup.d
 import '../features/accounts/presentation/pages/create_account_mnemonic_confirm.dart'
     as _i20;
 import '../features/accounts/presentation/pages/create_account_wrapper.dart'
-    as _i4;
+    as _i5;
 import '../features/compare_page.dart/presentation/pages/compare_page_wrapper.dart'
     as _i13;
 import '../features/explorer/presentation/pages/explorer_page.dart' as _i3;
 import '../features/hashes_list/domain/entities/hash_object.dart' as _i24;
 import '../features/hashes_list/domain/entities/snapshot.dart' as _i25;
 import '../features/home_page/presentation/home_page.dart' as _i1;
-import '../features/preview_page/bloc/preview_page_cubit.dart' as _i26;
+import '../features/preview_page/bloc/preview_page_cubit.dart' as _i27;
 import '../features/preview_page/presentation/pages/preview_page.dart' as _i12;
 import '../features/preview_page/presentation/pages/preview_page_wrapper.dart'
     as _i2;
@@ -76,15 +77,18 @@ class AppRouter extends _i8.RootStackRouter {
           routeData: routeData,
           child: _i3.ExplorerPage(key: args.key, initialUrl: args.initialUrl));
     },
-    CreateAccountWrapperRoute.name: (routeData) {
-      return _i8.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i4.CreateAccountWrapper());
-    },
     ErrorRoute.name: (routeData) {
       final args = routeData.argsAs<ErrorRouteArgs>();
       return _i8.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i5.ErrorPage(key: args.key, error: args.error));
+          child: _i4.ErrorPage(key: args.key, error: args.error));
+    },
+    CreateAccountWrapperRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateAccountWrapperRouteArgs>();
+      return _i8.MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: _i5.CreateAccountWrapper(
+              key: args.key, appService: args.appService));
     },
     CalcHashLoadingDialogRoute.name: (routeData) {
       return _i8.CustomPage<dynamic>(
@@ -233,6 +237,7 @@ class AppRouter extends _i8.RootStackRouter {
                   parent: PreviewWrapperRoute.name)
             ]),
         _i8.RouteConfig(ExplorerRoute.name, path: '/explorer-page'),
+        _i8.RouteConfig(ErrorRoute.name, path: '/error-page'),
         _i8.RouteConfig(CreateAccountWrapperRoute.name,
             path: '/create-account-wrapper',
             children: [
@@ -248,7 +253,6 @@ class AppRouter extends _i8.RootStackRouter {
                   path: 'create-account-credentials',
                   parent: CreateAccountWrapperRoute.name)
             ]),
-        _i8.RouteConfig(ErrorRoute.name, path: '/error-page'),
         _i8.RouteConfig(CalcHashLoadingDialogRoute.name,
             path: '/calc-hash-loading-widget')
       ];
@@ -330,17 +334,7 @@ class ExplorerRouteArgs {
 }
 
 /// generated route for
-/// [_i4.CreateAccountWrapper]
-class CreateAccountWrapperRoute extends _i8.PageRouteInfo<void> {
-  const CreateAccountWrapperRoute({List<_i8.PageRouteInfo>? children})
-      : super(CreateAccountWrapperRoute.name,
-            path: '/create-account-wrapper', initialChildren: children);
-
-  static const String name = 'CreateAccountWrapperRoute';
-}
-
-/// generated route for
-/// [_i5.ErrorPage]
+/// [_i4.ErrorPage]
 class ErrorRoute extends _i8.PageRouteInfo<ErrorRouteArgs> {
   ErrorRoute({_i22.Key? key, required Object error})
       : super(ErrorRoute.name,
@@ -359,6 +353,36 @@ class ErrorRouteArgs {
   @override
   String toString() {
     return 'ErrorRouteArgs{key: $key, error: $error}';
+  }
+}
+
+/// generated route for
+/// [_i5.CreateAccountWrapper]
+class CreateAccountWrapperRoute
+    extends _i8.PageRouteInfo<CreateAccountWrapperRouteArgs> {
+  CreateAccountWrapperRoute(
+      {_i22.Key? key,
+      required _i26.AppService appService,
+      List<_i8.PageRouteInfo>? children})
+      : super(CreateAccountWrapperRoute.name,
+            path: '/create-account-wrapper',
+            args:
+                CreateAccountWrapperRouteArgs(key: key, appService: appService),
+            initialChildren: children);
+
+  static const String name = 'CreateAccountWrapperRoute';
+}
+
+class CreateAccountWrapperRouteArgs {
+  const CreateAccountWrapperRouteArgs({this.key, required this.appService});
+
+  final _i22.Key? key;
+
+  final _i26.AppService appService;
+
+  @override
+  String toString() {
+    return 'CreateAccountWrapperRouteArgs{key: $key, appService: $appService}';
   }
 }
 
@@ -460,7 +484,7 @@ class CompareWrapperRouteArgs {
 class SaveTopHashesDialogRoute
     extends _i8.PageRouteInfo<SaveTopHashesDialogRouteArgs> {
   SaveTopHashesDialogRoute(
-      {_i22.Key? key, required _i26.PreviewPageCubitState pageCubitState})
+      {_i22.Key? key, required _i27.PreviewPageCubitState pageCubitState})
       : super(SaveTopHashesDialogRoute.name,
             path: 'save-top-hashes-dialog',
             args: SaveTopHashesDialogRouteArgs(
@@ -474,7 +498,7 @@ class SaveTopHashesDialogRouteArgs {
 
   final _i22.Key? key;
 
-  final _i26.PreviewPageCubitState pageCubitState;
+  final _i27.PreviewPageCubitState pageCubitState;
 
   @override
   String toString() {

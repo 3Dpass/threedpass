@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/appbars/common_logo_appbar.dart';
 import 'package:threedpass/features/wallet_page/presentation/widgets/account_card.dart';
+import 'package:threedpass/features/wallet_page/presentation/widgets/connect_status.dart';
 import 'package:threedpass/features/wallet_page/presentation/widgets/open_explorer_card.dart';
 
 class WalletPage extends StatelessWidget {
@@ -14,11 +15,19 @@ class WalletPage extends StatelessWidget {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          OpenExplorerCard(),
+        children: [
+          Column(
+            children: const [
+              SizedBox(height: 8),
+              ConnectStatus(),
+              SizedBox(height: 16),
+              OpenExplorerCard(),
+            ],
+          ),
+
           // SizedBox(height: 8),
-          AccountCard(),
-          SizedBox(),
+          const AccountCard(),
+          const SizedBox(),
         ],
       ),
     );
