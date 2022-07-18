@@ -1,0 +1,110 @@
+{
+    "appTitle": "3DPass",
+    "@compare_page":{
+    },
+    "Rank": "Zvanje",
+    "Hash": "Hash",
+    "compare_page_appbar": "Uporedi top hashes",
+
+    "@global":{
+    },
+    "Share": "Podijeli",
+    "Delete": "Obriši",
+    "Save": "Sačuvaj",
+    "Cancel": "Otkaži",
+    "Saved": "Spremljeno",
+    "Next": "Dalje",
+    "Coming soon": "Dostupno uskoro",
+
+    "@home_page":{
+    },
+    "calc_hashes_loader_text":"Učitavanje hashes...",
+    "snap_card_name": "Ime: ",
+    "snap_card_stamp": "Pečat: ",
+    "saved_objects_header": "Sačuvani objekti",
+
+    "recognize_your_objects":"Prepoznajte svoje objekte",
+    "open_explorer_button_label": "Otvori web Explorer",
+    "get_from_file_button_label": "Učitaj iz fajla",
+    "no_saved_objects_placeholder": "Nema sačuvanih objekata",
+
+    "@preview_page":{
+    },
+    "MATCHES_number_plural":{
+        "zero": "Nema pronađenih rezultata ",
+        "one": "{} podudaranje ",
+        "two": "{} poklapanje ",
+        "few": "{} poklapanje ",
+        "many": "{} poklapanje ",
+        "other": "{} poklapanje "
+    },
+    "matches_FOUND": "pronađeno",
+    "WHY_not_found": "Zašto?",
+    "save_this_object_button_label":"Sačuvaj ovaj objekat",
+    "save_this_snapshot_button_label":"Sačuvaj ovaj snimak",
+    "rename_this_snapshot_button_label":"Preimenuj ovaj snimak",
+    "top_10_hashes": "Top 10 hashes",
+    "get_new_object_appbar": "Preuzmi novi",
+    "show_and_share_dialog_button": "Pogledaj i podijeli",
+    "delete_snapshot_button": "Obriši i očisti keš memoriju",
+
+    "@rename_snap_dialog":{
+    },
+    "rename_snapshot_title" : "Preimenuj snimak",
+    "rename_action": "Preimenuj",
+
+    "@save_snap_dialog":{
+    },
+    "save_snapshot_title" : "Snimi snimak",
+
+    "@create_object_dialog":{
+    },
+    "create_object_title" : "Kreiraj novi objekat",
+    "create_object_input_label":"Ime objekta",
+    "create_object_input_hint":"Upiši ime objekta",
+    "create_object_snap_input_label":"Ime snimka",
+    "create_object_snap_input_hint":"Upiši ime snimka",
+    "create_action": "Kreiraj",
+    
+    "@settings_page":{
+    },
+    "settings_title": "Podešavanja",
+    "choose_algorithm_label": "Izaberi algoritam",
+    "grid_size_label": "Veličina grid-a",
+    "n_sections_label": "N sekcije",
+    
+    "algorithm_span": "Algoritam",
+    "grid_span":"Grid",
+    "n_sections_span": "nSekcije",
+
+    "@wallet_base":{
+    },
+    "wallet_header_title": "Novčanik",
+    "create_account_button_label": "Kreiraj račun",
+    "import_account_button_label": "Uvezi račun",
+
+    "@navigation":{
+    },
+    "bottom_label_scan": "Skeniraj",
+    "bottom_label_wallet": "Novčanik",
+    "bottom_label_settings": "Podešavanja",
+
+    "@create_account_page":{
+    },
+    "create_account_title": "Kreiraj račun",
+
+    "create_warn1_header": "Napomena",
+    "create_warn1_text":
+        "Nikada ne kopiramo niti pohranjujemo kod odabira riječi(mnemonic) vašeg računa izvan skladišta vašeg telefona. Vaša je odgovornost da ga zaštitite.",
+    "create_warn2_header": "Napravi rezervnu kopiju",
+    "create_warn2_text":
+        "Molimo zapišite svoj mnemonic kod i čuvajte ga na sigurnom mjestu.",
+    "create_warn2_text2":"Mnemonic kod možete koristiti kasnije kako bi povratili vaš novčanik.",
+    "create_warn3_header": "Nikako ne dijeliti svoj mnemonic ključ!",
+    "create_warn3_text": "Čuvajte svoj mnemonic ključ kako ne bi izgubili vaša sredstva i novčanik.",
+    "create_warn3_text2":
+        "Bilo ko da posjeduje Vaš mnemonic ključ imat će potpuni pristup vašem novčaniku i sredstvima.",
+    "create_warn4_header": "Nemojte ni screenshots da pravite!",
+    "create_warn4_text":
+        "Nemojte ni screenshots da pravite, koji bi mogao biti preuzet iz vaših slika od strane malwera što bi takođe rezultovalo gubljenjem sredstava iz Vašeg novčanika."
+}
