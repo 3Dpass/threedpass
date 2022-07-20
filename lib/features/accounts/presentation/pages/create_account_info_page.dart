@@ -23,7 +23,7 @@ class CreateAccountInfoPage extends StatelessWidget {
 
     if (addressInfo.mnemonic != null) {
       BlocProvider.of<AccountStoreBloc>(context).add(
-        SetAccountKey(
+        SetAccountMnemonicKey(
           addressInfo.mnemonic!,
         ),
       );

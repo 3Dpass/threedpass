@@ -4,8 +4,8 @@ abstract class AccountStoreEvent {
   const AccountStoreEvent();
 }
 
-class SetNewAccount extends AccountStoreEvent {
-  const SetNewAccount({
+class SetCredentials extends AccountStoreEvent {
+  const SetCredentials({
     required this.name,
     required this.password,
   });
@@ -14,8 +14,8 @@ class SetNewAccount extends AccountStoreEvent {
   final String password;
 }
 
-class SetAccountKey extends AccountStoreEvent {
-  const SetAccountKey(this.key);
+class SetAccountMnemonicKey extends AccountStoreEvent {
+  const SetAccountMnemonicKey(this.key);
 
   final String key;
 }

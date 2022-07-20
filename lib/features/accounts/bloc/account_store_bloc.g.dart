@@ -7,7 +7,7 @@ part of 'account_store_bloc.dart';
 // **************************************************************************
 
 abstract class _$AccountCreateCWProxy {
-  AccountCreate key(String key);
+  AccountCreate mnemonicKey(String mnemonicKey);
 
   AccountCreate name(String name);
 
@@ -20,7 +20,7 @@ abstract class _$AccountCreateCWProxy {
   /// AccountCreate(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountCreate call({
-    String? key,
+    String? mnemonicKey,
     String? name,
     String? password,
   });
@@ -33,7 +33,8 @@ class _$AccountCreateCWProxyImpl implements _$AccountCreateCWProxy {
   const _$AccountCreateCWProxyImpl(this._value);
 
   @override
-  AccountCreate key(String key) => this(key: key);
+  AccountCreate mnemonicKey(String mnemonicKey) =>
+      this(mnemonicKey: mnemonicKey);
 
   @override
   AccountCreate name(String name) => this(name: name);
@@ -50,15 +51,16 @@ class _$AccountCreateCWProxyImpl implements _$AccountCreateCWProxy {
   /// AccountCreate(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountCreate call({
-    Object? key = const $CopyWithPlaceholder(),
+    Object? mnemonicKey = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? password = const $CopyWithPlaceholder(),
   }) {
     return AccountCreate(
-      key: key == const $CopyWithPlaceholder() || key == null
-          ? _value.key
-          // ignore: cast_nullable_to_non_nullable
-          : key as String,
+      mnemonicKey:
+          mnemonicKey == const $CopyWithPlaceholder() || mnemonicKey == null
+              ? _value.mnemonicKey
+              // ignore: cast_nullable_to_non_nullable
+              : mnemonicKey as String,
       name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable

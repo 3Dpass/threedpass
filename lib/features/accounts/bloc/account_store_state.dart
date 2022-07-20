@@ -4,10 +4,10 @@ part of 'account_store_bloc.dart';
 class AccountCreate {
   final String name;
   final String password;
-  final String key;
+  final String mnemonicKey;
 
   const AccountCreate({
-    required this.key,
+    required this.mnemonicKey,
     required this.name,
     required this.password,
   });
@@ -15,7 +15,7 @@ class AccountCreate {
   const AccountCreate.intial()
       : name = '',
         password = '',
-        key = '';
+        mnemonicKey = '';
 }
 
 @CopyWith()
