@@ -1,7 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/plugin/index.dart';
-import 'package:polkawallet_sdk/polkawallet_sdk.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';

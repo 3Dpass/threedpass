@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
-import 'package:threedpass/core/polkawallet/constants.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
 import 'package:threedpass/features/hashes_list/data/repositories/hash_list_store.dart';

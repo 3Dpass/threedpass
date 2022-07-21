@@ -21,7 +21,6 @@ class AccountCreate {
 @CopyWith()
 class AccountStoreState {
   const AccountStoreState({
-    required this.accountCreated,
     required this.addressIconsMap,
     required this.newAccount,
     required this.pubKeyAddressMap,
@@ -31,7 +30,6 @@ class AccountStoreState {
   });
 
   final AccountCreate newAccount;
-  final bool accountCreated;
 
   final Map<int, Map<String, String>> pubKeyAddressMap;
   final Map<String, String> addressIconsMap;
@@ -51,7 +49,6 @@ class _AccountStoreStateInitial extends AccountStoreState {
           walletConnectPairing: false,
           addressIconsMap: <String, String>{},
           pubKeyAddressMap: <int, Map<String, String>>{},
-          accountCreated: false,
           wcSessions: <WCPairedData>[],
         );
 }

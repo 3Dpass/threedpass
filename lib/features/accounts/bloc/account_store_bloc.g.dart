@@ -79,8 +79,6 @@ extension $AccountCreateCopyWith on AccountCreate {
 }
 
 abstract class _$AccountStoreStateCWProxy {
-  AccountStoreState accountCreated(bool accountCreated);
-
   AccountStoreState addressIconsMap(Map<String, String> addressIconsMap);
 
   AccountStoreState newAccount(AccountCreate newAccount);
@@ -101,7 +99,6 @@ abstract class _$AccountStoreStateCWProxy {
   /// AccountStoreState(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountStoreState call({
-    bool? accountCreated,
     Map<String, String>? addressIconsMap,
     AccountCreate? newAccount,
     Map<int, Map<String, String>>? pubKeyAddressMap,
@@ -116,10 +113,6 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
   final AccountStoreState _value;
 
   const _$AccountStoreStateCWProxyImpl(this._value);
-
-  @override
-  AccountStoreState accountCreated(bool accountCreated) =>
-      this(accountCreated: accountCreated);
 
   @override
   AccountStoreState addressIconsMap(Map<String, String> addressIconsMap) =>
@@ -155,7 +148,6 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
   /// AccountStoreState(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountStoreState call({
-    Object? accountCreated = const $CopyWithPlaceholder(),
     Object? addressIconsMap = const $CopyWithPlaceholder(),
     Object? newAccount = const $CopyWithPlaceholder(),
     Object? pubKeyAddressMap = const $CopyWithPlaceholder(),
@@ -164,11 +156,6 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
     Object? wcSessions = const $CopyWithPlaceholder(),
   }) {
     return AccountStoreState(
-      accountCreated: accountCreated == const $CopyWithPlaceholder() ||
-              accountCreated == null
-          ? _value.accountCreated
-          // ignore: cast_nullable_to_non_nullable
-          : accountCreated as bool,
       addressIconsMap: addressIconsMap == const $CopyWithPlaceholder() ||
               addressIconsMap == null
           ? _value.addressIconsMap
