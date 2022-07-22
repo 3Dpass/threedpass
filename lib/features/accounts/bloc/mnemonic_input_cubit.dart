@@ -16,7 +16,7 @@ class MnemonicInputCubit extends Cubit<MnemonicInputState> {
         super(
           MnemonicInputState(
             result: '',
-            words: mnemonic.split(' '),
+            words: genWords(mnemonic),
           ),
         );
 
@@ -36,8 +36,12 @@ class MnemonicInputCubit extends Cubit<MnemonicInputState> {
     emit(
       MnemonicInputState(
         result: '',
-        words: _initial.split(' '),
+        words: genWords(_initial),
       ),
     );
+  }
+
+  static List<String> genWords(String mnemonic) {
+    return mnemonic.split(' ');
   }
 }

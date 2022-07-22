@@ -1,6 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/common/logger.dart';
+import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/validators.dart';
+import 'package:threedpass/features/accounts/bloc/account_store_bloc.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account_page_template.dart';
 
 class CreateAccountCredentials extends StatelessWidget {
@@ -11,25 +16,52 @@ class CreateAccountCredentials extends StatelessWidget {
   final TextEditingController _pass2Ctrl = TextEditingController();
   final TextEditingController _passCtrl = TextEditingController();
 
-  Future<void> _onSubmit() async {
-    if (_formKey.currentState?.validate() ?? false) {}
-    // if (_formKey.currentState.validate()) {
-    //   widget.service.store.account
-    //       .setNewAccount(_nameCtrl.text, _passCtrl.text);
-    //   final success = await widget.onSubmit();
+  Future<void> _onSubmit(BuildContext context) async {
+    if (_formKey.currentState?.validate() ?? false) {
+      // set aacount data
+      BlocProvider.of<AccountStoreBloc>(context).add(
+        SetCredentials(name: _nameCtrl.text, password: _passCtrl.text),
+      );
+      // TODO This dublicatates event above. Bad pattern :(
+      final account = BlocProvider.of<AccountStoreBloc>(context)
+          .state
+          .newAccount
+          .copyWith(name: _nameCtrl.text, password: _passCtrl.text);
 
-    //   if (success) {
-    //     /// save password with biometrics after import success
-    //     if (_supportBiometric && _enableBiometric) {
-    //       await ImportAccountAction.authBiometric(context, widget.service);
-    //     }
+      final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
+      if (appService is AppService) {
+        // import account
+        final json = await appService.importAccount(
+          account: account,
+        );
+        await appService.addAccount(
+          json: json,
+          account: account,
+          // cryptoType: _advanceOptions.type ?? CryptoType.sr25519,
+          // derivePath: _advanceOptions.path ?? '',
+          // isFromCreatePage: true,
+        );
 
-    //     widget.service.plugin.changeAccount(widget.service.keyring.current);
-    //     widget.service.store.account.resetNewAccount();
-    //     widget.service.store.account.setAccountCreated();
-    //     Navigator.popUntil(context, ModalRoute.withName('/'));
-    //   }
-    // }
+        // apply current account
+        appService.plugin.changeAccount(appService.keyring.current);
+      } else {
+        logger.e(
+          'Critical error: appService is not AppService. Current AppServiceLoaderCubit state is $appService',
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Critical error! Your account data was saved, but authorization did NOT happen. Please try again.',
+            ),
+          ),
+        );
+      }
+
+      // reset create form
+      BlocProvider.of<AccountStoreBloc>(context).add(
+        const ResetAccount(),
+      );
+    }
   }
 
   String? _nameValidator(String? v) {
@@ -70,6 +102,7 @@ class CreateAccountCredentials extends StatelessWidget {
               const SizedBox(height: 16),
               TextFormField(
                 controller: _passCtrl,
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'create_credentials_password'.tr(),
                 ),
@@ -78,6 +111,7 @@ class CreateAccountCredentials extends StatelessWidget {
               const SizedBox(height: 16),
               TextFormField(
                 controller: _pass2Ctrl,
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'create_credentials_password2'.tr(),
                 ),
@@ -87,7 +121,7 @@ class CreateAccountCredentials extends StatelessWidget {
           ),
         ),
       ],
-      onSubmitPressed: _onSubmit,
+      onSubmitPressed: () => _onSubmit(context),
     );
   }
 }

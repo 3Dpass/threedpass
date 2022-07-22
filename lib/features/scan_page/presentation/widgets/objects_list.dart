@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/common/app_text_styles.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/features/scan_page/presentation/widgets/object_list/hash_card.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/snapshots_list.dart';
 
 class ObjectsList extends StatelessWidget {
