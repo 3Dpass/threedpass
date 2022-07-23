@@ -30,7 +30,10 @@ Future<void> main() async {
 
   runApp(
     EasyLocalization(
-      supportedLocales: const [Locale('en')], const [Locale('rs')]
+      supportedLocales: const [
+        Locale('en'),
+        Locale('sr'),
+      ],
       path: 'assets/translations',
       fallbackLocale: const Locale('en'),
       child: ThreeDApp(),
