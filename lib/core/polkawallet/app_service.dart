@@ -50,6 +50,7 @@ class AppService {
     }
   }
 
+  // TODO Move to appServiceLoader cubit && emit new state
   Future<KeyPairData> addAccount({
     required Map json,
     required AccountCreate account,
