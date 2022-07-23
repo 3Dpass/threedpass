@@ -35,6 +35,7 @@ dart_code_metrics:
     number-of-parameters: 8
   metrics-exclude:
     - test/**
+    - lib/setup.dart
   rules:
     # Common rules
     - no-boolean-literal-compare

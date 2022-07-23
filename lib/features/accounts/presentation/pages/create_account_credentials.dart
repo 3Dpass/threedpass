@@ -18,27 +18,27 @@ class CreateAccountCredentials extends StatelessWidget {
 
   Future<void> _onSubmit(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
-      // set aacount data
-      BlocProvider.of<AccountStoreBloc>(context).add(
-        SetCredentials(name: _nameCtrl.text, password: _passCtrl.text),
-      );
-      // TODO The code below dublicatates event above. Bad pattern :(
+      final appServiceLoaderCubit =
+          BlocProvider.of<AppServiceLoaderCubit>(context);
+
+      final accountStoreBloc = BlocProvider.of<AccountStoreBloc>(context);
+      // set acount data
       final account = BlocProvider.of<AccountStoreBloc>(context)
           .state
           .newAccount
           .copyWith(name: _nameCtrl.text, password: _passCtrl.text);
 
       try {
-        final json = await BlocProvider.of<AppServiceLoaderCubit>(context)
-            .importAccount(account: account);
+        final json =
+            await appServiceLoaderCubit.importAccount(account: account);
 
-        final keyPairData =
-            await BlocProvider.of<AppServiceLoaderCubit>(context)
-                .addAccount(json: json, account: account);
+        final keyPairData = await appServiceLoaderCubit.addAccount(
+          json: json,
+          account: account,
+        );
 
         // apply current account
-        BlocProvider.of<AppServiceLoaderCubit>(context)
-            .changeAccount(keyPairData);
+        appServiceLoaderCubit.changeAccount(keyPairData);
       } catch (e) {
         logger.e(
           'ERROR: Could not create account $e',
@@ -53,11 +53,11 @@ class CreateAccountCredentials extends StatelessWidget {
       }
 
       // reset create form
-      BlocProvider.of<AccountStoreBloc>(context).add(
+      accountStoreBloc.add(
         const ResetAccount(),
       );
 
-      BlocProvider.of<AccountStoreBloc>(context).add(
+      accountStoreBloc.add(
         const PopToRoout(),
       );
     }

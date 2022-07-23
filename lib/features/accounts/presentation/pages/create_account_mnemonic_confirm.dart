@@ -7,6 +7,7 @@ import 'package:threedpass/features/accounts/bloc/mnemonic_input_cubit.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account_page_template.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/mnemonic_confirm_input.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/reset_mnemonic_input.dart';
+import 'package:threedpass/features/accounts/presentation/widgets/submit_mnemonic_confirm_button.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class CreateAccountMnemonicConfirm extends StatelessWidget {
@@ -38,14 +39,7 @@ class CreateAccountMnemonicConfirm extends StatelessWidget {
           ),
           const MnemonicConfirmInput(),
         ],
-        submitButton: BlocBuilder<MnemonicInputCubit, MnemonicInputState>(
-          builder: (context, state) => ElevatedButton(
-            onPressed: state.words.isEmpty && state.result == mnemonic
-                ? () => context.router.push(CreateAccountCredentialsRoute())
-                : null,
-            child: Text('Next'.tr()),
-          ),
-        ),
+        submitButton: const SubmitMnemonicConfirmButton(),
       ),
     );
   }
