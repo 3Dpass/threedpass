@@ -48,7 +48,7 @@ import '../features/scan_page/presentation/pages/scan_page_wrapper.dart' as _i7;
 import '../features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart'
     as _i6;
 import '../features/settings_page/presentation/pages/settings_page.dart' as _i9;
-import '../features/wallet_page/presentation/wallet_page.dart' as _i11;
+import '../features/wallet_screen/presentation/wallet_page.dart' as _i11;
 import 'router.dart' as _i23;
 
 class AppRouter extends _i8.RootStackRouter {

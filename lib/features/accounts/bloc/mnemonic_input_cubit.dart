@@ -42,6 +42,6 @@ class MnemonicInputCubit extends Cubit<MnemonicInputState> {
   }
 
   static List<String> genWords(String mnemonic) {
-    return mnemonic.split(' ');
+    return mnemonic.split(' ')..shuffle();
   }
 }

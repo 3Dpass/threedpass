@@ -83,17 +83,18 @@ class AppServiceLoaderCubit extends Cubit<Object> {
     }
   }
 
-  void setPluginAccountToKeyringCurrent() {
+  void changeAccount(KeyPairData keyPairData) {
     if (state is AppService) {
       final appService = state as AppService;
-      appService.plugin.changeAccount(appService.keyring.current);
+      appService.plugin.changeAccount(keyPairData);
+      appService.keyring.setCurrent(keyPairData);
 
       emit(
         AppService(appService.plugin, appService.keyring),
       );
     } else {
       throw Exception(
-        'Exception during setPluginAccountToKeyringCurrent. AppService is not initialized (AppServiceLoaderCubit state runtimeType is ${state.runtimeType})',
+        'Exception during changeAccount. AppService is not initialized (AppServiceLoaderCubit state runtimeType is ${state.runtimeType})',
       );
     }
   }
@@ -103,13 +104,10 @@ class AppServiceLoaderCubit extends Cubit<Object> {
     required Keyring keyring,
   }) async {
     await keyring.init([ss58formatLive]);
-    // final w = WalletSDK();
-    // await w.init(keyring);
     await polkawalletPlugin.sdk.init(keyring);
 
+    // Emit string to translate in UI. It describes the status of the initialization
     emit('init_status_connecting_to_node');
-
-    // final res = await w.api.connectNode(keyring, d3pLiveNodesList);
 
     final res =
         await polkawalletPlugin.sdk.api.connectNode(keyring, d3pLiveNodesList);

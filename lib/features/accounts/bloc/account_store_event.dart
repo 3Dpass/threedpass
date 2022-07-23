@@ -48,24 +48,6 @@ class SetAccountRecoveryInfo extends AccountStoreEvent {
   final RecoveryInfo info;
 }
 
-class SetWCSessions extends AccountStoreEvent {
-  const SetWCSessions(this.session);
-
-  final List<WCPairedData> session;
-}
-
-class CreateWCSession extends AccountStoreEvent {
-  const CreateWCSession(this.session);
-
-  final WCPairedData session;
-}
-
-class DeleteWCSession extends AccountStoreEvent {
-  const DeleteWCSession(this.session);
-
-  final WCPairedData session;
-}
-
 class PopToRoout extends AccountStoreEvent {
   const PopToRoout();
 }

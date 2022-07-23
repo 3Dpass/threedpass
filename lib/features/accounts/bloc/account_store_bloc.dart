@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/api/types/recoveryInfo.dart';
 import 'package:polkawallet_sdk/api/types/walletConnect/pairingData.dart';
+import 'package:threedpass/router/route_names.dart';
 
 part 'account_store_event.dart';
 part 'account_store_state.dart';
@@ -16,7 +17,6 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     on<ResetAccount>(_resetAccount);
     on<SetPubKeyAddress>(_setPubKeyAddress);
     on<SetAddressIcon>(_setAddressIcon);
-    on<SetWCPairing>(_setWCPairing);
     on<PopToRoout>(_popToRoout);
   }
 
@@ -26,7 +26,7 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     PopToRoout event,
     Emitter<AccountStoreState> emit,
   ) async {
-    print(outerContext.router.stack);
+    outerContext.router.popUntilRouteWithName(RouteNames.homePage);
   }
 
   Future<void> _setCredentials(
@@ -100,14 +100,6 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     }
 
     emit(state.copyWith(addressIconsMap: mutableMap));
-  }
-
-  Future<void> _setWCPairing(
-    SetWCPairing event,
-    Emitter<AccountStoreState> emit,
-  ) async {
-    // TODO Useless method?
-    emit(state.copyWith(walletConnectPairing: event.pairing));
   }
 }
 

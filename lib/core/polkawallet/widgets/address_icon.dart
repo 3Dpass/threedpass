@@ -20,7 +20,7 @@ class AddressIcon extends StatelessWidget {
   final double? size;
   final bool tapToCopy;
   final Decoration? decoration;
-  final double defaultSize = 32;
+  static const double defaultSize = 32;
 
   @override
   Widget build(BuildContext context) {

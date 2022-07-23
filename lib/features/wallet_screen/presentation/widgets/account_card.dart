@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/features/wallet_page/presentation/widgets/create_account_button.dart';
-import 'package:threedpass/features/wallet_page/presentation/widgets/import_account_button.dart';
+import 'package:threedpass/features/wallet_screen/presentation/widgets/create_account_button.dart';
+import 'package:threedpass/features/wallet_screen/presentation/widgets/import_account_button.dart';
 
 class AccountCard extends StatelessWidget {
   const AccountCard({Key? key}) : super(key: key);

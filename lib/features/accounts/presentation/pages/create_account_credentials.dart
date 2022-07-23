@@ -32,20 +32,21 @@ class CreateAccountCredentials extends StatelessWidget {
         final json = await BlocProvider.of<AppServiceLoaderCubit>(context)
             .importAccount(account: account);
 
-        BlocProvider.of<AppServiceLoaderCubit>(context)
-            .addAccount(json: json, account: account);
+        final keyPairData =
+            await BlocProvider.of<AppServiceLoaderCubit>(context)
+                .addAccount(json: json, account: account);
 
         // apply current account
         BlocProvider.of<AppServiceLoaderCubit>(context)
-            .setPluginAccountToKeyringCurrent();
+            .changeAccount(keyPairData);
       } catch (e) {
         logger.e(
           'ERROR: Could not create account $e',
         );
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text(
-              'Critical error! Your account data was saved, but authorization did NOT happen. Please try again.',
+              'Some error happened, so account was NOT created.\n$e',
             ),
           ),
         );
