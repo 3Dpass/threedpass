@@ -21,7 +21,7 @@ class CreateAccountWrapper extends StatelessWidget implements AutoRouteWrapper {
         providers: [
           // Context to return to menu.
           BlocProvider<AccountStoreBloc>(
-            create: (_) => AccountStoreBloc(),
+            create: (_) => AccountStoreBloc(context),
             lazy: false,
           ),
         ],

@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/api/types/recoveryInfo.dart';
 import 'package:polkawallet_sdk/api/types/walletConnect/pairingData.dart';
@@ -8,13 +10,23 @@ part 'account_store_state.dart';
 part 'account_store_bloc.g.dart';
 
 class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
-  AccountStoreBloc() : super(_AccountStoreStateInitial()) {
+  AccountStoreBloc(this.outerContext) : super(_AccountStoreStateInitial()) {
     on<SetCredentials>(_setCredentials);
     on<SetAccountMnemonicKey>(_setAccountMnemonicKey);
     on<ResetAccount>(_resetAccount);
     on<SetPubKeyAddress>(_setPubKeyAddress);
     on<SetAddressIcon>(_setAddressIcon);
     on<SetWCPairing>(_setWCPairing);
+    on<PopToRoout>(_popToRoout);
+  }
+
+  final BuildContext outerContext;
+
+  Future<void> _popToRoout(
+    PopToRoout event,
+    Emitter<AccountStoreState> emit,
+  ) async {
+    print(outerContext.router.stack);
   }
 
   Future<void> _setCredentials(

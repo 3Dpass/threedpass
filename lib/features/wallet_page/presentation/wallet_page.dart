@@ -1,15 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/widgets/appbars/common_logo_appbar.dart';
 import 'package:threedpass/features/wallet_page/presentation/assets_page.dart';
 import 'package:threedpass/features/wallet_page/presentation/connecting_page.dart';
 import 'package:threedpass/features/wallet_page/presentation/no_accounts_page.dart';
-import 'package:threedpass/features/wallet_page/presentation/widgets/account_card.dart';
-import 'package:threedpass/features/wallet_page/presentation/widgets/connect_status.dart';
-import 'package:threedpass/features/wallet_page/presentation/widgets/open_explorer_card.dart';
 
 class WalletPage extends StatelessWidget {
   const WalletPage({Key? key}) : super(key: key);
@@ -37,6 +32,8 @@ class WalletPage extends StatelessWidget {
       buildWhen: buildWhen,
       builder: (context, state) {
         if (state is AppService) {
+          // return const NoAccountsPage();
+
           if (state.keyring.allAccounts.isEmpty) {
             return const NoAccountsPage();
           } else {

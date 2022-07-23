@@ -2,7 +2,7 @@ part of 'snapshot.dart';
 
 extension SnapshotFileFactory on Snapshot {
   static String snapshotName(String rawObjName) {
-    return '$rawObjName ${basicDateFormat.format(DateTime.now())}';
+    return '$rawObjName ${Fmt.basicDateFormat.format(DateTime.now())}';
   }
 
   static HashObject? insertSnapIntoHashObject(

@@ -22,31 +22,25 @@ class CreateAccountCredentials extends StatelessWidget {
       BlocProvider.of<AccountStoreBloc>(context).add(
         SetCredentials(name: _nameCtrl.text, password: _passCtrl.text),
       );
-      // TODO This dublicatates event above. Bad pattern :(
+      // TODO The code below dublicatates event above. Bad pattern :(
       final account = BlocProvider.of<AccountStoreBloc>(context)
           .state
           .newAccount
           .copyWith(name: _nameCtrl.text, password: _passCtrl.text);
 
-      final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
-      if (appService is AppService) {
-        // import account
-        final json = await appService.importAccount(
-          account: account,
-        );
-        await appService.addAccount(
-          json: json,
-          account: account,
-          // cryptoType: _advanceOptions.type ?? CryptoType.sr25519,
-          // derivePath: _advanceOptions.path ?? '',
-          // isFromCreatePage: true,
-        );
+      try {
+        final json = await BlocProvider.of<AppServiceLoaderCubit>(context)
+            .importAccount(account: account);
+
+        BlocProvider.of<AppServiceLoaderCubit>(context)
+            .addAccount(json: json, account: account);
 
         // apply current account
-        appService.plugin.changeAccount(appService.keyring.current);
-      } else {
+        BlocProvider.of<AppServiceLoaderCubit>(context)
+            .setPluginAccountToKeyringCurrent();
+      } catch (e) {
         logger.e(
-          'Critical error: appService is not AppService. Current AppServiceLoaderCubit state is $appService',
+          'ERROR: Could not create account $e',
         );
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -60,6 +54,10 @@ class CreateAccountCredentials extends StatelessWidget {
       // reset create form
       BlocProvider.of<AccountStoreBloc>(context).add(
         const ResetAccount(),
+      );
+
+      BlocProvider.of<AccountStoreBloc>(context).add(
+        const PopToRoout(),
       );
     }
   }

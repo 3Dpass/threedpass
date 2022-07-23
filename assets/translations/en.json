@@ -16,6 +16,7 @@
     "Next": "Next",
     "Coming soon": "Coming soon",
     "Reset": "Reset",
+    "Copied": "Copied",
 
     "@home_page":{
     },
@@ -88,6 +89,8 @@
     "init_status_connecting_to_node": "Connecting to node",
     "init_status_completed": "Successfully connected",
     "init_status_connecting_to_node_failed": "Connecting to node failed",
+
+    "address_copied_to_clipboard": "Address copied",
 
     "@navigation":{
     },

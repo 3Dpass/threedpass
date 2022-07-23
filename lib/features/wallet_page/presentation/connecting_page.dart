@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/appbars/common_logo_appbar.dart';
-import 'package:threedpass/features/wallet_page/presentation/widgets/connect_status.dart';
+import 'package:threedpass/features/wallet_page/presentation/widgets/connecting_page/connect_status.dart';
 import 'package:threedpass/features/wallet_page/presentation/widgets/open_explorer_card.dart';
 
 class ConnectingPage extends StatelessWidget {
@@ -13,9 +13,7 @@ class ConnectingPage extends StatelessWidget {
       appBar: CommonLogoAppbar(
         title: 'wallet_header_title'.tr(),
       ),
-      body:
-          // Stack
-          Stack(
+      body: Stack(
         children: const [
           Align(
             alignment: Alignment.topCenter,

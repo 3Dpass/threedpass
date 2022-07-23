@@ -30,6 +30,8 @@ dependencies:
   url_launcher: ^6.0.20
   file_picker: ^4.5.1
   qr_flutter: ^4.0.0
+  flutter_svg: ^1.0.3
+  fluttertoast: ^8.0.9
 
   ## Core
   auto_route: ^3.2.4
@@ -91,6 +93,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/wallet/
     - assets/translations/
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -65,3 +65,7 @@ class DeleteWCSession extends AccountStoreEvent {
 
   final WCPairedData session;
 }
+
+class PopToRoout extends AccountStoreEvent {
+  const PopToRoout();
+}

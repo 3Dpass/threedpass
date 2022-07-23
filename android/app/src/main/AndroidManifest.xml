@@ -16,6 +16,7 @@
           android:value="2" />
           
         <activity
+            android:exported="true"
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
