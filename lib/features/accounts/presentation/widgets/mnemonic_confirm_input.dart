@@ -16,16 +16,16 @@ class MnemonicConfirmInput extends StatelessWidget {
           Wrap(
             spacing: 10,
             runSpacing: 10,
-            children: state.words
-                .map(
-                  (e) => ElevatedButton(
-                    onPressed: () =>
-                        BlocProvider.of<MnemonicInputCubit>(context)
-                            .onWordPressed(e),
-                    child: Text(e),
-                  ),
-                )
-                .toList(),
+            children: List.generate(
+              state.words.length,
+              (index) => ElevatedButton(
+                onPressed: () => BlocProvider.of<MnemonicInputCubit>(context)
+                    .onWordPressed(index),
+                child: Text(
+                  state.words[index],
+                ),
+              ),
+            ),
           ),
         ],
       ),

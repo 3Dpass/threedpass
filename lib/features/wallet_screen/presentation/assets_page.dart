@@ -26,6 +26,9 @@ class AssetsPage extends StatelessWidget {
             current: appService.keyring.current,
             context: context,
           ),
+          body: Center(
+            child: Text('Balance info'),
+          ),
         );
       },
     );

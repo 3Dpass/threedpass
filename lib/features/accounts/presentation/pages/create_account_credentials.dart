@@ -1,12 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:threedpass/common/logger.dart';
-import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/validators.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account_page_template.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 class CreateAccountCredentials extends StatelessWidget {
   CreateAccountCredentials({Key? key}) : super(key: key);
@@ -18,6 +20,8 @@ class CreateAccountCredentials extends StatelessWidget {
 
   Future<void> _onSubmit(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
+      context.router.push(const CreateAccountLoaderRoute());
+
       final appServiceLoaderCubit =
           BlocProvider.of<AppServiceLoaderCubit>(context);
 
@@ -43,12 +47,8 @@ class CreateAccountCredentials extends StatelessWidget {
         logger.e(
           'ERROR: Could not create account $e',
         );
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Some error happened, so account was NOT created.\n$e',
-            ),
-          ),
+        Fluttertoast.showToast(
+          msg: 'error_create_account'.tr() + '\n$e',
         );
       }
 

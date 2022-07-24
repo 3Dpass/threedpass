@@ -22,12 +22,15 @@ class MnemonicInputCubit extends Cubit<MnemonicInputState> {
 
   final String _initial;
 
-  void onWordPressed(String word) {
+  void onWordPressed(int index) {
     final current = state;
     final newList = List<String>.from(current.words);
-    newList.removeWhere((element) => element == word);
 
-    final newResult = current.result.isEmpty ? word : state.result + ' ' + word;
+    newList.removeAt(index);
+
+    final newResult = current.result.isEmpty
+        ? state.words[index]
+        : state.result + ' ' + state.words[index];
 
     emit(MnemonicInputState(result: newResult, words: newList));
   }

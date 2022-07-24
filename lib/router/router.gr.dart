@@ -11,14 +11,16 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i8;
-import 'package:flutter/material.dart' as _i22;
+import 'package:flutter/material.dart' as _i23;
 
-import '../core/polkawallet/app_service.dart' as _i26;
+import '../core/polkawallet/app_service.dart' as _i27;
 import '../core/widgets/error_page.dart' as _i4;
 import '../features/accounts/presentation/pages/create_account_credentials.dart'
     as _i21;
 import '../features/accounts/presentation/pages/create_account_info_page.dart'
     as _i18;
+import '../features/accounts/presentation/pages/create_account_loader.dart'
+    as _i22;
 import '../features/accounts/presentation/pages/create_account_mnemonic_backup.dart'
     as _i19;
 import '../features/accounts/presentation/pages/create_account_mnemonic_confirm.dart'
@@ -28,10 +30,10 @@ import '../features/accounts/presentation/pages/create_account_wrapper.dart'
 import '../features/compare_page.dart/presentation/pages/compare_page_wrapper.dart'
     as _i13;
 import '../features/explorer/presentation/pages/explorer_page.dart' as _i3;
-import '../features/hashes_list/domain/entities/hash_object.dart' as _i24;
-import '../features/hashes_list/domain/entities/snapshot.dart' as _i25;
+import '../features/hashes_list/domain/entities/hash_object.dart' as _i25;
+import '../features/hashes_list/domain/entities/snapshot.dart' as _i26;
 import '../features/home_page/presentation/home_page.dart' as _i1;
-import '../features/preview_page/bloc/preview_page_cubit.dart' as _i27;
+import '../features/preview_page/bloc/preview_page_cubit.dart' as _i28;
 import '../features/preview_page/presentation/pages/preview_page.dart' as _i12;
 import '../features/preview_page/presentation/pages/preview_page_wrapper.dart'
     as _i2;
@@ -49,10 +51,10 @@ import '../features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart
     as _i6;
 import '../features/settings_page/presentation/pages/settings_page.dart' as _i9;
 import '../features/wallet_screen/presentation/wallet_page.dart' as _i11;
-import 'router.dart' as _i23;
+import 'router.dart' as _i24;
 
 class AppRouter extends _i8.RootStackRouter {
-  AppRouter([_i22.GlobalKey<_i22.NavigatorState>? navigatorKey])
+  AppRouter([_i23.GlobalKey<_i23.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
@@ -94,7 +96,7 @@ class AppRouter extends _i8.RootStackRouter {
       return _i8.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i6.CalcHashLoadingWidget(),
-          customRouteBuilder: _i23.dialogBuilder,
+          customRouteBuilder: _i24.dialogBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -137,7 +139,7 @@ class AppRouter extends _i8.RootStackRouter {
           routeData: routeData,
           child: _i14.SaveTopHashesDialog(
               key: args.key, pageCubitState: args.pageCubitState),
-          customRouteBuilder: _i23.dialogBuilder,
+          customRouteBuilder: _i24.dialogBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -146,7 +148,7 @@ class AppRouter extends _i8.RootStackRouter {
       return _i8.CustomPage<dynamic>(
           routeData: routeData,
           child: _i15.SaveObjectDialog(key: args.key, snapshot: args.snapshot),
-          customRouteBuilder: _i23.dialogBuilder,
+          customRouteBuilder: _i24.dialogBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -158,7 +160,7 @@ class AppRouter extends _i8.RootStackRouter {
               key: args.key,
               snapshot: args.snapshot,
               hashObject: args.hashObject),
-          customRouteBuilder: _i23.dialogBuilder,
+          customRouteBuilder: _i24.dialogBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -170,7 +172,7 @@ class AppRouter extends _i8.RootStackRouter {
               key: args.key,
               snapshot: args.snapshot,
               hashObject: args.hashObject),
-          customRouteBuilder: _i23.dialogBuilder,
+          customRouteBuilder: _i24.dialogBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -194,6 +196,10 @@ class AppRouter extends _i8.RootStackRouter {
       return _i8.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i21.CreateAccountCredentials(key: args.key));
+    },
+    CreateAccountLoaderRoute.name: (routeData) {
+      return _i8.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i22.CreateAccountLoader());
     }
   };
 
@@ -251,6 +257,9 @@ class AppRouter extends _i8.RootStackRouter {
                   parent: CreateAccountWrapperRoute.name),
               _i8.RouteConfig(CreateAccountCredentialsRoute.name,
                   path: 'create-account-credentials',
+                  parent: CreateAccountWrapperRoute.name),
+              _i8.RouteConfig(CreateAccountLoaderRoute.name,
+                  path: 'create-account-loader',
                   parent: CreateAccountWrapperRoute.name)
             ]),
         _i8.RouteConfig(CalcHashLoadingDialogRoute.name,
@@ -271,9 +280,9 @@ class HomeRoute extends _i8.PageRouteInfo<void> {
 /// [_i2.PreviewPageWrapper]
 class PreviewWrapperRoute extends _i8.PageRouteInfo<PreviewWrapperRouteArgs> {
   PreviewWrapperRoute(
-      {_i22.Key? key,
-      required _i24.HashObject? hashObject,
-      required _i25.Snapshot snapshot,
+      {_i23.Key? key,
+      required _i25.HashObject? hashObject,
+      required _i26.Snapshot snapshot,
       bool createNewAnyway = false,
       List<_i8.PageRouteInfo>? children})
       : super(PreviewWrapperRoute.name,
@@ -295,11 +304,11 @@ class PreviewWrapperRouteArgs {
       required this.snapshot,
       this.createNewAnyway = false});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
-  final _i24.HashObject? hashObject;
+  final _i25.HashObject? hashObject;
 
-  final _i25.Snapshot snapshot;
+  final _i26.Snapshot snapshot;
 
   final bool createNewAnyway;
 
@@ -312,7 +321,7 @@ class PreviewWrapperRouteArgs {
 /// generated route for
 /// [_i3.ExplorerPage]
 class ExplorerRoute extends _i8.PageRouteInfo<ExplorerRouteArgs> {
-  ExplorerRoute({_i22.Key? key, required String initialUrl})
+  ExplorerRoute({_i23.Key? key, required String initialUrl})
       : super(ExplorerRoute.name,
             path: '/explorer-page',
             args: ExplorerRouteArgs(key: key, initialUrl: initialUrl));
@@ -323,7 +332,7 @@ class ExplorerRoute extends _i8.PageRouteInfo<ExplorerRouteArgs> {
 class ExplorerRouteArgs {
   const ExplorerRouteArgs({this.key, required this.initialUrl});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   final String initialUrl;
 
@@ -336,7 +345,7 @@ class ExplorerRouteArgs {
 /// generated route for
 /// [_i4.ErrorPage]
 class ErrorRoute extends _i8.PageRouteInfo<ErrorRouteArgs> {
-  ErrorRoute({_i22.Key? key, required Object error})
+  ErrorRoute({_i23.Key? key, required Object error})
       : super(ErrorRoute.name,
             path: '/error-page', args: ErrorRouteArgs(key: key, error: error));
 
@@ -346,7 +355,7 @@ class ErrorRoute extends _i8.PageRouteInfo<ErrorRouteArgs> {
 class ErrorRouteArgs {
   const ErrorRouteArgs({this.key, required this.error});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   final Object error;
 
@@ -361,8 +370,8 @@ class ErrorRouteArgs {
 class CreateAccountWrapperRoute
     extends _i8.PageRouteInfo<CreateAccountWrapperRouteArgs> {
   CreateAccountWrapperRoute(
-      {_i22.Key? key,
-      required _i26.AppService appService,
+      {_i23.Key? key,
+      required _i27.AppService appService,
       List<_i8.PageRouteInfo>? children})
       : super(CreateAccountWrapperRoute.name,
             path: '/create-account-wrapper',
@@ -376,9 +385,9 @@ class CreateAccountWrapperRoute
 class CreateAccountWrapperRouteArgs {
   const CreateAccountWrapperRouteArgs({this.key, required this.appService});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
-  final _i26.AppService appService;
+  final _i27.AppService appService;
 
   @override
   String toString() {
@@ -452,9 +461,9 @@ class PreviewRoute extends _i8.PageRouteInfo<void> {
 /// [_i13.ComparePageWrapper]
 class CompareWrapperRoute extends _i8.PageRouteInfo<CompareWrapperRouteArgs> {
   CompareWrapperRoute(
-      {_i22.Key? key,
-      required _i25.Snapshot origObj,
-      required _i24.HashObject hashObject})
+      {_i23.Key? key,
+      required _i26.Snapshot origObj,
+      required _i25.HashObject hashObject})
       : super(CompareWrapperRoute.name,
             path: 'compare-page-wrapper',
             args: CompareWrapperRouteArgs(
@@ -467,11 +476,11 @@ class CompareWrapperRouteArgs {
   const CompareWrapperRouteArgs(
       {this.key, required this.origObj, required this.hashObject});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
-  final _i25.Snapshot origObj;
+  final _i26.Snapshot origObj;
 
-  final _i24.HashObject hashObject;
+  final _i25.HashObject hashObject;
 
   @override
   String toString() {
@@ -484,7 +493,7 @@ class CompareWrapperRouteArgs {
 class SaveTopHashesDialogRoute
     extends _i8.PageRouteInfo<SaveTopHashesDialogRouteArgs> {
   SaveTopHashesDialogRoute(
-      {_i22.Key? key, required _i27.PreviewPageCubitState pageCubitState})
+      {_i23.Key? key, required _i28.PreviewPageCubitState pageCubitState})
       : super(SaveTopHashesDialogRoute.name,
             path: 'save-top-hashes-dialog',
             args: SaveTopHashesDialogRouteArgs(
@@ -496,9 +505,9 @@ class SaveTopHashesDialogRoute
 class SaveTopHashesDialogRouteArgs {
   const SaveTopHashesDialogRouteArgs({this.key, required this.pageCubitState});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
-  final _i27.PreviewPageCubitState pageCubitState;
+  final _i28.PreviewPageCubitState pageCubitState;
 
   @override
   String toString() {
@@ -510,7 +519,7 @@ class SaveTopHashesDialogRouteArgs {
 /// [_i15.SaveObjectDialog]
 class SaveObjectDialogRoute
     extends _i8.PageRouteInfo<SaveObjectDialogRouteArgs> {
-  SaveObjectDialogRoute({_i22.Key? key, required _i25.Snapshot snapshot})
+  SaveObjectDialogRoute({_i23.Key? key, required _i26.Snapshot snapshot})
       : super(SaveObjectDialogRoute.name,
             path: 'save-object-dialog',
             args: SaveObjectDialogRouteArgs(key: key, snapshot: snapshot));
@@ -521,9 +530,9 @@ class SaveObjectDialogRoute
 class SaveObjectDialogRouteArgs {
   const SaveObjectDialogRouteArgs({this.key, required this.snapshot});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
-  final _i25.Snapshot snapshot;
+  final _i26.Snapshot snapshot;
 
   @override
   String toString() {
@@ -535,9 +544,9 @@ class SaveObjectDialogRouteArgs {
 /// [_i16.SaveHashDialog]
 class SaveHashDialogRoute extends _i8.PageRouteInfo<SaveHashDialogRouteArgs> {
   SaveHashDialogRoute(
-      {_i22.Key? key,
-      required _i25.Snapshot snapshot,
-      required _i24.HashObject hashObject})
+      {_i23.Key? key,
+      required _i26.Snapshot snapshot,
+      required _i25.HashObject hashObject})
       : super(SaveHashDialogRoute.name,
             path: 'save-hash-dialog',
             args: SaveHashDialogRouteArgs(
@@ -550,11 +559,11 @@ class SaveHashDialogRouteArgs {
   const SaveHashDialogRouteArgs(
       {this.key, required this.snapshot, required this.hashObject});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
-  final _i25.Snapshot snapshot;
+  final _i26.Snapshot snapshot;
 
-  final _i24.HashObject hashObject;
+  final _i25.HashObject hashObject;
 
   @override
   String toString() {
@@ -567,9 +576,9 @@ class SaveHashDialogRouteArgs {
 class RenameSnapshotDialogRoute
     extends _i8.PageRouteInfo<RenameSnapshotDialogRouteArgs> {
   RenameSnapshotDialogRoute(
-      {_i22.Key? key,
-      required _i25.Snapshot snapshot,
-      required _i24.HashObject hashObject})
+      {_i23.Key? key,
+      required _i26.Snapshot snapshot,
+      required _i25.HashObject hashObject})
       : super(RenameSnapshotDialogRoute.name,
             path: 'rename-snapshot-dialog',
             args: RenameSnapshotDialogRouteArgs(
@@ -582,11 +591,11 @@ class RenameSnapshotDialogRouteArgs {
   const RenameSnapshotDialogRouteArgs(
       {this.key, required this.snapshot, required this.hashObject});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
-  final _i25.Snapshot snapshot;
+  final _i26.Snapshot snapshot;
 
-  final _i24.HashObject hashObject;
+  final _i25.HashObject hashObject;
 
   @override
   String toString() {
@@ -625,7 +634,7 @@ class MnemonicConfirmRoute extends _i8.PageRouteInfo<void> {
 /// [_i21.CreateAccountCredentials]
 class CreateAccountCredentialsRoute
     extends _i8.PageRouteInfo<CreateAccountCredentialsRouteArgs> {
-  CreateAccountCredentialsRoute({_i22.Key? key})
+  CreateAccountCredentialsRoute({_i23.Key? key})
       : super(CreateAccountCredentialsRoute.name,
             path: 'create-account-credentials',
             args: CreateAccountCredentialsRouteArgs(key: key));
@@ -636,10 +645,19 @@ class CreateAccountCredentialsRoute
 class CreateAccountCredentialsRouteArgs {
   const CreateAccountCredentialsRouteArgs({this.key});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   @override
   String toString() {
     return 'CreateAccountCredentialsRouteArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [_i22.CreateAccountLoader]
+class CreateAccountLoaderRoute extends _i8.PageRouteInfo<void> {
+  const CreateAccountLoaderRoute()
+      : super(CreateAccountLoaderRoute.name, path: 'create-account-loader');
+
+  static const String name = 'CreateAccountLoaderRoute';
 }

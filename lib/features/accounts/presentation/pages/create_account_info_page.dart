@@ -13,9 +13,7 @@ class CreateAccountInfoPage extends StatelessWidget {
   /// There is an opportunity to generage menmonic using [key] seed
   Future<void> onNextPressed(BuildContext context, [String key = '']) async {
     final service = context.read<AppService>();
-    // final service = BlocProvider.of<AppServiceLoaderCubit>(context).state;
 
-    // if (service is AppService) {
     final addressInfo = await service.plugin.sdk.api.keyring.generateMnemonic(
       service.plugin.basic.ss58!,
       key: key,
@@ -38,11 +36,6 @@ class CreateAccountInfoPage extends StatelessWidget {
       );
       context.router.pop();
     }
-    // } else {
-    //   logger.e(
-    //     '[CreateAccountInfoPage] BlocProvider.of<AppServiceCubit>(context).state is NOT AppService. It is: ${service.runtimeType}',
-    //   );
-    // }
   }
 
   @override
