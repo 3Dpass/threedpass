@@ -19,7 +19,7 @@ class HashProperties extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 5),
             child: LinearProgressIndicator(
-              value: 0.6, // TODO How is the strength of a hash counted?
+              value: 0.6, // TODO How does the strength of a hash counted?
             ),
           ),
           const Text('Properties:'),

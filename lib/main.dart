@@ -3,11 +3,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
+import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
-import 'package:threedpass/features/settings_page/presentation/cubit/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:threedpass/router/router.gr.dart';
@@ -60,6 +61,10 @@ class ThreeDApp extends StatelessWidget {
         ),
         BlocProvider<SettingsConfigCubit>(
           create: (_) => di_setup.getIt<SettingsConfigCubit>(),
+        ),
+        BlocProvider<AppServiceLoaderCubit>(
+          create: (_) => di_setup.getIt<AppServiceLoaderCubit>(),
+          lazy: false,
         ),
       ],
       child: MaterialApp.router(

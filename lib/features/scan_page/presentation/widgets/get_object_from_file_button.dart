@@ -4,7 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/settings_page/presentation/cubit/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class GetObjectFromFileFloatingButton extends StatelessWidget {

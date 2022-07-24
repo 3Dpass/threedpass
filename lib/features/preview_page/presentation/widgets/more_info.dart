@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:threedpass/features/preview_page/presentation/bloc/preview_page_cubit.dart';
+import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class MoreInfo extends StatelessWidget {

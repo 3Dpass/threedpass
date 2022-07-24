@@ -13,7 +13,7 @@ import 'package:threedpass/core/utils/hash2.dart';
 import 'package:threedpass/core/utils/hash_file.dart';
 import 'package:threedpass/core/utils/pair.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
-import 'package:threedpass/features/hashes_list/presentation/bloc/hashes_list_bloc.dart';
+import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
 
 part 'snapshot.g.dart';

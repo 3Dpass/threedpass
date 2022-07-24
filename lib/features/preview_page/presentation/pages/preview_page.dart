@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/common/app_text_styles.dart';
-import 'package:threedpass/features/preview_page/presentation/bloc/preview_page_cubit.dart';
+import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/appbar/preview_appbar.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/object_preview.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/delete_snapshot_button.dart';
@@ -9,6 +8,7 @@ import 'package:threedpass/features/preview_page/presentation/widgets/hash_prope
 import 'package:threedpass/features/preview_page/presentation/widgets/matches_found/matches_found.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/more_info.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/preview_save_button.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/snapshot_info.dart';
 
 class PreviewPage extends StatelessWidget {
   const PreviewPage({
@@ -33,21 +33,8 @@ class PreviewPage extends StatelessWidget {
           children: <Widget>[
             const SizedBox(height: 16),
             Flexible(
-              child: Text.rich(
-                TextSpan(
-                  text: 'Snapshot: ',
-                  children: [
-                    TextSpan(
-                      text: previewPageCubitState.snapshot.name,
-                      style: AppTextStyles.bodyText1.copyWith(
-                        fontStyle: FontStyle.normal,
-                      ),
-                    ),
-                  ],
-                ),
-                style: AppTextStyles.bodyText2.copyWith(
-                  fontStyle: FontStyle.italic,
-                ),
+              child: SnapshotInfo(
+                state: previewPageCubitState,
               ),
             ),
             const SizedBox(height: 8),

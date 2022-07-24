@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/utils/cut_string.dart';
-import 'package:threedpass/features/compare_page.dart/presentation/widgets/choose_list.dart';
+import 'package:threedpass/features/compare_page.dart/presentation/widgets/compare_row.dart';
 import 'package:threedpass/features/compare_page.dart/presentation/widgets/compare_table/compare_table.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
@@ -50,32 +49,11 @@ class _State extends State<ComparePage> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Flexible(
-                  flex: 2,
-                  child: Text(
-                    widget.origObj.name.cut(16),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                const Flexible(
-                  child: Text(
-                    'VS',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Flexible(
-                  flex: 2,
-                  child: ChooseList(
-                    chosen: comparable,
-                    list: widget.comparisons,
-                    onChoose: (model) => onChoose(model),
-                  ),
-                ),
-              ],
+            child: CompareRow(
+              origSnap: widget.origObj,
+              snapToCompare: comparable,
+              allSnapshots: widget.comparisons,
+              onChoose: onChoose,
             ),
           ),
           const Divider(

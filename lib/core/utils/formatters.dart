@@ -1,3 +1,12 @@
 import 'package:intl/intl.dart';
 
-final DateFormat basicDateFormat = DateFormat('yyyy-MM-dd H:m:s');
+class Fmt {
+  static DateFormat basicDateFormat = DateFormat('yyyy-MM-dd H:m:s');
+
+  static String address(String? addr, {int pad = 6}) {
+    if (addr == null || addr.length == 0) {
+      return 'address';
+    }
+    return addr.substring(0, pad) + '...' + addr.substring(addr.length - pad);
+  }
+}

@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:threedpass/features/hashes_list/presentation/widgets/hashes_primitive_list.dart';
-import 'package:threedpass/features/preview_page/presentation/bloc/preview_page_cubit.dart';
+import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 part 'save_top_hashes_button.dart';

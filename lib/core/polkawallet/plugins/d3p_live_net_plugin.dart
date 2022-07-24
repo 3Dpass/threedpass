@@ -1,3 +1,4 @@
+import 'package:polkawallet_sdk/api/types/networkParams.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_core_plugin.dart';
 
@@ -7,4 +8,7 @@ class D3pLiveNetPlugin extends D3pCorePlugin {
           ss58: ss58formatLive,
           isTestNet: false,
         );
+
+  @override
+  List<NetworkParams> get nodeList => d3pLiveNodesList;
 }

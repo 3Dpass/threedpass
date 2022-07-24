@@ -15,6 +15,8 @@
     "Saved": "Saved",
     "Next": "Next",
     "Coming soon": "Coming soon",
+    "Reset": "Reset",
+    "Copied": "Copied",
 
     "@home_page":{
     },
@@ -24,14 +26,14 @@
     "saved_objects_header": "Saved objects",
 
     "recognize_your_objects":"Recognize your objects",
-    "open_explorer_button_label": "Open web Explorer",
+    "open_web_wallet_button_label": "Open web wallet",
     "get_from_file_button_label": "Get from file",
     "no_saved_objects_placeholder": "No saved objects avaliable",
 
     "@preview_page":{
     },
     "MATCHES_number_plural":{
-        "zero": "No matches found ",
+        "zero": "No matches ",
         "one": "{} match ",
         "two": "{} matches ",
         "few": "{} matches ",
@@ -83,6 +85,14 @@
     "create_account_button_label": "Create account",
     "import_account_button_label": "Import account",
 
+    "init_status_sdk": "Initializating polkadot SDK",
+    "init_status_connecting_to_node": "Connecting to node",
+    "init_status_completed": "Successfully connected",
+    "init_status_connecting_to_node_failed": "Connecting to node failed",
+
+    "address_copied_to_clipboard": "Address copied",
+    "choose_account_assets_page_drawer": "Choose account",
+
     "@navigation":{
     },
     "bottom_label_scan": "Scan",
@@ -95,16 +105,32 @@
 
     "create_warn1_header": "Please note",
     "create_warn1_text":
-        "We never copy or store your account mnemonic outside of your phone storage. It’s your responsibility to keep it safe.",
+        "We never copy or store your account mnemonic outside of your phone storage. It's your responsibility to keep it safe.",
     "create_warn2_header": "Backup mnemonic",
     "create_warn2_text":
         "Please write down your mnemonic seed and keep it in a safe place.",
     "create_warn2_text2":"The mnemonic can be used to restore your wallet.",
-    "create_warn3_header": "Don’t share your mnemonic",
+    "create_warn3_header": "Don't share your mnemonic",
     "create_warn3_text": "Keep your mnemonic carefully to not lose your assets.",
     "create_warn3_text2":
         "Anyone who has your mnemonic has full access to your account.",
     "create_warn4_header": "Do not take screenshots",
     "create_warn4_text":
-        "Do not take screenshots, which may be collected by third-party malware, resulting in asset loss."
+        "Do not take screenshots, which may be collected by third-party malware, resulting in asset loss.",
+
+    "backup_warn1_header": "Backup mnemonic",
+    "backup_warn1_text": "Please write down your mnemonic seed and keep it in a safe place.",
+
+    "backup_confirm_header": "Confirm the mnemonic",
+    "backup_confirm_text": "Please click on the mnemonic in the correct order to confirm that the backup is correct",
+
+    "create_credentials_name": "Name",
+    "create_credentials_name_error": "Name can not be empty",
+    "create_credentials_password": "Password",
+    "create_credentials_password_error": "6 to 18 digits and contains numbers and letters",
+    "create_credentials_password2": "Confirm Password",
+    "create_credentials_password2_error": "Inconsistent passwords",
+
+    "error_create_account": "Error. account was NOT created.",
+    "create_account_loading": "Creating account..."
 }

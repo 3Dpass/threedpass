@@ -18,11 +18,12 @@ import 'package:threedpass/features/scan_page/router/calc_hash_loading_widget_ro
     previewPageRoute,
     // web explorer page
     explorerPageRoute,
-    // Create account way
-    createAccountPageRoute,
 
     // Error page route
     errorPageRoute,
+
+    // Create account way
+    createAccountPageRoute,
 
     // Loader for scan page
     calcHashLoadingWidgetRoute,

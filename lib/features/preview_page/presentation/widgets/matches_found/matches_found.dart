@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/error_page.dart';
-import 'package:threedpass/features/preview_page/presentation/bloc/preview_page_cubit.dart';
+import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/matches_found/matches_found_text.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/matches_found/no_matches_found_text.dart';
 

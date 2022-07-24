@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/features/preview_page/presentation/bloc/outer_context_cubit.dart';
+import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 
 class ScanPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   const ScanPageWrapper({
