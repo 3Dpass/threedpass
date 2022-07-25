@@ -85,8 +85,8 @@
     "create_account_button_label": "Create account",
     "import_account_button_label": "Import account",
 
-    "init_status_sdk": "Initializating polkadot SDK",
-    "init_status_connecting_to_node": "Connecting to node",
+    "init_status_sdk": "Initializing...",
+    "init_status_connecting_to_node": "Connecting to node...",
     "init_status_completed": "Successfully connected",
     "init_status_connecting_to_node_failed": "Connecting to node failed",
 
