@@ -1,26 +1,28 @@
-import 'package:polkawallet_sdk/api/apiAccount.dart';
-import 'package:polkawallet_sdk/api/apiAssets.dart';
-import 'package:polkawallet_sdk/api/apiKeyring.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:polkawallet_sdk/plugin/index.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
-import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:threedpass/features/accounts/bloc/account_store_bloc.dart';
 
+part 'app_service.g.dart';
+
+@CopyWith()
 class AppService {
-  AppService(this.plugin, this.keyring)
-      : _assets = plugin.sdk.api.assets,
-        _account = plugin.sdk.api.account;
+  AppService({
+    required this.plugin,
+    required this.keyring,
+    required this.status,
+  });
 
-  // final List<PolkawalletPlugin> allPlugins;
   final PolkawalletPlugin plugin;
   final Keyring keyring;
-  // final AppStore store;
-
-  final ApiAccount _account;
-  final ApiAssets _assets;
-
-  ApiAccount get account => _account;
-  ApiAssets get assets => _assets;
+  final AppServiceInitStatus status;
 
   // final subScan = SubScanApi();
+}
+
+enum AppServiceInitStatus {
+  init,
+  connecting,
+  connected,
+  // error means failure to connect to node
+  error,
 }

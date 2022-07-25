@@ -4,8 +4,8 @@ import 'package:threedpass/core/widgets/appbars/common_logo_appbar.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/connecting_page/connect_status.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/open_explorer_card.dart';
 
-class ConnectingPage extends StatelessWidget {
-  const ConnectingPage({Key? key}) : super(key: key);
+class AppServiceInitLoaderPage extends StatelessWidget {
+  const AppServiceInitLoaderPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

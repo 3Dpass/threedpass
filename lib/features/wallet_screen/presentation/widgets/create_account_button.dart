@@ -14,12 +14,12 @@ class CreateAccountButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppServiceLoaderCubit, Object>(
+    return BlocBuilder<AppServiceLoaderCubit, AppService>(
       builder: (context, state) => ElevatedButton.icon(
         style: AppButtonStyles.primaryButton,
         icon: const Icon(Icons.add),
         label: Text('create_account_button_label'.tr()),
-        onPressed: state is AppService
+        onPressed: state.status == AppServiceInitStatus.connected
             ? () => context.router.push(
                   CreateAccountWrapperRoute(appService: state),
                 )

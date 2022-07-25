@@ -7,12 +7,23 @@ import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc.dart';
 
-class AppServiceLoaderCubit extends Cubit<Object> {
+///
+/// BE CAREFUL when you write [buildWhen] for this cubit.
+/// AppService's plugin and keyring are always the same instance!
+/// This class does [emit] just to notify listeners to rebuild widgets
+///
+class AppServiceLoaderCubit extends Cubit<AppService> {
   AppServiceLoaderCubit({
     required PolkawalletPlugin polkawalletPlugin,
     required Keyring keyring,
-  }) : super('init_status_sdk') {
-    _init(polkawalletPlugin: polkawalletPlugin, keyring: keyring);
+  }) : super(
+          AppService(
+            plugin: polkawalletPlugin,
+            keyring: keyring,
+            status: AppServiceInitStatus.init,
+          ),
+        ) {
+    _init();
   }
 
   Future<Map> importAccount({
@@ -21,31 +32,23 @@ class AppServiceLoaderCubit extends Cubit<Object> {
     String derivePath = '',
     required AccountCreate account,
   }) async {
-    if (state is AppService) {
-      final appService = state as AppService;
+    if ((account.name.isEmpty || account.password.isEmpty)) {
+      throw Exception('create account failed');
+    }
+    final res = await state.plugin.sdk.api.keyring.importAccount(
+      state.keyring,
+      keyType: keyType,
+      cryptoType: cryptoType,
+      derivePath: derivePath,
+      key: account.mnemonicKey,
+      name: account.name,
+      password: account.password,
+    );
 
-      if ((account.name.isEmpty || account.password.isEmpty)) {
-        throw Exception('create account failed');
-      }
-      final res = await appService.plugin.sdk.api.keyring.importAccount(
-        appService.keyring,
-        keyType: keyType,
-        cryptoType: cryptoType,
-        derivePath: derivePath,
-        key: account.mnemonicKey,
-        name: account.name,
-        password: account.password,
-      );
-
-      if (res != null) {
-        return res;
-      } else {
-        throw Exception('Account was NOT imported');
-      }
+    if (res != null) {
+      return res;
     } else {
-      throw Exception(
-        'AppService is not initialized (AppServiceLoaderCubit state runtimeType is ${state.runtimeType})',
-      );
+      throw Exception('Account was NOT imported');
     }
   }
 
@@ -57,65 +60,43 @@ class AppServiceLoaderCubit extends Cubit<Object> {
     String derivePath = '',
     bool isFromCreatePage = false,
   }) async {
-    if (state is AppService) {
-      final appService = state as AppService;
-
-      if ((account.name.isEmpty || account.password.isEmpty)) {
-        throw Exception('Accont name or password is empty');
-      }
-      final res = await appService.plugin.sdk.api.keyring.addAccount(
-        appService.keyring,
-        keyType: keyType,
-        acc: json,
-        password: account.password,
-      );
-
-      // Refresh state to notify listeners
-      emit(
-        AppService(appService.plugin, appService.keyring),
-      );
-
-      return res;
-    } else {
-      throw Exception(
-        'AppService is not initialized (AppServiceLoaderCubit state runtimeType is ${state.runtimeType})',
-      );
+    if ((account.name.isEmpty || account.password.isEmpty)) {
+      throw Exception('Accont name or password is empty');
     }
+    final res = await state.plugin.sdk.api.keyring.addAccount(
+      state.keyring,
+      keyType: keyType,
+      acc: json,
+      password: account.password,
+    );
+
+    emit(state.copyWith());
+
+    return res;
   }
 
   void changeAccount(KeyPairData keyPairData) {
-    if (state is AppService) {
-      final appService = state as AppService;
-      appService.plugin.changeAccount(keyPairData);
-      appService.keyring.setCurrent(keyPairData);
+    state.plugin.changeAccount(keyPairData);
+    state.keyring.setCurrent(keyPairData);
 
-      emit(
-        AppService(appService.plugin, appService.keyring),
-      );
-    } else {
-      throw Exception(
-        'Exception during changeAccount. AppService is not initialized (AppServiceLoaderCubit state runtimeType is ${state.runtimeType})',
-      );
-    }
+    emit(state.copyWith());
   }
 
-  Future<void> _init({
-    required PolkawalletPlugin polkawalletPlugin,
-    required Keyring keyring,
-  }) async {
-    await keyring.init([ss58formatLive]);
-    await polkawalletPlugin.sdk.init(keyring);
+  Future<void> _init() async {
+    await state.keyring.init([ss58formatLive]);
+    await state.plugin.sdk.init(state.keyring);
 
-    // Emit string to translate in UI. It describes the status of the initialization
-    emit('init_status_connecting_to_node');
+    emit(state.copyWith(status: AppServiceInitStatus.connecting));
 
     final res =
-        await polkawalletPlugin.sdk.api.connectNode(keyring, d3pLiveNodesList);
+        await state.plugin.sdk.api.connectNode(state.keyring, d3pLiveNodesList);
 
-    if (res != null) {
-      emit(AppService(polkawalletPlugin, keyring));
-    } else {
-      emit('init_status_connecting_to_node_failed');
-    }
+    emit(
+      state.copyWith(
+        status: res != null
+            ? AppServiceInitStatus.connected
+            : AppServiceInitStatus.error,
+      ),
+    );
   }
 }
