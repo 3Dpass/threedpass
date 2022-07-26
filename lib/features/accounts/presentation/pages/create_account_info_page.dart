@@ -14,28 +14,12 @@ class CreateAccountInfoPage extends StatelessWidget {
   Future<void> onNextPressed(BuildContext context, [String key = '']) async {
     final service = context.read<AppService>();
 
-    final addressInfo = await service.plugin.sdk.api.keyring.generateMnemonic(
-      service.plugin.basic.ss58!,
-      key: key,
+    BlocProvider.of<AccountStoreBloc>(context).add(
+      GenerateMnemonicKey(service),
     );
-
-    if (addressInfo.mnemonic != null) {
-      BlocProvider.of<AccountStoreBloc>(context).add(
-        SetAccountMnemonicKey(
-          addressInfo.mnemonic!,
-        ),
-      );
-      context.router.push(
-        const MnemonicBackupRoute(),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Mnemonic wasn't generated :("),
-        ),
-      );
-      context.router.pop();
-    }
+    context.router.push(
+      const MnemonicBackupRoute(),
+    );
   }
 
   @override

@@ -4,11 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account_page_template.dart';
+import 'package:threedpass/features/accounts/presentation/widgets/advanced_options/advanced_options_input.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/mnemonic_text_field.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class CreateAccountMnemonicBackup extends StatelessWidget {
   const CreateAccountMnemonicBackup({Key? key}) : super(key: key);
+
+  void onOptionsChanged(BuildContext context) {
+    BlocProvider.of<AccountStoreBloc>(context)
+        .add(GenerateMnemonicKey(service));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +36,10 @@ class CreateAccountMnemonicBackup extends StatelessWidget {
             Text('backup_warn1_text'.tr()),
             const SizedBox(height: 12),
             MnemonicTextField(text: mnemonic),
+            SizedBox(height: 24),
+            AdvancedOptionsInput(
+              onOptionsChanged: () => onOptionsChanged(context),
+            ),
           ],
           onSubmitPressed: () => context.router.push(
             const MnemonicConfirmRoute(),

@@ -14,9 +14,10 @@ class SetCredentials extends AccountStoreEvent {
   final String password;
 }
 
-class SetAccountMnemonicKey extends AccountStoreEvent {
-  const SetAccountMnemonicKey(this.key);
+class GenerateMnemonicKey extends AccountStoreEvent {
+  const GenerateMnemonicKey(this.service, [this.key = '']);
 
+  final AppService service;
   final String key;
 }
 
@@ -50,4 +51,10 @@ class SetAccountRecoveryInfo extends AccountStoreEvent {
 
 class PopToRoout extends AccountStoreEvent {
   const PopToRoout();
+}
+
+class ChangeAdvancedOptions extends AccountStoreEvent {
+  const ChangeAdvancedOptions(this.options);
+
+  final AccountAdvancedOptions options;
 }

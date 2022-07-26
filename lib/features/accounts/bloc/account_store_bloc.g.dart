@@ -79,6 +79,9 @@ extension $AccountCreateCopyWith on AccountCreate {
 }
 
 abstract class _$AccountStoreStateCWProxy {
+  AccountStoreState accountAdvancedOptions(
+      AccountAdvancedOptions accountAdvancedOptions);
+
   AccountStoreState addressIconsMap(Map<String, String> addressIconsMap);
 
   AccountStoreState newAccount(AccountCreate newAccount);
@@ -99,6 +102,7 @@ abstract class _$AccountStoreStateCWProxy {
   /// AccountStoreState(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountStoreState call({
+    AccountAdvancedOptions? accountAdvancedOptions,
     Map<String, String>? addressIconsMap,
     AccountCreate? newAccount,
     Map<int, Map<String, String>>? pubKeyAddressMap,
@@ -113,6 +117,11 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
   final AccountStoreState _value;
 
   const _$AccountStoreStateCWProxyImpl(this._value);
+
+  @override
+  AccountStoreState accountAdvancedOptions(
+          AccountAdvancedOptions accountAdvancedOptions) =>
+      this(accountAdvancedOptions: accountAdvancedOptions);
 
   @override
   AccountStoreState addressIconsMap(Map<String, String> addressIconsMap) =>
@@ -148,6 +157,7 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
   /// AccountStoreState(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountStoreState call({
+    Object? accountAdvancedOptions = const $CopyWithPlaceholder(),
     Object? addressIconsMap = const $CopyWithPlaceholder(),
     Object? newAccount = const $CopyWithPlaceholder(),
     Object? pubKeyAddressMap = const $CopyWithPlaceholder(),
@@ -156,6 +166,12 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
     Object? wcSessions = const $CopyWithPlaceholder(),
   }) {
     return AccountStoreState(
+      accountAdvancedOptions:
+          accountAdvancedOptions == const $CopyWithPlaceholder() ||
+                  accountAdvancedOptions == null
+              ? _value.accountAdvancedOptions
+              // ignore: cast_nullable_to_non_nullable
+              : accountAdvancedOptions as AccountAdvancedOptions,
       addressIconsMap: addressIconsMap == const $CopyWithPlaceholder() ||
               addressIconsMap == null
           ? _value.addressIconsMap

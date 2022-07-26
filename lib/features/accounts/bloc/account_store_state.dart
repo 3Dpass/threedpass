@@ -27,6 +27,7 @@ class AccountStoreState {
     required this.recoveryInfo,
     required this.walletConnectPairing,
     required this.wcSessions,
+    required this.accountAdvancedOptions,
   });
 
   final AccountCreate newAccount;
@@ -39,6 +40,8 @@ class AccountStoreState {
   final bool walletConnectPairing;
 
   final List<WCPairedData> wcSessions;
+
+  final AccountAdvancedOptions accountAdvancedOptions;
 }
 
 class _AccountStoreStateInitial extends AccountStoreState {
@@ -50,5 +53,6 @@ class _AccountStoreStateInitial extends AccountStoreState {
           addressIconsMap: <String, String>{},
           pubKeyAddressMap: <int, Map<String, String>>{},
           wcSessions: <WCPairedData>[],
+          accountAdvancedOptions: const AccountAdvancedOptions.defaultValues(),
         );
 }

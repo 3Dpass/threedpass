@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/api/types/recoveryInfo.dart';
 import 'package:polkawallet_sdk/api/types/walletConnect/pairingData.dart';
+import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/features/accounts/domain/account_advanced_options.dart';
 import 'package:threedpass/router/route_names.dart';
 
 part 'account_store_event.dart';
@@ -13,11 +15,12 @@ part 'account_store_bloc.g.dart';
 class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
   AccountStoreBloc(this.outerContext) : super(_AccountStoreStateInitial()) {
     on<SetCredentials>(_setCredentials);
-    on<SetAccountMnemonicKey>(_setAccountMnemonicKey);
+    on<GenerateMnemonicKey>(_generateMnemonicKey);
     on<ResetAccount>(_resetAccount);
     on<SetPubKeyAddress>(_setPubKeyAddress);
     on<SetAddressIcon>(_setAddressIcon);
     on<PopToRoout>(_popToRoout);
+    on<ChangeAdvancedOptions>(_changeAdvancedOptions);
   }
 
   final BuildContext outerContext;
@@ -42,16 +45,34 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     emit(newState);
   }
 
-  Future<void> _setAccountMnemonicKey(
-    SetAccountMnemonicKey event,
+  Future<void> _changeAdvancedOptions(
+    ChangeAdvancedOptions event,
     Emitter<AccountStoreState> emit,
   ) async {
-    final newState = state.copyWith(
-      newAccount: state.newAccount.copyWith(
-        mnemonicKey: event.key,
-      ),
+    emit(state.copyWith(accountAdvancedOptions: event.options));
+  }
+
+  Future<void> _generateMnemonicKey(
+    GenerateMnemonicKey event,
+    Emitter<AccountStoreState> emit,
+  ) async {
+    final data = await event.service.plugin.sdk.api.keyring.generateMnemonic(
+      event.service.plugin.basic.ss58!,
+      key: event.key,
+      derivePath: state.accountAdvancedOptions.path,
+      cryptoType: state.accountAdvancedOptions.type,
     );
-    emit(newState);
+
+    if (data.mnemonic != null) {
+      final newState = state.copyWith(
+        newAccount: state.newAccount.copyWith(
+          mnemonicKey: data.mnemonic,
+        ),
+      );
+      emit(newState);
+    } else {
+      addError('Mnemonic was not generated');
+    }
   }
 
   Future<void> _resetAccount(

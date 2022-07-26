@@ -15,11 +15,11 @@ class CreateAccountWrapper extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return Provider(
+    return Provider<AppService>(
       create: (_) => appService,
       child: MultiBlocProvider(
         providers: [
-          // Context to return to menu.
+          // User inputs storage
           BlocProvider<AccountStoreBloc>(
             create: (_) => AccountStoreBloc(context),
             lazy: false,

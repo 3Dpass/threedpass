@@ -132,5 +132,10 @@
     "create_credentials_password2_error": "Inconsistent passwords",
 
     "error_create_account": "Error. account was NOT created.",
-    "create_account_loading": "Creating account..."
+    "create_account_loading": "Creating account...",
+
+    "encrypt_type_picker_label": "Encrypt Type",
+    "derivation_path_input_label": "Secret derivation path",
+
+    "advanced_options_header":"Advanced options"
 }
