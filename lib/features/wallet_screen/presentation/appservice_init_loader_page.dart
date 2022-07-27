@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/appbars/common_logo_appbar.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/connecting_page/connect_status.dart';
-import 'package:threedpass/features/wallet_screen/presentation/widgets/open_explorer_card.dart';
+import 'package:threedpass/features/wallet_screen/presentation/widgets/open_web_wallet_card.dart';
 
 class AppServiceInitLoaderPage extends StatelessWidget {
   const AppServiceInitLoaderPage({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class AppServiceInitLoaderPage extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: Padding(
               padding: EdgeInsets.only(top: 16),
-              child: OpenExplorerCard(),
+              child: OpenWebWalletCard(),
             ),
           ),
           Align(

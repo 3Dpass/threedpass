@@ -1,3 +1,4 @@
+import 'package:polkawallet_sdk/api/apiKeyring.dart';
 import 'package:polkawallet_sdk/api/types/networkParams.dart';
 
 const int ss58formatTest = 72;
@@ -12,3 +13,5 @@ const d3pLiveNetNode = {
 final d3pLiveNodesList = [
   NetworkParams.fromJson(d3pLiveNetNode),
 ];
+
+const defaultCryptoType = CryptoType.sr25519;

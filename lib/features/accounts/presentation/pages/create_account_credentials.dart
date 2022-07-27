@@ -27,18 +27,23 @@ class CreateAccountCredentials extends StatelessWidget {
 
       final accountStoreBloc = BlocProvider.of<AccountStoreBloc>(context);
       // set acount data
-      final account = BlocProvider.of<AccountStoreBloc>(context)
-          .state
-          .newAccount
+      final account = accountStoreBloc.state.newAccount
           .copyWith(name: _nameCtrl.text, password: _passCtrl.text);
 
+      final advancedOptions = accountStoreBloc.state.accountAdvancedOptions;
+
       try {
-        final json =
-            await appServiceLoaderCubit.importAccount(account: account);
+        final json = await appServiceLoaderCubit.importAccount(
+          account: account,
+          cryptoType: advancedOptions.type,
+          derivePath: advancedOptions.path,
+        );
 
         final keyPairData = await appServiceLoaderCubit.addAccount(
           json: json,
           account: account,
+          cryptoType: advancedOptions.type,
+          derivePath: advancedOptions.path,
         );
 
         // apply current account

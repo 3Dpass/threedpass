@@ -28,7 +28,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
 
   Future<Map> importAccount({
     KeyType keyType = KeyType.mnemonic,
-    CryptoType cryptoType = CryptoType.sr25519,
+    CryptoType cryptoType = defaultCryptoType,
     String derivePath = '',
     required AccountCreate account,
   }) async {
@@ -56,7 +56,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     required Map json,
     required AccountCreate account,
     KeyType keyType = KeyType.mnemonic,
-    CryptoType cryptoType = CryptoType.sr25519,
+    CryptoType cryptoType = defaultCryptoType,
     String derivePath = '',
     bool isFromCreatePage = false,
   }) async {

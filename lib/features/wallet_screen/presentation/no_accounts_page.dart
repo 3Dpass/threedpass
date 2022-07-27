@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/appbars/common_logo_appbar.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/account_card.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/connecting_page/connect_status.dart';
-import 'package:threedpass/features/wallet_screen/presentation/widgets/open_explorer_card.dart';
+import 'package:threedpass/features/wallet_screen/presentation/widgets/open_web_wallet_card.dart';
 
 class NoAccountsPage extends StatelessWidget {
   const NoAccountsPage({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class NoAccountsPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
-          OpenExplorerCard(),
+          OpenWebWalletCard(),
           ConnectStatus(),
           AccountCard(),
           SizedBox(),

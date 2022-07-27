@@ -5,8 +5,9 @@ class RouteNames {
   static const createAccountWrapper = 'CreateAccountWrapperRoute';
   static const createAccountCredentials = 'CreateAccountCredentialsRoute';
   static const createAccountLoader = 'CreateAccountLoaderRoute';
+  static const defaultLoadingDialog = 'DefaultLoadingDialogRoute';
   static const errorPage = 'ErrorRoute';
-  static const exolorerPage = 'ExplorerRoute';
+  static const webWalletPage = 'WebWalletRoute';
   static const homePage = 'HomeRoute';
   static const mnemonicBackup = 'MnemonicBackupRoute';
   static const mnemonicConfirm = 'MnemonicConfirmRoute';

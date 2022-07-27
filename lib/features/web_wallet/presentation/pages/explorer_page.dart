@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class ExplorerPage extends StatelessWidget {
-  const ExplorerPage({
+class WebWalletPage extends StatelessWidget {
+  const WebWalletPage({
     Key? key,
     required this.initialUrl,
   }) : super(key: key);

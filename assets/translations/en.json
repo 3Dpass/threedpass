@@ -17,6 +17,7 @@
     "Coming soon": "Coming soon",
     "Reset": "Reset",
     "Copied": "Copied",
+    "Apply": "Apply",
 
     "@home_page":{
     },
@@ -137,5 +138,6 @@
     "encrypt_type_picker_label": "Encrypt Type",
     "derivation_path_input_label": "Secret derivation path",
 
-    "advanced_options_header":"Advanced options"
+    "advanced_options_header": "Advanced options",
+    "apply_options_button": "Apply options"
 }

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/router/router.gr.dart';
 
-class OpenExplorerButton extends StatelessWidget {
-  const OpenExplorerButton({Key? key}) : super(key: key);
+class OpenWebWalletButton extends StatelessWidget {
+  const OpenWebWalletButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class OpenExplorerButton extends StatelessWidget {
       icon: const Icon(Icons.explore),
       label: Text('open_web_wallet_button_label'.tr()),
       onPressed: () => context.router.push(
-        ExplorerRoute(initialUrl: 'https://wallet.3dpass.org/'),
+        WebWalletRoute(initialUrl: 'https://wallet.3dpass.org/'),
       ),
     );
   }
