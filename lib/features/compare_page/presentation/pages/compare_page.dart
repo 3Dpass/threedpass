@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/features/compare_page.dart/presentation/widgets/compare_row.dart';
-import 'package:threedpass/features/compare_page.dart/presentation/widgets/compare_table/compare_table.dart';
+import 'package:threedpass/features/compare_page/presentation/widgets/compare_row.dart';
+import 'package:threedpass/features/compare_page/presentation/widgets/compare_table/compare_table.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 // TODO Rewrite stateful to cubit

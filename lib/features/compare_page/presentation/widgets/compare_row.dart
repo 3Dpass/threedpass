@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/utils/cut_string.dart';
-import 'package:threedpass/features/compare_page.dart/presentation/widgets/choose_list.dart';
+import 'package:threedpass/features/compare_page/presentation/widgets/choose_list.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class CompareRow extends StatelessWidget {

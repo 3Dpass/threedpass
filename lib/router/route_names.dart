@@ -6,6 +6,8 @@ class RouteNames {
   static const createAccountCredentials = 'CreateAccountCredentialsRoute';
   static const createAccountLoader = 'CreateAccountLoaderRoute';
   static const defaultLoadingDialog = 'DefaultLoadingDialogRoute';
+  static const importAccountWrapper = 'ImportAccountWrapperRoute';
+  static const importAccountSelectType = 'ImportAccountSelectTypeRoute';
   static const errorPage = 'ErrorRoute';
   static const webWalletPage = 'WebWalletRoute';
   static const homePage = 'HomeRoute';

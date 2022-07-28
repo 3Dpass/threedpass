@@ -10,15 +10,17 @@ class NewAccountPopupMenuButton extends StatelessWidget {
   const NewAccountPopupMenuButton({Key? key}) : super(key: key);
 
   void onSelected(int? value, BuildContext context) {
+    final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     switch (value) {
       case 1:
         context.router.push(
-          CreateAccountWrapperRoute(
-            appService: BlocProvider.of<AppServiceLoaderCubit>(context).state,
-          ),
+          CreateAccountWrapperRoute(appService: appService),
         );
         break;
       case 2:
+        context.router.push(
+          ImportAccountWrapperRoute(appService: appService),
+        );
         break;
     }
   }
@@ -51,7 +53,7 @@ class _ImportAccountMenuItem extends PopupMenuItem<int> {
   _ImportAccountMenuItem({required AppService appService})
       : super(
           value: 2,
-          enabled: appService.status == AppServiceInitStatus.connected && false,
+          enabled: appService.status == AppServiceInitStatus.connected,
           child: Text('import_account_button_label'.tr()),
         );
 }

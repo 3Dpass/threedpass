@@ -1,11 +1,12 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:threedpass/common/app_text_styles.dart';
-import 'package:threedpass/features/compare_page.dart/domain/entities/row_data.dart';
+import 'package:threedpass/features/compare_page/domain/entities/row_data.dart';
 
 class AppTableRow extends StatelessWidget {
-  const AppTableRow({Key? key,required this.rowData, }) : super(key: key);
+  const AppTableRow({
+    Key? key,
+    required this.rowData,
+  }) : super(key: key);
 
   final RowData rowData;
 

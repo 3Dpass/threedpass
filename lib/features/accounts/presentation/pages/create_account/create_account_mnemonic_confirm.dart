@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc.dart';
 import 'package:threedpass/features/accounts/bloc/mnemonic_input_cubit.dart';
-import 'package:threedpass/features/accounts/presentation/pages/create_account_page_template.dart';
+import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/mnemonic_confirm_input.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/reset_mnemonic_input.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/submit_mnemonic_confirm_button.dart';
@@ -20,7 +20,7 @@ class CreateAccountMnemonicConfirm extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => MnemonicInputCubit(mnemonic),
-      child: CreateAccountPageTemplate(
+      child: AccountPageTemplate.create(
         children: [
           const SizedBox(height: 16),
           Text(
@@ -39,7 +39,10 @@ class CreateAccountMnemonicConfirm extends StatelessWidget {
           ),
           const MnemonicConfirmInput(),
         ],
-        submitButton: const SubmitMnemonicConfirmButton(),
+        submitButton: const SizedBox(
+          width: double.infinity,
+          child: SubmitMnemonicConfirmButton(),
+        ),
       ),
     );
   }

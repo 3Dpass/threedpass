@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/features/compare_page.dart/presentation/pages/compare_page.dart';
+import 'package:threedpass/features/compare_page/presentation/pages/compare_page.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 

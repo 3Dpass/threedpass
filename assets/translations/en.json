@@ -103,6 +103,7 @@
     "@create_account_page":{
     },
     "create_account_title": "Create account",
+    "import_account_title": "Import account",
 
     "create_warn1_header": "Please note",
     "create_warn1_text":
@@ -139,5 +140,9 @@
     "derivation_path_input_label": "Secret derivation path",
 
     "advanced_options_header": "Advanced options",
-    "apply_options_button": "Apply options"
+    "apply_options_button": "Apply options",
+
+    "import_type_mnemonic": "Mnemonic",
+    "import_type_raw_seed": "Raw seed",
+    "import_type_keystore": "Keystore (json)"
 }
