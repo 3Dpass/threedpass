@@ -3,7 +3,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:threedpass/common/logger.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
-import 'package:threedpass/features/accounts/bloc/account_store_bloc.dart';
+import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
 import 'package:threedpass/features/accounts/bloc/advanced_options_from_bloc.dart';
 import 'package:threedpass/features/accounts/domain/account_advanced_options.dart';
 

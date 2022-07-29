@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
-import 'package:threedpass/features/accounts/bloc/import_account_cubit.dart';
+import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_cubit.dart';
 
 class ImportAccountWrapper extends StatelessWidget implements AutoRouteWrapper {
   const ImportAccountWrapper({

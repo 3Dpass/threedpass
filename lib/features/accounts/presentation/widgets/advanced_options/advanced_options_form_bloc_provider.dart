@@ -23,9 +23,6 @@ class AdvancedOptionsFormBlocProvider extends StatelessWidget {
           appService: appService,
         ),
         // get context with AdvancedOptionsFromBloc
-        child: Builder(builder: (context) {
-          final formBloc = context.read<AdvancedOptionsFromBloc>();
-          return child;
-        }),
+        child: Builder(builder: (context) => child),
       );
 }
