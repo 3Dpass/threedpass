@@ -1,24 +1,6 @@
 part of 'account_store_bloc.dart';
 
 @CopyWith()
-class AccountCreate {
-  final String name;
-  final String password;
-  final String mnemonicKey;
-
-  const AccountCreate({
-    required this.mnemonicKey,
-    required this.name,
-    required this.password,
-  });
-
-  const AccountCreate.intial()
-      : name = '',
-        password = '',
-        mnemonicKey = '';
-}
-
-@CopyWith()
 class AccountStoreState {
   const AccountStoreState({
     required this.addressIconsMap,

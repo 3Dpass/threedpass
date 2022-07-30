@@ -22,7 +22,7 @@ class CreateAccountMnemonicBackup extends StatelessWidget {
           mnemonic: mnemonic,
           child: Scaffold(
             appBar: CommonStringAppbar(title: 'create_account_title'.tr()),
-            // listen to  advanced options form changes
+            // listen and react to  advanced options form changes
             body: MnemonicBackupAdvancedOptionsListener(
               appService: appService,
               // Show mnemonic and change options

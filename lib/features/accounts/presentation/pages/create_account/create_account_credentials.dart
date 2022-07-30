@@ -7,6 +7,7 @@ import 'package:threedpass/common/logger.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/validators.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
+import 'package:threedpass/features/accounts/domain/account_create.dart';
 import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
 import 'package:threedpass/router/router.gr.dart';
 
@@ -125,7 +126,7 @@ class CreateAccountCredentials extends StatelessWidget {
           ),
         ),
       ],
-      onSubmitPressed: () => _onSubmit(context),
+      onSubmitPressed: (_) => _onSubmit(context),
     );
   }
 }

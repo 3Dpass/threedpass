@@ -5,7 +5,7 @@ import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
-import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
+import 'package:threedpass/features/accounts/domain/account_create.dart';
 
 ///
 /// BE CAREFUL when you write [buildWhen] for this cubit.

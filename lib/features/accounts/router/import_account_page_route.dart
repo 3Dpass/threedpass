@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:threedpass/features/accounts/presentation/pages/import_account/import_account_create_page.dart';
 import 'package:threedpass/features/accounts/presentation/pages/import_account/import_account_wrapper.dart';
 import 'package:threedpass/features/accounts/presentation/pages/import_account/import_account_import_type.dart';
+import 'package:threedpass/features/accounts/presentation/pages/import_account/import_mnemonic_form.dart';
 import 'package:threedpass/router/route_names.dart';
 
 const AutoRoute importAccountPageRoute = AutoRoute(
@@ -11,6 +13,14 @@ const AutoRoute importAccountPageRoute = AutoRoute(
       page: ImportAccountImportType,
       name: RouteNames.importAccountSelectType,
       path: '',
+    ),
+    AutoRoute(
+      page: ImportMnemonicForm,
+      name: RouteNames.importMnemonicForm,
+    ),
+    AutoRoute(
+      page: ImportAccountCreatePage,
+      name: RouteNames.importAccountCreatePage,
     ),
   ],
 );

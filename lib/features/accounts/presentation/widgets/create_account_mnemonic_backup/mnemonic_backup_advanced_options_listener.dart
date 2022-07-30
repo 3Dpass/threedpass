@@ -4,8 +4,8 @@ import 'package:threedpass/common/logger.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
-import 'package:threedpass/features/accounts/bloc/advanced_options_from_bloc.dart';
 import 'package:threedpass/features/accounts/domain/account_advanced_options.dart';
+import 'package:threedpass/features/accounts/presentation/widgets/advanced_options/advanced_options_listener.dart';
 
 class MnemonicBackupAdvancedOptionsListener extends StatelessWidget {
   const MnemonicBackupAdvancedOptionsListener({
@@ -22,12 +22,13 @@ class MnemonicBackupAdvancedOptionsListener extends StatelessWidget {
     FormBlocSuccess<AccountAdvancedOptions, String> state,
     AppService appService,
   ) {
-    DefaultLoadingDialog.hide(context);
+    // DefaultLoadingDialog.hide(context);
     if (state.hasSuccessResponse) {
       final bloc = BlocProvider.of<AccountStoreBloc>(context);
       bloc
         ..add(ChangeAdvancedOptions(state.successResponse!))
         ..add(GenerateMnemonicKey(appService));
+      logger.i('Advanced options applied and new mnemonic generated');
     } else {
       logger.w('AdvancedOptionsFromBloc: onSuccess: '
           'hasSuccessResponse is false');
@@ -35,14 +36,36 @@ class MnemonicBackupAdvancedOptionsListener extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      FormBlocListener<AdvancedOptionsFromBloc, AccountAdvancedOptions, String>(
-        onSubmitting: (context, state) => DefaultLoadingDialog.show(context),
-        onSubmissionFailed: (context, state) =>
-            DefaultLoadingDialog.hide(context),
+  Widget build(BuildContext context) => AdvancedOptionsListener(
+        child: child,
         onSuccess: (context, state) =>
             onOptionsChanged(context, state, appService),
-        onFailure: (context, state) => DefaultLoadingDialog.hide(context),
-        child: child,
       );
 }
+
+
+  // void onOptionsChanged(
+  //   BuildContext context,
+  //   CryptoType type,
+  //   String derivedPath,
+  //   // FormBlocSuccess<AccountAdvancedOptions, String> state,
+  //   AppService appService,
+  // ) {
+  //   DefaultLoadingDialog.hide(context);
+  //   // if (state.hasSuccessResponse) {
+  //   final bloc = BlocProvider.of<AccountStoreBloc>(context);
+  //   bloc
+  //     ..add(
+  //       ChangeAdvancedOptions(
+  //         AccountAdvancedOptions(
+  //           type: type,
+  //           path: derivedPath,
+  //         ),
+  //       ),
+  //     )
+  //     ..add(GenerateMnemonicKey(appService));
+  //   // } else {
+  //   //   logger.w('AdvancedOptionsFromBloc: onSuccess: '
+  //   //       'hasSuccessResponse is false');
+  //   // }
+  // }

@@ -6,6 +6,7 @@ import 'package:polkawallet_sdk/api/types/recoveryInfo.dart';
 import 'package:polkawallet_sdk/api/types/walletConnect/pairingData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/features/accounts/domain/account_advanced_options.dart';
+import 'package:threedpass/features/accounts/domain/account_create.dart';
 import 'package:threedpass/router/route_names.dart';
 
 part 'account_store_event.dart';

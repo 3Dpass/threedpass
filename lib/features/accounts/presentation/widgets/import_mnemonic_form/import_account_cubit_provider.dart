@@ -11,6 +11,7 @@ class ImportAccountCubitProvider extends StatelessWidget {
   final Widget Function({
     required String mnemonic,
     required AppService appService,
+    required TextEditingController textEditingController,
   }) builder;
 
   @override
@@ -23,6 +24,8 @@ class ImportAccountCubitProvider extends StatelessWidget {
           return builder(
             mnemonic: mnemonic,
             appService: appService,
+            textEditingController: BlocProvider.of<ImportAccountCubit>(context)
+                .textEditingController,
           );
         },
       );

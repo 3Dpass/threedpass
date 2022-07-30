@@ -55,11 +55,7 @@ class CreateAccountInfoPage extends StatelessWidget {
           bigBottomPadding: true,
         ),
       ],
-      onSubmitPressed:
-          // () => context.router.push(
-          //   const MnemonicBackupRoute(),
-          // ),
-          () => onNextPressed(context),
+      onSubmitPressed: (_) => onNextPressed(context),
     );
   }
 }

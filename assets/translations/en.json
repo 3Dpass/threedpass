@@ -18,6 +18,7 @@
     "Reset": "Reset",
     "Copied": "Copied",
     "Apply": "Apply",
+    "Invalid": "Invalid",
 
     "@home_page":{
     },
@@ -144,5 +145,8 @@
 
     "import_type_mnemonic": "Mnemonic",
     "import_type_raw_seed": "Raw seed",
-    "import_type_keystore": "Keystore (json)"
+    "import_type_keystore": "Keystore (json)",
+
+    "invalid_input": "Invalid input",
+    "error_mnemonic_not_found": "Error: mnemonic not found"
 }

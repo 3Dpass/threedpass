@@ -29,7 +29,7 @@ class AccountPageTemplate extends StatelessWidget {
         appbarTitle = 'import_account_title',
         super(key: key);
 
-  final void Function()? onSubmitPressed;
+  final void Function(BuildContext)? onSubmitPressed;
   final List<Widget> children;
   final Widget? submitButton;
   final String appbarTitle;
@@ -63,7 +63,7 @@ class AccountPageTemplate extends StatelessWidget {
                           ? SizedBox(
                               width: double.infinity,
                               child: ElevatedButton(
-                                onPressed: onSubmitPressed,
+                                onPressed: () => onSubmitPressed!(context),
                                 child: Text('Next'.tr()),
                               ),
                             )

@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_cubit.dart';
 import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_state.dart';
 import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 class ImportAccountImportType extends StatelessWidget {
   const ImportAccountImportType({Key? key}) : super(key: key);
@@ -37,7 +39,17 @@ class _Item extends StatelessWidget {
 
   void onTap(BuildContext context) {
     BlocProvider.of<ImportAccountCubit>(context).changeImportType(importType);
-    // conte
+    switch (importType) {
+      case ImportType.mnemonic:
+        context.router.push(ImportMnemonicFormRoute());
+        break;
+      case ImportType.rawSeed:
+        // return 'import_type_raw_seed'.tr();
+        break;
+      case ImportType.keystore:
+        // return 'import_type_keystore'.tr();
+        break;
+    }
   }
 
   String titleText(BuildContext context) {

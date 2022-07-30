@@ -1,6 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
 import 'package:threedpass/features/accounts/domain/account_advanced_options.dart';
+import 'package:threedpass/features/accounts/domain/account_create.dart';
 
 part 'import_account_state.g.dart';
 

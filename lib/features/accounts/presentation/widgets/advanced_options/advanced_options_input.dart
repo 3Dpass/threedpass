@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:polkawallet_sdk/api/apiKeyring.dart';
 import 'package:threedpass/features/accounts/bloc/advanced_options_from_bloc.dart';
+import 'package:threedpass/features/accounts/domain/account_advanced_options.dart';
 
 class AdvancedOptionsInput extends StatelessWidget {
   const AdvancedOptionsInput({
@@ -12,6 +13,7 @@ class AdvancedOptionsInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('build3');
     final formBloc = context.read<AdvancedOptionsFromBloc>();
 
     return Card(
@@ -34,6 +36,12 @@ class AdvancedOptionsInput extends StatelessWidget {
                 itemBuilder: (context, value) => FieldItem(
                   child: Text(value.name),
                 ),
+                onChanged: (value) {
+                  value != null ? formBloc.emitSubmitting() : null;
+                  formBloc.state
+                      .textFieldBlocOf(AdvancedOptionsFromBloc.derivePathName)
+                      ?.validate();
+                },
               ),
               const SizedBox(height: 8),
               TextFieldBlocBuilder(
@@ -43,11 +51,24 @@ class AdvancedOptionsInput extends StatelessWidget {
                   labelText: 'derivation_path_input_label'.tr(),
                 ),
               ),
-              const SizedBox(height: 16),
-              TextButton(
-                onPressed: () => formBloc.submit(),
-                child: Text('apply_options_button'.tr()),
+              const SizedBox(height: 8),
+              StreamBuilder<FormBlocState<AccountAdvancedOptions, String>>(
+                stream: formBloc.stream,
+                // initialData: ,
+                builder: (context, state) {
+                  print(
+                    'RebuildStreamable ${state.data?.runtimeType.toString()}',
+                  );
+                  return SizedBox();
+                },
               ),
+              // BlocBuilder<AdvancedOptionsFromBloc,
+              //         FormBloc<AccountAdvancedOptions, String>>(
+              //     builder: (context, state) => SizedBox()),
+              // TextButton(
+              //   onPressed: () => formBloc.submit(),
+              //   child: Text('apply_options_button'.tr()),
+              // ),
             ],
           ),
         ),

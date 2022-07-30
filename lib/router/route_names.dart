@@ -8,6 +8,8 @@ class RouteNames {
   static const defaultLoadingDialog = 'DefaultLoadingDialogRoute';
   static const importAccountWrapper = 'ImportAccountWrapperRoute';
   static const importAccountSelectType = 'ImportAccountSelectTypeRoute';
+  static const importAccountCreatePage = 'ImportAccountCreateRoute';
+  static const importMnemonicForm = 'ImportMnemonicFormRoute';
   static const errorPage = 'ErrorRoute';
   static const webWalletPage = 'WebWalletRoute';
   static const homePage = 'HomeRoute';
