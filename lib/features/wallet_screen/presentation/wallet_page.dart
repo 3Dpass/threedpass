@@ -5,6 +5,7 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page.dart';
 import 'package:threedpass/features/wallet_screen/presentation/appservice_init_loader_page.dart';
 import 'package:threedpass/features/wallet_screen/presentation/no_accounts_page.dart';
+import 'package:threedpass/features/web_wallet/presentation/pages/web_wallet_page.dart';
 
 class WalletPage extends StatelessWidget {
   const WalletPage({Key? key}) : super(key: key);
@@ -25,23 +26,25 @@ class WalletPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppServiceLoaderCubit, AppService>(
-      buildWhen: buildWhen,
-      builder: (context, state) {
-        switch (state.status) {
-          case AppServiceInitStatus.init:
-            return const AppServiceInitLoaderPage();
+    return const WebWalletPage(initialUrl: 'https://wallet.3dpass.org/');
 
-          case AppServiceInitStatus.connecting:
-          case AppServiceInitStatus.connected:
-          case AppServiceInitStatus.error:
-            if (state.keyring.allAccounts.isEmpty) {
-              return const NoAccountsPage();
-            } else {
-              return const AssetsPage();
-            }
-        }
-      },
-    );
+    // return BlocBuilder<AppServiceLoaderCubit, AppService>(
+    //   buildWhen: buildWhen,
+    //   builder: (context, state) {
+    //     switch (state.status) {
+    //       case AppServiceInitStatus.init:
+    //         return const AppServiceInitLoaderPage();
+
+    //       case AppServiceInitStatus.connecting:
+    //       case AppServiceInitStatus.connected:
+    //       case AppServiceInitStatus.error:
+    //         if (state.keyring.allAccounts.isEmpty) {
+    //           return const NoAccountsPage();
+    //         } else {
+    //           return const AssetsPage();
+    //         }
+    //     }
+    //   },
+    // );
   }
 }
