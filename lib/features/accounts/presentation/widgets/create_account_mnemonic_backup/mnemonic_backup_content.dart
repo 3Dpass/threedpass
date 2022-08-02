@@ -1,9 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_bloc/flutter_form_bloc.dart';
-import 'package:threedpass/features/accounts/bloc/advanced_options_from_bloc.dart';
-import 'package:threedpass/features/accounts/presentation/widgets/advanced_options/advanced_options_input.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/mnemonic_text_field.dart';
 import 'package:threedpass/router/router.gr.dart';
 
@@ -35,18 +32,15 @@ class MnemonicBackupContent extends StatelessWidget {
           Text('backup_warn1_text'.tr()),
           const SizedBox(height: 12),
           MnemonicTextField(text: mnemonic),
-          const SizedBox(height: 24),
-          // here advanced options changes
-          const AdvancedOptionsInput(),
+
           Padding(
             padding: const EdgeInsets.only(bottom: 36, top: 12),
             child: ElevatedButton(
               onPressed:
-                  context.watch<AdvancedOptionsFromBloc>().state.isValid()
-                      ? () => context.router.push(
+                  () => context.router.push(
                             const MnemonicConfirmRoute(),
                           )
-                      : null,
+                      ,
               child: Text('Next'.tr()),
             ),
           ),

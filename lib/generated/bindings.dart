@@ -19,18 +19,22 @@ class GreeterBindings {
           lookup)
       : _lookup = lookup;
 
-  ffi.Pointer<ffi.Int8> rust_greeting(
-    ffi.Pointer<ffi.Int8> to,
+  ffi.Pointer<ffi.Int8> calc(
+    int par1,
+    int par2,
+    ffi.Pointer<ffi.Int8> path,
   ) {
-    return _rust_greeting(
-      to,
+    return _calc(
+      par1,
+      par2,
+      path,
     );
   }
 
-  late final _rust_greetingPtr = _lookup<
+  late final _calcPtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Int8> Function(
-              ffi.Pointer<ffi.Int8>)>>('rust_greeting');
-  late final _rust_greeting = _rust_greetingPtr
-      .asFunction<ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>)>();
+              ffi.Int16, ffi.Int16, ffi.Pointer<ffi.Int8>)>>('calc');
+  late final _calc = _calcPtr.asFunction<
+      ffi.Pointer<ffi.Int8> Function(int, int, ffi.Pointer<ffi.Int8>)>();
 }

@@ -5,14 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/utils/show_text_snackbar.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
-import 'package:threedpass/features/accounts/bloc/advanced_options_from_bloc.dart';
 import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_cubit.dart';
 import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
-import 'package:threedpass/features/accounts/presentation/widgets/advanced_options/advanced_options_form_bloc_provider.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/formed_text_field.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/import_mnemonic_form/import_account_cubit_provider.dart';
-import 'package:threedpass/features/accounts/presentation/widgets/import_mnemonic_form/import_mnemonic_advanced_options_listener.dart';
-import 'package:threedpass/features/accounts/presentation/widgets/text_controller_builder.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class ImportMnemonicForm extends StatelessWidget {
@@ -41,8 +37,8 @@ class ImportMnemonicForm extends StatelessWidget {
   }) async {
     // Check user input
     if (_formKey.currentState != null &&
-        _formKey.currentState!.validate() &&
-        innerContext.read<AdvancedOptionsFromBloc>().state.isValid()) {
+        _formKey.currentState!.validate() 
+     ) {
       // Api call to check mnemonic
       DefaultLoadingDialog.show(outerContext);
       final input = mnemonicInput.trim();
@@ -70,10 +66,7 @@ class ImportMnemonicForm extends StatelessWidget {
         required AppService appService,
         required TextEditingController textEditingController,
       }) {
-        return AdvancedOptionsFormBlocProvider(
-          appService: appService,
-          mnemonic: mnemonic,
-          child: AccountPageTemplate.import(
+        return  AccountPageTemplate.import(
             children: [
               Column(
                 children: [
@@ -82,11 +75,7 @@ class ImportMnemonicForm extends StatelessWidget {
                     controller: textEditingController,
                     validator: _validateInput,
                   ),
-                  const SizedBox(height: 16),
-                  TextControllerBuilder(
-                    controller: textEditingController,
-                    child: ImportMnemonicAdvancedOptions(),
-                  ),
+       
                 ],
               ),
             ],
@@ -96,7 +85,7 @@ class ImportMnemonicForm extends StatelessWidget {
               appService: appService,
               mnemonicInput: textEditingController.text,
             ),
-          ),
+          
         );
       },
     );

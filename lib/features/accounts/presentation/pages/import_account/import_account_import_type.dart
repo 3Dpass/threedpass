@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -38,18 +40,19 @@ class _Item extends StatelessWidget {
   final ImportType importType;
 
   void onTap(BuildContext context) {
-    BlocProvider.of<ImportAccountCubit>(context).changeImportType(importType);
-    switch (importType) {
-      case ImportType.mnemonic:
-        context.router.push(ImportMnemonicFormRoute());
-        break;
-      case ImportType.rawSeed:
-        // return 'import_type_raw_seed'.tr();
-        break;
-      case ImportType.keystore:
-        // return 'import_type_keystore'.tr();
-        break;
-    }
+    log('onTap intem $importType');
+    // BlocProvider.of<ImportAccountCubit>(context).changeImportType(importType);
+    // switch (importType) {
+    //   case ImportType.mnemonic:
+    //     context.router.push(ImportMnemonicFormRoute());
+    //     break;
+    //   case ImportType.rawSeed:
+    //     // return 'import_type_raw_seed'.tr();
+    //     break;
+    //   case ImportType.keystore:
+    //     // return 'import_type_keystore'.tr();
+    //     break;
+    // }
   }
 
   String titleText(BuildContext context) {
