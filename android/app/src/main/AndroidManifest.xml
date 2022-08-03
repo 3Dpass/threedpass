@@ -12,8 +12,7 @@
     <application
         android:name="${applicationName}"
         android:label="3DPass"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         tools:replace="android:icon, android:label">
 
         <meta-data

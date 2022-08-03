@@ -40,7 +40,7 @@ class _State extends State<ObjectPreview> {
   late final Size screenSize;
   late final int sourceTexture;
   late final THREE.Texture texture;
-  final FlutterGlPlugin three3dRender = FlutterGlPlugin();
+  late final FlutterGlPlugin three3dRender = FlutterGlPlugin();
 
   final GlobalKey<THREE_JSM.DomLikeListenableState> _globalKey =
       GlobalKey<THREE_JSM.DomLikeListenableState>();
