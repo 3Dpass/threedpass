@@ -32,6 +32,9 @@
     "get_from_file_button_label": "Get from file",
     "no_saved_objects_placeholder": "No saved objects avaliable",
 
+    "error_hash_list_bloc": "Hashes list is not initalized :(",
+    "error_file_picker": "File picker error",
+
     "@preview_page":{
     },
     "MATCHES_number_plural":{

@@ -4,9 +4,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart';
-import 'package:threedpass/features/scan_page/router/calc_hash_loading_widget_route.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class GetObjectFromFileFloatingButton extends StatelessWidget {
@@ -28,8 +27,19 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
     return null;
   }
 
+  void showSnackBar(String text, BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(text),
+      ),
+    );
+  }
+
   /// Calc object
-  Future<void> createHashFromFile(BuildContext context) async {
+  Future<void> createHashFromFile(
+    BuildContext context,
+    SettingsConfig settings,
+  ) async {
     final closeDialogNotifier = ValueNotifier<bool>(false);
     // get file
     final pickerRes = await pickFile();
@@ -37,10 +47,11 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       context.router.push(
         CalcHashLoadingDialogRoute(closeNotification: closeDialogNotifier),
       );
+
       // file found so create snapshot
       final either = await SnapshotFileFactory.createSnapshotFromFile(
         filePath: pickerRes.files.first.path!,
-        settings: BlocProvider.of<SettingsConfigCubit>(context).state.settings,
+        settings: settings,
         context: context,
       );
 
@@ -49,11 +60,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       // handle result
       either.when(
         left: (err) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Hashes list is not initalized :('),
-            ),
-          );
+          showSnackBar('error_hash_list_bloc'.tr(), context);
         },
         right: (pair) {
           context.router.push(
@@ -66,11 +73,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
         },
       );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('File picker error'),
-        ),
-      );
+      showSnackBar('error_file_picker'.tr(), context);
     }
   }
 
@@ -80,7 +83,10 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       // style: AppButtonStyles.primaryButton,
       icon: const Icon(Icons.folder_open),
       label: Text('get_from_file_button_label'.tr()),
-      onPressed: () => createHashFromFile(context),
+      onPressed: () => createHashFromFile(
+        context,
+        BlocProvider.of<SettingsConfigCubit>(context).state.settings,
+      ),
     );
   }
 }

@@ -13,7 +13,8 @@
         android:name="${applicationName}"
         android:label="3DPass"
         android:icon="@mipmap/ic_launcher"
-        tools:replace="android:label">
+        android:roundIcon="@mipmap/ic_launcher"
+        tools:replace="android:icon, android:label">
 
         <meta-data
           android:name="flutterEmbedding"

@@ -21,61 +21,53 @@ class ObjectPreview extends StatefulWidget {
 }
 
 class _State extends State<ObjectPreview> {
-  late final Size screenSize;
+  /// The logic tryies to scale the biggest dimension of the object to
+  /// this number. So if you increase it, all objects will appear bigger.
+  static const double maxObjectSize = 100;
+
+  late final THREE.Camera camera;
+  late final THREE_JSM.ArcballControls controls;
   late final double dpr; // Device Pixel Ratio
+  // Determines if we show object or loader
   bool isRendered = false;
 
-  final FlutterGlPlugin three3dRender = FlutterGlPlugin();
-  late final THREE.WebGLRenderer renderer;
-  late final THREE.WebGLRenderTarget renderTarget;
-  late final int sourceTexture;
-
-  late final THREE.Scene scene;
-  late final THREE.Camera camera;
-  late final THREE.Mesh mesh;
+  // late final THREE.Mesh mesh;
   late final THREE.Object3D object;
-  late final THREE.Texture texture;
 
-  static const double maxObjectSize = 100;
+  late final THREE.WebGLRenderTarget renderTarget;
+  late final THREE.WebGLRenderer renderer;
+  late final THREE.Scene scene;
+  late final Size screenSize;
+  late final int sourceTexture;
+  late final THREE.Texture texture;
+  final FlutterGlPlugin three3dRender = FlutterGlPlugin();
+
+  final GlobalKey<THREE_JSM.DomLikeListenableState> _globalKey =
+      GlobalKey<THREE_JSM.DomLikeListenableState>();
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _init();
+    init();
+  }
+
+  @override
+  void dispose() {
+    three3dRender.dispose();
+    renderer.dispose();
+    renderTarget.dispose();
+    scene.dispose();
+    camera.dispose();
+    // mesh.dispose();
+    object.dispose();
+    texture.dispose();
+
+    super.dispose();
   }
 
   double get height => 250;
+
   double get width => screenSize.width - 16 * 2;
-
-  Future<void> _init() async {
-    if (!_objectFileExists) {
-      return;
-    }
-
-    final mqd = MediaQuery.of(context);
-
-    screenSize = mqd.size;
-    dpr = mqd.devicePixelRatio;
-
-    Map<String, dynamic> _options = {
-      'antialias': true,
-      'alpha': false,
-      'width': width.toInt(),
-      'height': height.toInt(),
-      'dpr': dpr,
-    };
-
-    await three3dRender.initialize(options: _options);
-
-    // https://github.com/wasabia/three_dart/blob/c5b4e36c7a6eb489145252a6a52b039344f021be/example/lib/webgl_loader_obj.dart#L72
-    // ignore: prefer-extracting-callbacks
-    Future.delayed(const Duration(milliseconds: 100), () async {
-      await three3dRender.prepareContext();
-
-      initRenderer();
-      await initPage();
-    });
-  }
 
   initRenderer() {
     Map<String, dynamic> _options = {
@@ -98,26 +90,41 @@ class _State extends State<ObjectPreview> {
       (height * dpr).toInt(),
       pars,
     );
-    renderTarget.samples = 4;
+    renderTarget.samples = 0;
     renderer.setRenderTarget(renderTarget);
     sourceTexture = renderer.getRenderTargetGLTexture(renderTarget);
   }
 
-  initPage() async {
-    camera = THREE.PerspectiveCamera(45, width / height, 1, 1000);
-    camera.position.z = 200;
-
+  initScene() {
     // scene
     scene = THREE.Scene();
+  }
 
+  initCamera() {
+    // camera
+    camera = THREE.PerspectiveCamera(45, width / height, 1, 1000);
+    camera.position.z = 250;
+    scene.add(camera);
+  }
+
+  initControls() {
+    // controls
+    controls = THREE_JSM.ArcballControls(camera, _globalKey, scene, 1);
+    controls.addEventListener('change', (event) {
+      render();
+    });
+  }
+
+  initLight() {
     // light
     var ambientLight = THREE.AmbientLight(0xcccccc, 0.4);
     scene.add(ambientLight);
 
     var pointLight = THREE.PointLight(0xffffff, 0.8);
     camera.add(pointLight);
-    scene.add(camera);
+  }
 
+  Future<void> initTexture() async {
     // texture
     var textureLoader = THREE.TextureLoader(null);
     textureLoader.flipY = true;
@@ -128,7 +135,9 @@ class _State extends State<ObjectPreview> {
     texture.generateMipmaps = true;
     texture.needsUpdate = true;
     texture.flipY = true; // this flipY is only for web
+  }
 
+  Future<void> initObj() async {
     // obj
     var loader = THREE_JSM.OBJLoader(null);
     object = await loader.loadAsync(widget.snapshot.externalPathToObj);
@@ -147,13 +156,6 @@ class _State extends State<ObjectPreview> {
     );
     final measure = THREE.Vector3();
     box3.getSize(measure); // set value to [measure] variable
-    // actualModel.material = THREE.MeshPhongMaterial({
-    //   'color': 0xffffff,
-    //   'specular': 0x111111,
-    //   'shininess': 100,
-    //   'map': texture,
-    //   'side': THREE.DoubleSide,
-    // });
 
     final maxCoord = max(max(measure.x, measure.y), measure.z);
     final scale = maxObjectSize / maxCoord;
@@ -165,6 +167,12 @@ class _State extends State<ObjectPreview> {
     boxObject.getCenter(center);
     object.position.sub(center); // center the model
 
+    scene.add(object);
+  }
+
+  // do NOT delete this code
+  initMesh() {
+    final b = 1 + 1;
     // final textureCube = THREE.CubeTexture(
     //   [
     //     'assets/textures/space.jpeg'
@@ -196,8 +204,20 @@ class _State extends State<ObjectPreview> {
     // mesh = THREE.Mesh(actualModel.geometry, meshPhongMaterial);
     // mesh.position.sub(center);
 
-    scene.add(object);
+    // scene.add(mesh);
+  }
 
+  initPage() async {
+    // Init stuff
+    initScene();
+    initCamera();
+    initControls();
+    initLight();
+    await initTexture();
+    await initObj();
+    initMesh();
+
+    // Render it
     await render();
   }
 
@@ -206,6 +226,8 @@ class _State extends State<ObjectPreview> {
 
     // This variable is unused, but NEVER DELETE IT!!
     final _gl = three3dRender.gl;
+
+    controls.update();
 
     renderer.render(scene, camera);
 
@@ -231,6 +253,37 @@ class _State extends State<ObjectPreview> {
         ),
       );
 
+  Future<void> init() async {
+    if (!_objectFileExists) {
+      return;
+    }
+
+    // init size
+    final mqd = MediaQuery.of(context);
+
+    screenSize = mqd.size;
+    dpr = mqd.devicePixelRatio;
+
+    // init three3dRender
+    Map<String, dynamic> _options = {
+      'antialias': true,
+      'alpha': false,
+      'width': width.toInt(),
+      'height': height.toInt(),
+      'dpr': dpr,
+    };
+    await three3dRender.initialize(options: _options);
+
+    // https://github.com/wasabia/three_dart/blob/c5b4e36c7a6eb489145252a6a52b039344f021be/example/lib/webgl_loader_obj.dart#L72
+    // ignore: prefer-extracting-callbacks
+    Future.delayed(const Duration(milliseconds: 100), () async {
+      await three3dRender.prepareContext();
+
+      initRenderer();
+      await initPage();
+    });
+  }
+
   bool get _objectFileExists {
     return widget.snapshot.externalPathToObj != null &&
         File(widget.snapshot.externalPathToObj!).existsSync();
@@ -238,28 +291,32 @@ class _State extends State<ObjectPreview> {
 
   @override
   Widget build(BuildContext context) {
+    // There is an important part. When user interact with the
+    //[THREE_JSM] contorller, the outer controller of the PreviewPage
+    // is triggered. So I put controls inside the [SingleChildScrollView],
+    // but the [SingleChildScrollView] controller has to
+    // detect the lack of space to be triggered. That's why I used SizedBox
+    // with heitgh-1 and removed the glow.
     return SizedBox(
       width: width,
-      height: height,
-      child: isRendered
-          ? Texture(textureId: three3dRender.textureId!)
-          : const Center(
-              child: CircularProgressIndicator(),
+      height: height - 1,
+      child: ScrollConfiguration(
+        behavior: const ScrollBehavior().copyWith(overscroll: false),
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: width,
+            height: height,
+            child: THREE_JSM.DomLikeListenable(
+              key: _globalKey,
+              builder: (BuildContext context) => isRendered
+                  ? Texture(textureId: three3dRender.textureId!)
+                  : const Center(
+                      child: CircularProgressIndicator(),
+                    ),
             ),
+          ),
+        ),
+      ),
     );
-  }
-
-  @override
-  void dispose() {
-    three3dRender.dispose();
-    // renderer.dispose();
-    // renderTarget.dispose();
-    // scene.dispose();
-    // camera.dispose();
-    // // mesh.dispose();
-    // object.dispose();
-    // texture.dispose();
-
-    super.dispose();
   }
 }
