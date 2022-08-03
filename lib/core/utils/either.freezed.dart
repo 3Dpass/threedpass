@@ -12,27 +12,7 @@ part of 'either.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$EitherTearOff {
-  const _$EitherTearOff();
-
-  _Left<L, R> left<L, R>(L value) {
-    return _Left<L, R>(
-      value,
-    );
-  }
-
-  _Right<L, R> right<L, R>(R value) {
-    return _Right<L, R>(
-      value,
-    );
-  }
-}
-
-/// @nodoc
-const $Either = _$EitherTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Either<L, R> {
@@ -93,26 +73,28 @@ class _$EitherCopyWithImpl<L, R, $Res> implements $EitherCopyWith<L, R, $Res> {
 }
 
 /// @nodoc
-abstract class _$LeftCopyWith<L, R, $Res> {
-  factory _$LeftCopyWith(_Left<L, R> value, $Res Function(_Left<L, R>) then) =
-      __$LeftCopyWithImpl<L, R, $Res>;
+abstract class _$$_LeftCopyWith<L, R, $Res> {
+  factory _$$_LeftCopyWith(
+          _$_Left<L, R> value, $Res Function(_$_Left<L, R>) then) =
+      __$$_LeftCopyWithImpl<L, R, $Res>;
   $Res call({L value});
 }
 
 /// @nodoc
-class __$LeftCopyWithImpl<L, R, $Res> extends _$EitherCopyWithImpl<L, R, $Res>
-    implements _$LeftCopyWith<L, R, $Res> {
-  __$LeftCopyWithImpl(_Left<L, R> _value, $Res Function(_Left<L, R>) _then)
-      : super(_value, (v) => _then(v as _Left<L, R>));
+class __$$_LeftCopyWithImpl<L, R, $Res> extends _$EitherCopyWithImpl<L, R, $Res>
+    implements _$$_LeftCopyWith<L, R, $Res> {
+  __$$_LeftCopyWithImpl(
+      _$_Left<L, R> _value, $Res Function(_$_Left<L, R>) _then)
+      : super(_value, (v) => _then(v as _$_Left<L, R>));
 
   @override
-  _Left<L, R> get _value => super._value as _Left<L, R>;
+  _$_Left<L, R> get _value => super._value as _$_Left<L, R>;
 
   @override
   $Res call({
     Object? value = freezed,
   }) {
-    return _then(_Left<L, R>(
+    return _then(_$_Left<L, R>(
       value == freezed
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -138,7 +120,7 @@ class _$_Left<L, R> implements _Left<L, R> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Left<L, R> &&
+            other is _$_Left<L, R> &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
@@ -148,8 +130,8 @@ class _$_Left<L, R> implements _Left<L, R> {
 
   @JsonKey(ignore: true)
   @override
-  _$LeftCopyWith<L, R, _Left<L, R>> get copyWith =>
-      __$LeftCopyWithImpl<L, R, _Left<L, R>>(this, _$identity);
+  _$$_LeftCopyWith<L, R, _$_Left<L, R>> get copyWith =>
+      __$$_LeftCopyWithImpl<L, R, _$_Left<L, R>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -215,36 +197,38 @@ class _$_Left<L, R> implements _Left<L, R> {
 }
 
 abstract class _Left<L, R> implements Either<L, R> {
-  const factory _Left(L value) = _$_Left<L, R>;
+  const factory _Left(final L value) = _$_Left<L, R>;
 
   L get value;
   @JsonKey(ignore: true)
-  _$LeftCopyWith<L, R, _Left<L, R>> get copyWith =>
+  _$$_LeftCopyWith<L, R, _$_Left<L, R>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$RightCopyWith<L, R, $Res> {
-  factory _$RightCopyWith(
-          _Right<L, R> value, $Res Function(_Right<L, R>) then) =
-      __$RightCopyWithImpl<L, R, $Res>;
+abstract class _$$_RightCopyWith<L, R, $Res> {
+  factory _$$_RightCopyWith(
+          _$_Right<L, R> value, $Res Function(_$_Right<L, R>) then) =
+      __$$_RightCopyWithImpl<L, R, $Res>;
   $Res call({R value});
 }
 
 /// @nodoc
-class __$RightCopyWithImpl<L, R, $Res> extends _$EitherCopyWithImpl<L, R, $Res>
-    implements _$RightCopyWith<L, R, $Res> {
-  __$RightCopyWithImpl(_Right<L, R> _value, $Res Function(_Right<L, R>) _then)
-      : super(_value, (v) => _then(v as _Right<L, R>));
+class __$$_RightCopyWithImpl<L, R, $Res>
+    extends _$EitherCopyWithImpl<L, R, $Res>
+    implements _$$_RightCopyWith<L, R, $Res> {
+  __$$_RightCopyWithImpl(
+      _$_Right<L, R> _value, $Res Function(_$_Right<L, R>) _then)
+      : super(_value, (v) => _then(v as _$_Right<L, R>));
 
   @override
-  _Right<L, R> get _value => super._value as _Right<L, R>;
+  _$_Right<L, R> get _value => super._value as _$_Right<L, R>;
 
   @override
   $Res call({
     Object? value = freezed,
   }) {
-    return _then(_Right<L, R>(
+    return _then(_$_Right<L, R>(
       value == freezed
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -270,7 +254,7 @@ class _$_Right<L, R> implements _Right<L, R> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Right<L, R> &&
+            other is _$_Right<L, R> &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
@@ -280,8 +264,8 @@ class _$_Right<L, R> implements _Right<L, R> {
 
   @JsonKey(ignore: true)
   @override
-  _$RightCopyWith<L, R, _Right<L, R>> get copyWith =>
-      __$RightCopyWithImpl<L, R, _Right<L, R>>(this, _$identity);
+  _$$_RightCopyWith<L, R, _$_Right<L, R>> get copyWith =>
+      __$$_RightCopyWithImpl<L, R, _$_Right<L, R>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -347,10 +331,10 @@ class _$_Right<L, R> implements _Right<L, R> {
 }
 
 abstract class _Right<L, R> implements Either<L, R> {
-  const factory _Right(R value) = _$_Right<L, R>;
+  const factory _Right(final R value) = _$_Right<L, R>;
 
   R get value;
   @JsonKey(ignore: true)
-  _$RightCopyWith<L, R, _Right<L, R>> get copyWith =>
+  _$$_RightCopyWith<L, R, _$_Right<L, R>> get copyWith =>
       throw _privateConstructorUsedError;
 }

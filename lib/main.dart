@@ -49,10 +49,10 @@ class ThreeDApp extends StatelessWidget {
         BlocProvider<SettingsConfigCubit>(
           create: (_) => di_setup.getIt<SettingsConfigCubit>(),
         ),
-        BlocProvider<AppServiceLoaderCubit>(
-          create: (_) => di_setup.getIt<AppServiceLoaderCubit>(),
-          lazy: false,
-        ),
+        // BlocProvider<AppServiceLoaderCubit>(
+        //   create: (_) => di_setup.getIt<AppServiceLoaderCubit>(),
+        //   lazy: false,
+        // ),
       ],
       child: MaterialApp.router(
         title: '3D pass',

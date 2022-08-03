@@ -74,6 +74,6 @@ class _$AccountCreateCWProxyImpl implements _$AccountCreateCWProxy {
 }
 
 extension $AccountCreateCopyWith on AccountCreate {
-  /// Returns a callable class that can be used as follows: `instanceOfclass AccountCreate.name.copyWith(...)` or like so:`instanceOfclass AccountCreate.name.copyWith.fieldName(...)`.
+  /// Returns a callable class that can be used as follows: `instanceOfAccountCreate.copyWith(...)` or like so:`instanceOfAccountCreate.copyWith.fieldName(...)`.
   _$AccountCreateCWProxy get copyWith => _$AccountCreateCWProxyImpl(this);
 }

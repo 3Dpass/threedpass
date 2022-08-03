@@ -22,6 +22,7 @@ dependencies:
   ## UI
   # flutter_cube: ^0.1.1
   three_dart: ^0.0.11
+  three_dart_jsm: ^0.0.6
   flutter_gl: ^0.0.18
   
   flutter_markdown: ^0.6.10+3
@@ -39,7 +40,7 @@ dependencies:
     path: packages/calc
   get_it: ^7.2.0
   flutter_bloc: ^8.0.1
-  # flutter_form_bloc: ^0.30.1
+  # flutter_form_bloc: ^0.30.1  # Use reactive forms instead
   provider: ^6.0.3
   hive_flutter: ^1.1.0
   polkawallet_sdk: ^0.4.8
@@ -81,6 +82,7 @@ flutter:
   assets:
     - assets/
     - assets/wallet/
+    - assets/textures/
     - assets/translations/
 
 # fvm flutter pub run ffigen

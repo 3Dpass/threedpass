@@ -110,9 +110,11 @@ class AppRouter extends _i10.RootStackRouter {
               key: args.key, appService: args.appService));
     },
     CalcHashLoadingDialogRoute.name: (routeData) {
+      final args = routeData.argsAs<CalcHashLoadingDialogRouteArgs>();
       return _i10.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i7.CalcHashLoadingWidget(),
+          child: _i7.CalcHashLoadingWidget(
+              key: args.key, closeNotification: args.closeNotification),
           customRouteBuilder: _i29.dialogBuilder,
           opaque: true,
           barrierDismissible: false);
@@ -480,12 +482,30 @@ class ImportAccountWrapperRouteArgs {
 
 /// generated route for
 /// [_i7.CalcHashLoadingWidget]
-class CalcHashLoadingDialogRoute extends _i10.PageRouteInfo<void> {
-  const CalcHashLoadingDialogRoute()
+class CalcHashLoadingDialogRoute
+    extends _i10.PageRouteInfo<CalcHashLoadingDialogRouteArgs> {
+  CalcHashLoadingDialogRoute(
+      {_i28.Key? key, required _i28.ValueNotifier<bool> closeNotification})
       : super(CalcHashLoadingDialogRoute.name,
-            path: '/calc-hash-loading-widget');
+            path: '/calc-hash-loading-widget',
+            args: CalcHashLoadingDialogRouteArgs(
+                key: key, closeNotification: closeNotification));
 
   static const String name = 'CalcHashLoadingDialogRoute';
+}
+
+class CalcHashLoadingDialogRouteArgs {
+  const CalcHashLoadingDialogRouteArgs(
+      {this.key, required this.closeNotification});
+
+  final _i28.Key? key;
+
+  final _i28.ValueNotifier<bool> closeNotification;
+
+  @override
+  String toString() {
+    return 'CalcHashLoadingDialogRouteArgs{key: $key, closeNotification: $closeNotification}';
+  }
 }
 
 /// generated route for

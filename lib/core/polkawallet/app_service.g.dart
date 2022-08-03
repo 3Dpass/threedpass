@@ -72,6 +72,6 @@ class _$AppServiceCWProxyImpl implements _$AppServiceCWProxy {
 }
 
 extension $AppServiceCopyWith on AppService {
-  /// Returns a callable class that can be used as follows: `instanceOfclass AppService.name.copyWith(...)` or like so:`instanceOfclass AppService.name.copyWith.fieldName(...)`.
+  /// Returns a callable class that can be used as follows: `instanceOfAppService.copyWith(...)` or like so:`instanceOfAppService.copyWith.fieldName(...)`.
   _$AppServiceCWProxy get copyWith => _$AppServiceCWProxyImpl(this);
 }

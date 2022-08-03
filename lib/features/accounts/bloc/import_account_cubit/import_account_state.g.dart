@@ -81,7 +81,7 @@ class _$ImportAccountStateCWProxyImpl implements _$ImportAccountStateCWProxy {
 }
 
 extension $ImportAccountStateCopyWith on ImportAccountState {
-  /// Returns a callable class that can be used as follows: `instanceOfclass ImportAccountState.name.copyWith(...)` or like so:`instanceOfclass ImportAccountState.name.copyWith.fieldName(...)`.
+  /// Returns a callable class that can be used as follows: `instanceOfImportAccountState.copyWith(...)` or like so:`instanceOfImportAccountState.copyWith.fieldName(...)`.
   _$ImportAccountStateCWProxy get copyWith =>
       _$ImportAccountStateCWProxyImpl(this);
 }

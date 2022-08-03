@@ -4,6 +4,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart';
+import 'package:threedpass/features/scan_page/router/calc_hash_loading_widget_route.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 
@@ -28,17 +30,21 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
 
   /// Calc object
   Future<void> createHashFromFile(BuildContext context) async {
+    final closeDialogNotifier = ValueNotifier<bool>(false);
     // get file
     final pickerRes = await pickFile();
     if (pickerRes != null && pickerRes.files.isNotEmpty) {
-      context.router.push(const CalcHashLoadingDialogRoute());
+      context.router.push(
+        CalcHashLoadingDialogRoute(closeNotification: closeDialogNotifier),
+      );
       // file found so create snapshot
       final either = await SnapshotFileFactory.createSnapshotFromFile(
         filePath: pickerRes.files.first.path!,
         settings: BlocProvider.of<SettingsConfigCubit>(context).state.settings,
         context: context,
       );
-      context.router.pop();
+
+      closeDialogNotifier.value = true;
 
       // handle result
       either.when(
