@@ -23,7 +23,7 @@ class GridSizeDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsConfigCubit, SettingsConfigState>(
-      buildWhen: (previous, current) => false,
+      buildWhen: (previous, current) => true,
       builder: (context, state) => DropdownButtonFormField<int>(
         decoration: InputDecoration(
           label: Text('grid_size_label'.tr()),

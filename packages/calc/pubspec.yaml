@@ -15,6 +15,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  ffigen: ^6.0.1
   
   flutter_lints: ^1.0.4
 
@@ -68,3 +70,14 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
+
+# fvm flutter pub run ffigen
+ffigen:
+  output: lib/generated/bindings.dart
+  headers:
+    entry-points:
+    - ../../rust/target/bindings.h
+  name: CalcBindings
+  llvm-path:
+    - /usr/local/opt/llvm/bin # For MacOS. Set path fror your system
+  description: Dart bindings to call hashes calc function

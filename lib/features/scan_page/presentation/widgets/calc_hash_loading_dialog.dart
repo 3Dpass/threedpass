@@ -13,6 +13,7 @@ class CalcHashLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     closeNotification.addListener(() {
+      print('CLOSE');
       if (closeNotification.value) {
         context.router.pop();
       }

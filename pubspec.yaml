@@ -70,7 +70,6 @@ dev_dependencies:
   auto_route_generator: ^4.2.0
   flutter_launcher_icons: ^0.9.3
   change_app_package_name: ^1.1.0
-  ffigen: ^6.0.1
   
   flutter_lints: ^1.0.4
   dart_code_metrics: ^4.16.0
@@ -85,13 +84,3 @@ flutter:
     - assets/textures/
     - assets/translations/
 
-# fvm flutter pub run ffigen
-ffigen:
-  output: lib/generated/bindings.dart
-  headers:
-    entry-points:
-    - rust/target/bindings.h
-  name: GreeterBindings
-  llvm-path:
-    - /usr/local/opt/llvm/bin # For MacOS. Set path fror your system
-  description: Dart bindings to call mylib functions

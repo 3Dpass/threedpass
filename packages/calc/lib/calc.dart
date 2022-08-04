@@ -8,6 +8,7 @@ import 'dart:io';
 import 'dart:io' show Platform;
 import 'dart:isolate';
 import 'dart:ffi';
+import 'package:calc/generated/bindings.dart';
 import 'package:ffi/ffi.dart';
 
 // For C/Rust
@@ -170,5 +171,29 @@ class Calc {
     // sendPort.send("I got called back from Rust with $pct and $status");
 
     return 0;
+  }
+}
+
+/// 04.08.2022
+class Calc2 {
+  static String calcHashes({
+    required int gridSize,
+    required int nSections,
+    required String filePath,
+  }) {
+    final DynamicLibrary nativeExampleLib = Platform.isAndroid
+        ? DynamicLibrary.open(
+            "libcalc.so",
+          ) // Load the dynamic library on Android
+        : DynamicLibrary.process(); // Load the static library on iOS
+
+    final bindings = CalcBindings(nativeExampleLib);
+    final result = bindings.calc(
+      gridSize,
+      nSections,
+      filePath.toNativeUtf8().cast<Char>(),
+    );
+
+    return result.cast<Utf8>().toDartString();
   }
 }

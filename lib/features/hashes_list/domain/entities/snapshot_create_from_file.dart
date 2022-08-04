@@ -71,26 +71,15 @@ extension SnapshotFileFactory on Snapshot {
     SettingsConfig settings,
     String filePath,
   ) async {
-    // final DynamicLibrary nativeExampleLib = Platform.isAndroid
-    //     ? DynamicLibrary.open(
-    //         "libcalc.so") // Load the dynamic library on Android
-    //     : DynamicLibrary.process(); // Load the static library on iOS
+    return Calc2.calcHashes(
+      gridSize: settings.gridSize,
+      nSections: settings.nSections,
+      filePath: filePath,
+    );
 
-    // final bindings = GreeterBindings(nativeExampleLib);
-    // final result = bindings.calc(
-    //   settings.gridSize,
-    //   settings.nSections,
-    //   filePath.toNativeUtf8().cast<Int8>(),
-    // );
+    // await Future.delayed(Duration(seconds: 1));
 
-    // final File fileExists = File(filePath);
-    // fileExists.readAsBytesSync();
-
-    // return result.cast<Utf8>().toDartString();
-
-    await Future.delayed(Duration(seconds: 1));
-
-    return 'asdas\ndasdasda\ndasdasds\nadsasd\n';
+    // return 'asdas\ndasdasda\ndasdasds\nadsasd\n';
 
     // return await Calc.start(
     //   () {
