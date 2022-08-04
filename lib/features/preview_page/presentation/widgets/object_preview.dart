@@ -30,6 +30,8 @@ class _State extends State<ObjectPreview> {
   late final double dpr; // Device Pixel Ratio
   // Determines if we show object or loader
   bool isRendered = false;
+  // Prevent from re-init
+  bool startedInit = false;
 
   // late final THREE.Mesh mesh;
   late final THREE.Object3D object;
@@ -98,6 +100,7 @@ class _State extends State<ObjectPreview> {
   initScene() {
     // scene
     scene = THREE.Scene();
+    scene.background = THREE.Color(Theme.of(context).canvasColor.value);
   }
 
   initCamera() {
@@ -254,9 +257,11 @@ class _State extends State<ObjectPreview> {
       );
 
   Future<void> init() async {
-    if (!_objectFileExists) {
+    if (!_objectFileExists || startedInit) {
       return;
     }
+
+    startedInit = true;
 
     // init size
     final mqd = MediaQuery.of(context);
@@ -299,10 +304,11 @@ class _State extends State<ObjectPreview> {
     // with heitgh-1 and removed the glow.
     return SizedBox(
       width: width,
-      height: height - 1,
+      height: height - 0.001,
       child: ScrollConfiguration(
         behavior: const ScrollBehavior().copyWith(overscroll: false),
         child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
           child: SizedBox(
             width: width,
             height: height,
