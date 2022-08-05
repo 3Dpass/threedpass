@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/setup.dart';
 
 class SectionsTextField extends StatelessWidget {
   const SectionsTextField({Key? key}) : super(key: key);
@@ -13,15 +14,15 @@ class SectionsTextField extends StatelessWidget {
     String? newValue,
   ) async {
     if (newValue != null && int.tryParse(newValue) != null) {
-      final config = settings.copyWith(nSections: int.parse(newValue));
-      BlocProvider.of<SettingsConfigCubit>(context).updateSettings(config);
+      final state = getIt<SettingsConfigCubit>().state;
+      final config = state.settings.copyWith(nSections: int.parse(newValue));
+      getIt<SettingsConfigCubit>().updateSettings(config);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final settings =
-        BlocProvider.of<SettingsConfigCubit>(context).state.settings;
+    final settings = getIt<SettingsConfigCubit>().state.settings;
 
     return TextFormField(
       controller: TextEditingController(

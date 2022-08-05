@@ -4,9 +4,12 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
+import 'package:threedpass/features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
 import 'package:threedpass/router/router.gr.dart';
+import 'package:threedpass/setup.dart';
 
 class GetObjectFromFileFloatingButton extends StatelessWidget {
   static const allowedExtentions = ['obj', 'stl'];
@@ -39,14 +42,12 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
   Future<void> createHashFromFile(
     BuildContext context,
     SettingsConfig settings,
+    HomeContextCubit homeContext,
   ) async {
-    final closeDialogNotifier = ValueNotifier<bool>(false);
     // get file
     final pickerRes = await pickFile();
     if (pickerRes != null && pickerRes.files.isNotEmpty) {
-      context.router.push(
-        CalcHashLoadingDialogRoute(closeNotification: closeDialogNotifier),
-      );
+      homeContext.showDialogC((context) => const CalcHashLoadingWidget());
 
       // file found so create snapshot
       final either = await SnapshotFileFactory.createSnapshotFromFile(
@@ -55,7 +56,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
         context: context,
       );
 
-      closeDialogNotifier.value = true;
+      homeContext.hideDialogC();
 
       // handle result
       either.when(
@@ -85,7 +86,8 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       label: Text('get_from_file_button_label'.tr()),
       onPressed: () => createHashFromFile(
         context,
-        BlocProvider.of<SettingsConfigCubit>(context).state.settings,
+        getIt<SettingsConfigCubit>().state.settings,
+        BlocProvider.of<HomeContextCubit>(context),
       ),
     );
   }

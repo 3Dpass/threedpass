@@ -71,23 +71,12 @@ extension SnapshotFileFactory on Snapshot {
     SettingsConfig settings,
     String filePath,
   ) async {
-    return Calc2.calcHashes(
+    final calculator = Calc2(
       gridSize: settings.gridSize,
       nSections: settings.nSections,
       filePath: filePath,
     );
 
-    // await Future.delayed(Duration(seconds: 1));
-
-    // return 'asdas\ndasdasda\ndasdasds\nadsasd\n';
-
-    // return await Calc.start(
-    //   () {
-    //     log('on calc progress');
-    //   },
-    //   filePath,
-    //   settings.gridSize,
-    //   settings.nSections,
-    // );
+    return await calculator.calcHashes();
   }
 }

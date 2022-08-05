@@ -20,7 +20,7 @@ class HomeContextCubit extends Cubit<HomeContextState> {
     );
   }
 
-  static void hideDialogC(BuildContext context) {
-    Navigator.of(context).pop();
+  void hideDialogC() {
+    Navigator.of(state.context).pop();
   }
 }

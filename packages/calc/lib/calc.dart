@@ -174,13 +174,25 @@ class Calc {
   }
 }
 
-/// 04.08.2022
+/// Class for the Rust FFI Calc library
 class Calc2 {
-  static String calcHashes({
-    required int gridSize,
-    required int nSections,
-    required String filePath,
-  }) {
+  const Calc2({
+    required this.gridSize,
+    required this.nSections,
+    required this.filePath,
+  });
+
+  final int gridSize;
+  final int nSections;
+  final String filePath;
+
+  Future<String> calcHashes() async {
+    final p = ReceivePort();
+    await Isolate.spawn(_callLib, p.sendPort);
+    return await p.first as String;
+  }
+
+  Future<void> _callLib(SendPort p) async {
     final DynamicLibrary nativeExampleLib = Platform.isAndroid
         ? DynamicLibrary.open(
             "libcalc.so",
@@ -188,12 +200,13 @@ class Calc2 {
         : DynamicLibrary.process(); // Load the static library on iOS
 
     final bindings = CalcBindings(nativeExampleLib);
-    final result = bindings.calc(
+    final rawData = bindings.calc(
       gridSize,
       nSections,
       filePath.toNativeUtf8().cast<Char>(),
     );
 
-    return result.cast<Utf8>().toDartString();
+    final result = rawData.cast<Utf8>().toDartString();
+    Isolate.exit(p, result);
   }
 }

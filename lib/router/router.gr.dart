@@ -10,6 +10,7 @@
 //
 // ignore_for_file: type=lint
 
+// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i10;
 import 'package:flutter/material.dart' as _i28;
 
@@ -110,11 +111,9 @@ class AppRouter extends _i10.RootStackRouter {
               key: args.key, appService: args.appService));
     },
     CalcHashLoadingDialogRoute.name: (routeData) {
-      final args = routeData.argsAs<CalcHashLoadingDialogRouteArgs>();
       return _i10.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i7.CalcHashLoadingWidget(
-              key: args.key, closeNotification: args.closeNotification),
+          child: const _i7.CalcHashLoadingWidget(),
           customRouteBuilder: _i29.dialogBuilder,
           opaque: true,
           barrierDismissible: false);
@@ -482,30 +481,12 @@ class ImportAccountWrapperRouteArgs {
 
 /// generated route for
 /// [_i7.CalcHashLoadingWidget]
-class CalcHashLoadingDialogRoute
-    extends _i10.PageRouteInfo<CalcHashLoadingDialogRouteArgs> {
-  CalcHashLoadingDialogRoute(
-      {_i28.Key? key, required _i28.ValueNotifier<bool> closeNotification})
+class CalcHashLoadingDialogRoute extends _i10.PageRouteInfo<void> {
+  const CalcHashLoadingDialogRoute()
       : super(CalcHashLoadingDialogRoute.name,
-            path: '/calc-hash-loading-widget',
-            args: CalcHashLoadingDialogRouteArgs(
-                key: key, closeNotification: closeNotification));
+            path: '/calc-hash-loading-widget');
 
   static const String name = 'CalcHashLoadingDialogRoute';
-}
-
-class CalcHashLoadingDialogRouteArgs {
-  const CalcHashLoadingDialogRouteArgs(
-      {this.key, required this.closeNotification});
-
-  final _i28.Key? key;
-
-  final _i28.ValueNotifier<bool> closeNotification;
-
-  @override
-  String toString() {
-    return 'CalcHashLoadingDialogRouteArgs{key: $key, closeNotification: $closeNotification}';
-  }
 }
 
 /// generated route for

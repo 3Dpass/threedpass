@@ -5,20 +5,10 @@ import 'package:flutter/material.dart';
 class CalcHashLoadingWidget extends StatelessWidget {
   const CalcHashLoadingWidget({
     Key? key,
-    required this.closeNotification,
   }) : super(key: key);
-
-  final ValueNotifier<bool> closeNotification;
 
   @override
   Widget build(BuildContext context) {
-    closeNotification.addListener(() {
-      print('CLOSE');
-      if (closeNotification.value) {
-        context.router.pop();
-      }
-    });
-
     return AlertDialog(
       content: Row(
         children: [

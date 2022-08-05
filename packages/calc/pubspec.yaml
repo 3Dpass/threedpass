@@ -86,5 +86,5 @@ ffigen:
     - ../../rust/target/bindings.h
   name: CalcBindings
   llvm-path:
-    - /usr/local/opt/llvm/bin # For MacOS. Set path fror your system
+    - /usr/local/opt/llvm/bin # For MacOS. Set path for your system
   description: Dart bindings to call hashes calc function
