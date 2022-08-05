@@ -1,24 +1,24 @@
-name: Dart Code Metrics
+# name: Dart Code Metrics
 
-on: [pull_request]
-env:
-  FLUTTER_SDK_VERSION: 3.0.4
+# on: [pull_request]
+# env:
+#   FLUTTER_SDK_VERSION: 3.0.4
 
-jobs:
-  check:
-    name: dart-code-metrics-action
+# jobs:
+#   check:
+#     name: dart-code-metrics-action
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v2.3.0
-        with:
-          flutter-version: ${{env.FLUTTER_SDK_VERSION}}
-          cache: true
-      - name: dart-code-metrics
-        uses: dart-code-checker/dart-code-metrics-action@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          fatal_performance: true
-          fatal_style: true
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: subosito/flutter-action@v2.3.0
+#         with:
+#           flutter-version: ${{env.FLUTTER_SDK_VERSION}}
+#           cache: true
+#       - name: dart-code-metrics
+#         uses: dart-code-checker/dart-code-metrics-action@v2
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           fatal_performance: true
+#           fatal_style: true
