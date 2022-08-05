@@ -38,6 +38,13 @@ flutter:
     # -------------------
       some_platform:
         pluginClass: somePluginClass
+      android:
+        package: com.example.hello
+        pluginClass: HelloPlugin
+        ffiPlugin: true
+      ios:
+        pluginClass: CalcPlugin
+        ffiPlugin: true
     # -------------------
 
   # To add assets to your plugin package, add an assets section, like this:

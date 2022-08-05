@@ -16,7 +16,7 @@ public class SwiftCalcPlugin: NSObject, FlutterPlugin {
     // Noop
   }
 
-  public func dummyMethodToEnforceBundling() {
+  public static func dummyMethodToEnforceBundling() {
     // dummy calls to prevent tree shaking
     calc(1, 1, "");
   }
