@@ -4,17 +4,19 @@ version: 0.0.1
 homepage: https://3dpass.org/
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: ">=2.17.5 <3.0.0"
   # flutter: ">=1.20.0 <2.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  ffi: ^1.1.2
+  ffi: ^2.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  ffigen: ^6.0.1
   
   flutter_lints: ^1.0.4
 
@@ -36,6 +38,13 @@ flutter:
     # -------------------
       some_platform:
         pluginClass: somePluginClass
+      android:
+        package: com.example.hello
+        pluginClass: HelloPlugin
+        ffiPlugin: true
+      ios:
+        pluginClass: CalcPlugin
+        ffiPlugin: true
     # -------------------
 
   # To add assets to your plugin package, add an assets section, like this:
@@ -68,3 +77,14 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
+
+# fvm flutter pub run ffigen
+ffigen:
+  output: lib/generated/bindings.dart
+  headers:
+    entry-points:
+    - ../../rust/target/bindings.h
+  name: CalcBindings
+  llvm-path:
+    - /usr/local/opt/llvm/bin # For MacOS. Set path for your system
+  description: Dart bindings to call hashes calc function

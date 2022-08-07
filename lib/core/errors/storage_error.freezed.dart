@@ -12,23 +12,7 @@ part of 'storage_error.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$StorageErrorTearOff {
-  const _$StorageErrorTearOff();
-
-  _ImpossibleOperation impossibleOperation() {
-    return const _ImpossibleOperation();
-  }
-
-  _NoDataStored noDataStored() {
-    return const _NoDataStored();
-  }
-}
-
-/// @nodoc
-const $StorageError = _$StorageErrorTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$StorageError {
@@ -89,22 +73,22 @@ class _$StorageErrorCopyWithImpl<$Res> implements $StorageErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ImpossibleOperationCopyWith<$Res> {
-  factory _$ImpossibleOperationCopyWith(_ImpossibleOperation value,
-          $Res Function(_ImpossibleOperation) then) =
-      __$ImpossibleOperationCopyWithImpl<$Res>;
+abstract class _$$_ImpossibleOperationCopyWith<$Res> {
+  factory _$$_ImpossibleOperationCopyWith(_$_ImpossibleOperation value,
+          $Res Function(_$_ImpossibleOperation) then) =
+      __$$_ImpossibleOperationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ImpossibleOperationCopyWithImpl<$Res>
+class __$$_ImpossibleOperationCopyWithImpl<$Res>
     extends _$StorageErrorCopyWithImpl<$Res>
-    implements _$ImpossibleOperationCopyWith<$Res> {
-  __$ImpossibleOperationCopyWithImpl(
-      _ImpossibleOperation _value, $Res Function(_ImpossibleOperation) _then)
-      : super(_value, (v) => _then(v as _ImpossibleOperation));
+    implements _$$_ImpossibleOperationCopyWith<$Res> {
+  __$$_ImpossibleOperationCopyWithImpl(_$_ImpossibleOperation _value,
+      $Res Function(_$_ImpossibleOperation) _then)
+      : super(_value, (v) => _then(v as _$_ImpossibleOperation));
 
   @override
-  _ImpossibleOperation get _value => super._value as _ImpossibleOperation;
+  _$_ImpossibleOperation get _value => super._value as _$_ImpossibleOperation;
 }
 
 /// @nodoc
@@ -120,7 +104,7 @@ class _$_ImpossibleOperation implements _ImpossibleOperation {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _ImpossibleOperation);
+        (other.runtimeType == runtimeType && other is _$_ImpossibleOperation);
   }
 
   @override
@@ -194,21 +178,22 @@ abstract class _ImpossibleOperation implements StorageError {
 }
 
 /// @nodoc
-abstract class _$NoDataStoredCopyWith<$Res> {
-  factory _$NoDataStoredCopyWith(
-          _NoDataStored value, $Res Function(_NoDataStored) then) =
-      __$NoDataStoredCopyWithImpl<$Res>;
+abstract class _$$_NoDataStoredCopyWith<$Res> {
+  factory _$$_NoDataStoredCopyWith(
+          _$_NoDataStored value, $Res Function(_$_NoDataStored) then) =
+      __$$_NoDataStoredCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$NoDataStoredCopyWithImpl<$Res> extends _$StorageErrorCopyWithImpl<$Res>
-    implements _$NoDataStoredCopyWith<$Res> {
-  __$NoDataStoredCopyWithImpl(
-      _NoDataStored _value, $Res Function(_NoDataStored) _then)
-      : super(_value, (v) => _then(v as _NoDataStored));
+class __$$_NoDataStoredCopyWithImpl<$Res>
+    extends _$StorageErrorCopyWithImpl<$Res>
+    implements _$$_NoDataStoredCopyWith<$Res> {
+  __$$_NoDataStoredCopyWithImpl(
+      _$_NoDataStored _value, $Res Function(_$_NoDataStored) _then)
+      : super(_value, (v) => _then(v as _$_NoDataStored));
 
   @override
-  _NoDataStored get _value => super._value as _NoDataStored;
+  _$_NoDataStored get _value => super._value as _$_NoDataStored;
 }
 
 /// @nodoc
@@ -224,7 +209,7 @@ class _$_NoDataStored implements _NoDataStored {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _NoDataStored);
+        (other.runtimeType == runtimeType && other is _$_NoDataStored);
   }
 
   @override

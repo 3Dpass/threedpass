@@ -107,7 +107,7 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
 }
 
 extension $SnapshotCopyWith on Snapshot {
-  /// Returns a callable class that can be used as follows: `instanceOfclass Snapshot.name.copyWith(...)` or like so:`instanceOfclass Snapshot.name.copyWith.fieldName(...)`.
+  /// Returns a callable class that can be used as follows: `instanceOfSnapshot.copyWith(...)` or like so:`instanceOfSnapshot.copyWith.fieldName(...)`.
   _$SnapshotCWProxy get copyWith => _$SnapshotCWProxyImpl(this);
 }
 

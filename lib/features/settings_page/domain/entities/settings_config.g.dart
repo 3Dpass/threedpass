@@ -72,7 +72,7 @@ class _$SettingsConfigCWProxyImpl implements _$SettingsConfigCWProxy {
 }
 
 extension $SettingsConfigCopyWith on SettingsConfig {
-  /// Returns a callable class that can be used as follows: `instanceOfclass SettingsConfig extends Equatable.name.copyWith(...)` or like so:`instanceOfclass SettingsConfig extends Equatable.name.copyWith.fieldName(...)`.
+  /// Returns a callable class that can be used as follows: `instanceOfSettingsConfig.copyWith(...)` or like so:`instanceOfSettingsConfig.copyWith.fieldName(...)`.
   _$SettingsConfigCWProxy get copyWith => _$SettingsConfigCWProxyImpl(this);
 }
 

@@ -63,6 +63,7 @@ class PreviewPage extends StatelessWidget {
             MoreInfo(
               state: previewPageCubitState,
             ),
+            const SizedBox(height: 16),
           ],
         ),
       ),

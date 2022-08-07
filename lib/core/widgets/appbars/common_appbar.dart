@@ -4,10 +4,11 @@ class CommonAppbar extends AppBar {
   CommonAppbar({
     Key? key,
     required Widget title,
+    double? titleSpacing,
   }) : super(
           key: key,
           backgroundColor: Colors.black,
-          titleSpacing: 16,
+          titleSpacing: titleSpacing ?? 16,
           title: title,
           automaticallyImplyLeading: false,
         );

@@ -17,6 +17,8 @@
     "Coming soon": "Coming soon",
     "Reset": "Reset",
     "Copied": "Copied",
+    "Apply": "Apply",
+    "Invalid": "Invalid",
 
     "@home_page":{
     },
@@ -29,6 +31,9 @@
     "open_web_wallet_button_label": "Open web wallet",
     "get_from_file_button_label": "Get from file",
     "no_saved_objects_placeholder": "No saved objects avaliable",
+
+    "error_hash_list_bloc": "Hashes list is not initalized :(",
+    "error_file_picker": "File picker error",
 
     "@preview_page":{
     },
@@ -85,8 +90,8 @@
     "create_account_button_label": "Create account",
     "import_account_button_label": "Import account",
 
-    "init_status_sdk": "Initializating polkadot SDK",
-    "init_status_connecting_to_node": "Connecting to node",
+    "init_status_sdk": "Initializing...",
+    "init_status_connecting_to_node": "Connecting to node...",
     "init_status_completed": "Successfully connected",
     "init_status_connecting_to_node_failed": "Connecting to node failed",
 
@@ -102,6 +107,7 @@
     "@create_account_page":{
     },
     "create_account_title": "Create account",
+    "import_account_title": "Import account",
 
     "create_warn1_header": "Please note",
     "create_warn1_text":
@@ -132,5 +138,18 @@
     "create_credentials_password2_error": "Inconsistent passwords",
 
     "error_create_account": "Error. account was NOT created.",
-    "create_account_loading": "Creating account..."
+    "create_account_loading": "Creating account...",
+
+    "encrypt_type_picker_label": "Encrypt Type",
+    "derivation_path_input_label": "Secret derivation path",
+
+    "advanced_options_header": "Advanced options",
+    "apply_options_button": "Apply options",
+
+    "import_type_mnemonic": "Mnemonic",
+    "import_type_raw_seed": "Raw seed",
+    "import_type_keystore": "Keystore (json)",
+
+    "invalid_input": "Invalid input",
+    "error_mnemonic_not_found": "Error: mnemonic not found"
 }

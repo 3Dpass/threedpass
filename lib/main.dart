@@ -1,32 +1,19 @@
-import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart' as di_setup;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // TODO Move out hive init
-  Hive.registerAdapter(HashObjectAdapter());
-  Hive.registerAdapter(SnapshotAdapter());
-  Hive.registerAdapter(SettingsConfigAdapter());
-  Hive.registerAdapter(AlgorithmAdapter());
-  Directory defaultDirectory = await getApplicationDocumentsDirectory();
-  Hive.init(defaultDirectory.path + '/storages');
-
+  await hive_setup.hiveSetup();
   await di_setup.setup();
-
   await EasyLocalization.ensureInitialized();
 
   runApp(
@@ -62,10 +49,10 @@ class ThreeDApp extends StatelessWidget {
         BlocProvider<SettingsConfigCubit>(
           create: (_) => di_setup.getIt<SettingsConfigCubit>(),
         ),
-        BlocProvider<AppServiceLoaderCubit>(
-          create: (_) => di_setup.getIt<AppServiceLoaderCubit>(),
-          lazy: false,
-        ),
+        // BlocProvider<AppServiceLoaderCubit>(
+        //   create: (_) => di_setup.getIt<AppServiceLoaderCubit>(),
+        //   lazy: false,
+        // ),
       ],
       child: MaterialApp.router(
         title: '3D pass',

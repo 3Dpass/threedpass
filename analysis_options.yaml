@@ -22,7 +22,7 @@ analyzer:
     - '**/*.g.dart'
     - '**/*.freezed.dart'
     - '**/*.gr.dart'
-    - packages/calc/**
+    - lib/generated/**
 
 dart_code_metrics:
   metrics:

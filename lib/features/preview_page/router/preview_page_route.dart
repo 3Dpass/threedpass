@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:threedpass/features/compare_page.dart/presentation/pages/compare_page_wrapper.dart';
+import 'package:threedpass/features/compare_page/presentation/pages/compare_page_wrapper.dart';
 import 'package:threedpass/features/preview_page/presentation/pages/preview_page.dart';
 import 'package:threedpass/features/preview_page/presentation/pages/preview_page_wrapper.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/rename_snapshot_dialog.dart';

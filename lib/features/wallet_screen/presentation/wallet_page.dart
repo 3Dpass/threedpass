@@ -3,23 +3,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page.dart';
-import 'package:threedpass/features/wallet_screen/presentation/connecting_page.dart';
+import 'package:threedpass/features/wallet_screen/presentation/appservice_init_loader_page.dart';
 import 'package:threedpass/features/wallet_screen/presentation/no_accounts_page.dart';
+import 'package:threedpass/features/web_wallet/presentation/pages/web_wallet_page.dart';
 
 class WalletPage extends StatelessWidget {
   const WalletPage({Key? key}) : super(key: key);
 
-  bool buildWhen(Object previous, Object current) {
-    // State changes from connecting to no accounts or hub
-    if (previous is! AppService && current is AppService) {
+  bool buildWhen(AppService previous, AppService current) {
+    // State changes from init sdk to no accounts or hub
+    if (previous.status == AppServiceInitStatus.init) {
       return true;
     }
 
-    // If new account was created
-    if (previous is AppService &&
-        current is AppService &&
-        previous.keyring.allAccounts.length !=
-            current.keyring.allAccounts.length) {
+    // If new account was created. Otherwise, IF above condition is met and works fine
+    if (current.keyring.allAccounts.length == 1) {
       return true;
     }
 
@@ -28,21 +26,25 @@ class WalletPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppServiceLoaderCubit, Object>(
-      buildWhen: buildWhen,
-      builder: (context, state) {
-        if (state is AppService) {
-          // return const NoAccountsPage();
+    return const WebWalletPage(initialUrl: 'https://wallet.3dpass.org/');
 
-          if (state.keyring.allAccounts.isEmpty) {
-            return const NoAccountsPage();
-          } else {
-            return const AssetsPage();
-          }
-        } else {
-          return const ConnectingPage();
-        }
-      },
-    );
+    // return BlocBuilder<AppServiceLoaderCubit, AppService>(
+    //   buildWhen: buildWhen,
+    //   builder: (context, state) {
+    //     switch (state.status) {
+    //       case AppServiceInitStatus.init:
+    //         return const AppServiceInitLoaderPage();
+
+    //       case AppServiceInitStatus.connecting:
+    //       case AppServiceInitStatus.connected:
+    //       case AppServiceInitStatus.error:
+    //         if (state.keyring.allAccounts.isEmpty) {
+    //           return const NoAccountsPage();
+    //         } else {
+    //           return const AssetsPage();
+    //         }
+    //     }
+    //   },
+    // );
   }
 }
