@@ -3,7 +3,7 @@ part of 'settings_page_cubit.dart';
 abstract class SettingsConfigState {
   const SettingsConfigState();
 
-  SettingsConfig get settings;
+  ScanSettings get settings;
 }
 
 class SettingsConfigInitial extends SettingsConfigState {
@@ -12,12 +12,12 @@ class SettingsConfigInitial extends SettingsConfigState {
   static const _default = DefaultSettingsConfig();
 
   @override
-  SettingsConfig get settings => _default;
+  ScanSettings get settings => _default;
 }
 
 class SettingsConfigLoaded extends SettingsConfigState {
   @override
-  final SettingsConfig settings;
+  final ScanSettings settings;
 
   const SettingsConfigLoaded({
     required this.settings,

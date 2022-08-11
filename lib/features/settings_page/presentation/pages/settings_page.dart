@@ -18,6 +18,10 @@ class SettingsPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: const [
+            Text('Wallet settings'),
+            // TestNetSwitch(),
+
+            Text('Hash settings'),
             // AlgorithmDropdown(),
             GridSizeDropdown(),
             SectionsTextField(),

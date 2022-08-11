@@ -2,11 +2,11 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-part 'settings_config.g.dart';
+part 'scan_settings.g.dart';
 
 @CopyWith()
 @HiveType(typeId: 1)
-class SettingsConfig extends Equatable {
+class ScanSettings extends Equatable {
   @HiveField(0)
   final int gridSize;
   @HiveField(1)
@@ -14,7 +14,7 @@ class SettingsConfig extends Equatable {
   @HiveField(2)
   final int nSections;
 
-  const SettingsConfig({
+  const ScanSettings({
     required this.gridSize,
     required this.nSections,
     required this.algorithm,

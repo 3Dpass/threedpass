@@ -1,9 +1,9 @@
 import 'package:threedpass/features/settings_page/data/repositories/settings_store.dart';
-import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
+import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 
 abstract class SettingsRepository {
-  SettingsConfig getConfig();
-  Future<void> setConfig(SettingsConfig config);
+  ScanSettings getConfig();
+  Future<void> setConfig(ScanSettings config);
 }
 
 class SettingsRepositoryImpl implements SettingsRepository {
@@ -13,12 +13,12 @@ class SettingsRepositoryImpl implements SettingsRepository {
     required this.hiveSettingsStore,
   });
   @override
-  SettingsConfig getConfig() {
+  ScanSettings getConfig() {
     return hiveSettingsStore.getSettings();
   }
 
   @override
-  Future<void> setConfig(SettingsConfig config) async {
+  Future<void> setConfig(ScanSettings config) async {
     return await hiveSettingsStore.setSettings(config);
   }
 }

@@ -7,7 +7,7 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
-import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
+import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart';
 
@@ -41,7 +41,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
   /// Calc object
   Future<void> createHashFromFile(
     BuildContext context,
-    SettingsConfig settings,
+    ScanSettings settings,
     HomeContextCubit homeContext,
   ) async {
     // get file

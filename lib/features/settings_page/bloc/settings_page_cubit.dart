@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:threedpass/features/settings_page/data/models/default_settings_config.dart';
-import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
+import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/features/settings_page/domain/repositories/settings_repository.dart';
 
 part 'settings_page_state.dart';
@@ -17,7 +17,7 @@ class SettingsConfigCubit extends Cubit<SettingsConfigState> {
     emit(SettingsConfigLoaded(settings: config));
   }
 
-  void updateSettings(SettingsConfig config) {
+  void updateSettings(ScanSettings config) {
     settingsRepository.setConfig(config);
     emit(SettingsConfigLoaded(settings: config));
   }

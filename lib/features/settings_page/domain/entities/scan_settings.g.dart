@@ -1,60 +1,60 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'settings_config.dart';
+part of 'scan_settings.dart';
 
 // **************************************************************************
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$SettingsConfigCWProxy {
-  SettingsConfig algorithm(Algorithm algorithm);
+abstract class _$ScanSettingsCWProxy {
+  ScanSettings algorithm(Algorithm algorithm);
 
-  SettingsConfig gridSize(int gridSize);
+  ScanSettings gridSize(int gridSize);
 
-  SettingsConfig nSections(int nSections);
+  ScanSettings nSections(int nSections);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SettingsConfig(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ScanSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
-  /// SettingsConfig(...).copyWith(id: 12, name: "My name")
+  /// ScanSettings(...).copyWith(id: 12, name: "My name")
   /// ````
-  SettingsConfig call({
+  ScanSettings call({
     Algorithm? algorithm,
     int? gridSize,
     int? nSections,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfSettingsConfig.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfSettingsConfig.copyWith.fieldName(...)`
-class _$SettingsConfigCWProxyImpl implements _$SettingsConfigCWProxy {
-  final SettingsConfig _value;
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfScanSettings.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfScanSettings.copyWith.fieldName(...)`
+class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
+  final ScanSettings _value;
 
-  const _$SettingsConfigCWProxyImpl(this._value);
-
-  @override
-  SettingsConfig algorithm(Algorithm algorithm) => this(algorithm: algorithm);
+  const _$ScanSettingsCWProxyImpl(this._value);
 
   @override
-  SettingsConfig gridSize(int gridSize) => this(gridSize: gridSize);
+  ScanSettings algorithm(Algorithm algorithm) => this(algorithm: algorithm);
 
   @override
-  SettingsConfig nSections(int nSections) => this(nSections: nSections);
+  ScanSettings gridSize(int gridSize) => this(gridSize: gridSize);
+
+  @override
+  ScanSettings nSections(int nSections) => this(nSections: nSections);
 
   @override
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SettingsConfig(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ScanSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
-  /// SettingsConfig(...).copyWith(id: 12, name: "My name")
+  /// ScanSettings(...).copyWith(id: 12, name: "My name")
   /// ````
-  SettingsConfig call({
+  ScanSettings call({
     Object? algorithm = const $CopyWithPlaceholder(),
     Object? gridSize = const $CopyWithPlaceholder(),
     Object? nSections = const $CopyWithPlaceholder(),
   }) {
-    return SettingsConfig(
+    return ScanSettings(
       algorithm: algorithm == const $CopyWithPlaceholder() || algorithm == null
           ? _value.algorithm
           // ignore: cast_nullable_to_non_nullable
@@ -71,27 +71,27 @@ class _$SettingsConfigCWProxyImpl implements _$SettingsConfigCWProxy {
   }
 }
 
-extension $SettingsConfigCopyWith on SettingsConfig {
-  /// Returns a callable class that can be used as follows: `instanceOfSettingsConfig.copyWith(...)` or like so:`instanceOfSettingsConfig.copyWith.fieldName(...)`.
+extension $ScanSettingsCopyWith on ScanSettings {
+  /// Returns a callable class that can be used as follows: `instanceOfScanSettings.copyWith(...)` or like so:`instanceOfScanSettings.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
-  _$SettingsConfigCWProxy get copyWith => _$SettingsConfigCWProxyImpl(this);
+  _$ScanSettingsCWProxy get copyWith => _$ScanSettingsCWProxyImpl(this);
 }
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class SettingsConfigAdapter extends TypeAdapter<SettingsConfig> {
+class ScanSettingsAdapter extends TypeAdapter<ScanSettings> {
   @override
   final int typeId = 1;
 
   @override
-  SettingsConfig read(BinaryReader reader) {
+  ScanSettings read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return SettingsConfig(
+    return ScanSettings(
       gridSize: fields[0] as int,
       nSections: fields[2] as int,
       algorithm: fields[1] as Algorithm,
@@ -99,7 +99,7 @@ class SettingsConfigAdapter extends TypeAdapter<SettingsConfig> {
   }
 
   @override
-  void write(BinaryWriter writer, SettingsConfig obj) {
+  void write(BinaryWriter writer, ScanSettings obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
@@ -116,7 +116,7 @@ class SettingsConfigAdapter extends TypeAdapter<SettingsConfig> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is SettingsConfigAdapter &&
+      other is ScanSettingsAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

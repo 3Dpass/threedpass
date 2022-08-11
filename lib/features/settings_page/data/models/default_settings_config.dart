@@ -1,6 +1,6 @@
-import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
+import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 
-class DefaultSettingsConfig extends SettingsConfig {
+class DefaultSettingsConfig extends ScanSettings {
   const DefaultSettingsConfig()
       : super(
           gridSize: 7,
