@@ -48,10 +48,12 @@ Future<void> setup() async {
     )..init(),
   );
 
+  final settingsConfig = getIt<SettingsRepository>().getConfig();
   getIt.registerFactory<SettingsConfigCubit>(
     () => SettingsConfigCubit(
+      config: settingsConfig,
       settingsRepository: getIt<SettingsRepository>(),
-    )..init(),
+    ),
   );
 
   getIt.registerFactory<AppServiceLoaderCubit>(

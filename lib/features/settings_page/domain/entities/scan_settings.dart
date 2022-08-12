@@ -20,6 +20,11 @@ class ScanSettings extends Equatable {
     required this.algorithm,
   });
 
+  const ScanSettings.defaultValues()
+      : gridSize = 7,
+        algorithm = Algorithm.grid,
+        nSections = 10;
+
   @override
   List<Object?> get props => [
         gridSize,

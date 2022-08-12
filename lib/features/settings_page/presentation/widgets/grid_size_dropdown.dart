@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/setup.dart';
@@ -16,14 +16,15 @@ class GridSizeDropdown extends StatelessWidget {
   ) async {
     if (newValue != null) {
       final state = getIt<SettingsConfigCubit>().state;
-      final config = state.settings.copyWith(gridSize: newValue);
-      getIt<SettingsConfigCubit>().updateSettings(config);
+      final newScanConfig = state.scanSettings.copyWith(gridSize: newValue);
+      final newState = state.copyWith(scanSettings: newScanConfig);
+      getIt<SettingsConfigCubit>().updateSettings(newState);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final settings = getIt<SettingsConfigCubit>().state.settings;
+    final settings = getIt<SettingsConfigCubit>().state.scanSettings;
 
     return DropdownButtonFormField<int>(
       decoration: InputDecoration(

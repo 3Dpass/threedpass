@@ -1,21 +1,22 @@
 import 'package:threedpass/core/persistence/hive_universal_store.dart';
-import 'package:threedpass/features/settings_page/data/models/default_settings_config.dart';
-import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
+import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 
-class HiveSettingsStore extends HiveUniversalStore<ScanSettings> {
+class HiveSettingsStore extends HiveUniversalStore<GlobalSettings> {
   HiveSettingsStore() : super(boxName: 'settings');
 
-  ScanSettings getSettings() {
+  static final _defaultValue = GlobalSettings.defaultValues();
+
+  GlobalSettings getSettings() {
     final currentData = getAt(0);
     if (currentData != null) {
       return currentData;
     } else {
-      setSettings(const DefaultSettingsConfig());
-      return const DefaultSettingsConfig();
+      setSettings(_defaultValue);
+      return _defaultValue;
     }
   }
 
-  Future<void> setSettings(ScanSettings config) async {
+  Future<void> setSettings(GlobalSettings config) async {
     return await putAt0(config);
   }
 }

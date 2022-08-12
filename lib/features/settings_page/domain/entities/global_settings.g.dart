@@ -6,51 +6,50 @@ part of 'global_settings.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$GlobalSettingsConfigCWProxy {
-  GlobalSettingsConfig scanSettings(ScanSettings scanSettings);
+abstract class _$GlobalSettingsCWProxy {
+  GlobalSettings scanSettings(ScanSettings scanSettings);
 
-  GlobalSettingsConfig walletSettings(WalletSettings walletSettings);
+  GlobalSettings walletSettings(WalletSettings walletSettings);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GlobalSettingsConfig(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GlobalSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
-  /// GlobalSettingsConfig(...).copyWith(id: 12, name: "My name")
+  /// GlobalSettings(...).copyWith(id: 12, name: "My name")
   /// ````
-  GlobalSettingsConfig call({
+  GlobalSettings call({
     ScanSettings? scanSettings,
     WalletSettings? walletSettings,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfGlobalSettingsConfig.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfGlobalSettingsConfig.copyWith.fieldName(...)`
-class _$GlobalSettingsConfigCWProxyImpl
-    implements _$GlobalSettingsConfigCWProxy {
-  final GlobalSettingsConfig _value;
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfGlobalSettings.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfGlobalSettings.copyWith.fieldName(...)`
+class _$GlobalSettingsCWProxyImpl implements _$GlobalSettingsCWProxy {
+  final GlobalSettings _value;
 
-  const _$GlobalSettingsConfigCWProxyImpl(this._value);
+  const _$GlobalSettingsCWProxyImpl(this._value);
 
   @override
-  GlobalSettingsConfig scanSettings(ScanSettings scanSettings) =>
+  GlobalSettings scanSettings(ScanSettings scanSettings) =>
       this(scanSettings: scanSettings);
 
   @override
-  GlobalSettingsConfig walletSettings(WalletSettings walletSettings) =>
+  GlobalSettings walletSettings(WalletSettings walletSettings) =>
       this(walletSettings: walletSettings);
 
   @override
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GlobalSettingsConfig(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GlobalSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
-  /// GlobalSettingsConfig(...).copyWith(id: 12, name: "My name")
+  /// GlobalSettings(...).copyWith(id: 12, name: "My name")
   /// ````
-  GlobalSettingsConfig call({
+  GlobalSettings call({
     Object? scanSettings = const $CopyWithPlaceholder(),
     Object? walletSettings = const $CopyWithPlaceholder(),
   }) {
-    return GlobalSettingsConfig(
+    return GlobalSettings(
       scanSettings:
           scanSettings == const $CopyWithPlaceholder() || scanSettings == null
               ? _value.scanSettings
@@ -65,9 +64,49 @@ class _$GlobalSettingsConfigCWProxyImpl
   }
 }
 
-extension $GlobalSettingsConfigCopyWith on GlobalSettingsConfig {
-  /// Returns a callable class that can be used as follows: `instanceOfGlobalSettingsConfig.copyWith(...)` or like so:`instanceOfGlobalSettingsConfig.copyWith.fieldName(...)`.
+extension $GlobalSettingsCopyWith on GlobalSettings {
+  /// Returns a callable class that can be used as follows: `instanceOfGlobalSettings.copyWith(...)` or like so:`instanceOfGlobalSettings.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
-  _$GlobalSettingsConfigCWProxy get copyWith =>
-      _$GlobalSettingsConfigCWProxyImpl(this);
+  _$GlobalSettingsCWProxy get copyWith => _$GlobalSettingsCWProxyImpl(this);
+}
+
+// **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
+class GlobalSettingsAdapter extends TypeAdapter<GlobalSettings> {
+  @override
+  final int typeId = 4;
+
+  @override
+  GlobalSettings read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return GlobalSettings(
+      scanSettings: fields[0] as ScanSettings,
+      walletSettings: fields[1] as WalletSettings,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, GlobalSettings obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.scanSettings)
+      ..writeByte(1)
+      ..write(obj.walletSettings);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GlobalSettingsAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
 }
