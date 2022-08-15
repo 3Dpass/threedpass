@@ -26,7 +26,7 @@ class SectionsTextField extends StatelessWidget {
     if (value != null && int.tryParse(value) != null) {
       return null;
     } else {
-      return 'Only Numbers are allowed';
+      return 'error_n_sections_validator'.tr();
     }
   }
 

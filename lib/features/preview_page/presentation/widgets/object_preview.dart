@@ -7,6 +7,9 @@ import 'package:flutter_gl/flutter_gl.dart';
 import 'package:three_dart/three_dart.dart' as THREE;
 import 'package:three_dart_jsm/three_dart_jsm.dart' as THREE_JSM;
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/domain/entities/preview_settings.dart';
+import 'package:threedpass/setup.dart';
 
 class ObjectPreview extends StatefulWidget {
   const ObjectPreview({
@@ -47,6 +50,14 @@ class _State extends State<ObjectPreview> {
   final GlobalKey<THREE_JSM.DomLikeListenableState> _globalKey =
       GlobalKey<THREE_JSM.DomLikeListenableState>();
 
+  late final PreviewSettings previewSettings;
+
+  @override
+  void initState() {
+    super.initState();
+    previewSettings = getIt<SettingsConfigCubit>().state.previewSettings;
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -76,13 +87,13 @@ class _State extends State<ObjectPreview> {
       'width': width,
       'height': height,
       'gl': three3dRender.gl,
-      'antialias': true,
+      'antialias': previewSettings.antialias,
       'canvas': three3dRender.element,
       'alpha': true,
     };
 
     renderer = THREE.WebGLRenderer(_options);
-    renderer.setPixelRatio(dpr);
+    renderer.setPixelRatio(dpr * previewSettings.pixelRatio);
     renderer.setSize(width, height, false);
     renderer.shadowMap.enabled = false;
 
@@ -93,6 +104,7 @@ class _State extends State<ObjectPreview> {
       pars,
     );
     renderTarget.samples = 0;
+
     renderer.setRenderTarget(renderTarget);
     sourceTexture = renderer.getRenderTargetGLTexture(renderTarget);
   }
@@ -271,11 +283,11 @@ class _State extends State<ObjectPreview> {
 
     // init three3dRender
     Map<String, dynamic> _options = {
-      'antialias': true,
+      'antialias': previewSettings.antialias,
       'alpha': false,
       'width': width.toInt(),
       'height': height.toInt(),
-      'dpr': dpr,
+      'dpr': dpr * previewSettings.pixelRatio,
     };
     await three3dRender.initialize(options: _options);
 

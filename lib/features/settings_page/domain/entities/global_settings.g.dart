@@ -7,6 +7,8 @@ part of 'global_settings.dart';
 // **************************************************************************
 
 abstract class _$GlobalSettingsCWProxy {
+  GlobalSettings previewSettings(PreviewSettings previewSettings);
+
   GlobalSettings scanSettings(ScanSettings scanSettings);
 
   GlobalSettings walletSettings(WalletSettings walletSettings);
@@ -18,6 +20,7 @@ abstract class _$GlobalSettingsCWProxy {
   /// GlobalSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   GlobalSettings call({
+    PreviewSettings? previewSettings,
     ScanSettings? scanSettings,
     WalletSettings? walletSettings,
   });
@@ -28,6 +31,10 @@ class _$GlobalSettingsCWProxyImpl implements _$GlobalSettingsCWProxy {
   final GlobalSettings _value;
 
   const _$GlobalSettingsCWProxyImpl(this._value);
+
+  @override
+  GlobalSettings previewSettings(PreviewSettings previewSettings) =>
+      this(previewSettings: previewSettings);
 
   @override
   GlobalSettings scanSettings(ScanSettings scanSettings) =>
@@ -46,10 +53,16 @@ class _$GlobalSettingsCWProxyImpl implements _$GlobalSettingsCWProxy {
   /// GlobalSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   GlobalSettings call({
+    Object? previewSettings = const $CopyWithPlaceholder(),
     Object? scanSettings = const $CopyWithPlaceholder(),
     Object? walletSettings = const $CopyWithPlaceholder(),
   }) {
     return GlobalSettings(
+      previewSettings: previewSettings == const $CopyWithPlaceholder() ||
+              previewSettings == null
+          ? _value.previewSettings
+          // ignore: cast_nullable_to_non_nullable
+          : previewSettings as PreviewSettings,
       scanSettings:
           scanSettings == const $CopyWithPlaceholder() || scanSettings == null
               ? _value.scanSettings
@@ -87,17 +100,20 @@ class GlobalSettingsAdapter extends TypeAdapter<GlobalSettings> {
     return GlobalSettings(
       scanSettings: fields[0] as ScanSettings,
       walletSettings: fields[1] as WalletSettings,
+      previewSettings: fields[2] as PreviewSettings,
     );
   }
 
   @override
   void write(BinaryWriter writer, GlobalSettings obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.scanSettings)
       ..writeByte(1)
-      ..write(obj.walletSettings);
+      ..write(obj.walletSettings)
+      ..writeByte(2)
+      ..write(obj.previewSettings);
   }
 
   @override

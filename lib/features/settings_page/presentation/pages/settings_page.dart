@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/features/settings_page/presentation/widgets/grid_size_dropdown.dart';
-import 'package:threedpass/features/settings_page/presentation/widgets/sections_textfield.dart';
+import 'package:threedpass/features/settings_page/presentation/widgets/hash_settings_block.dart';
+import 'package:threedpass/features/settings_page/presentation/widgets/preview_settings_block.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/settings_appbar.dart';
+import 'package:threedpass/features/settings_page/presentation/widgets/wallet_settings_block.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({
@@ -16,13 +18,10 @@ class SettingsPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: const [
-            Text('Wallet settings'),
-            // TestNetSwitch(),
-
-            Text('Hash settings'),
-            // AlgorithmDropdown(),
-            GridSizeDropdown(),
-            SectionsTextField(),
+            SizedBox(height: 16),
+            HashSettingsBlock(),
+            PreviewSettingsBlock(),
+            WalletSettingsBlock(),
           ],
         ),
       ),

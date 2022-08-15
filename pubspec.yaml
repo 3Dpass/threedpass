@@ -23,6 +23,7 @@ dependencies:
   three_dart: ^0.0.11
   three_dart_jsm: ^0.0.6
   flutter_gl: ^0.0.18
+  flutter_platform_widgets: ^2.0.0
   
   flutter_markdown: ^0.6.10+3
   url_launcher: ^6.1.5
