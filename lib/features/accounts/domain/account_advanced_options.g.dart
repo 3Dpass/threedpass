@@ -63,6 +63,7 @@ class _$AccountAdvancedOptionsCWProxyImpl
 
 extension $AccountAdvancedOptionsCopyWith on AccountAdvancedOptions {
   /// Returns a callable class that can be used as follows: `instanceOfAccountAdvancedOptions.copyWith(...)` or like so:`instanceOfAccountAdvancedOptions.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
   _$AccountAdvancedOptionsCWProxy get copyWith =>
       _$AccountAdvancedOptionsCWProxyImpl(this);
 }

@@ -137,6 +137,7 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
 
 extension $AccountStoreStateCopyWith on AccountStoreState {
   /// Returns a callable class that can be used as follows: `instanceOfAccountStoreState.copyWith(...)` or like so:`instanceOfAccountStoreState.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
   _$AccountStoreStateCWProxy get copyWith =>
       _$AccountStoreStateCWProxyImpl(this);
 }

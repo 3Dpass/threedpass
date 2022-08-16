@@ -3,15 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/appbars/common_appbar.dart';
 
 class CommonLogoAppbar extends CommonAppbar {
-  CommonLogoAppbar({Key? key, required String title})
-      : super(
+  CommonLogoAppbar({
+    Key? key,
+    required String title,
+    List<Widget>? actions,
+  }) : super(
           key: key,
+          titleSpacing: 0,
           title: SizedBox(
             height: kToolbarHeight,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                const SizedBox(width: 16),
                 Text('appTitle'.tr()),
                 const SizedBox(width: 4),
                 Text(
@@ -25,5 +30,6 @@ class CommonLogoAppbar extends CommonAppbar {
               ],
             ),
           ),
+          actions: actions,
         );
 }

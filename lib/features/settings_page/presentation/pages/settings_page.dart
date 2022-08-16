@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/appbars/common_logo_appbar.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/grid_size_dropdown.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/sections_textfield.dart';
+import 'package:threedpass/features/settings_page/presentation/widgets/settings_appbar.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({
@@ -12,9 +13,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonLogoAppbar(
-        title: 'settings_title'.tr(),
-      ),
+      appBar: SettingsAppbar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
