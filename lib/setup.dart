@@ -58,8 +58,7 @@ Future<void> setup() async {
 
   getIt.registerFactory<AppServiceLoaderCubit>(
     () => AppServiceLoaderCubit(
-      polkawalletPlugin: getIt<D3pLiveNetPlugin>(),
-      keyring: getIt<Keyring>(),
+      walletSettings: settingsConfig.walletSettings,
     ),
   );
 }

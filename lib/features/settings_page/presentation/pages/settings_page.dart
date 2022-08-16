@@ -14,15 +14,17 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SettingsAppbar(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: const [
-            SizedBox(height: 16),
-            HashSettingsBlock(),
-            PreviewSettingsBlock(),
-            WalletSettingsBlock(),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: const [
+              SizedBox(height: 16),
+              HashSettingsBlock(),
+              PreviewSettingsBlock(),
+              WalletSettingsBlock(),
+            ],
+          ),
         ),
       ),
     );

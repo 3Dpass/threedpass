@@ -86,7 +86,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       label: Text('get_from_file_button_label'.tr()),
       onPressed: () => createHashFromFile(
         context,
-        getIt<SettingsConfigCubit>().state.scanSettings,
+        BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings,
         BlocProvider.of<HomeContextCubit>(context),
       ),
     );

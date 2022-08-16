@@ -5,7 +5,10 @@ import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
+import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
+import 'package:threedpass/core/polkawallet/plugins/d3p_test_net_plugin.dart';
 import 'package:threedpass/features/accounts/domain/account_create.dart';
+import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
 
 ///
 /// BE CAREFUL when you write [buildWhen] for this cubit.
@@ -14,16 +17,15 @@ import 'package:threedpass/features/accounts/domain/account_create.dart';
 ///
 class AppServiceLoaderCubit extends Cubit<AppService> {
   AppServiceLoaderCubit({
-    required PolkawalletPlugin polkawalletPlugin,
-    required Keyring keyring,
+    required WalletSettings walletSettings,
   }) : super(
           AppService(
-            plugin: polkawalletPlugin,
-            keyring: keyring,
+            plugin: D3pTestNetPlugin(),
+            keyring: Keyring(),
             status: AppServiceInitStatus.init,
           ),
         ) {
-    _init();
+    init(walletSettings);
   }
 
   Future<Map> importAccount({
@@ -82,14 +84,32 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     emit(state.copyWith());
   }
 
-  Future<void> _init() async {
-    await state.keyring.init([ss58formatLive]);
-    await state.plugin.sdk.init(state.keyring);
+  Future<void> init(WalletSettings walletSettings) async {
+    // state.plugin.sdk.webView?.dispose();
+    // // Refresh appService
+    // final appService = AppService(
+    //   plugin:
+    //       walletSettings.isTestNet ? D3pTestNetPlugin() : D3pLiveNetPlugin(),
+    //   keyring: Keyring(),
+    //   status: AppServiceInitStatus.init,
+    // );
+    // emit(appService);
 
-    emit(state.copyWith(status: AppServiceInitStatus.connecting));
+    final appService = state;
 
-    final res =
-        await state.plugin.sdk.api.connectNode(state.keyring, d3pLiveNodesList);
+    // Init
+    await appService.keyring.init([
+      walletSettings.isTestNet ? ss58formatTest : ss58formatLive,
+    ]);
+    await appService.plugin.sdk.init(state.keyring);
+
+    emit(appService.copyWith(status: AppServiceInitStatus.connecting));
+
+    // Connect
+    final res = await state.plugin.sdk.api.connectNode(
+      state.keyring,
+      d3pLiveNodesList,
+    );
 
     emit(
       state.copyWith(

@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/preview_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
-import 'package:threedpass/setup.dart';
 
 class PixelRatioSlider extends StatefulWidget {
   const PixelRatioSlider({Key? key}) : super(key: key);
@@ -22,7 +22,8 @@ class _State extends State<PixelRatioSlider> {
   @override
   void initState() {
     super.initState();
-    final previewSettings = getIt<SettingsConfigCubit>().state.previewSettings;
+    final previewSettings =
+        BlocProvider.of<SettingsConfigCubit>(context).state.previewSettings;
     value = previewSettings.pixelRatio;
   }
 
@@ -34,18 +35,20 @@ class _State extends State<PixelRatioSlider> {
     setState(() {
       if (newValue != null) {
         value = newValue;
-        final state = getIt<SettingsConfigCubit>().state;
+        final cubit = BlocProvider.of<SettingsConfigCubit>(context);
         final newPreviewConfig =
-            state.previewSettings.copyWith(pixelRatio: newValue);
-        final newState = state.copyWith(previewSettings: newPreviewConfig);
-        getIt<SettingsConfigCubit>().updateSettings(newState);
+            cubit.state.previewSettings.copyWith(pixelRatio: newValue);
+        final newState =
+            cubit.state.copyWith(previewSettings: newPreviewConfig);
+        cubit.updateSettings(newState);
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final settings = getIt<SettingsConfigCubit>().state.scanSettings;
+    final settings =
+        BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -84,6 +84,8 @@
     "wallet_settings_title": "Wallet settings",
     "preview_settings_title": "Preview settings",
     "preview_settings_pixel_ratio_label": "Pixel ratio",
+    "wallet_settings_istestnet_switch": "Is Test net",
+    "node_url_label": "Node URL",
     
     "algorithm_span": "Algorithm",
     "grid_span":"Grid",

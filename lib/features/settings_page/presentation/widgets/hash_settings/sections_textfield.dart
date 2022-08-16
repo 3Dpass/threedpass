@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
-import 'package:threedpass/setup.dart';
 
 class SectionsTextField extends StatelessWidget {
   const SectionsTextField({Key? key}) : super(key: key);
@@ -14,11 +14,11 @@ class SectionsTextField extends StatelessWidget {
     String? newValue,
   ) async {
     if (newValue != null && int.tryParse(newValue) != null) {
-      final state = getIt<SettingsConfigCubit>().state;
+      final cubit = BlocProvider.of<SettingsConfigCubit>(context);
       final newScanConfig =
-          state.scanSettings.copyWith(nSections: int.parse(newValue));
-      final newState = state.copyWith(scanSettings: newScanConfig);
-      getIt<SettingsConfigCubit>().updateSettings(newState);
+          cubit.state.scanSettings.copyWith(nSections: int.parse(newValue));
+      final newState = cubit.state.copyWith(scanSettings: newScanConfig);
+      cubit.updateSettings(newState);
     }
   }
 
@@ -32,7 +32,8 @@ class SectionsTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settings = getIt<SettingsConfigCubit>().state.scanSettings;
+    final settings =
+        BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings;
 
     return TextFormField(
       controller: TextEditingController(

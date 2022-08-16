@@ -14,10 +14,11 @@ class AlgorithmDropdown extends StatelessWidget {
     Algorithm? newValue,
   ) async {
     if (newValue != null) {
-      final state = getIt<SettingsConfigCubit>().state;
-      final newScanConfig = state.scanSettings.copyWith(algorithm: newValue);
-      final newState = state.copyWith(scanSettings: newScanConfig);
-      getIt<SettingsConfigCubit>().updateSettings(newState);
+      final cubit = BlocProvider.of<SettingsConfigCubit>(context);
+      final newScanConfig =
+          cubit.state.scanSettings.copyWith(algorithm: newValue);
+      final newState = cubit.state.copyWith(scanSettings: newScanConfig);
+      cubit.updateSettings(newState);
     }
   }
 

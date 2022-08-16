@@ -3,13 +3,13 @@
 import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gl/flutter_gl.dart';
 import 'package:three_dart/three_dart.dart' as THREE;
 import 'package:three_dart_jsm/three_dart_jsm.dart' as THREE_JSM;
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/preview_settings.dart';
-import 'package:threedpass/setup.dart';
 
 class ObjectPreview extends StatefulWidget {
   const ObjectPreview({
@@ -55,7 +55,8 @@ class _State extends State<ObjectPreview> {
   @override
   void initState() {
     super.initState();
-    previewSettings = getIt<SettingsConfigCubit>().state.previewSettings;
+    previewSettings =
+        BlocProvider.of<SettingsConfigCubit>(context).state.previewSettings;
   }
 
   @override
@@ -93,7 +94,7 @@ class _State extends State<ObjectPreview> {
     };
 
     renderer = THREE.WebGLRenderer(_options);
-    renderer.setPixelRatio(dpr * previewSettings.pixelRatio);
+    renderer.setPixelRatio(dpr);
     renderer.setSize(width, height, false);
     renderer.shadowMap.enabled = false;
 
@@ -279,7 +280,7 @@ class _State extends State<ObjectPreview> {
     final mqd = MediaQuery.of(context);
 
     screenSize = mqd.size;
-    dpr = mqd.devicePixelRatio;
+    dpr = mqd.devicePixelRatio * previewSettings.pixelRatio;
 
     // init three3dRender
     Map<String, dynamic> _options = {
@@ -287,7 +288,7 @@ class _State extends State<ObjectPreview> {
       'alpha': false,
       'width': width.toInt(),
       'height': height.toInt(),
-      'dpr': dpr * previewSettings.pixelRatio,
+      'dpr': dpr,
     };
     await three3dRender.initialize(options: _options);
 
