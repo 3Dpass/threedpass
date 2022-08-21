@@ -1,10 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/api/apiKeyring.dart';
-import 'package:polkawallet_sdk/plugin/index.dart';
+import 'package:polkawallet_sdk/api/types/networkParams.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
+import 'package:threedpass/core/polkawallet/plugins/d3p_core_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_test_net_plugin.dart';
 import 'package:threedpass/features/accounts/domain/account_create.dart';
@@ -25,7 +26,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
             status: AppServiceInitStatus.init,
           ),
         ) {
-    init(walletSettings);
+    _init(walletSettings);
   }
 
   Future<Map> importAccount({
@@ -84,39 +85,98 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     emit(state.copyWith());
   }
 
-  Future<void> init(WalletSettings walletSettings) async {
-    // state.plugin.sdk.webView?.dispose();
-    // // Refresh appService
-    // final appService = AppService(
-    //   plugin:
-    //       walletSettings.isTestNet ? D3pTestNetPlugin() : D3pLiveNetPlugin(),
-    //   keyring: Keyring(),
-    //   status: AppServiceInitStatus.init,
-    // );
-    // emit(appService);
-
-    final appService = state;
-
-    // Init
-    await appService.keyring.init([
-      walletSettings.isTestNet ? ss58formatTest : ss58formatLive,
-    ]);
-    await appService.plugin.sdk.init(state.keyring);
-
-    emit(appService.copyWith(status: AppServiceInitStatus.connecting));
-
-    // Connect
-    final res = await state.plugin.sdk.api.connectNode(
+  Future<void> _startPlugin(AppService service, {NetworkParams? node}) async {
+    final connected = await service.plugin.start(
       state.keyring,
-      d3pLiveNodesList,
+      nodes: node != null ? [node] : service.plugin.nodeList,
     );
 
     emit(
       state.copyWith(
-        status: res != null
+        status: connected != null
             ? AppServiceInitStatus.connected
             : AppServiceInitStatus.error,
       ),
     );
+  }
+
+  static D3pCorePlugin _buildPlugin(WalletSettings walletSettings) {
+    return walletSettings.isTestNet
+        ? D3pTestNetPlugin(nodeUrl: walletSettings.nodeUrl)
+        : D3pLiveNetPlugin(nodeUrl: walletSettings.nodeUrl);
+  }
+
+  Future<void> changeNetwork(WalletSettings walletSettings) async {
+    emit(
+      state.copyWith(
+        status: AppServiceInitStatus.init,
+      ),
+    );
+
+    final newPlugin = _buildPlugin(walletSettings);
+
+    state.keyring.setSS58(newPlugin.basic.ss58!);
+    // Documentation says "we don't really need this method"
+    await state.plugin.dispose();
+
+    await newPlugin.beforeStart(
+      state.keyring,
+      webView: state.plugin.sdk.webView,
+      // !This method is guaranteed to fall with an error, so we provide
+      // callback to reconnect
+      socketDisconnectedAction: () {
+        newPlugin.start(state.keyring);
+      },
+    );
+
+    _startPlugin(
+      AppService(
+        plugin: newPlugin,
+        keyring: state.keyring,
+        status: AppServiceInitStatus.connecting,
+      ),
+    );
+  }
+
+  Future<void> _init(WalletSettings walletSettings) async {
+    final keyring = state.keyring;
+    // Init
+    await keyring.init([ss58formatTest, ss58formatLive]);
+
+    final appService = AppService(
+      plugin: _buildPlugin(walletSettings),
+      keyring: keyring,
+      status: AppServiceInitStatus.connecting,
+    );
+
+    await appService.plugin.beforeStart(
+      keyring,
+      webView: appService.plugin.sdk.webView,
+    );
+
+    emit(appService);
+
+    _startPlugin(appService);
+
+    // await appService.plugin.sdk.init(state.keyring);
+
+    // emit(appService.copyWith(status: AppServiceInitStatus.connecting));
+
+    // // Connect
+    // final node =
+    //     walletSettings.isTestNet ? d3pTestNetworkParams : d3pLiveNetworkParams;
+    // node.endpoint = walletSettings.nodeUrl;
+    // final res = await state.plugin.sdk.api.connectNode(
+    //   state.keyring,
+    //   [node],
+    // );
+
+    // emit(
+    //   state.copyWith(
+    //     status: res != null
+    //         ? AppServiceInitStatus.connected
+    //         : AppServiceInitStatus.error,
+    //   ),
+    // );
   }
 }

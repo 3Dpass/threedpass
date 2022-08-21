@@ -17,7 +17,8 @@ class TestNetSwitch extends StatelessWidget {
     final newState = cubit.state.copyWith(walletSettings: newWalletConfig);
     cubit.updateSettings(newState);
 
-    BlocProvider.of<AppServiceLoaderCubit>(context).init(newWalletConfig);
+    BlocProvider.of<AppServiceLoaderCubit>(context)
+        .changeNetwork(newWalletConfig);
   }
 
   @override

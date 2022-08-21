@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
 import 'package:threedpass/core/widgets/input/textformfield.dart';
@@ -21,18 +22,19 @@ class NodeUrlTextfield extends StatelessWidget {
   final SettingsConfigCubit settingsConfigCubit;
   final AppServiceLoaderCubit appServiceLoaderCubit;
 
-  void apply(String text) {
+  void apply(String text, BuildContext context) {
     final cubit = settingsConfigCubit;
     final newWalletConfig = cubit.state.walletSettings.copyWith(nodeUrl: text);
     final newState = cubit.state.copyWith(walletSettings: newWalletConfig);
     cubit.updateSettings(newState);
 
-    appServiceLoaderCubit.init(newWalletConfig);
+    BlocProvider.of<AppServiceLoaderCubit>(context)
+        .changeNetwork(newWalletConfig);
   }
 
-  void onLabelButtonPressed() {
+  void onLabelButtonPressed(BuildContext context) {
     textEditingController.text = d3pDefaultNodeUrl;
-    apply(textEditingController.text);
+    apply(textEditingController.text, context);
   }
 
   @override
@@ -41,9 +43,9 @@ class NodeUrlTextfield extends StatelessWidget {
       controller: textEditingController,
       labelText: 'node_url_label'.tr(),
       labelButton: 'Reset'.tr(),
-      onLabelButtonPressed: () => onLabelButtonPressed(),
+      onLabelButtonPressed: () => onLabelButtonPressed(context),
       suffixButton: 'Apply'.tr(),
-      onSuffixButtonPressed: () => apply(textEditingController.text),
+      onSuffixButtonPressed: () => apply(textEditingController.text, context),
     );
   }
 }
