@@ -154,7 +154,14 @@ class _State extends State<ObjectPreview> {
   }
 
   Future<void> initObj() async {
-    // obj
+    await loadObj();
+    await scaleObj();
+    await centerObj();
+
+    scene.add(object);
+  }
+
+  Future<void> loadObj() async {
     var loader = THREE_JSM.OBJLoader(null);
     object = await loader.loadAsync(widget.snapshot.externalPathToObj);
     object.traverse((child) {
@@ -162,8 +169,9 @@ class _State extends State<ObjectPreview> {
         child.material.map = texture;
       }
     });
+  }
 
-    // scale
+  Future<void> scaleObj() async {
     final actualModel = object.children.first;
     actualModel.geometry?.computeBoundingBox();
     final box3 = THREE.Box3(
@@ -176,14 +184,13 @@ class _State extends State<ObjectPreview> {
     final maxCoord = max(max(measure.x, measure.y), measure.z);
     final scale = maxObjectSize / maxCoord;
     object.scale.set(scale, scale, scale);
+  }
 
-    // Center object
+  Future<void> centerObj() async {
     var boxObject = THREE.Box3().setFromObject(object);
     var center = THREE.Vector3();
     boxObject.getCenter(center);
     object.position.sub(center); // center the model
-
-    scene.add(object);
   }
 
   // do NOT delete this code
