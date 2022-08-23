@@ -31,16 +31,22 @@ class D3pTextFormField extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             labelButton != null
-                ? TextButton(
-                    child: Text(labelButton!),
-                    onPressed: onLabelButtonPressed ?? emptyFunction,
+                ? SizedBox(
+                    width: 60,
+                    child: TextButton(
+                      child: Text(labelButton!),
+                      onPressed: onLabelButtonPressed ?? emptyFunction,
+                    ),
                   )
                 : const SizedBox(),
             const SizedBox(width: 8),
             suffixButton != null
-                ? TextButton(
-                    child: Text(suffixButton!),
-                    onPressed: onSuffixButtonPressed ?? emptyFunction,
+                ? SizedBox(
+                    width: 60,
+                    child: TextButton(
+                      child: Text(suffixButton!),
+                      onPressed: onSuffixButtonPressed ?? emptyFunction,
+                    ),
                   )
                 : const SizedBox(),
           ],

@@ -73,6 +73,8 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       password: account.password,
     );
 
+    // TODO Set testNet parameter to settings. Disable it in settings page
+
     emit(state.copyWith());
 
     return res;
@@ -157,26 +159,5 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     emit(appService);
 
     _startPlugin(appService);
-
-    // await appService.plugin.sdk.init(state.keyring);
-
-    // emit(appService.copyWith(status: AppServiceInitStatus.connecting));
-
-    // // Connect
-    // final node =
-    //     walletSettings.isTestNet ? d3pTestNetworkParams : d3pLiveNetworkParams;
-    // node.endpoint = walletSettings.nodeUrl;
-    // final res = await state.plugin.sdk.api.connectNode(
-    //   state.keyring,
-    //   [node],
-    // );
-
-    // emit(
-    //   state.copyWith(
-    //     status: res != null
-    //         ? AppServiceInitStatus.connected
-    //         : AppServiceInitStatus.error,
-    //   ),
-    // );
   }
 }

@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gl/flutter_gl.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:three_dart/three_dart.dart' as THREE;
 import 'package:three_dart_jsm/three_dart_jsm.dart' as THREE_JSM;
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -336,8 +337,8 @@ class _State extends State<ObjectPreview> {
               key: _globalKey,
               builder: (BuildContext context) => isRendered
                   ? Texture(textureId: three3dRender.textureId!)
-                  : const Center(
-                      child: CircularProgressIndicator(),
+                  : Center(
+                      child: PlatformCircularProgressIndicator(),
                     ),
             ),
           ),

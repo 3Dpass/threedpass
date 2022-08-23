@@ -12,6 +12,7 @@ class WalletSettingsBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           'wallet_settings_title'.tr(),

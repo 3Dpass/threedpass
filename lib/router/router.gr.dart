@@ -118,9 +118,11 @@ class AppRouter extends _i10.RootStackRouter {
           barrierDismissible: false);
     },
     DefaultLoadingDialogRoute.name: (routeData) {
+      final args = routeData.argsAs<DefaultLoadingDialogRouteArgs>(
+          orElse: () => const DefaultLoadingDialogRouteArgs());
       return _i10.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i8.DefaultLoadingDialog(),
+          child: _i8.DefaultLoadingDialog(key: args.key, text: args.text),
           customRouteBuilder: _i29.dialogBuilder,
           opaque: true,
           barrierDismissible: false);
@@ -216,15 +218,16 @@ class AppRouter extends _i10.RootStackRouter {
           child: const _i22.CreateAccountMnemonicConfirm());
     },
     CreateAccountCredentialsRoute.name: (routeData) {
-      final args = routeData.argsAs<CreateAccountCredentialsRouteArgs>(
-          orElse: () => const CreateAccountCredentialsRouteArgs());
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: _i23.CreateAccountCredentials(key: args.key));
+          routeData: routeData, child: const _i23.CreateAccountCredentials());
     },
     CreateAccountLoaderRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i24.CreateAccountLoader());
+      return _i10.CustomPage<dynamic>(
+          routeData: routeData,
+          child: const _i24.CreateAccountLoader(),
+          customRouteBuilder: _i29.dialogBuilder,
+          opaque: true,
+          barrierDismissible: false);
     },
     ImportAccountSelectTypeRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
@@ -490,11 +493,27 @@ class CalcHashLoadingDialogRoute extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.DefaultLoadingDialog]
-class DefaultLoadingDialogRoute extends _i10.PageRouteInfo<void> {
-  const DefaultLoadingDialogRoute()
-      : super(DefaultLoadingDialogRoute.name, path: '/default-loading-dialog');
+class DefaultLoadingDialogRoute
+    extends _i10.PageRouteInfo<DefaultLoadingDialogRouteArgs> {
+  DefaultLoadingDialogRoute({_i28.Key? key, String? text})
+      : super(DefaultLoadingDialogRoute.name,
+            path: '/default-loading-dialog',
+            args: DefaultLoadingDialogRouteArgs(key: key, text: text));
 
   static const String name = 'DefaultLoadingDialogRoute';
+}
+
+class DefaultLoadingDialogRouteArgs {
+  const DefaultLoadingDialogRouteArgs({this.key, this.text});
+
+  final _i28.Key? key;
+
+  final String? text;
+
+  @override
+  String toString() {
+    return 'DefaultLoadingDialogRouteArgs{key: $key, text: $text}';
+  }
 }
 
 /// generated route for
@@ -724,25 +743,12 @@ class MnemonicConfirmRoute extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i23.CreateAccountCredentials]
-class CreateAccountCredentialsRoute
-    extends _i10.PageRouteInfo<CreateAccountCredentialsRouteArgs> {
-  CreateAccountCredentialsRoute({_i28.Key? key})
+class CreateAccountCredentialsRoute extends _i10.PageRouteInfo<void> {
+  const CreateAccountCredentialsRoute()
       : super(CreateAccountCredentialsRoute.name,
-            path: 'create-account-credentials',
-            args: CreateAccountCredentialsRouteArgs(key: key));
+            path: 'create-account-credentials');
 
   static const String name = 'CreateAccountCredentialsRoute';
-}
-
-class CreateAccountCredentialsRouteArgs {
-  const CreateAccountCredentialsRouteArgs({this.key});
-
-  final _i28.Key? key;
-
-  @override
-  String toString() {
-    return 'CreateAccountCredentialsRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for

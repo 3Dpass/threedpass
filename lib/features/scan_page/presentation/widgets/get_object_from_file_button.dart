@@ -9,7 +9,6 @@ import 'package:threedpass/features/scan_page/presentation/widgets/calc_hash_loa
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/router/router.gr.dart';
-import 'package:threedpass/setup.dart';
 
 class GetObjectFromFileFloatingButton extends StatelessWidget {
   static const allowedExtentions = ['obj', 'stl'];

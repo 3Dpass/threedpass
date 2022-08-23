@@ -146,6 +146,9 @@
 
     "error_create_account": "Error. account was NOT created.",
     "create_account_loading": "Creating account...",
+    "import_account_loading": "Importing account...",
+    "error_import_duplicate": "Error: this account has been already imported",
+    "error_import_invalid": "Error: this account is invalid",
 
     "encrypt_type_picker_label": "Encrypt Type",
     "derivation_path_input_label": "Secret derivation path",
