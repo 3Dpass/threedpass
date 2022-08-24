@@ -73,6 +73,15 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       password: account.password,
     );
 
+    // This variable is never used, but somehow this line solves bug
+    // when [keyring.importAccount] returns wrong address.
+    final addressInfo = await state.plugin.sdk.api.keyring.addressFromMnemonic(
+      state.plugin.basic.ss58!,
+      cryptoType: cryptoType,
+      derivePath: derivePath,
+      mnemonic: account.mnemonicKey,
+    );
+
     // TODO Set testNet parameter to settings. Disable it in settings page
 
     emit(state.copyWith());
