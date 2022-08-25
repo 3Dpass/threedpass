@@ -1,6 +1,7 @@
 .vscode/
 .fvm/
 target/
+keys/
 
 # Miscellaneous
 *.class

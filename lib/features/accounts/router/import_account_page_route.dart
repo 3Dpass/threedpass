@@ -26,7 +26,7 @@ const AutoRoute importAccountPageRoute = AutoRoute(
     ),
     CustomRoute(
       page: ImportAccountLoader,
-      name: RouteNames.createAccountLoader,
+      name: RouteNames.importAccountLoader,
       customRouteBuilder: dialogBuilder,
     ),
   ],

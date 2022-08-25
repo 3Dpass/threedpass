@@ -11,6 +11,7 @@ class D3pTextFormField extends StatelessWidget {
     this.onLabelButtonPressed,
     this.suffixButton,
     this.onSuffixButtonPressed,
+    this.validator,
   })  : controller = controller ?? TextEditingController(),
         super(key: key);
 
@@ -21,10 +22,12 @@ class D3pTextFormField extends StatelessWidget {
   final void Function()? onLabelButtonPressed;
   final String? suffixButton;
   final void Function()? onSuffixButtonPressed;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: validator,
       decoration: InputDecoration(
         label: Text(labelText ?? ''),
         suffixIcon: Row(

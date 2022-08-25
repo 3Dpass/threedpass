@@ -58,11 +58,11 @@ class ImportAccountCreatePage extends StatelessWidget {
           // apply current account
           appServiceLoaderCubit.changeAccount(keyPairData);
         } else {
-          showTextSnackBar('error_import_duplicate'.tr(), context);
+          showTextSnackBar('error_import_duplicate', context);
         }
       } catch (_) {
         // account was not imported
-        showTextSnackBar('error_import_invalid'.tr(), context);
+        showTextSnackBar('error_import_invalid', context);
       }
 
       importAccountCubit.popToRoot();

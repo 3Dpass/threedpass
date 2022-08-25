@@ -5,10 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/utils/show_text_snackbar.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
+import 'package:threedpass/core/widgets/input/textformfield.dart';
 import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_cubit.dart';
 import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
-import 'package:threedpass/features/accounts/presentation/widgets/formed_text_field.dart';
-import 'package:threedpass/features/accounts/presentation/widgets/import_mnemonic_form/import_account_cubit_provider.dart';
+import 'package:threedpass/features/accounts/presentation/widgets/import_mnemonic_form/import_account_cubit_builder.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class ImportMnemonicForm extends StatelessWidget {
@@ -36,9 +36,7 @@ class ImportMnemonicForm extends StatelessWidget {
     required String mnemonicInput,
   }) async {
     // Check user input
-    if (_formKey.currentState != null &&
-        _formKey.currentState!.validate() 
-     ) {
+    if (_formKey.currentState != null && _formKey.currentState!.validate()) {
       // Api call to check mnemonic
       DefaultLoadingDialog.show(outerContext);
       final input = mnemonicInput.trim();
@@ -59,33 +57,35 @@ class ImportMnemonicForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ImportAccountCubitProvider(
+    return ImportAccountCubitBuilder(
       // ignore: prefer-extracting-callbacks
       builder: ({
         required String mnemonic,
         required AppService appService,
         required TextEditingController textEditingController,
       }) {
-        return  AccountPageTemplate.import(
-            children: [
-              Column(
-                children: [
-                  FormedTextField(
-                    formKey: _formKey,
+        return AccountPageTemplate.import(
+          children: [
+            Column(
+              children: [
+                Form(
+                  key: _formKey,
+                  child: D3pTextFormField(
+                    labelText: 'import_type_mnemonic'.tr(),
+                    hintText: 'import_mnemonic_hint'.tr(),
                     controller: textEditingController,
                     validator: _validateInput,
                   ),
-       
-                ],
-              ),
-            ],
-            onSubmitPressed: (inner) => onSubmitPressed(
-              innerContext: inner,
-              outerContext: context,
-              appService: appService,
-              mnemonicInput: textEditingController.text,
+                ),
+              ],
             ),
-          
+          ],
+          onSubmitPressed: (inner) => onSubmitPressed(
+            innerContext: inner,
+            outerContext: context,
+            appService: appService,
+            mnemonicInput: textEditingController.text,
+          ),
         );
       },
     );

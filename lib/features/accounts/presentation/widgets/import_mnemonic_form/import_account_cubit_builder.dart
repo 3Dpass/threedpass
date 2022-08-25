@@ -4,8 +4,8 @@ import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_cubit.dart';
 import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_state.dart';
 
-class ImportAccountCubitProvider extends StatelessWidget {
-  const ImportAccountCubitProvider({Key? key, required this.builder})
+class ImportAccountCubitBuilder extends StatelessWidget {
+  const ImportAccountCubitBuilder({Key? key, required this.builder})
       : super(key: key);
 
   final Widget Function({

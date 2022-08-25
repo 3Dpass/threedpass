@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/features/wallet_screen/presentation/assets_page.dart';
-import 'package:threedpass/features/wallet_screen/presentation/appservice_init_loader_page.dart';
-import 'package:threedpass/features/wallet_screen/presentation/no_accounts_page.dart';
+import 'package:threedpass/features/wallet_screen/presentation/pages/appservice_init_loader_page.dart';
+import 'package:threedpass/features/wallet_screen/presentation/pages/assets_page.dart';
+import 'package:threedpass/features/wallet_screen/presentation/pages/no_accounts_page.dart';
 
 class WalletPage extends StatelessWidget {
   const WalletPage({Key? key}) : super(key: key);

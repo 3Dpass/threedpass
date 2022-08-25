@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/widgets/buttons/list_tile_button.dart';
 
 class AccountsDrawer extends Drawer {
   AccountsDrawer({
@@ -16,30 +18,40 @@ class AccountsDrawer extends Drawer {
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: [
-              DrawerHeader(
-                decoration: const BoxDecoration(
-                    // color: Colors.blue,
-                    ),
-                child: Center(
-                  child: Text('choose_account_assets_page_drawer'.tr()),
+              PlatformAppBar(
+                // backgroundColor: Theme.of(context).canvasColor,
+                leading: SizedBox(),
+                title: Text(
+                  'choose_account_assets_page_drawer'.tr(),
                 ),
               ),
+              // SizedBox(
+              //   height: 100,
+              //   child: DrawerHeader(
+              //     // margin: EdgeInsets.zero,
+              //     padding: EdgeInsets.zero,
+              //     decoration: const BoxDecoration(
+              //         // color: Colors.blue,
+              //         ),
+              //     child: Center(
+              //       child: Text(
+              //         'choose_account_assets_page_drawer'.tr(),
+              //       ),
+              //     ),
+              //   ),
+              // ),
               ...List.generate(
                 accounts.length,
-                (index) => ListTile(
-                  leading: accounts[index].address == current.address
-                      ? const Icon(Icons.arrow_right_rounded)
-                      : const Icon(
-                          Icons.abc,
-                          color: Colors.transparent,
-                        ),
-                  title: Text(accounts[index].name ?? 'Anonymous'),
-                  onTap: accounts[index].address == current.address
+                (index) => ListTileButton.usual(
+                  text: accounts[index].name ?? 'Anonymous',
+                  onPressed: accounts[index].address == current.address
                       ? null
                       : () {
                           appServiceCubit.changeAccount(accounts[index]);
                           Navigator.of(context).pop();
                         },
+                  backgroundColor: Theme.of(context).canvasColor,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                 ),
               ),
             ],
