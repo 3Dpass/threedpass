@@ -161,6 +161,7 @@
     "import_type_keystore": "Keystore (json)",
 
     "import_mnemonic_hint": "Enter mnemonic",
+    "import_mnemonic_preview_placeholder": "Enter mnemonic to see address",
 
     "invalid_input": "Invalid input",
     "error_mnemonic_not_found": "Error: mnemonic not found",

@@ -8,26 +8,16 @@ import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/core/widgets/input/textformfield.dart';
 import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_cubit.dart';
 import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
+import 'package:threedpass/features/accounts/presentation/widgets/import_mnemonic_form/address_icon_preview.dart';
+import 'package:threedpass/features/accounts/presentation/widgets/import_mnemonic_form/address_icon_preview_cubit_provider.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/import_mnemonic_form/import_account_cubit_builder.dart';
+import 'package:threedpass/features/accounts/presentation/widgets/import_mnemonic_form/import_mnemonic_textfield.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class ImportMnemonicForm extends StatelessWidget {
   ImportMnemonicForm({Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
-
-  /// https://github.com/polkawallet-io/app/blob/48821c58b19b2e6df17200bc0c5d10bf5577ac41/lib/pages/account/import/importAccountFormMnemonic.dart#L140
-  static String? _validateInput(String? v) {
-    bool passed = false;
-    if (v != null) {
-      String input = v.trim();
-      int len = input.split(' ').length;
-      if (len >= 12) {
-        passed = true;
-      }
-    }
-    return passed ? null : 'Invalid'.tr() + ' ' + 'import_type_mnemonic'.tr();
-  }
 
   Future<void> onSubmitPressed({
     required BuildContext innerContext,
@@ -64,27 +54,32 @@ class ImportMnemonicForm extends StatelessWidget {
         required AppService appService,
         required TextEditingController textEditingController,
       }) {
-        return AccountPageTemplate.import(
-          children: [
-            Column(
-              children: [
-                Form(
-                  key: _formKey,
-                  child: D3pTextFormField(
-                    labelText: 'import_type_mnemonic'.tr(),
-                    hintText: 'import_mnemonic_hint'.tr(),
-                    controller: textEditingController,
-                    validator: _validateInput,
+        return AddressIconPreviewCubitProvider(
+          child: AccountPageTemplate.import(
+            children: [
+              const AddressIconPreview(),
+              const SizedBox(height: 16),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Form(
+                      key: _formKey,
+                      child: ImportMnemonicTextfield(
+                        textEditingController: textEditingController,
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
+            ],
+            onSubmitPressed: (inner) => onSubmitPressed(
+              innerContext: inner,
+              outerContext: context,
+              appService: appService,
+              mnemonicInput: textEditingController.text,
             ),
-          ],
-          onSubmitPressed: (inner) => onSubmitPressed(
-            innerContext: inner,
-            outerContext: context,
-            appService: appService,
-            mnemonicInput: textEditingController.text,
+            needHorizontalPadding: false,
           ),
         );
       },

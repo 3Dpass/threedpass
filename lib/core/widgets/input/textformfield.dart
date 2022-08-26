@@ -12,6 +12,7 @@ class D3pTextFormField extends StatelessWidget {
     this.suffixButton,
     this.onSuffixButtonPressed,
     this.validator,
+    this.onChanged,
   })  : controller = controller ?? TextEditingController(),
         super(key: key);
 
@@ -23,6 +24,7 @@ class D3pTextFormField extends StatelessWidget {
   final String? suffixButton;
   final void Function()? onSuffixButtonPressed;
   final String? Function(String?)? validator;
+  final void Function(String?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,9 @@ class D3pTextFormField extends StatelessWidget {
                     ),
                   )
                 : const SizedBox(),
-            const SizedBox(width: 8),
+            SizedBox(
+              width: labelButton != null && suffixButton != null ? 8 : 0,
+            ),
             suffixButton != null
                 ? SizedBox(
                     width: 60,
@@ -57,6 +61,7 @@ class D3pTextFormField extends StatelessWidget {
         hintText: hintText,
       ),
       controller: controller,
+      onChanged: onChanged,
     );
   }
 }

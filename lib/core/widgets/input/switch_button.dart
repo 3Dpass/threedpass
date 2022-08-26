@@ -12,24 +12,31 @@ class D3pSwitchButton extends StatelessWidget {
 
   final ValueNotifier<bool> switchValueNotifier;
   final String text;
-  final Function(bool) onChanged;
+  final Function(bool)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(text),
+        Text(
+          text,
+          style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                color: onChanged == null ? Colors.grey : Colors.black,
+              ),
+        ),
         ValueListenableBuilder(
           valueListenable: switchValueNotifier,
           builder: (context, hasError, child) => PlatformSwitch(
             activeColor: Theme.of(context).colorScheme.secondary,
             value: switchValueNotifier.value,
             // ignore: prefer-extracting-callbacks
-            onChanged: (value) {
-              switchValueNotifier.value = value;
-              onChanged(value);
-            },
+            onChanged: onChanged != null
+                ? (value) {
+                    switchValueNotifier.value = value;
+                    onChanged!(value);
+                  }
+                : null,
           ),
         ),
       ],
