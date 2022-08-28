@@ -64,13 +64,18 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  ## Generators
   hive_generator: ^1.1.2
   copy_with_extension_gen: ^4.0.1
   build_runner:
   auto_route_generator: ^4.2.0
+
+  ## Dev utils
   flutter_launcher_icons: ^0.9.3
   change_app_package_name: ^1.1.0
+  keystore_generator: ^1.0.1
   
+  ## Linters
   flutter_lints: ^1.0.4
   dart_code_metrics: ^4.16.0
 
