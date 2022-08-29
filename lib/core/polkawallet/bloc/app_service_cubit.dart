@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/api/apiKeyring.dart';
 import 'package:polkawallet_sdk/api/types/networkParams.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
+import 'package:polkawallet_sdk/storage/keyringEVM.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
@@ -97,10 +98,15 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
   }
 
   Future<void> _startPlugin(AppService service, {NetworkParams? node}) async {
-    final connected = await service.plugin.start(
-      state.keyring,
-      nodes: node != null ? [node] : service.plugin.nodeList,
+    final connected = await service.plugin.sdk.api.connectNode(
+      service.keyring,
+      node != null ? [node] : service.plugin.nodeList,
     );
+
+    // final connected = await service.plugin.start(
+    //   state.keyring,
+    //   nodes: node != null ? [node] : service.plugin.nodeList,
+    // );
 
     emit(
       state.copyWith(
@@ -160,13 +166,27 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       status: AppServiceInitStatus.connecting,
     );
 
+    // await appService.plugin.sdk
+    //     .init(keyring, webView: appService.plugin.sdk.webView);
+
+    // try {
+    //   await appService.plugin.sdk.webView?.launch(
+    //     () {},
+    //     socketDisconnectedAction: () {
+    //       emit(appService);
+    //       _startPlugin(appService);
+    //     },
+    //   );
+    // } catch (e) {}
+
+    // final b = 1 + 1;
+
     await appService.plugin.beforeStart(
       keyring,
       webView: appService.plugin.sdk.webView,
     );
 
     emit(appService);
-
     _startPlugin(appService);
   }
 }

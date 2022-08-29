@@ -4,6 +4,7 @@ import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_page/accounts_drawer.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_page/asset_page_appbar.dart';
+import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_page/assets_count.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/connecting_page/connect_status.dart';
 
 class AssetsPage extends StatelessWidget {
@@ -24,8 +25,12 @@ class AssetsPage extends StatelessWidget {
             current: state.keyring.current,
             context: context,
           ),
-          body: const Center(
-            child: ConnectStatus(),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                AssetsCount(),
+              ],
+            ),
           ),
         );
       },
