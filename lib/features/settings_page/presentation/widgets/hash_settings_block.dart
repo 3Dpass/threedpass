@@ -10,7 +10,7 @@ class HashSettingsBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: const [
-        HashSettingsTitle(),
+        ScanSettingsTitle(),
         // AlgorithmDropdown(),
         GridSizeDropdown(),
         SectionsTextField(),

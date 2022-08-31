@@ -11,6 +11,8 @@ abstract class _$ScanSettingsCWProxy {
 
   ScanSettings gridSize(int gridSize);
 
+  ScanSettings libVersion(String libVersion);
+
   ScanSettings nSections(int nSections);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ScanSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -22,6 +24,7 @@ abstract class _$ScanSettingsCWProxy {
   ScanSettings call({
     Algorithm? algorithm,
     int? gridSize,
+    String? libVersion,
     int? nSections,
   });
 }
@@ -39,6 +42,9 @@ class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
   ScanSettings gridSize(int gridSize) => this(gridSize: gridSize);
 
   @override
+  ScanSettings libVersion(String libVersion) => this(libVersion: libVersion);
+
+  @override
   ScanSettings nSections(int nSections) => this(nSections: nSections);
 
   @override
@@ -52,6 +58,7 @@ class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
   ScanSettings call({
     Object? algorithm = const $CopyWithPlaceholder(),
     Object? gridSize = const $CopyWithPlaceholder(),
+    Object? libVersion = const $CopyWithPlaceholder(),
     Object? nSections = const $CopyWithPlaceholder(),
   }) {
     return ScanSettings(
@@ -63,6 +70,11 @@ class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
           ? _value.gridSize
           // ignore: cast_nullable_to_non_nullable
           : gridSize as int,
+      libVersion:
+          libVersion == const $CopyWithPlaceholder() || libVersion == null
+              ? _value.libVersion
+              // ignore: cast_nullable_to_non_nullable
+              : libVersion as String,
       nSections: nSections == const $CopyWithPlaceholder() || nSections == null
           ? _value.nSections
           // ignore: cast_nullable_to_non_nullable
@@ -95,19 +107,22 @@ class ScanSettingsAdapter extends TypeAdapter<ScanSettings> {
       gridSize: fields[0] as int,
       nSections: fields[2] as int,
       algorithm: fields[1] as Algorithm,
+      libVersion: fields[3] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, ScanSettings obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.gridSize)
       ..writeByte(1)
       ..write(obj.algorithm)
       ..writeByte(2)
-      ..write(obj.nSections);
+      ..write(obj.nSections)
+      ..writeByte(3)
+      ..write(obj.libVersion);
   }
 
   @override
@@ -131,7 +146,7 @@ class AlgorithmAdapter extends TypeAdapter<Algorithm> {
       case 0:
         return Algorithm.spectrum;
       case 1:
-        return Algorithm.grid;
+        return Algorithm.grid2d;
       default:
         return Algorithm.spectrum;
     }
@@ -143,7 +158,7 @@ class AlgorithmAdapter extends TypeAdapter<Algorithm> {
       case Algorithm.spectrum:
         writer.writeByte(0);
         break;
-      case Algorithm.grid:
+      case Algorithm.grid2d:
         writer.writeByte(1);
         break;
     }
