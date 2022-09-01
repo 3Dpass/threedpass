@@ -9,6 +9,8 @@ part of 'app_service.dart';
 abstract class _$AppServiceCWProxy {
   AppService keyring(Keyring keyring);
 
+  AppService networkStateData(NetworkStateData? networkStateData);
+
   AppService plugin(PolkawalletPlugin plugin);
 
   AppService status(AppServiceInitStatus status);
@@ -21,6 +23,7 @@ abstract class _$AppServiceCWProxy {
   /// ````
   AppService call({
     Keyring? keyring,
+    NetworkStateData? networkStateData,
     PolkawalletPlugin? plugin,
     AppServiceInitStatus? status,
   });
@@ -34,6 +37,10 @@ class _$AppServiceCWProxyImpl implements _$AppServiceCWProxy {
 
   @override
   AppService keyring(Keyring keyring) => this(keyring: keyring);
+
+  @override
+  AppService networkStateData(NetworkStateData? networkStateData) =>
+      this(networkStateData: networkStateData);
 
   @override
   AppService plugin(PolkawalletPlugin plugin) => this(plugin: plugin);
@@ -51,6 +58,7 @@ class _$AppServiceCWProxyImpl implements _$AppServiceCWProxy {
   /// ````
   AppService call({
     Object? keyring = const $CopyWithPlaceholder(),
+    Object? networkStateData = const $CopyWithPlaceholder(),
     Object? plugin = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
   }) {
@@ -59,6 +67,10 @@ class _$AppServiceCWProxyImpl implements _$AppServiceCWProxy {
           ? _value.keyring
           // ignore: cast_nullable_to_non_nullable
           : keyring as Keyring,
+      networkStateData: networkStateData == const $CopyWithPlaceholder()
+          ? _value.networkStateData
+          // ignore: cast_nullable_to_non_nullable
+          : networkStateData as NetworkStateData?,
       plugin: plugin == const $CopyWithPlaceholder() || plugin == null
           ? _value.plugin
           // ignore: cast_nullable_to_non_nullable

@@ -23,13 +23,15 @@ class TestNetSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return D3pSwitchButton(
-      text: 'wallet_settings_istestnet_switch'.tr(),
-      onChanged: null, //(value) => onChanged(value, context),
-      initialValue: BlocProvider.of<SettingsConfigCubit>(context)
-          .state
-          .walletSettings
-          .isTestNet,
+    return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
+      builder: (context, state) => D3pSwitchButton(
+        text: 'wallet_settings_istestnet_switch'.tr(),
+        onChanged: null, //(value) => onChanged(value, context),
+        initialValue: BlocProvider.of<SettingsConfigCubit>(context)
+            .state
+            .walletSettings
+            .isTestNet,
+      ),
     );
   }
 }

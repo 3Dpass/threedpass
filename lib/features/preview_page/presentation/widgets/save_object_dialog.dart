@@ -50,56 +50,62 @@ class SaveObjectDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-          child: Column(
-            children: <Widget>[
-              Text(
-                'create_object_title'.tr(),
-                style: Theme.of(context).textTheme.subtitle1,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              'create_object_title'.tr(),
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 8,
+                right: 8,
+                bottom: 8,
+                top: 16,
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 8,
-                  right: 8,
-                  bottom: 8,
-                  top: 16,
+              child: TextField(
+                decoration: InputDecoration(
+                  label: Text('create_object_input_label'.tr()),
+                  hintText: 'create_object_input_hint'.tr(),
+                  isCollapsed: false,
                 ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    label: Text('create_object_input_label'.tr()),
-                    hintText: 'create_object_input_hint'.tr(),
-                    isCollapsed: false,
-                  ),
-                  controller: objectNameController,
-                ),
+                controller: objectNameController,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8, bottom: 16),
-                child: TextField(
-                  decoration: InputDecoration(
-                    label: Text('create_object_snap_input_label'.tr()),
-                    hintText: 'create_object_snap_input_hint'.tr(),
-                    isCollapsed: false,
-                  ),
-                  controller: snapshotNameController,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 16),
+              child: TextField(
+                decoration: InputDecoration(
+                  label: Text('create_object_snap_input_label'.tr()),
+                  hintText: 'create_object_snap_input_hint'.tr(),
+                  isCollapsed: false,
                 ),
+                controller: snapshotNameController,
               ),
-              Row(
+            ),
+            Flexible(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextButton(
-                    child: Text('Cancel'.tr()),
-                    onPressed: () => context.router.pop(),
+                  Flexible(
+                    child: TextButton(
+                      child: Text('Cancel'.tr()),
+                      onPressed: () => context.router.pop(),
+                    ),
                   ),
-                  TextButton(
-                    child: Text('Save'.tr()),
-                    onPressed: () => saveObject(context),
+                  Spacer(),
+                  Flexible(
+                    child: TextButton(
+                      child: Text('Save'.tr()),
+                      onPressed: () => saveObject(context),
+                    ),
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

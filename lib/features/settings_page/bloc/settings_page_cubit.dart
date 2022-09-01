@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
-import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/features/settings_page/domain/repositories/settings_repository.dart';
 
 class SettingsConfigCubit extends Cubit<GlobalSettings> {

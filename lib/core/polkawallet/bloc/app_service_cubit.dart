@@ -10,6 +10,8 @@ import 'package:threedpass/core/polkawallet/plugins/d3p_core_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_test_net_plugin.dart';
 import 'package:threedpass/features/accounts/domain/account_create.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
 
 ///
@@ -19,16 +21,18 @@ import 'package:threedpass/features/settings_page/domain/entities/wallet_setting
 ///
 class AppServiceLoaderCubit extends Cubit<AppService> {
   AppServiceLoaderCubit({
-    required WalletSettings walletSettings,
+    required this.settingsConfigCubit,
   }) : super(
           AppService(
-            plugin: D3pTestNetPlugin(),
+            plugin: D3pLiveNetPlugin(),
             keyring: Keyring(),
             status: AppServiceInitStatus.init,
           ),
         ) {
-    _init(walletSettings);
+    _init(settingsConfigCubit.state.walletSettings);
   }
+
+  final SettingsConfigCubit settingsConfigCubit;
 
   Future<Map> importAccount({
     KeyType keyType = KeyType.mnemonic,
@@ -103,18 +107,47 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       node != null ? [node] : service.plugin.nodeList,
     );
 
+    final networkData =
+        await service.plugin.sdk.api.setting.queryNetworkProps();
+
+    late final AppService newAppService;
+
+    if (connected != null && networkData != null) {
+      // If you connected to test node and local settings are live or
+      // you connected to live node and local settings are test,
+      // then you need to change settings
+      final currentWalletSettings = settingsConfigCubit.state.walletSettings;
+      final isNodeTestNet = networkData.ss58Format == ss58formatTest;
+      if (currentWalletSettings.isTestNet != isNodeTestNet) {
+        settingsConfigCubit.updateSettings(
+          settingsConfigCubit.state.copyWith(
+            walletSettings: currentWalletSettings.copyWith(
+              isTestNet: isNodeTestNet,
+            ),
+          ),
+        );
+      }
+
+      newAppService = AppService(
+        plugin: state.plugin,
+        keyring: state.keyring,
+        status: AppServiceInitStatus.connected,
+        networkStateData: networkData,
+      );
+    } else {
+      newAppService = AppService(
+        plugin: state.plugin,
+        keyring: state.keyring,
+        status: AppServiceInitStatus.error,
+      );
+    }
+
     // final connected = await service.plugin.start(
     //   state.keyring,
     //   nodes: node != null ? [node] : service.plugin.nodeList,
     // );
 
-    emit(
-      state.copyWith(
-        status: connected != null
-            ? AppServiceInitStatus.connected
-            : AppServiceInitStatus.error,
-      ),
-    );
+    emit(newAppService);
   }
 
   static D3pCorePlugin _buildPlugin(WalletSettings walletSettings) {
@@ -158,7 +191,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
   Future<void> _init(WalletSettings walletSettings) async {
     final keyring = state.keyring;
     // Init
-    await keyring.init([ss58formatTest, ss58formatLive]);
+    await keyring.init([ss58formatLive, ss58formatTest]);
 
     final appService = AppService(
       plugin: _buildPlugin(walletSettings),

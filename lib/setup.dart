@@ -1,8 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
-import 'package:threedpass/core/polkawallet/plugins/d3p_test_net_plugin.dart';
 import 'package:threedpass/features/hashes_list/data/repositories/hash_list_store.dart';
 import 'package:threedpass/features/hashes_list/domain/repositories/hashes_repository.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
@@ -48,9 +46,11 @@ Future<void> setup() async {
     )..init(),
   );
 
-  final settingsConfig = getIt<SettingsRepository>().getConfig();
-  getIt.registerFactory<SettingsConfigCubit>(
-    () => SettingsConfigCubit(
+  // TODO Optimize to let user faster enter the app
+  final settingsConfig = await getIt<SettingsRepository>().getConfig();
+  // This is a kind of anti-pattern, but it's the cleanest way to pass the settings
+  getIt.registerSingleton<SettingsConfigCubit>(
+    SettingsConfigCubit(
       config: settingsConfig,
       settingsRepository: getIt<SettingsRepository>(),
     ),
@@ -58,7 +58,7 @@ Future<void> setup() async {
 
   getIt.registerFactory<AppServiceLoaderCubit>(
     () => AppServiceLoaderCubit(
-      walletSettings: settingsConfig.walletSettings,
+      settingsConfigCubit: getIt<SettingsConfigCubit>(),
     ),
   );
 }
