@@ -1,8 +1,10 @@
+import 'package:calc/calc.dart';
 import 'package:threedpass/features/settings_page/data/repositories/settings_store.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
+import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 
 abstract class SettingsRepository {
-  GlobalSettings getConfig();
+  Future<GlobalSettings> getConfig();
   Future<void> setConfig(GlobalSettings config);
 }
 
@@ -13,8 +15,14 @@ class SettingsRepositoryImpl implements SettingsRepository {
     required this.hiveSettingsStore,
   });
   @override
-  GlobalSettings getConfig() {
-    return hiveSettingsStore.getSettings();
+  Future<GlobalSettings> getConfig() async {
+    final current = hiveSettingsStore.getSettings();
+
+    final v = await Calc2.getVersion();
+
+    return current.copyWith(
+      scanSettings: current.scanSettings.copyWith(libVersion: v),
+    );
   }
 
   @override
