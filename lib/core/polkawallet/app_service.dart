@@ -1,4 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:flutter/material.dart';
+import 'package:polkawallet_sdk/api/types/balanceData.dart';
 import 'package:polkawallet_sdk/api/types/networkStateData.dart';
 import 'package:polkawallet_sdk/plugin/index.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
@@ -12,12 +14,14 @@ class AppService {
     required this.keyring,
     required this.status,
     NetworkStateData? networkStateData,
-  }) : networkStateData = networkStateData = NetworkStateData();
+  })  : networkStateData = networkStateData ?? NetworkStateData(),
+        balance = ValueNotifier<BalanceData>(BalanceData());
 
   final PolkawalletPlugin plugin;
   final Keyring keyring;
   final AppServiceInitStatus status;
   final NetworkStateData networkStateData;
+  final ValueNotifier<BalanceData> balance;
 
   // final subScan = SubScanApi();
 }

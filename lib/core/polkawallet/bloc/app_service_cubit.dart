@@ -4,6 +4,7 @@ import 'package:polkawallet_sdk/api/types/networkParams.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:polkawallet_sdk/storage/keyringEVM.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
+import 'package:threedpass/common/logger.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_core_plugin.dart';
@@ -142,12 +143,30 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       );
     }
 
+    _subscribeToBalance(newAppService);
+
     // final connected = await service.plugin.start(
     //   state.keyring,
     //   nodes: node != null ? [node] : service.plugin.nodeList,
     // );
 
     emit(newAppService);
+  }
+
+  static void _subscribeToBalance(AppService service) {
+    final address = service.keyring.current.address;
+    if (address != null) {
+      service.plugin.sdk.api.account.subscribeBalance(
+        address,
+        (data) {
+          service.balance.value = data;
+        },
+      );
+    } else {
+      logger.w(
+        "Couldn't subscribe to balance, because service.keyring.current.address is NULL",
+      );
+    }
   }
 
   static D3pCorePlugin _buildPlugin(WalletSettings walletSettings) {
@@ -162,6 +181,8 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
         status: AppServiceInitStatus.init,
       ),
     );
+
+    state.plugin.sdk.api.account.unsubscribeBalance();
 
     final newPlugin = _buildPlugin(walletSettings);
 
