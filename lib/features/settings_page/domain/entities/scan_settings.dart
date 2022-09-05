@@ -15,19 +15,23 @@ class ScanSettings extends Equatable {
   final int nSections;
   @HiveField(3)
   final String libVersion;
+  @HiveField(4)
+  final String transBytes;
 
   const ScanSettings({
     required this.gridSize,
     required this.nSections,
     required this.algorithm,
     required this.libVersion,
+    required this.transBytes,
   });
 
   const ScanSettings.defaultValues()
       : gridSize = 7,
         algorithm = Algorithm.grid2d,
         nSections = 10,
-        libVersion = 'unknown';
+        libVersion = 'unknown',
+        transBytes = '';
 
   @override
   List<Object?> get props => [

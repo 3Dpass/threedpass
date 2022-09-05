@@ -4,12 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
-import 'package:threedpass/setup.dart';
 
 class GridSizeDropdown extends StatelessWidget {
   const GridSizeDropdown({Key? key}) : super(key: key);
 
-  static const _gridSizes = [6, 7, 8];
+  static const _gridSizes = [6, 7, 8, 9, 10];
 
   Future<void> _onGridChanged(
     BuildContext context,

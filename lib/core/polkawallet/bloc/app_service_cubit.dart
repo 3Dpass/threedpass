@@ -143,7 +143,9 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       );
     }
 
-    _subscribeToBalance(newAppService);
+    newAppService.plugin.sdk.api.setting.subscribeBestNumber((String value) {
+      newAppService.bestNumber.value = value;
+    });
 
     // final connected = await service.plugin.start(
     //   state.keyring,
@@ -153,6 +155,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     emit(newAppService);
   }
 
+  // TODO Subscribe!
   static void _subscribeToBalance(AppService service) {
     final address = service.keyring.current.address;
     if (address != null) {

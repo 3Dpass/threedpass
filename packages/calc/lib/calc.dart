@@ -13,6 +13,8 @@ import 'dart:typed_data';
 import 'package:calc/generated/bindings.dart';
 import 'package:ffi/ffi.dart';
 
+import 'package:convert/convert.dart';
+
 // // For C/Rust
 // typedef NativeProgressFunc = Int64 Function(Int64, Int64, Pointer<Utf8>);
 // // For Dart
@@ -198,11 +200,13 @@ class Calc2 {
     required this.gridSize,
     required this.nSections,
     required this.filePath,
+    required this.transBytes,
   });
 
   final int gridSize;
   final int nSections;
   final String filePath;
+  final String transBytes;
 
   Future<String> calcHashes() async {
     final p = ReceivePort();
@@ -248,24 +252,27 @@ class Calc2 {
           ) // Load the dynamic library on Android
         : DynamicLibrary.process(); // Load the static library on iOS
 
-    final a = Uint8List(4);
-    a[0] = 1;
-    a[1] = 2;
-    a[2] = 3;
-    a[3] = 4;
-    print('YES0');
-    final trans = _byteDataToPointer(a);
-    print('YES1');
+    // final d = transBytes.substring(0, 2);
+    // final d = transBytes.substring(6, 8);
+    final bytesIntList = <int>[];
+    for (int i = 0; i <= 6; i += 2) {
+      bytesIntList.add(
+        hex
+            .decode(
+              transBytes.substring(i, i + 2),
+            )
+            .length,
+      );
+    }
+
+    final bytesUint8List = Uint8List.fromList(bytesIntList);
+
+    final trans = _byteDataToPointer(bytesUint8List);
 
     final File f = File(filePath);
     final content = f.readAsBytesSync();
-    print('${content.length}, ${content.lengthInBytes}');
-    print('YES2');
+
     final input = _byteDataToPointer(content);
-
-    // toNativeUtf8().cast<UnsignedChar>()
-
-    print('YES3');
 
     final bindings = CalcBindings(nativeLib);
     final rawData = bindings.calc(

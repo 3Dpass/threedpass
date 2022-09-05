@@ -34,6 +34,7 @@
 
     "error_hash_list_bloc": "Hashes list is not initalized :(",
     "error_file_picker": "File picker error",
+    "error_trans_bytes_unavaliable": "Error: both user input and last block are unavaliable. Impossible to scan object.",
 
     "@preview_page":{
     },
@@ -79,6 +80,7 @@
     "choose_algorithm_label": "Choose algorithm",
     "grid_size_label": "Grid size",
     "n_sections_label": "N Sections",
+    "trans_bytes_input_label": "Rotation bytes",
     "error_n_sections_validator": "N Sections must be a number",
     "hash_settings_title": "Hash settings",
     "wallet_settings_title": "Wallet settings",
@@ -86,6 +88,7 @@
     "preview_settings_pixel_ratio_label": "Pixel ratio",
     "wallet_settings_istestnet_switch": "Is Test net",
     "node_url_label": "Node URL",
+    "error_hex": "Invalid input. Must be 8 digits",
     
     "algorithm_span": "Algorithm",
     "grid_span":"Grid",
@@ -165,5 +168,13 @@
 
     "invalid_input": "Invalid input",
     "error_mnemonic_not_found": "Error: mnemonic not found",
-    "error_empty_account_address": "Address can't be empty"
+    "error_empty_account_address": "Address can't be empty",
+
+    "@assets_page":{
+    },
+    "balance_avaliable_title": "Available",
+    "balance_locked_title": "Locked",
+    "balance_reserved_title": "Reserved",
+    "transfer_coins_button_label": "Transfer",
+    "recieve_coins_button_label": "Recieve"
 }

@@ -5,6 +5,8 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_page/accounts_drawer.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_page/asset_page_appbar.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_page/assets_count.dart';
+import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_page/recieve_button.dart';
+import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_page/transfer_button.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/connecting_page/connect_status.dart';
 
 class AssetsPage extends StatelessWidget {
@@ -25,13 +27,26 @@ class AssetsPage extends StatelessWidget {
             current: state.keyring.current,
             context: context,
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                AssetsCount(),
-              ],
-            ),
+          body:
+              // SingleChildScrollView(
+              //   child:
+              Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const AssetsCount(),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: const [
+                  TransferButton(),
+                  SizedBox(width: 8),
+                  RecieveButton(),
+                ],
+              ),
+            ],
           ),
+          // ),
         );
       },
     );

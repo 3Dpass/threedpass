@@ -34,10 +34,12 @@ extension SnapshotFileFactory on Snapshot {
     required String filePath,
     required ScanSettings settings,
     required BuildContext context,
+    required String transBytes,
   }) async {
     final hashes = await calcHashes(
       settings,
       filePath,
+      transBytes,
     );
 
     final rawObjName = filePath.split('/').last;
@@ -70,11 +72,13 @@ extension SnapshotFileFactory on Snapshot {
   static Future<String> calcHashes(
     ScanSettings settings,
     String filePath,
+    String transBytes,
   ) async {
     final calculator = Calc2(
       gridSize: settings.gridSize,
       nSections: settings.nSections,
       filePath: filePath,
+      transBytes: transBytes,
     );
 
     return await calculator.calcHashes();

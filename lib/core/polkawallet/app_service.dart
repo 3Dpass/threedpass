@@ -22,6 +22,7 @@ class AppService {
   final AppServiceInitStatus status;
   final NetworkStateData networkStateData;
   final ValueNotifier<BalanceData> balance;
+  final ValueNotifier<String> bestNumber = ValueNotifier<String>('');
 
   // final subScan = SubScanApi();
 }

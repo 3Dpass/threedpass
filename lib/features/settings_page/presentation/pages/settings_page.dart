@@ -23,7 +23,7 @@ class SettingsPage extends StatelessWidget {
               SizedBox(height: 16),
               HashSettingsBlock(),
               PreviewSettingsBlock(),
-              WalletSettingsBlock(),
+              // WalletSettingsBlock(),
             ],
           ),
         ),

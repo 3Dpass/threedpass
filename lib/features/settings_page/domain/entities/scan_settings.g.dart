@@ -15,6 +15,8 @@ abstract class _$ScanSettingsCWProxy {
 
   ScanSettings nSections(int nSections);
 
+  ScanSettings transBytes(String transBytes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ScanSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -26,6 +28,7 @@ abstract class _$ScanSettingsCWProxy {
     int? gridSize,
     String? libVersion,
     int? nSections,
+    String? transBytes,
   });
 }
 
@@ -48,6 +51,9 @@ class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
   ScanSettings nSections(int nSections) => this(nSections: nSections);
 
   @override
+  ScanSettings transBytes(String transBytes) => this(transBytes: transBytes);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ScanSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -60,6 +66,7 @@ class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
     Object? gridSize = const $CopyWithPlaceholder(),
     Object? libVersion = const $CopyWithPlaceholder(),
     Object? nSections = const $CopyWithPlaceholder(),
+    Object? transBytes = const $CopyWithPlaceholder(),
   }) {
     return ScanSettings(
       algorithm: algorithm == const $CopyWithPlaceholder() || algorithm == null
@@ -79,6 +86,11 @@ class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
           ? _value.nSections
           // ignore: cast_nullable_to_non_nullable
           : nSections as int,
+      transBytes:
+          transBytes == const $CopyWithPlaceholder() || transBytes == null
+              ? _value.transBytes
+              // ignore: cast_nullable_to_non_nullable
+              : transBytes as String,
     );
   }
 }
@@ -108,13 +120,14 @@ class ScanSettingsAdapter extends TypeAdapter<ScanSettings> {
       nSections: fields[2] as int,
       algorithm: fields[1] as Algorithm,
       libVersion: fields[3] as String,
+      transBytes: fields[4] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, ScanSettings obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.gridSize)
       ..writeByte(1)
@@ -122,7 +135,9 @@ class ScanSettingsAdapter extends TypeAdapter<ScanSettings> {
       ..writeByte(2)
       ..write(obj.nSections)
       ..writeByte(3)
-      ..write(obj.libVersion);
+      ..write(obj.libVersion)
+      ..writeByte(4)
+      ..write(obj.transBytes);
   }
 
   @override

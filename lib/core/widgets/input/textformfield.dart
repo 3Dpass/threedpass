@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:threedpass/core/utils/empty_function.dart';
 
 class D3pTextFormField extends StatelessWidget {
@@ -13,6 +14,9 @@ class D3pTextFormField extends StatelessWidget {
     this.onSuffixButtonPressed,
     this.validator,
     this.onChanged,
+    this.keyboardType,
+    this.inputFormatters,
+    this.maxLen,
   })  : controller = controller ?? TextEditingController(),
         super(key: key);
 
@@ -25,6 +29,9 @@ class D3pTextFormField extends StatelessWidget {
   final void Function()? onSuffixButtonPressed;
   final String? Function(String?)? validator;
   final void Function(String?)? onChanged;
+  final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
+  final int? maxLen;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +69,8 @@ class D3pTextFormField extends StatelessWidget {
       ),
       controller: controller,
       onChanged: onChanged,
+      inputFormatters: inputFormatters,
+      maxLength: maxLen,
     );
   }
 }
