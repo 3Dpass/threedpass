@@ -58,8 +58,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
 
       // final signedBlock = await appService.plugin.sdk.api.service.webView!
       //     .evalJavascript('api.rpc.chain.getBlock()');
-      return (blockHash as String)
-          .substring(blockHash.length - 8, blockHash.length);
+      return (blockHash as String).substring(2, 10);
     }
 
     throw 'Both userTransBytes and bestnumber are empty';

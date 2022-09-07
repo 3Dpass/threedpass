@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/hash_settings/grid_size_dropdown.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/hash_settings/hash_settings_title.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/hash_settings/sections_textfield.dart';
@@ -15,7 +17,9 @@ class HashSettingsBlock extends StatelessWidget {
         // AlgorithmDropdown(),
         const GridSizeDropdown(),
         const SectionsTextField(),
-        TransBytesInput(),
+        TransBytesInput(
+          settingsConfigCubit: BlocProvider.of<SettingsConfigCubit>(context),
+        ),
         const SizedBox(height: 16),
       ],
     );

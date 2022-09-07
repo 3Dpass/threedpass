@@ -17,60 +17,82 @@ class D3pTextFormField extends StatelessWidget {
     this.keyboardType,
     this.inputFormatters,
     this.maxLen,
+    this.bottomHelpText,
+    this.enabled,
   })  : controller = controller ?? TextEditingController(),
         super(key: key);
 
-  final TextEditingController controller;
-  final String? hintText;
-  final String? labelText;
-  final String? labelButton;
   final void Function()? onLabelButtonPressed;
-  final String? suffixButton;
   final void Function()? onSuffixButtonPressed;
   final String? Function(String?)? validator;
   final void Function(String?)? onChanged;
-  final TextInputType? keyboardType;
+
+  /// Text to display below the input field
+  final String? bottomHelpText;
+
+  final TextEditingController controller;
+  final bool? enabled;
+  final String? hintText;
   final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
+  final String? labelButton;
+  final String? labelText;
   final int? maxLen;
+  final String? suffixButton;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      validator: validator,
-      decoration: InputDecoration(
-        label: Text(labelText ?? ''),
-        suffixIcon: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            labelButton != null
-                ? SizedBox(
-                    width: 60,
-                    child: TextButton(
-                      child: Text(labelButton!),
-                      onPressed: onLabelButtonPressed ?? emptyFunction,
-                    ),
-                  )
-                : const SizedBox(),
-            SizedBox(
-              width: labelButton != null && suffixButton != null ? 8 : 0,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        TextFormField(
+          decoration: InputDecoration(
+            label: Text(labelText ?? ''),
+            suffixIcon: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                labelButton != null
+                    ? SizedBox(
+                        width: 60,
+                        child: TextButton(
+                          child: Text(labelButton!),
+                          onPressed: onLabelButtonPressed ?? emptyFunction,
+                        ),
+                      )
+                    : const SizedBox(),
+                SizedBox(
+                  width: labelButton != null && suffixButton != null ? 8 : 0,
+                ),
+                suffixButton != null
+                    ? SizedBox(
+                        width: 60,
+                        child: TextButton(
+                          child: Text(suffixButton!),
+                          onPressed: onSuffixButtonPressed ?? emptyFunction,
+                        ),
+                      )
+                    : const SizedBox(),
+              ],
             ),
-            suffixButton != null
-                ? SizedBox(
-                    width: 60,
-                    child: TextButton(
-                      child: Text(suffixButton!),
-                      onPressed: onSuffixButtonPressed ?? emptyFunction,
-                    ),
-                  )
-                : const SizedBox(),
-          ],
+            hintText: hintText,
+          ),
+          controller: controller,
+          onChanged: onChanged,
+          inputFormatters: inputFormatters,
+          maxLength: maxLen,
+          enabled: enabled,
+          validator: validator,
         ),
-        hintText: hintText,
-      ),
-      controller: controller,
-      onChanged: onChanged,
-      inputFormatters: inputFormatters,
-      maxLength: maxLen,
+        bottomHelpText != null
+            ? Padding(
+                padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
+                child: Text(
+                  bottomHelpText!,
+                  style: Theme.of(context).textTheme.caption,
+                ),
+              )
+            : const SizedBox(),
+      ],
     );
   }
 }

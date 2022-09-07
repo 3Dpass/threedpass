@@ -6,4 +6,6 @@ extension NullCheck on NetworkStateData {
       name == null ||
       tokenDecimals == null ||
       tokenSymbol == null;
+
+  int get safeDecimals => tokenDecimals?.first ?? 12;
 }

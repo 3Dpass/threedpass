@@ -19,10 +19,13 @@ class AccountsDrawer extends Drawer {
             padding: EdgeInsets.zero,
             children: [
               PlatformAppBar(
-                // backgroundColor: Theme.of(context).canvasColor,
-                leading: SizedBox(),
+                leading: const SizedBox(),
                 title: Text(
                   'choose_account_assets_page_drawer'.tr(),
+                ),
+                material: (_, __) => MaterialAppBarData(
+                  backgroundColor: Colors.black,
+                  foregroundColor: Theme.of(context).canvasColor,
                 ),
               ),
               // SizedBox(

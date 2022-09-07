@@ -37,7 +37,7 @@ class AssetPageAppbar extends AppBar {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        Fmt.address(account.address),
+                        Fmt.shorterAddress(account.address),
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
                               color: Colors.grey,
                             ),

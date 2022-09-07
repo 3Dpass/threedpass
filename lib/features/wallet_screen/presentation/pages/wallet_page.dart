@@ -5,6 +5,7 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/pages/appservice_init_loader_page.dart';
 import 'package:threedpass/features/wallet_screen/presentation/pages/assets_page.dart';
 import 'package:threedpass/features/wallet_screen/presentation/pages/no_accounts_page.dart';
+import 'package:threedpass/features/web_wallet/presentation/pages/web_wallet_page.dart';
 
 class WalletPage extends StatelessWidget {
   const WalletPage({Key? key}) : super(key: key);

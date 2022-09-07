@@ -39,9 +39,15 @@ class AssetsPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: const [
-                  TransferButton(),
+                  SizedBox(width: 16),
+                  Flexible(
+                    child: TransferButton(),
+                  ),
                   SizedBox(width: 8),
-                  RecieveButton(),
+                  Flexible(
+                    child: RecieveButton(),
+                  ),
+                  SizedBox(width: 16),
                 ],
               ),
             ],

@@ -44,7 +44,7 @@ class BasicBalanceCard extends StatelessWidget {
                 ),
                 children: [
                   TextSpan(
-                    text: tokenSymbol,
+                    text: ' ' + tokenSymbol,
                     style: Theme.of(context).textTheme.caption,
                   ),
                 ],

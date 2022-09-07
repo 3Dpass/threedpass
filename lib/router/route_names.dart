@@ -27,4 +27,6 @@ class RouteNames {
   static const settingsPage = 'SettingsRoute';
   static const walletPage = 'WalletRoute';
   static const walletPageWrapper = 'WalletWrapperRoute';
+  static const transferPage = 'TransferRoute';
+  static const recievePage = 'RecieveRoute';
 }

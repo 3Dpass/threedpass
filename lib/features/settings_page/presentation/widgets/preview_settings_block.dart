@@ -15,6 +15,7 @@ class PreviewSettingsBlock extends StatelessWidget {
           style: Theme.of(context).textTheme.headline6,
         ),
         const PixelRatioSlider(),
+        const SizedBox(height: 8),
         const AntialiasSwitch(),
         const SizedBox(height: 16),
       ],

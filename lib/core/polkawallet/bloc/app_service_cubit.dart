@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/api/apiKeyring.dart';
 import 'package:polkawallet_sdk/api/types/networkParams.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
-import 'package:polkawallet_sdk/storage/keyringEVM.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/common/logger.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
@@ -72,32 +71,46 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     if ((account.name.isEmpty || account.password.isEmpty)) {
       throw Exception('Accont name or password is empty');
     }
-    final res = await state.plugin.sdk.api.keyring.addAccount(
-      state.keyring,
-      keyType: keyType,
-      acc: json,
-      password: account.password,
-    );
+    try {
+      final addressInfo =
+          await state.plugin.sdk.api.keyring.addressFromMnemonic(
+        state.plugin.basic.ss58!,
+        cryptoType: cryptoType,
+        derivePath: derivePath,
+        mnemonic: account.mnemonicKey,
+      );
 
-    // This variable is never used, but somehow this line solves bug
-    // when [keyring.importAccount] returns wrong address.
-    final addressInfo = await state.plugin.sdk.api.keyring.addressFromMnemonic(
-      state.plugin.basic.ss58!,
-      cryptoType: cryptoType,
-      derivePath: derivePath,
-      mnemonic: account.mnemonicKey,
-    );
+      json['address'] = addressInfo.address;
 
-    // TODO Set testNet parameter to settings. Disable it in settings page
+      final res = await state.plugin.sdk.api.keyring.addAccount(
+        state.keyring,
+        keyType: keyType,
+        acc: json,
+        password: account.password,
+      );
 
-    emit(state.copyWith());
+      // This variable is never used, but somehow this line solves bug
+      // when [keyring.importAccount] returns wrong address.
 
-    return res;
+      state.keyring.current.address = addressInfo.address;
+      state.keyring.current.icon = addressInfo.svg;
+
+      emit(state.copyWith());
+
+      return res;
+    } catch (e) {
+      // final a = state.plugin.sdk.api.account.queryIndexInfo();
+      return KeyPairData();
+    }
   }
 
   void changeAccount(KeyPairData keyPairData) {
+    state.plugin.sdk.api.account.unsubscribeBalance();
+
     state.plugin.changeAccount(keyPairData);
     state.keyring.setCurrent(keyPairData);
+
+    _subscribeToBalance(state);
 
     emit(state.copyWith());
   }
@@ -110,6 +123,14 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
 
     final networkData =
         await service.plugin.sdk.api.setting.queryNetworkProps();
+    final consts = service.plugin.sdk.api.setting.queryNetworkConst();
+
+    // final addressInfo = await state.plugin.sdk.api.keyring.addressFromMnemonic(
+    //   state.plugin.basic.ss58!,
+    //   cryptoType: cryptoType,
+    //   derivePath: derivePath,
+    //   mnemonic: account.mnemonicKey,
+    // );
 
     late final AppService newAppService;
 
@@ -139,6 +160,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       newAppService = AppService(
         plugin: state.plugin,
         keyring: state.keyring,
+        networkStateData: networkData,
         status: AppServiceInitStatus.error,
       );
     }
@@ -146,6 +168,8 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     newAppService.plugin.sdk.api.setting.subscribeBestNumber((String value) {
       newAppService.bestNumber.value = value;
     });
+
+    _subscribeToBalance(newAppService);
 
     // final connected = await service.plugin.start(
     //   state.keyring,
@@ -155,7 +179,6 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     emit(newAppService);
   }
 
-  // TODO Subscribe!
   static void _subscribeToBalance(AppService service) {
     final address = service.keyring.current.address;
     if (address != null) {
@@ -166,7 +189,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
         },
       );
     } else {
-      logger.w(
+      logger.i(
         "Couldn't subscribe to balance, because service.keyring.current.address is NULL",
       );
     }

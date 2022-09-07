@@ -51,6 +51,7 @@ class _State extends State<PixelRatioSlider> {
         BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings;
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -72,6 +73,13 @@ class _State extends State<PixelRatioSlider> {
             ),
             const Text('$maxValue'),
           ],
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 0, left: 16, right: 16),
+          child: Text(
+            'pixel_ratio_help_text'.tr(),
+            style: Theme.of(context).textTheme.caption,
+          ),
         ),
       ],
     );

@@ -19,6 +19,8 @@
     "Copied": "Copied",
     "Apply": "Apply",
     "Invalid": "Invalid",
+    "Clear": "Clear",
+    "Copy": "Copy",
 
     "@home_page":{
     },
@@ -89,6 +91,9 @@
     "wallet_settings_istestnet_switch": "Is Test net",
     "node_url_label": "Node URL",
     "error_hex": "Invalid input. Must be 8 digits",
+
+    "trans_help_text": "By default this is the first 4 bytes of the last block hash.",
+    "pixel_ratio_help_text": "Decreasing the value reduces preview quality, but increases performance.",
     
     "algorithm_span": "Algorithm",
     "grid_span":"Grid",
@@ -176,5 +181,24 @@
     "balance_locked_title": "Locked",
     "balance_reserved_title": "Reserved",
     "transfer_coins_button_label": "Transfer",
-    "recieve_coins_button_label": "Recieve"
+    "recieve_coins_button_label": "Recieve",
+
+    "@recieve_page":{
+    },
+    "recieve_page_title": "Recieve",
+
+    "@transfer_page":{
+    },
+    "transfer_page_title": "Transfer",
+    "from_address_label": "From",
+    "to_address_label": "To address",
+    "to_address_hint": "Enter address",
+    "amount_label": "Amount (Balance: {})",
+    "amount_hint": "Enter amount",
+    "existential_deposit_label": "existential deposit",
+    "existential_deposit_text": "The minimum amount thath an account should have to be deemed active.",
+    "estimated_transfer_fee": "estimated transfer fee",
+    "keep_alive_label": "keep alive",
+    "keep_alive_text": "With the keep-alive option set, the account is protected agains removal due to low balances.",
+    "make_transfer_label": "Make transfer"
 }
