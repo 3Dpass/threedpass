@@ -10,16 +10,16 @@ import 'package:threedpass/features/settings_page/domain/entities/wallet_setting
 class TestNetSwitch extends StatelessWidget {
   const TestNetSwitch({Key? key}) : super(key: key);
 
-  void onChanged(bool newValue, BuildContext context) {
-    final cubit = BlocProvider.of<SettingsConfigCubit>(context);
-    final newWalletConfig =
-        cubit.state.walletSettings.copyWith(isTestNet: newValue);
-    final newState = cubit.state.copyWith(walletSettings: newWalletConfig);
-    cubit.updateSettings(newState);
+  // void onChanged(bool newValue, BuildContext context) {
+  //   final cubit = BlocProvider.of<SettingsConfigCubit>(context);
+  //   final newWalletConfig =
+  //       cubit.state.walletSettings.copyWith(isTestNet: newValue);
+  //   final newState = cubit.state.copyWith(walletSettings: newWalletConfig);
+  //   cubit.updateSettings(newState);
 
-    BlocProvider.of<AppServiceLoaderCubit>(context)
-        .changeNetwork(newWalletConfig);
-  }
+  //   BlocProvider.of<AppServiceLoaderCubit>(context)
+  //       .changeNetwork(newWalletConfig);
+  // }
 
   @override
   Widget build(BuildContext context) {

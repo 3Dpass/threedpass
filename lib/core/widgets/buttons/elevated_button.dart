@@ -8,26 +8,35 @@ class D3pElevatedButton extends StatelessWidget {
     required this.text,
     this.iconData,
     this.minimumSize,
+    this.padding,
   }) : super(key: key);
 
   final void Function()? onPressed;
   final String text;
   final IconData? iconData;
   final Size? minimumSize;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
-    return PlatformElevatedButton(
-      child: Row(
-        children: [
-          iconData != null ? Icon(iconData) : const SizedBox(),
-          Text(text),
-        ],
-      ),
-      onPressed: onPressed,
-      material: (context, _) => MaterialElevatedButtonData(
-        style: ElevatedButton.styleFrom(
-          minimumSize: minimumSize ?? const Size.fromHeight(50),
+    return Padding(
+      padding: padding ?? EdgeInsets.zero,
+      child: SizedBox(
+        child: PlatformElevatedButton(
+          padding: padding ?? EdgeInsets.zero,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              iconData != null ? Icon(iconData) : const SizedBox(),
+              Text(text),
+            ],
+          ),
+          onPressed: onPressed,
+          material: (context, _) => MaterialElevatedButtonData(
+            style: ElevatedButton.styleFrom(
+              minimumSize: minimumSize ?? const Size.fromHeight(50),
+            ),
+          ),
         ),
       ),
     );

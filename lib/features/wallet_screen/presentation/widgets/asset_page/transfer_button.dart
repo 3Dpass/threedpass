@@ -13,7 +13,11 @@ class TransferButton extends StatelessWidget {
   const TransferButton({Key? key}) : super(key: key);
 
   void onPressed(BuildContext context) {
-    context.router.push(TransferRoute());
+    context.router.push(
+      TransferRoute(
+        appService: BlocProvider.of<AppServiceLoaderCubit>(context).state,
+      ),
+    );
   }
 
   @override

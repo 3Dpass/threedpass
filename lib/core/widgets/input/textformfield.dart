@@ -19,6 +19,7 @@ class D3pTextFormField extends StatelessWidget {
     this.maxLen,
     this.bottomHelpText,
     this.enabled,
+    this.obscureText,
   })  : controller = controller ?? TextEditingController(),
         super(key: key);
 
@@ -39,49 +40,54 @@ class D3pTextFormField extends StatelessWidget {
   final String? labelText;
   final int? maxLen;
   final String? suffixButton;
+  final bool? obscureText;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        TextFormField(
-          decoration: InputDecoration(
-            label: Text(labelText ?? ''),
-            suffixIcon: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                labelButton != null
-                    ? SizedBox(
-                        width: 60,
-                        child: TextButton(
-                          child: Text(labelButton!),
-                          onPressed: onLabelButtonPressed ?? emptyFunction,
-                        ),
-                      )
-                    : const SizedBox(),
-                SizedBox(
-                  width: labelButton != null && suffixButton != null ? 8 : 0,
-                ),
-                suffixButton != null
-                    ? SizedBox(
-                        width: 60,
-                        child: TextButton(
-                          child: Text(suffixButton!),
-                          onPressed: onSuffixButtonPressed ?? emptyFunction,
-                        ),
-                      )
-                    : const SizedBox(),
-              ],
+        SizedBox(
+          height: labelText == null ? 44 : null,
+          child: TextFormField(
+            decoration: InputDecoration(
+              label: Text(labelText ?? ''),
+              suffixIcon: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  labelButton != null
+                      ? SizedBox(
+                          width: 60,
+                          child: TextButton(
+                            child: Text(labelButton!),
+                            onPressed: onLabelButtonPressed ?? emptyFunction,
+                          ),
+                        )
+                      : const SizedBox(),
+                  SizedBox(
+                    width: labelButton != null && suffixButton != null ? 8 : 0,
+                  ),
+                  suffixButton != null
+                      ? SizedBox(
+                          width: 60,
+                          child: TextButton(
+                            child: Text(suffixButton!),
+                            onPressed: onSuffixButtonPressed ?? emptyFunction,
+                          ),
+                        )
+                      : const SizedBox(),
+                ],
+              ),
+              hintText: hintText,
             ),
-            hintText: hintText,
+            controller: controller,
+            onChanged: onChanged,
+            inputFormatters: inputFormatters,
+            maxLength: maxLen,
+            enabled: enabled,
+            validator: validator,
+            obscureText: obscureText ?? false,
           ),
-          controller: controller,
-          onChanged: onChanged,
-          inputFormatters: inputFormatters,
-          maxLength: maxLen,
-          enabled: enabled,
-          validator: validator,
         ),
         bottomHelpText != null
             ? Padding(

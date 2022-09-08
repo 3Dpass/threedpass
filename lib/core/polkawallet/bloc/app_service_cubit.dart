@@ -40,7 +40,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     String derivePath = '',
     required AccountCreate account,
   }) async {
-    if ((account.name.isEmpty || account.password.isEmpty)) {
+    if ((account.name.isEmpty)) {
       throw Exception('create account failed');
     }
     final res = await state.plugin.sdk.api.keyring.importAccount(
@@ -68,13 +68,13 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     String derivePath = '',
     bool isFromCreatePage = false,
   }) async {
-    if ((account.name.isEmpty || account.password.isEmpty)) {
+    if ((account.name.isEmpty)) {
       throw Exception('Accont name or password is empty');
     }
     try {
       final addressInfo =
           await state.plugin.sdk.api.keyring.addressFromMnemonic(
-        state.plugin.basic.ss58!,
+        state.networkStateData.ss58Format!,
         cryptoType: cryptoType,
         derivePath: derivePath,
         mnemonic: account.mnemonicKey,
@@ -110,9 +110,11 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     state.plugin.changeAccount(keyPairData);
     state.keyring.setCurrent(keyPairData);
 
-    _subscribeToBalance(state);
+    final pseudoNewState = state.copyWith();
 
-    emit(state.copyWith());
+    _subscribeToBalance(pseudoNewState);
+
+    emit(pseudoNewState);
   }
 
   Future<void> _startPlugin(AppService service, {NetworkParams? node}) async {
@@ -123,7 +125,9 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
 
     final networkData =
         await service.plugin.sdk.api.setting.queryNetworkProps();
-    final consts = service.plugin.sdk.api.setting.queryNetworkConst();
+
+    final consts = await service.plugin.sdk.api.setting
+        .queryNetworkConst(); // TODO Save this data to AppService
 
     // final addressInfo = await state.plugin.sdk.api.keyring.addressFromMnemonic(
     //   state.plugin.basic.ss58!,
@@ -179,12 +183,13 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     emit(newAppService);
   }
 
-  static void _subscribeToBalance(AppService service) {
+  static Future<void> _subscribeToBalance(AppService service) async {
     final address = service.keyring.current.address;
     if (address != null) {
       service.plugin.sdk.api.account.subscribeBalance(
         address,
         (data) {
+          logger.i('Balance updated: ${data.availableBalance}');
           service.balance.value = data;
         },
       );
@@ -208,31 +213,31 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       ),
     );
 
-    state.plugin.sdk.api.account.unsubscribeBalance();
+    // state.plugin.sdk.api.account.unsubscribeBalance();
 
-    final newPlugin = _buildPlugin(walletSettings);
+    // final newPlugin = _buildPlugin(walletSettings);
 
-    state.keyring.setSS58(newPlugin.basic.ss58!);
-    // Documentation says "we don't really need this method"
-    await state.plugin.dispose();
+    // state.keyring.setSS58(newPlugin.basic.ss58!);
+    // // Documentation says "we don't really need this method"
+    // await state.plugin.dispose();
 
-    await newPlugin.beforeStart(
-      state.keyring,
-      webView: state.plugin.sdk.webView,
-      // !This method is guaranteed to fall with an error, so we provide
-      // callback to reconnect
-      socketDisconnectedAction: () {
-        newPlugin.start(state.keyring);
-      },
-    );
+    // await newPlugin.beforeStart(
+    //   state.keyring,
+    //   webView: state.plugin.sdk.webView,
+    //   // !This method is guaranteed to fall with an error, so we provide
+    //   // callback to reconnect
+    //   socketDisconnectedAction: () {
+    //     newPlugin.start(state.keyring);
+    //   },
+    // );
 
-    _startPlugin(
-      AppService(
-        plugin: newPlugin,
-        keyring: state.keyring,
-        status: AppServiceInitStatus.connecting,
-      ),
-    );
+    // _startPlugin(
+    //   AppService(
+    //     plugin: newPlugin,
+    //     keyring: state.keyring,
+    //     status: AppServiceInitStatus.connecting,
+    //   ),
+    // );
   }
 
   Future<void> _init(WalletSettings walletSettings) async {

@@ -28,9 +28,10 @@ class CreateAccountForm extends StatelessWidget {
   }
 
   String? _passValidator(String? v) {
-    return v != null && validators.checkPassword(v)
-        ? null
-        : 'create_credentials_password_error'.tr();
+    return null;
+    // return v != null && validators.checkPassword(v)
+    //     ? null
+    //     : 'create_credentials_password_error'.tr();
   }
 
   String? _pass2Validator(String? v) {

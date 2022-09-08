@@ -153,10 +153,10 @@ class AppRouter extends _i10.RootStackRouter {
           routeData: routeData, child: const _i13.WalletPage());
     },
     TransferRoute.name: (routeData) {
-      final args = routeData.argsAs<TransferRouteArgs>(
-          orElse: () => const TransferRouteArgs());
+      final args = routeData.argsAs<TransferRouteArgs>();
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i14.TransferPage(key: args.key));
+          routeData: routeData,
+          child: _i14.TransferPage(key: args.key, appService: args.appService));
     },
     RecieveRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
@@ -593,21 +593,24 @@ class WalletRoute extends _i10.PageRouteInfo<void> {
 /// generated route for
 /// [_i14.TransferPage]
 class TransferRoute extends _i10.PageRouteInfo<TransferRouteArgs> {
-  TransferRoute({_i31.Key? key})
+  TransferRoute({_i31.Key? key, required _i35.AppService appService})
       : super(TransferRoute.name,
-            path: 'transfer-page', args: TransferRouteArgs(key: key));
+            path: 'transfer-page',
+            args: TransferRouteArgs(key: key, appService: appService));
 
   static const String name = 'TransferRoute';
 }
 
 class TransferRouteArgs {
-  const TransferRouteArgs({this.key});
+  const TransferRouteArgs({this.key, required this.appService});
 
   final _i31.Key? key;
 
+  final _i35.AppService appService;
+
   @override
   String toString() {
-    return 'TransferRouteArgs{key: $key}';
+    return 'TransferRouteArgs{key: $key, appService: $appService}';
   }
 }
 

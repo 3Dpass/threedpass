@@ -39,28 +39,21 @@ class RecievePage extends StatelessWidget {
             //   height: 100,
             //   width: 100,
             // ),
-            Row(
-              children: [
-                const SizedBox(width: 16),
-                Flexible(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Text(
-                      accountData.address!,
-                      // style: Theme.of(context).textTheme.bodyText1,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                D3pElevatedButton(
-                  text: 'Copy'.tr(),
-                  iconData: Icons.copy,
-                  minimumSize: const Size(120, 50),
-                  onPressed: () =>
-                      copyAndNotify(textToCopy: accountData.address!),
-                ),
-                const SizedBox(width: 16),
-              ],
+            SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              scrollDirection: Axis.horizontal,
+              child: Text(
+                accountData.address!,
+                // style: Theme.of(context).textTheme.bodyText1,
+              ),
+            ),
+            const SizedBox(height: 16),
+            D3pElevatedButton(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              text: 'Copy'.tr(),
+              iconData: Icons.copy,
+              minimumSize: const Size(120, 50),
+              onPressed: () => copyAndNotify(textToCopy: accountData.address!),
             ),
           ],
         ),

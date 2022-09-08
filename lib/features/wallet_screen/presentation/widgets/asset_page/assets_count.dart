@@ -37,6 +37,7 @@ class AssetsCount extends StatelessWidget {
             if (balance.isNull) {
               return placeHolder;
             }
+
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
