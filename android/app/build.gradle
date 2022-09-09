@@ -72,9 +72,8 @@ android {
             signingConfig null
         }
 
-        release {
-           
-            signingConfig signingConfigs.release
+        release {           
+            signingConfig signingConfigs.debug
         }
     }
 
