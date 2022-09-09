@@ -59,7 +59,7 @@ android {
 
 
     signingConfigs {
-
+        debug {}
         release {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
@@ -72,9 +72,9 @@ android {
         debug {
             signingConfig signingConfigs.debug
         }
-        
+
         release {
-            // Signing with the debug keys for now, so `flutter run --release` works.
+           
             signingConfig signingConfigs.release
         }
     }
