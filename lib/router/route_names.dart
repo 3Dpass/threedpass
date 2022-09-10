@@ -5,6 +5,7 @@ class RouteNames {
   static const createAccountWrapper = 'CreateAccountWrapperRoute';
   static const createAccountCredentials = 'CreateAccountCredentialsRoute';
   static const createAccountLoader = 'CreateAccountLoaderRoute';
+  static const importAccountLoader = 'ImportAccountLoaderRoute';
   static const defaultLoadingDialog = 'DefaultLoadingDialogRoute';
   static const importAccountWrapper = 'ImportAccountWrapperRoute';
   static const importAccountSelectType = 'ImportAccountSelectTypeRoute';
@@ -26,4 +27,6 @@ class RouteNames {
   static const settingsPage = 'SettingsRoute';
   static const walletPage = 'WalletRoute';
   static const walletPageWrapper = 'WalletWrapperRoute';
+  static const transferPage = 'TransferRoute';
+  static const recievePage = 'RecieveRoute';
 }

@@ -3,10 +3,14 @@
 import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gl/flutter_gl.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:three_dart/three_dart.dart' as THREE;
 import 'package:three_dart_jsm/three_dart_jsm.dart' as THREE_JSM;
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/domain/entities/preview_settings.dart';
 
 class ObjectPreview extends StatefulWidget {
   const ObjectPreview({
@@ -47,6 +51,15 @@ class _State extends State<ObjectPreview> {
   final GlobalKey<THREE_JSM.DomLikeListenableState> _globalKey =
       GlobalKey<THREE_JSM.DomLikeListenableState>();
 
+  late final PreviewSettings previewSettings;
+
+  @override
+  void initState() {
+    super.initState();
+    previewSettings =
+        BlocProvider.of<SettingsConfigCubit>(context).state.previewSettings;
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -76,7 +89,7 @@ class _State extends State<ObjectPreview> {
       'width': width,
       'height': height,
       'gl': three3dRender.gl,
-      'antialias': true,
+      'antialias': previewSettings.antialias,
       'canvas': three3dRender.element,
       'alpha': true,
     };
@@ -93,6 +106,7 @@ class _State extends State<ObjectPreview> {
       pars,
     );
     renderTarget.samples = 0;
+
     renderer.setRenderTarget(renderTarget);
     sourceTexture = renderer.getRenderTargetGLTexture(renderTarget);
   }
@@ -141,7 +155,14 @@ class _State extends State<ObjectPreview> {
   }
 
   Future<void> initObj() async {
-    // obj
+    await loadObj();
+    await scaleObj();
+    await centerObj();
+
+    scene.add(object);
+  }
+
+  Future<void> loadObj() async {
     var loader = THREE_JSM.OBJLoader(null);
     object = await loader.loadAsync(widget.snapshot.externalPathToObj);
     object.traverse((child) {
@@ -149,8 +170,9 @@ class _State extends State<ObjectPreview> {
         child.material.map = texture;
       }
     });
+  }
 
-    // scale
+  Future<void> scaleObj() async {
     final actualModel = object.children.first;
     actualModel.geometry?.computeBoundingBox();
     final box3 = THREE.Box3(
@@ -163,14 +185,13 @@ class _State extends State<ObjectPreview> {
     final maxCoord = max(max(measure.x, measure.y), measure.z);
     final scale = maxObjectSize / maxCoord;
     object.scale.set(scale, scale, scale);
+  }
 
-    // Center object
+  Future<void> centerObj() async {
     var boxObject = THREE.Box3().setFromObject(object);
     var center = THREE.Vector3();
     boxObject.getCenter(center);
     object.position.sub(center); // center the model
-
-    scene.add(object);
   }
 
   // do NOT delete this code
@@ -267,11 +288,11 @@ class _State extends State<ObjectPreview> {
     final mqd = MediaQuery.of(context);
 
     screenSize = mqd.size;
-    dpr = mqd.devicePixelRatio;
+    dpr = mqd.devicePixelRatio * previewSettings.pixelRatio;
 
     // init three3dRender
     Map<String, dynamic> _options = {
-      'antialias': true,
+      'antialias': previewSettings.antialias,
       'alpha': false,
       'width': width.toInt(),
       'height': height.toInt(),
@@ -316,8 +337,8 @@ class _State extends State<ObjectPreview> {
               key: _globalKey,
               builder: (BuildContext context) => isRendered
                   ? Texture(textureId: three3dRender.textureId!)
-                  : const Center(
-                      child: CircularProgressIndicator(),
+                  : Center(
+                      child: PlatformCircularProgressIndicator(),
                     ),
             ),
           ),

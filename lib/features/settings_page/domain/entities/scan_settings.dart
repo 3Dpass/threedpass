@@ -2,29 +2,43 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-part 'settings_config.g.dart';
+part 'scan_settings.g.dart';
 
 @CopyWith()
 @HiveType(typeId: 1)
-class SettingsConfig extends Equatable {
+class ScanSettings extends Equatable {
   @HiveField(0)
   final int gridSize;
   @HiveField(1)
   final Algorithm algorithm;
   @HiveField(2)
   final int nSections;
+  @HiveField(3)
+  final String libVersion;
+  @HiveField(4)
+  final String transBytes;
 
-  const SettingsConfig({
+  const ScanSettings({
     required this.gridSize,
     required this.nSections,
     required this.algorithm,
+    required this.libVersion,
+    required this.transBytes,
   });
+
+  const ScanSettings.defaultValues()
+      : gridSize = 7,
+        algorithm = Algorithm.grid2d,
+        nSections = 10,
+        libVersion = 'unknown',
+        transBytes = '';
 
   @override
   List<Object?> get props => [
         gridSize,
         algorithm,
         nSections,
+        libVersion,
       ];
 }
 
@@ -33,5 +47,5 @@ enum Algorithm {
   @HiveField(0)
   spectrum,
   @HiveField(1)
-  grid,
+  grid2d,
 }

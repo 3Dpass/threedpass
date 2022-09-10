@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 
@@ -50,10 +51,10 @@ class _Indicator extends StatelessWidget {
     switch (status) {
       case AppServiceInitStatus.init:
       case AppServiceInitStatus.connecting:
-        return const SizedBox(
+        return SizedBox(
           width: 30,
           height: 30,
-          child: CircularProgressIndicator(),
+          child: PlatformCircularProgressIndicator(),
         );
 
       case AppServiceInitStatus.connected:

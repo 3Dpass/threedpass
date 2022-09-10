@@ -20,21 +20,35 @@ class CalcBindings {
       : _lookup = lookup;
 
   ffi.Pointer<ffi.Char> calc(
+    ffi.Pointer<ffi.UnsignedChar> input,
+    int input_len,
     int par1,
     int par2,
-    ffi.Pointer<ffi.Char> path,
+    ffi.Pointer<ffi.UnsignedChar> trans,
   ) {
     return _calc(
+      input,
+      input_len,
       par1,
       par2,
-      path,
+      trans,
     );
   }
 
   late final _calcPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Short, ffi.Short, ffi.Pointer<ffi.Char>)>>('calc');
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.UnsignedChar>, ffi.Int,
+              ffi.Short, ffi.Short, ffi.Pointer<ffi.UnsignedChar>)>>('calc');
   late final _calc = _calcPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(int, int, ffi.Pointer<ffi.Char>)>();
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.UnsignedChar>, int, int,
+          int, ffi.Pointer<ffi.UnsignedChar>)>();
+
+  ffi.Pointer<ffi.Char> version() {
+    return _version();
+  }
+
+  late final _versionPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>('version');
+  late final _version =
+      _versionPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
 }

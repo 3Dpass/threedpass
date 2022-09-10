@@ -11,60 +11,65 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i10;
-import 'package:flutter/material.dart' as _i28;
+import 'package:flutter/material.dart' as _i31;
 
-import '../core/polkawallet/app_service.dart' as _i32;
+import '../core/polkawallet/app_service.dart' as _i35;
 import '../core/widgets/default_loading_dialog.dart' as _i8;
 import '../core/widgets/error_page.dart' as _i4;
 import '../features/accounts/presentation/pages/create_account/create_account_credentials.dart'
-    as _i23;
+    as _i25;
 import '../features/accounts/presentation/pages/create_account/create_account_info_page.dart'
-    as _i20;
-import '../features/accounts/presentation/pages/create_account/create_account_loader.dart'
-    as _i24;
-import '../features/accounts/presentation/pages/create_account/create_account_mnemonic_backup.dart'
-    as _i21;
-import '../features/accounts/presentation/pages/create_account/create_account_mnemonic_confirm.dart'
     as _i22;
+import '../features/accounts/presentation/pages/create_account/create_account_loader.dart'
+    as _i26;
+import '../features/accounts/presentation/pages/create_account/create_account_mnemonic_backup.dart'
+    as _i23;
+import '../features/accounts/presentation/pages/create_account/create_account_mnemonic_confirm.dart'
+    as _i24;
 import '../features/accounts/presentation/pages/create_account/create_account_wrapper.dart'
     as _i5;
 import '../features/accounts/presentation/pages/import_account/import_account_create_page.dart'
-    as _i27;
+    as _i29;
 import '../features/accounts/presentation/pages/import_account/import_account_import_type.dart'
-    as _i25;
+    as _i27;
+import '../features/accounts/presentation/pages/import_account/import_account_loader.dart'
+    as _i30;
 import '../features/accounts/presentation/pages/import_account/import_account_wrapper.dart'
     as _i6;
 import '../features/accounts/presentation/pages/import_account/import_mnemonic_form.dart'
-    as _i26;
+    as _i28;
 import '../features/compare_page/presentation/pages/compare_page_wrapper.dart'
-    as _i15;
-import '../features/hashes_list/domain/entities/hash_object.dart' as _i30;
-import '../features/hashes_list/domain/entities/snapshot.dart' as _i31;
+    as _i17;
+import '../features/hashes_list/domain/entities/hash_object.dart' as _i33;
+import '../features/hashes_list/domain/entities/snapshot.dart' as _i34;
 import '../features/home_page/presentation/home_page.dart' as _i1;
-import '../features/preview_page/bloc/preview_page_cubit.dart' as _i33;
-import '../features/preview_page/presentation/pages/preview_page.dart' as _i14;
+import '../features/preview_page/bloc/preview_page_cubit.dart' as _i36;
+import '../features/preview_page/presentation/pages/preview_page.dart' as _i16;
 import '../features/preview_page/presentation/pages/preview_page_wrapper.dart'
     as _i2;
 import '../features/preview_page/presentation/widgets/rename_snapshot_dialog.dart'
-    as _i19;
+    as _i21;
 import '../features/preview_page/presentation/widgets/save_hash_dialog.dart'
-    as _i18;
+    as _i20;
 import '../features/preview_page/presentation/widgets/save_object_dialog.dart'
-    as _i17;
+    as _i19;
 import '../features/preview_page/presentation/widgets/save_top_hashes_dialog/save_top_hashes_dialog.dart'
-    as _i16;
+    as _i18;
 import '../features/scan_page/presentation/pages/scan_page.dart' as _i12;
 import '../features/scan_page/presentation/pages/scan_page_wrapper.dart' as _i9;
 import '../features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart'
     as _i7;
 import '../features/settings_page/presentation/pages/settings_page.dart'
     as _i11;
-import '../features/wallet_screen/presentation/wallet_page.dart' as _i13;
+import '../features/wallet_screen/presentation/pages/recieve_page.dart' as _i15;
+import '../features/wallet_screen/presentation/pages/transfer_page.dart'
+    as _i14;
+import '../features/wallet_screen/presentation/pages/wallet_page.dart' as _i13;
 import '../features/web_wallet/presentation/pages/web_wallet_page.dart' as _i3;
-import 'router.dart' as _i29;
+import 'router.dart' as _i32;
 
 class AppRouter extends _i10.RootStackRouter {
-  AppRouter([_i28.GlobalKey<_i28.NavigatorState>? navigatorKey])
+  AppRouter([_i31.GlobalKey<_i31.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
@@ -113,15 +118,17 @@ class AppRouter extends _i10.RootStackRouter {
       return _i10.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i7.CalcHashLoadingWidget(),
-          customRouteBuilder: _i29.dialogBuilder,
+          customRouteBuilder: _i32.dialogBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     DefaultLoadingDialogRoute.name: (routeData) {
+      final args = routeData.argsAs<DefaultLoadingDialogRouteArgs>(
+          orElse: () => const DefaultLoadingDialogRouteArgs());
       return _i10.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i8.DefaultLoadingDialog(),
-          customRouteBuilder: _i29.dialogBuilder,
+          child: _i8.DefaultLoadingDialog(key: args.key, text: args.text),
+          customRouteBuilder: _i32.dialogBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -145,15 +152,25 @@ class AppRouter extends _i10.RootStackRouter {
       return _i10.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i13.WalletPage());
     },
+    TransferRoute.name: (routeData) {
+      final args = routeData.argsAs<TransferRouteArgs>();
+      return _i10.MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: _i14.TransferPage(key: args.key, appService: args.appService));
+    },
+    RecieveRoute.name: (routeData) {
+      return _i10.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i15.RecievePage());
+    },
     PreviewRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i14.PreviewPage());
+          routeData: routeData, child: const _i16.PreviewPage());
     },
     CompareWrapperRoute.name: (routeData) {
       final args = routeData.argsAs<CompareWrapperRouteArgs>();
       return _i10.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i15.ComparePageWrapper(
+          child: _i17.ComparePageWrapper(
               key: args.key,
               origObj: args.origObj,
               hashObject: args.hashObject));
@@ -162,9 +179,9 @@ class AppRouter extends _i10.RootStackRouter {
       final args = routeData.argsAs<SaveTopHashesDialogRouteArgs>();
       return _i10.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i16.SaveTopHashesDialog(
+          child: _i18.SaveTopHashesDialog(
               key: args.key, pageCubitState: args.pageCubitState),
-          customRouteBuilder: _i29.dialogBuilder,
+          customRouteBuilder: _i32.dialogBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -172,8 +189,8 @@ class AppRouter extends _i10.RootStackRouter {
       final args = routeData.argsAs<SaveObjectDialogRouteArgs>();
       return _i10.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i17.SaveObjectDialog(key: args.key, snapshot: args.snapshot),
-          customRouteBuilder: _i29.dialogBuilder,
+          child: _i19.SaveObjectDialog(key: args.key, snapshot: args.snapshot),
+          customRouteBuilder: _i32.dialogBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -181,11 +198,11 @@ class AppRouter extends _i10.RootStackRouter {
       final args = routeData.argsAs<SaveHashDialogRouteArgs>();
       return _i10.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i18.SaveHashDialog(
+          child: _i20.SaveHashDialog(
               key: args.key,
               snapshot: args.snapshot,
               hashObject: args.hashObject),
-          customRouteBuilder: _i29.dialogBuilder,
+          customRouteBuilder: _i32.dialogBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -193,52 +210,61 @@ class AppRouter extends _i10.RootStackRouter {
       final args = routeData.argsAs<RenameSnapshotDialogRouteArgs>();
       return _i10.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i19.RenameSnapshotDialog(
+          child: _i21.RenameSnapshotDialog(
               key: args.key,
               snapshot: args.snapshot,
               hashObject: args.hashObject),
-          customRouteBuilder: _i29.dialogBuilder,
+          customRouteBuilder: _i32.dialogBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     CreateAccountInfoRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i20.CreateAccountInfoPage());
+          routeData: routeData, child: const _i22.CreateAccountInfoPage());
     },
     MnemonicBackupRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: const _i21.CreateAccountMnemonicBackup());
+          child: const _i23.CreateAccountMnemonicBackup());
     },
     MnemonicConfirmRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: const _i22.CreateAccountMnemonicConfirm());
+          child: const _i24.CreateAccountMnemonicConfirm());
     },
     CreateAccountCredentialsRoute.name: (routeData) {
-      final args = routeData.argsAs<CreateAccountCredentialsRouteArgs>(
-          orElse: () => const CreateAccountCredentialsRouteArgs());
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: _i23.CreateAccountCredentials(key: args.key));
+          routeData: routeData, child: const _i25.CreateAccountCredentials());
     },
     CreateAccountLoaderRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i24.CreateAccountLoader());
+      return _i10.CustomPage<dynamic>(
+          routeData: routeData,
+          child: const _i26.CreateAccountLoader(),
+          customRouteBuilder: _i32.dialogBuilder,
+          opaque: true,
+          barrierDismissible: false);
     },
     ImportAccountSelectTypeRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i25.ImportAccountImportType());
+          routeData: routeData, child: const _i27.ImportAccountImportType());
     },
     ImportMnemonicFormRoute.name: (routeData) {
       final args = routeData.argsAs<ImportMnemonicFormRouteArgs>(
           orElse: () => const ImportMnemonicFormRouteArgs());
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i26.ImportMnemonicForm(key: args.key));
+          routeData: routeData, child: _i28.ImportMnemonicForm(key: args.key));
     },
     ImportAccountCreateRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i27.ImportAccountCreatePage());
+          routeData: routeData, child: const _i29.ImportAccountCreatePage());
+    },
+    ImportAccountLoaderRoute.name: (routeData) {
+      return _i10.CustomPage<dynamic>(
+          routeData: routeData,
+          child: const _i30.ImportAccountLoader(),
+          customRouteBuilder: _i32.dialogBuilder,
+          opaque: true,
+          barrierDismissible: false);
     }
   };
 
@@ -257,7 +283,11 @@ class AppRouter extends _i10.RootStackRouter {
               parent: HomeRoute.name,
               children: [
                 _i10.RouteConfig(WalletRoute.name,
-                    path: '', parent: WalletWrapperRoute.name)
+                    path: '', parent: WalletWrapperRoute.name),
+                _i10.RouteConfig(TransferRoute.name,
+                    path: 'transfer-page', parent: WalletWrapperRoute.name),
+                _i10.RouteConfig(RecieveRoute.name,
+                    path: 'recieve-page', parent: WalletWrapperRoute.name)
               ]),
           _i10.RouteConfig(SettingsRoute.name,
               path: 'settings-page', parent: HomeRoute.name)
@@ -311,6 +341,9 @@ class AppRouter extends _i10.RootStackRouter {
                   parent: ImportAccountWrapperRoute.name),
               _i10.RouteConfig(ImportAccountCreateRoute.name,
                   path: 'import-account-create-page',
+                  parent: ImportAccountWrapperRoute.name),
+              _i10.RouteConfig(ImportAccountLoaderRoute.name,
+                  path: 'import-account-loader',
                   parent: ImportAccountWrapperRoute.name)
             ]),
         _i10.RouteConfig(CalcHashLoadingDialogRoute.name,
@@ -333,9 +366,9 @@ class HomeRoute extends _i10.PageRouteInfo<void> {
 /// [_i2.PreviewPageWrapper]
 class PreviewWrapperRoute extends _i10.PageRouteInfo<PreviewWrapperRouteArgs> {
   PreviewWrapperRoute(
-      {_i28.Key? key,
-      required _i30.HashObject? hashObject,
-      required _i31.Snapshot snapshot,
+      {_i31.Key? key,
+      required _i33.HashObject? hashObject,
+      required _i34.Snapshot snapshot,
       bool createNewAnyway = false,
       List<_i10.PageRouteInfo>? children})
       : super(PreviewWrapperRoute.name,
@@ -357,11 +390,11 @@ class PreviewWrapperRouteArgs {
       required this.snapshot,
       this.createNewAnyway = false});
 
-  final _i28.Key? key;
+  final _i31.Key? key;
 
-  final _i30.HashObject? hashObject;
+  final _i33.HashObject? hashObject;
 
-  final _i31.Snapshot snapshot;
+  final _i34.Snapshot snapshot;
 
   final bool createNewAnyway;
 
@@ -374,7 +407,7 @@ class PreviewWrapperRouteArgs {
 /// generated route for
 /// [_i3.WebWalletPage]
 class WebWalletRoute extends _i10.PageRouteInfo<WebWalletRouteArgs> {
-  WebWalletRoute({_i28.Key? key, required String initialUrl})
+  WebWalletRoute({_i31.Key? key, required String initialUrl})
       : super(WebWalletRoute.name,
             path: '/web-wallet-page',
             args: WebWalletRouteArgs(key: key, initialUrl: initialUrl));
@@ -385,7 +418,7 @@ class WebWalletRoute extends _i10.PageRouteInfo<WebWalletRouteArgs> {
 class WebWalletRouteArgs {
   const WebWalletRouteArgs({this.key, required this.initialUrl});
 
-  final _i28.Key? key;
+  final _i31.Key? key;
 
   final String initialUrl;
 
@@ -398,7 +431,7 @@ class WebWalletRouteArgs {
 /// generated route for
 /// [_i4.ErrorPage]
 class ErrorRoute extends _i10.PageRouteInfo<ErrorRouteArgs> {
-  ErrorRoute({_i28.Key? key, required Object error})
+  ErrorRoute({_i31.Key? key, required Object error})
       : super(ErrorRoute.name,
             path: '/error-page', args: ErrorRouteArgs(key: key, error: error));
 
@@ -408,7 +441,7 @@ class ErrorRoute extends _i10.PageRouteInfo<ErrorRouteArgs> {
 class ErrorRouteArgs {
   const ErrorRouteArgs({this.key, required this.error});
 
-  final _i28.Key? key;
+  final _i31.Key? key;
 
   final Object error;
 
@@ -423,8 +456,8 @@ class ErrorRouteArgs {
 class CreateAccountWrapperRoute
     extends _i10.PageRouteInfo<CreateAccountWrapperRouteArgs> {
   CreateAccountWrapperRoute(
-      {_i28.Key? key,
-      required _i32.AppService appService,
+      {_i31.Key? key,
+      required _i35.AppService appService,
       List<_i10.PageRouteInfo>? children})
       : super(CreateAccountWrapperRoute.name,
             path: '/create-account-wrapper',
@@ -438,9 +471,9 @@ class CreateAccountWrapperRoute
 class CreateAccountWrapperRouteArgs {
   const CreateAccountWrapperRouteArgs({this.key, required this.appService});
 
-  final _i28.Key? key;
+  final _i31.Key? key;
 
-  final _i32.AppService appService;
+  final _i35.AppService appService;
 
   @override
   String toString() {
@@ -453,8 +486,8 @@ class CreateAccountWrapperRouteArgs {
 class ImportAccountWrapperRoute
     extends _i10.PageRouteInfo<ImportAccountWrapperRouteArgs> {
   ImportAccountWrapperRoute(
-      {_i28.Key? key,
-      required _i32.AppService appService,
+      {_i31.Key? key,
+      required _i35.AppService appService,
       List<_i10.PageRouteInfo>? children})
       : super(ImportAccountWrapperRoute.name,
             path: '/import-account-wrapper',
@@ -468,9 +501,9 @@ class ImportAccountWrapperRoute
 class ImportAccountWrapperRouteArgs {
   const ImportAccountWrapperRouteArgs({this.key, required this.appService});
 
-  final _i28.Key? key;
+  final _i31.Key? key;
 
-  final _i32.AppService appService;
+  final _i35.AppService appService;
 
   @override
   String toString() {
@@ -490,11 +523,27 @@ class CalcHashLoadingDialogRoute extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.DefaultLoadingDialog]
-class DefaultLoadingDialogRoute extends _i10.PageRouteInfo<void> {
-  const DefaultLoadingDialogRoute()
-      : super(DefaultLoadingDialogRoute.name, path: '/default-loading-dialog');
+class DefaultLoadingDialogRoute
+    extends _i10.PageRouteInfo<DefaultLoadingDialogRouteArgs> {
+  DefaultLoadingDialogRoute({_i31.Key? key, String? text})
+      : super(DefaultLoadingDialogRoute.name,
+            path: '/default-loading-dialog',
+            args: DefaultLoadingDialogRouteArgs(key: key, text: text));
 
   static const String name = 'DefaultLoadingDialogRoute';
+}
+
+class DefaultLoadingDialogRouteArgs {
+  const DefaultLoadingDialogRouteArgs({this.key, this.text});
+
+  final _i31.Key? key;
+
+  final String? text;
+
+  @override
+  String toString() {
+    return 'DefaultLoadingDialogRouteArgs{key: $key, text: $text}';
+  }
 }
 
 /// generated route for
@@ -542,7 +591,39 @@ class WalletRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i14.PreviewPage]
+/// [_i14.TransferPage]
+class TransferRoute extends _i10.PageRouteInfo<TransferRouteArgs> {
+  TransferRoute({_i31.Key? key, required _i35.AppService appService})
+      : super(TransferRoute.name,
+            path: 'transfer-page',
+            args: TransferRouteArgs(key: key, appService: appService));
+
+  static const String name = 'TransferRoute';
+}
+
+class TransferRouteArgs {
+  const TransferRouteArgs({this.key, required this.appService});
+
+  final _i31.Key? key;
+
+  final _i35.AppService appService;
+
+  @override
+  String toString() {
+    return 'TransferRouteArgs{key: $key, appService: $appService}';
+  }
+}
+
+/// generated route for
+/// [_i15.RecievePage]
+class RecieveRoute extends _i10.PageRouteInfo<void> {
+  const RecieveRoute() : super(RecieveRoute.name, path: 'recieve-page');
+
+  static const String name = 'RecieveRoute';
+}
+
+/// generated route for
+/// [_i16.PreviewPage]
 class PreviewRoute extends _i10.PageRouteInfo<void> {
   const PreviewRoute() : super(PreviewRoute.name, path: '');
 
@@ -550,12 +631,12 @@ class PreviewRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i15.ComparePageWrapper]
+/// [_i17.ComparePageWrapper]
 class CompareWrapperRoute extends _i10.PageRouteInfo<CompareWrapperRouteArgs> {
   CompareWrapperRoute(
-      {_i28.Key? key,
-      required _i31.Snapshot origObj,
-      required _i30.HashObject hashObject})
+      {_i31.Key? key,
+      required _i34.Snapshot origObj,
+      required _i33.HashObject hashObject})
       : super(CompareWrapperRoute.name,
             path: 'compare-page-wrapper',
             args: CompareWrapperRouteArgs(
@@ -568,11 +649,11 @@ class CompareWrapperRouteArgs {
   const CompareWrapperRouteArgs(
       {this.key, required this.origObj, required this.hashObject});
 
-  final _i28.Key? key;
+  final _i31.Key? key;
 
-  final _i31.Snapshot origObj;
+  final _i34.Snapshot origObj;
 
-  final _i30.HashObject hashObject;
+  final _i33.HashObject hashObject;
 
   @override
   String toString() {
@@ -581,11 +662,11 @@ class CompareWrapperRouteArgs {
 }
 
 /// generated route for
-/// [_i16.SaveTopHashesDialog]
+/// [_i18.SaveTopHashesDialog]
 class SaveTopHashesDialogRoute
     extends _i10.PageRouteInfo<SaveTopHashesDialogRouteArgs> {
   SaveTopHashesDialogRoute(
-      {_i28.Key? key, required _i33.PreviewPageCubitState pageCubitState})
+      {_i31.Key? key, required _i36.PreviewPageCubitState pageCubitState})
       : super(SaveTopHashesDialogRoute.name,
             path: 'save-top-hashes-dialog',
             args: SaveTopHashesDialogRouteArgs(
@@ -597,9 +678,9 @@ class SaveTopHashesDialogRoute
 class SaveTopHashesDialogRouteArgs {
   const SaveTopHashesDialogRouteArgs({this.key, required this.pageCubitState});
 
-  final _i28.Key? key;
+  final _i31.Key? key;
 
-  final _i33.PreviewPageCubitState pageCubitState;
+  final _i36.PreviewPageCubitState pageCubitState;
 
   @override
   String toString() {
@@ -608,10 +689,10 @@ class SaveTopHashesDialogRouteArgs {
 }
 
 /// generated route for
-/// [_i17.SaveObjectDialog]
+/// [_i19.SaveObjectDialog]
 class SaveObjectDialogRoute
     extends _i10.PageRouteInfo<SaveObjectDialogRouteArgs> {
-  SaveObjectDialogRoute({_i28.Key? key, required _i31.Snapshot snapshot})
+  SaveObjectDialogRoute({_i31.Key? key, required _i34.Snapshot snapshot})
       : super(SaveObjectDialogRoute.name,
             path: 'save-object-dialog',
             args: SaveObjectDialogRouteArgs(key: key, snapshot: snapshot));
@@ -622,9 +703,9 @@ class SaveObjectDialogRoute
 class SaveObjectDialogRouteArgs {
   const SaveObjectDialogRouteArgs({this.key, required this.snapshot});
 
-  final _i28.Key? key;
+  final _i31.Key? key;
 
-  final _i31.Snapshot snapshot;
+  final _i34.Snapshot snapshot;
 
   @override
   String toString() {
@@ -633,12 +714,12 @@ class SaveObjectDialogRouteArgs {
 }
 
 /// generated route for
-/// [_i18.SaveHashDialog]
+/// [_i20.SaveHashDialog]
 class SaveHashDialogRoute extends _i10.PageRouteInfo<SaveHashDialogRouteArgs> {
   SaveHashDialogRoute(
-      {_i28.Key? key,
-      required _i31.Snapshot snapshot,
-      required _i30.HashObject hashObject})
+      {_i31.Key? key,
+      required _i34.Snapshot snapshot,
+      required _i33.HashObject hashObject})
       : super(SaveHashDialogRoute.name,
             path: 'save-hash-dialog',
             args: SaveHashDialogRouteArgs(
@@ -651,11 +732,11 @@ class SaveHashDialogRouteArgs {
   const SaveHashDialogRouteArgs(
       {this.key, required this.snapshot, required this.hashObject});
 
-  final _i28.Key? key;
+  final _i31.Key? key;
 
-  final _i31.Snapshot snapshot;
+  final _i34.Snapshot snapshot;
 
-  final _i30.HashObject hashObject;
+  final _i33.HashObject hashObject;
 
   @override
   String toString() {
@@ -664,13 +745,13 @@ class SaveHashDialogRouteArgs {
 }
 
 /// generated route for
-/// [_i19.RenameSnapshotDialog]
+/// [_i21.RenameSnapshotDialog]
 class RenameSnapshotDialogRoute
     extends _i10.PageRouteInfo<RenameSnapshotDialogRouteArgs> {
   RenameSnapshotDialogRoute(
-      {_i28.Key? key,
-      required _i31.Snapshot snapshot,
-      required _i30.HashObject hashObject})
+      {_i31.Key? key,
+      required _i34.Snapshot snapshot,
+      required _i33.HashObject hashObject})
       : super(RenameSnapshotDialogRoute.name,
             path: 'rename-snapshot-dialog',
             args: RenameSnapshotDialogRouteArgs(
@@ -683,11 +764,11 @@ class RenameSnapshotDialogRouteArgs {
   const RenameSnapshotDialogRouteArgs(
       {this.key, required this.snapshot, required this.hashObject});
 
-  final _i28.Key? key;
+  final _i31.Key? key;
 
-  final _i31.Snapshot snapshot;
+  final _i34.Snapshot snapshot;
 
-  final _i30.HashObject hashObject;
+  final _i33.HashObject hashObject;
 
   @override
   String toString() {
@@ -696,7 +777,7 @@ class RenameSnapshotDialogRouteArgs {
 }
 
 /// generated route for
-/// [_i20.CreateAccountInfoPage]
+/// [_i22.CreateAccountInfoPage]
 class CreateAccountInfoRoute extends _i10.PageRouteInfo<void> {
   const CreateAccountInfoRoute() : super(CreateAccountInfoRoute.name, path: '');
 
@@ -704,7 +785,7 @@ class CreateAccountInfoRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i21.CreateAccountMnemonicBackup]
+/// [_i23.CreateAccountMnemonicBackup]
 class MnemonicBackupRoute extends _i10.PageRouteInfo<void> {
   const MnemonicBackupRoute()
       : super(MnemonicBackupRoute.name, path: 'create-account-mnemonic-backup');
@@ -713,7 +794,7 @@ class MnemonicBackupRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i22.CreateAccountMnemonicConfirm]
+/// [_i24.CreateAccountMnemonicConfirm]
 class MnemonicConfirmRoute extends _i10.PageRouteInfo<void> {
   const MnemonicConfirmRoute()
       : super(MnemonicConfirmRoute.name,
@@ -723,30 +804,17 @@ class MnemonicConfirmRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i23.CreateAccountCredentials]
-class CreateAccountCredentialsRoute
-    extends _i10.PageRouteInfo<CreateAccountCredentialsRouteArgs> {
-  CreateAccountCredentialsRoute({_i28.Key? key})
+/// [_i25.CreateAccountCredentials]
+class CreateAccountCredentialsRoute extends _i10.PageRouteInfo<void> {
+  const CreateAccountCredentialsRoute()
       : super(CreateAccountCredentialsRoute.name,
-            path: 'create-account-credentials',
-            args: CreateAccountCredentialsRouteArgs(key: key));
+            path: 'create-account-credentials');
 
   static const String name = 'CreateAccountCredentialsRoute';
 }
 
-class CreateAccountCredentialsRouteArgs {
-  const CreateAccountCredentialsRouteArgs({this.key});
-
-  final _i28.Key? key;
-
-  @override
-  String toString() {
-    return 'CreateAccountCredentialsRouteArgs{key: $key}';
-  }
-}
-
 /// generated route for
-/// [_i24.CreateAccountLoader]
+/// [_i26.CreateAccountLoader]
 class CreateAccountLoaderRoute extends _i10.PageRouteInfo<void> {
   const CreateAccountLoaderRoute()
       : super(CreateAccountLoaderRoute.name, path: 'create-account-loader');
@@ -755,7 +823,7 @@ class CreateAccountLoaderRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i25.ImportAccountImportType]
+/// [_i27.ImportAccountImportType]
 class ImportAccountSelectTypeRoute extends _i10.PageRouteInfo<void> {
   const ImportAccountSelectTypeRoute()
       : super(ImportAccountSelectTypeRoute.name, path: '');
@@ -764,10 +832,10 @@ class ImportAccountSelectTypeRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i26.ImportMnemonicForm]
+/// [_i28.ImportMnemonicForm]
 class ImportMnemonicFormRoute
     extends _i10.PageRouteInfo<ImportMnemonicFormRouteArgs> {
-  ImportMnemonicFormRoute({_i28.Key? key})
+  ImportMnemonicFormRoute({_i31.Key? key})
       : super(ImportMnemonicFormRoute.name,
             path: 'import-mnemonic-form',
             args: ImportMnemonicFormRouteArgs(key: key));
@@ -778,7 +846,7 @@ class ImportMnemonicFormRoute
 class ImportMnemonicFormRouteArgs {
   const ImportMnemonicFormRouteArgs({this.key});
 
-  final _i28.Key? key;
+  final _i31.Key? key;
 
   @override
   String toString() {
@@ -787,11 +855,20 @@ class ImportMnemonicFormRouteArgs {
 }
 
 /// generated route for
-/// [_i27.ImportAccountCreatePage]
+/// [_i29.ImportAccountCreatePage]
 class ImportAccountCreateRoute extends _i10.PageRouteInfo<void> {
   const ImportAccountCreateRoute()
       : super(ImportAccountCreateRoute.name,
             path: 'import-account-create-page');
 
   static const String name = 'ImportAccountCreateRoute';
+}
+
+/// generated route for
+/// [_i30.ImportAccountLoader]
+class ImportAccountLoaderRoute extends _i10.PageRouteInfo<void> {
+  const ImportAccountLoaderRoute()
+      : super(ImportAccountLoaderRoute.name, path: 'import-account-loader');
+
+  static const String name = 'ImportAccountLoaderRoute';
 }

@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:flutter/material.dart';
@@ -48,18 +50,14 @@ class ThreeDApp extends StatelessWidget {
         BlocProvider<SettingsConfigCubit>(
           create: (_) => di_setup.getIt<SettingsConfigCubit>(),
         ),
-        // BlocProvider<AppServiceLoaderCubit>(
-        //   create: (_) => di_setup.getIt<AppServiceLoaderCubit>(),
-        //   lazy: false,
-        // ),
+        BlocProvider<AppServiceLoaderCubit>(
+          create: (_) => di_setup.getIt<AppServiceLoaderCubit>(),
+          lazy: false,
+        ),
       ],
       child: MaterialApp.router(
         title: '3D pass',
-        theme: ThemeData(
-          primarySwatch: Colors.green,
-          primaryColor: Colors.black,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
+        theme: D3pThemeData.lightTheme,
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
         localizationsDelegates: context.localizationDelegates,

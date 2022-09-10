@@ -60,17 +60,30 @@ android {
 
     signingConfigs {
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            def tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
+            def allFilesFromDir = new File(tmpFilePath).listFiles()
+
+            if (allFilesFromDir != null) {
+                def keystoreFile = allFilesFromDir.first()
+                keystoreFile.renameTo("keystore/your_keystore.jks")
+            }
+
+            storeFile = file("keystore/your_keystore.jks")
+            storePassword System.getenv("SIGNING_STORE_PASSWORD")
+            keyAlias System.getenv("SIGNING_KEY_ALIAS")
+            keyPassword System.getenv("SIGNING_KEY_PASSWORD")
         }
+        // release {
+        //     keyAlias keystoreProperties['keyAlias']
+        //     keyPassword keystoreProperties['keyPassword']
+        //     storeFile file(keystoreProperties['storeFile'])
+        //     storePassword keystoreProperties['storePassword']
+        // }
     }
 
     buildTypes {
-        release {
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.release
+        release {           
+            signingConfig signingConfigs.debug
         }
     }
 
