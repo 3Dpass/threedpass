@@ -73,18 +73,7 @@ class Calc2 {
           ) // Load the dynamic library on Android
         : DynamicLibrary.process(); // Load the static library on iOS
 
-    final bytesIntList = <int>[];
-    print(transBytes);
-    for (int i = 0; i <= 6; i += 2) {
-      bytesIntList.add(
-        hex
-            .decode(
-              transBytes.substring(i, i + 2),
-            )
-            .length,
-      );
-    }
-
+    final bytesIntList = hex.decode(transBytes);
     final bytesUint8List = Uint8List.fromList(bytesIntList);
 
     final trans = _byteDataToPointer(bytesUint8List);
