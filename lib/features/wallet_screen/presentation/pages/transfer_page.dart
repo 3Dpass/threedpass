@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,9 +25,10 @@ class TransferPage extends StatelessWidget {
         ),
         super(key: key);
 
-  final toAddressController = TextEditingController();
-  final amountController = TextEditingController();
-  final passwordController = TextEditingController();
+  final toAddressController = TextEditingController(
+      text: 'd7bWgA9pmk6V48nnwqsxEWzE8LWqACChF3YY5jbLYXEbL7Pqc');
+  final amountController = TextEditingController(text: '1');
+  final passwordController = TextEditingController(text: '123q123');
   final _formKey = GlobalKey<FormState>();
 
   // final BalanceData balanceData;
@@ -44,24 +47,29 @@ class TransferPage extends StatelessWidget {
         : 'error_wrong_amount'.tr();
   }
 
-  void sendAmount(AppService appService) {
+  Future<void> sendAmount(AppService appService) async {
     if (_formKey.currentState!.validate()) {
       final sender = TxSenderData(
         appService.keyring.current.address,
         appService.keyring.current.pubKey,
       );
       final txInfo = TxInfoData('balances', 'transfer', sender);
-      appService.plugin.sdk.api.tx.signAndSend(
+      final realAmount = BalanceUtils.tokenInt(
+        amountController.text,
+        appService.networkStateData.safeDecimals,
+      );
+      final res = appService.plugin.sdk.api.tx.signAndSend(
         txInfo,
         [
           // params.to
           toAddressController.text,
           // params.amount
-          amountController.text,
+          realAmount.toString(),
         ],
         passwordController.text,
         onStatusChange: (p0) => print(p0),
       );
+      final b = 1 + 1;
     } else {}
   }
 
@@ -102,6 +110,7 @@ class TransferPage extends StatelessWidget {
                       ),
                       D3pTextFormField(
                         controller: toAddressController,
+                        maxLines: 1,
                         hintText: 'to_address_hint'.tr(),
                       ),
                       const SizedBox(height: 24),
@@ -139,6 +148,8 @@ class TransferPage extends StatelessWidget {
                         validator: _passValidator,
                         // hintText: 'amount_hint'.tr(),
                       ),
+
+                      // TODO Calc fees
                       const SizedBox(height: 36),
                     ],
                   ),

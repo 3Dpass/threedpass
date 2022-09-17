@@ -36,24 +36,24 @@ class AssetsPage extends StatelessWidget {
             children: [
               const AssetsCount(),
               const SizedBox(height: 16),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: RecieveButton(),
-              ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-              //   children: const [
-              //     SizedBox(width: 16),
-              //     Flexible(
-              //       child: TransferButton(),
-              //     ),
-              //     SizedBox(width: 8),
-              //     Flexible(
-              //       child: RecieveButton(),
-              //     ),
-              //     SizedBox(width: 16),
-              //   ],
+              // const Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: 16),
+              //   child: RecieveButton(),
               // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: const [
+                  SizedBox(width: 16),
+                  Flexible(
+                    child: TransferButton(),
+                  ),
+                  SizedBox(width: 8),
+                  Flexible(
+                    child: RecieveButton(),
+                  ),
+                  SizedBox(width: 16),
+                ],
+              ),
             ],
           ),
           // ),

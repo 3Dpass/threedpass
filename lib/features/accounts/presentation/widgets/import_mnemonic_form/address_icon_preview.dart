@@ -22,6 +22,7 @@ class AddressIconPreview extends StatelessWidget {
 
           return SingleChildScrollView(
             scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.only(right: 16),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,

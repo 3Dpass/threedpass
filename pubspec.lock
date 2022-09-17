@@ -369,7 +369,7 @@ packages:
       name: flutter_inappwebview
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.4.3+7"
+    version: "5.3.2"
   flutter_keyboard_visibility:
     dependency: "direct main"
     description:
@@ -822,9 +822,11 @@ packages:
   polkawallet_sdk:
     dependency: "direct main"
     description:
-      name: polkawallet_sdk
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: "8ed814f671ac0cb354f3ba57a116d3976825d1a8"
+      resolved-ref: "8ed814f671ac0cb354f3ba57a116d3976825d1a8"
+      url: "https://github.com/L3odr0id/polkawallet_sdk.git"
+    source: git
     version: "0.4.8"
   pool:
     dependency: transitive

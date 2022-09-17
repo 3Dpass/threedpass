@@ -20,6 +20,7 @@ class D3pTextFormField extends StatelessWidget {
     this.bottomHelpText,
     this.enabled,
     this.obscureText,
+    this.maxLines,
   })  : controller = controller ?? TextEditingController(),
         super(key: key);
 
@@ -39,6 +40,7 @@ class D3pTextFormField extends StatelessWidget {
   final String? labelButton;
   final String? labelText;
   final int? maxLen;
+  final int? maxLines;
   final String? suffixButton;
   final bool? obscureText;
 
@@ -51,33 +53,40 @@ class D3pTextFormField extends StatelessWidget {
           height: labelText == null ? 44 : null,
           child: TextFormField(
             decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 8),
               label: Text(labelText ?? ''),
-              suffixIcon: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  labelButton != null
-                      ? SizedBox(
-                          width: 60,
-                          child: TextButton(
-                            child: Text(labelButton!),
-                            onPressed: onLabelButtonPressed ?? emptyFunction,
-                          ),
-                        )
-                      : const SizedBox(),
-                  SizedBox(
-                    width: labelButton != null && suffixButton != null ? 8 : 0,
-                  ),
-                  suffixButton != null
-                      ? SizedBox(
-                          width: 60,
-                          child: TextButton(
-                            child: Text(suffixButton!),
-                            onPressed: onSuffixButtonPressed ?? emptyFunction,
-                          ),
-                        )
-                      : const SizedBox(),
-                ],
-              ),
+              suffixIcon: labelButton != null || suffixButton != null
+                  ? Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        labelButton != null
+                            ? SizedBox(
+                                width: 60,
+                                child: TextButton(
+                                  child: Text(labelButton!),
+                                  onPressed:
+                                      onLabelButtonPressed ?? emptyFunction,
+                                ),
+                              )
+                            : const SizedBox(),
+                        SizedBox(
+                          width: labelButton != null && suffixButton != null
+                              ? 8
+                              : 0,
+                        ),
+                        suffixButton != null
+                            ? SizedBox(
+                                width: 60,
+                                child: TextButton(
+                                  child: Text(suffixButton!),
+                                  onPressed:
+                                      onSuffixButtonPressed ?? emptyFunction,
+                                ),
+                              )
+                            : const SizedBox(),
+                      ],
+                    )
+                  : null,
               hintText: hintText,
             ),
             controller: controller,
@@ -86,6 +95,7 @@ class D3pTextFormField extends StatelessWidget {
             maxLength: maxLen,
             enabled: enabled,
             validator: validator,
+            maxLines: maxLines,
             obscureText: obscureText ?? false,
           ),
         ),

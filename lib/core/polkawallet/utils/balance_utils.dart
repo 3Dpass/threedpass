@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:intl/intl.dart';
 import 'package:polkawallet_sdk/api/types/balanceData.dart';
+import 'package:threedpass/common/logger.dart';
 
 class BalanceUtils {
   static BigInt balanceTotal(BalanceData? balance) {
@@ -64,6 +65,26 @@ class BalanceUtils {
       bigIntToDouble(balanceInt(raw), decimals),
       length: length,
     );
+  }
+
+  /// number transform 4:
+  /// from <String of double> to <BigInt>
+  static BigInt tokenInt(String? value, int decimals) {
+    if (value == null) {
+      return BigInt.zero;
+    }
+    double v = 0;
+    try {
+      if (value.contains(',') || value.contains('.')) {
+        v = NumberFormat(",##0.${"0" * decimals}").parse(value) as double;
+      } else {
+        v = double.parse(value);
+      }
+    } catch (err) {
+      logger.e('BalanceUtils.tokenInt() error: ${err.toString()}');
+      // debugPrint();
+    }
+    return BigInt.from(v * pow(10, decimals));
   }
 
   static String formattedTotal(BalanceData balanceData, int decimals) {
