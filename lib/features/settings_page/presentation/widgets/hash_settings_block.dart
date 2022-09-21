@@ -16,7 +16,9 @@ class HashSettingsBlock extends StatelessWidget {
         const ScanSettingsTitle(),
         // AlgorithmDropdown(),
         const GridSizeDropdown(),
+        const SizedBox(height: 8),
         const SectionsTextField(),
+        const SizedBox(height: 8),
         TransBytesInput(
           settingsConfigCubit: BlocProvider.of<SettingsConfigCubit>(context),
         ),

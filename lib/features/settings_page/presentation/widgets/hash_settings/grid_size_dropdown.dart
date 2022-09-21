@@ -30,6 +30,7 @@ class GridSizeDropdown extends StatelessWidget {
 
     return DropdownButtonFormField<int>(
       decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 8),
         label: Text('grid_size_label'.tr()),
       ),
       value: settings.gridSize,
