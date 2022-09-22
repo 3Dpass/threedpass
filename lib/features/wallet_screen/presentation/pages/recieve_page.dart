@@ -49,7 +49,7 @@ class RecievePage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             D3pElevatedButton(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               text: 'Copy'.tr(),
               iconData: Icons.copy,
               minimumSize: const Size(120, 50),

@@ -95,7 +95,7 @@ class SaveObjectDialog extends StatelessWidget {
                       onPressed: () => context.router.pop(),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Flexible(
                     child: TextButton(
                       child: Text('Save'.tr()),

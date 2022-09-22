@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:polkawallet_sdk/api/types/balanceData.dart';
 import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
@@ -146,6 +143,7 @@ class TransferPage extends StatelessWidget {
                         controller: passwordController,
                         hintText: 'enter_password_hint'.tr(),
                         validator: _passValidator,
+                        obscureText: true,
                         // hintText: 'amount_hint'.tr(),
                       ),
 

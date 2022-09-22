@@ -7,7 +7,6 @@ import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_pag
 import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_page/assets_count.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_page/recieve_button.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_page/transfer_button.dart';
-import 'package:threedpass/features/wallet_screen/presentation/widgets/connecting_page/connect_status.dart';
 
 class AssetsPage extends StatelessWidget {
   const AssetsPage({Key? key}) : super(key: key);

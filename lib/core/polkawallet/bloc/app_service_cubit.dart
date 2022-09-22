@@ -129,16 +129,16 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     final consts = await service.plugin.sdk.api.setting
         .queryNetworkConst(); // TODO Save this data to AppService
 
-    // final addressInfo = await state.plugin.sdk.api.keyring.addressFromMnemonic(
-    //   state.plugin.basic.ss58!,
-    //   cryptoType: cryptoType,
-    //   derivePath: derivePath,
-    //   mnemonic: account.mnemonicKey,
-    // );
-
     late final AppService newAppService;
 
-    if (connected != null && networkData != null) {
+    // One time the condition was [if (connected != null && networkData != null)]
+    // but something happened when I forked the polkawallet_sdk repo
+    // https://github.com/L3odr0id/polkawallet_sdk
+    // And now [sdk.api.connectNode(...)] always returns null
+    // So I changed it to [if (networkData != null)]
+    // If you update the sdk, you may want to change it back
+    // TODO
+    if (networkData != null) {
       // If you connected to test node and local settings are live or
       // you connected to live node and local settings are test,
       // then you need to change settings
