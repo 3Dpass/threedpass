@@ -5,7 +5,7 @@ import 'package:threedpass/core/polkawallet/widgets/address_icon.dart';
 import 'package:threedpass/core/utils/copy_and_notify.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_page/connetction_indicator.dart';
-import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_page/new_account_popup_menu_button.dart';
+import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_page/account_actions.dart';
 
 class AssetPageAppbar extends AppBar {
   AssetPageAppbar({
@@ -69,7 +69,7 @@ class AssetPageAppbar extends AppBar {
             ),
           ),
           actions: const [
-            NewAccountPopupMenuButton(),
+            AccountActions(),
           ],
         );
 }

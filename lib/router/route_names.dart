@@ -29,4 +29,5 @@ class RouteNames {
   static const walletPageWrapper = 'WalletWrapperRoute';
   static const transferPage = 'TransferRoute';
   static const recievePage = 'RecieveRoute';
+  static const removeAccountDialog = 'RemoveAccountDialogRoute';
 }

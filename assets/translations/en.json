@@ -10,6 +10,7 @@
     },
     "Share": "Share",
     "Delete": "Delete",
+    "Remove": "Remove",
     "Save": "Save",
     "Cancel": "Cancel",
     "Saved": "Saved",
@@ -182,6 +183,10 @@
     "balance_reserved_title": "Reserved",
     "transfer_coins_button_label": "Transfer",
     "recieve_coins_button_label": "Recieve",
+    "remove_account_button_label": "Delete account",
+
+    "remove_accout_dialog_title": "Delete account {}",
+    "remove_accout_dialog_text": "Are you sure you want to delete this account?",
 
     "@recieve_page":{
     },

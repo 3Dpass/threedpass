@@ -26,19 +26,12 @@ class AssetsPage extends StatelessWidget {
             current: state.keyring.current,
             context: context,
           ),
-          body:
-              // SingleChildScrollView(
-              //   child:
-              Column(
+          body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const AssetsCount(),
               const SizedBox(height: 16),
-              // const Padding(
-              //   padding: EdgeInsets.symmetric(horizontal: 16),
-              //   child: RecieveButton(),
-              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: const [
@@ -55,7 +48,6 @@ class AssetsPage extends StatelessWidget {
               ),
             ],
           ),
-          // ),
         );
       },
     );

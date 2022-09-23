@@ -1,9 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/buttons/list_tile_button.dart';
+import 'package:threedpass/core/widgets/buttons/outlined_button.dart';
+import 'package:threedpass/core/widgets/buttons/text_button.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 class AccountsDrawer extends Drawer {
   AccountsDrawer({
@@ -28,21 +33,26 @@ class AccountsDrawer extends Drawer {
                   foregroundColor: Theme.of(context).canvasColor,
                 ),
               ),
-              // SizedBox(
-              //   height: 100,
-              //   child: DrawerHeader(
-              //     // margin: EdgeInsets.zero,
-              //     padding: EdgeInsets.zero,
-              //     decoration: const BoxDecoration(
-              //         // color: Colors.blue,
-              //         ),
-              //     child: Center(
-              //       child: Text(
-              //         'choose_account_assets_page_drawer'.tr(),
-              //       ),
-              //     ),
-              //   ),
-              // ),
+              const SizedBox(height: 4),
+              D3pTextButton(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                text: 'create_account_button_label'.tr(),
+                onPressed: () => context.router.push(
+                  CreateAccountWrapperRoute(
+                    appService: appServiceCubit.state,
+                  ),
+                ),
+              ),
+              D3pTextButton(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                text: 'import_account_button_label'.tr(),
+                onPressed: () => context.router.push(
+                  ImportAccountWrapperRoute(
+                    appService: appServiceCubit.state,
+                  ),
+                ),
+              ),
+              const Divider(),
               ...List.generate(
                 accounts.length,
                 (index) => ListTileButton.usual(
@@ -54,7 +64,7 @@ class AccountsDrawer extends Drawer {
                           Navigator.of(context).pop();
                         },
                   backgroundColor: Theme.of(context).canvasColor,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
                 ),
               ),
             ],
