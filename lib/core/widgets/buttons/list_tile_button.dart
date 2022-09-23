@@ -60,27 +60,30 @@ class ListTileButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PlatformTextButton(
+    return Padding(
       padding: padding ?? EdgeInsets.zero,
-
-      onPressed: onPressed,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(text),
-          const Icon(Icons.arrow_right_outlined),
-        ],
-      ),
-      // TODO Check cupertino theme
-      material: (context, platform) => MaterialTextButtonData(
-        style: Theme.of(context).textButtonTheme.style!.copyWith(
-              // padding: MaterialStateProperty.all(EdgeInsets.zero),
-              backgroundColor: MaterialStateProperty.all<Color>(
-                backgroundColor ?? Colors.white,
-              ),
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              shape: MaterialStateProperty.all<OutlinedBorder>(border),
-            ),
+      child: SizedBox(
+        child: PlatformTextButton(
+          onPressed: onPressed,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(text),
+              const Icon(Icons.arrow_right_outlined),
+            ],
+          ),
+          // TODO Check cupertino theme
+          material: (context, platform) => MaterialTextButtonData(
+            style: Theme.of(context).textButtonTheme.style!.copyWith(
+                  // padding: MaterialStateProperty.all(EdgeInsets.zero),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    backgroundColor ?? Colors.white,
+                  ),
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  shape: MaterialStateProperty.all<OutlinedBorder>(border),
+                ),
+          ),
+        ),
       ),
     );
   }

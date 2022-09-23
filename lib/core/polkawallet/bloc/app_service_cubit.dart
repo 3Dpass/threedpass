@@ -112,7 +112,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
 
     final pseudoNewState = state.copyWith();
 
-    _subscribeToBalance(pseudoNewState);
+    subscribeToBalance(pseudoNewState);
 
     emit(pseudoNewState);
   }
@@ -173,7 +173,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       newAppService.bestNumber.value = value;
     });
 
-    _subscribeToBalance(newAppService);
+    subscribeToBalance(newAppService);
 
     // final connected = await service.plugin.start(
     //   state.keyring,
@@ -183,7 +183,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     emit(newAppService);
   }
 
-  static Future<void> _subscribeToBalance(AppService service) async {
+  static Future<void> subscribeToBalance(AppService service) async {
     final address = service.keyring.current.address;
     if (address != null) {
       service.plugin.sdk.api.account.subscribeBalance(

@@ -12,5 +12,8 @@ class D3pThemeData {
         textStyle: D3pTextStyle.button,
       ),
     ),
+    textTheme: TextTheme(
+      button: D3pTextStyle.button,
+    ),
   );
 }
