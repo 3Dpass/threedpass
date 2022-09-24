@@ -90,7 +90,7 @@ class Transfer {
             if (p0 == 'Ready') {
               DefaultLoadingDialog.hide(outerContext);
               context.router.pop();
-              Fluttertoast.showToast(msg: 'transfer_success_text'.toString());
+              Fluttertoast.showToast(msg: 'transfer_success_text'.tr());
             }
           },
         );
