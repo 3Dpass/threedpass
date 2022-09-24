@@ -117,16 +117,35 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     emit(pseudoNewState);
   }
 
+  /// Connects to node, subscribes to balance and blocks updates.
+  /// Emits new state of [AppService]
   Future<void> _startPlugin(AppService service, {NetworkParams? node}) async {
     final connected = await service.plugin.sdk.api.connectNode(
       service.keyring,
       node != null ? [node] : service.plugin.nodeList,
     );
 
-    final networkData =
-        await service.plugin.sdk.api.setting.queryNetworkProps();
+    final newAppService = await _buildNewAppServiceWithProperties(service);
 
-    final consts = await service.plugin.sdk.api.setting
+    newAppService.plugin.sdk.api.setting.subscribeBestNumber((String value) {
+      newAppService.bestNumber.value = value;
+    });
+
+    subscribeToBalance(newAppService);
+
+    emit(newAppService);
+  }
+
+  /// Gets network properties from node and creates new [AppService] instance
+  /// with those properties and connection state.
+  /// It sets error message if could not get network properties.
+  Future<AppService> _buildNewAppServiceWithProperties(
+    AppService oldAppService,
+  ) async {
+    final networkData =
+        await oldAppService.plugin.sdk.api.setting.queryNetworkProps();
+
+    final consts = await oldAppService.plugin.sdk.api.setting
         .queryNetworkConst(); // TODO Save this data to AppService
 
     late final AppService newAppService;
@@ -169,18 +188,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       );
     }
 
-    newAppService.plugin.sdk.api.setting.subscribeBestNumber((String value) {
-      newAppService.bestNumber.value = value;
-    });
-
-    subscribeToBalance(newAppService);
-
-    // final connected = await service.plugin.start(
-    //   state.keyring,
-    //   nodes: node != null ? [node] : service.plugin.nodeList,
-    // );
-
-    emit(newAppService);
+    return newAppService;
   }
 
   static Future<void> subscribeToBalance(AppService service) async {

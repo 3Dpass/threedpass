@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/widgets/input/textformfield.dart';
+import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/features/accounts/bloc/address_icon_data_preview_cubit.dart';
 
 class ImportMnemonicTextfield extends StatelessWidget {

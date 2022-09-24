@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:threedpass/features/wallet_screen/presentation/pages/recieve_page.dart';
-import 'package:threedpass/features/wallet_screen/presentation/pages/remove_account_dialog.dart';
-import 'package:threedpass/features/wallet_screen/presentation/pages/transfer_page.dart';
-import 'package:threedpass/features/wallet_screen/presentation/pages/wallet_page.dart';
-import 'package:threedpass/features/wallet_screen/presentation/pages/wallet_page_wrapper.dart';
+import 'package:threedpass/features/wallet_screen/presentation/recieve_page/recieve_page.dart';
+import 'package:threedpass/features/wallet_screen/presentation/assets_page/remove_account_dialog.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transfer_page/transfer_page.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transfer_page/transfer_page_wrapper.dart';
+import 'package:threedpass/features/wallet_screen/presentation/wallet_page/wallet_page.dart';
+import 'package:threedpass/features/wallet_screen/presentation/wallet_page/wallet_page_wrapper.dart';
 import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/router.dart';
 
@@ -17,8 +18,15 @@ const AutoRoute walletPageRoute = AutoRoute(
       path: '',
     ),
     AutoRoute(
-      page: TransferPage,
-      name: RouteNames.transferPage,
+      page: TransferPageWrapper,
+      name: RouteNames.transferPageWrapper,
+      children: [
+        AutoRoute(
+          page: TransferPage,
+          name: RouteNames.transferPage,
+          path: '',
+        ),
+      ],
     ),
     AutoRoute(
       page: RecievePage,
