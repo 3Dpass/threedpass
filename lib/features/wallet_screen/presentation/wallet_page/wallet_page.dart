@@ -20,6 +20,11 @@ class WalletPage extends StatelessWidget {
       return true;
     }
 
+    // If last account was removed
+    if (current.keyring.allAccounts.isEmpty) {
+      return true;
+    }
+
     return false;
   }
 

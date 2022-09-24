@@ -21,8 +21,14 @@ class RemoveAccountDialog extends StatelessWidget {
       appService.keyring.current,
     );
 
+    if (appService.keyring.allAccounts.isNotEmpty) {
+      appServiceLoaderCubit.changeAccount(appService.keyring.current);
+    } else {
+      appServiceLoaderCubit.justEmit();
+    }
+
     // change account and notify the UI
-    appServiceLoaderCubit.changeAccount(appService.keyring.current);
+
     // // subscribe to balance
     // AppServiceLoaderCubit.subscribeToBalance(appService);
 

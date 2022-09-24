@@ -191,6 +191,10 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     return newAppService;
   }
 
+  void justEmit() {
+    emit(state.copyWith());
+  }
+
   static Future<void> subscribeToBalance(AppService service) async {
     final address = service.keyring.current.address;
     if (address != null) {
