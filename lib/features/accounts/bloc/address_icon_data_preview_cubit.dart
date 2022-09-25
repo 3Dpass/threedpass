@@ -16,7 +16,7 @@ class AddressIconDataPreviewCubit extends Cubit<AddressIconData?> {
   }) async {
     final addressInfo =
         await appServiceCubit.state.plugin.sdk.api.keyring.addressFromMnemonic(
-      appServiceCubit.state.plugin.basic.ss58!,
+      appServiceCubit.state.networkStateData.ss58Format!,
       cryptoType: cryptoType,
       derivePath: derivePath,
       mnemonic: inputMnemonic,

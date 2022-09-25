@@ -111,20 +111,20 @@ class _State extends State<ObjectPreview> {
     sourceTexture = renderer.getRenderTargetGLTexture(renderTarget);
   }
 
-  initScene() {
+  void initScene() {
     // scene
     scene = THREE.Scene();
     scene.background = THREE.Color(Theme.of(context).canvasColor.value);
   }
 
-  initCamera() {
+  void initCamera() {
     // camera
     camera = THREE.PerspectiveCamera(45, width / height, 1, 1000);
     camera.position.z = 250;
     scene.add(camera);
   }
 
-  initControls() {
+  void initControls() {
     // controls
     controls = THREE_JSM.ArcballControls(camera, _globalKey, scene, 1);
     controls.addEventListener('change', (event) {
@@ -132,7 +132,7 @@ class _State extends State<ObjectPreview> {
     });
   }
 
-  initLight() {
+  void initLight() {
     // light
     var ambientLight = THREE.AmbientLight(0xcccccc, 0.4);
     scene.add(ambientLight);
@@ -195,8 +195,8 @@ class _State extends State<ObjectPreview> {
   }
 
   // do NOT delete this code
-  initMesh() {
-    final b = 1 + 1;
+  // ignore: no-empty-block
+  void initMesh() {
     // final textureCube = THREE.CubeTexture(
     //   [
     //     'assets/textures/space.jpeg'
@@ -245,7 +245,7 @@ class _State extends State<ObjectPreview> {
     await render();
   }
 
-  render() async {
+  Future<void> render() async {
     int _t = DateTime.now().millisecondsSinceEpoch;
 
     // This variable is unused, but NEVER DELETE IT!!

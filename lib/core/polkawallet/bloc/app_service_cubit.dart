@@ -112,33 +112,52 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
 
     final pseudoNewState = state.copyWith();
 
-    _subscribeToBalance(pseudoNewState);
+    subscribeToBalance(pseudoNewState);
 
     emit(pseudoNewState);
   }
 
+  /// Connects to node, subscribes to balance and blocks updates.
+  /// Emits new state of [AppService]
   Future<void> _startPlugin(AppService service, {NetworkParams? node}) async {
     final connected = await service.plugin.sdk.api.connectNode(
       service.keyring,
       node != null ? [node] : service.plugin.nodeList,
     );
 
+    final newAppService = await _buildNewAppServiceWithProperties(service);
+
+    newAppService.plugin.sdk.api.setting.subscribeBestNumber((String value) {
+      newAppService.bestNumber.value = value;
+    });
+
+    subscribeToBalance(newAppService);
+
+    emit(newAppService);
+  }
+
+  /// Gets network properties from node and creates new [AppService] instance
+  /// with those properties and connection state.
+  /// It sets error message if could not get network properties.
+  Future<AppService> _buildNewAppServiceWithProperties(
+    AppService oldAppService,
+  ) async {
     final networkData =
-        await service.plugin.sdk.api.setting.queryNetworkProps();
+        await oldAppService.plugin.sdk.api.setting.queryNetworkProps();
 
-    final consts = await service.plugin.sdk.api.setting
+    final consts = await oldAppService.plugin.sdk.api.setting
         .queryNetworkConst(); // TODO Save this data to AppService
-
-    // final addressInfo = await state.plugin.sdk.api.keyring.addressFromMnemonic(
-    //   state.plugin.basic.ss58!,
-    //   cryptoType: cryptoType,
-    //   derivePath: derivePath,
-    //   mnemonic: account.mnemonicKey,
-    // );
 
     late final AppService newAppService;
 
-    if (connected != null && networkData != null) {
+    // One time the condition was [if (connected != null && networkData != null)]
+    // but something happened when I forked the polkawallet_sdk repo
+    // https://github.com/L3odr0id/polkawallet_sdk
+    // And now [sdk.api.connectNode(...)] always returns null
+    // So I changed it to [if (networkData != null)]
+    // If you update the sdk, you may want to change it back
+    // TODO
+    if (networkData != null) {
       // If you connected to test node and local settings are live or
       // you connected to live node and local settings are test,
       // then you need to change settings
@@ -169,21 +188,14 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       );
     }
 
-    newAppService.plugin.sdk.api.setting.subscribeBestNumber((String value) {
-      newAppService.bestNumber.value = value;
-    });
-
-    _subscribeToBalance(newAppService);
-
-    // final connected = await service.plugin.start(
-    //   state.keyring,
-    //   nodes: node != null ? [node] : service.plugin.nodeList,
-    // );
-
-    emit(newAppService);
+    return newAppService;
   }
 
-  static Future<void> _subscribeToBalance(AppService service) async {
+  void justEmit() {
+    emit(state.copyWith());
+  }
+
+  static Future<void> subscribeToBalance(AppService service) async {
     final address = service.keyring.current.address;
     if (address != null) {
       service.plugin.sdk.api.account.subscribeBalance(

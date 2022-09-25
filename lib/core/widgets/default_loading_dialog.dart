@@ -9,12 +9,14 @@ class DefaultLoadingDialog extends StatelessWidget {
 
   final String? text;
 
-  static void show(BuildContext context) {
+  static void show(BuildContext context, [String? text]) {
     showDialog(
       useRootNavigator: false,
       context: context,
       barrierDismissible: false,
-      builder: (_) => const DefaultLoadingDialog(),
+      builder: (_) => DefaultLoadingDialog(
+        text: text,
+      ),
     );
   }
 

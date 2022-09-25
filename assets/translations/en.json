@@ -10,6 +10,7 @@
     },
     "Share": "Share",
     "Delete": "Delete",
+    "Remove": "Remove",
     "Save": "Save",
     "Cancel": "Cancel",
     "Saved": "Saved",
@@ -182,6 +183,10 @@
     "balance_reserved_title": "Reserved",
     "transfer_coins_button_label": "Transfer",
     "recieve_coins_button_label": "Recieve",
+    "remove_account_button_label": "Delete account",
+
+    "remove_accout_dialog_title": "Delete account {}",
+    "remove_accout_dialog_text": "Are you sure you want to delete this account?",
 
     "@recieve_page":{
     },
@@ -199,9 +204,13 @@
     "enter_password_label": "Your password",
     "existential_deposit_label": "existential deposit",
     "existential_deposit_text": "The minimum amount thath an account should have to be deemed active.",
-    "estimated_transfer_fee": "estimated transfer fee",
+    "estimated_transfer_fee": "Estimated transfer fee",
     "keep_alive_label": "keep alive",
     "keep_alive_text": "With the keep-alive option set, the account is protected agains removal due to low balances.",
     "make_transfer_label": "Make transfer",
-    "error_wrong_amount": "A real number smaller than the avaliable balance was expected"
+    "error_wrong_amount": "A real number smaller than the avaliable balance was expected",
+    "could_not_check_address": "Could not check address",
+    "wrong_address": "Invalid address provided",
+    "transfer_loader_text": "Transfering...",
+    "transfer_success_text": "Funds are sent"
 }

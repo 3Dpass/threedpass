@@ -5,7 +5,6 @@
 
 import 'dart:async';
 import 'dart:io';
-import 'dart:io' show Platform;
 import 'dart:isolate';
 import 'dart:ffi';
 import 'dart:ffi' as ffi;

@@ -10,7 +10,7 @@ publish_to: 'none'
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.0.3+4
+version: 2.1.6+6
 
 environment:
   sdk: ">=2.17.5 <3.0.0"
@@ -43,7 +43,10 @@ dependencies:
   # flutter_form_bloc: ^0.30.1  # Use reactive forms instead
   provider: ^6.0.3
   hive_flutter: ^1.1.0
-  polkawallet_sdk: 0.4.8
+  polkawallet_sdk: #0.4.8
+    git:
+        url: https://github.com/L3odr0id/polkawallet_sdk.git
+        ref: ccafe364cb231c7d1888648257f5f3002ebb8b2b # mobile-branch # branch name
   
 
   ## Code gen

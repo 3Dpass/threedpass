@@ -4,7 +4,7 @@ import 'package:threedpass/features/preview_page/presentation/pages/preview_page
 import 'package:threedpass/features/preview_page/presentation/pages/preview_page_wrapper.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/rename_snapshot_dialog.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/save_hash_dialog.dart';
-import 'package:threedpass/features/preview_page/presentation/widgets/save_object_dialog.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/save_object_dialog/save_object_dialog.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/save_top_hashes_dialog/save_top_hashes_dialog.dart';
 import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/router.dart';

@@ -13,7 +13,7 @@ class WalletSettings {
   });
 
   const WalletSettings.defaultValues()
-      : isTestNet = true, // TODO Set to false after release
+      : isTestNet = false,
         nodeUrl = d3pDefaultNodeUrl;
 
   @HiveField(0)
