@@ -90,7 +90,7 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     SetPubKeyAddress event,
     Emitter<AccountStoreState> emit,
   ) async {
-    // TODO I'm not 100% sure what happens here
+    //! I'm not 100% sure what happens here
     // Just copied https://github.com/polkawallet-io/app/blob/48821c58b19b2e6df17200bc0c5d10bf5577ac41/lib/store/account.dart#L59
     final mutableMap =
         Map<int, Map<String, String>>.from(state.pubKeyAddressMap);
@@ -114,7 +114,7 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     SetAddressIcon event,
     Emitter<AccountStoreState> emit,
   ) async {
-    // TODO I'm not 100% sure what happens here
+    //! I'm not 100% sure what happens here
     // Just copied https://github.com/polkawallet-io/app/blob/48821c58b19b2e6df17200bc0c5d10bf5577ac41/lib/store/account.dart#L74
     final mutableMap = Map<String, String>.from(state.addressIconsMap);
     for (var i in event.list) {

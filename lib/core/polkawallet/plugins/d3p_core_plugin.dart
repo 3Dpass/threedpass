@@ -31,6 +31,5 @@ class D3pCorePlugin extends PolkawalletPlugin {
   List<NetworkParams> get nodeList => throw UnimplementedError();
 
   @override
-  // TODO: implement tokenIcons
   Map<String, Widget> get tokenIcons => {};
 }

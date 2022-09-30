@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:polkawallet_sdk/api/types/addressIconData.dart';
 import 'package:threedpass/core/polkawallet/widgets/address_icon.dart';
 import 'package:threedpass/features/accounts/bloc/address_icon_data_preview_cubit.dart';

@@ -10,7 +10,6 @@ class _ToAddressTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     return D3pTextFormField(
       labelText: 'to_address_label'.tr(),
       controller: toAddressController,
