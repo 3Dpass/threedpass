@@ -13,12 +13,14 @@ class CreateAccountType extends StatelessWidget {
     return AccountPageTemplate.create(
       children: [
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               'create_account_type_title'.tr(),
               style: Theme.of(context).textTheme.headline6,
             ),
+            const SizedBox(height: 8),
             const _Item(CreateType.mnemonic),
             const _Item(CreateType.object),
           ],
@@ -41,10 +43,10 @@ class _Item extends StatelessWidget {
     // log('onTap intem $importType');
     switch (createType) {
       case CreateType.mnemonic:
-        // context.router.push(ImportMnemonicFormRoute());
+        context.router.push(const CreateAccountCredentialsRoute());
         break;
       case CreateType.object:
-        // return 'import_type_raw_seed'.tr();
+        context.router.push(const CreateAccountFromObjectRoute());
         break;
     }
   }

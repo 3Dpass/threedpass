@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/router/router.gr.dart';
 
@@ -39,7 +41,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
     );
   }
 
-  static getTransBytes(BuildContext context) async {
+  static Future<String> getTransBytes(BuildContext context) async {
     final String userTransBytes = BlocProvider.of<SettingsConfigCubit>(context)
         .state
         .scanSettings
@@ -116,14 +118,34 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton.extended(
-      // style: AppButtonStyles.primaryButton,
-      icon: const Icon(Icons.folder_open),
-      label: Text('get_from_file_button_label'.tr()),
-      onPressed: () => createHashFromFile(
-        context,
-        BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings,
-        BlocProvider.of<HomeContextCubit>(context),
+    return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
+      buildWhen: (previous, current) =>
+          previous.scanSettings.transBytes != current.scanSettings.transBytes,
+      builder: (context, settingsState) =>
+          BlocBuilder<AppServiceLoaderCubit, AppService>(
+        builder: (context, appService) {
+          print(settingsState.scanSettings.transBytes.isEmpty);
+          print(appService.bestNumber.value.isEmpty);
+          return Row(
+            children: [
+              const Spacer(),
+              Flexible(
+                child: D3pElevatedButton(
+                  iconData: Icons.folder_open,
+                  text: 'get_from_file_button_label'.tr(),
+                  onPressed: settingsState.scanSettings.transBytes.isEmpty &&
+                          appService.bestNumber.value.isEmpty
+                      ? null
+                      : () => createHashFromFile(
+                            context,
+                            settingsState.scanSettings,
+                            BlocProvider.of<HomeContextCubit>(context),
+                          ),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

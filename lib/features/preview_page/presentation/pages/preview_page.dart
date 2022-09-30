@@ -9,6 +9,7 @@ import 'package:threedpass/features/preview_page/presentation/widgets/matches_fo
 import 'package:threedpass/features/preview_page/presentation/widgets/more_info.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/preview_save_button.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/snapshot_info.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/stable_hash_text.dart';
 
 class PreviewPage extends StatelessWidget {
   const PreviewPage({
@@ -44,6 +45,12 @@ class PreviewPage extends StatelessWidget {
             const SizedBox(height: 8),
             ObjectPreview(
               snapshot: previewPageCubitState.snapshot,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: StableHashText(
+                hashObject: previewPageCubitState.hashObject,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 16, bottom: 16),

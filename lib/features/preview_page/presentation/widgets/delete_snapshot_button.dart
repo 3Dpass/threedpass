@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/common/button_styles.dart';
+import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
@@ -31,9 +32,9 @@ class DeleteSnapshotButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: AppButtonStyles.primaryButton,
-      child: Text('delete_snapshot_button'.tr()),
+    return D3pElevatedButton(
+      minimumSize: const Size.fromHeight(46),
+      text: 'delete_snapshot_button'.tr(),
       onPressed: () => deleteSnapshot(context),
     );
   }

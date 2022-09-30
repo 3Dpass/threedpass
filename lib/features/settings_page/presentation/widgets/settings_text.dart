@@ -6,7 +6,7 @@ import 'package:threedpass/features/settings_page/domain/entities/scan_settings.
 extension ToText on ScanSettings {
   TextSpan get textSpan {
     return TextSpan(
-      text: 'settings_title'.tr() + '\n',
+      text: 'settings_text_span_title'.tr() + '\n',
       style: AppTextStyles.bodyText1,
       children: [
         TextSpan(
@@ -17,6 +17,12 @@ extension ToText on ScanSettings {
         ),
         TextSpan(
           text: '- ' + 'n_sections_span'.tr() + ': $nSections\n',
+        ),
+        TextSpan(
+          text: '- ' + 'lib_version_span'.tr() + ': $libVersion\n',
+        ),
+        TextSpan(
+          text: '- ' + 'trans_bytes_span'.tr() + ': $transBytes\n',
         ),
       ],
     );

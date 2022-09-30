@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/appbars/common_string_appbar.dart';
+import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 
 class AccountPageTemplate extends StatelessWidget {
   const AccountPageTemplate.create({
@@ -12,7 +13,9 @@ class AccountPageTemplate extends StatelessWidget {
     bool? needHorizontalPadding,
   })  :
         // Next page or [submitButton] implementation has to be provided
-        assert(onSubmitPressed != null || submitButton != null),
+        assert(onSubmitPressed != null ||
+            submitButton != null ||
+            disableBottomButton),
         appbarTitle = 'create_account_title',
         needHorizontalPadding = needHorizontalPadding ?? true,
         super(key: key);
@@ -70,9 +73,9 @@ class AccountPageTemplate extends StatelessWidget {
                       child: onSubmitPressed != null
                           ? SizedBox(
                               width: double.infinity,
-                              child: ElevatedButton(
+                              child: D3pElevatedButton(
                                 onPressed: () => onSubmitPressed!(context),
-                                child: Text('Next'.tr()),
+                                text: 'Next'.tr(),
                               ),
                             )
                           : submitButton,

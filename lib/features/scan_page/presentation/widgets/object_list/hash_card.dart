@@ -50,9 +50,7 @@ class SnapshotCard extends StatelessWidget {
                       style: AppTextStyles.bodyText1,
                     ),
                     const SizedBox(height: 8),
-                    snapshot.settingsConfig != null
-                        ? Text.rich(snapshot.settingsConfig!.textSpan)
-                        : const SizedBox(),
+                    Text.rich(snapshot.settingsConfig.textSpan),
                   ],
                 ),
               ),

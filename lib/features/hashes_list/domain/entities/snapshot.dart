@@ -33,7 +33,7 @@ class Snapshot {
   final String? externalPathToObj;
 
   @HiveField(4)
-  final ScanSettings? settingsConfig;
+  final ScanSettings settingsConfig;
 
   @HiveField(5)
   final int fileHash;

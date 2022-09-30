@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/mnemonic_text_field.dart';
 import 'package:threedpass/router/router.gr.dart';
 
@@ -32,16 +33,13 @@ class MnemonicBackupContent extends StatelessWidget {
           Text('backup_warn1_text'.tr()),
           const SizedBox(height: 12),
           MnemonicTextField(text: mnemonic),
-
           Padding(
             padding: const EdgeInsets.only(bottom: 36, top: 12),
-            child: ElevatedButton(
-              onPressed:
-                  () => context.router.push(
-                            const MnemonicConfirmRoute(),
-                          )
-                      ,
-              child: Text('Next'.tr()),
+            child: D3pElevatedButton(
+              onPressed: () => context.router.push(
+                const MnemonicConfirmRoute(),
+              ),
+              text: 'Next'.tr(),
             ),
           ),
         ],

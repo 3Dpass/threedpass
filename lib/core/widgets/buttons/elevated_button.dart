@@ -28,7 +28,12 @@ class D3pElevatedButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              iconData != null ? Icon(iconData) : const SizedBox(),
+              iconData != null
+                  ? Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: Icon(iconData),
+                    )
+                  : const SizedBox(),
               Text(text),
             ],
           ),

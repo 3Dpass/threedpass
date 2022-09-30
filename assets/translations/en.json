@@ -59,6 +59,9 @@
     "show_and_share_dialog_button": "Show and share",
     "delete_snapshot_button": "Remove & clear the cache",
 
+    "stable_hashes_list_title": "Stable hashes:",
+    "no_stable_hash_placeholder": "No stable hash",
+
     "@rename_snap_dialog":{
     },
     "rename_snapshot_title" : "Rename snapshot",
@@ -96,9 +99,12 @@
     "trans_help_text": "By default this is the first 4 bytes of the last block hash.",
     "pixel_ratio_help_text": "Decreasing the value reduces preview quality, but increases performance.",
     
+    "settings_text_span_title": "Scan properties",
     "algorithm_span": "Algorithm",
     "grid_span":"Grid",
     "n_sections_span": "nSections",
+    "lib_version_span": "Hash lib version",
+    "trans_bytes_span": "Rotation bytes",
 
     "@wallet_base":{
     },
@@ -158,6 +164,10 @@
     "import_account_loading": "Importing account...",
     "error_import_duplicate": "Error: this account has been already imported",
     "error_import_invalid": "Error: this account is invalid",
+
+    "create_account_type_title": "Create account from...",
+    "create_type_mnemonic": "Mnemonic",
+    "create_type_object": "3D Object",
 
     "encrypt_type_picker_label": "Encrypt Type",
     "derivation_path_input_label": "Secret derivation path",

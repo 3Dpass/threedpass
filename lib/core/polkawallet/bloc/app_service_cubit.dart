@@ -191,6 +191,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     return newAppService;
   }
 
+  /// Bad code, but who cares?
   void justEmit() {
     emit(state.copyWith());
   }

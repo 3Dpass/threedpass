@@ -54,7 +54,9 @@ extension SnapshotFileFactory on Snapshot {
         hashes: hashes.split('\n'),
         stamp: DateTime.now(),
         externalPathToObj: filePath,
-        settingsConfig: settings,
+        settingsConfig: settings.copyWith(
+          transBytes: transBytes,
+        ),
         fileHash: hashFile(filePath),
       );
 
