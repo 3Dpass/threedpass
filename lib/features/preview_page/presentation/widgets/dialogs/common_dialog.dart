@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
@@ -25,42 +26,43 @@ class CommonDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-          child: Column(
-            children: <Widget>[
-              Text(
-                title,
-                style: Theme.of(context).textTheme.subtitle1,
+    return AlertDialog(
+      title: Text(
+        title,
+        style: Theme.of(context).textTheme.headline6,
+      ),
+      content: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            TextField(
+              decoration: const InputDecoration(
+                isCollapsed: false,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8, bottom: 16),
-                child: TextField(
-                  decoration: const InputDecoration(
-                    isCollapsed: false,
-                  ),
-                  controller: controller,
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                    child: Text('Cancel'.tr()),
-                    onPressed: () => context.router.pop(),
-                  ),
-                  TextButton(
-                    child: Text(actionText),
-                    onPressed: () => action(controller.text),
-                  ),
-                ],
-              ),
-            ],
-          ),
+              controller: controller,
+            ),
+          ],
         ),
       ),
+      actions: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Spacer(),
+            Flexible(
+              child: D3pTextButton(
+                text: 'Cancel'.tr(),
+                onPressed: () => context.router.pop(),
+              ),
+            ),
+            Flexible(
+              child: D3pTextButton(
+                text: actionText,
+                onPressed: () => action(controller.text),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

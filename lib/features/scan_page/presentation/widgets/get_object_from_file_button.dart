@@ -3,11 +3,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
+import 'package:threedpass/core/widgets/progress_indicator/thin_progress_indicator.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
+import 'package:threedpass/features/scan_page/bloc/object_from_file_cubit.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
@@ -122,19 +125,24 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.scanSettings.transBytes != current.scanSettings.transBytes,
       builder: (context, settingsState) =>
-          BlocBuilder<AppServiceLoaderCubit, AppService>(
-        builder: (context, appService) {
-          print(settingsState.scanSettings.transBytes.isEmpty);
-          print(appService.bestNumber.value.isEmpty);
+          BlocBuilder<BestNumberAvaliableCubit, bool>(
+        builder: (context, isBestNumAvaliable) {
           return Row(
             children: [
               const Spacer(),
               Flexible(
                 child: D3pElevatedButton(
-                  iconData: Icons.folder_open,
+                  icon: isBestNumAvaliable
+                      ? null
+                      : const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: ThinProgressIndicator(),
+                        ),
+                  iconData: isBestNumAvaliable ? Icons.folder_open : null,
                   text: 'get_from_file_button_label'.tr(),
                   onPressed: settingsState.scanSettings.transBytes.isEmpty &&
-                          appService.bestNumber.value.isEmpty
+                          !isBestNumAvaliable
                       ? null
                       : () => createHashFromFile(
                             context,

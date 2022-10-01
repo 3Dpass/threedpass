@@ -9,6 +9,7 @@ class D3pElevatedButton extends StatelessWidget {
     this.iconData,
     this.minimumSize,
     this.padding,
+    this.icon,
   }) : super(key: key);
 
   final void Function()? onPressed;
@@ -16,6 +17,7 @@ class D3pElevatedButton extends StatelessWidget {
   final IconData? iconData;
   final Size? minimumSize;
   final EdgeInsets? padding;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +30,10 @@ class D3pElevatedButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              iconData != null
-                  ? Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: Icon(iconData),
-                    )
-                  : const SizedBox(),
+              _Icon(
+                icon: icon,
+                iconData: iconData,
+              ),
               Text(text),
             ],
           ),
@@ -46,5 +46,38 @@ class D3pElevatedButton extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _Icon extends StatelessWidget {
+  const _Icon({
+    Key? key,
+    required this.iconData,
+    required this.icon,
+  }) : super(key: key);
+
+  final IconData? iconData;
+  final Widget? icon;
+
+  @override
+  Widget build(BuildContext context) {
+    assert(
+      icon == null || iconData == null,
+      'Either icon or iconData must be provided. Now both icon and iconData are not null.',
+    );
+
+    if (iconData != null) {
+      return Padding(
+        padding: const EdgeInsets.only(right: 8),
+        child: Icon(iconData),
+      );
+    } else if (icon != null) {
+      return Padding(
+        padding: const EdgeInsets.only(right: 8),
+        child: icon,
+      );
+    } else {
+      return const SizedBox();
+    }
   }
 }

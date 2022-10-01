@@ -20,28 +20,40 @@ class CompareRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Flexible(
           flex: 2,
-          child: Text(
-            origSnap.name.cut(16),
-            overflow: TextOverflow.ellipsis,
+          child: SizedBox(
+            width: double.infinity,
+            child: Text(
+              origSnap.name.cutWithEllipsis(16),
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
           ),
         ),
-        const Flexible(
-          child: Text(
-            'VS',
-            textAlign: TextAlign.center,
+        Flexible(
+          child: SizedBox(
+            width: double.infinity,
+            child: Text(
+              'VS',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
           ),
         ),
         Flexible(
           flex: 2,
-          child: ChooseList(
-            chosen: snapToCompare,
-            list: allSnapshots,
-            onChoose: (model) => onChoose(model),
+          child: SizedBox(
+            width: double.infinity,
+            child: ChooseList(
+              chosen: snapToCompare,
+              list: allSnapshots,
+              onChoose: (model) => onChoose(model),
+            ),
           ),
         ),
       ],

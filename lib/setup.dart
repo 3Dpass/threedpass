@@ -57,13 +57,16 @@ Future<void> setup() async {
     ),
   );
 
+  // It becomes singleton and not factory. But it doesn't matter
+  final bestNumberAvaliableCubit = BestNumberAvaliableCubit();
+  getIt.registerFactory<BestNumberAvaliableCubit>(
+    () => bestNumberAvaliableCubit,
+  );
+
   getIt.registerFactory<AppServiceLoaderCubit>(
     () => AppServiceLoaderCubit(
       settingsConfigCubit: getIt<SettingsConfigCubit>(),
+      bestNumberAvaliableCubit: bestNumberAvaliableCubit,
     ),
-  );
-
-  getIt.registerFactory<BestNumberAvaliableCubit>(
-    () => BestNumberAvaliableCubit(),
   );
 }

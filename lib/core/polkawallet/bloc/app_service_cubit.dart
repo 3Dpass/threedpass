@@ -10,6 +10,7 @@ import 'package:threedpass/core/polkawallet/plugins/d3p_core_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_test_net_plugin.dart';
 import 'package:threedpass/features/accounts/domain/account_create.dart';
+import 'package:threedpass/features/scan_page/bloc/object_from_file_cubit.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
@@ -22,6 +23,7 @@ import 'package:threedpass/features/settings_page/domain/entities/wallet_setting
 class AppServiceLoaderCubit extends Cubit<AppService> {
   AppServiceLoaderCubit({
     required this.settingsConfigCubit,
+    required this.bestNumberAvaliableCubit,
   }) : super(
           AppService(
             plugin: D3pLiveNetPlugin(),
@@ -33,6 +35,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
   }
 
   final SettingsConfigCubit settingsConfigCubit;
+  final BestNumberAvaliableCubit bestNumberAvaliableCubit;
 
   Future<Map> importAccount({
     KeyType keyType = KeyType.mnemonic,
@@ -129,6 +132,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
 
     newAppService.plugin.sdk.api.setting.subscribeBestNumber((String value) {
       newAppService.bestNumber.value = value;
+      bestNumberAvaliableCubit.setValue(true);
     });
 
     subscribeToBalance(newAppService);

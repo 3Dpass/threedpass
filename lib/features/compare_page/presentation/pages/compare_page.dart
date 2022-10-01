@@ -47,13 +47,15 @@ class _State extends State<ComparePage> {
       ),
       body: Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: CompareRow(
-              origSnap: widget.origObj,
-              snapToCompare: comparable,
-              allSnapshots: widget.comparisons,
-              onChoose: onChoose,
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: CompareRow(
+                origSnap: widget.origObj,
+                snapToCompare: comparable,
+                allSnapshots: widget.comparisons,
+                onChoose: onChoose,
+              ),
             ),
           ),
           const Divider(

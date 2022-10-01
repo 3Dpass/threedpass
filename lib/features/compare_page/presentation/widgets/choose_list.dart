@@ -17,14 +17,16 @@ class ChooseList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButton<Snapshot>(
+      style: Theme.of(context).textTheme.bodyText1,
       value: chosen,
       items: list
           .map(
             (e) => DropdownMenuItem<Snapshot>(
               value: e,
               child: Text(
-                e.name.cut(16),
+                e.name.cutWithEllipsis(12),
                 overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
           )
