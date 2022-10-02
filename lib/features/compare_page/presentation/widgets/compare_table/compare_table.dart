@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/common/app_text_styles.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/features/compare_page/domain/entities/row_data.dart';
 import 'package:threedpass/features/compare_page/presentation/widgets/compare_table/app_table_row.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -49,15 +49,15 @@ class CompareTable extends StatelessWidget {
             children: [
               Text(
                 'Rank'.tr(),
-                style: AppTextStyles.tableHeader,
+                style: Theme.of(context).customTextStyles.tableHeader,
               ),
               Text(
                 'Hash'.tr(),
-                style: AppTextStyles.tableHeader,
+                style: Theme.of(context).customTextStyles.tableHeader,
               ),
               Text(
                 'Rank'.tr(),
-                style: AppTextStyles.tableHeader,
+                style: Theme.of(context).customTextStyles.tableHeader,
               ),
             ],
           ),

@@ -29,6 +29,8 @@
     "snap_card_name": "Name: ",
     "snap_card_stamp": "Stamp: ",
     "saved_objects_header": "Saved objects",
+    "object_title_prefix": "Object -",
+    "snapshots_subtitle": "snapshots:",
 
     "recognize_your_objects":"Recognize your objects",
     "open_web_wallet_button_label": "Open web wallet",
@@ -60,7 +62,8 @@
     "delete_snapshot_button": "Remove & clear the cache",
 
     "stable_hashes_list_title": "Stable hashes:",
-    "no_stable_hash_placeholder": "No stable hash",
+    "no_stable_hash_placeholder": "No stable hash found.",
+    "no_stable_hash_help": "To get a stable hash, you need to scan the object several times with the same scan settings.",
 
     "@rename_snap_dialog":{
     },
@@ -99,7 +102,7 @@
     "trans_help_text": "By default this is the first 4 bytes of the last block hash.",
     "pixel_ratio_help_text": "Decreasing the value reduces preview quality, but increases performance.",
     
-    "settings_text_span_title": "Scan properties",
+    "settings_text_span_title": "Scan properties:",
     "algorithm_span": "Algorithm",
     "grid_span":"Grid",
     "n_sections_span": "nSections",

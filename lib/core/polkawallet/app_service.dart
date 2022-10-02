@@ -17,12 +17,12 @@ class AppService {
   })  : networkStateData = networkStateData ?? NetworkStateData(),
         balance = ValueNotifier<BalanceData>(BalanceData());
 
-  final PolkawalletPlugin plugin;
-  final Keyring keyring;
-  final AppServiceInitStatus status;
-  final NetworkStateData networkStateData;
   final ValueNotifier<BalanceData> balance;
   final ValueNotifier<String> bestNumber = ValueNotifier<String>('');
+  final Keyring keyring;
+  final NetworkStateData networkStateData;
+  final PolkawalletPlugin plugin;
+  final AppServiceInitStatus status;
 
   // final subScan = SubScanApi();
 }

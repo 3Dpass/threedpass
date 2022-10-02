@@ -49,11 +49,11 @@ class PreviewPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 16),
               child: StableHashText(
-                hashObject: previewPageCubitState.hashObject,
+                state: previewPageCubitState,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 16, bottom: 16),
+              padding: const EdgeInsets.only(top: 0, bottom: 16),
               child: HashProperties(
                 snapshot: previewPageCubitState.snapshot,
               ),

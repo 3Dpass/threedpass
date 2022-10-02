@@ -25,7 +25,7 @@ class HashProperties extends StatelessWidget {
           // const Text('Properties:'),
           // const Text('- 256bit'), // TODO What properties are avaliable?
           const SizedBox(height: 16),
-          Text.rich(snapshot.settingsConfig.textSpan),
+          Text.rich(snapshot.settingsConfig.toText(context)),
         ],
       ),
     );

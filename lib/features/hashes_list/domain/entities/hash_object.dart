@@ -22,6 +22,9 @@ class HashObject {
     required this.snapshots,
   }) : localId = Random().nextInt(1 << 32);
 
+  /// Minimum number of hash matches to be considered stable
+  static const int minRequirement = 1;
+
   @HiveField(0)
   final int localId;
 
@@ -30,6 +33,18 @@ class HashObject {
 
   @HiveField(2)
   final List<Snapshot> snapshots;
+
+  @override
+  bool operator ==(other) {
+    if (other is HashObject) {
+      return localId == other.localId;
+    } else {
+      return false;
+    }
+  }
+
+  @override
+  int get hashCode => hash2(0, localId);
 
   Set<int> get fileHashes {
     final res = <int>{};
@@ -50,19 +65,35 @@ class HashObject {
     return false;
   }
 
-  @override
-  bool operator ==(other) {
-    if (other is HashObject) {
-      return localId == other.localId;
-    } else {
-      return false;
-    }
+  /// To get self object self hashes
+  List<String> get stableHashes {
+    final hashFreq = _hashFreq;
+
+    return hashFreq.keys
+        .where((hash) => hashFreq[hash]! > minRequirement)
+        .toList();
   }
 
-  @override
-  int get hashCode => hash2(0, localId);
+  /// When you need to compare external snapshot with object stable hashes
+  List<String> stableHashesPlusNew(Snapshot snapshot) {
+    final hashFreq = _hashFreq;
 
-  Iterable<String> get stableHashes {
+    for (var hash in snapshot.hashes) {
+      if (hashFreq[hash] == null) {
+        hashFreq[hash] = 1;
+      } else {
+        final freq = hashFreq[hash]!;
+        hashFreq[hash] = freq + 1;
+      }
+    }
+
+    return hashFreq.keys
+        .where((hash) => hashFreq[hash]! > minRequirement)
+        .toList();
+  }
+
+  /// How many times each hash appears in all snapshots
+  Map<String, int> get _hashFreq {
     final Map<String, int> hashFreq = {};
 
     for (var snapshot in snapshots) {
@@ -76,6 +107,6 @@ class HashObject {
       }
     }
 
-    return hashFreq.keys.where((hash) => hashFreq[hash]! > 2);
+    return hashFreq;
   }
 }

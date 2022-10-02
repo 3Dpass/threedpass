@@ -13,8 +13,8 @@ class MatchesFoundText extends StatelessWidget {
     required this.number,
   }) : super(key: key);
 
-  final PreviewPageCubitState state;
   final int number;
+  final PreviewPageCubitState state;
 
   @override
   Widget build(BuildContext context) {

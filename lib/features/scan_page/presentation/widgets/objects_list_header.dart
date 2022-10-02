@@ -18,11 +18,11 @@ class ObjectsListHeader extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Text(
           'saved_objects_header'.tr(),
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headline4,
         ),
       );
-    } else {
-      return const SizedBox();
     }
+
+    return const SizedBox();
   }
 }

@@ -34,31 +34,24 @@ class _State extends State<ObjectPreview> {
   late final double dpr; // Device Pixel Ratio
   // Determines if we show object or loader
   bool isRendered = false;
-  // Prevent from re-init
-  bool startedInit = false;
 
   // late final THREE.Mesh mesh;
   late final THREE.Object3D object;
 
+  late final PreviewSettings previewSettings;
   late final THREE.WebGLRenderTarget renderTarget;
   late final THREE.WebGLRenderer renderer;
   late final THREE.Scene scene;
   late final Size screenSize;
   late final int sourceTexture;
+  // Prevent from re-init
+  bool startedInit = false;
+
   late final THREE.Texture texture;
   late final FlutterGlPlugin three3dRender = FlutterGlPlugin();
 
   final GlobalKey<THREE_JSM.DomLikeListenableState> _globalKey =
       GlobalKey<THREE_JSM.DomLikeListenableState>();
-
-  late final PreviewSettings previewSettings;
-
-  @override
-  void initState() {
-    super.initState();
-    previewSettings =
-        BlocProvider.of<SettingsConfigCubit>(context).state.previewSettings;
-  }
 
   @override
   void didChangeDependencies() {
@@ -78,6 +71,13 @@ class _State extends State<ObjectPreview> {
     texture.dispose();
 
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    previewSettings =
+        BlocProvider.of<SettingsConfigCubit>(context).state.previewSettings;
   }
 
   double get height => 250;

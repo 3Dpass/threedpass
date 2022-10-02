@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/common/app_text_styles.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 
 class SnapshotInfo extends StatelessWidget {
@@ -18,15 +17,15 @@ class SnapshotInfo extends StatelessWidget {
         children: [
           TextSpan(
             text: state.snapshot.name,
-            style: AppTextStyles.bodyText1.copyWith(
-              fontStyle: FontStyle.normal,
-            ),
+            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  fontStyle: FontStyle.normal,
+                ),
           ),
         ],
       ),
-      style: AppTextStyles.bodyText2.copyWith(
-        fontStyle: FontStyle.italic,
-      ),
+      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            fontStyle: FontStyle.italic,
+          ),
     );
   }
 }

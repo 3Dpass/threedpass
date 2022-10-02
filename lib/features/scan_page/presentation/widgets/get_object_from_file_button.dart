@@ -122,8 +122,6 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
-      buildWhen: (previous, current) =>
-          previous.scanSettings.transBytes != current.scanSettings.transBytes,
       builder: (context, settingsState) =>
           BlocBuilder<BestNumberAvaliableCubit, bool>(
         builder: (context, isBestNumAvaliable) {

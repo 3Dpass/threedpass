@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/common/app_text_styles.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/object_list/hash_card_popup_menu.dart';
@@ -42,15 +41,15 @@ class SnapshotCard extends StatelessWidget {
                     Flexible(
                       child: Text(
                         'snap_card_name'.tr() + snapshot.name,
-                        style: AppTextStyles.bodyText1,
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ),
                     Text(
                       'snap_card_stamp'.tr() + formatter.format(snapshot.stamp),
-                      style: AppTextStyles.bodyText1,
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                     const SizedBox(height: 8),
-                    Text.rich(snapshot.settingsConfig.textSpan),
+                    Text.rich(snapshot.settingsConfig.toText(context)),
                   ],
                 ),
               ),

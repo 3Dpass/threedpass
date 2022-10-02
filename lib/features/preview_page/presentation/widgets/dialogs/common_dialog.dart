@@ -17,12 +17,12 @@ class CommonDialog extends StatelessWidget {
   })  : controller = TextEditingController(text: initialText),
         super(key: key);
 
-  final TextEditingController controller;
-  final Snapshot snapshot;
-  final HashObject hashObject;
-  final String title;
-  final String actionText;
   final void Function(String) action;
+  final String actionText;
+  final TextEditingController controller;
+  final HashObject hashObject;
+  final Snapshot snapshot;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
