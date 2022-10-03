@@ -27,6 +27,7 @@ class CommonDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      // TODO Use PlatfromAlertDialog
       title: Text(
         title,
         style: Theme.of(context).textTheme.headline6,

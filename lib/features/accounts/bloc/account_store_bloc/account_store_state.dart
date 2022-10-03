@@ -29,7 +29,7 @@ class AccountStoreState {
 class _AccountStoreStateInitial extends AccountStoreState {
   _AccountStoreStateInitial()
       : super(
-          newAccount: const AccountCreate.intial(),
+          newAccount: const AccountCreateMnemonic.intial(),
           recoveryInfo: RecoveryInfo(),
           walletConnectPairing: false,
           addressIconsMap: <String, String>{},

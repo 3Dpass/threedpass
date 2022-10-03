@@ -17,7 +17,6 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
   AccountStoreBloc(this.outerContext) : super(_AccountStoreStateInitial()) {
     on<SetCredentials>(_setCredentials);
     on<GenerateMnemonicKey>(_generateMnemonicKey);
-    on<ResetAccount>(_resetAccount);
     on<SetPubKeyAddress>(_setPubKeyAddress);
     on<SetAddressIcon>(_setAddressIcon);
     on<PopToRoout>(_popToRoout);
@@ -74,16 +73,6 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     } else {
       addError('Mnemonic was not generated');
     }
-  }
-
-  Future<void> _resetAccount(
-    ResetAccount event,
-    Emitter<AccountStoreState> emit,
-  ) async {
-    final newState = state.copyWith(
-      newAccount: const AccountCreate.intial(),
-    );
-    emit(newState);
   }
 
   Future<void> _setPubKeyAddress(

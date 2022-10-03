@@ -172,6 +172,8 @@
     "create_type_mnemonic": "Mnemonic",
     "create_type_object": "3D Object",
 
+    "create_from_object_error_no_stable_hashes": "ERROR. No objects with stable hashes found.",
+
     "encrypt_type_picker_label": "Encrypt Type",
     "derivation_path_input_label": "Secret derivation path",
 

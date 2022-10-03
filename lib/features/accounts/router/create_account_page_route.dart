@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_credentials.dart';
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_from_object.dart';
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_from_object/create_account_from_object.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_info_page.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_loader.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_mnemonic_backup.dart';

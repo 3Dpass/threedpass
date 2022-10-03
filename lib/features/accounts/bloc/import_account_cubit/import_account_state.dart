@@ -13,7 +13,7 @@ class ImportAccountState {
   });
 
   ImportAccountState.initial()
-      : accountCreate = const AccountCreate.intial(),
+      : accountCreate = const AccountCreateMnemonic.intial(),
         accountAdvancedOptions = const AccountAdvancedOptions.defaultValues(),
         importType = ImportType.mnemonic;
 

@@ -57,11 +57,6 @@ class CreateAccountCredentials extends StatelessWidget {
         );
       }
 
-      // reset create form
-      accountStoreBloc.add(
-        const ResetAccount(),
-      );
-
       accountStoreBloc.add(
         const PopToRoout(),
       );

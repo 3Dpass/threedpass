@@ -18,7 +18,7 @@ import '../core/widgets/default_loading_dialog.dart' as _i8;
 import '../core/widgets/error_page.dart' as _i4;
 import '../features/accounts/presentation/pages/create_account/create_account_credentials.dart'
     as _i29;
-import '../features/accounts/presentation/pages/create_account/create_account_from_object.dart'
+import '../features/accounts/presentation/pages/create_account/create_account_from_object/create_account_from_object.dart'
     as _i25;
 import '../features/accounts/presentation/pages/create_account/create_account_info_page.dart'
     as _i26;
