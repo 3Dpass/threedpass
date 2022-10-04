@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
 import 'package:threedpass/features/accounts/bloc/mnemonic_input_cubit.dart';
+import 'package:threedpass/features/accounts/domain/account_create.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class SubmitMnemonicConfirmButton extends StatelessWidget {

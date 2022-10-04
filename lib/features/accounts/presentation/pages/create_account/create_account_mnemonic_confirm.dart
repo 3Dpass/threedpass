@@ -14,10 +14,8 @@ class CreateAccountMnemonicConfirm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mnemonic = (BlocProvider.of<AccountStoreBloc>(context)
-            .state
-            .newAccount as AccountCreateMnemonic)
-        .mnemonicKey;
+    final mnemonic =
+        BlocProvider.of<AccountStoreBloc>(context).state.newAccount.mnemonicKey;
 
     return BlocProvider(
       create: (context) => MnemonicInputCubit(mnemonic),

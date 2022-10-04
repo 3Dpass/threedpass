@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_cubit.dart';
 import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_state.dart';
+import 'package:threedpass/features/accounts/domain/account_create.dart';
 
 class ImportAccountCubitBuilder extends StatelessWidget {
   const ImportAccountCubitBuilder({Key? key, required this.builder})

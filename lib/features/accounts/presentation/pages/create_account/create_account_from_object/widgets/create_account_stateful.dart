@@ -9,8 +9,9 @@ class _CreateAccountStateful extends StatefulWidget {
 
 class _MainState extends State<_CreateAccountStateful> {
   late final ValueNotifier<HashObject> objectValueNotifier;
-  late final ValueNotifier<Snapshot> snapshotToUse;
+  // late final ValueNotifier<Snapshot> snapshotToUse;
   late final List<HashObject> objectsToUse;
+  final ValueNotifier<String> chosenHash = ValueNotifier<String>('');
 
   @override
   void initState() {
@@ -33,87 +34,98 @@ class _MainState extends State<_CreateAccountStateful> {
     }
 
     objectValueNotifier = ValueNotifier(realObjects.first);
-    snapshotToUse = ValueNotifier(objectValueNotifier.value.snapshots.first);
+    // snapshotToUse = ValueNotifier(objectValueNotifier.value.snapshots.first);
     objectsToUse = realObjects;
+    chosenHash.value = realObjects.first.stableHashes.first;
     super.initState();
   }
 
   void onObjectChoose(HashObject? hashObject) {
     if (hashObject != null) {
       objectValueNotifier.value = hashObject;
-      snapshotToUse.value = hashObject.snapshots.first;
+      chosenHash.value = hashObject.stableHashes.first;
     }
   }
 
-  void onSnapshotChoose(Snapshot? snapshot) {
-    if (snapshot != null) {
-      snapshotToUse.value = snapshot;
+  void onHashChoose(String? value) {
+    if (value != null) {
+      chosenHash.value = value;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
+      // mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('Choose object'),
-        DropdownButton<HashObject>(
-          style: Theme.of(context).textTheme.bodyText1,
-          value: objectValueNotifier.value,
-          items: objectsToUse
-              .map(
-                (e) => DropdownMenuItem<HashObject>(
-                  value: e,
-                  child: Text(
-                    e.name.cutWithEllipsis(20),
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                ),
-              )
-              .toList(),
-          onChanged: (modelChosen) => onObjectChoose(modelChosen),
-        ),
-        ValueListenableBuilder(
-          valueListenable: objectValueNotifier,
-          builder: (context, _, __) => Column(
-            children: [
-              Text('Choose snapshot'),
-              DropdownButton<Snapshot>(
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Choose object',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+            const SizedBox(height: 8),
+            DropdownButton<HashObject>(
+              style: Theme.of(context).textTheme.bodyText1,
+              value: objectValueNotifier.value,
+              items: objectsToUse
+                  .map(
+                    (e) => DropdownMenuItem<HashObject>(
+                      value: e,
+                      child: Text(
+                        e.name.cutWithEllipsis(20),
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                    ),
+                  )
+                  .toList(),
+              onChanged: (modelChosen) => onObjectChoose(modelChosen),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              'Choose stable hash',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+            const SizedBox(height: 8),
+            ValueListenableBuilder(
+              valueListenable: objectValueNotifier,
+              builder: (context, _, __) => DropdownButton<String>(
+                isExpanded: true,
                 style: Theme.of(context).textTheme.bodyText1,
-                value: snapshotToUse.value,
-                items: objectValueNotifier.value.snapshots
+                value: chosenHash.value,
+                items: objectValueNotifier.value.stableHashes
                     .map(
-                      (e) => DropdownMenuItem<Snapshot>(
+                      (e) => DropdownMenuItem<String>(
                         value: e,
                         child: Text(
-                          e.name.cutWithEllipsis(20),
-                          overflow: TextOverflow.ellipsis,
+                          e,
+                          maxLines: 3,
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),
                     )
                     .toList(),
-                onChanged: (modelChosen) => onSnapshotChoose(modelChosen),
+                onChanged: (modelChosen) => onHashChoose(modelChosen),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              'create_warn5_header'.tr(),
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  ?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 4),
+            Text('create_warn5_text'.tr()),
+            const SizedBox(height: 24),
+          ],
         ),
-
-        // Settings
-        ValueListenableBuilder(
-          valueListenable: snapshotToUse,
-          builder: (context, _, __) => Column(
-            children: [
-              Text('Settings'),
-              Text.rich(
-                snapshotToUse.value.settingsConfig.toText(context),
-              ),
-            ],
-          ),
-        ),
-
-        D3pElevatedButton(text: 'Create', onPressed: () {}),
+        _SubmitButton(chosenHash),
       ],
     );
   }

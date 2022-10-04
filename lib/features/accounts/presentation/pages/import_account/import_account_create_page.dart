@@ -27,7 +27,7 @@ class ImportAccountCreatePage extends StatelessWidget {
 
       final importAccountCubit = BlocProvider.of<ImportAccountCubit>(context);
 
-      final account = importAccountCubit.state.accountCreate.copyWith(
+      final account = importAccountCubit.state.accountCreate.copyWithTyped(
         name: nameCtrl.text,
         password: passCtrl.text,
       );

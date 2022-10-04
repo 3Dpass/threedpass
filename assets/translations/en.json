@@ -149,6 +149,9 @@
     "create_warn4_text":
         "Do not take screenshots, which may be collected by third-party malware, resulting in asset loss.",
 
+    "create_warn5_header": "Be careful",
+    "create_warn5_text": "Never share scan settings of the chosen object. This can lead to asset loss.",
+
     "backup_warn1_header": "Backup mnemonic",
     "backup_warn1_text": "Please write down your mnemonic seed and keep it in a safe place.",
 

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/api/apiKeyring.dart';
+import 'package:polkawallet_sdk/api/types/addressIconData.dart';
 import 'package:polkawallet_sdk/api/types/networkParams.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
@@ -51,7 +52,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       keyType: keyType,
       cryptoType: cryptoType,
       derivePath: derivePath,
-      key: account.mnemonicKey,
+      key: keyType == KeyType.mnemonic ? account.mnemonicKey : account.seedKey,
       name: account.name,
       password: account.password,
     );
@@ -60,6 +61,33 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       return res;
     } else {
       throw Exception('Account was NOT imported');
+    }
+  }
+
+  static Future<AddressIconData> _getAddressForAccount({
+    required AppService state,
+    required AccountCreate account,
+    CryptoType cryptoType = defaultCryptoType,
+    String derivePath = '',
+  }) async {
+    if (account is AccountCreateMnemonic) {
+      return state.plugin.sdk.api.keyring.addressFromMnemonic(
+        state.networkStateData.ss58Format!,
+        cryptoType: cryptoType,
+        derivePath: derivePath,
+        mnemonic: account.mnemonic,
+      );
+    } else if (account is AccountCreateSeed) {
+      return state.plugin.sdk.api.keyring.addressFromRawSeed(
+        state.networkStateData.ss58Format!,
+        cryptoType: cryptoType,
+        derivePath: derivePath,
+        rawSeed: account.seed,
+      );
+    } else {
+      throw Exception(
+        'AccountCreate has undefined type AppserviceLoaderCubit._getAddressForAccount',
+      );
     }
   }
 
@@ -74,37 +102,37 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     if ((account.name.isEmpty)) {
       throw Exception('Accont name or password is empty');
     }
-    try {
-      final addressInfo =
-          await state.plugin.sdk.api.keyring.addressFromMnemonic(
-        state.networkStateData.ss58Format!,
-        cryptoType: cryptoType,
-        derivePath: derivePath,
-        mnemonic: account.mnemonicKey,
-      );
+    // try {
+    final addressInfo = await _getAddressForAccount(
+      state: state,
+      account: account,
+      cryptoType: cryptoType,
+      derivePath: derivePath,
+    );
 
-      json['address'] = addressInfo.address;
+    json['address'] = addressInfo.address;
 
-      final res = await state.plugin.sdk.api.keyring.addAccount(
-        state.keyring,
-        keyType: keyType,
-        acc: json,
-        password: account.password,
-      );
+    final res = await state.plugin.sdk.api.keyring.addAccount(
+      state.keyring,
+      keyType: keyType,
+      acc: json,
+      password: account.password,
+    );
 
-      // This variable is never used, but somehow this line solves bug
-      // when [keyring.importAccount] returns wrong address.
+    // This variable is never used, but somehow this line solves bug
+    // when [keyring.importAccount] returns wrong address.
 
-      state.keyring.current.address = addressInfo.address;
-      state.keyring.current.icon = addressInfo.svg;
+    state.keyring.current.address = addressInfo.address;
+    state.keyring.current.icon = addressInfo.svg;
 
-      emit(state.copyWith());
+    emit(state.copyWith());
 
-      return res;
-    } catch (e) {
-      // final a = state.plugin.sdk.api.account.queryIndexInfo();
-      return KeyPairData();
-    }
+    return res;
+    // } catch (e) {
+    //   rethrow;
+    //   // final a = state.plugin.sdk.api.account.queryIndexInfo();
+    //   // return KeyPairData();
+    // }
   }
 
   void changeAccount(KeyPairData keyPairData) {

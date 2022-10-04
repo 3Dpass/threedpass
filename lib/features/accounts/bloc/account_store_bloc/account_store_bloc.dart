@@ -16,6 +16,7 @@ part 'account_store_bloc.g.dart';
 class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
   AccountStoreBloc(this.outerContext) : super(_AccountStoreStateInitial()) {
     on<SetCredentials>(_setCredentials);
+    on<SetAccountSeed>(_setAccountSeed);
     on<GenerateMnemonicKey>(_generateMnemonicKey);
     on<SetPubKeyAddress>(_setPubKeyAddress);
     on<SetAddressIcon>(_setAddressIcon);
@@ -37,7 +38,7 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     Emitter<AccountStoreState> emit,
   ) async {
     final newState = state.copyWith(
-      newAccount: state.newAccount.copyWith(
+      newAccount: state.newAccount.copyWithTyped(
         name: event.name,
         password: event.password,
       ),
@@ -65,7 +66,7 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
 
     if (data.mnemonic != null) {
       final newState = state.copyWith(
-        newAccount: state.newAccount.copyWith(
+        newAccount: state.newAccount.copyWithTyped(
           mnemonicKey: data.mnemonic,
         ),
       );
@@ -73,6 +74,19 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     } else {
       addError('Mnemonic was not generated');
     }
+  }
+
+  Future<void> _setAccountSeed(
+    SetAccountSeed event,
+    Emitter<AccountStoreState> emit,
+  ) async {
+    emit(state.copyWith(
+      newAccount: AccountCreateSeed(
+        seed: event.seed,
+        name: '',
+        password: '',
+      ),
+    ));
   }
 
   Future<void> _setPubKeyAddress(

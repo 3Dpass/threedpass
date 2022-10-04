@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:polkawallet_sdk/api/apiKeyring.dart';
 import 'package:threedpass/common/logger.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
@@ -28,13 +29,18 @@ class CreateAccountCredentials extends StatelessWidget {
       final accountStoreBloc = BlocProvider.of<AccountStoreBloc>(context);
       // set acount data
       final account = accountStoreBloc.state.newAccount
-          .copyWith(name: nameCtrl.text, password: passCtrl.text);
+          .copyWithTyped(name: nameCtrl.text, password: passCtrl.text);
 
       final advancedOptions = accountStoreBloc.state.accountAdvancedOptions;
+
+      final keyType = accountStoreBloc.state.newAccount is AccountCreateMnemonic
+          ? KeyType.mnemonic
+          : KeyType.rawSeed;
 
       try {
         final json = await appServiceLoaderCubit.importAccount(
           account: account,
+          keyType: keyType,
           cryptoType: advancedOptions.type,
           derivePath: advancedOptions.path,
         );
@@ -42,6 +48,7 @@ class CreateAccountCredentials extends StatelessWidget {
         final keyPairData = await appServiceLoaderCubit.addAccount(
           json: json,
           account: account,
+          keyType: keyType,
           cryptoType: advancedOptions.type,
           derivePath: advancedOptions.path,
         );

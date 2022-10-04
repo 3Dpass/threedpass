@@ -29,7 +29,7 @@ class ImportAccountCubit extends Cubit<ImportAccountState> {
   void setMnemonic(String mnemonic) {
     emit(
       state.copyWith(
-        accountCreate: state.accountCreate.copyWith(mnemonicKey: mnemonic),
+        accountCreate: state.accountCreate.copyWithTyped(mnemonicKey: mnemonic),
       ),
     );
   }

@@ -7,8 +7,8 @@ class AccountStoreState {
     required this.newAccount,
     required this.pubKeyAddressMap,
     required this.recoveryInfo,
-    required this.walletConnectPairing,
-    required this.wcSessions,
+    // required this.walletConnectPairing,
+    // required this.wcSessions,
     required this.accountAdvancedOptions,
   });
 
@@ -19,9 +19,9 @@ class AccountStoreState {
 
   final RecoveryInfo recoveryInfo;
 
-  final bool walletConnectPairing;
+  // final bool walletConnectPairing;
 
-  final List<WCPairedData> wcSessions;
+  // final List<WCPairedData> wcSessions;
 
   final AccountAdvancedOptions accountAdvancedOptions;
 }
@@ -31,10 +31,10 @@ class _AccountStoreStateInitial extends AccountStoreState {
       : super(
           newAccount: const AccountCreateMnemonic.intial(),
           recoveryInfo: RecoveryInfo(),
-          walletConnectPairing: false,
+          // walletConnectPairing: false,
           addressIconsMap: <String, String>{},
           pubKeyAddressMap: <int, Map<String, String>>{},
-          wcSessions: <WCPairedData>[],
+          // wcSessions: <WCPairedData>[],
           accountAdvancedOptions: const AccountAdvancedOptions.defaultValues(),
         );
 }

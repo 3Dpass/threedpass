@@ -19,10 +19,6 @@ abstract class _$AccountStoreStateCWProxy {
 
   AccountStoreState recoveryInfo(RecoveryInfo recoveryInfo);
 
-  AccountStoreState walletConnectPairing(bool walletConnectPairing);
-
-  AccountStoreState wcSessions(List<WCPairedData> wcSessions);
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountStoreState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -35,8 +31,6 @@ abstract class _$AccountStoreStateCWProxy {
     AccountCreate? newAccount,
     Map<int, Map<String, String>>? pubKeyAddressMap,
     RecoveryInfo? recoveryInfo,
-    bool? walletConnectPairing,
-    List<WCPairedData>? wcSessions,
   });
 }
 
@@ -69,14 +63,6 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
       this(recoveryInfo: recoveryInfo);
 
   @override
-  AccountStoreState walletConnectPairing(bool walletConnectPairing) =>
-      this(walletConnectPairing: walletConnectPairing);
-
-  @override
-  AccountStoreState wcSessions(List<WCPairedData> wcSessions) =>
-      this(wcSessions: wcSessions);
-
-  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountStoreState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -90,8 +76,6 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
     Object? newAccount = const $CopyWithPlaceholder(),
     Object? pubKeyAddressMap = const $CopyWithPlaceholder(),
     Object? recoveryInfo = const $CopyWithPlaceholder(),
-    Object? walletConnectPairing = const $CopyWithPlaceholder(),
-    Object? wcSessions = const $CopyWithPlaceholder(),
   }) {
     return AccountStoreState(
       accountAdvancedOptions:
@@ -120,17 +104,6 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
               ? _value.recoveryInfo
               // ignore: cast_nullable_to_non_nullable
               : recoveryInfo as RecoveryInfo,
-      walletConnectPairing:
-          walletConnectPairing == const $CopyWithPlaceholder() ||
-                  walletConnectPairing == null
-              ? _value.walletConnectPairing
-              // ignore: cast_nullable_to_non_nullable
-              : walletConnectPairing as bool,
-      wcSessions:
-          wcSessions == const $CopyWithPlaceholder() || wcSessions == null
-              ? _value.wcSessions
-              // ignore: cast_nullable_to_non_nullable
-              : wcSessions as List<WCPairedData>,
     );
   }
 }

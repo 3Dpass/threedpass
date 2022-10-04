@@ -10,9 +10,11 @@ class CreateAccountForm extends StatelessWidget {
   }) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameCtrl = TextEditingController();
-  final TextEditingController _pass2Ctrl = TextEditingController();
-  final TextEditingController _passCtrl = TextEditingController();
+  final TextEditingController _nameCtrl = TextEditingController(text: '123');
+  final TextEditingController _pass2Ctrl =
+      TextEditingController(text: '123q123');
+  final TextEditingController _passCtrl =
+      TextEditingController(text: '123q123');
 
   final void Function({
     required BuildContext context,

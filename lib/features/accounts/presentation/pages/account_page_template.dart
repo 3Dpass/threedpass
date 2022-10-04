@@ -52,7 +52,6 @@ class AccountPageTemplate extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: ListView(
-                  physics: const BouncingScrollPhysics(),
                   padding: EdgeInsets.symmetric(
                     vertical: 16,
                     horizontal: needHorizontalPadding ? 16 : 0,

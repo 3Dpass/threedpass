@@ -14,6 +14,14 @@ class SetCredentials extends AccountStoreEvent {
   final String password;
 }
 
+class SetAccountSeed extends AccountStoreEvent {
+  const SetAccountSeed({
+    required this.seed,
+  });
+
+  final String seed;
+}
+
 class GenerateMnemonicKey extends AccountStoreEvent {
   const GenerateMnemonicKey(this.service, [this.key = '']);
 
