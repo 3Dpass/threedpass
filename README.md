@@ -40,3 +40,7 @@ EasyLocalization(
 ```
 
 [Read more](https://pub.dev/packages/easy_localization) about easy localization.
+
+### Copyright
+
+Copyright (C) 2022 3DPass https://3dpass.org/
