@@ -29,6 +29,12 @@ class GenerateMnemonicKey extends AccountStoreEvent {
   final String key;
 }
 
+class SetMnemonic extends AccountStoreEvent {
+  const SetMnemonic(this.mnemonic);
+
+  final String mnemonic;
+}
+
 class ResetAccount extends AccountStoreEvent {
   const ResetAccount();
 }

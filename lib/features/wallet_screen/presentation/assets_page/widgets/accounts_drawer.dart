@@ -38,6 +38,7 @@ class AccountsDrawer extends Drawer {
                 onPressed: () => context.router.push(
                   CreateAccountWrapperRoute(
                     appService: appServiceCubit.state,
+                    createRandom: true,
                   ),
                 ),
               ),
@@ -45,8 +46,9 @@ class AccountsDrawer extends Drawer {
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 text: 'import_account_button_label'.tr(),
                 onPressed: () => context.router.push(
-                  ImportAccountWrapperRoute(
+                  CreateAccountWrapperRoute(
                     appService: appServiceCubit.state,
+                    createRandom: false,
                   ),
                 ),
               ),

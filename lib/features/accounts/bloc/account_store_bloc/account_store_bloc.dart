@@ -3,7 +3,6 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/api/types/recoveryInfo.dart';
-import 'package:polkawallet_sdk/api/types/walletConnect/pairingData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/features/accounts/domain/account_advanced_options.dart';
 import 'package:threedpass/features/accounts/domain/account_create.dart';
@@ -22,6 +21,7 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     on<SetAddressIcon>(_setAddressIcon);
     on<PopToRoout>(_popToRoout);
     on<ChangeAdvancedOptions>(_changeAdvancedOptions);
+    on<SetMnemonic>(_setMnemonic);
   }
 
   final BuildContext outerContext;
@@ -51,6 +51,17 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     Emitter<AccountStoreState> emit,
   ) async {
     emit(state.copyWith(accountAdvancedOptions: event.options));
+  }
+
+  Future<void> _setMnemonic(
+    SetMnemonic event,
+    Emitter<AccountStoreState> emit,
+  ) async {
+    emit(state.copyWith(
+      newAccount: state.newAccount.copyWithTyped(
+        mnemonicKey: event.mnemonic,
+      ),
+    ));
   }
 
   Future<void> _generateMnemonicKey(

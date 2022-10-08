@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:polkawallet_sdk/api/apiKeyring.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/show_text_snackbar.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
-import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_cubit.dart';
+import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
 import 'package:threedpass/features/accounts/domain/account_create.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/create_account_form.dart';
 
@@ -25,16 +26,23 @@ class ImportAccountCreatePage extends StatelessWidget {
       final appServiceLoaderCubit =
           BlocProvider.of<AppServiceLoaderCubit>(context);
 
-      final importAccountCubit = BlocProvider.of<ImportAccountCubit>(context);
+      final accountStoreBloc = BlocProvider.of<AccountStoreBloc>(context);
+      // set acount data
+      final account = accountStoreBloc.state.newAccount
+          .copyWithTyped(name: nameCtrl.text, password: passCtrl.text);
 
-      final account = importAccountCubit.state.accountCreate.copyWithTyped(
-        name: nameCtrl.text,
-        password: passCtrl.text,
-      );
+      final advancedOptions = accountStoreBloc.state.accountAdvancedOptions;
+
+      final keyType = accountStoreBloc.state.newAccount is AccountCreateMnemonic
+          ? KeyType.mnemonic
+          : KeyType.rawSeed;
 
       try {
         final accJson = await appServiceLoaderCubit.importAccount(
           account: account,
+          keyType: keyType,
+          cryptoType: advancedOptions.type,
+          derivePath: advancedOptions.path,
         );
         DefaultLoadingDialog.hide(context);
 
@@ -48,6 +56,9 @@ class ImportAccountCreatePage extends StatelessWidget {
           final keyPairData = await appServiceLoaderCubit.addAccount(
             json: accJson,
             account: account,
+            keyType: keyType,
+            cryptoType: advancedOptions.type,
+            derivePath: advancedOptions.path,
           );
 
           // apply current account
@@ -60,7 +71,7 @@ class ImportAccountCreatePage extends StatelessWidget {
         showTextSnackBar('error_import_invalid', context);
       }
 
-      importAccountCubit.popToRoot();
+      accountStoreBloc.add(const PopToRoout());
     }
   }
 

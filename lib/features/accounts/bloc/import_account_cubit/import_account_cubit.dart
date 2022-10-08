@@ -7,8 +7,9 @@ import 'package:threedpass/features/accounts/domain/account_advanced_options.dar
 import 'package:threedpass/features/accounts/domain/account_create.dart';
 import 'package:threedpass/router/route_names.dart';
 
-class ImportAccountCubit extends Cubit<ImportAccountState> {
-  ImportAccountCubit(this.outerContext) : super(ImportAccountState.initial());
+// TODO Убрать этот костыль
+class ImportAccountCubitA extends Cubit<ImportAccountState> {
+  ImportAccountCubitA(this.outerContext) : super(ImportAccountState.initial());
 
   final BuildContext outerContext;
   final TextEditingController textEditingController = TextEditingController();

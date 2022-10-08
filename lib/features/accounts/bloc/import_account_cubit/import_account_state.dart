@@ -25,5 +25,4 @@ class ImportAccountState {
 enum ImportType {
   mnemonic,
   rawSeed,
-  keystore,
 }

@@ -112,7 +112,7 @@
     "@wallet_base":{
     },
     "wallet_header_title": "Wallet",
-    "create_account_button_label": "Create account",
+    "create_account_button_label": "New random account",
     "import_account_button_label": "Import account",
 
     "init_status_sdk": "Initializing...",
@@ -131,7 +131,7 @@
 
     "@create_account_page":{
     },
-    "create_account_title": "Create account",
+    "create_account_title": "Generate account",
     "import_account_title": "Import account",
 
     "create_warn1_header": "Please note",
@@ -171,9 +171,9 @@
     "error_import_duplicate": "Error: this account has been already imported",
     "error_import_invalid": "Error: this account is invalid",
 
-    "create_account_type_title": "Create account from...",
     "create_type_mnemonic": "Mnemonic",
     "create_type_object": "3D Object",
+    "create_account_from_object": "Create account from 3D Object",
 
     "create_from_object_error_no_stable_hashes": "ERROR. No objects with stable hashes found.",
 
@@ -185,7 +185,6 @@
 
     "import_type_mnemonic": "Mnemonic",
     "import_type_raw_seed": "Raw seed",
-    "import_type_keystore": "Keystore (json)",
 
     "import_mnemonic_hint": "Enter mnemonic",
     "import_mnemonic_preview_placeholder": "Enter mnemonic to see address",

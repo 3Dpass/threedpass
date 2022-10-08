@@ -22,6 +22,7 @@ class CreateAccountType extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             const _Item(CreateType.mnemonic),
+            // const _Item(CreateType.rawSeed), // TODO Add raw seed method
             const _Item(CreateType.object),
           ],
         ),

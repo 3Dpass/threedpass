@@ -21,7 +21,10 @@ class CreateAccountButton extends StatelessWidget {
         label: Text('create_account_button_label'.tr()),
         onPressed: state.status == AppServiceInitStatus.connected
             ? () => context.router.push(
-                  CreateAccountWrapperRoute(appService: state),
+                  CreateAccountWrapperRoute(
+                    appService: state,
+                    createRandom: true,
+                  ),
                 )
             : null,
       ),

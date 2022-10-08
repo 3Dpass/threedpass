@@ -7,6 +7,8 @@ import 'package:threedpass/features/accounts/presentation/pages/create_account/c
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_mnemonic_confirm.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_type.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart';
+import 'package:threedpass/features/accounts/presentation/pages/create_account/import_account_create_page.dart';
+import 'package:threedpass/features/accounts/presentation/pages/create_account/import_mnemonic_form.dart';
 import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/router.dart';
 
@@ -18,10 +20,6 @@ const AutoRoute createAccountPageRoute = AutoRoute(
       page: CreateAccountType,
       name: RouteNames.createAccountType,
       path: '',
-    ),
-    AutoRoute(
-      page: CreateAccountFromObject,
-      name: RouteNames.createAccountFromObject,
     ),
     AutoRoute(
       page: CreateAccountInfoPage,
@@ -43,6 +41,20 @@ const AutoRoute createAccountPageRoute = AutoRoute(
       page: CreateAccountLoader,
       name: RouteNames.createAccountLoader,
       customRouteBuilder: dialogBuilder,
+    ),
+    // create from object
+    AutoRoute(
+      page: CreateAccountFromObject,
+      name: RouteNames.createAccountFromObject,
+    ),
+    // Import mnemonic
+    AutoRoute(
+      page: ImportMnemonicForm,
+      name: RouteNames.importMnemonicForm,
+    ),
+    AutoRoute(
+      page: ImportAccountCreatePage,
+      name: RouteNames.importAccountCreatePage,
     ),
   ],
 );

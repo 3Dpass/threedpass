@@ -9,9 +9,11 @@ class CreateAccountWrapper extends StatelessWidget implements AutoRouteWrapper {
   const CreateAccountWrapper({
     Key? key,
     required this.appService,
+    required this.createRandom,
   }) : super(key: key);
 
   final AppService appService;
+  final bool createRandom;
 
   @override
   Widget wrappedRoute(BuildContext context) {

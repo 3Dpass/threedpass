@@ -21,7 +21,10 @@ class ImportAccountButton extends StatelessWidget {
         label: Text('import_account_button_label'.tr()),
         onPressed: state.status == AppServiceInitStatus.connected
             ? () => context.router.push(
-                  ImportAccountWrapperRoute(appService: state),
+                  CreateAccountWrapperRoute(
+                    appService: state,
+                    createRandom: false,
+                  ),
                 )
             : null,
       ),

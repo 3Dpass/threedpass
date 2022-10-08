@@ -64,9 +64,7 @@ class CreateAccountCredentials extends StatelessWidget {
         );
       }
 
-      accountStoreBloc.add(
-        const PopToRoout(),
-      );
+      accountStoreBloc.add(const PopToRoout());
     }
   }
 
