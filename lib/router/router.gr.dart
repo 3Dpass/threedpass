@@ -13,7 +13,6 @@
 import 'package:auto_route/auto_route.dart' as _i32;
 import 'package:flutter/material.dart' as _i33;
 
-import '../core/polkawallet/app_service.dart' as _i37;
 import '../core/widgets/default_loading_dialog.dart' as _i7;
 import '../core/widgets/error_page.dart' as _i4;
 import '../features/accounts/presentation/pages/create_account/create_account_credentials.dart'
@@ -41,7 +40,7 @@ import '../features/compare_page/presentation/pages/compare_page_wrapper.dart'
 import '../features/hashes_list/domain/entities/hash_object.dart' as _i35;
 import '../features/hashes_list/domain/entities/snapshot.dart' as _i36;
 import '../features/home_page/presentation/home_page.dart' as _i1;
-import '../features/preview_page/bloc/preview_page_cubit.dart' as _i38;
+import '../features/preview_page/bloc/preview_page_cubit.dart' as _i37;
 import '../features/preview_page/presentation/pages/preview_page.dart' as _i17;
 import '../features/preview_page/presentation/pages/preview_page_wrapper.dart'
     as _i2;
@@ -107,13 +106,8 @@ class AppRouter extends _i32.RootStackRouter {
           child: _i4.ErrorPage(key: args.key, error: args.error));
     },
     CreateAccountWrapperRoute.name: (routeData) {
-      final args = routeData.argsAs<CreateAccountWrapperRouteArgs>();
       return _i32.MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: _i5.CreateAccountWrapper(
-              key: args.key,
-              appService: args.appService,
-              createRandom: args.createRandom));
+          routeData: routeData, child: const _i5.CreateAccountWrapper());
     },
     CalcHashLoadingDialogRoute.name: (routeData) {
       return _i32.CustomPage<dynamic>(
@@ -331,12 +325,12 @@ class AppRouter extends _i32.RootStackRouter {
         _i32.RouteConfig(WebWalletRoute.name, path: '/web-wallet-page'),
         _i32.RouteConfig(ErrorRoute.name, path: '/error-page'),
         _i32.RouteConfig(CreateAccountWrapperRoute.name,
-            path: '/create-account-wrapper',
+            path: '/create-account/',
             children: [
               _i32.RouteConfig(CreateAccountTypeRoute.name,
-                  path: '', parent: CreateAccountWrapperRoute.name),
+                  path: 'choose-type', parent: CreateAccountWrapperRoute.name),
               _i32.RouteConfig(CreateAccountInfoRoute.name,
-                  path: 'create-account-info-page',
+                  path: 'generate-random',
                   parent: CreateAccountWrapperRoute.name),
               _i32.RouteConfig(MnemonicBackupRoute.name,
                   path: 'create-account-mnemonic-backup',
@@ -467,36 +461,12 @@ class ErrorRouteArgs {
 
 /// generated route for
 /// [_i5.CreateAccountWrapper]
-class CreateAccountWrapperRoute
-    extends _i32.PageRouteInfo<CreateAccountWrapperRouteArgs> {
-  CreateAccountWrapperRoute(
-      {_i33.Key? key,
-      required _i37.AppService appService,
-      required bool createRandom,
-      List<_i32.PageRouteInfo>? children})
+class CreateAccountWrapperRoute extends _i32.PageRouteInfo<void> {
+  const CreateAccountWrapperRoute({List<_i32.PageRouteInfo>? children})
       : super(CreateAccountWrapperRoute.name,
-            path: '/create-account-wrapper',
-            args: CreateAccountWrapperRouteArgs(
-                key: key, appService: appService, createRandom: createRandom),
-            initialChildren: children);
+            path: '/create-account/', initialChildren: children);
 
   static const String name = 'CreateAccountWrapperRoute';
-}
-
-class CreateAccountWrapperRouteArgs {
-  const CreateAccountWrapperRouteArgs(
-      {this.key, required this.appService, required this.createRandom});
-
-  final _i33.Key? key;
-
-  final _i37.AppService appService;
-
-  final bool createRandom;
-
-  @override
-  String toString() {
-    return 'CreateAccountWrapperRouteArgs{key: $key, appService: $appService, createRandom: $createRandom}';
-  }
 }
 
 /// generated route for
@@ -669,7 +639,7 @@ class CompareWrapperRouteArgs {
 class SaveTopHashesDialogRoute
     extends _i32.PageRouteInfo<SaveTopHashesDialogRouteArgs> {
   SaveTopHashesDialogRoute(
-      {_i33.Key? key, required _i38.PreviewPageCubitState pageCubitState})
+      {_i33.Key? key, required _i37.PreviewPageCubitState pageCubitState})
       : super(SaveTopHashesDialogRoute.name,
             path: 'save-top-hashes-dialog',
             args: SaveTopHashesDialogRouteArgs(
@@ -683,7 +653,7 @@ class SaveTopHashesDialogRouteArgs {
 
   final _i33.Key? key;
 
-  final _i38.PreviewPageCubitState pageCubitState;
+  final _i37.PreviewPageCubitState pageCubitState;
 
   @override
   String toString() {
@@ -782,7 +752,8 @@ class RenameSnapshotDialogRouteArgs {
 /// generated route for
 /// [_i23.CreateAccountType]
 class CreateAccountTypeRoute extends _i32.PageRouteInfo<void> {
-  const CreateAccountTypeRoute() : super(CreateAccountTypeRoute.name, path: '');
+  const CreateAccountTypeRoute()
+      : super(CreateAccountTypeRoute.name, path: 'choose-type');
 
   static const String name = 'CreateAccountTypeRoute';
 }
@@ -791,7 +762,7 @@ class CreateAccountTypeRoute extends _i32.PageRouteInfo<void> {
 /// [_i24.CreateAccountInfoPage]
 class CreateAccountInfoRoute extends _i32.PageRouteInfo<void> {
   const CreateAccountInfoRoute()
-      : super(CreateAccountInfoRoute.name, path: 'create-account-info-page');
+      : super(CreateAccountInfoRoute.name, path: 'generate-random');
 
   static const String name = 'CreateAccountInfoRoute';
 }

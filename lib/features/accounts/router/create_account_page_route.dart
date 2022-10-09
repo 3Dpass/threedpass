@@ -10,20 +10,23 @@ import 'package:threedpass/features/accounts/presentation/pages/create_account/c
 import 'package:threedpass/features/accounts/presentation/pages/create_account/import_account_create_page.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/import_mnemonic_form.dart';
 import 'package:threedpass/router/route_names.dart';
+import 'package:threedpass/router/route_paths.dart';
 import 'package:threedpass/router/router.dart';
 
 const AutoRoute createAccountPageRoute = AutoRoute(
   page: CreateAccountWrapper,
   name: RouteNames.createAccountWrapper,
+  path: RoutePaths.createAccountMain,
   children: [
     AutoRoute(
       page: CreateAccountType,
       name: RouteNames.createAccountType,
-      path: '',
+      path: RoutePaths.createAccountChooseType,
     ),
     AutoRoute(
       page: CreateAccountInfoPage,
       name: RouteNames.createAccountInfoPage,
+      path: RoutePaths.createAccountRandomMnemonic,
     ),
     AutoRoute(
       page: CreateAccountMnemonicBackup,

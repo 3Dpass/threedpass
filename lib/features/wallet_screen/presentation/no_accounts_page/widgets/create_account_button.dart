@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class CreateAccountButton extends StatelessWidget {
@@ -20,12 +21,7 @@ class CreateAccountButton extends StatelessWidget {
         icon: const Icon(Icons.add),
         label: Text('create_account_button_label'.tr()),
         onPressed: state.status == AppServiceInitStatus.connected
-            ? () => context.router.push(
-                  CreateAccountWrapperRoute(
-                    appService: state,
-                    createRandom: true,
-                  ),
-                )
+            ? () => CreateAccountWrapper.pushToGenerateRandom(context)
             : null,
       ),
     );

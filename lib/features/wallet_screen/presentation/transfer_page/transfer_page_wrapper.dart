@@ -8,14 +8,16 @@ import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart'
 
 class TransferPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   const TransferPageWrapper({
-    Key? key,
+    final Key? key,
   }) : super(key: key);
 
   @override
-  Widget wrappedRoute(BuildContext context) {
+  Widget wrappedRoute(final BuildContext context) {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     final balance = BalanceUtils.bigIntToDouble(
-      BalanceUtils.balanceInt(appService.balance.value.availableBalance),
+      BalanceUtils.balanceInt(
+        appService.balance.value.availableBalance as String?,
+      ),
       appService.networkStateData.safeDecimals,
     );
 

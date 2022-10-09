@@ -17,7 +17,7 @@ class CreateAccountType extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'create_account_type_title'.tr(),
+              'import_account_type_title'.tr(),
               style: Theme.of(context).textTheme.headline6,
             ),
             const SizedBox(height: 8),
