@@ -9,10 +9,12 @@ class AccountPageTemplate extends StatelessWidget {
     this.onSubmitPressed,
     this.submitButton,
     this.disableBottomButton = false,
+    bool? needHorizontalPadding,
   })  :
         // Next page or [submitButton] implementation has to be provided
         assert(onSubmitPressed != null || submitButton != null),
         appbarTitle = 'create_account_title',
+        needHorizontalPadding = needHorizontalPadding ?? true,
         super(key: key);
 
   const AccountPageTemplate.import({
@@ -21,12 +23,14 @@ class AccountPageTemplate extends StatelessWidget {
     this.onSubmitPressed,
     this.submitButton,
     this.disableBottomButton = false,
+    bool? needHorizontalPadding,
   })  :
         // Next page or [submitButton] implementation has to be provided
         assert(onSubmitPressed != null ||
             submitButton != null ||
             disableBottomButton),
         appbarTitle = 'import_account_title',
+        needHorizontalPadding = needHorizontalPadding ?? true,
         super(key: key);
 
   final void Function(BuildContext)? onSubmitPressed;
@@ -34,6 +38,7 @@ class AccountPageTemplate extends StatelessWidget {
   final Widget? submitButton;
   final String appbarTitle;
   final bool disableBottomButton;
+  final bool needHorizontalPadding;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -45,7 +50,10 @@ class AccountPageTemplate extends StatelessWidget {
               Expanded(
                 child: ListView(
                   physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.all(16),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 16,
+                    horizontal: needHorizontalPadding ? 16 : 0,
+                  ),
                   shrinkWrap: true,
                   children: children,
                 ),

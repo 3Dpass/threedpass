@@ -5,8 +5,12 @@ import 'package:polkawallet_sdk/plugin/index.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 
 class D3pCorePlugin extends PolkawalletPlugin {
-  D3pCorePlugin({required int ss58, required bool isTestNet})
-      : basic = PluginBasicData(
+  D3pCorePlugin({
+    required int ss58,
+    required bool isTestNet,
+    required String name,
+  }) : basic = PluginBasicData(
+          name: name,
           ss58: ss58,
           isTestNet: isTestNet,
         );

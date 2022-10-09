@@ -15,14 +15,12 @@ class CreateAccountMnemonicBackup extends StatelessWidget {
       // ignore: prefer-extracting-callbacks
       builder: ({required String mnemonic, required AppService appService}) {
         // Provide advanced options form
-        return  Scaffold(
-            appBar: CommonStringAppbar(title: 'create_account_title'.tr()),
-            // listen and react to  advanced options form changes
-            body:  MnemonicBackupContent(
-                mnemonic: mnemonic,
-              ),
-            
-          
+        return Scaffold(
+          appBar: CommonStringAppbar(title: 'create_account_title'.tr()),
+          // listen and react to  advanced options form changes
+          body: MnemonicBackupContent(
+            mnemonic: mnemonic,
+          ),
         );
       },
     );

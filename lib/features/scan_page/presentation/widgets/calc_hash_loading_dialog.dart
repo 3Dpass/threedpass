@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class CalcHashLoadingWidget extends StatelessWidget {
   const CalcHashLoadingWidget({
@@ -12,7 +12,7 @@ class CalcHashLoadingWidget extends StatelessWidget {
     return AlertDialog(
       content: Row(
         children: [
-          const CircularProgressIndicator(),
+          PlatformCircularProgressIndicator(),
           Flexible(
             child: Container(
               margin: const EdgeInsets.only(left: 16),

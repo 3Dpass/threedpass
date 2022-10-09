@@ -1,17 +1,22 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/router.dart';
 
 class DefaultLoadingDialog extends StatelessWidget {
-  const DefaultLoadingDialog({Key? key}) : super(key: key);
+  const DefaultLoadingDialog({Key? key, this.text}) : super(key: key);
 
-  static void show(BuildContext context) {
+  final String? text;
+
+  static void show(BuildContext context, [String? text]) {
     showDialog(
       useRootNavigator: false,
       context: context,
       barrierDismissible: false,
-      builder: (_) => const DefaultLoadingDialog(),
+      builder: (_) => DefaultLoadingDialog(
+        text: text,
+      ),
     );
   }
 
@@ -21,18 +26,59 @@ class DefaultLoadingDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Center(
-        child: Card(
-          child: Container(
-            width: 80,
-            height: 80,
-            padding: const EdgeInsets.all(12.0),
-            child: const CircularProgressIndicator(),
+    return PlatformAlertDialog(
+      content: WillPopScope(
+        onWillPop: () async => false,
+        child: SizedBox(
+          height: 42,
+          width: 42,
+          child: Center(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                PlatformCircularProgressIndicator(),
+                text != null
+                    ? Row(
+                        children: [
+                          const SizedBox(width: 24),
+                          Text(
+                            text!,
+                          ),
+                        ],
+                      )
+                    : const SizedBox(),
+              ],
+            ),
           ),
         ),
       ),
+      // WillPopScope(
+      //   onWillPop: () async => false,
+      //   child: SizedBox(
+      //     // height: 69,
+      //     child: Center(
+      //       child:
+      // Row(
+      //         crossAxisAlignment: CrossAxisAlignment.center,
+      //         mainAxisAlignment: MainAxisAlignment.center,
+      //         children: [
+      //           PlatformCircularProgressIndicator(),
+      //           text != null
+      //               ? Row(
+      //                   children: [
+      //                     const SizedBox(width: 24),
+      //                     Text(
+      //                       text!,
+      //                     ),
+      //                   ],
+      //                 )
+      //               : const SizedBox(),
+      //         ],
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

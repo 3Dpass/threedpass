@@ -32,12 +32,14 @@ extension SnapshotFileFactory on Snapshot {
   static Future<Either<String, Pair<HashObject?, Snapshot>>>
       createSnapshotFromFile({
     required String filePath,
-    required SettingsConfig settings,
+    required ScanSettings settings,
     required BuildContext context,
+    required String transBytes,
   }) async {
     final hashes = await calcHashes(
       settings,
       filePath,
+      transBytes,
     );
 
     final rawObjName = filePath.split('/').last;
@@ -68,13 +70,15 @@ extension SnapshotFileFactory on Snapshot {
 
   /// Calc hashes
   static Future<String> calcHashes(
-    SettingsConfig settings,
+    ScanSettings settings,
     String filePath,
+    String transBytes,
   ) async {
     final calculator = Calc2(
       gridSize: settings.gridSize,
       nSections: settings.nSections,
       filePath: filePath,
+      transBytes: transBytes,
     );
 
     return await calculator.calcHashes();

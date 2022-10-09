@@ -6,6 +6,7 @@ import 'package:threedpass/features/accounts/presentation/pages/create_account/c
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_mnemonic_confirm.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart';
 import 'package:threedpass/router/route_names.dart';
+import 'package:threedpass/router/router.dart';
 
 const AutoRoute createAccountPageRoute = AutoRoute(
   page: CreateAccountWrapper,
@@ -28,9 +29,10 @@ const AutoRoute createAccountPageRoute = AutoRoute(
       page: CreateAccountCredentials,
       name: RouteNames.createAccountCredentials,
     ),
-    AutoRoute(
+    CustomRoute(
       page: CreateAccountLoader,
       name: RouteNames.createAccountLoader,
+      customRouteBuilder: dialogBuilder,
     ),
   ],
 );

@@ -12,7 +12,7 @@ import 'package:threedpass/core/utils/hash_file.dart';
 import 'package:threedpass/core/utils/pair.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/features/settings_page/domain/entities/settings_config.dart';
+import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 
 part 'snapshot.g.dart';
 part 'snapshot_create_from_file.dart';
@@ -33,7 +33,7 @@ class Snapshot {
   final String? externalPathToObj;
 
   @HiveField(4)
-  final SettingsConfig? settingsConfig;
+  final ScanSettings? settingsConfig;
 
   @HiveField(5)
   final int fileHash;

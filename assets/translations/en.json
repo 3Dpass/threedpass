@@ -10,6 +10,7 @@
     },
     "Share": "Share",
     "Delete": "Delete",
+    "Remove": "Remove",
     "Save": "Save",
     "Cancel": "Cancel",
     "Saved": "Saved",
@@ -19,6 +20,8 @@
     "Copied": "Copied",
     "Apply": "Apply",
     "Invalid": "Invalid",
+    "Clear": "Clear",
+    "Copy": "Copy",
 
     "@home_page":{
     },
@@ -34,6 +37,7 @@
 
     "error_hash_list_bloc": "Hashes list is not initalized :(",
     "error_file_picker": "File picker error",
+    "error_trans_bytes_unavaliable": "Error: both user input and last block are unavaliable. Impossible to scan object.",
 
     "@preview_page":{
     },
@@ -79,6 +83,18 @@
     "choose_algorithm_label": "Choose algorithm",
     "grid_size_label": "Grid size",
     "n_sections_label": "N Sections",
+    "trans_bytes_input_label": "Rotation bytes",
+    "error_n_sections_validator": "N Sections must be a number",
+    "hash_settings_title": "Hash settings",
+    "wallet_settings_title": "Wallet settings",
+    "preview_settings_title": "Preview settings",
+    "preview_settings_pixel_ratio_label": "Pixel ratio",
+    "wallet_settings_istestnet_switch": "Is Test net",
+    "node_url_label": "Node URL",
+    "error_hex": "Invalid input. Must be 8 digits",
+
+    "trans_help_text": "By default this is the first 4 bytes of the last block hash.",
+    "pixel_ratio_help_text": "Decreasing the value reduces preview quality, but increases performance.",
     
     "algorithm_span": "Algorithm",
     "grid_span":"Grid",
@@ -139,6 +155,9 @@
 
     "error_create_account": "Error. account was NOT created.",
     "create_account_loading": "Creating account...",
+    "import_account_loading": "Importing account...",
+    "error_import_duplicate": "Error: this account has been already imported",
+    "error_import_invalid": "Error: this account is invalid",
 
     "encrypt_type_picker_label": "Encrypt Type",
     "derivation_path_input_label": "Secret derivation path",
@@ -150,6 +169,48 @@
     "import_type_raw_seed": "Raw seed",
     "import_type_keystore": "Keystore (json)",
 
+    "import_mnemonic_hint": "Enter mnemonic",
+    "import_mnemonic_preview_placeholder": "Enter mnemonic to see address",
+
     "invalid_input": "Invalid input",
-    "error_mnemonic_not_found": "Error: mnemonic not found"
+    "error_mnemonic_not_found": "Error: mnemonic not found",
+    "error_empty_account_address": "Address can't be empty",
+
+    "@assets_page":{
+    },
+    "balance_avaliable_title": "Available",
+    "balance_locked_title": "Locked",
+    "balance_reserved_title": "Reserved",
+    "transfer_coins_button_label": "Transfer",
+    "recieve_coins_button_label": "Recieve",
+    "remove_account_button_label": "Delete account",
+
+    "remove_accout_dialog_title": "Delete account {}",
+    "remove_accout_dialog_text": "Are you sure you want to delete this account?",
+
+    "@recieve_page":{
+    },
+    "recieve_page_title": "Recieve",
+
+    "@transfer_page":{
+    },
+    "transfer_page_title": "Transfer",
+    "from_address_label": "From",
+    "to_address_label": "To address",
+    "to_address_hint": "Enter address",
+    "amount_label": "Amount (Balance: {})",
+    "amount_hint": "Enter amount",
+    "enter_password_hint": "password",
+    "enter_password_label": "Your password",
+    "existential_deposit_label": "existential deposit",
+    "existential_deposit_text": "The minimum amount thath an account should have to be deemed active.",
+    "estimated_transfer_fee": "Estimated transfer fee",
+    "keep_alive_label": "keep alive",
+    "keep_alive_text": "With the keep-alive option set, the account is protected agains removal due to low balances.",
+    "make_transfer_label": "Make transfer",
+    "error_wrong_amount": "A real number smaller than the avaliable balance was expected",
+    "could_not_check_address": "Could not check address",
+    "wrong_address": "Invalid address provided",
+    "transfer_loader_text": "Transfering...",
+    "transfer_success_text": "Funds are sent"
 }
