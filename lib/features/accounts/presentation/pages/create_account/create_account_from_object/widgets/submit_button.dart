@@ -10,7 +10,11 @@ class _SubmitButton extends StatelessWidget {
       SetAccountSeed(seed: '0x' + chosenHash.value),
     );
 
-    context.router.push(const CreateAccountCredentialsRoute());
+    context.router.push(
+      CreateAccountCredentialsRoute(
+        appbarText: AccountAppbarTitle.import,
+      ),
+    );
   }
 
   @override

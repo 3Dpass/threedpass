@@ -176,6 +176,9 @@
     "create_type_object": "3D Object",
     "create_account_from_object": "Create account from 3D Object",
 
+    "create_from_object_text1": "Choose object",
+    "create_from_object_text2": "Choose stable hash",
+
     "create_from_object_error_no_stable_hashes": "ERROR. No objects with stable hashes found.",
 
     "encrypt_type_picker_label": "Encrypt Type",

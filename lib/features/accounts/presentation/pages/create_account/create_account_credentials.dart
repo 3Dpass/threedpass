@@ -16,7 +16,10 @@ import 'package:threedpass/features/accounts/presentation/widgets/create_account
 import 'package:threedpass/router/router.gr.dart';
 
 class CreateAccountCredentials extends StatelessWidget {
-  const CreateAccountCredentials({final Key? key}) : super(key: key);
+  const CreateAccountCredentials({required this.appbarText, final Key? key})
+      : super(key: key);
+
+  final String appbarText;
 
   Future<void> _onSubmit({
     required final BuildContext context,
@@ -71,6 +74,7 @@ class CreateAccountCredentials extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return CreateAccountForm(
+      appbarText: appbarText,
       onSubmit: _onSubmit,
     );
   }

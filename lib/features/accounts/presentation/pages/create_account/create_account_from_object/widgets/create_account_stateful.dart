@@ -66,10 +66,10 @@ class _MainState extends State<_CreateAccountStateful> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Choose object',
+              'create_from_object_text1'.tr(),
               style: Theme.of(context).textTheme.headline6,
             ),
-            const SizedBox(height: 8),
+            const SizedBox8(),
             DropdownButton<HashObject>(
               style: Theme.of(context).textTheme.bodyText1,
               value: objectValueNotifier.value,
@@ -87,12 +87,12 @@ class _MainState extends State<_CreateAccountStateful> {
                   .toList(),
               onChanged: (final modelChosen) => onObjectChoose(modelChosen),
             ),
-            const SizedBox(height: 24),
+            const SizedBox24(),
             Text(
-              'Choose stable hash',
+              'create_from_object_text2'.tr(),
               style: Theme.of(context).textTheme.headline6,
             ),
-            const SizedBox(height: 8),
+            const SizedBox8(),
             ValueListenableBuilder(
               valueListenable: objectValueNotifier,
               builder: (final context, final _, final __) =>
@@ -115,7 +115,7 @@ class _MainState extends State<_CreateAccountStateful> {
                 onChanged: (final modelChosen) => onHashChoose(modelChosen),
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox36(),
             Text(
               'create_warn5_header'.tr(),
               style: Theme.of(context)
@@ -123,9 +123,9 @@ class _MainState extends State<_CreateAccountStateful> {
                   .headline6
                   ?.copyWith(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 4),
+            const SizedBox4(),
             Text('create_warn5_text'.tr()),
-            const SizedBox(height: 24),
+            const SizedBox24(),
           ],
         ),
         _SubmitButton(chosenHash),

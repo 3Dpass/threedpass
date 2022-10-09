@@ -41,7 +41,11 @@ class ImportMnemonicForm extends StatelessWidget {
             BlocProvider.of<AccountStoreBloc>(innerContext);
         accountStoreBloc.add(SetMnemonic(input));
         unawaited(
-          innerContext.router.push(const CreateAccountCredentialsRoute()),
+          innerContext.router.push(
+            CreateAccountCredentialsRoute(
+              appbarText: AccountAppbarTitle.import,
+            ),
+          ),
         );
       } else {
         showTextSnackBar('error_mnemonic_not_found', outerContext);

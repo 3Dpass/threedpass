@@ -6,8 +6,11 @@ import 'package:threedpass/features/accounts/presentation/pages/account_page_tem
 class CreateAccountForm extends StatelessWidget {
   CreateAccountForm({
     required this.onSubmit,
+    required this.appbarText,
     final Key? key,
   }) : super(key: key);
+
+  final String appbarText;
 
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameCtrl = TextEditingController();
@@ -41,7 +44,8 @@ class CreateAccountForm extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return AccountPageTemplate.create(
+    return AccountPageTemplate(
+      appbarTitle: appbarText,
       children: [
         Form(
           key: _formKey,

@@ -4,6 +4,23 @@ import 'package:threedpass/core/widgets/appbars/common_string_appbar.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 
 class AccountPageTemplate extends StatelessWidget {
+  const AccountPageTemplate({
+    required this.children,
+    required this.appbarTitle,
+    final Key? key,
+    this.onSubmitPressed,
+    this.submitButton,
+    this.disableBottomButton = false,
+    final bool? needHorizontalPadding,
+  })  : assert(
+          onSubmitPressed != null ||
+              submitButton != null ||
+              disableBottomButton,
+          'Something about submit button has to be provided',
+        ),
+        needHorizontalPadding = needHorizontalPadding ?? true,
+        super(key: key);
+
   const AccountPageTemplate.create({
     required this.children,
     final Key? key,
@@ -17,7 +34,7 @@ class AccountPageTemplate extends StatelessWidget {
               disableBottomButton,
           'Something about submit button has to be provided',
         ),
-        appbarTitle = 'create_account_title',
+        appbarTitle = AccountAppbarTitle.create,
         needHorizontalPadding = needHorizontalPadding ?? true,
         super(key: key);
 
@@ -36,7 +53,7 @@ class AccountPageTemplate extends StatelessWidget {
               disableBottomButton,
           'Something about submit button has to be provided',
         ),
-        appbarTitle = 'import_account_title',
+        appbarTitle = AccountAppbarTitle.import,
         needHorizontalPadding = needHorizontalPadding ?? true,
         super(key: key);
 
@@ -87,4 +104,9 @@ class AccountPageTemplate extends StatelessWidget {
           ),
         ),
       );
+}
+
+class AccountAppbarTitle {
+  static const String create = 'create_account_title';
+  static const String import = 'import_account_title';
 }

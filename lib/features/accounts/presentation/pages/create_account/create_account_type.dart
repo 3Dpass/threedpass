@@ -10,7 +10,7 @@ class CreateAccountType extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return AccountPageTemplate.create(
+    return AccountPageTemplate.import(
       disableBottomButton: true,
       children: [
         Column(

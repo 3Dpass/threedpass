@@ -241,8 +241,11 @@ class AppRouter extends _i31.RootStackRouter {
           child: const _i26.CreateAccountMnemonicConfirm());
     },
     CreateAccountCredentialsRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateAccountCredentialsRouteArgs>();
       return _i31.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i27.CreateAccountCredentials());
+          routeData: routeData,
+          child: _i27.CreateAccountCredentials(
+              appbarText: args.appbarText, key: args.key));
     },
     CreateAccountLoaderRoute.name: (routeData) {
       return _i31.CustomPage<dynamic>(
@@ -778,12 +781,28 @@ class MnemonicConfirmRoute extends _i31.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i27.CreateAccountCredentials]
-class CreateAccountCredentialsRoute extends _i31.PageRouteInfo<void> {
-  const CreateAccountCredentialsRoute()
+class CreateAccountCredentialsRoute
+    extends _i31.PageRouteInfo<CreateAccountCredentialsRouteArgs> {
+  CreateAccountCredentialsRoute({required String appbarText, _i32.Key? key})
       : super(CreateAccountCredentialsRoute.name,
-            path: 'create-account-credentials');
+            path: 'create-account-credentials',
+            args: CreateAccountCredentialsRouteArgs(
+                appbarText: appbarText, key: key));
 
   static const String name = 'CreateAccountCredentialsRoute';
+}
+
+class CreateAccountCredentialsRouteArgs {
+  const CreateAccountCredentialsRouteArgs({required this.appbarText, this.key});
+
+  final String appbarText;
+
+  final _i32.Key? key;
+
+  @override
+  String toString() {
+    return 'CreateAccountCredentialsRouteArgs{appbarText: $appbarText, key: $key}';
+  }
 }
 
 /// generated route for
