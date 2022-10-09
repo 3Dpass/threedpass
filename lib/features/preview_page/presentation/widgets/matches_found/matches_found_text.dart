@@ -8,16 +8,16 @@ import 'package:threedpass/router/router.gr.dart';
 
 class MatchesFoundText extends StatelessWidget {
   const MatchesFoundText({
-    Key? key,
     required this.state,
     required this.number,
+    final Key? key,
   }) : super(key: key);
 
   final int number;
   final PreviewPageCubitState state;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return MatchHyperlink(
       mainText: plural('MATCHES_number_plural', number),
       clickable: 'matches_FOUND'.tr(),

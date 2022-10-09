@@ -7,5 +7,5 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class BestNumberAvaliableCubit extends Cubit<bool> {
   BestNumberAvaliableCubit() : super(false);
 
-  setValue(bool value) => emit(value);
+  void setValue(final bool value) => emit(value);
 }

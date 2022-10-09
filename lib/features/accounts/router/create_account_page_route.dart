@@ -7,7 +7,6 @@ import 'package:threedpass/features/accounts/presentation/pages/create_account/c
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_mnemonic_confirm.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_type.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart';
-import 'package:threedpass/features/accounts/presentation/pages/create_account/import_account_create_page.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/import_mnemonic_form.dart';
 import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/route_paths.dart';
@@ -54,10 +53,6 @@ const AutoRoute createAccountPageRoute = AutoRoute(
     AutoRoute(
       page: ImportMnemonicForm,
       name: RouteNames.importMnemonicForm,
-    ),
-    AutoRoute(
-      page: ImportAccountCreatePage,
-      name: RouteNames.importAccountCreatePage,
     ),
   ],
 );

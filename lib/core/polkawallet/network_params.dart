@@ -2,7 +2,7 @@ import 'package:polkawallet_sdk/api/types/networkParams.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
 
 abstract class NetworkParamsFabric {
-  static NetworkParams test(String? nodeUrl) {
+  static NetworkParams test(final String? nodeUrl) {
     return NetworkParams.fromJson({
       'name': d3pTestName,
       'ss58': ss58formatTest,
@@ -10,7 +10,7 @@ abstract class NetworkParamsFabric {
     });
   }
 
-  static NetworkParams live(String? nodeUrl) {
+  static NetworkParams live(final String? nodeUrl) {
     return NetworkParams.fromJson({
       'name': d3pLiveName,
       'ss58': ss58formatLive,

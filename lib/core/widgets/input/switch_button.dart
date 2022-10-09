@@ -3,19 +3,19 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class D3pSwitchButton extends StatelessWidget {
   D3pSwitchButton({
-    Key? key,
-    required bool initialValue,
+    required final bool initialValue,
     required this.onChanged,
     required this.text,
+    final Key? key,
   })  : switchValueNotifier = ValueNotifier<bool>(initialValue),
         super(key: key);
 
+  final void Function(bool)? onChanged;
   final ValueNotifier<bool> switchValueNotifier;
   final String text;
-  final Function(bool)? onChanged;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -27,12 +27,13 @@ class D3pSwitchButton extends StatelessWidget {
         ),
         ValueListenableBuilder(
           valueListenable: switchValueNotifier,
-          builder: (context, hasError, child) => PlatformSwitch(
+          builder: (final context, final hasError, final child) =>
+              PlatformSwitch(
             activeColor: Theme.of(context).colorScheme.secondary,
             value: switchValueNotifier.value,
             // ignore: prefer-extracting-callbacks
             onChanged: onChanged != null
-                ? (value) {
+                ? (final value) {
                     switchValueNotifier.value = value;
                     onChanged!(value);
                   }

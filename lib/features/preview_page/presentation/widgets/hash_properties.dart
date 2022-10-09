@@ -4,14 +4,14 @@ import 'package:threedpass/features/settings_page/presentation/widgets/settings_
 
 class HashProperties extends StatelessWidget {
   const HashProperties({
-    Key? key,
     required this.snapshot,
+    final Key? key,
   }) : super(key: key);
 
   final Snapshot snapshot;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return SingleChildScrollView(
       child: ListBody(
         children: [
@@ -24,7 +24,7 @@ class HashProperties extends StatelessWidget {
           // ),
           // const Text('Properties:'),
           // const Text('- 256bit'), // TODO What properties are avaliable?
-          const SizedBox(height: 16),
+          // const SizedBox(height: 16),
           Text.rich(snapshot.settingsConfig.toText(context)),
         ],
       ),

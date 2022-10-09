@@ -7,10 +7,10 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class CompareTable extends StatelessWidget {
   const CompareTable({
-    Key? key,
     required this.comparable,
     required this.mainObject,
     required this.stableHashes,
+    final Key? key,
   }) : super(key: key);
 
   final Snapshot comparable;
@@ -19,7 +19,7 @@ class CompareTable extends StatelessWidget {
 
   List<RowData> get rowsData {
     final res = <RowData>[];
-    for (var mainHash in mainObject.hashes) {
+    for (final mainHash in mainObject.hashes) {
       if (comparable.hashes.contains(mainHash)) {
         res.add(
           RowData(
@@ -35,7 +35,7 @@ class CompareTable extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -67,9 +67,10 @@ class CompareTable extends StatelessWidget {
         ),
         ListView.separated(
           shrinkWrap: true,
-          itemBuilder: (context, index) =>
+          itemBuilder: (final context, final index) =>
               AppTableRow(rowData: rowsData[index]),
-          separatorBuilder: (_, __) => const Divider(color: Colors.grey),
+          separatorBuilder: (final _, final __) =>
+              const Divider(color: Colors.grey),
           itemCount: rowsData.length,
         ),
       ],

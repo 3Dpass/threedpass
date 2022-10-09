@@ -5,11 +5,11 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class CompareRow extends StatelessWidget {
   const CompareRow({
-    Key? key,
     required this.onChoose,
     required this.origSnap,
     required this.allSnapshots,
     required this.snapToCompare,
+    final Key? key,
   }) : super(key: key);
 
   final List<Snapshot> allSnapshots;
@@ -18,7 +18,7 @@ class CompareRow extends StatelessWidget {
   final Snapshot snapToCompare;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,7 +52,7 @@ class CompareRow extends StatelessWidget {
             child: ChooseList(
               chosen: snapToCompare,
               list: allSnapshots,
-              onChoose: (model) => onChoose(model),
+              onChoose: (final model) => onChoose(model),
             ),
           ),
         ),

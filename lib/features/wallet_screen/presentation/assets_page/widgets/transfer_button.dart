@@ -10,9 +10,9 @@ import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class TransferButton extends StatelessWidget {
-  const TransferButton({Key? key}) : super(key: key);
+  const TransferButton({final Key? key}) : super(key: key);
 
-  void onPressed(BuildContext context) {
+  void onPressed(final BuildContext context) {
     context.router.push(
       const TransferWrapperRoute(
           // appService: BlocProvider.of<AppServiceLoaderCubit>(context).state,
@@ -21,11 +21,11 @@ class TransferButton extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
-      builder: (context, state) => ValueListenableBuilder(
+      builder: (final context, final state) => ValueListenableBuilder(
         valueListenable: state.balance,
-        builder: (context, BalanceData balance, child) {
+        builder: (final context, final BalanceData balance, final child) {
           return D3pElevatedButton(
             text: 'transfer_coins_button_label'.tr(),
             onPressed: balance.isNull ? null : () => onPressed(context),

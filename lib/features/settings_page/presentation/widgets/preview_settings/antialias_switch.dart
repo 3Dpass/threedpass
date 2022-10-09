@@ -6,9 +6,9 @@ import 'package:threedpass/features/settings_page/domain/entities/global_setting
 import 'package:threedpass/features/settings_page/domain/entities/preview_settings.dart';
 
 class AntialiasSwitch extends StatelessWidget {
-  const AntialiasSwitch({Key? key}) : super(key: key);
+  const AntialiasSwitch({final Key? key}) : super(key: key);
 
-  void onChanged(bool newValue, BuildContext context) {
+  void onChanged(final bool newValue, final BuildContext context) {
     final cubit = BlocProvider.of<SettingsConfigCubit>(context);
     final newPreviewConfig =
         cubit.state.previewSettings.copyWith(antialias: newValue);
@@ -17,10 +17,10 @@ class AntialiasSwitch extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return D3pSwitchButton(
       text: 'Antialias',
-      onChanged: (value) => onChanged(value, context),
+      onChanged: (final value) => onChanged(value, context),
       initialValue: BlocProvider.of<SettingsConfigCubit>(context)
           .state
           .previewSettings

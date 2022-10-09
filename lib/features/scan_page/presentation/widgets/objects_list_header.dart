@@ -4,14 +4,14 @@ import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 
 class ObjectsListHeader extends StatelessWidget {
   const ObjectsListHeader({
-    Key? key,
     required this.state,
+    final Key? key,
   }) : super(key: key);
 
   final HashesListState state;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     if (state is HashesListLoaded &&
         (state as HashesListLoaded).objects.isNotEmpty) {
       return Padding(

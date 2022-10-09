@@ -12,7 +12,7 @@ class D3pThemeData {
         textStyle: D3pBasicTextStyle.button,
       ),
     ),
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       button: D3pBasicTextStyle.button,
       bodyText1: D3pBasicTextStyle.bodyText1,
       bodyText2: D3pBasicTextStyle.bodyText2,

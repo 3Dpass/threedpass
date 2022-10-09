@@ -5,27 +5,27 @@ import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/router.dart';
 
 class DefaultLoadingDialog extends StatelessWidget {
-  const DefaultLoadingDialog({Key? key, this.text}) : super(key: key);
+  const DefaultLoadingDialog({final Key? key, this.text}) : super(key: key);
 
   final String? text;
 
-  static void show(BuildContext context, [String? text]) {
+  static void show(final BuildContext context, [final String? text]) {
     showDialog(
       useRootNavigator: false,
       context: context,
       barrierDismissible: false,
-      builder: (_) => DefaultLoadingDialog(
+      builder: (final _) => DefaultLoadingDialog(
         text: text,
       ),
     );
   }
 
-  static void hide(BuildContext context) {
+  static void hide(final BuildContext context) {
     Navigator.of(context).pop();
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return PlatformAlertDialog(
       content: WillPopScope(
         onWillPop: () async => false,

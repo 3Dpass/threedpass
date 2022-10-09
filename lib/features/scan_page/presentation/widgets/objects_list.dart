@@ -5,20 +5,20 @@ import 'package:threedpass/features/scan_page/presentation/widgets/snapshots_lis
 
 class ObjectsList extends StatelessWidget {
   const ObjectsList({
-    Key? key,
     required this.state,
+    final Key? key,
   }) : super(key: key);
 
   final HashesListState state;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     if (state is HashesListLoaded) {
       return ListView.builder(
         padding: const EdgeInsets.only(bottom: 46 * 2),
         shrinkWrap: true,
         itemCount: (state as HashesListLoaded).objects.length,
-        itemBuilder: (context, objIndex) {
+        itemBuilder: (final context, final objIndex) {
           final currentObject = (state as HashesListLoaded).objects[objIndex];
 
           return Column(
@@ -26,14 +26,10 @@ class ObjectsList extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
+                padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: Text(
                   'object_title_prefix'.tr() + ' ' + currentObject.name,
                   style: Theme.of(context).textTheme.headline6,
-                ),
-                padding: const EdgeInsets.only(
-                  top: 16,
-                  left: 16,
-                  right: 16,
                 ),
               ),
               SnapshotsList(

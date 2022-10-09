@@ -83,6 +83,7 @@ dev_dependencies:
   ## Linters
   flutter_lints: ^1.0.4
   dart_code_metrics: ^4.16.0
+  extra_pedantic: ^3.0.0
 
 # The following section is specific to Flutter.
 flutter:

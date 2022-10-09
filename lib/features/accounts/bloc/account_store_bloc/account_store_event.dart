@@ -39,18 +39,6 @@ class ResetAccount extends AccountStoreEvent {
   const ResetAccount();
 }
 
-class SetPubKeyAddress extends AccountStoreEvent {
-  const SetPubKeyAddress(this.data);
-
-  final Map<String, Map> data;
-}
-
-class SetAddressIcon extends AccountStoreEvent {
-  const SetAddressIcon(this.list);
-
-  final List list;
-}
-
 class SetWCPairing extends AccountStoreEvent {
   const SetWCPairing(this.pairing);
 

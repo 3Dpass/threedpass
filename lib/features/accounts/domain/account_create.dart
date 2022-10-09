@@ -1,81 +1,59 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:polkawallet_sdk/api/apiKeyring.dart';
+import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/features/accounts/domain/account_advanced_options.dart';
+import 'package:threedpass/features/accounts/domain/account_info.dart';
 
-part 'account_create.g.dart';
+class FullAccountContext {
+  final AccountInfo account;
+  final KeyType keyType;
+  final AccountAdvancedOptions advancedOptions;
 
-abstract class AccountCreate {
-  final String name;
-  final String password;
-
-  const AccountCreate({
-    required this.name,
-    required this.password,
+  const FullAccountContext({
+    required this.account,
+    required this.keyType,
+    required this.advancedOptions,
   });
 
-  const AccountCreate.intial()
-      : name = '',
-        password = '';
+  Future<void> createAccount(
+    final AppServiceLoaderCubit appServiceLoaderCubit,
+    final void Function() onDuplicate,
+  ) async {
+    final accJson = await appServiceLoaderCubit.importAccount(
+      account: account,
+      keyType: keyType,
+      cryptoType: advancedOptions.type,
+      derivePath: advancedOptions.path,
+    );
 
-  AccountCreate copyWithTyped({
-    String? name,
-    String? password,
-    String? mnemonicKey,
-    String? seedKey,
-  }) {
-    if (this is AccountCreateMnemonic) {
-      return (this as AccountCreateMnemonic).copyWith(
-        name: name,
-        password: password,
-        mnemonic: mnemonicKey,
+    // DefaultLoadingDialog.hide(context);
+
+    final duplicated = _checkAccountDuplicate(
+      appServiceLoaderCubit.state,
+      accJson['pubKey'] as String,
+    );
+
+    if (!duplicated) {
+      final keyPairData = await appServiceLoaderCubit.addAccount(
+        json: accJson,
+        account: account,
+        keyType: keyType,
+        cryptoType: advancedOptions.type,
+        derivePath: advancedOptions.path,
       );
-    } else if (this is AccountCreateSeed) {
-      return (this as AccountCreateSeed).copyWith(
-        name: name,
-        password: password,
-        seed: seedKey,
-      );
-    } else {
-      throw Exception('Unknown AccountCreate type');
+
+      // apply current account
+      appServiceLoaderCubit.changeAccount(keyPairData);
     }
   }
-}
 
-@CopyWith()
-class AccountCreateMnemonic extends AccountCreate {
-  final String mnemonic;
+  static bool _checkAccountDuplicate(
+    final AppService service,
+    final String pubKey,
+  ) {
+    final index =
+        service.keyring.keyPairs.indexWhere((final i) => i.pubKey == pubKey);
 
-  const AccountCreateMnemonic({
-    required this.mnemonic,
-    required String name,
-    required String password,
-  }) : super(name: name, password: password);
-
-  const AccountCreateMnemonic.intial()
-      : mnemonic = '',
-        super.intial();
-}
-
-@CopyWith()
-class AccountCreateSeed extends AccountCreate {
-  final String seed;
-
-  const AccountCreateSeed({
-    required this.seed,
-    required String name,
-    required String password,
-  }) : super(name: name, password: password);
-
-  const AccountCreateSeed.intial()
-      : seed = '',
-        super.intial();
-}
-
-// Short cuts :)
-extension S on AccountCreate {
-  String get mnemonicKey {
-    return (this as AccountCreateMnemonic).mnemonic;
-  }
-
-  String get seedKey {
-    return (this as AccountCreateSeed).seed;
+    return index > -1;
   }
 }

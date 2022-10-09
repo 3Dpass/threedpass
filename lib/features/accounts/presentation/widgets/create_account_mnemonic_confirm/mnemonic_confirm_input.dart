@@ -4,12 +4,12 @@ import 'package:threedpass/features/accounts/bloc/mnemonic_input_cubit.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/mnemonic_text_field.dart';
 
 class MnemonicConfirmInput extends StatelessWidget {
-  const MnemonicConfirmInput({Key? key}) : super(key: key);
+  const MnemonicConfirmInput({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BlocBuilder<MnemonicInputCubit, MnemonicInputState>(
-      builder: (context, state) => Column(
+      builder: (final context, final state) => Column(
         children: [
           MnemonicTextField(text: state.result),
           const SizedBox(height: 12),
@@ -18,7 +18,7 @@ class MnemonicConfirmInput extends StatelessWidget {
             runSpacing: 10,
             children: List.generate(
               state.words.length,
-              (index) => ElevatedButton(
+              (final index) => ElevatedButton(
                 onPressed: () => BlocProvider.of<MnemonicInputCubit>(context)
                     .onWordPressed(index),
                 child: Text(

@@ -4,9 +4,9 @@ import 'package:threedpass/core/widgets/appbars/common_appbar.dart';
 
 class CommonLogoAppbar extends CommonAppbar {
   CommonLogoAppbar({
-    Key? key,
-    required String title,
-    List<Widget>? actions,
+    required final String title,
+    final Key? key,
+    final List<Widget>? actions,
   }) : super(
           key: key,
           titleSpacing: 0,

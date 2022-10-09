@@ -10,19 +10,19 @@ part 'save_top_hashes_button.dart';
 
 class SaveTopHashesDialog extends StatelessWidget {
   const SaveTopHashesDialog({
-    Key? key,
     required this.pageCubitState,
+    final Key? key,
   }) : super(key: key);
 
   final PreviewPageCubitState pageCubitState;
 
-  void shareSnapshots(BuildContext context) {
+  void shareSnapshots(final BuildContext context) {
     context.router.pop();
     Share.share(pageCubitState.snapshot.shareText);
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return AlertDialog(
       title: Text('top_10_hashes'.tr()),
       content: SingleChildScrollView(

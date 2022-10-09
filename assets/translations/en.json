@@ -63,7 +63,7 @@
 
     "stable_hashes_list_title": "Stable hashes:",
     "no_stable_hash_placeholder": "No stable hash found.",
-    "no_stable_hash_help": "To get a stable hash, you need to scan the object several times with the same scan settings.",
+    "no_stable_hash_help": "To get a stable hash, you try to scan the object several times with the same scan settings.",
 
     "@rename_snap_dialog":{
     },
@@ -171,6 +171,7 @@
     "error_import_duplicate": "Error: this account has been already imported",
     "error_import_invalid": "Error: this account is invalid",
 
+    "import_account_type_title": "Import account from...",
     "create_type_mnemonic": "Mnemonic",
     "create_type_object": "3D Object",
     "create_account_from_object": "Create account from 3D Object",

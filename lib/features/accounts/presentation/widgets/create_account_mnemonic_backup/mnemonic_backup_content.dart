@@ -7,14 +7,14 @@ import 'package:threedpass/router/router.gr.dart';
 
 class MnemonicBackupContent extends StatelessWidget {
   const MnemonicBackupContent({
-    Key? key,
     required this.mnemonic,
+    final Key? key,
   }) : super(key: key);
 
   final String mnemonic;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return SafeArea(
       child: ListView(
         physics: const BouncingScrollPhysics(),
@@ -33,14 +33,12 @@ class MnemonicBackupContent extends StatelessWidget {
           Text('backup_warn1_text'.tr()),
           const SizedBox(height: 12),
           MnemonicTextField(text: mnemonic),
-          Padding(
+          D3pElevatedButton(
             padding: const EdgeInsets.only(bottom: 36, top: 12),
-            child: D3pElevatedButton(
-              onPressed: () => context.router.push(
-                const MnemonicConfirmRoute(),
-              ),
-              text: 'Next'.tr(),
+            onPressed: () => context.router.push(
+              const MnemonicConfirmRoute(),
             ),
+            text: 'Next'.tr(),
           ),
         ],
       ),

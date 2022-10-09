@@ -4,10 +4,9 @@ import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart
 abstract class HashesRepository {
   List<HashObject> getAll();
 
-  Future<void> addObject(HashObject hash);
-  Future<void> deleteObject(HashObject hash);
-
-  Future<void> replaceObject(HashObject hash);
+  Future<void> addObject(final HashObject hash);
+  Future<void> deleteObject(final HashObject hash);
+  Future<void> replaceObject(final HashObject hash);
 }
 
 class HashesRepositoryImpl implements HashesRepository {
@@ -18,7 +17,7 @@ class HashesRepositoryImpl implements HashesRepository {
   final HiveHashStore hiveHashStore;
 
   @override
-  Future<void> deleteObject(HashObject hash) async {
+  Future<void> deleteObject(final HashObject hash) async {
     await hiveHashStore.removeObject(hash);
   }
 
@@ -28,12 +27,12 @@ class HashesRepositoryImpl implements HashesRepository {
   }
 
   @override
-  Future<void> addObject(HashObject hash) async {
+  Future<void> addObject(final HashObject hash) async {
     await hiveHashStore.addObject(hash);
   }
 
   @override
-  Future<void> replaceObject(HashObject hash) async {
+  Future<void> replaceObject(final HashObject hash) async {
     await hiveHashStore.replace(hash);
   }
 }

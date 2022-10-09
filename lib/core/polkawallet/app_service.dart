@@ -13,7 +13,7 @@ class AppService {
     required this.plugin,
     required this.keyring,
     required this.status,
-    NetworkStateData? networkStateData,
+    final NetworkStateData? networkStateData,
   })  : networkStateData = networkStateData ?? NetworkStateData(),
         balance = ValueNotifier<BalanceData>(BalanceData());
 

@@ -27,20 +27,20 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
   }
 
   Future<void> _loadList(
-    _LoadHashesList event,
-    Emitter<HashesListState> emit,
+    final _LoadHashesList event,
+    final Emitter<HashesListState> emit,
   ) async {
     emit(HashesListLoaded(objects: event.objects));
   }
 
   Future<void> _deleteHash(
-    DeleteHash event,
-    Emitter<HashesListState> emit,
+    final DeleteHash event,
+    final Emitter<HashesListState> emit,
   ) async {
     if (state is HashesListLoaded) {
       final list = (state as HashesListLoaded).objects;
       bool f = false;
-      for (var obj in list) {
+      for (final obj in list) {
         if (obj.localId == event.object.localId) {
           // if only one snapshot, delete whole object
           if (obj.snapshots.length == 1) {
@@ -48,7 +48,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
             return;
           }
           obj.snapshots.removeWhere(
-            (snap) => snap == event.hash,
+            (final snap) => snap == event.hash,
           );
           f = true;
           break;
@@ -67,21 +67,23 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
   }
 
   Future<void> _deleteObject(
-    DeleteObject event,
-    Emitter<HashesListState> emit,
+    final DeleteObject event,
+    final Emitter<HashesListState> emit,
   ) async {
     await hashesRepository.deleteObject(event.object);
 
     if (state is HashesListLoaded) {
       final list = (state as HashesListLoaded).objects;
-      list.removeWhere((element) => element.localId == event.object.localId);
+      list.removeWhere(
+        (final element) => element.localId == event.object.localId,
+      );
       emit(HashesListLoaded(objects: list));
     }
   }
 
   Future<void> _addObject(
-    AddObject event,
-    Emitter<HashesListState> emit,
+    final AddObject event,
+    final Emitter<HashesListState> emit,
   ) async {
     await hashesRepository.addObject(event.object);
 
@@ -93,13 +95,13 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
   }
 
   Future<void> _saveSnapshot(
-    SaveSnapshot event,
-    Emitter<HashesListState> emit,
+    final SaveSnapshot event,
+    final Emitter<HashesListState> emit,
   ) async {
     if (state is HashesListLoaded) {
       final list = (state as HashesListLoaded).objects;
       bool f = false;
-      for (var obj in list) {
+      for (final obj in list) {
         if (obj.localId == event.object.localId) {
           obj.snapshots.add(event.hash);
           f = true;
@@ -118,13 +120,13 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
   }
 
   Future<void> _replaceSnapshot(
-    ReplaceSnapshot event,
-    Emitter<HashesListState> emit,
+    final ReplaceSnapshot event,
+    final Emitter<HashesListState> emit,
   ) async {
     if (state is HashesListLoaded) {
       final list = (state as HashesListLoaded).objects;
       bool f = false;
-      for (var obj in list) {
+      for (final obj in list) {
         // find object
         if (obj.localId == event.object.localId) {
           // find old snapshot place

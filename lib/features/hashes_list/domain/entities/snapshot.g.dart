@@ -131,9 +131,9 @@ class SnapshotAdapter extends TypeAdapter<Snapshot> {
       name: fields[0] as String,
       stamp: fields[1] as DateTime,
       hashes: (fields[2] as List).cast<String>(),
-      externalPathToObj: fields[3] as String?,
       settingsConfig: fields[4] as ScanSettings,
       fileHash: fields[5] as int,
+      externalPathToObj: fields[3] as String?,
     );
   }
 

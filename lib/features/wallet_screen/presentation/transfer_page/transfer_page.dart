@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
@@ -23,7 +22,7 @@ part 'widgets/fees_text.dart';
 
 class TransferPage extends StatelessWidget {
   TransferPage({
-    Key? key,
+    final Key? key,
   }) : super(key: key);
 
   final toAddressController = TextEditingController();
@@ -32,7 +31,7 @@ class TransferPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     return Scaffold(
       appBar: CommonLogoAppbar(

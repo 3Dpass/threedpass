@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class MnemonicTextField extends StatelessWidget {
   const MnemonicTextField({
-    Key? key,
     required this.text,
+    final Key? key,
   }) : super(key: key);
 
   final String text;
 
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(final BuildContext context) => Container(
         width: double.infinity,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(

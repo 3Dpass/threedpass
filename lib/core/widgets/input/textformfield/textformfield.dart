@@ -7,8 +7,8 @@ part 'bottom_help_text.dart';
 
 class D3pTextFormField extends StatelessWidget {
   D3pTextFormField({
-    Key? key,
-    TextEditingController? controller,
+    final Key? key,
+    final TextEditingController? controller,
     this.hintText,
     this.labelText,
     this.labelButton,
@@ -48,7 +48,7 @@ class D3pTextFormField extends StatelessWidget {
   final bool? obscureText;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

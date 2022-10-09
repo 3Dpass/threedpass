@@ -1,7 +1,7 @@
 part of '../create_account_from_object.dart';
 
 class _CreateAccountStateful extends StatefulWidget {
-  const _CreateAccountStateful({Key? key}) : super(key: key);
+  const _CreateAccountStateful({final Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _MainState();
@@ -18,12 +18,15 @@ class _MainState extends State<_CreateAccountStateful> {
     // Get objects with snapshots
     final hashObjects = BlocProvider.of<HashesListBloc>(context).state;
 
-    assert(hashObjects is HashesListLoaded);
+    assert(
+      hashObjects is HashesListLoaded,
+      'Hashes list has to be loaded to create preview',
+    );
     hashObjects as HashesListLoaded;
 
     // Find objects with stable hashes
     final realObjects = hashObjects.objects
-        .where((obj) => obj.stableHashes.isNotEmpty)
+        .where((final obj) => obj.stableHashes.isNotEmpty)
         .toList();
 
     if (realObjects.isEmpty) {
@@ -40,23 +43,22 @@ class _MainState extends State<_CreateAccountStateful> {
     super.initState();
   }
 
-  void onObjectChoose(HashObject? hashObject) {
+  void onObjectChoose(final HashObject? hashObject) {
     if (hashObject != null) {
       objectValueNotifier.value = hashObject;
       chosenHash.value = hashObject.stableHashes.first;
     }
   }
 
-  void onHashChoose(String? value) {
+  void onHashChoose(final String? value) {
     if (value != null) {
       chosenHash.value = value;
     }
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Column(
-      // mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
@@ -73,7 +75,7 @@ class _MainState extends State<_CreateAccountStateful> {
               value: objectValueNotifier.value,
               items: objectsToUse
                   .map(
-                    (e) => DropdownMenuItem<HashObject>(
+                    (final e) => DropdownMenuItem<HashObject>(
                       value: e,
                       child: Text(
                         e.name.cutWithEllipsis(20),
@@ -83,7 +85,7 @@ class _MainState extends State<_CreateAccountStateful> {
                     ),
                   )
                   .toList(),
-              onChanged: (modelChosen) => onObjectChoose(modelChosen),
+              onChanged: (final modelChosen) => onObjectChoose(modelChosen),
             ),
             const SizedBox(height: 24),
             Text(
@@ -93,13 +95,14 @@ class _MainState extends State<_CreateAccountStateful> {
             const SizedBox(height: 8),
             ValueListenableBuilder(
               valueListenable: objectValueNotifier,
-              builder: (context, _, __) => DropdownButton<String>(
+              builder: (final context, final _, final __) =>
+                  DropdownButton<String>(
                 isExpanded: true,
                 style: Theme.of(context).textTheme.bodyText1,
                 value: chosenHash.value,
                 items: objectValueNotifier.value.stableHashes
                     .map(
-                      (e) => DropdownMenuItem<String>(
+                      (final e) => DropdownMenuItem<String>(
                         value: e,
                         child: Text(
                           e,
@@ -109,7 +112,7 @@ class _MainState extends State<_CreateAccountStateful> {
                       ),
                     )
                     .toList(),
-                onChanged: (modelChosen) => onHashChoose(modelChosen),
+                onChanged: (final modelChosen) => onHashChoose(modelChosen),
               ),
             ),
             const SizedBox(height: 24),

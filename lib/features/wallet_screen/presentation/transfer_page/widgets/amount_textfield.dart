@@ -2,16 +2,16 @@ part of '../transfer_page.dart';
 
 class _AmountTextFieldBuilder extends StatelessWidget {
   const _AmountTextFieldBuilder({
-    Key? key,
     required this.amountController,
+    final Key? key,
   }) : super(key: key);
 
   final TextEditingController amountController;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BlocBuilder<TransferInfoCubit, TransferInfo>(
-      builder: (context, state) => _AmountTextField(
+      builder: (final context, final state) => _AmountTextField(
         amountController: amountController,
         balance: state.balance,
       ),
@@ -21,28 +21,28 @@ class _AmountTextFieldBuilder extends StatelessWidget {
 
 class _AmountTextField extends StatelessWidget {
   const _AmountTextField({
-    Key? key,
     required this.amountController,
     required this.balance,
+    final Key? key,
   }) : super(key: key);
 
   final TextEditingController amountController;
   final double balance;
 
-  String? _amountValidator(String? v) {
+  String? _amountValidator(final String? v) {
     return v != null && double.tryParse(v) != null && double.parse(v) <= balance
         ? null
         : 'error_wrong_amount'.tr();
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     return D3pTextFormField(
       labelText: 'amount_label'.tr(
         args: [
           BalanceUtils.balance(
-            appService.balance.value.availableBalance,
+            appService.balance.value.availableBalance as String?,
             appService.networkStateData.safeDecimals,
           ),
         ],

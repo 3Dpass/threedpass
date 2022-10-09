@@ -1,20 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/utils/validators.dart';
 import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
-import 'package:threedpass/core/utils/validators.dart' as validators;
 
 class CreateAccountForm extends StatelessWidget {
   CreateAccountForm({
-    Key? key,
     required this.onSubmit,
+    final Key? key,
   }) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameCtrl = TextEditingController(text: '123');
-  final TextEditingController _pass2Ctrl =
-      TextEditingController(text: '123q123');
-  final TextEditingController _passCtrl =
-      TextEditingController(text: '123q123');
+  final TextEditingController _nameCtrl = TextEditingController();
+  final TextEditingController _pass2Ctrl = TextEditingController();
+  final TextEditingController _passCtrl = TextEditingController();
 
   final void Function({
     required BuildContext context,
@@ -23,26 +21,26 @@ class CreateAccountForm extends StatelessWidget {
     required TextEditingController passCtrl,
   }) onSubmit;
 
-  String? _nameValidator(String? v) {
+  String? _nameValidator(final String? v) {
     return v != null && v.trim().isNotEmpty
         ? null
         : 'create_credentials_name_error'.tr();
   }
 
-  String? _passValidator(String? v) {
-    return v != null && validators.checkPassword(v)
+  String? _passValidator(final String? v) {
+    return v != null && Validators.checkPassword(v)
         ? null
         : 'create_credentials_password_error'.tr();
   }
 
-  String? _pass2Validator(String? v) {
+  String? _pass2Validator(final String? v) {
     return v != null && v == _passCtrl.text
         ? null
         : 'create_credentials_password2_error'.tr();
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return AccountPageTemplate.create(
       children: [
         Form(
@@ -80,7 +78,7 @@ class CreateAccountForm extends StatelessWidget {
           ),
         ),
       ],
-      onSubmitPressed: (_) => onSubmit(
+      onSubmitPressed: (final _) => onSubmit(
         formKey: _formKey,
         context: context,
         nameCtrl: _nameCtrl,

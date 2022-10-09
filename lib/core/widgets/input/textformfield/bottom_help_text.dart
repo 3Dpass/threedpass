@@ -6,7 +6,7 @@ class _BottomHelpText extends StatelessWidget {
   final String? bottomHelpText;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return bottomHelpText != null
         ? Padding(
             padding: const EdgeInsets.only(top: 8, left: 16, right: 16),

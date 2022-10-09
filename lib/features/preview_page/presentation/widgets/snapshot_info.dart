@@ -3,14 +3,14 @@ import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 
 class SnapshotInfo extends StatelessWidget {
   const SnapshotInfo({
-    Key? key,
     required this.state,
+    final Key? key,
   }) : super(key: key);
 
   final PreviewPageCubitState state;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Text.rich(
       TextSpan(
         text: 'Snapshot: ',

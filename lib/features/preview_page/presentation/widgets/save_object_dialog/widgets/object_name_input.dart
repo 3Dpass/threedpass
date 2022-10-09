@@ -5,7 +5,7 @@ class _ObjectNameInput extends StatelessWidget {
 
   final TextEditingController objectNameController;
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return TextField(
       decoration: InputDecoration(
         label: Text('create_object_input_label'.tr()),

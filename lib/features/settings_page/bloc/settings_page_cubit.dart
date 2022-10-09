@@ -4,7 +4,7 @@ import 'package:threedpass/features/settings_page/domain/repositories/settings_r
 
 class SettingsConfigCubit extends Cubit<GlobalSettings> {
   SettingsConfigCubit({
-    required GlobalSettings config,
+    required final GlobalSettings config,
     required this.settingsRepository,
   }) : super(config);
 
@@ -15,7 +15,7 @@ class SettingsConfigCubit extends Cubit<GlobalSettings> {
   //   emit(SettingsConfigLoaded(settings: config));
   // }
 
-  void updateSettings(GlobalSettings config) {
+  void updateSettings(final GlobalSettings config) {
     settingsRepository.setConfig(config);
     emit(config);
   }

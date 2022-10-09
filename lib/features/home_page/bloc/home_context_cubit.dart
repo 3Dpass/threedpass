@@ -9,10 +9,12 @@ class HomeContextState {
 }
 
 class HomeContextCubit extends Cubit<HomeContextState> {
-  HomeContextCubit(HomeContextState s) : super(s);
+  HomeContextCubit(final HomeContextState s) : super(s);
 
-  showDialogC(Widget Function(BuildContext context) builder) {
-    showDialog(
+  Future<void> showDialogC(
+    final Widget Function(BuildContext context) builder,
+  ) async {
+    await showDialog(
       useRootNavigator: false,
       context: state.context,
       barrierDismissible: false,

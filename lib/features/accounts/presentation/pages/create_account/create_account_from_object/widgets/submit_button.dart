@@ -5,7 +5,7 @@ class _SubmitButton extends StatelessWidget {
 
   const _SubmitButton(this.chosenHash);
 
-  void onSubmit(BuildContext context) {
+  void onSubmit(final BuildContext context) {
     BlocProvider.of<AccountStoreBloc>(context).add(
       SetAccountSeed(seed: '0x' + chosenHash.value),
     );
@@ -14,7 +14,7 @@ class _SubmitButton extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return D3pElevatedButton(
       text: 'Next'.tr(),
       onPressed: () => onSubmit(context),

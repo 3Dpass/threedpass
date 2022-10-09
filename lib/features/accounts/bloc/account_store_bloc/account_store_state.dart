@@ -12,7 +12,7 @@ class AccountStoreState {
     required this.accountAdvancedOptions,
   });
 
-  final AccountCreate newAccount;
+  final AccountInfo newAccount;
 
   final Map<int, Map<String, String>> pubKeyAddressMap;
   final Map<String, String> addressIconsMap;

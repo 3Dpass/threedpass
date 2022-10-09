@@ -4,10 +4,10 @@ import 'package:threedpass/features/preview_page/presentation/widgets/matches_fo
 import 'package:url_launcher/url_launcher_string.dart';
 
 class NoMatchesFoundText extends StatelessWidget {
-  const NoMatchesFoundText({Key? key}) : super(key: key);
+  const NoMatchesFoundText({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return MatchHyperlink(
       mainText: plural('MATCHES_number_plural', 0),
       clickable: 'WHY_not_found'.tr(),

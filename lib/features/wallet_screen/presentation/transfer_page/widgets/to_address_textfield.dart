@@ -2,14 +2,14 @@ part of '../transfer_page.dart';
 
 class _ToAddressTextField extends StatelessWidget {
   const _ToAddressTextField({
-    Key? key,
     required this.toAddressController,
+    final Key? key,
   }) : super(key: key);
 
   final TextEditingController toAddressController;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return D3pTextFormField(
       labelText: 'to_address_label'.tr(),
       controller: toAddressController,

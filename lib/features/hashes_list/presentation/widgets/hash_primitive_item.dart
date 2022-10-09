@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class HashPrimitiveItem extends StatelessWidget {
   const HashPrimitiveItem({
-    Key? key,
-     required this.hash,
+    required this.hash,
+    final Key? key,
   }) : super(key: key);
 
   final String hash;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Text(hash);
   }
 }

@@ -1,10 +1,10 @@
 part of '../transfer_page.dart';
 
 class _FromAddressTextField extends StatelessWidget {
-  const _FromAddressTextField({Key? key}) : super(key: key);
+  const _FromAddressTextField({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     return D3pTextFormField(
       enabled: false,

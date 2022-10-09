@@ -6,11 +6,12 @@ import 'package:threedpass/features/accounts/presentation/pages/account_page_tem
 import 'package:threedpass/router/router.gr.dart';
 
 class CreateAccountType extends StatelessWidget {
-  const CreateAccountType({Key? key}) : super(key: key);
+  const CreateAccountType({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return AccountPageTemplate.create(
+      disableBottomButton: true,
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +28,6 @@ class CreateAccountType extends StatelessWidget {
           ],
         ),
       ],
-      disableBottomButton: true,
     );
   }
 }
@@ -35,16 +35,16 @@ class CreateAccountType extends StatelessWidget {
 class _Item extends StatelessWidget {
   const _Item(
     this.createType, {
-    Key? key,
+    final Key? key,
   }) : super(key: key);
 
   final CreateType createType;
 
-  void onTap(BuildContext context) {
+  void onTap(final BuildContext context) {
     // log('onTap intem $importType');
     switch (createType) {
       case CreateType.mnemonic:
-        context.router.push(const CreateAccountCredentialsRoute());
+        context.router.push(ImportMnemonicFormRoute());
         break;
       case CreateType.object:
         context.router.push(const CreateAccountFromObjectRoute());
@@ -52,7 +52,7 @@ class _Item extends StatelessWidget {
     }
   }
 
-  String titleText(BuildContext context) {
+  String titleText(final BuildContext context) {
     switch (createType) {
       case CreateType.mnemonic:
         return 'create_type_mnemonic'.tr();
@@ -62,7 +62,7 @@ class _Item extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return ListTileButton.usual(
       text: titleText(context),
       onPressed: () => onTap(context),

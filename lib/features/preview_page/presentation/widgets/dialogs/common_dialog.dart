@@ -7,13 +7,13 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class CommonDialog extends StatelessWidget {
   CommonDialog({
-    Key? key,
     required this.hashObject,
     required this.snapshot,
     required this.action,
     required this.actionText,
     required this.title,
-    String initialText = '',
+    final Key? key,
+    final String initialText = '',
   })  : controller = TextEditingController(text: initialText),
         super(key: key);
 
@@ -25,7 +25,7 @@ class CommonDialog extends StatelessWidget {
   final String title;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return AlertDialog(
       // TODO Use PlatfromAlertDialog
       title: Text(

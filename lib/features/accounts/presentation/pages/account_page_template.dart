@@ -5,46 +5,50 @@ import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 
 class AccountPageTemplate extends StatelessWidget {
   const AccountPageTemplate.create({
-    Key? key,
     required this.children,
+    final Key? key,
     this.onSubmitPressed,
     this.submitButton,
     this.disableBottomButton = false,
-    bool? needHorizontalPadding,
-  })  :
-        // Next page or [submitButton] implementation has to be provided
-        assert(onSubmitPressed != null ||
-            submitButton != null ||
-            disableBottomButton),
+    final bool? needHorizontalPadding,
+  })  : assert(
+          onSubmitPressed != null ||
+              submitButton != null ||
+              disableBottomButton,
+          'Something about submit button has to be provided',
+        ),
         appbarTitle = 'create_account_title',
         needHorizontalPadding = needHorizontalPadding ?? true,
         super(key: key);
 
   const AccountPageTemplate.import({
-    Key? key,
     required this.children,
+    final Key? key,
     this.onSubmitPressed,
     this.submitButton,
     this.disableBottomButton = false,
-    bool? needHorizontalPadding,
+    final bool? needHorizontalPadding,
   })  :
         // Next page or [submitButton] implementation has to be provided
-        assert(onSubmitPressed != null ||
-            submitButton != null ||
-            disableBottomButton),
+        assert(
+          onSubmitPressed != null ||
+              submitButton != null ||
+              disableBottomButton,
+          'Something about submit button has to be provided',
+        ),
         appbarTitle = 'import_account_title',
         needHorizontalPadding = needHorizontalPadding ?? true,
         super(key: key);
 
   final void Function(BuildContext)? onSubmitPressed;
-  final List<Widget> children;
-  final Widget? submitButton;
   final String appbarTitle;
+  final List<Widget> children;
   final bool disableBottomButton;
   final bool needHorizontalPadding;
+  final Widget? submitButton;
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(final BuildContext context) => Scaffold(
         appBar: CommonStringAppbar(title: appbarTitle.tr()),
         body: SafeArea(
           child: Column(

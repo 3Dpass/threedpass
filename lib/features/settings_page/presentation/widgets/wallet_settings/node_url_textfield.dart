@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,9 +13,9 @@ import 'package:threedpass/features/settings_page/domain/entities/wallet_setting
 
 class NodeUrlTextfield extends StatelessWidget {
   NodeUrlTextfield({
-    Key? key,
     required this.settingsConfigCubit,
     required this.appServiceLoaderCubit,
+    final Key? key,
   })  : textEditingController = TextEditingController(
           text: settingsConfigCubit.state.walletSettings.nodeUrl,
         ),
@@ -23,7 +25,7 @@ class NodeUrlTextfield extends StatelessWidget {
   final SettingsConfigCubit settingsConfigCubit;
   final AppServiceLoaderCubit appServiceLoaderCubit;
 
-  Future<void> apply(String text, BuildContext context) async {
+  Future<void> apply(final String text, final BuildContext context) async {
     final cubit = settingsConfigCubit;
     final newWalletConfig = cubit.state.walletSettings.copyWith(nodeUrl: text);
     final newState = cubit.state.copyWith(walletSettings: newWalletConfig);
@@ -32,19 +34,21 @@ class NodeUrlTextfield extends StatelessWidget {
     await BlocProvider.of<AppServiceLoaderCubit>(context)
         .changeNetwork(newWalletConfig);
 
-    Fluttertoast.showToast(
-      msg: 'Node URL updated. Please restart the app.',
-      toastLength: Toast.LENGTH_LONG,
+    unawaited(
+      Fluttertoast.showToast(
+        msg: 'Node URL updated. Please restart the app.',
+        toastLength: Toast.LENGTH_LONG,
+      ),
     );
   }
 
-  void onLabelButtonPressed(BuildContext context) {
+  void onLabelButtonPressed(final BuildContext context) {
     textEditingController.text = d3pDefaultNodeUrl;
     apply(textEditingController.text, context);
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return D3pTextFormField(
       controller: textEditingController,
       labelText: 'node_url_label'.tr(),

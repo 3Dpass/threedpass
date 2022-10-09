@@ -9,16 +9,16 @@ class BasicBalanceCard extends StatelessWidget {
   final String title;
 
   const BasicBalanceCard({
-    Key? key,
     required this.balance,
     required this.tokenDecimals,
     required this.tokenSymbol,
     required this.iconData,
     required this.title,
+    final Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),

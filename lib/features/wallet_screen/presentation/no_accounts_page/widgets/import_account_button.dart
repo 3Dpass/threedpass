@@ -8,13 +8,13 @@ import 'package:threedpass/features/accounts/presentation/pages/create_account/c
 
 class ImportAccountButton extends StatelessWidget {
   const ImportAccountButton({
-    Key? key,
+    final Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
-      builder: (context, state) => ElevatedButton.icon(
+      builder: (final context, final state) => ElevatedButton.icon(
         style: AppButtonStyles.primaryButton,
         icon: const Icon(Icons.import_export_outlined),
         label: Text('import_account_button_label'.tr()),

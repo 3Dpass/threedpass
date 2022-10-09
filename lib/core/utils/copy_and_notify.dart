@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 void copyAndNotify({
-  required String textToCopy,
-  String? textToShow,
+  required final String textToCopy,
+  final String? textToShow,
 }) {
   Clipboard.setData(ClipboardData(text: textToCopy));
 

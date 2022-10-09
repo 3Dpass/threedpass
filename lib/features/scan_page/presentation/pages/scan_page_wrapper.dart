@@ -5,16 +5,16 @@ import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 
 class ScanPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   const ScanPageWrapper({
-    Key? key,
+    final Key? key,
   }) : super(key: key);
 
   @override
-  Widget wrappedRoute(BuildContext context) {
+  Widget wrappedRoute(final BuildContext context) {
     return MultiBlocProvider(
       providers: [
         // Context to return to menu.
         BlocProvider<OuterContextCubit>(
-          create: (_) => OuterContextCubit(context),
+          create: (final _) => OuterContextCubit(context),
           lazy: false,
         ),
       ],
@@ -23,7 +23,7 @@ class ScanPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return const AutoRouter();
   }
 }

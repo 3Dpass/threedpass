@@ -3,14 +3,14 @@ import 'package:threedpass/features/compare_page/domain/entities/row_data.dart';
 
 class AppTableRow extends StatelessWidget {
   const AppTableRow({
-    Key? key,
     required this.rowData,
+    final Key? key,
   }) : super(key: key);
 
   final RowData rowData;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(

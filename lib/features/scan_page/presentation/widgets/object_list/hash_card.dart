@@ -9,9 +9,9 @@ import 'package:threedpass/router/router.gr.dart';
 
 class SnapshotCard extends StatelessWidget {
   SnapshotCard({
-    Key? key,
     required this.snapshot,
     required this.hashObject,
+    final Key? key,
   }) : super(key: key);
 
   final DateFormat formatter = DateFormat('yyyy-MM-dd H:m:s');
@@ -19,7 +19,7 @@ class SnapshotCard extends StatelessWidget {
   final HashObject hashObject;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Card(
       child: InkWell(
         onTap: () => context.router.push(

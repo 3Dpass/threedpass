@@ -35,7 +35,7 @@ class HashObject {
   final List<Snapshot> snapshots;
 
   @override
-  bool operator ==(other) {
+  bool operator ==(final dynamic other) {
     if (other is HashObject) {
       return localId == other.localId;
     } else {
@@ -48,15 +48,15 @@ class HashObject {
 
   Set<int> get fileHashes {
     final res = <int>{};
-    for (var snapshot in snapshots) {
+    for (final snapshot in snapshots) {
       res.add(snapshot.fileHash);
     }
     return res;
   }
 
   /// if object contains snapshot with all equal hashes, but any name
-  bool containsSnapshot(Snapshot snapshot) {
-    for (var s in snapshots) {
+  bool containsSnapshot(final Snapshot snapshot) {
+    for (final s in snapshots) {
       if (listEquals(s.hashes, snapshot.hashes)) {
         return true;
       }
@@ -70,15 +70,15 @@ class HashObject {
     final hashFreq = _hashFreq;
 
     return hashFreq.keys
-        .where((hash) => hashFreq[hash]! > minRequirement)
+        .where((final hash) => hashFreq[hash]! > minRequirement)
         .toList();
   }
 
   /// When you need to compare external snapshot with object stable hashes
-  List<String> stableHashesPlusNew(Snapshot snapshot) {
+  List<String> stableHashesPlusNew(final Snapshot snapshot) {
     final hashFreq = _hashFreq;
 
-    for (var hash in snapshot.hashes) {
+    for (final hash in snapshot.hashes) {
       if (hashFreq[hash] == null) {
         hashFreq[hash] = 1;
       } else {
@@ -88,7 +88,7 @@ class HashObject {
     }
 
     return hashFreq.keys
-        .where((hash) => hashFreq[hash]! > minRequirement)
+        .where((final hash) => hashFreq[hash]! > minRequirement)
         .toList();
   }
 
@@ -96,8 +96,8 @@ class HashObject {
   Map<String, int> get _hashFreq {
     final Map<String, int> hashFreq = {};
 
-    for (var snapshot in snapshots) {
-      for (var hash in snapshot.hashes) {
+    for (final snapshot in snapshots) {
+      for (final hash in snapshot.hashes) {
         if (hashFreq[hash] == null) {
           hashFreq[hash] = 1;
         } else {

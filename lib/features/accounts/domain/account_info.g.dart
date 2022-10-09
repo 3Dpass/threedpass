@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'account_create.dart';
+part of 'account_info.dart';
 
 // **************************************************************************
 // CopyWithGenerator

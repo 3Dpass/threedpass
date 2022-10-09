@@ -12,10 +12,10 @@ part './widgets/qr_code.dart';
 part './widgets/address_text.dart';
 
 class RecievePage extends StatelessWidget {
-  const RecievePage({Key? key}) : super(key: key);
+  const RecievePage({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final accountData =
         BlocProvider.of<AppServiceLoaderCubit>(context).state.keyring.current;
     final address = accountData.address!;

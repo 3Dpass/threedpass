@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 
 extension ToText on ScanSettings {
-  TextSpan toText(BuildContext context) {
+  TextSpan toText(final BuildContext context) {
     return TextSpan(
       text: 'settings_text_span_title'.tr() + '\n',
       style: Theme.of(context).textTheme.bodyText1,

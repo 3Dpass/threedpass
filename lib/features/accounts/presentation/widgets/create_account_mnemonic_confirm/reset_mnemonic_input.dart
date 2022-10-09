@@ -5,10 +5,10 @@ import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/features/accounts/bloc/mnemonic_input_cubit.dart';
 
 class ResetMnemonicInput extends StatelessWidget {
-  const ResetMnemonicInput({Key? key}) : super(key: key);
+  const ResetMnemonicInput({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return D3pTextButton(
       height: 35,
       width: 100,

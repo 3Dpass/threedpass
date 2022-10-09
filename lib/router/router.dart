@@ -35,13 +35,13 @@ import 'package:threedpass/features/web_wallet/router/web_wallet_route.dart';
 class $AppRouter {}
 
 Route<T> dialogBuilder<T>(
-  BuildContext context,
-  Widget child,
-  CustomPage<T> page,
+  final BuildContext context,
+  final Widget child,
+  final CustomPage<T> page,
 ) {
   return DialogRoute(
     context: context,
-    builder: (context) => child,
+    builder: (final context) => child,
     settings: page,
     barrierDismissible: false,
   );

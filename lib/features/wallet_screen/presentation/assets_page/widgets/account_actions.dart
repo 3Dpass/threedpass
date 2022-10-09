@@ -7,27 +7,27 @@ import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/remove_account_dialog.dart';
 
 class AccountActions extends StatelessWidget {
-  const AccountActions({Key? key}) : super(key: key);
+  const AccountActions({final Key? key}) : super(key: key);
 
-  Future<void> onSelected(int? value, BuildContext context) async {
+  Future<void> onSelected(final int? value, final BuildContext context) async {
     final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
     switch (value) {
       case 1:
         await showDialog(
           context: outerContext,
-          builder: (_) => const RemoveAccountDialog(),
+          builder: (final _) => const RemoveAccountDialog(),
         );
         break;
     }
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
-      builder: (context, state) => PopupMenuButton(
+      builder: (final context, final state) => PopupMenuButton(
         icon: const Icon(Icons.more_horiz_outlined),
-        onSelected: (int? value) => onSelected(value, context),
-        itemBuilder: (context) => [
+        onSelected: (final int? value) => onSelected(value, context),
+        itemBuilder: (final context) => [
           _RemoveAccountMenuItem(appService: state),
         ],
       ),
@@ -36,7 +36,7 @@ class AccountActions extends StatelessWidget {
 }
 
 class _RemoveAccountMenuItem extends PopupMenuItem<int> {
-  _RemoveAccountMenuItem({required AppService appService})
+  _RemoveAccountMenuItem({required final AppService appService})
       : super(
           enabled: appService.status == AppServiceInitStatus.connected,
           value: 1,

@@ -15,10 +15,10 @@ part './widgets/create_account_stateful.dart';
 part './widgets/submit_button.dart';
 
 class CreateAccountFromObject extends StatelessWidget {
-  const CreateAccountFromObject({Key? key}) : super(key: key);
+  const CreateAccountFromObject({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Scaffold(
       appBar: CommonStringAppbar(title: 'create_account_title'.tr()),
       body: const SafeArea(

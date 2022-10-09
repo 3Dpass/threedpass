@@ -9,36 +9,31 @@ import 'package:threedpass/router/route_paths.dart';
 
 class CreateAccountWrapper extends StatelessWidget implements AutoRouteWrapper {
   const CreateAccountWrapper({
-    Key? key,
-    // required this.appService,
-    // required this.createRandom,
+    final Key? key,
   }) : super(key: key);
 
-  // final AppService appService;
-  // final bool createRandom;
-
-  static void pushToGenerateRandom(BuildContext context) {
+  static void pushToGenerateRandom(final BuildContext context) {
     context.router.pushNamed(
       RoutePaths.createAccountMain + RoutePaths.createAccountRandomMnemonic,
     );
   }
 
-  static void pushToImportType(BuildContext context) {
+  static void pushToImportType(final BuildContext context) {
     context.router.pushNamed(
       RoutePaths.createAccountMain + RoutePaths.createAccountChooseType,
     );
   }
 
   @override
-  Widget wrappedRoute(BuildContext context) {
+  Widget wrappedRoute(final BuildContext context) {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     return Provider<AppService>(
-      create: (_) => appService,
+      create: (final _) => appService,
       child: MultiBlocProvider(
         providers: [
           // User inputs storage
           BlocProvider<AccountStoreBloc>(
-            create: (_) => AccountStoreBloc(context),
+            create: (final _) => AccountStoreBloc(context),
             lazy: false,
           ),
         ],
@@ -48,7 +43,7 @@ class CreateAccountWrapper extends StatelessWidget implements AutoRouteWrapper {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return const AutoRouter();
   }
 }

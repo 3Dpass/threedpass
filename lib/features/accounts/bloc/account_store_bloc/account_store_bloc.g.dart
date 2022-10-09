@@ -12,7 +12,7 @@ abstract class _$AccountStoreStateCWProxy {
 
   AccountStoreState addressIconsMap(Map<String, String> addressIconsMap);
 
-  AccountStoreState newAccount(AccountCreate newAccount);
+  AccountStoreState newAccount(AccountInfo newAccount);
 
   AccountStoreState pubKeyAddressMap(
       Map<int, Map<String, String>> pubKeyAddressMap);
@@ -28,7 +28,7 @@ abstract class _$AccountStoreStateCWProxy {
   AccountStoreState call({
     AccountAdvancedOptions? accountAdvancedOptions,
     Map<String, String>? addressIconsMap,
-    AccountCreate? newAccount,
+    AccountInfo? newAccount,
     Map<int, Map<String, String>>? pubKeyAddressMap,
     RecoveryInfo? recoveryInfo,
   });
@@ -50,7 +50,7 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
       this(addressIconsMap: addressIconsMap);
 
   @override
-  AccountStoreState newAccount(AccountCreate newAccount) =>
+  AccountStoreState newAccount(AccountInfo newAccount) =>
       this(newAccount: newAccount);
 
   @override
@@ -93,7 +93,7 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
           newAccount == const $CopyWithPlaceholder() || newAccount == null
               ? _value.newAccount
               // ignore: cast_nullable_to_non_nullable
-              : newAccount as AccountCreate,
+              : newAccount as AccountInfo,
       pubKeyAddressMap: pubKeyAddressMap == const $CopyWithPlaceholder() ||
               pubKeyAddressMap == null
           ? _value.pubKeyAddressMap
