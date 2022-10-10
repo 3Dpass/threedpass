@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/list_tile_button.dart';
 import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
+import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class CreateAccountType extends StatelessWidget {
@@ -24,7 +26,7 @@ class CreateAccountType extends StatelessWidget {
             const SizedBox(height: 8),
             const _Item(CreateType.mnemonic),
             // const _Item(CreateType.rawSeed), // TODO Add raw seed method
-            const _Item(CreateType.object),
+            const _D3ObjectItem(),
           ],
         ),
       ],
@@ -46,9 +48,6 @@ class _Item extends StatelessWidget {
       case CreateType.mnemonic:
         context.router.push(ImportMnemonicFormRoute());
         break;
-      case CreateType.object:
-        context.router.push(const CreateAccountFromObjectRoute());
-        break;
     }
   }
 
@@ -56,8 +55,6 @@ class _Item extends StatelessWidget {
     switch (createType) {
       case CreateType.mnemonic:
         return 'create_type_mnemonic'.tr();
-      case CreateType.object:
-        return 'create_type_object'.tr();
     }
   }
 
@@ -70,4 +67,42 @@ class _Item extends StatelessWidget {
   }
 }
 
-enum CreateType { mnemonic, object }
+class _D3ObjectItem extends StatelessWidget {
+  const _D3ObjectItem();
+
+  bool isHashesAvaliable(final BuildContext context) {
+    // Get objects with snapshots
+    final hashObjects = BlocProvider.of<HashesListBloc>(context).state;
+
+    assert(
+      hashObjects is HashesListLoaded,
+      'Hashes list has to be loaded to create preview',
+    );
+    hashObjects as HashesListLoaded;
+
+    // Find objects with stable hashes
+    final realObjects = hashObjects.objects
+        .where((final obj) => obj.stableHashes.isNotEmpty)
+        .toList();
+
+    return realObjects.isNotEmpty;
+  }
+
+  void onTap(final BuildContext context) {
+    context.router.push(const CreateAccountFromObjectRoute());
+  }
+
+  String titleText(final BuildContext context) {
+    return 'create_type_object'.tr();
+  }
+
+  @override
+  Widget build(final BuildContext context) {
+    return ListTileButton.usual(
+      text: titleText(context),
+      onPressed: isHashesAvaliable(context) ? () => onTap(context) : null,
+    );
+  }
+}
+
+enum CreateType { mnemonic }
