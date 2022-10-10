@@ -6,7 +6,7 @@ class _CopyButton extends StatelessWidget {
   final String textToCopy;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return D3pElevatedButton(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       text: 'Copy'.tr(),

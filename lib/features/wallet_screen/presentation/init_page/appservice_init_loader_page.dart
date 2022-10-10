@@ -5,10 +5,10 @@ import 'package:threedpass/features/wallet_screen/presentation/widgets/connect_s
 import 'package:threedpass/features/wallet_screen/presentation/widgets/open_web_wallet_card.dart';
 
 class AppServiceInitLoaderPage extends StatelessWidget {
-  const AppServiceInitLoaderPage({Key? key}) : super(key: key);
+  const AppServiceInitLoaderPage({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Scaffold(
       appBar: CommonLogoAppbar(
         title: 'wallet_header_title'.tr(),

@@ -3,11 +3,11 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class ListTileButton extends StatelessWidget {
   const ListTileButton.bottom({
-    Key? key,
+    required this.text,
     this.onPressed,
     this.backgroundColor,
     this.padding,
-    required this.text,
+    final Key? key,
   })  : border = const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: buttonRadius,
@@ -17,22 +17,22 @@ class ListTileButton extends StatelessWidget {
         super(key: key);
 
   const ListTileButton.middle({
-    Key? key,
+    required this.text,
+    final Key? key,
     this.onPressed,
     this.backgroundColor,
     this.padding,
-    required this.text,
   })  : border = const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
         super(key: key);
 
   const ListTileButton.top({
-    Key? key,
+    required this.text,
+    final Key? key,
     this.onPressed,
     this.backgroundColor,
     this.padding,
-    required this.text,
   })  : border = const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: buttonRadius,
@@ -42,11 +42,11 @@ class ListTileButton extends StatelessWidget {
         super(key: key);
 
   const ListTileButton.usual({
-    Key? key,
+    required this.text,
+    final Key? key,
     this.onPressed,
     this.backgroundColor,
     this.padding,
-    required this.text,
   })  : border = const RoundedRectangleBorder(),
         super(key: key);
 
@@ -59,7 +59,7 @@ class ListTileButton extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Padding(
       padding: padding ?? EdgeInsets.zero,
       child: SizedBox(
@@ -73,7 +73,7 @@ class ListTileButton extends StatelessWidget {
             ],
           ),
           // TODO Check cupertino theme
-          material: (context, platform) => MaterialTextButtonData(
+          material: (final context, final platform) => MaterialTextButtonData(
             style: Theme.of(context).textButtonTheme.style!.copyWith(
                   // padding: MaterialStateProperty.all(EdgeInsets.zero),
                   backgroundColor: MaterialStateProperty.all<Color>(

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:threedpass/features/compare_page/presentation/pages/compare_page_wrapper.dart';
-import 'package:threedpass/features/preview_page/presentation/pages/preview_page.dart';
-import 'package:threedpass/features/preview_page/presentation/pages/preview_page_wrapper.dart';
+import 'package:threedpass/features/preview_page/presentation/preview_page.dart';
+import 'package:threedpass/features/preview_page/presentation/preview_page_wrapper.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/rename_snapshot_dialog.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/save_hash_dialog.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/save_object_dialog/save_object_dialog.dart';

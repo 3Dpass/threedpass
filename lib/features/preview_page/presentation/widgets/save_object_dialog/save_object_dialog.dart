@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/router/route_names.dart';
 
@@ -13,8 +13,8 @@ part './widgets/snapshot_name_input.dart';
 
 class SaveObjectDialog extends StatelessWidget {
   SaveObjectDialog({
-    Key? key,
     required this.snapshot,
+    final Key? key,
   })  : snapshotNameController = TextEditingController(text: snapshot.name),
         super(key: key);
 
@@ -22,7 +22,7 @@ class SaveObjectDialog extends StatelessWidget {
   final Snapshot snapshot;
   final TextEditingController snapshotNameController;
 
-  Future<void> saveObject(BuildContext context) async {
+  Future<void> saveObject(final BuildContext context) async {
     final newNamedModel = snapshot.copyWith(name: snapshotNameController.text);
 
     final newObject = HashObject.create(
@@ -43,7 +43,7 @@ class SaveObjectDialog extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Dialog(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),

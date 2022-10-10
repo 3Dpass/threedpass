@@ -1,32 +1,33 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/polkawallet/app_service.dart';
-import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_cubit.dart';
-import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_state.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:threedpass/core/polkawallet/app_service.dart';
+// import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_cubit.dart';
+// import 'package:threedpass/features/accounts/bloc/import_account_cubit/import_account_state.dart';
+// import 'package:threedpass/features/accounts/domain/account_create.dart';
 
-class ImportAccountCubitBuilder extends StatelessWidget {
-  const ImportAccountCubitBuilder({Key? key, required this.builder})
-      : super(key: key);
+// class ImportAccountCubitBuilder extends StatelessWidget {
+//   const ImportAccountCubitBuilder({Key? key, required this.builder})
+//       : super(key: key);
 
-  final Widget Function({
-    required String mnemonic,
-    required AppService appService,
-    required TextEditingController textEditingController,
-  }) builder;
+//   final Widget Function({
+//     required String mnemonic,
+//     required AppService appService,
+//     required TextEditingController textEditingController,
+//   }) builder;
 
-  @override
-  Widget build(BuildContext context) =>
-      BlocBuilder<ImportAccountCubit, ImportAccountState>(
-        builder: (context, state) {
-          final appService = context.read<AppService>();
-          final mnemonic = state.accountCreate.mnemonicKey;
+//   @override
+//   Widget build(BuildContext context) =>
+//       BlocBuilder<ImportAccountCubit, ImportAccountState>(
+//         builder: (context, state) {
+//           final appService = context.read<AppService>();
+//           final mnemonic = state.accountCreate.mnemonicKey;
 
-          return builder(
-            mnemonic: mnemonic,
-            appService: appService,
-            textEditingController: BlocProvider.of<ImportAccountCubit>(context)
-                .textEditingController,
-          );
-        },
-      );
-}
+//           return builder(
+//             mnemonic: mnemonic,
+//             appService: appService,
+//             textEditingController: BlocProvider.of<ImportAccountCubit>(context)
+//                 .textEditingController,
+//           );
+//         },
+//       );
+// }

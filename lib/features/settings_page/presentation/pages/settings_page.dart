@@ -6,11 +6,11 @@ import 'package:threedpass/features/settings_page/presentation/widgets/wallet_se
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({
-    Key? key,
+    final Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Scaffold(
       appBar: SettingsAppbar(),
       body: SingleChildScrollView(

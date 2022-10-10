@@ -15,7 +15,7 @@ abstract class _$SnapshotCWProxy {
 
   Snapshot name(String name);
 
-  Snapshot settingsConfig(ScanSettings? settingsConfig);
+  Snapshot settingsConfig(ScanSettings settingsConfig);
 
   Snapshot stamp(DateTime stamp);
 
@@ -55,7 +55,7 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
   Snapshot name(String name) => this(name: name);
 
   @override
-  Snapshot settingsConfig(ScanSettings? settingsConfig) =>
+  Snapshot settingsConfig(ScanSettings settingsConfig) =>
       this(settingsConfig: settingsConfig);
 
   @override
@@ -94,10 +94,11 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
           : name as String,
-      settingsConfig: settingsConfig == const $CopyWithPlaceholder()
+      settingsConfig: settingsConfig == const $CopyWithPlaceholder() ||
+              settingsConfig == null
           ? _value.settingsConfig
           // ignore: cast_nullable_to_non_nullable
-          : settingsConfig as ScanSettings?,
+          : settingsConfig as ScanSettings,
       stamp: stamp == const $CopyWithPlaceholder() || stamp == null
           ? _value.stamp
           // ignore: cast_nullable_to_non_nullable
@@ -130,9 +131,9 @@ class SnapshotAdapter extends TypeAdapter<Snapshot> {
       name: fields[0] as String,
       stamp: fields[1] as DateTime,
       hashes: (fields[2] as List).cast<String>(),
-      externalPathToObj: fields[3] as String?,
-      settingsConfig: fields[4] as ScanSettings?,
+      settingsConfig: fields[4] as ScanSettings,
       fileHash: fields[5] as int,
+      externalPathToObj: fields[3] as String?,
     );
   }
 

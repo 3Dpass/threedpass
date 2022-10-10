@@ -6,14 +6,14 @@ import 'package:threedpass/features/preview_page/presentation/widgets/matches_fo
 
 class MatchesFound extends StatelessWidget {
   const MatchesFound({
-    Key? key,
     required this.state,
+    final Key? key,
   }) : super(key: key);
 
   final PreviewPageCubitState state;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     switch (state.runtimeType) {
       case PreviewNewObject:
         return const NoMatchesFoundText();

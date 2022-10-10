@@ -7,10 +7,10 @@ import 'package:threedpass/features/settings_page/presentation/widgets/hash_sett
 import 'package:threedpass/features/settings_page/presentation/widgets/hash_settings/trans_bytes.dart';
 
 class HashSettingsBlock extends StatelessWidget {
-  const HashSettingsBlock({Key? key}) : super(key: key);
+  const HashSettingsBlock({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Column(
       children: [
         const ScanSettingsTitle(),

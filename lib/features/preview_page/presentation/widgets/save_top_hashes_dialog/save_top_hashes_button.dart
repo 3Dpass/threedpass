@@ -5,7 +5,7 @@ class _SaveTopHashesButton extends StatelessWidget {
 
   final PreviewPageCubitState pageCubitState;
 
-  void openSaveDialog(BuildContext context) {
+  void openSaveDialog(final BuildContext context) {
     // For some reason it's not possible to place context.router.replace outsite conditional op?
     pageCubitState.hashObject != null
         ? context.router.replace(
@@ -22,11 +22,11 @@ class _SaveTopHashesButton extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     if (pageCubitState is PreviewExistingSnapshot) {
       return TextButton(
-        child: Text('Saved'.tr()),
         onPressed: null,
+        child: Text('Saved'.tr()),
       );
     } else {
       return TextButton(

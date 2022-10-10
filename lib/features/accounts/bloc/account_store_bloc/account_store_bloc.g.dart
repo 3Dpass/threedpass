@@ -12,16 +12,12 @@ abstract class _$AccountStoreStateCWProxy {
 
   AccountStoreState addressIconsMap(Map<String, String> addressIconsMap);
 
-  AccountStoreState newAccount(AccountCreate newAccount);
+  AccountStoreState newAccount(AccountInfo newAccount);
 
   AccountStoreState pubKeyAddressMap(
       Map<int, Map<String, String>> pubKeyAddressMap);
 
   AccountStoreState recoveryInfo(RecoveryInfo recoveryInfo);
-
-  AccountStoreState walletConnectPairing(bool walletConnectPairing);
-
-  AccountStoreState wcSessions(List<WCPairedData> wcSessions);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountStoreState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -32,11 +28,9 @@ abstract class _$AccountStoreStateCWProxy {
   AccountStoreState call({
     AccountAdvancedOptions? accountAdvancedOptions,
     Map<String, String>? addressIconsMap,
-    AccountCreate? newAccount,
+    AccountInfo? newAccount,
     Map<int, Map<String, String>>? pubKeyAddressMap,
     RecoveryInfo? recoveryInfo,
-    bool? walletConnectPairing,
-    List<WCPairedData>? wcSessions,
   });
 }
 
@@ -56,7 +50,7 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
       this(addressIconsMap: addressIconsMap);
 
   @override
-  AccountStoreState newAccount(AccountCreate newAccount) =>
+  AccountStoreState newAccount(AccountInfo newAccount) =>
       this(newAccount: newAccount);
 
   @override
@@ -67,14 +61,6 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
   @override
   AccountStoreState recoveryInfo(RecoveryInfo recoveryInfo) =>
       this(recoveryInfo: recoveryInfo);
-
-  @override
-  AccountStoreState walletConnectPairing(bool walletConnectPairing) =>
-      this(walletConnectPairing: walletConnectPairing);
-
-  @override
-  AccountStoreState wcSessions(List<WCPairedData> wcSessions) =>
-      this(wcSessions: wcSessions);
 
   @override
 
@@ -90,8 +76,6 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
     Object? newAccount = const $CopyWithPlaceholder(),
     Object? pubKeyAddressMap = const $CopyWithPlaceholder(),
     Object? recoveryInfo = const $CopyWithPlaceholder(),
-    Object? walletConnectPairing = const $CopyWithPlaceholder(),
-    Object? wcSessions = const $CopyWithPlaceholder(),
   }) {
     return AccountStoreState(
       accountAdvancedOptions:
@@ -109,7 +93,7 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
           newAccount == const $CopyWithPlaceholder() || newAccount == null
               ? _value.newAccount
               // ignore: cast_nullable_to_non_nullable
-              : newAccount as AccountCreate,
+              : newAccount as AccountInfo,
       pubKeyAddressMap: pubKeyAddressMap == const $CopyWithPlaceholder() ||
               pubKeyAddressMap == null
           ? _value.pubKeyAddressMap
@@ -120,17 +104,6 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
               ? _value.recoveryInfo
               // ignore: cast_nullable_to_non_nullable
               : recoveryInfo as RecoveryInfo,
-      walletConnectPairing:
-          walletConnectPairing == const $CopyWithPlaceholder() ||
-                  walletConnectPairing == null
-              ? _value.walletConnectPairing
-              // ignore: cast_nullable_to_non_nullable
-              : walletConnectPairing as bool,
-      wcSessions:
-          wcSessions == const $CopyWithPlaceholder() || wcSessions == null
-              ? _value.wcSessions
-              // ignore: cast_nullable_to_non_nullable
-              : wcSessions as List<WCPairedData>,
     );
   }
 }

@@ -4,8 +4,8 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 /// Experimental
 class D3pOutlinedButton extends StatelessWidget {
   const D3pOutlinedButton({
-    Key? key,
     required this.text,
+    final Key? key,
     this.width,
     this.height,
     this.padding,
@@ -18,7 +18,10 @@ class D3pOutlinedButton extends StatelessWidget {
   final double? width;
   final EdgeInsets? padding;
 
-  MaterialElevatedButtonData materialTheme(context, __) {
+  MaterialElevatedButtonData materialTheme(
+    final BuildContext context,
+    final __,
+  ) {
     final theme = Theme.of(context);
     return MaterialElevatedButtonData(
       style: OutlinedButton.styleFrom(
@@ -30,7 +33,7 @@ class D3pOutlinedButton extends StatelessWidget {
           color: theme.colorScheme.primary,
           width: 1,
         ),
-        shape: StadiumBorder(
+        shape: const StadiumBorder(
             // borderRadius: BorderRadius.circular(8),
             ),
       ),
@@ -38,16 +41,16 @@ class D3pOutlinedButton extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Padding(
       padding: padding ?? EdgeInsets.zero,
       child: SizedBox(
         height: height,
         width: width,
         child: PlatformElevatedButton(
-          child: Text(text),
           onPressed: onPressed,
           material: materialTheme,
+          child: Text(text),
         ),
       ),
     );

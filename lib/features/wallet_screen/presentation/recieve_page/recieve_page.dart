@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/copy_and_notify.dart';
@@ -13,10 +12,10 @@ part './widgets/qr_code.dart';
 part './widgets/address_text.dart';
 
 class RecievePage extends StatelessWidget {
-  const RecievePage({Key? key}) : super(key: key);
+  const RecievePage({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final accountData =
         BlocProvider.of<AppServiceLoaderCubit>(context).state.keyring.current;
     final address = accountData.address!;

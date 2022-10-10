@@ -6,12 +6,12 @@ import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BlocProvider<HomeContextCubit>(
-      create: (context) => HomeContextCubit(
+      create: (final context) => HomeContextCubit(
         HomeContextState(context: context),
       ),
       child: AutoTabsScaffold(
@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
           WalletWrapperRoute(),
           SettingsRoute(),
         ],
-        bottomNavigationBuilder: (_, tabsRouter) {
+        bottomNavigationBuilder: (final context, final tabsRouter) {
           return BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             currentIndex: tabsRouter.activeIndex,

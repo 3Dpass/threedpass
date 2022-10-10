@@ -5,20 +5,20 @@ import 'package:threedpass/features/accounts/bloc/address_icon_data_preview_cubi
 
 class AddressIconPreviewCubitProvider extends StatelessWidget {
   const AddressIconPreviewCubitProvider({
-    Key? key,
     required this.child,
+    final Key? key,
   }) : super(key: key);
 
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BlocProvider<AddressIconDataPreviewCubit>(
-      create: (context) => AddressIconDataPreviewCubit(
+      create: (final context) => AddressIconDataPreviewCubit(
         BlocProvider.of<AppServiceLoaderCubit>(context),
       ),
       child: Builder(
-        builder: (context) => child,
+        builder: (final context) => child,
       ),
     );
   }

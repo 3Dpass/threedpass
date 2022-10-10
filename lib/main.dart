@@ -1,12 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
+import 'package:threedpass/features/scan_page/bloc/object_from_file_cubit.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
-import 'package:flutter/material.dart';
 import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart' as di_setup;
 
@@ -31,12 +32,12 @@ Future<void> main() async {
 }
 
 class ThreeDApp extends StatelessWidget {
-  ThreeDApp({Key? key}) : super(key: key);
+  ThreeDApp({final Key? key}) : super(key: key);
 
   final _appRouter = AppRouter();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitDown,
       DeviceOrientation.portraitUp,
@@ -45,13 +46,16 @@ class ThreeDApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<HashesListBloc>(
-          create: (_) => di_setup.getIt<HashesListBloc>(),
+          create: (final _) => di_setup.getIt<HashesListBloc>(),
         ),
         BlocProvider<SettingsConfigCubit>(
-          create: (_) => di_setup.getIt<SettingsConfigCubit>(),
+          create: (final _) => di_setup.getIt<SettingsConfigCubit>(),
+        ),
+        BlocProvider<BestNumberAvaliableCubit>(
+          create: (final _) => di_setup.getIt<BestNumberAvaliableCubit>(),
         ),
         BlocProvider<AppServiceLoaderCubit>(
-          create: (_) => di_setup.getIt<AppServiceLoaderCubit>(),
+          create: (final _) => di_setup.getIt<AppServiceLoaderCubit>(),
           lazy: false,
         ),
       ],

@@ -9,15 +9,15 @@ import 'package:threedpass/features/wallet_screen/presentation/assets_page/widge
 
 class AssetPageAppbar extends AppBar {
   AssetPageAppbar({
-    Key? key,
-    required KeyPairData account,
-    required BuildContext context,
+    required final KeyPairData account,
+    required final BuildContext context,
+    final Key? key,
   }) : super(
           key: key,
           backgroundColor: Colors.black,
           centerTitle: true,
           leading: Builder(
-            builder: (context) => IconButton(
+            builder: (final context) => IconButton(
               onPressed: () => Scaffold.of(context).openDrawer(),
               icon: const Icon(Icons.switch_account_rounded),
             ),
@@ -25,6 +25,12 @@ class AssetPageAppbar extends AppBar {
           title: SizedBox(
             height: kToolbarHeight,
             child: GestureDetector(
+              onTap: account.address != null
+                  ? () => copyAndNotify(
+                        textToCopy: account.address!,
+                        textToShow: 'address_copied_to_clipboard'.tr(),
+                      )
+                  : null,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -60,12 +66,6 @@ class AssetPageAppbar extends AppBar {
                   ), // placeholder for AddressIcon
                 ],
               ),
-              onTap: account.address != null
-                  ? () => copyAndNotify(
-                        textToCopy: account.address!,
-                        textToShow: 'address_copied_to_clipboard'.tr(),
-                      )
-                  : null,
             ),
           ),
           actions: const [

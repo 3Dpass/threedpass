@@ -8,14 +8,14 @@ import 'package:threedpass/router/router.gr.dart';
 
 class MoreInfo extends StatelessWidget {
   const MoreInfo({
-    Key? key,
     required this.state,
+    final Key? key,
   }) : super(key: key);
 
   final PreviewPageCubitState state;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -24,8 +24,9 @@ class MoreInfo extends StatelessWidget {
           data: '### **Hash ID**\n### [' +
               'show_and_share_dialog_button'.tr() +
               '](pseudo_link)',
-          onTapLink: (String text, String? href, String title) =>
-              context.router.push(
+          onTapLink:
+              (final String text, final String? href, final String title) =>
+                  context.router.push(
             SaveTopHashesDialogRoute(
               pageCubitState: state,
             ),

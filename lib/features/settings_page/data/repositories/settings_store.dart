@@ -16,7 +16,7 @@ class HiveSettingsStore extends HiveUniversalStore<GlobalSettings> {
     }
   }
 
-  Future<void> setSettings(GlobalSettings config) async {
-    return await putAt0(config);
+  Future<void> setSettings(final GlobalSettings config) async {
+    return putAt0(config);
   }
 }

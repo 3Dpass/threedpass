@@ -4,12 +4,12 @@ import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 
 class ConnectionIndicator extends StatelessWidget {
-  const ConnectionIndicator({Key? key}) : super(key: key);
+  const ConnectionIndicator({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
-      builder: (context, state) {
+      builder: (final context, final state) {
         switch (state.status) {
           case AppServiceInitStatus.init:
           case AppServiceInitStatus.connecting:
@@ -32,14 +32,14 @@ class ConnectionIndicator extends StatelessWidget {
 
 class _SmallCircle extends StatelessWidget {
   const _SmallCircle({
-    Key? key,
     required this.color,
+    final Key? key,
   }) : super(key: key);
 
   final Color color;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Container(
       height: 10,
       width: 10,

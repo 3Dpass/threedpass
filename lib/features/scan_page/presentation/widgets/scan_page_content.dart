@@ -7,12 +7,12 @@ import 'package:threedpass/features/scan_page/presentation/widgets/objects_list.
 import 'package:threedpass/features/scan_page/presentation/widgets/objects_list_header.dart';
 
 class ScanPageContent extends StatelessWidget {
-  const ScanPageContent({Key? key}) : super(key: key);
+  const ScanPageContent({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BlocBuilder<HashesListBloc, HashesListState>(
-      builder: (context, state) {
+      builder: (final context, final state) {
         if (state is HashesListLoaded) {
           if (state.objects.isEmpty) {
             return const NoSavedObjectsPlaceholder();

@@ -11,7 +11,7 @@ class MnemonicInputState {
 }
 
 class MnemonicInputCubit extends Cubit<MnemonicInputState> {
-  MnemonicInputCubit(String mnemonic)
+  MnemonicInputCubit(final String mnemonic)
       : _initial = mnemonic,
         super(
           MnemonicInputState(
@@ -22,7 +22,7 @@ class MnemonicInputCubit extends Cubit<MnemonicInputState> {
 
   final String _initial;
 
-  void onWordPressed(int index) {
+  void onWordPressed(final int index) {
     final current = state;
     final newList = List<String>.from(current.words);
 
@@ -44,7 +44,7 @@ class MnemonicInputCubit extends Cubit<MnemonicInputState> {
     );
   }
 
-  static List<String> genWords(String mnemonic) {
+  static List<String> genWords(final String mnemonic) {
     return mnemonic.split(' ')..shuffle();
   }
 }

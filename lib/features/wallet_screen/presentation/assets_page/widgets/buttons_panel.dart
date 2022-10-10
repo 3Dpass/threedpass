@@ -4,7 +4,7 @@ class _ButtonsPanel extends StatelessWidget {
   const _ButtonsPanel();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: const [

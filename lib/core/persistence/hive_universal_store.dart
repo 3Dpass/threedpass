@@ -7,22 +7,23 @@ class HiveUniversalStore<T> {
   final String _boxName;
 
   HiveUniversalStore({
-    required String boxName,
+    required final String boxName,
   }) : _boxName = boxName;
 
   Future<void> init() async {
     _box = await Hive.openBox(_boxName);
   }
 
-  Future<void> addObject(T value) async {
+  Future<void> addObject(final T value) async {
     await _box.add(value);
-    return await _box.flush();
+    return _box.flush();
   }
 
   /// Delete object by unknown key
-  Future<StorageError?> removeObject(T value) async {
+  Future<StorageError?> removeObject(final T value) async {
     final map = _box.toMap();
-    var key = map.keys.firstWhere((k) => map[k] == value, orElse: () => null);
+    final key =
+        map.keys.firstWhere((final k) => map[k] == value, orElse: () => null);
 
     if (key != null) {
       await _box.delete(key);
@@ -37,7 +38,7 @@ class HiveUniversalStore<T> {
   //   await _box.deleteAll(keys);
   // }
 
-  Future<void> replace(T value) async {
+  Future<void> replace(final T value) async {
     var index = -1;
     for (int i = 0; i < _box.length; ++i) {
       if (_box.values.elementAt(i) == value) {
@@ -61,22 +62,22 @@ class HiveUniversalStore<T> {
   //   return defaultValue;
   // }
 
-  T? getAt(int index) {
+  T? getAt(final int index) {
     return _box.length > 0 ? _box.getAt(index) : null;
   }
 
-  Future<void> putAt(int index, T value) async {
+  Future<void> putAt(final int index, final T value) async {
     await _box.putAt(index, value);
-    return await _box.flush();
+    return _box.flush();
   }
 
-  Future<void> putAt0(T value) async {
+  Future<void> putAt0(final T value) async {
     if (_box.isEmpty) {
-      _box.add(value);
+      await _box.add(value);
     } else {
       await _box.putAt(0, value);
     }
-    return await _box.flush();
+    return _box.flush();
   }
 
   Iterable<T> getAll() {

@@ -7,10 +7,10 @@ import 'package:threedpass/features/settings_page/presentation/widgets/wallet_se
 import 'package:threedpass/features/settings_page/presentation/widgets/wallet_settings/test_net_switch.dart';
 
 class WalletSettingsBlock extends StatelessWidget {
-  const WalletSettingsBlock({Key? key}) : super(key: key);
+  const WalletSettingsBlock({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

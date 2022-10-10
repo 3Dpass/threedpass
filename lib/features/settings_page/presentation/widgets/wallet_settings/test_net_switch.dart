@@ -6,7 +6,7 @@ import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart'
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 
 class TestNetSwitch extends StatelessWidget {
-  const TestNetSwitch({Key? key}) : super(key: key);
+  const TestNetSwitch({final Key? key}) : super(key: key);
 
   /// This code is used to change [Plugin] mode.
   /// It turned out to be a useless feature.
@@ -24,9 +24,9 @@ class TestNetSwitch extends StatelessWidget {
   // }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
-      builder: (context, state) => D3pSwitchButton(
+      builder: (final context, final state) => D3pSwitchButton(
         text: 'wallet_settings_istestnet_switch'.tr(),
         onChanged: null, //(value) => onChanged(value, context),
         initialValue: BlocProvider.of<SettingsConfigCubit>(context)

@@ -6,9 +6,9 @@ import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 
 class ConnectStatus extends StatelessWidget {
-  const ConnectStatus({Key? key}) : super(key: key);
+  const ConnectStatus({final Key? key}) : super(key: key);
 
-  String text(AppServiceInitStatus status, BuildContext context) {
+  String text(final AppServiceInitStatus status, final BuildContext context) {
     switch (status) {
       case AppServiceInitStatus.init:
         return 'init_status_sdk'.tr();
@@ -25,9 +25,9 @@ class ConnectStatus extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
-      builder: (context, state) => Row(
+      builder: (final context, final state) => Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           _Indicator(state.status),
@@ -47,7 +47,7 @@ class _Indicator extends StatelessWidget {
   final AppServiceInitStatus status;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     switch (status) {
       case AppServiceInitStatus.init:
       case AppServiceInitStatus.connecting:

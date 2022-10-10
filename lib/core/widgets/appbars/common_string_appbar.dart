@@ -4,8 +4,8 @@ import 'package:threedpass/core/widgets/appbars/common_appbar.dart';
 
 class CommonStringAppbar extends CommonAppbar {
   CommonStringAppbar({
-    Key? key,
-    required String title,
+    required final String title,
+    final Key? key,
   }) : super(
           key: key,
           titleSpacing: 0,

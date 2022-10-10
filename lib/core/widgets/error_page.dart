@@ -4,14 +4,14 @@ import 'package:threedpass/router/route_names.dart';
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({
-    Key? key,
     required this.error,
+    final Key? key,
   }) : super(key: key);
 
   final Object error;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Scaffold(
       body: Center(
         child: Text(

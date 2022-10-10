@@ -7,10 +7,10 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 // TODO Rewrite stateful to cubit
 class ComparePage extends StatefulWidget {
   const ComparePage({
-    Key? key,
     required this.origObj,
     required this.comparisons,
     required this.stableHashes,
+    final Key? key,
   }) : super(key: key);
 
   final List<Snapshot> comparisons;
@@ -30,7 +30,7 @@ class _State extends State<ComparePage> {
     super.initState();
   }
 
-  void onChoose(Snapshot? model) {
+  void onChoose(final Snapshot? model) {
     if (model != null) {
       setState(() {
         comparable = model;
@@ -39,7 +39,7 @@ class _State extends State<ComparePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -47,13 +47,15 @@ class _State extends State<ComparePage> {
       ),
       body: Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: CompareRow(
-              origSnap: widget.origObj,
-              snapToCompare: comparable,
-              allSnapshots: widget.comparisons,
-              onChoose: onChoose,
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: CompareRow(
+                origSnap: widget.origObj,
+                snapToCompare: comparable,
+                allSnapshots: widget.comparisons,
+                onChoose: onChoose,
+              ),
             ),
           ),
           const Divider(

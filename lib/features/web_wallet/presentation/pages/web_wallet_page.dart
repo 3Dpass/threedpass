@@ -3,13 +3,13 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class WebWalletPage extends StatelessWidget {
   const WebWalletPage({
-    Key? key,
     required this.initialUrl,
+    final Key? key,
   }) : super(key: key);
   final String initialUrl;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 0,

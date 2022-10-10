@@ -10,9 +10,9 @@ class AddressIconDataPreviewCubit extends Cubit<AddressIconData?> {
   final AppServiceLoaderCubit appServiceCubit;
 
   Future<void> updateInfo(
-    String inputMnemonic, {
-    CryptoType cryptoType = defaultCryptoType,
-    String derivePath = '',
+    final String inputMnemonic, {
+    final CryptoType cryptoType = defaultCryptoType,
+    final String derivePath = '',
   }) async {
     final addressInfo =
         await appServiceCubit.state.plugin.sdk.api.keyring.addressFromMnemonic(

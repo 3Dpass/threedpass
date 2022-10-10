@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class MatchHyperlink extends StatelessWidget {
   const MatchHyperlink({
-    Key? key,
     required this.clickable,
     required this.mainText,
     required this.onTap,
+    final Key? key,
   }) : super(key: key);
 
   final String clickable;
@@ -14,9 +14,9 @@ class MatchHyperlink extends StatelessWidget {
   final void Function() onTap;
 
   @override
-  Widget build(BuildContext context) {
-    TextStyle defaultStyle = const TextStyle(color: Colors.black);
-    TextStyle linkStyle = const TextStyle(color: Colors.blue);
+  Widget build(final BuildContext context) {
+    const TextStyle defaultStyle = TextStyle(color: Colors.black);
+    const TextStyle linkStyle = TextStyle(color: Colors.blue);
 
     return RichText(
       text: TextSpan(

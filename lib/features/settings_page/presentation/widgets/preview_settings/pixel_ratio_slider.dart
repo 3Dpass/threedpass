@@ -1,23 +1,23 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/preview_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 
 class PixelRatioSlider extends StatefulWidget {
-  const PixelRatioSlider({Key? key}) : super(key: key);
+  const PixelRatioSlider({final Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _State();
 }
 
 class _State extends State<PixelRatioSlider> {
-  late double value;
-
-  static const minValue = 0.4;
   static const maxValue = 1.0;
+  static const minValue = 0.4;
+
+  late double value;
 
   @override
   void initState() {
@@ -28,9 +28,9 @@ class _State extends State<PixelRatioSlider> {
   }
 
   Future<void> _onFieldChanged(
-    BuildContext context,
-    ScanSettings settings,
-    double? newValue,
+    final BuildContext context,
+    final ScanSettings settings,
+    final double? newValue,
   ) async {
     setState(() {
       if (newValue != null) {
@@ -46,7 +46,7 @@ class _State extends State<PixelRatioSlider> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final settings =
         BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings;
 
@@ -67,7 +67,7 @@ class _State extends State<PixelRatioSlider> {
                 min: minValue,
                 max: maxValue,
                 divisions: 5,
-                onChanged: (double? newValue) =>
+                onChanged: (final double? newValue) =>
                     _onFieldChanged(context, settings, newValue),
               ),
             ),

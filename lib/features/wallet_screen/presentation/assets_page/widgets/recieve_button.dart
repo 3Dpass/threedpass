@@ -5,14 +5,14 @@ import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class RecieveButton extends StatelessWidget {
-  const RecieveButton({Key? key}) : super(key: key);
+  const RecieveButton({final Key? key}) : super(key: key);
 
-  void onPressed(BuildContext context) {
+  void onPressed(final BuildContext context) {
     context.router.push(const RecieveRoute());
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return D3pElevatedButton(
       text: 'recieve_coins_button_label'.tr(),
       onPressed: () => onPressed(context),

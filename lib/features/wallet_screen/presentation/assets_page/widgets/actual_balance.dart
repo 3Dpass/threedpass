@@ -7,10 +7,10 @@ import 'package:threedpass/features/wallet_screen/presentation/assets_page/widge
 
 class ActualBalance extends StatelessWidget {
   const ActualBalance({
-    Key? key,
     required this.balance,
     required this.tokenDecimals,
     required this.tokenSymbol,
+    final Key? key,
   }) : super(key: key);
 
   final BalanceData balance;
@@ -18,7 +18,7 @@ class ActualBalance extends StatelessWidget {
   final String tokenSymbol;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -45,19 +45,19 @@ class ActualBalance extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               AvaliableBalanceCard(
-                balance: balance.availableBalance,
+                balance: balance.availableBalance as String,
                 tokenSymbol: tokenSymbol,
                 tokenDecimals: tokenDecimals,
               ),
               const SizedBox(height: 8),
               LockedBalanceCard(
-                balance: balance.lockedBalance,
+                balance: balance.lockedBalance as String,
                 tokenSymbol: tokenSymbol,
                 tokenDecimals: tokenDecimals,
               ),
               const SizedBox(height: 8),
               ReservedBalanceCard(
-                balance: balance.reservedBalance,
+                balance: balance.reservedBalance as String,
                 tokenSymbol: tokenSymbol,
                 tokenDecimals: tokenDecimals,
               ),

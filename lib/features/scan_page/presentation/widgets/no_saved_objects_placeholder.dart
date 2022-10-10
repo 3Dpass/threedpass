@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class NoSavedObjectsPlaceholder extends StatelessWidget {
-  const NoSavedObjectsPlaceholder({Key? key}) : super(key: key);
+  const NoSavedObjectsPlaceholder({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16),

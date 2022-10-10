@@ -5,10 +5,10 @@ import 'package:threedpass/common/button_styles.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class OpenWebWalletButton extends StatelessWidget {
-  const OpenWebWalletButton({Key? key}) : super(key: key);
+  const OpenWebWalletButton({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return ElevatedButton.icon(
       style: AppButtonStyles.primaryButton,
       icon: const Icon(Icons.explore),

@@ -7,9 +7,9 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class PreviewAppBar extends AppBar {
   PreviewAppBar({
-    Key? key,
-    HashObject? hashObject,
-    required Snapshot snapshot,
+    required final Snapshot snapshot,
+    final Key? key,
+    final HashObject? hashObject,
   }) : super(
           key: key,
           backgroundColor: Colors.black,

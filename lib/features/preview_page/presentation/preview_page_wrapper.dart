@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
+import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 
 class PreviewPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   const PreviewPageWrapper({
-    Key? key,
     required this.hashObject,
     required this.snapshot,
+    final Key? key,
     this.createNewAnyway = false,
   }) : super(key: key);
 
@@ -43,18 +43,18 @@ class PreviewPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   }
 
   @override
-  Widget wrappedRoute(BuildContext context) {
+  Widget wrappedRoute(final BuildContext context) {
     return MultiBlocProvider(
       providers: [
         // Snapshot data
         BlocProvider<PreviewPageCubit>(
-          create: (context) => PreviewPageCubit(
+          create: (final context) => PreviewPageCubit(
             _previewPageCubitState,
           ),
         ),
         // Context to return to menu.
         BlocProvider<OuterContextCubit>(
-          create: (_) => OuterContextCubit(context),
+          create: (final _) => OuterContextCubit(context),
           lazy: false,
         ),
       ],
@@ -63,7 +63,7 @@ class PreviewPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return const AutoRouter();
   }
 }

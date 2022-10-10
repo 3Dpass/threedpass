@@ -4,18 +4,18 @@ import 'package:threedpass/features/scan_page/presentation/widgets/object_list/h
 
 class SnapshotsList extends StatelessWidget {
   const SnapshotsList({
-    Key? key,
     required this.currentObject,
+    final Key? key,
   }) : super(key: key);
 
   final HashObject currentObject;
 
   @override
-  Widget build(BuildContext context) => ListView.builder(
+  Widget build(final BuildContext context) => ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: currentObject.snapshots.length,
-        itemBuilder: (context, hashIndex) => SnapshotCard(
+        itemBuilder: (final context, final hashIndex) => SnapshotCard(
           snapshot: currentObject.snapshots[hashIndex],
           hashObject: currentObject,
         ),

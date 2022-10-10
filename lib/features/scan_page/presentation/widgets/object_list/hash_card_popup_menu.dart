@@ -2,21 +2,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 
 class HashCardPopUpMenuButton extends StatelessWidget {
   const HashCardPopUpMenuButton({
-    Key? key,
     required this.snapshot,
     required this.hashObject,
+    final Key? key,
   }) : super(key: key);
 
   final Snapshot snapshot;
   final HashObject hashObject;
 
-  void onSelected(int? value, BuildContext context) {
+  void onSelected(final int? value, final BuildContext context) {
     switch (value) {
       case 1:
         Share.share(snapshot.hashes.join('\n'));
@@ -33,11 +33,11 @@ class HashCardPopUpMenuButton extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return PopupMenuButton(
       icon: const Icon(Icons.more_vert, color: Colors.grey),
-      onSelected: (int? value) => onSelected(value, context),
-      itemBuilder: (context) => [
+      onSelected: (final int? value) => onSelected(value, context),
+      itemBuilder: (final context) => [
         PopupMenuItem(
           value: 1,
           child: Row(

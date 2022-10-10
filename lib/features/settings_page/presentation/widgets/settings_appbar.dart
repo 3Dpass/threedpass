@@ -5,7 +5,7 @@ import 'package:threedpass/features/settings_page/presentation/widgets/hide_keyb
 
 class SettingsAppbar extends CommonLogoAppbar {
   SettingsAppbar({
-    Key? key,
+    final Key? key,
   }) : super(
           key: key,
           title: 'settings_title'.tr(),
