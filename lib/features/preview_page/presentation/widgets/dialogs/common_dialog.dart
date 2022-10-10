@@ -48,13 +48,13 @@ class CommonDialog extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Spacer(),
             Flexible(
               child: D3pTextButton(
                 text: 'Cancel'.tr(),
                 onPressed: () => context.router.pop(),
               ),
             ),
+            const Spacer(),
             Flexible(
               child: D3pTextButton(
                 text: actionText,
