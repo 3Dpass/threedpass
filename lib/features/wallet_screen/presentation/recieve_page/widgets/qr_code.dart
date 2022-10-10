@@ -6,7 +6,7 @@ class _QRCode extends StatelessWidget {
   final String address;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.width - 16 * 2,
       alignment: Alignment.center,

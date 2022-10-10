@@ -14,7 +14,7 @@ class _SuffixButton {
   final void Function()? onLabelButtonPressed;
   final void Function()? onSuffixButtonPressed;
 
-  Widget? build(BuildContext context) {
+  Widget? build(final BuildContext context) {
     return labelButton != null || suffixButton != null
         ? Row(
             mainAxisSize: MainAxisSize.min,
@@ -23,8 +23,8 @@ class _SuffixButton {
                   ? SizedBox(
                       width: 60,
                       child: TextButton(
-                        child: Text(labelButton!),
                         onPressed: onLabelButtonPressed ?? emptyFunction,
+                        child: Text(labelButton!),
                       ),
                     )
                   : const SizedBox(),
@@ -35,8 +35,8 @@ class _SuffixButton {
                   ? SizedBox(
                       width: 60,
                       child: TextButton(
-                        child: Text(suffixButton!),
                         onPressed: onSuffixButtonPressed ?? emptyFunction,
+                        child: Text(suffixButton!),
                       ),
                     )
                   : const SizedBox(),

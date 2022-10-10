@@ -6,14 +6,17 @@ import 'package:threedpass/features/accounts/presentation/widgets/create_account
 import 'package:threedpass/features/accounts/presentation/widgets/create_account_mnemonic_backup/mnemonic_backup_content.dart';
 
 class CreateAccountMnemonicBackup extends StatelessWidget {
-  const CreateAccountMnemonicBackup({Key? key}) : super(key: key);
+  const CreateAccountMnemonicBackup({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     // Listen to accountStoreChanges
     return AccountStoreBlocBuilder(
       // ignore: prefer-extracting-callbacks
-      builder: ({required String mnemonic, required AppService appService}) {
+      builder: ({
+        required final String mnemonic,
+        required final AppService appService,
+      }) {
         // Provide advanced options form
         return Scaffold(
           appBar: CommonStringAppbar(title: 'create_account_title'.tr()),

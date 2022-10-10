@@ -2,17 +2,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 
 class SectionsTextField extends StatelessWidget {
-  const SectionsTextField({Key? key}) : super(key: key);
+  const SectionsTextField({final Key? key}) : super(key: key);
 
   Future<void> _onFieldChanged(
-    BuildContext context,
-    ScanSettings settings,
-    String? newValue,
+    final BuildContext context,
+    final ScanSettings settings,
+    final String? newValue,
   ) async {
     if (newValue != null && int.tryParse(newValue) != null) {
       final cubit = BlocProvider.of<SettingsConfigCubit>(context);
@@ -23,7 +23,7 @@ class SectionsTextField extends StatelessWidget {
     }
   }
 
-  static String? onlyNumValidator(String? value) {
+  static String? onlyNumValidator(final String? value) {
     if (value != null && int.tryParse(value) != null) {
       return null;
     } else {
@@ -32,7 +32,7 @@ class SectionsTextField extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final settings =
         BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings;
 
@@ -40,7 +40,7 @@ class SectionsTextField extends StatelessWidget {
       controller: TextEditingController(
         text: settings.nSections.toString(),
       ),
-      onChanged: (String? newValue) =>
+      onChanged: (final String? newValue) =>
           _onFieldChanged(context, settings, newValue),
       keyboardType: TextInputType.number,
       validator: onlyNumValidator,

@@ -4,10 +4,10 @@ import 'package:threedpass/features/wallet_screen/presentation/assets_page/widge
 
 class AvaliableBalanceCard extends StatelessWidget {
   const AvaliableBalanceCard({
-    Key? key,
     required this.balance,
     required this.tokenSymbol,
     required this.tokenDecimals,
+    final Key? key,
   }) : super(key: key);
 
   final String balance;
@@ -15,7 +15,7 @@ class AvaliableBalanceCard extends StatelessWidget {
   final int tokenDecimals;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Flexible(
       child: BasicBalanceCard(
         iconData: Icons.wallet,

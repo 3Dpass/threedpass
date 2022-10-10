@@ -5,10 +5,10 @@ import 'package:threedpass/features/scan_page/presentation/widgets/get_object_fr
 import 'package:threedpass/features/scan_page/presentation/widgets/scan_page_content.dart';
 
 class ScanPage extends StatelessWidget {
-  const ScanPage({Key? key}) : super(key: key);
+  const ScanPage({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Scaffold(
       appBar: CommonLogoAppbar(
         title: 'recognize_your_objects'.tr(),

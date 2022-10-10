@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class AddressIcon extends StatelessWidget {
   const AddressIcon(
     this.address, {
-    Key? key,
+    final Key? key,
     this.size,
     this.svg,
     this.decoration,
@@ -19,7 +19,7 @@ class AddressIcon extends StatelessWidget {
   static const double defaultSize = 32;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Container(
       width: size ?? defaultSize,
       height: size ?? defaultSize,

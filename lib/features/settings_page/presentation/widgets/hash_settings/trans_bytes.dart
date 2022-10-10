@@ -9,8 +9,8 @@ import 'package:threedpass/features/settings_page/domain/entities/scan_settings.
 
 class TransBytesInput extends StatelessWidget {
   TransBytesInput({
-    Key? key,
-    required SettingsConfigCubit settingsConfigCubit,
+    required final SettingsConfigCubit settingsConfigCubit,
+    final Key? key,
   })  : controller = TextEditingController(
           text: hexInputFormatter.maskText(
             settingsConfigCubit.state.scanSettings.transBytes,
@@ -18,15 +18,15 @@ class TransBytesInput extends StatelessWidget {
         ),
         super(key: key);
 
-  final TextEditingController controller;
-
   static final hexInputFormatter = MaskTextInputFormatter(
     mask: '0x########',
     filter: {'#': RegExp(r'[0-9A-Fa-f]')},
     type: MaskAutoCompletionType.lazy,
   );
 
-  void changeSettings(String input, BuildContext context) {
+  final TextEditingController controller;
+
+  void changeSettings(final String input, final BuildContext context) {
     final realInput = hexInputFormatter.unmaskText(input);
 
     /// @see [validator] comment
@@ -41,7 +41,7 @@ class TransBytesInput extends StatelessWidget {
 
   /// Empty input means, that trans bytes should be taken from chain.
   /// Else user's 8 len input will be used by calc library
-  String? validator(String? value) {
+  String? validator(final String? value) {
     if (value == null || value.isEmpty) {
       return null;
     }
@@ -53,19 +53,19 @@ class TransBytesInput extends StatelessWidget {
     }
   }
 
-  void onClearPressed(BuildContext context) {
+  void onClearPressed(final BuildContext context) {
     controller.clear();
     changeSettings('', context);
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return D3pTextFormField(
       controller: controller,
       labelText: 'trans_bytes_input_label'.tr(),
       suffixButton: 'Clear'.tr(),
       onSuffixButtonPressed: () => onClearPressed(context),
-      onChanged: (value) => changeSettings(value ?? '', context),
+      onChanged: (final value) => changeSettings(value ?? '', context),
       validator: validator,
       inputFormatters: [hexInputFormatter],
       bottomHelpText: 'trans_help_text'.tr(),

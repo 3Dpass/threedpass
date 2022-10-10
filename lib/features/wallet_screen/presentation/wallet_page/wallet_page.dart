@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/features/wallet_screen/presentation/init_page/appservice_init_loader_page.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/assets_page.dart';
+import 'package:threedpass/features/wallet_screen/presentation/init_page/appservice_init_loader_page.dart';
 import 'package:threedpass/features/wallet_screen/presentation/no_accounts_page/no_accounts_page.dart';
 
 class WalletPage extends StatelessWidget {
-  const WalletPage({Key? key}) : super(key: key);
+  const WalletPage({final Key? key}) : super(key: key);
 
-  bool buildWhen(AppService previous, AppService current) {
+  bool buildWhen(final AppService previous, final AppService current) {
     // State changes from init sdk to no accounts or hub
     if (previous.status == AppServiceInitStatus.init) {
       return true;
@@ -29,10 +29,10 @@ class WalletPage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
       buildWhen: buildWhen,
-      builder: (context, state) {
+      builder: (final context, final state) {
         switch (state.status) {
           case AppServiceInitStatus.init:
             return const AppServiceInitLoaderPage();

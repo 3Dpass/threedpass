@@ -11,12 +11,12 @@ import 'package:threedpass/features/wallet_screen/presentation/assets_page/widge
 part './widgets/buttons_panel.dart';
 
 class AssetsPage extends StatelessWidget {
-  const AssetsPage({Key? key}) : super(key: key);
+  const AssetsPage({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
-      builder: (context, state) {
+      builder: (final context, final state) {
         return Scaffold(
           appBar: AssetPageAppbar(
             account: state.keyring.current,

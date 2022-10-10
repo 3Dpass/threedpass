@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class CommonAppbar extends AppBar {
   CommonAppbar({
-    Key? key,
-    required Widget title,
-    double? titleSpacing,
-    List<Widget>? actions,
+    required final Widget title,
+    final double? titleSpacing,
+    final List<Widget>? actions,
+    final Key? key,
   }) : super(
           key: key,
           backgroundColor: Colors.black,

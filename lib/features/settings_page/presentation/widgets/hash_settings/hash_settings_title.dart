@@ -5,10 +5,10 @@ import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart'
 
 class ScanSettingsTitle extends StatelessWidget {
   const ScanSettingsTitle({
-    Key? key,
+    final Key? key,
   }) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final libVersion = BlocProvider.of<SettingsConfigCubit>(context)
         .state
         .scanSettings

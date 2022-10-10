@@ -5,14 +5,14 @@ import 'package:polkawallet_sdk/api/types/balanceData.dart';
 import 'package:threedpass/common/logger.dart';
 
 class BalanceUtils {
-  static BigInt balanceTotal(BalanceData? balance) {
+  static BigInt balanceTotal(final BalanceData? balance) {
     return balanceInt((balance?.freeBalance ?? 0).toString()) +
         balanceInt((balance?.reservedBalance ?? 0).toString());
   }
 
   /// number transform 1:
   /// from raw <String> of Api data to <BigInt>
-  static BigInt balanceInt(String? raw) {
+  static BigInt balanceInt(final String? raw) {
     if (raw == null || raw.isEmpty) {
       return BigInt.zero;
     }
@@ -29,7 +29,7 @@ class BalanceUtils {
 
   /// number transform 2:
   /// from <BigInt> to <double>
-  static double bigIntToDouble(BigInt? value, int decimals) {
+  static double bigIntToDouble(final BigInt? value, final int decimals) {
     if (value == null) {
       return 0;
     }
@@ -39,14 +39,14 @@ class BalanceUtils {
   /// number transform 3:
   /// from <double> to <String> in token format of ",##0.000"
   static String doubleFormat(
-    double? value, {
-    int length = 4,
-    int round = 0,
+    final double? value, {
+    final int length = 4,
+    final int round = 0,
   }) {
     if (value == null) {
       return '~';
     }
-    NumberFormat f =
+    final NumberFormat f =
         NumberFormat(",##0${length > 0 ? '.' : ''}${'#' * length}", 'en_US');
     return f.format(value);
   }
@@ -54,9 +54,9 @@ class BalanceUtils {
   /// combined number transform 1-3:
   /// from raw <String> to <String> in token format of ",##0.000"
   static String balance(
-    String? raw,
-    int decimals, {
-    int length = 4,
+    final String? raw,
+    final int decimals, {
+    final int length = 4,
   }) {
     if (raw == null || raw.isEmpty) {
       return '~';
@@ -69,7 +69,7 @@ class BalanceUtils {
 
   /// number transform 4:
   /// from <String of double> to <BigInt>
-  static BigInt tokenInt(String? value, int decimals) {
+  static BigInt tokenInt(final String? value, final int decimals) {
     if (value == null) {
       return BigInt.zero;
     }
@@ -80,14 +80,17 @@ class BalanceUtils {
       } else {
         v = double.parse(value);
       }
-    } catch (err) {
+    } on Exception catch (err) {
       logger.e('BalanceUtils.tokenInt() error: ${err.toString()}');
       // debugPrint();
     }
     return BigInt.from(v * pow(10, decimals));
   }
 
-  static String formattedTotal(BalanceData balanceData, int decimals) {
+  static String formattedTotal(
+    final BalanceData balanceData,
+    final int decimals,
+  ) {
     return doubleFormat(bigIntToDouble(balanceTotal(balanceData), decimals));
   }
 }

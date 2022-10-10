@@ -1,17 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
 
 class RemoveAccountDialog extends StatelessWidget {
-  const RemoveAccountDialog({Key? key}) : super(key: key);
+  const RemoveAccountDialog({final Key? key}) : super(key: key);
 
   Future<void> deleteAccount(
-    AppServiceLoaderCubit appServiceLoaderCubit,
-    BuildContext context,
+    final AppServiceLoaderCubit appServiceLoaderCubit,
+    final BuildContext context,
   ) async {
     final appService = appServiceLoaderCubit.state;
 
@@ -42,7 +41,7 @@ class RemoveAccountDialog extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final appServiceLoaderCubit =
         BlocProvider.of<AppServiceLoaderCubit>(context);
     final appService = appServiceLoaderCubit.state;
@@ -61,7 +60,7 @@ class RemoveAccountDialog extends StatelessWidget {
           // height: 35,
           child: Row(
             children: [
-              Spacer(),
+              const Spacer(),
               Flexible(
                 child: D3pTextButton(
                   onPressed: () => Navigator.of(context).pop(),

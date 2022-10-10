@@ -3,10 +3,10 @@ import 'package:threedpass/features/wallet_screen/presentation/no_accounts_page/
 import 'package:threedpass/features/wallet_screen/presentation/no_accounts_page/widgets/import_account_button.dart';
 
 class AccountCard extends StatelessWidget {
-  const AccountCard({Key? key}) : super(key: key);
+  const AccountCard({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

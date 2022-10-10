@@ -29,6 +29,8 @@
     "snap_card_name": "Name: ",
     "snap_card_stamp": "Stamp: ",
     "saved_objects_header": "Saved objects",
+    "object_title_prefix": "Object -",
+    "snapshots_subtitle": "snapshots:",
 
     "recognize_your_objects":"Recognize your objects",
     "open_web_wallet_button_label": "Open web wallet",
@@ -58,6 +60,10 @@
     "get_new_object_appbar": "Get a new one",
     "show_and_share_dialog_button": "Show and share",
     "delete_snapshot_button": "Remove & clear the cache",
+
+    "stable_hashes_list_title": "Stable hashes:",
+    "no_stable_hash_placeholder": "No stable hash found.",
+    "no_stable_hash_help": "To get a stable hash, you try to scan the object several times with the same scan settings.",
 
     "@rename_snap_dialog":{
     },
@@ -96,14 +102,17 @@
     "trans_help_text": "By default this is the first 4 bytes of the last block hash.",
     "pixel_ratio_help_text": "Decreasing the value reduces preview quality, but increases performance.",
     
+    "settings_text_span_title": "Scan properties:",
     "algorithm_span": "Algorithm",
     "grid_span":"Grid",
     "n_sections_span": "nSections",
+    "lib_version_span": "Hash lib version",
+    "trans_bytes_span": "Rotation bytes",
 
     "@wallet_base":{
     },
     "wallet_header_title": "Wallet",
-    "create_account_button_label": "Create account",
+    "create_account_button_label": "New random account",
     "import_account_button_label": "Import account",
 
     "init_status_sdk": "Initializing...",
@@ -122,7 +131,7 @@
 
     "@create_account_page":{
     },
-    "create_account_title": "Create account",
+    "create_account_title": "Generate account",
     "import_account_title": "Import account",
 
     "create_warn1_header": "Please note",
@@ -139,6 +148,9 @@
     "create_warn4_header": "Do not take screenshots",
     "create_warn4_text":
         "Do not take screenshots, which may be collected by third-party malware, resulting in asset loss.",
+
+    "create_warn5_header": "Be careful",
+    "create_warn5_text": "Never share scan settings of the chosen object. This can lead to asset loss.",
 
     "backup_warn1_header": "Backup mnemonic",
     "backup_warn1_text": "Please write down your mnemonic seed and keep it in a safe place.",
@@ -159,15 +171,17 @@
     "error_import_duplicate": "Error: this account has been already imported",
     "error_import_invalid": "Error: this account is invalid",
 
-    "encrypt_type_picker_label": "Encrypt Type",
-    "derivation_path_input_label": "Secret derivation path",
+    "import_account_type_title": "Import account from...",
+    "create_type_mnemonic": "Mnemonic",
+    "create_type_object": "3D Object",
+    "create_account_from_object": "Create account from 3D Object",
 
-    "advanced_options_header": "Advanced options",
-    "apply_options_button": "Apply options",
+    "create_from_object_text1": "Choose object",
+    "create_from_object_text2": "Choose stable hash",
+
+    "create_from_object_error_no_stable_hashes": "ERROR. No objects with stable hashes found.",
 
     "import_type_mnemonic": "Mnemonic",
-    "import_type_raw_seed": "Raw seed",
-    "import_type_keystore": "Keystore (json)",
 
     "import_mnemonic_hint": "Enter mnemonic",
     "import_mnemonic_preview_placeholder": "Enter mnemonic to see address",

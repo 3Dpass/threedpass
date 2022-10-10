@@ -274,6 +274,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.1"
+  extra_pedantic:
+    dependency: "direct dev"
+    description:
+      name: extra_pedantic
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -823,8 +830,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: ccafe364cb231c7d1888648257f5f3002ebb8b2b
-      resolved-ref: ccafe364cb231c7d1888648257f5f3002ebb8b2b
+      ref: e131a7a9232f4be8aed2116ad566749bd36daf13
+      resolved-ref: e131a7a9232f4be8aed2116ad566749bd36daf13
       url: "https://github.com/L3odr0id/polkawallet_sdk.git"
     source: git
     version: "0.4.8"

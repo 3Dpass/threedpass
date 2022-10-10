@@ -1,22 +1,19 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/buttons/list_tile_button.dart';
-import 'package:threedpass/core/widgets/buttons/outlined_button.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
-import 'package:threedpass/router/router.gr.dart';
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart';
 
 class AccountsDrawer extends Drawer {
   AccountsDrawer({
-    Key? key,
-    required List<KeyPairData> accounts,
-    required KeyPairData current,
-    required AppServiceLoaderCubit appServiceCubit,
-    required BuildContext context,
+    required final List<KeyPairData> accounts,
+    required final KeyPairData current,
+    required final AppServiceLoaderCubit appServiceCubit,
+    required final BuildContext context,
+    final Key? key,
   }) : super(
           key: key,
           child: ListView(
@@ -28,7 +25,7 @@ class AccountsDrawer extends Drawer {
                 title: Text(
                   'choose_account_assets_page_drawer'.tr(),
                 ),
-                material: (_, __) => MaterialAppBarData(
+                material: (final _, final __) => MaterialAppBarData(
                   backgroundColor: Colors.black,
                   foregroundColor: Theme.of(context).canvasColor,
                 ),
@@ -37,25 +34,18 @@ class AccountsDrawer extends Drawer {
               D3pTextButton(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 text: 'create_account_button_label'.tr(),
-                onPressed: () => context.router.push(
-                  CreateAccountWrapperRoute(
-                    appService: appServiceCubit.state,
-                  ),
-                ),
+                onPressed: () =>
+                    CreateAccountWrapper.pushToGenerateRandom(context),
               ),
               D3pTextButton(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 text: 'import_account_button_label'.tr(),
-                onPressed: () => context.router.push(
-                  ImportAccountWrapperRoute(
-                    appService: appServiceCubit.state,
-                  ),
-                ),
+                onPressed: () => CreateAccountWrapper.pushToImportType(context),
               ),
               const Divider(),
               ...List.generate(
                 accounts.length,
-                (index) => ListTileButton.usual(
+                (final index) => ListTileButton.usual(
                   text: accounts[index].name ?? 'Anonymous',
                   onPressed: accounts[index].address == current.address
                       ? null

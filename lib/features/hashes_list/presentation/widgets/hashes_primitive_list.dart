@@ -4,21 +4,23 @@ import 'package:threedpass/features/hashes_list/presentation/widgets/hash_primit
 
 class HashesPrimitiveList extends StatelessWidget {
   const HashesPrimitiveList({
-    Key? key,
     required this.hashesModel,
+    final Key? key,
   }) : super(key: key);
 
   final Snapshot hashesModel;
 
   @override
-  Widget build(BuildContext context) {
-    int len = hashesModel.hashes.length;
+  Widget build(final BuildContext context) {
+    final int len = hashesModel.hashes.length;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List<Widget>.generate(
         len,
-        (int index) => HashPrimitiveItem(hash: hashesModel.hashes[index],), 
+        (final int index) => HashPrimitiveItem(
+          hash: hashesModel.hashes[index],
+        ),
       ),
     );
   }

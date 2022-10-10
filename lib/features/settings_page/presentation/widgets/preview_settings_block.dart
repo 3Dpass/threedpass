@@ -4,10 +4,10 @@ import 'package:threedpass/features/settings_page/presentation/widgets/preview_s
 import 'package:threedpass/features/settings_page/presentation/widgets/preview_settings/pixel_ratio_slider.dart';
 
 class PreviewSettingsBlock extends StatelessWidget {
-  const PreviewSettingsBlock({Key? key}) : super(key: key);
+  const PreviewSettingsBlock({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Column(
       children: [
         Text(

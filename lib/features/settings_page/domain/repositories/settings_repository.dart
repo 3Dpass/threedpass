@@ -5,7 +5,7 @@ import 'package:threedpass/features/settings_page/domain/entities/scan_settings.
 
 abstract class SettingsRepository {
   Future<GlobalSettings> getConfig();
-  Future<void> setConfig(GlobalSettings config);
+  Future<void> setConfig(final GlobalSettings config);
 }
 
 class SettingsRepositoryImpl implements SettingsRepository {
@@ -26,7 +26,7 @@ class SettingsRepositoryImpl implements SettingsRepository {
   }
 
   @override
-  Future<void> setConfig(GlobalSettings config) async {
-    return await hiveSettingsStore.setSettings(config);
+  Future<void> setConfig(final GlobalSettings config) async {
+    return hiveSettingsStore.setSettings(config);
   }
 }

@@ -3,7 +3,7 @@ import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class PreviewPageCubit extends Cubit<PreviewPageCubitState> {
-  PreviewPageCubit(PreviewPageCubitState previewPageLoading)
+  PreviewPageCubit(final PreviewPageCubitState previewPageLoading)
       : super(previewPageLoading);
 }
 
@@ -19,7 +19,7 @@ abstract class PreviewPageCubitState {
 
 class PreviewNewObject extends PreviewPageCubitState {
   const PreviewNewObject({
-    required Snapshot snapshot,
+    required final Snapshot snapshot,
   }) : super(snapshot: snapshot);
 
   @override
@@ -29,7 +29,7 @@ class PreviewNewObject extends PreviewPageCubitState {
 class PreviewNewSnapshot extends PreviewPageCubitState {
   const PreviewNewSnapshot({
     required this.hashObject,
-    required Snapshot snapshot,
+    required final Snapshot snapshot,
   }) : super(snapshot: snapshot);
 
   @override
@@ -39,7 +39,7 @@ class PreviewNewSnapshot extends PreviewPageCubitState {
 class PreviewExistingSnapshot extends PreviewPageCubitState {
   const PreviewExistingSnapshot({
     required this.hashObject,
-    required Snapshot snapshot,
+    required final Snapshot snapshot,
   }) : super(snapshot: snapshot);
 
   @override

@@ -19,6 +19,6 @@ Future<void> hiveSetup() async {
   Hive.registerAdapter<PreviewSettings>(PreviewSettingsAdapter());
   Hive.registerAdapter<Algorithm>(AlgorithmAdapter());
 
-  Directory defaultDirectory = await getApplicationDocumentsDirectory();
+  final Directory defaultDirectory = await getApplicationDocumentsDirectory();
   Hive.init(defaultDirectory.path + '/storages');
 }

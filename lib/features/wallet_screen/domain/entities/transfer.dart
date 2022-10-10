@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -35,12 +37,12 @@ class Transfer {
     );
 
     if (addressCorrect == null) {
-      Fluttertoast.showToast(msg: 'could_not_check_address'.tr());
+      unawaited(Fluttertoast.showToast(msg: 'could_not_check_address'.tr()));
       return false;
     }
 
     if (!addressCorrect) {
-      Fluttertoast.showToast(msg: 'wrong_address'.tr());
+      unawaited(Fluttertoast.showToast(msg: 'wrong_address'.tr()));
       return false;
     }
 
@@ -85,7 +87,7 @@ class Transfer {
           txInfo,
           params,
           password,
-          onStatusChange: (p0) {
+          onStatusChange: (final p0) {
             // There are two calls of this callback: p0 == 'Ready' and p0 == 'Broadcast'
             if (p0 == 'Ready') {
               DefaultLoadingDialog.hide(outerContext);
@@ -94,14 +96,12 @@ class Transfer {
             }
           },
         );
-      } catch (e) {
-        Fluttertoast.showToast(msg: e.toString());
+      } on Exception catch (e) {
+        unawaited(Fluttertoast.showToast(msg: e.toString()));
       }
 
       // This works only when the transaction is impossible. I don't know why.
       DefaultLoadingDialog.hide(outerContext);
-
-      final b = 1 + 1;
     }
   }
 }

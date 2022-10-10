@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/api/apiKeyring.dart';
+import 'package:polkawallet_sdk/api/types/addressIconData.dart';
 import 'package:polkawallet_sdk/api/types/networkParams.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
@@ -9,7 +12,8 @@ import 'package:threedpass/core/polkawallet/constants.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_core_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_test_net_plugin.dart';
-import 'package:threedpass/features/accounts/domain/account_create.dart';
+import 'package:threedpass/features/accounts/domain/account_info.dart';
+import 'package:threedpass/features/scan_page/bloc/object_from_file_cubit.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
@@ -22,6 +26,7 @@ import 'package:threedpass/features/settings_page/domain/entities/wallet_setting
 class AppServiceLoaderCubit extends Cubit<AppService> {
   AppServiceLoaderCubit({
     required this.settingsConfigCubit,
+    required this.bestNumberAvaliableCubit,
   }) : super(
           AppService(
             plugin: D3pLiveNetPlugin(),
@@ -33,14 +38,15 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
   }
 
   final SettingsConfigCubit settingsConfigCubit;
+  final BestNumberAvaliableCubit bestNumberAvaliableCubit;
 
-  Future<Map> importAccount({
-    KeyType keyType = KeyType.mnemonic,
-    CryptoType cryptoType = defaultCryptoType,
-    String derivePath = '',
-    required AccountCreate account,
+  Future<Map<dynamic, dynamic>> importAccount({
+    required final AccountInfo account,
+    final KeyType keyType = KeyType.mnemonic,
+    final CryptoType cryptoType = defaultCryptoType,
+    final String derivePath = '',
   }) async {
-    if ((account.name.isEmpty)) {
+    if (account.name.isEmpty) {
       throw Exception('create account failed');
     }
     final res = await state.plugin.sdk.api.keyring.importAccount(
@@ -48,7 +54,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       keyType: keyType,
       cryptoType: cryptoType,
       derivePath: derivePath,
-      key: account.mnemonicKey,
+      key: keyType == KeyType.mnemonic ? account.mnemonicKey : account.seedKey,
       name: account.name,
       password: account.password,
     );
@@ -60,51 +66,78 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     }
   }
 
-  Future<KeyPairData> addAccount({
-    required Map json,
-    required AccountCreate account,
-    KeyType keyType = KeyType.mnemonic,
-    CryptoType cryptoType = defaultCryptoType,
-    String derivePath = '',
-    bool isFromCreatePage = false,
+  static Future<AddressIconData> _getAddressForAccount({
+    required final AppService state,
+    required final AccountInfo account,
+    final CryptoType cryptoType = defaultCryptoType,
+    final String derivePath = '',
   }) async {
-    if ((account.name.isEmpty)) {
-      throw Exception('Accont name or password is empty');
-    }
-    try {
-      final addressInfo =
-          await state.plugin.sdk.api.keyring.addressFromMnemonic(
+    if (account is AccountCreateMnemonic) {
+      return state.plugin.sdk.api.keyring.addressFromMnemonic(
         state.networkStateData.ss58Format!,
         cryptoType: cryptoType,
         derivePath: derivePath,
-        mnemonic: account.mnemonicKey,
+        mnemonic: account.mnemonic,
       );
-
-      json['address'] = addressInfo.address;
-
-      final res = await state.plugin.sdk.api.keyring.addAccount(
-        state.keyring,
-        keyType: keyType,
-        acc: json,
-        password: account.password,
+    } else if (account is AccountCreateSeed) {
+      return state.plugin.sdk.api.keyring.addressFromRawSeed(
+        state.networkStateData.ss58Format!,
+        cryptoType: cryptoType,
+        derivePath: derivePath,
+        rawSeed: account.seed,
       );
-
-      // This variable is never used, but somehow this line solves bug
-      // when [keyring.importAccount] returns wrong address.
-
-      state.keyring.current.address = addressInfo.address;
-      state.keyring.current.icon = addressInfo.svg;
-
-      emit(state.copyWith());
-
-      return res;
-    } catch (e) {
-      // final a = state.plugin.sdk.api.account.queryIndexInfo();
-      return KeyPairData();
+    } else {
+      throw Exception(
+        'AccountInfo has undefined type AppserviceLoaderCubit._getAddressForAccount',
+      );
     }
   }
 
-  void changeAccount(KeyPairData keyPairData) {
+  Future<KeyPairData> addAccount({
+    required final Map<dynamic, dynamic> json,
+    required final AccountInfo account,
+    final KeyType keyType = KeyType.mnemonic,
+    final CryptoType cryptoType = defaultCryptoType,
+    final String derivePath = '',
+    final bool isFromCreatePage = false,
+  }) async {
+    if (account.name.isEmpty) {
+      throw Exception('Accont name or password is empty');
+    }
+    // try {
+    final addressInfo = await _getAddressForAccount(
+      state: state,
+      account: account,
+      cryptoType: cryptoType,
+      derivePath: derivePath,
+    );
+
+    json['address'] = addressInfo.address;
+
+    final res = await state.plugin.sdk.api.keyring.addAccount(
+      state.keyring,
+      keyType: keyType,
+      acc: json,
+      password: account.password,
+    );
+
+    // This variable is never used, but somehow this line solves bug
+    // when [keyring.importAccount] returns wrong address.
+
+    state.keyring.current.address = addressInfo.address;
+    state.keyring.current.icon = addressInfo.svg;
+
+    emit(state.copyWith());
+
+    return res;
+    // } catch (e) {
+    //   rethrow;
+    //   // final a = state.plugin.sdk.api.account.queryIndexInfo();
+    //   // return KeyPairData();
+    // }
+  }
+
+  void changeAccount(final KeyPairData keyPairData) {
     state.plugin.sdk.api.account.unsubscribeBalance();
 
     state.plugin.changeAccount(keyPairData);
@@ -119,7 +152,11 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
 
   /// Connects to node, subscribes to balance and blocks updates.
   /// Emits new state of [AppService]
-  Future<void> _startPlugin(AppService service, {NetworkParams? node}) async {
+  Future<void> _startPlugin(
+    final AppService service, {
+    final NetworkParams? node,
+  }) async {
+    // ignore: unused_local_variable
     final connected = await service.plugin.sdk.api.connectNode(
       service.keyring,
       node != null ? [node] : service.plugin.nodeList,
@@ -127,11 +164,15 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
 
     final newAppService = await _buildNewAppServiceWithProperties(service);
 
-    newAppService.plugin.sdk.api.setting.subscribeBestNumber((String value) {
-      newAppService.bestNumber.value = value;
-    });
+    unawaited(
+      newAppService.plugin.sdk.api.setting
+          .subscribeBestNumber((final String value) {
+        newAppService.bestNumber.value = value;
+        bestNumberAvaliableCubit.setValue(true);
+      }),
+    );
 
-    subscribeToBalance(newAppService);
+    unawaited(subscribeToBalance(newAppService));
 
     emit(newAppService);
   }
@@ -140,11 +181,12 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
   /// with those properties and connection state.
   /// It sets error message if could not get network properties.
   Future<AppService> _buildNewAppServiceWithProperties(
-    AppService oldAppService,
+    final AppService oldAppService,
   ) async {
     final networkData =
         await oldAppService.plugin.sdk.api.setting.queryNetworkProps();
 
+    // ignore: unused_local_variable
     final consts = await oldAppService.plugin.sdk.api.setting
         .queryNetworkConst(); // TODO Save this data to AppService
 
@@ -156,7 +198,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     // And now [sdk.api.connectNode(...)] always returns null
     // So I changed it to [if (networkData != null)]
     // If you update the sdk, you may want to change it back
-    // TODO
+    // TODO?
     if (networkData != null) {
       // If you connected to test node and local settings are live or
       // you connected to live node and local settings are test,
@@ -191,19 +233,22 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     return newAppService;
   }
 
+  /// Bad code, but who cares?
   void justEmit() {
     emit(state.copyWith());
   }
 
-  static Future<void> subscribeToBalance(AppService service) async {
+  static Future<void> subscribeToBalance(final AppService service) async {
     final address = service.keyring.current.address;
     if (address != null) {
-      service.plugin.sdk.api.account.subscribeBalance(
-        address,
-        (data) {
-          logger.i('Balance updated: ${data.availableBalance}');
-          service.balance.value = data;
-        },
+      unawaited(
+        service.plugin.sdk.api.account.subscribeBalance(
+          address,
+          (final data) {
+            logger.i('Balance updated: ${data.availableBalance}');
+            service.balance.value = data;
+          },
+        ),
       );
     } else {
       logger.i(
@@ -212,47 +257,21 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     }
   }
 
-  static D3pCorePlugin _buildPlugin(WalletSettings walletSettings) {
+  static D3pCorePlugin _buildPlugin(final WalletSettings walletSettings) {
     return walletSettings.isTestNet
         ? D3pTestNetPlugin(nodeUrl: walletSettings.nodeUrl)
         : D3pLiveNetPlugin(nodeUrl: walletSettings.nodeUrl);
   }
 
-  Future<void> changeNetwork(WalletSettings walletSettings) async {
+  Future<void> changeNetwork(final WalletSettings walletSettings) async {
     emit(
       state.copyWith(
         status: AppServiceInitStatus.init,
       ),
     );
-
-    // state.plugin.sdk.api.account.unsubscribeBalance();
-
-    // final newPlugin = _buildPlugin(walletSettings);
-
-    // state.keyring.setSS58(newPlugin.basic.ss58!);
-    // // Documentation says "we don't really need this method"
-    // await state.plugin.dispose();
-
-    // await newPlugin.beforeStart(
-    //   state.keyring,
-    //   webView: state.plugin.sdk.webView,
-    //   // !This method is guaranteed to fall with an error, so we provide
-    //   // callback to reconnect
-    //   socketDisconnectedAction: () {
-    //     newPlugin.start(state.keyring);
-    //   },
-    // );
-
-    // _startPlugin(
-    //   AppService(
-    //     plugin: newPlugin,
-    //     keyring: state.keyring,
-    //     status: AppServiceInitStatus.connecting,
-    //   ),
-    // );
   }
 
-  Future<void> _init(WalletSettings walletSettings) async {
+  Future<void> _init(final WalletSettings walletSettings) async {
     final keyring = state.keyring;
     // Init
     await keyring.init([ss58formatLive, ss58formatTest]);
@@ -263,27 +282,12 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       status: AppServiceInitStatus.connecting,
     );
 
-    // await appService.plugin.sdk
-    //     .init(keyring, webView: appService.plugin.sdk.webView);
-
-    // try {
-    //   await appService.plugin.sdk.webView?.launch(
-    //     () {},
-    //     socketDisconnectedAction: () {
-    //       emit(appService);
-    //       _startPlugin(appService);
-    //     },
-    //   );
-    // } catch (e) {}
-
-    // final b = 1 + 1;
-
     await appService.plugin.beforeStart(
       keyring,
       webView: appService.plugin.sdk.webView,
     );
 
     emit(appService);
-    _startPlugin(appService);
+    unawaited(_startPlugin(appService));
   }
 }

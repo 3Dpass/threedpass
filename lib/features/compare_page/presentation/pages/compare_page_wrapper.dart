@@ -5,18 +5,18 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class ComparePageWrapper extends StatelessWidget {
   const ComparePageWrapper({
-    Key? key,
     required this.origObj,
     required this.hashObject,
+    final Key? key,
   }) : super(key: key);
 
   final HashObject hashObject;
   final Snapshot origObj;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final comparisons = <Snapshot>[...hashObject.snapshots]
-      ..removeWhere((element) => element == origObj);
+      ..removeWhere((final element) => element == origObj);
     return ComparePage(
       origObj: origObj,
       comparisons: comparisons,

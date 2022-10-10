@@ -108,12 +108,12 @@ class GlobalSettingsAdapter extends TypeAdapter<GlobalSettings> {
   void write(BinaryWriter writer, GlobalSettings obj) {
     writer
       ..writeByte(3)
+      ..writeByte(2)
+      ..write(obj.previewSettings)
       ..writeByte(0)
       ..write(obj.scanSettings)
       ..writeByte(1)
-      ..write(obj.walletSettings)
-      ..writeByte(2)
-      ..write(obj.previewSettings);
+      ..write(obj.walletSettings);
   }
 
   @override

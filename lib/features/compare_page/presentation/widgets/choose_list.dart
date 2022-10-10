@@ -4,10 +4,10 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class ChooseList extends StatelessWidget {
   const ChooseList({
-    Key? key,
     required this.list,
     required this.onChoose,
     required this.chosen,
+    final Key? key,
   }) : super(key: key);
 
   final List<Snapshot> list;
@@ -15,21 +15,23 @@ class ChooseList extends StatelessWidget {
   final void Function(Snapshot?) onChoose;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return DropdownButton<Snapshot>(
+      style: Theme.of(context).textTheme.bodyText1,
       value: chosen,
       items: list
           .map(
-            (e) => DropdownMenuItem<Snapshot>(
+            (final e) => DropdownMenuItem<Snapshot>(
               value: e,
               child: Text(
-                e.name.cut(16),
+                e.name.cutWithEllipsis(12),
                 overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
           )
           .toList(),
-      onChanged: (modelChosen) => onChoose(modelChosen),
+      onChanged: (final modelChosen) => onChoose(modelChosen),
     );
   }
 }

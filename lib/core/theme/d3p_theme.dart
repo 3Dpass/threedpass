@@ -9,11 +9,13 @@ class D3pThemeData {
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         minimumSize: const Size.fromHeight(50),
-        textStyle: D3pTextStyle.button,
+        textStyle: D3pBasicTextStyle.button,
       ),
     ),
-    textTheme: TextTheme(
-      button: D3pTextStyle.button,
+    textTheme: const TextTheme(
+      button: D3pBasicTextStyle.button,
+      bodyText1: D3pBasicTextStyle.bodyText1,
+      bodyText2: D3pBasicTextStyle.bodyText2,
     ),
   );
 }
