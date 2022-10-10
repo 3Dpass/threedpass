@@ -14,6 +14,12 @@ class _FilePicker {
         return result.files.first.path!;
       }
     }
-    throw Exception('No file selected');
+    throw FilePickerException('No file selected');
   }
+}
+
+class FilePickerException implements Exception {
+  final String message;
+
+  FilePickerException(this.message);
 }
