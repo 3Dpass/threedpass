@@ -34,31 +34,31 @@ class CreateAccountInfoPage extends StatelessWidget {
   Widget build(final BuildContext context) {
     return AccountPageTemplate.create(
       children: <Widget>[
-        _Header(text: 'create_warn1_header'.tr()),
-        _UsualText(
+        HeaderInfo(text: 'create_warn1_header'.tr()),
+        TextInfo(
           text: 'create_warn1_text'.tr(),
           bigBottomPadding: true,
         ),
-        _Header(text: 'create_warn2_header'.tr()),
-        _UsualText(
+        HeaderInfo(text: 'create_warn2_header'.tr()),
+        TextInfo(
           text: 'create_warn2_text'.tr(),
           bigBottomPadding: false,
         ),
-        _UsualText(
+        TextInfo(
           text: 'create_warn2_text2'.tr(),
           bigBottomPadding: true,
         ),
-        _Header(text: 'create_warn3_header'.tr()),
-        _UsualText(
+        HeaderInfo(text: 'create_warn3_header'.tr()),
+        TextInfo(
           text: 'create_warn3_text'.tr(),
           bigBottomPadding: false,
         ),
-        _UsualText(
+        TextInfo(
           text: 'create_warn3_text2'.tr(),
           bigBottomPadding: true,
         ),
-        _Header(text: 'create_warn4_header'.tr()),
-        _UsualText(
+        HeaderInfo(text: 'create_warn4_header'.tr()),
+        TextInfo(
           text: 'create_warn4_text'.tr(),
           bigBottomPadding: true,
         ),
@@ -68,8 +68,8 @@ class CreateAccountInfoPage extends StatelessWidget {
   }
 }
 
-class _Header extends StatelessWidget {
-  const _Header({
+class HeaderInfo extends StatelessWidget {
+  const HeaderInfo({
     required this.text,
     final Key? key,
   }) : super(key: key);
@@ -91,8 +91,8 @@ class _Header extends StatelessWidget {
   }
 }
 
-class _UsualText extends StatelessWidget {
-  const _UsualText({
+class TextInfo extends StatelessWidget {
+  const TextInfo({
     required this.text,
     required this.bigBottomPadding,
     final Key? key,

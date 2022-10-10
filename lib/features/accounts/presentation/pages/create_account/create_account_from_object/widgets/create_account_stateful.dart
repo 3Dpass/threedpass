@@ -88,9 +88,17 @@ class _MainState extends State<_CreateAccountStateful> {
               onChanged: (final modelChosen) => onObjectChoose(modelChosen),
             ),
             const SizedBox24(),
-            Text(
-              'create_from_object_text2'.tr(),
-              style: Theme.of(context).textTheme.headline6,
+            Text.rich(
+              TextSpan(
+                text: 'create_from_object_text2'.tr(),
+                style: Theme.of(context).textTheme.headline6,
+                children: [
+                  TextSpan(
+                    text: '\n' + 'create_from_object_text2_hint'.tr(),
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ],
+              ),
             ),
             const SizedBox8(),
             ValueListenableBuilder(
@@ -116,15 +124,24 @@ class _MainState extends State<_CreateAccountStateful> {
               ),
             ),
             const SizedBox36(),
-            Text(
-              'create_warn5_header'.tr(),
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  ?.copyWith(fontWeight: FontWeight.bold),
+            HeaderInfo(
+              text: 'create_warn5_header'.tr(),
             ),
-            const SizedBox4(),
-            Text('create_warn5_text'.tr()),
+            TextInfo(
+              text: 'create_warn5_text'.tr(),
+              bigBottomPadding: true,
+            ),
+            HeaderInfo(
+              text: 'create_warn6_header'.tr(),
+            ),
+            TextInfo(
+              text: 'create_warn6_text'.tr(),
+              bigBottomPadding: false,
+            ),
+            TextInfo(
+              text: 'create_warn6_text2'.tr(),
+              bigBottomPadding: false,
+            ),
             const SizedBox24(),
           ],
         ),

@@ -151,6 +151,10 @@
 
     "create_warn5_header": "Be careful",
     "create_warn5_text": "Never share scan settings of the chosen object. This can lead to asset loss.",
+    "create_warn6_header": "Backup raw seed",
+    "create_warn6_text":
+        "Please write down chosen raw seed and keep it in a safe place.",
+    "create_warn6_text2":"It can be used to restore your wallet.",
 
     "backup_warn1_header": "Backup mnemonic",
     "backup_warn1_text": "Please write down your mnemonic seed and keep it in a safe place.",
@@ -178,6 +182,7 @@
 
     "create_from_object_text1": "Choose object",
     "create_from_object_text2": "Choose stable hash",
+    "create_from_object_text2_hint": "It will be used as the raw seed of your account.",
 
     "create_from_object_error_no_stable_hashes": "ERROR. No objects with stable hashes found.",
 

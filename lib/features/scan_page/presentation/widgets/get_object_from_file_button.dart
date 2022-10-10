@@ -57,6 +57,8 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
           ),
         ),
       );
+    } on FilePickerException catch (e) {
+      showSnackBar(e.message, context);
     } on Exception catch (e) {
       final homeContext = BlocProvider.of<HomeContextCubit>(context);
       homeContext.hideDialogC();
