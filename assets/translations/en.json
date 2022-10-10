@@ -181,14 +181,7 @@
 
     "create_from_object_error_no_stable_hashes": "ERROR. No objects with stable hashes found.",
 
-    "encrypt_type_picker_label": "Encrypt Type",
-    "derivation_path_input_label": "Secret derivation path",
-
-    "advanced_options_header": "Advanced options",
-    "apply_options_button": "Apply options",
-
     "import_type_mnemonic": "Mnemonic",
-    "import_type_raw_seed": "Raw seed",
 
     "import_mnemonic_hint": "Enter mnemonic",
     "import_mnemonic_preview_placeholder": "Enter mnemonic to see address",
