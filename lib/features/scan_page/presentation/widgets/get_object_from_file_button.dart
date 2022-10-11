@@ -34,6 +34,11 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
     );
   }
 
+  void hideLoader(final BuildContext context) {
+    final homeContext = BlocProvider.of<HomeContextCubit>(context);
+    homeContext.hideDialogC();
+  }
+
   /// Calc object
   Future<void> createHashFromFile(
     final BuildContext context,
@@ -48,6 +53,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
 
     try {
       final pair = await snapFactory.createSnapshotFromFile();
+      hideLoader(context);
       unawaited(
         context.router.push(
           PreviewWrapperRoute(
@@ -60,8 +66,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
     } on FilePickerException catch (e) {
       showSnackBar(e.message, context);
     } on Exception catch (e) {
-      final homeContext = BlocProvider.of<HomeContextCubit>(context);
-      homeContext.hideDialogC();
+      hideLoader(context);
 
       showSnackBar(e.toString(), context);
     }
