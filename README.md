@@ -16,6 +16,9 @@ Tha wallet connects to the Node via RPC/API endpoints. These are the mainnet pub
 
 [![logo](https://3dpass.org/assets/img/accounts.png)](https://3dpass.org/mobile_wallet.html#wallet_functions)
 
+## 3D-object-wallet
+Tis option allows to produce crypto wallet (address + keys) out of 3D object and its recovery by means of scanning.
+[![logo](https://3dpass.org/assets/img/3d-object-wallet.png)](https://3dpass.org/mobile_wallet.html#3d_object-wallet)
 
 ## How to translate the UI
 
