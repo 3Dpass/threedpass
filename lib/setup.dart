@@ -4,7 +4,6 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/data/repositories/hash_list_store.dart';
 import 'package:threedpass/features/hashes_list/domain/repositories/hashes_repository.dart';
-import 'package:threedpass/features/scan_page/bloc/object_from_file_cubit.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/data/repositories/settings_store.dart';
 import 'package:threedpass/features/settings_page/domain/repositories/settings_repository.dart';
@@ -57,16 +56,9 @@ Future<void> setup() async {
     ),
   );
 
-  // It becomes singleton and not factory. But it doesn't matter
-  final bestNumberAvaliableCubit = BestNumberAvaliableCubit();
-  getIt.registerFactory<BestNumberAvaliableCubit>(
-    () => bestNumberAvaliableCubit,
-  );
-
   getIt.registerFactory<AppServiceLoaderCubit>(
     () => AppServiceLoaderCubit(
       settingsConfigCubit: getIt<SettingsConfigCubit>(),
-      bestNumberAvaliableCubit: bestNumberAvaliableCubit,
     ),
   );
 }

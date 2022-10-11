@@ -17,19 +17,22 @@ class ScanPageContent extends StatelessWidget {
           if (state.objects.isEmpty) {
             return const NoSavedObjectsPlaceholder();
           } else {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ObjectsListHeader(
-                  state: state,
-                ),
-                const SizedBox(height: 4),
-                Flexible(
-                  child: ObjectsList(
+            return SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ObjectsListHeader(
                     state: state,
                   ),
-                ),
-              ],
+                  const SizedBox(height: 4),
+                  Flexible(
+                    child: ObjectsList(
+                      state: state,
+                    ),
+                  ),
+                ],
+              ),
             );
           }
         } else {

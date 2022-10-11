@@ -1,11 +1,10 @@
 import 'package:calc/calc.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:threedpass/common/logger.dart';
-import 'package:threedpass/core/polkawallet/app_service.dart';
-import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/utils/hash_file.dart';
 import 'package:threedpass/core/utils/pair.dart';
+import 'package:threedpass/core/utils/random_hex.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -16,14 +15,12 @@ part './trans_bytes.dart';
 
 class SnapshotFileFactory {
   final ScanSettings scanSettings;
-  final AppServiceLoaderCubit appServiceLoaderCubit;
   final HashesListBloc hashesListBloc;
   final void Function() showLoader;
   // final void Function() hideLoader;
 
   SnapshotFileFactory({
     required this.scanSettings,
-    required this.appServiceLoaderCubit,
     required this.hashesListBloc,
     required this.showLoader,
     // required this.hideLoader,
@@ -40,7 +37,6 @@ class SnapshotFileFactory {
 
     final transBytes = await _TransBytes(
       scanSettings: scanSettings,
-      appServiceLoaderCubit: appServiceLoaderCubit,
     ).transBytes();
 
     final hashes = await calcHashes(

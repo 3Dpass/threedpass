@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
 import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
+import 'package:threedpass/features/accounts/presentation/widgets/header_info.dart';
+import 'package:threedpass/features/accounts/presentation/widgets/text_info.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class CreateAccountInfoPage extends StatelessWidget {
@@ -64,50 +66,6 @@ class CreateAccountInfoPage extends StatelessWidget {
         ),
       ],
       onSubmitPressed: (final _) => onNextPressed(context),
-    );
-  }
-}
-
-class HeaderInfo extends StatelessWidget {
-  const HeaderInfo({
-    required this.text,
-    final Key? key,
-  }) : super(key: key);
-
-  final String text;
-
-  @override
-  Widget build(final BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Text(
-        text,
-        style: Theme.of(context)
-            .textTheme
-            .headline6
-            ?.copyWith(fontWeight: FontWeight.bold),
-      ),
-    );
-  }
-}
-
-class TextInfo extends StatelessWidget {
-  const TextInfo({
-    required this.text,
-    required this.bigBottomPadding,
-    final Key? key,
-  }) : super(key: key);
-
-  final bool bigBottomPadding;
-  final String text;
-
-  @override
-  Widget build(final BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: bigBottomPadding ? 32 : 5),
-      child: Text(
-        text,
-      ),
     );
   }
 }
