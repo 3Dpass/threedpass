@@ -18,7 +18,7 @@ class AppService {
         balance = ValueNotifier<BalanceData>(BalanceData());
 
   final ValueNotifier<BalanceData> balance;
-  final ValueNotifier<String> bestNumber = ValueNotifier<String>('');
+  // final ValueNotifier<String> bestNumber = ValueNotifier<String>('');
   final Keyring keyring;
   final NetworkStateData networkStateData;
   final PolkawalletPlugin plugin;

@@ -16,6 +16,7 @@ class ObjectsList extends StatelessWidget {
     if (state is HashesListLoaded) {
       return ListView.builder(
         padding: const EdgeInsets.only(bottom: 46 * 2),
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: (state as HashesListLoaded).objects.length,
         itemBuilder: (final context, final objIndex) {
@@ -25,15 +26,11 @@ class ObjectsList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-                child: Text(
-                  'object_title_prefix'.tr() + ' ' + currentObject.name,
-                  style: Theme.of(context).textTheme.headline6,
+              _ObjectTitle(currentObject.name),
+              Flexible(
+                child: SnapshotsList(
+                  currentObject: currentObject,
                 ),
-              ),
-              SnapshotsList(
-                currentObject: currentObject,
               ),
             ],
           );
@@ -42,4 +39,19 @@ class ObjectsList extends StatelessWidget {
     }
     return const SizedBox();
   }
+}
+
+class _ObjectTitle extends StatelessWidget {
+  const _ObjectTitle(this.title);
+
+  final String title;
+
+  @override
+  Widget build(final BuildContext context) => Padding(
+        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+        child: Text(
+          'object_title_prefix'.tr() + ' ' + title,
+          style: Theme.of(context).textTheme.headline6,
+        ),
+      );
 }

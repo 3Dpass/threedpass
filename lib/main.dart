@@ -6,7 +6,6 @@ import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/features/scan_page/bloc/object_from_file_cubit.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart' as di_setup;
@@ -50,9 +49,6 @@ class ThreeDApp extends StatelessWidget {
         ),
         BlocProvider<SettingsConfigCubit>(
           create: (final _) => di_setup.getIt<SettingsConfigCubit>(),
-        ),
-        BlocProvider<BestNumberAvaliableCubit>(
-          create: (final _) => di_setup.getIt<BestNumberAvaliableCubit>(),
         ),
         BlocProvider<AppServiceLoaderCubit>(
           create: (final _) => di_setup.getIt<AppServiceLoaderCubit>(),

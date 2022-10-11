@@ -9,7 +9,6 @@ class _CreateAccountStateful extends StatefulWidget {
 
 class _MainState extends State<_CreateAccountStateful> {
   late final ValueNotifier<HashObject> objectValueNotifier;
-  // late final ValueNotifier<Snapshot> snapshotToUse;
   late final List<HashObject> objectsToUse;
   final ValueNotifier<String> chosenHash = ValueNotifier<String>('');
 
@@ -43,19 +42,6 @@ class _MainState extends State<_CreateAccountStateful> {
     super.initState();
   }
 
-  void onObjectChoose(final HashObject? hashObject) {
-    if (hashObject != null) {
-      objectValueNotifier.value = hashObject;
-      chosenHash.value = hashObject.stableHashes.first;
-    }
-  }
-
-  void onHashChoose(final String? value) {
-    if (value != null) {
-      chosenHash.value = value;
-    }
-  }
-
   @override
   Widget build(final BuildContext context) {
     return Column(
@@ -65,83 +51,22 @@ class _MainState extends State<_CreateAccountStateful> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'create_from_object_text1'.tr(),
-              style: Theme.of(context).textTheme.headline6,
-            ),
+            const _ChooseObjectTitle(),
             const SizedBox8(),
-            DropdownButton<HashObject>(
-              style: Theme.of(context).textTheme.bodyText1,
-              value: objectValueNotifier.value,
-              items: objectsToUse
-                  .map(
-                    (final e) => DropdownMenuItem<HashObject>(
-                      value: e,
-                      child: Text(
-                        e.name.cutWithEllipsis(20),
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                    ),
-                  )
-                  .toList(),
-              onChanged: (final modelChosen) => onObjectChoose(modelChosen),
+            _ChooseObjectDropdown(
+              objectValueNotifier: objectValueNotifier,
+              objectsToUse: objectsToUse,
+              chosenHash: chosenHash,
             ),
             const SizedBox24(),
-            Text.rich(
-              TextSpan(
-                text: 'create_from_object_text2'.tr(),
-                style: Theme.of(context).textTheme.headline6,
-                children: [
-                  TextSpan(
-                    text: '\n' + 'create_from_object_text2_hint'.tr(),
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                ],
-              ),
-            ),
+            const _ChooseHashTitle(),
             const SizedBox8(),
-            ValueListenableBuilder(
-              valueListenable: objectValueNotifier,
-              builder: (final context, final _, final __) =>
-                  DropdownButton<String>(
-                isExpanded: true,
-                style: Theme.of(context).textTheme.bodyText1,
-                value: chosenHash.value,
-                items: objectValueNotifier.value.stableHashes
-                    .map(
-                      (final e) => DropdownMenuItem<String>(
-                        value: e,
-                        child: Text(
-                          e,
-                          maxLines: 3,
-                          style: Theme.of(context).textTheme.bodyText1,
-                        ),
-                      ),
-                    )
-                    .toList(),
-                onChanged: (final modelChosen) => onHashChoose(modelChosen),
-              ),
+            _ChooseHashDropdown(
+              chosenHash: chosenHash,
+              objectValueNotifier: objectValueNotifier,
             ),
             const SizedBox36(),
-            HeaderInfo(
-              text: 'create_warn5_header'.tr(),
-            ),
-            TextInfo(
-              text: 'create_warn5_text'.tr(),
-              bigBottomPadding: true,
-            ),
-            HeaderInfo(
-              text: 'create_warn6_header'.tr(),
-            ),
-            TextInfo(
-              text: 'create_warn6_text'.tr(),
-              bigBottomPadding: false,
-            ),
-            TextInfo(
-              text: 'create_warn6_text2'.tr(),
-              bigBottomPadding: false,
-            ),
+            ...const _ObjectAccountInfo().warnInfo(),
             const SizedBox24(),
           ],
         ),
