@@ -7,6 +7,8 @@ part of 'global_settings.dart';
 // **************************************************************************
 
 abstract class _$GlobalSettingsCWProxy {
+  GlobalSettings appSettings(AppSettings appSettings);
+
   GlobalSettings previewSettings(PreviewSettings previewSettings);
 
   GlobalSettings scanSettings(ScanSettings scanSettings);
@@ -20,6 +22,7 @@ abstract class _$GlobalSettingsCWProxy {
   /// GlobalSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   GlobalSettings call({
+    AppSettings? appSettings,
     PreviewSettings? previewSettings,
     ScanSettings? scanSettings,
     WalletSettings? walletSettings,
@@ -31,6 +34,10 @@ class _$GlobalSettingsCWProxyImpl implements _$GlobalSettingsCWProxy {
   final GlobalSettings _value;
 
   const _$GlobalSettingsCWProxyImpl(this._value);
+
+  @override
+  GlobalSettings appSettings(AppSettings appSettings) =>
+      this(appSettings: appSettings);
 
   @override
   GlobalSettings previewSettings(PreviewSettings previewSettings) =>
@@ -53,11 +60,17 @@ class _$GlobalSettingsCWProxyImpl implements _$GlobalSettingsCWProxy {
   /// GlobalSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   GlobalSettings call({
+    Object? appSettings = const $CopyWithPlaceholder(),
     Object? previewSettings = const $CopyWithPlaceholder(),
     Object? scanSettings = const $CopyWithPlaceholder(),
     Object? walletSettings = const $CopyWithPlaceholder(),
   }) {
     return GlobalSettings(
+      appSettings:
+          appSettings == const $CopyWithPlaceholder() || appSettings == null
+              ? _value.appSettings
+              // ignore: cast_nullable_to_non_nullable
+              : appSettings as AppSettings,
       previewSettings: previewSettings == const $CopyWithPlaceholder() ||
               previewSettings == null
           ? _value.previewSettings
@@ -101,13 +114,16 @@ class GlobalSettingsAdapter extends TypeAdapter<GlobalSettings> {
       scanSettings: fields[0] as ScanSettings,
       walletSettings: fields[1] as WalletSettings,
       previewSettings: fields[2] as PreviewSettings,
+      appSettings: fields[3] as AppSettings,
     );
   }
 
   @override
   void write(BinaryWriter writer, GlobalSettings obj) {
     writer
+      ..writeByte(4)
       ..writeByte(3)
+      ..write(obj.appSettings)
       ..writeByte(2)
       ..write(obj.previewSettings)
       ..writeByte(0)

@@ -53,8 +53,7 @@ import '../features/scan_page/presentation/pages/scan_page.dart' as _i11;
 import '../features/scan_page/presentation/pages/scan_page_wrapper.dart' as _i8;
 import '../features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart'
     as _i6;
-import '../features/settings_page/presentation/pages/settings_page.dart'
-    as _i10;
+import '../features/settings_page/presentation/settings_page.dart' as _i10;
 import '../features/wallet_screen/presentation/assets_page/remove_account_dialog.dart'
     as _i15;
 import '../features/wallet_screen/presentation/recieve_page/recieve_page.dart'

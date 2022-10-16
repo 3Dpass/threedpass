@@ -27,9 +27,9 @@ class ScanSettings extends Equatable {
   });
 
   const ScanSettings.defaultValues()
-      : gridSize = 7,
+      : gridSize = 8,
         algorithm = Algorithm.grid2d,
-        nSections = 10,
+        nSections = 66,
         libVersion = 'unknown',
         transBytes = '';
 

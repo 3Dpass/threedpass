@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/settings_page/domain/entities/app_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/preview_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
@@ -18,6 +19,7 @@ Future<void> hiveSetup() async {
   Hive.registerAdapter<WalletSettings>(WalletSettingsAdapter());
   Hive.registerAdapter<PreviewSettings>(PreviewSettingsAdapter());
   Hive.registerAdapter<Algorithm>(AlgorithmAdapter());
+  Hive.registerAdapter<AppSettings>(AppSettingsAdapter());
 
   final Directory defaultDirectory = await getApplicationDocumentsDirectory();
   Hive.init(defaultDirectory.path + '/storages');
