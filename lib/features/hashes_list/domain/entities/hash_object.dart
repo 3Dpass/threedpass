@@ -67,7 +67,6 @@ class HashObject {
   /// Minimum number of hash matches to be considered stable
   int get minRequirement {
     final settings = getIt<SettingsConfigCubit>();
-    print(settings.state.appSettings.stableRequirement);
     return settings.state.appSettings.stableRequirement;
   }
 
