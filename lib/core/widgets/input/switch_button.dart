@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
 class D3pSwitchButton extends StatelessWidget {
   D3pSwitchButton({
@@ -16,14 +17,16 @@ class D3pSwitchButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final customStyles = Theme.of(context).customTextStyles;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           text,
-          style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                color: onChanged == null ? Colors.grey : Colors.black,
-              ),
+          style: onChanged != null
+              ? customStyles.switchButtonLabelEnabled
+              : customStyles.switchButtonLabelDisabled,
         ),
         ValueListenableBuilder(
           valueListenable: switchValueNotifier,

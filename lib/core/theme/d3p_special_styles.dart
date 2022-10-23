@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_colors.dart';
 
 extension SpecialStyles on ThemeData {
   CustomTextStyles get customTextStyles => CustomTextStyles(this);
@@ -17,4 +18,8 @@ class CustomTextStyles {
             ? Colors.black
             : Colors.white,
       );
+
+  TextStyle get switchButtonLabelEnabled => themeData.textTheme.bodyText2!;
+  TextStyle get switchButtonLabelDisabled =>
+      themeData.textTheme.bodyText2!.copyWith(color: D3pColors.disabled);
 }

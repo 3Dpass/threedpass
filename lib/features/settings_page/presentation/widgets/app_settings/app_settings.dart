@@ -11,9 +11,11 @@ class _AppSettingsBlock extends StatelessWidget {
           'app_settings_title'.tr(),
           style: Theme.of(context).textTheme.headline6,
         ),
-        const SizedBox8(),
+        const SizedBoxH8(),
         const _RequirementsTextField(),
-        const SizedBox(height: 16),
+        const SizedBoxH8(),
+        const _DarkThemeSwitch(),
+        const SizedBoxH16(),
       ],
     );
   }

@@ -113,6 +113,8 @@
     "lib_version_span": "Hash lib version",
     "trans_bytes_span": "Rotation bytes",
 
+    "dark_theme_switch_label": "Dark theme",
+
     "@wallet_base":{
     },
     "wallet_header_title": "Wallet",

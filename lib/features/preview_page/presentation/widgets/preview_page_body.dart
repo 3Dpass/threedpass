@@ -19,19 +19,19 @@ class PreviewPageBody extends StatelessWidget {
             state: previewPageCubitState,
           ),
         ),
-        const SizedBox8(),
+        const SizedBoxH8(),
         MatchesFound(
           state: previewPageCubitState,
         ),
-        const SizedBox8(),
+        const SizedBoxH8(),
         ObjectPreview(
           snapshot: previewPageCubitState.snapshot,
         ),
-        const SizedBox16(),
+        const SizedBoxH16(),
         StableHashText(
           state: previewPageCubitState,
         ),
-        const SizedBox16(),
+        const SizedBoxH16(),
         HashProperties(
           snapshot: previewPageCubitState.snapshot,
         ),
@@ -43,7 +43,7 @@ class PreviewPageBody extends StatelessWidget {
           snapshot: previewPageCubitState.snapshot,
           hashObject: previewPageCubitState.hashObject,
         ),
-        const SizedBox16(),
+        const SizedBoxH16(),
         MoreInfo(
           state: previewPageCubitState,
         ),

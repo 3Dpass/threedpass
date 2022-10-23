@@ -1,10 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/widgets/theme_builder.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
@@ -55,14 +58,25 @@ class ThreeDApp extends StatelessWidget {
           lazy: false,
         ),
       ],
-      child: MaterialApp.router(
-        title: '3D pass',
-        theme: D3pThemeData.lightTheme,
-        routerDelegate: _appRouter.delegate(),
-        routeInformationParser: _appRouter.defaultRouteParser(),
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
+      child: ThemeBuilder(
+        builder: (final BuildContext context, final Brightness brightness) {
+          return PlatformApp.router(
+            title: '3D pass',
+            material: (final _, final __) => MaterialAppRouterData(
+              theme: D3pThemeData.themeData(brightness),
+            ),
+            cupertino: (final _, final __) => CupertinoAppRouterData(
+              theme: CupertinoThemeData(
+                primaryColor: D3pThemeData.themeData(brightness).primaryColor,
+              ),
+            ),
+            routerDelegate: _appRouter.delegate(),
+            routeInformationParser: _appRouter.defaultRouteParser(),
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+          );
+        },
       ),
     );
   }
