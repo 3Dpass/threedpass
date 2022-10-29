@@ -20,13 +20,14 @@ class AssetsPage extends StatelessWidget {
         return Scaffold(
           appBar: AssetPageAppbar(
             account: state.keyring.current,
-            context: context,
+            themeData: Theme.of(context),
           ),
           drawer: AccountsDrawer(
             appServiceCubit: BlocProvider.of<AppServiceLoaderCubit>(context),
             accounts: state.keyring.allAccounts,
             current: state.keyring.current,
             context: context,
+            theme: Theme.of(context),
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,

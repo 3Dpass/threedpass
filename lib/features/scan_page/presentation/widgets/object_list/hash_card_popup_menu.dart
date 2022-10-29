@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -34,17 +35,18 @@ class HashCardPopUpMenuButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final customColors = Theme.of(context).customColors;
     return PopupMenuButton(
-      icon: const Icon(Icons.more_vert, color: Colors.grey),
+      icon: Icon(Icons.more_vert, color: customColors.popMenuIcon),
       onSelected: (final int? value) => onSelected(value, context),
       itemBuilder: (final context) => [
         PopupMenuItem(
           value: 1,
           child: Row(
             children: [
-              const Padding(
-                padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
-                child: Icon(Icons.share, color: Colors.grey),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+                child: Icon(Icons.share, color: customColors.popMenuIcon),
               ),
               Text('Share'.tr()),
             ],
@@ -54,9 +56,9 @@ class HashCardPopUpMenuButton extends StatelessWidget {
           value: 2,
           child: Row(
             children: [
-              const Padding(
-                padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
-                child: Icon(Icons.delete, color: Colors.grey),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+                child: Icon(Icons.delete, color: customColors.popMenuIcon),
               ),
               Text('Delete'.tr()),
             ],

@@ -12,6 +12,7 @@ class ScanPage extends StatelessWidget {
     return Scaffold(
       appBar: CommonLogoAppbar(
         title: 'recognize_your_objects'.tr(),
+        theme: Theme.of(context),
       ),
       body: const ScanPageContent(),
       floatingActionButton: const GetObjectFromFileFloatingButton(),

@@ -12,6 +12,7 @@ class AppServiceInitLoaderPage extends StatelessWidget {
     return Scaffold(
       appBar: CommonLogoAppbar(
         title: 'wallet_header_title'.tr(),
+        theme: Theme.of(context),
       ),
       body: Stack(
         children: const [

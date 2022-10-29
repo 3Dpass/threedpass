@@ -13,7 +13,8 @@ class WebWalletPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 0,
-        backgroundColor: Colors.grey[800],
+        backgroundColor:
+            Colors.grey[800], // Doesn't make any sense to move color to theme
       ),
       body: SafeArea(
         child: WebView(

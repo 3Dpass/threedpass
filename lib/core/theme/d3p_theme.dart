@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_text_style.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/setup.dart';
 
 class D3pThemeData {
   static ThemeData lightTheme = ThemeData(
     primarySwatch: Colors.green,
     primaryColor: Colors.black,
+    disabledColor: D3pColors.disabled,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
@@ -20,9 +24,11 @@ class D3pThemeData {
   );
 
   static ThemeData darkTheme = ThemeData.dark().copyWith(
+    brightness: Brightness.dark,
     colorScheme: ColorScheme.fromSwatch(
       primarySwatch: Colors.green,
     ),
+    disabledColor: D3pColors.disabled,
     primaryColor: Colors.black,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     textButtonTheme: TextButtonThemeData(
@@ -38,6 +44,17 @@ class D3pThemeData {
     ),
   );
 
-  static ThemeData themeData(final Brightness brightness) =>
-      brightness == Brightness.light ? lightTheme : darkTheme;
+  static ThemeData themeData(final Brightness brightness) {
+    print('themeData ' + darkTheme.brightness.toString());
+    final d = darkTheme.copyWith(brightness: Brightness.dark);
+    print('d4 ' + d.brightness.toString());
+    return brightness == Brightness.light ? lightTheme : darkTheme;
+  }
+}
+
+class RealBrightness {
+  static Brightness get fromSettings =>
+      getIt<SettingsConfigCubit>().state.appSettings.darkTheme
+          ? Brightness.dark
+          : Brightness.light;
 }

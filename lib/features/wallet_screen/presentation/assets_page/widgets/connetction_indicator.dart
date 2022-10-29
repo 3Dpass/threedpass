@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 
 class ConnectionIndicator extends StatelessWidget {
   const ConnectionIndicator({final Key? key}) : super(key: key);
@@ -10,19 +11,21 @@ class ConnectionIndicator extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
       builder: (final context, final state) {
+        final customColors = Theme.of(context).customColors;
+
         switch (state.status) {
           case AppServiceInitStatus.init:
           case AppServiceInitStatus.connecting:
-            return const _SmallCircle(
-              color: Colors.orange,
+            return _SmallCircle(
+              color: customColors.uncertainIcon,
             );
           case AppServiceInitStatus.connected:
-            return const _SmallCircle(
-              color: Colors.green,
+            return _SmallCircle(
+              color: customColors.positiveIcon,
             );
           case AppServiceInitStatus.error:
-            return const _SmallCircle(
-              color: Colors.red,
+            return _SmallCircle(
+              color: customColors.errorIcon,
             );
         }
       },

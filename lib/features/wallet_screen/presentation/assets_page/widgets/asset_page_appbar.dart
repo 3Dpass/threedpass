@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/widgets/address_icon.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/utils/copy_and_notify.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/account_actions.dart';
@@ -10,16 +12,19 @@ import 'package:threedpass/features/wallet_screen/presentation/assets_page/widge
 class AssetPageAppbar extends AppBar {
   AssetPageAppbar({
     required final KeyPairData account,
-    required final BuildContext context,
+    required final ThemeData themeData,
     final Key? key,
   }) : super(
           key: key,
-          backgroundColor: Colors.black,
+          backgroundColor: themeData.customColors.appBarBackground,
           centerTitle: true,
           leading: Builder(
             builder: (final context) => IconButton(
               onPressed: () => Scaffold.of(context).openDrawer(),
-              icon: const Icon(Icons.switch_account_rounded),
+              icon: Icon(
+                Icons.switch_account_rounded,
+                color: themeData.customColors.appBarButton,
+              ),
             ),
           ),
           title: SizedBox(
@@ -44,16 +49,12 @@ class AssetPageAppbar extends AppBar {
                     children: [
                       Text(
                         Fmt.shorterAddress(account.address),
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              color: Colors.grey,
-                            ),
+                        style: themeData.customTextStyles.accountAddress,
                       ),
                       const SizedBox(height: 4),
                       Text(
                         account.name ?? 'Anonymous',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              color: Colors.white,
-                            ),
+                        style: themeData.customTextStyles.accountName,
                       ),
                     ],
                   ),

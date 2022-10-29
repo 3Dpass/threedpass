@@ -19,7 +19,10 @@ class CreateAccountMnemonicBackup extends StatelessWidget {
       }) {
         // Provide advanced options form
         return Scaffold(
-          appBar: CommonStringAppbar(title: 'create_account_title'.tr()),
+          appBar: CommonStringAppbar(
+            title: 'create_account_title'.tr(),
+            theme: Theme.of(context),
+          ),
           // listen and react to  advanced options form changes
           body: MnemonicBackupContent(
             mnemonic: mnemonic,

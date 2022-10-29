@@ -28,6 +28,7 @@ class PreviewPage extends StatelessWidget {
       appBar: PreviewAppBar(
         hashObject: previewPageCubitState.hashObject,
         snapshot: previewPageCubitState.snapshot,
+        themeData: Theme.of(context),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),

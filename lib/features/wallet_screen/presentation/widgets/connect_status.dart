@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 
 class ConnectStatus extends StatelessWidget {
   const ConnectStatus({final Key? key}) : super(key: key);
@@ -48,6 +49,8 @@ class _Indicator extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final customColors = Theme.of(context).customColors;
+
     switch (status) {
       case AppServiceInitStatus.init:
       case AppServiceInitStatus.connecting:
@@ -58,10 +61,10 @@ class _Indicator extends StatelessWidget {
         );
 
       case AppServiceInitStatus.connected:
-        return const Icon(Icons.check_box, color: Colors.green);
+        return Icon(Icons.check_box, color: customColors.positiveIcon);
 
       case AppServiceInitStatus.error:
-        return const Icon(Icons.error_outline, color: Colors.red);
+        return Icon(Icons.error_outline, color: customColors.errorIcon);
     }
   }
 }

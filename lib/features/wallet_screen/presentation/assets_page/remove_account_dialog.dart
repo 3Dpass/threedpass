@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
 
@@ -45,6 +46,7 @@ class RemoveAccountDialog extends StatelessWidget {
     final appServiceLoaderCubit =
         BlocProvider.of<AppServiceLoaderCubit>(context);
     final appService = appServiceLoaderCubit.state;
+    final customColors = Theme.of(context).customColors;
 
     return AlertDialog(
       title: Text(
@@ -72,7 +74,7 @@ class RemoveAccountDialog extends StatelessWidget {
                   onPressed: () =>
                       deleteAccount(appServiceLoaderCubit, context),
                   text: 'Delete'.tr(),
-                  textColor: Colors.red,
+                  textColor: customColors.dangerColor,
                 ),
               ),
             ],
