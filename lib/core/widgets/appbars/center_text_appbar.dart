@@ -5,14 +5,14 @@ import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
 class CenterTextAppBar extends StatelessWidget {
   const CenterTextAppBar({
-    Key? key,
     required this.text,
+    final Key? key,
   }) : super(key: key);
 
   final String text;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final theme = Theme.of(context);
 
     return PlatformAppBar(

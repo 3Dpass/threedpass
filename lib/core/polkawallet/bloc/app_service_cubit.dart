@@ -181,7 +181,8 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     );
   }
 
-  void _emit(AppService appService) {
+  // TODO Remove this when do Clean Architecture
+  void _emit(final AppService appService) {
     emit(appService);
   }
 }

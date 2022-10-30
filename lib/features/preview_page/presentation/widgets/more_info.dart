@@ -39,6 +39,7 @@ class MoreInfo extends StatelessWidget {
             data: state.snapshot.hashes.join('\n'),
             version: QrVersions.auto,
             size: 120.0,
+            foregroundColor: Theme.of(context).colorScheme.onBackground,
           ),
         ),
       ],

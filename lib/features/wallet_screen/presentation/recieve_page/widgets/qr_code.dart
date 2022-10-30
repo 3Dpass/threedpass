@@ -15,6 +15,7 @@ class _QRCode extends StatelessWidget {
         data: address,
         version: QrVersions.auto,
         size: MediaQuery.of(context).size.width - 16 * 2,
+        foregroundColor: Theme.of(context).colorScheme.onBackground,
       ),
     );
   }

@@ -40,6 +40,7 @@ class PreviewAppBar extends AppBar {
               IconButton(
                 padding: EdgeInsets.zero,
                 icon: const Icon(Icons.share),
+                color: themeData.customColors.appBarButton,
                 alignment: Alignment.center,
                 onPressed: () => Share.share(snapshot.shareText),
               ),
