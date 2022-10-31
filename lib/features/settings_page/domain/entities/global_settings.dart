@@ -18,7 +18,7 @@ class GlobalSettings {
   });
 
   GlobalSettings.defaultValues()
-      : scanSettings = const ScanSettings.defaultValues(),
+      : scanSettings = ScanSettings.defaultValues(),
         walletSettings = const WalletSettings.defaultValues(),
         appSettings = const AppSettings.defaultValues(),
         previewSettings = const PreviewSettings.defaultValues();

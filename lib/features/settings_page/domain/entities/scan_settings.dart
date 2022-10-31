@@ -10,7 +10,7 @@ class ScanSettings extends Equatable {
   @HiveField(0)
   final int gridSize;
   @HiveField(1)
-  final Algorithm algorithm;
+  final String algorithm;
   @HiveField(2)
   final int nSections;
   @HiveField(3)
@@ -26,9 +26,9 @@ class ScanSettings extends Equatable {
     required this.transBytes,
   });
 
-  const ScanSettings.defaultValues()
+  ScanSettings.defaultValues()
       : gridSize = 8,
-        algorithm = Algorithm.grid2d,
+        algorithm = Algorithm.grid2d.name,
         nSections = 66,
         libVersion = 'unknown',
         transBytes = '';
@@ -42,10 +42,7 @@ class ScanSettings extends Equatable {
       ];
 }
 
-@HiveType(typeId: 2)
 enum Algorithm {
-  @HiveField(0)
   spectrum,
-  @HiveField(1)
   grid2d,
 }

@@ -39,7 +39,7 @@ class SaveTopHashesDialog extends StatelessWidget {
           child: Text('Share'.tr()),
           onPressed: () => shareSnapshots(context),
         ),
-        _SaveTopHashesButton(pageCubitState),
+        // _SaveTopHashesButton(pageCubitState),
       ],
     );
   }

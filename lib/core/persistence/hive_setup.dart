@@ -18,7 +18,6 @@ Future<void> hiveSetup() async {
   Hive.registerAdapter<ScanSettings>(ScanSettingsAdapter());
   Hive.registerAdapter<WalletSettings>(WalletSettingsAdapter());
   Hive.registerAdapter<PreviewSettings>(PreviewSettingsAdapter());
-  Hive.registerAdapter<Algorithm>(AlgorithmAdapter());
   Hive.registerAdapter<AppSettings>(AppSettingsAdapter());
 
   final Directory defaultDirectory = await getApplicationDocumentsDirectory();

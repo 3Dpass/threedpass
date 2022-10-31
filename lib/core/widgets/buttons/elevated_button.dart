@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 
 class D3pElevatedButton extends StatelessWidget {
   const D3pElevatedButton({
@@ -21,7 +22,24 @@ class D3pElevatedButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    // final theme = Theme.of(context);
+    // TODO Turn into OOP
+    final theme = Theme.of(context);
+
+    final d3pButtonTheme = onPressed == null
+        ? D3pButtonThemeData.disabled(theme)
+        : D3pButtonThemeData.active(theme);
+
+    final basicMaterial = ElevatedButton.styleFrom(
+      minimumSize: minimumSize ?? const Size.fromHeight(50),
+    );
+    // TODO Do same for cupertino
+    final materialTheme = basicMaterial.copyWith(
+      foregroundColor:
+          MaterialStateProperty.all(d3pButtonTheme.foregroundColor),
+      backgroundColor:
+          MaterialStateProperty.all(d3pButtonTheme.backgroundColor),
+    );
+
     return Padding(
       padding: padding ?? EdgeInsets.zero,
       child: SizedBox(
@@ -29,9 +47,7 @@ class D3pElevatedButton extends StatelessWidget {
           padding: padding ?? EdgeInsets.zero,
           onPressed: onPressed,
           material: (final context, final _) => MaterialElevatedButtonData(
-            style: ElevatedButton.styleFrom(
-              minimumSize: minimumSize ?? const Size.fromHeight(50),
-            ),
+            style: materialTheme,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -47,6 +63,24 @@ class D3pElevatedButton extends StatelessWidget {
       ),
     );
   }
+}
+
+class D3pButtonThemeData {
+  final Color backgroundColor;
+  final Color foregroundColor;
+
+  D3pButtonThemeData({
+    required this.backgroundColor,
+    required this.foregroundColor,
+  });
+
+  D3pButtonThemeData.active(final ThemeData themeData)
+      : backgroundColor = themeData.colorScheme.primary,
+        foregroundColor = themeData.colorScheme.onPrimary;
+
+  D3pButtonThemeData.disabled(final ThemeData themeData)
+      : backgroundColor = themeData.cardColor,
+        foregroundColor = themeData.colorScheme.onSurface.withOpacity(0.50);
 }
 
 class _Icon extends StatelessWidget {

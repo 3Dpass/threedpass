@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/app_back_button.dart';
 import 'package:threedpass/core/widgets/appbars/common_appbar.dart';
 
@@ -17,7 +18,10 @@ class CommonStringAppbar extends CommonAppbar {
               children: [
                 const AppBackButton(),
                 Align(
-                  child: Text(title),
+                  child: Text(
+                    title,
+                    style: theme.customTextStyles.appTitle,
+                  ),
                 ),
               ],
             ),
