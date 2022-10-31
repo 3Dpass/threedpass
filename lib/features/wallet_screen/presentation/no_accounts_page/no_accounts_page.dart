@@ -13,6 +13,7 @@ class NoAccountsPage extends StatelessWidget {
     return Scaffold(
       appBar: CommonLogoAppbar(
         title: 'wallet_header_title'.tr(),
+        theme: Theme.of(context),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -36,6 +36,7 @@ class TransferPage extends StatelessWidget {
     return Scaffold(
       appBar: CommonLogoAppbar(
         title: 'recieve_page_title'.tr(),
+        theme: Theme.of(context),
       ),
       body: Column(
         children: [

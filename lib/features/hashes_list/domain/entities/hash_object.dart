@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:threedpass/core/utils/hash2.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/setup.dart';
 
 part 'hash_object.g.dart';
 
@@ -21,9 +23,6 @@ class HashObject {
     required this.name,
     required this.snapshots,
   }) : localId = Random().nextInt(1 << 32);
-
-  /// Minimum number of hash matches to be considered stable
-  static const int minRequirement = 1;
 
   @HiveField(0)
   final int localId;
@@ -63,6 +62,12 @@ class HashObject {
     }
 
     return false;
+  }
+
+  /// Minimum number of hash matches to be considered stable
+  int get minRequirement {
+    final settings = getIt<SettingsConfigCubit>();
+    return settings.state.appSettings.stableRequirement;
   }
 
   /// To get self object self hashes

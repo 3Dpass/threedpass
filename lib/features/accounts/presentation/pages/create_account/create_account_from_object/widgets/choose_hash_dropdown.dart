@@ -19,13 +19,31 @@ class _ChooseHashDropdown extends StatelessWidget {
   Widget build(final BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: objectValueNotifier,
-      builder: (final ___, final _, final __) => ValueListenableBuilder(
+      builder: (final ___, final HashObject hashObject, final __) =>
+          ValueListenableBuilder(
         valueListenable: chosenHash,
-        builder: (final context, final _, final __) => DropdownButton<String>(
+        builder: (final context, final _, final __) => _DropdownButtonString(
+          context: context,
+          hashObject: hashObject,
+          chosenHash: chosenHash,
+          onChanged: (final String? modelChosen) => onHashChoose(modelChosen),
+        ),
+      ),
+    );
+  }
+}
+
+class _DropdownButtonString extends DropdownButton<String> {
+  _DropdownButtonString({
+    required final HashObject hashObject,
+    required final super.onChanged,
+    required final BuildContext context,
+    required final ValueNotifier<String> chosenHash,
+  }) : super(
           isExpanded: true,
           style: Theme.of(context).textTheme.bodyText1,
           value: chosenHash.value,
-          items: objectValueNotifier.value.stableHashes
+          items: hashObject.stableHashes
               .map(
                 (final e) => DropdownMenuItem<String>(
                   value: e,
@@ -37,9 +55,5 @@ class _ChooseHashDropdown extends StatelessWidget {
                 ),
               )
               .toList(),
-          onChanged: (final String? modelChosen) => onHashChoose(modelChosen),
-        ),
-      ),
-    );
-  }
+        );
 }

@@ -7,7 +7,7 @@ part of 'scan_settings.dart';
 // **************************************************************************
 
 abstract class _$ScanSettingsCWProxy {
-  ScanSettings algorithm(Algorithm algorithm);
+  ScanSettings algorithm(String algorithm);
 
   ScanSettings gridSize(int gridSize);
 
@@ -24,7 +24,7 @@ abstract class _$ScanSettingsCWProxy {
   /// ScanSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   ScanSettings call({
-    Algorithm? algorithm,
+    String? algorithm,
     int? gridSize,
     String? libVersion,
     int? nSections,
@@ -39,7 +39,7 @@ class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
   const _$ScanSettingsCWProxyImpl(this._value);
 
   @override
-  ScanSettings algorithm(Algorithm algorithm) => this(algorithm: algorithm);
+  ScanSettings algorithm(String algorithm) => this(algorithm: algorithm);
 
   @override
   ScanSettings gridSize(int gridSize) => this(gridSize: gridSize);
@@ -72,7 +72,7 @@ class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
       algorithm: algorithm == const $CopyWithPlaceholder() || algorithm == null
           ? _value.algorithm
           // ignore: cast_nullable_to_non_nullable
-          : algorithm as Algorithm,
+          : algorithm as String,
       gridSize: gridSize == const $CopyWithPlaceholder() || gridSize == null
           ? _value.gridSize
           // ignore: cast_nullable_to_non_nullable
@@ -118,7 +118,7 @@ class ScanSettingsAdapter extends TypeAdapter<ScanSettings> {
     return ScanSettings(
       gridSize: fields[0] as int,
       nSections: fields[2] as int,
-      algorithm: fields[1] as Algorithm,
+      algorithm: fields[1] as String,
       libVersion: fields[3] as String,
       transBytes: fields[4] as String,
     );
@@ -147,45 +147,6 @@ class ScanSettingsAdapter extends TypeAdapter<ScanSettings> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is ScanSettingsAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
-class AlgorithmAdapter extends TypeAdapter<Algorithm> {
-  @override
-  final int typeId = 2;
-
-  @override
-  Algorithm read(BinaryReader reader) {
-    switch (reader.readByte()) {
-      case 0:
-        return Algorithm.spectrum;
-      case 1:
-        return Algorithm.grid2d;
-      default:
-        return Algorithm.spectrum;
-    }
-  }
-
-  @override
-  void write(BinaryWriter writer, Algorithm obj) {
-    switch (obj) {
-      case Algorithm.spectrum:
-        writer.writeByte(0);
-        break;
-      case Algorithm.grid2d:
-        writer.writeByte(1);
-        break;
-    }
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AlgorithmAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/features/compare_page/domain/entities/row_data.dart';
 import 'package:threedpass/features/compare_page/presentation/widgets/compare_table/app_table_row.dart';
@@ -36,6 +37,8 @@ class CompareTable extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final theme = Theme.of(context);
+    final customStyles = theme.customTextStyles;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -49,15 +52,15 @@ class CompareTable extends StatelessWidget {
             children: [
               Text(
                 'Rank'.tr(),
-                style: Theme.of(context).customTextStyles.tableHeader,
+                style: customStyles.tableHeader,
               ),
               Text(
                 'Hash'.tr(),
-                style: Theme.of(context).customTextStyles.tableHeader,
+                style: customStyles.tableHeader,
               ),
               Text(
                 'Rank'.tr(),
-                style: Theme.of(context).customTextStyles.tableHeader,
+                style: customStyles.tableHeader,
               ),
             ],
           ),
@@ -69,8 +72,9 @@ class CompareTable extends StatelessWidget {
           shrinkWrap: true,
           itemBuilder: (final context, final index) =>
               AppTableRow(rowData: rowsData[index]),
-          separatorBuilder: (final _, final __) =>
-              const Divider(color: Colors.grey),
+          separatorBuilder: (final _, final __) => Divider(
+            color: theme.customColors.dividerColor,
+          ),
           itemCount: rowsData.length,
         ),
       ],

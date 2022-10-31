@@ -60,6 +60,10 @@ class ListTileButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final theme = Theme.of(context);
+    final mainColor =
+        onPressed != null ? theme.colorScheme.primary : theme.disabledColor;
+
     return Padding(
       padding: padding ?? EdgeInsets.zero,
       child: SizedBox(
@@ -68,8 +72,14 @@ class ListTileButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(text),
-              const Icon(Icons.arrow_right_outlined),
+              Text(
+                text,
+                style: theme.textTheme.button!.copyWith(color: mainColor),
+              ),
+              Icon(
+                Icons.arrow_right_outlined,
+                color: mainColor,
+              ),
             ],
           ),
           // TODO Check cupertino theme
@@ -77,7 +87,7 @@ class ListTileButton extends StatelessWidget {
             style: Theme.of(context).textButtonTheme.style!.copyWith(
                   // padding: MaterialStateProperty.all(EdgeInsets.zero),
                   backgroundColor: MaterialStateProperty.all<Color>(
-                    backgroundColor ?? Colors.white,
+                    backgroundColor ?? theme.cardColor,
                   ),
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   shape: MaterialStateProperty.all<OutlinedBorder>(border),

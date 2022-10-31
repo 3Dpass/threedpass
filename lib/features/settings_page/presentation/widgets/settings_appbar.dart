@@ -5,9 +5,11 @@ import 'package:threedpass/features/settings_page/presentation/widgets/hide_keyb
 
 class SettingsAppbar extends CommonLogoAppbar {
   SettingsAppbar({
+    required final ThemeData theme,
     final Key? key,
   }) : super(
           key: key,
+          theme: theme,
           title: 'settings_title'.tr(),
           actions: const [
             SizedBox(

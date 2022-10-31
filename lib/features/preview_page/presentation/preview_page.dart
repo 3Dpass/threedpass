@@ -7,7 +7,7 @@ import 'package:threedpass/features/preview_page/presentation/widgets/delete_sna
 import 'package:threedpass/features/preview_page/presentation/widgets/hash_properties.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/matches_found/matches_found.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/more_info.dart';
-import 'package:threedpass/features/preview_page/presentation/widgets/object_preview.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/object_preview/object_preview.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/preview_save_button.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/snapshot_info.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/stable_hash_text.dart';
@@ -28,6 +28,7 @@ class PreviewPage extends StatelessWidget {
       appBar: PreviewAppBar(
         hashObject: previewPageCubitState.hashObject,
         snapshot: previewPageCubitState.snapshot,
+        themeData: Theme.of(context),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),

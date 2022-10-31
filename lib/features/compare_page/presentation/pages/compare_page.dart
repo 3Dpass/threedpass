@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/widgets/appbars/center_text_appbar.dart';
 import 'package:threedpass/features/compare_page/presentation/widgets/compare_row.dart';
 import 'package:threedpass/features/compare_page/presentation/widgets/compare_table/compare_table.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -40,13 +41,13 @@ class _State extends State<ComparePage> {
 
   @override
   Widget build(final BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text('compare_page_appbar'.tr()),
-      ),
       body: Column(
         children: <Widget>[
+          CenterTextAppBar(
+            text: 'compare_page_appbar'.tr(),
+          ),
           Flexible(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

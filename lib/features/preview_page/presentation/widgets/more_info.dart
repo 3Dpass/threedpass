@@ -21,7 +21,9 @@ class MoreInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         MarkdownBody(
-          data: '### **Hash ID**\n### [' +
+          data: '### **' +
+              'top_10_hashes'.tr() +
+              '**\n### [' + //Hash ID**\n### [' +
               'show_and_share_dialog_button'.tr() +
               '](pseudo_link)',
           onTapLink:
@@ -39,6 +41,7 @@ class MoreInfo extends StatelessWidget {
             data: state.snapshot.hashes.join('\n'),
             version: QrVersions.auto,
             size: 120.0,
+            foregroundColor: Theme.of(context).colorScheme.onBackground,
           ),
         ),
       ],

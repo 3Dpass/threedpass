@@ -11,7 +11,6 @@ class SectionsTextField extends StatelessWidget {
 
   Future<void> _onFieldChanged(
     final BuildContext context,
-    final ScanSettings settings,
     final String? newValue,
   ) async {
     if (newValue != null && int.tryParse(newValue) != null) {
@@ -40,8 +39,7 @@ class SectionsTextField extends StatelessWidget {
       controller: TextEditingController(
         text: settings.nSections.toString(),
       ),
-      onChanged: (final String? newValue) =>
-          _onFieldChanged(context, settings, newValue),
+      onChanged: (final String? newValue) => _onFieldChanged(context, newValue),
       keyboardType: TextInputType.number,
       validator: onlyNumValidator,
       labelText: 'n_sections_label'.tr(),

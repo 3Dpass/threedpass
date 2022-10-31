@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
 class MatchHyperlink extends StatelessWidget {
   const MatchHyperlink({
@@ -15,17 +16,15 @@ class MatchHyperlink extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    const TextStyle defaultStyle = TextStyle(color: Colors.black);
-    const TextStyle linkStyle = TextStyle(color: Colors.blue);
+    final theme = Theme.of(context);
 
     return RichText(
       text: TextSpan(
-        style: defaultStyle,
         children: <TextSpan>[
           TextSpan(text: mainText),
           TextSpan(
             text: clickable,
-            style: linkStyle,
+            style: theme.customTextStyles.matchesHyperlink,
             recognizer: TapGestureRecognizer()..onTap = onTap,
           ),
         ],

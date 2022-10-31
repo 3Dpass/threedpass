@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 
 class MnemonicTextField extends StatelessWidget {
   const MnemonicTextField({
@@ -9,17 +10,20 @@ class MnemonicTextField extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(final BuildContext context) => Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.grey[300],
-          borderRadius: const BorderRadius.all(
-            Radius.circular(8),
-          ),
+  Widget build(final BuildContext context) {
+    print('a' + Theme.of(context).brightness.toString());
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Theme.of(context).customColors.mnemonicInputBackground,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(8),
         ),
-        child: Text(
-          text,
-        ),
-      );
+      ),
+      child: Text(
+        text,
+      ),
+    );
+  }
 }

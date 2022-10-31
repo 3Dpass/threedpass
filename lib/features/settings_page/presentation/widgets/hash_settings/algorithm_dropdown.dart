@@ -10,10 +10,11 @@ class AlgorithmDropdown extends StatelessWidget {
 
   Future<void> _onAlgorithmChanged(
     final BuildContext context,
-    final Algorithm? newValue,
+    final String? newValue,
   ) async {
     if (newValue != null) {
       final cubit = BlocProvider.of<SettingsConfigCubit>(context);
+
       final newScanConfig =
           cubit.state.scanSettings.copyWith(algorithm: newValue);
       final newState = cubit.state.copyWith(scanSettings: newScanConfig);
@@ -25,18 +26,17 @@ class AlgorithmDropdown extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
       buildWhen: (final previous, final current) => false,
-      builder: (final context, final state) =>
-          DropdownButtonFormField<Algorithm>(
+      builder: (final context, final state) => DropdownButtonFormField<String>(
         decoration: InputDecoration(
           label: Text('choose_algorithm_label'.tr()),
         ),
         value: state.scanSettings.algorithm,
-        onChanged: (final Algorithm? newValue) =>
+        onChanged: (final String? newValue) =>
             _onAlgorithmChanged(context, newValue),
         items: Algorithm.values
             .map(
-              (final e) => DropdownMenuItem<Algorithm>(
-                value: e,
+              (final e) => DropdownMenuItem<String>(
+                value: e.name,
                 child: Text(e.name),
               ),
             )

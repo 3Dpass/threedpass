@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/list_tile_button.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart';
@@ -13,6 +15,7 @@ class AccountsDrawer extends Drawer {
     required final KeyPairData current,
     required final AppServiceLoaderCubit appServiceCubit,
     required final BuildContext context,
+    required final ThemeData theme,
     final Key? key,
   }) : super(
           key: key,
@@ -21,13 +24,20 @@ class AccountsDrawer extends Drawer {
             padding: EdgeInsets.zero,
             children: [
               PlatformAppBar(
-                leading: const SizedBox(),
                 title: Text(
                   'choose_account_assets_page_drawer'.tr(),
+                  style: theme.customTextStyles.appBarText,
                 ),
                 material: (final _, final __) => MaterialAppBarData(
-                  backgroundColor: Colors.black,
-                  foregroundColor: Theme.of(context).canvasColor,
+                  automaticallyImplyLeading: false,
+                  backgroundColor: theme.customColors.appBarBackground,
+                  foregroundColor: theme.customColors.appBarBackground,
+                  centerTitle: true,
+                ),
+                // TODO Check cupertino theme
+                cupertino: (final _, final __) => CupertinoNavigationBarData(
+                  automaticallyImplyLeading: false,
+                  backgroundColor: theme.customColors.appBarBackground,
                 ),
               ),
               const SizedBox(height: 4),
@@ -53,7 +63,7 @@ class AccountsDrawer extends Drawer {
                           appServiceCubit.changeAccount(accounts[index]);
                           Navigator.of(context).pop();
                         },
-                  backgroundColor: Theme.of(context).canvasColor,
+                  // backgroundColor: Theme.of(context).canvasColor,
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                 ),
               ),

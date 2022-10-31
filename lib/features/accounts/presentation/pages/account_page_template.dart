@@ -66,7 +66,10 @@ class AccountPageTemplate extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Scaffold(
-        appBar: CommonStringAppbar(title: appbarTitle.tr()),
+        appBar: CommonStringAppbar(
+          title: appbarTitle.tr(),
+          theme: Theme.of(context),
+        ),
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
