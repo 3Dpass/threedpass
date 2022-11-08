@@ -6,13 +6,12 @@ class _ObjectNameInput extends StatelessWidget {
   final TextEditingController objectNameController;
   @override
   Widget build(final BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        label: Text('create_object_input_label'.tr()),
-        hintText: 'create_object_input_hint'.tr(),
-        isCollapsed: false,
-      ),
+    return D3pTextFormField(
+      labelText: 'create_object_input_label'.tr(),
+      hintText: 'create_object_input_hint'.tr(),
+      isCollapsed: false,
       controller: objectNameController,
+      validator: Validators.notEmpty,
     );
   }
 }

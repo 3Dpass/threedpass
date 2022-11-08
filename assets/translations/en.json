@@ -237,5 +237,7 @@
     "could_not_check_address": "Could not check address",
     "wrong_address": "Invalid address provided",
     "transfer_loader_text": "Transfering...",
-    "transfer_success_text": "Funds are sent"
+    "transfer_success_text": "Funds are sent",
+
+    "error_empty": "Should not be empty"
 }

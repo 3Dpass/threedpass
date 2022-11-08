@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/utils/validators.dart';
+import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -21,25 +23,29 @@ class SaveObjectDialog extends StatelessWidget {
   final objectNameController = TextEditingController();
   final Snapshot snapshot;
   final TextEditingController snapshotNameController;
+  final _formKey = GlobalKey<FormState>();
 
   Future<void> saveObject(final BuildContext context) async {
-    final newNamedModel = snapshot.copyWith(name: snapshotNameController.text);
+    if (_formKey.currentState != null && _formKey.currentState!.validate()) {
+      final newNamedModel =
+          snapshot.copyWith(name: snapshotNameController.text);
 
-    final newObject = HashObject.create(
-      name: objectNameController.text,
-      snapshots: [
-        newNamedModel,
-      ],
-    );
+      final newObject = HashObject.create(
+        name: objectNameController.text,
+        snapshots: [
+          newNamedModel,
+        ],
+      );
 
-    BlocProvider.of<HashesListBloc>(context).add(
-      AddObject(
-        object: newObject,
-      ),
-    );
+      BlocProvider.of<HashesListBloc>(context).add(
+        AddObject(
+          object: newObject,
+        ),
+      );
 
-    final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
-    outerContext.router.popUntilRouteWithName(RouteNames.homePage);
+      final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
+      outerContext.router.popUntilRouteWithName(RouteNames.homePage);
+    }
   }
 
   @override
@@ -47,43 +53,50 @@ class SaveObjectDialog extends StatelessWidget {
     return Dialog(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              'create_object_title'.tr(),
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(left: 8, right: 8, bottom: 8, top: 16),
-              child: _ObjectNameInput(objectNameController),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 16),
-              child: _SnapshotNameInput(snapshotNameController),
-            ),
-            Flexible(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: TextButton(
-                      child: Text('Cancel'.tr()),
-                      onPressed: () => context.router.pop(),
-                    ),
-                  ),
-                  const Spacer(),
-                  Flexible(
-                    child: TextButton(
-                      child: Text('Save'.tr()),
-                      onPressed: () => saveObject(context),
-                    ),
-                  ),
-                ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                'create_object_title'.tr(),
+                style: Theme.of(context).textTheme.subtitle1,
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 8,
+                  right: 8,
+                  bottom: 8,
+                  top: 16,
+                ),
+                child: _ObjectNameInput(objectNameController),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8, right: 8, bottom: 16),
+                child: _SnapshotNameInput(snapshotNameController),
+              ),
+              Flexible(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: TextButton(
+                        child: Text('Cancel'.tr()),
+                        onPressed: () => context.router.pop(),
+                      ),
+                    ),
+                    const Spacer(),
+                    Flexible(
+                      child: TextButton(
+                        child: Text('Save'.tr()),
+                        onPressed: () => saveObject(context),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

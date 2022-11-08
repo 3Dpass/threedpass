@@ -6,12 +6,10 @@ class _SnapshotNameInput extends StatelessWidget {
   final TextEditingController snapshotNameController;
   @override
   Widget build(final BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        label: Text('create_object_snap_input_label'.tr()),
-        hintText: 'create_object_snap_input_hint'.tr(),
-        isCollapsed: false,
-      ),
+    return D3pTextFormField(
+      labelText: 'create_object_snap_input_label'.tr(),
+      hintText: 'create_object_snap_input_hint'.tr(),
+      isCollapsed: false,
       controller: snapshotNameController,
     );
   }

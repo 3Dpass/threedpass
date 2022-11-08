@@ -24,6 +24,7 @@ class D3pTextFormField extends StatelessWidget {
     this.enabled,
     this.obscureText,
     this.maxLines,
+    this.isCollapsed = false,
   })  : controller = controller ?? TextEditingController(),
         super(key: key);
 
@@ -46,6 +47,7 @@ class D3pTextFormField extends StatelessWidget {
   final int? maxLines;
   final String? suffixButton;
   final bool? obscureText;
+  final bool isCollapsed;
 
   @override
   Widget build(final BuildContext context) {
@@ -65,6 +67,7 @@ class D3pTextFormField extends StatelessWidget {
                 onSuffixButtonPressed: onSuffixButtonPressed,
               ).build(context),
               hintText: hintText,
+              isCollapsed: isCollapsed,
             ),
             controller: controller,
             onChanged: onChanged,
