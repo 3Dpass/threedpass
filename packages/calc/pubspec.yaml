@@ -85,7 +85,7 @@ ffigen:
   output: lib/generated/bindings.dart
   headers:
     entry-points:
-    - ../../rust/target/bindings.h
+    - ./assets/bindings.h
   name: CalcBindings
   llvm-path:
     - /usr/local/opt/llvm/bin # For MacOS. Set path for your system
