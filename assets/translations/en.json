@@ -56,7 +56,7 @@
     "save_this_object_button_label":"Save this object",
     "save_this_snapshot_button_label":"Save this snapshot",
     "rename_this_snapshot_button_label":"Rename this snapshot",
-    "top_10_hashes": "Top 10 hashes",
+    "top_10_hashes": "Hash ID",
     "get_new_object_appbar": "Get a new one",
     "show_and_share_dialog_button": "Show and share",
     "delete_snapshot_button": "Remove & clear the cache",
