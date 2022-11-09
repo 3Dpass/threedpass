@@ -62,8 +62,8 @@ android {
         release {
             // If you are reading these lines check the link:
             // https://proandroiddev.com/how-to-securely-build-and-sign-your-android-app-with-github-actions-ad5323452ce
-            def tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
-            def allFilesFromDir = new File(tmpFilePath).listFiles()
+            // def tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
+            // def allFilesFromDir = new File(tmpFilePath).listFiles()
 
             // println("allFilesFromDir: " + allFilesFromDir)
 
@@ -72,7 +72,7 @@ android {
             //     keystoreFile.renameTo("keystore/upload-keystore.jks") // USE THE SAME NAME AS IN THE ci.yaml
             // }
 
-            storeFile = file("upload-keystore.jks")
+            storeFile = file("../../upload-keystore.jks")
             storePassword System.getenv("SIGNING_STORE_PASSWORD")
             keyAlias System.getenv("SIGNING_KEY_ALIAS")
             keyPassword System.getenv("SIGNING_KEY_PASSWORD")
