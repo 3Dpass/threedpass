@@ -72,7 +72,7 @@ android {
                 keystoreFile.renameTo("keystore/upload-keystore.jks") // USE THE SAME NAME AS IN THE ci.yaml
             }
 
-            storeFile = file("keystore/your_keystore.jks")
+            storeFile = file("keystore/upload-keystore.jks")
             storePassword System.getenv("SIGNING_STORE_PASSWORD")
             keyAlias System.getenv("SIGNING_KEY_ALIAS")
             keyPassword System.getenv("SIGNING_KEY_PASSWORD")
