@@ -64,6 +64,8 @@ android {
             // https://proandroiddev.com/how-to-securely-build-and-sign-your-android-app-with-github-actions-ad5323452ce
             def tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
             def allFilesFromDir = new File(tmpFilePath).listFiles()
+            
+            println("allFilesFromDir: " + allFilesFromDir)
 
             if (allFilesFromDir != null) {
                 def keystoreFile = allFilesFromDir.first()
