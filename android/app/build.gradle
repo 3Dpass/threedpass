@@ -65,14 +65,14 @@ android {
             def tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
             def allFilesFromDir = new File(tmpFilePath).listFiles()
 
-            println("allFilesFromDir: " + allFilesFromDir)
+            // println("allFilesFromDir: " + allFilesFromDir)
 
-            if (allFilesFromDir != null) {
-                def keystoreFile = allFilesFromDir.first()
-                keystoreFile.renameTo("keystore/upload-keystore.jks") // USE THE SAME NAME AS IN THE ci.yaml
-            }
+            // if (allFilesFromDir != null) {
+            //     def keystoreFile = allFilesFromDir.first()
+            //     keystoreFile.renameTo("keystore/upload-keystore.jks") // USE THE SAME NAME AS IN THE ci.yaml
+            // }
 
-            storeFile = file("keystore/upload-keystore.jks")
+            storeFile = file("upload-keystore.jks")
             storePassword System.getenv("SIGNING_STORE_PASSWORD")
             keyAlias System.getenv("SIGNING_KEY_ALIAS")
             keyPassword System.getenv("SIGNING_KEY_PASSWORD")
