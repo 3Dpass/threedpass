@@ -7,10 +7,14 @@ extension SpecialColors on ThemeData {
 }
 
 class CustomColors {
-  CustomColors(this.themeData) : brightness = RealBrightness.fromSettings;
+  CustomColors(
+    this.themeData,
+    // this.platform,
+  ) : brightness = RealBrightness.fromSettings;
 
   final Brightness brightness;
   final ThemeData themeData;
+  // final TargetPlatform platform;
 
   // Meaninful
   Color get dangerColor => Colors.red;
@@ -40,6 +44,10 @@ class CustomColors {
   Color get errorIcon => dangerColor;
   Color get uncertainIcon => Colors.orange;
   Color get popMenuIcon => Colors.grey;
+
+  // Text
+  Color get themeOpposite =>
+      brightness == Brightness.light ? Colors.black : Colors.white;
   // Color get themedIcon =>
   //     brightness == Brightness.light ? Colors.black : Colors.white;
 }

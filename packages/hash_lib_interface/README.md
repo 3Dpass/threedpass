@@ -4,7 +4,7 @@
 ### How to update library in [threedpass](https://github.com/3Dpass/threedpass)
 - Make your changes.
 - Check the lib name is ```calc``` [see the source](https://github.com/L3odr0id/p3d/blob/912236d154d6511129d730ecc203fd1a50e054b3/Cargo.toml#L11), the exported functions have bindable types. Also make sure to annotate your exported functions with `#[no_mangle]` and `pub extern` so the function names can be matched from Dart. See [working bindable function example](https://github.com/L3odr0id/p3d/blob/912236d154d6511129d730ecc203fd1a50e054b3/src/ffi_interface.rs#L11).
-- Compile the library. There is a ```makefile``` copied from [brickpop's example](https://github.com/brickpop/flutter-rust-ffi/blob/master/README.md#compile-the-library). So follow his instruction.
+- Compile the library. There is a ```makefile``` copied from [brickpop's example](https://github.com/brickpop/flutter-rust-ffi/blob/master/README.md#compile-the-library). Follow these steps to update the lib.
   - Make sure that the Android NDK is installed
     - You might also need LLVM from the SDK manager
   - Ensure that the env variable `$ANDROID_NDK_HOME` points to the NDK base folder
@@ -25,24 +25,27 @@
         - `target/universal/release/libcalc.a`
     - Bindings header
         - `target/bindings.h`
-- Place artifacts to the threedpass project. Follow this structure in ```threedpass/packages/calc/android```:
-  ```
-  src
-  └── main
-      └── jniLibs
-          ├── arm64-v8a
-          │   └── libcalc.so <- p3d/target/aarch64-linux-android/release/libcalc.so
-          ├── armeabi-v7a
-          │   └── libcalc.so <- p3d/target/armv7-linux-androideabi/release/libcalc.so
-          ├── x86
-          │   └── libcalc.so <- p3d/target/i686-linux-android/release/libcalc.so
-          └── x86_64
-              └── libcalc.so <- p3d/target/x86_64-linux-android/release/libcalc.so
-  ```
-- Update the ios folder. Place ```p3d/target/aarch64-apple-ios/release/libcalc.a``` into ```threedpass/packages/calc/ios```
+- Check the artifacts are placed to the threedpass project. This step should be done by makefile, but please double check. 
+  - Follow this structure in ```threedpass/packages/calc/android```:
+    ```
+    src
+    └── main
+        └── jniLibs
+            ├── arm64-v8a
+            │   └── libcalc.so <- p3d/target/aarch64-linux-android/release/libcalc.so
+            ├── armeabi-v7a
+            │   └── libcalc.so <- p3d/target/armv7-linux-androideabi/release/libcalc.so
+            ├── x86
+            │   └── libcalc.so <- p3d/target/i686-linux-android/release/libcalc.so
+            └── x86_64
+                └── libcalc.so <- p3d/target/x86_64-linux-android/release/libcalc.so
+    ```
+  - Update the ios folder. Place ```p3d/target/aarch64-apple-ios/release/libcalc.a``` into ```threedpass/packages/calc/ios```
 - If you have changed the interface, follow next steps also. Otherwise you can compile the app and check the functionality.
-  - Copy ```p3d/target/bindings.h``` to ```threedpass/rust/target/bindings.h```.
-  - Generate bindings. Check the ```ffigen``` section in ```threedpass/packages/calc/pubspec.yaml```. 
+  - Append ```target/bindings.h``` to ```threedpass/packages/calc/ios/Classes/CalcPlugin.h```.
+  - Checkout if ```threedpass/packages/calc/ios/Classes/CalcPlugin.m``` is correct.
+  - Checkout if all functions you need are dummy-called in ```threedpass/packages/calc/ios/Classes/SwiftCalcPlugin.swift```
+- Generate bindings. Check the ```ffigen``` section in ```threedpass/packages/calc/pubspec.yaml```. 
   To use [ffigen](https://pub.dev/packages/ffigen) install ```llvm```
   
   **On MacOS**:
@@ -62,6 +65,4 @@
   And generate `lib/generated/bindings.dart`:
   ```sh
   flutter pub run ffigen
-  ```
-  - Setup on iOS. Append the ```p3d/target/bindings.h``` to ```threedpass/packages/calc/ios/Classes/CalcPlugin.h```.  In ```ios/Classes/SwiftCalcPlugin.swift``` call your functions, so the compiler won't remove them.
-  - Use bindings and write Dart code you need.
+- Use bindings and write Dart code you need.
