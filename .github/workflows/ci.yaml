@@ -15,7 +15,7 @@ jobs:
       id: decode_keystore
       uses: timheuer/base64-to-file@v1
       with:
-        fileName: 'keystore/your_signing_keystore.jks'
+        fileName: 'keystore/upload-keystore.jks'
         encodedString: ${{ secrets.KEYSTORE }}
     
     # Setup Java environment in order to build the Android app.
