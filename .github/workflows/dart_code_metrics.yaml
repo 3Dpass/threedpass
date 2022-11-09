@@ -1,0 +1,19 @@
+name: Dart Code Metrics
+
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  check:
+    name: dart-code-metrics-action
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: dart-code-metrics
+        uses: dart-code-checker/dart-code-metrics-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          fatal_warnings: true
+          fatal_style: true

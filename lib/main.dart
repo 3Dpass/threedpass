@@ -60,7 +60,6 @@ class ThreeDApp extends StatelessWidget {
       ],
       child: ThemeBuilder(
         builder: (final BuildContext context, final Brightness brightness) {
-          print('bb' + brightness.toString());
           return PlatformApp.router(
             title: '3D pass',
             material: (final _, final __) => MaterialAppRouterData(
