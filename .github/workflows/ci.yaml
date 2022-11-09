@@ -38,7 +38,7 @@ jobs:
     - run: flutter pub get
     
     # Build apk.
-    - run: echo $KEY_JKS > upload-keystore.jks && flutter build apk --release
+    - run: echo $KEY_JKS > upload-keystore.keystore && flutter build apk --release
       env:
             SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
             SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
