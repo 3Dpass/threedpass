@@ -16,7 +16,6 @@ jobs:
       uses: timheuer/base64-to-file@v1
       with:
         fileName: 'upload-keystore.keystore'
-        fileDir: '.'
         encodedString: ${{ secrets.KEYSTORE }}
     
     # Setup Java environment in order to build the Android app.
@@ -44,6 +43,7 @@ jobs:
             SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
             SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
             SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+            KEYSTORE_PATH: ${{ steps.decode_keystore.outputs.filePath }}
             # KEY_JKS: ${{ secrets.KEYSTORE }}
     
     # Upload generated apk to the artifacts.
