@@ -46,7 +46,9 @@ class TransBytesInput extends StatelessWidget {
       return null;
     }
 
-    if (int.tryParse(value) != null && value.length == 8) {
+    final realInput = hexInputFormatter.unmaskText(value);
+    print(realInput.length);
+    if (int.tryParse(value) != null && realInput.length == 8) {
       return null;
     } else {
       return 'error_hex'.tr();

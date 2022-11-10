@@ -62,40 +62,27 @@ android {
         release {
             // If you are reading these lines check the link:
             // https://proandroiddev.com/how-to-securely-build-and-sign-your-android-app-with-github-actions-ad5323452ce
-            def tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
-            def allFilesFromDir = new File(tmpFilePath).listFiles()
-
-            if (allFilesFromDir != null) {
-                def keystoreFile = allFilesFromDir.first()
-                keystoreFile.renameTo("keystore/your_keystore.jks")
-            }
-
-            storeFile = file("keystore/your_keystore.jks")
+            storeFile = file(System.getenv("KEYSTORE_PATH"))
             storePassword System.getenv("SIGNING_STORE_PASSWORD")
             keyAlias System.getenv("SIGNING_KEY_ALIAS")
             keyPassword System.getenv("SIGNING_KEY_PASSWORD")
         }
-        // release {
-        //     keyAlias keystoreProperties['keyAlias']
-        //     keyPassword keystoreProperties['keyPassword']
-        //     storeFile file(keystoreProperties['storeFile'])
-        //     storePassword keystoreProperties['storePassword']
-        // }
     }
 
     buildTypes {
         release {           
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 
 }
 
-repositories {
-  maven {
-    url 'https://storage.googleapis.com/download.flutter.io'
-  }
-}
+// https://github.com/flutter/flutter/issues/41553#issuecomment-565214081
+// repositories {
+//   maven {
+//     url 'https://storage.googleapis.com/download.flutter.io'
+//   }
+// }
 
 flutter {
     source '../..'

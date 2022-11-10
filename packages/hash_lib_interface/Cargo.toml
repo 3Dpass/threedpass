@@ -1,0 +1,18 @@
+[package]
+name = "p3d_interface"
+version = "0.3.0"
+authors = ["l3odr0id"]
+edition = "2018"
+
+[build]
+target = "wasm32-unknown-unknown"
+
+[lib]
+name = "calc"
+crate-type = ["staticlib", "cdylib"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+p3d = { version = "0.3.0", git = "https://github.com/3Dpass/p3d" }
+

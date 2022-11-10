@@ -15,7 +15,7 @@ jobs:
       id: decode_keystore
       uses: timheuer/base64-to-file@v1
       with:
-        fileName: 'keystore/your_signing_keystore.jks'
+        fileName: 'upload-keystore.keystore'
         encodedString: ${{ secrets.KEYSTORE }}
     
     # Setup Java environment in order to build the Android app.
@@ -30,7 +30,6 @@ jobs:
       with:
         #channel: 'stable' # 'dev', 'alpha', default to: 'stable'
         flutter-version: '3.0.4'
-        # flutter-version: '1.12.x' # you can also specify exact version of flutter
     
 
     # Getting  flutter dependencies
@@ -43,6 +42,7 @@ jobs:
             SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
             SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
             SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+            KEYSTORE_PATH: ${{ steps.decode_keystore.outputs.filePath }}
     
     # Upload generated apk to the artifacts.
     - uses: actions/upload-artifact@v1
