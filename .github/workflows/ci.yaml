@@ -11,12 +11,13 @@ jobs:
     # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
     steps:
-    # - name: Decode Keystore
-    #   id: decode_keystore
-    #   uses: timheuer/base64-to-file@v1
-    #   with:
-    #     fileName: 'upload-keystore.jks'
-    #     encodedString: ${{ secrets.KEYSTORE }}
+    - name: Decode Keystore
+      id: decode_keystore
+      uses: timheuer/base64-to-file@v1
+      with:
+        fileName: 'upload-keystore.keystore'
+        fileDir: '.'
+        encodedString: ${{ secrets.KEYSTORE }}
     
     # Setup Java environment in order to build the Android app.
     - uses: actions/checkout@v3
@@ -38,12 +39,12 @@ jobs:
     - run: flutter pub get
     
     # Build apk.
-    - run: echo $KEY_JKS > upload-keystore.keystore && flutter build apk --release
+    - run: flutter build apk --release
       env:
             SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
             SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
             SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
-            KEY_JKS: ${{ secrets.KEYSTORE }}
+            # KEY_JKS: ${{ secrets.KEYSTORE }}
     
     # Upload generated apk to the artifacts.
     - uses: actions/upload-artifact@v1
