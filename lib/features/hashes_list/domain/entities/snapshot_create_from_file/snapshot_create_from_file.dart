@@ -1,6 +1,6 @@
 import 'package:calc/calc.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:threedpass/common/logger.dart';
+import 'package:logger/logger.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/utils/hash_file.dart';
 import 'package:threedpass/core/utils/pair.dart';
@@ -9,6 +9,7 @@ import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
+import 'package:threedpass/setup.dart';
 
 part './file_picker.dart';
 part './trans_bytes.dart';
@@ -70,11 +71,11 @@ class SnapshotFileFactory {
     }
 
     if (hashObject != null) {
-      logger.i(
+      getIt<Logger>().i(
         'New snaphost $snapName belongs to the object ${hashObject.name}',
       );
     } else {
-      logger.i('Snapshot $snapName is unique');
+      getIt<Logger>().i('Snapshot $snapName is unique');
     }
 
     return hashObject;

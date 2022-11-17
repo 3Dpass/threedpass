@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:threedpass/common/logger.dart';
+import 'package:logger/logger.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/domain/repositories/hashes_repository.dart';
+import 'package:threedpass/setup.dart';
 
 part 'hashes_list_event.dart';
 part 'hashes_list_state.dart';
@@ -56,7 +57,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       }
 
       if (!f) {
-        logger.e(
+        getIt<Logger>().e(
           'Not found an object with id=${event.object.localId} name=${event.object.name}',
         );
       } else {
@@ -109,7 +110,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
         }
       }
       if (!f) {
-        logger.e(
+        getIt<Logger>().e(
           'Not found an object with id=${event.object.localId} name=${event.object.name}',
         );
       } else {
@@ -136,7 +137,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
             obj.snapshots[oldSnapIndex] = event.newSnapshot;
             f = true;
           } else {
-            logger.e(
+            getIt<Logger>().e(
               'Not found a snapshot in object ${obj.name}. Old snapshot name=${event.oldSnapshot.name}',
             );
           }
@@ -144,7 +145,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
         }
       }
       if (!f) {
-        logger.e(
+        getIt<Logger>().e(
           'Not found an object with id=${event.object.localId} name=${event.object.name}',
         );
       } else {
