@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/api/apiKeyring.dart';
 import 'package:polkawallet_sdk/api/types/addressIconData.dart';
 import 'package:polkawallet_sdk/api/types/networkParams.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:threedpass/common/logger.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_core_plugin.dart';
@@ -16,6 +16,7 @@ import 'package:threedpass/features/accounts/domain/account_info.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
+import 'package:threedpass/setup.dart';
 
 part 'init_app_service_extension.dart';
 
@@ -161,13 +162,13 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
         service.plugin.sdk.api.account.subscribeBalance(
           address,
           (final data) {
-            logger.i('Balance updated: ${data.availableBalance}');
+            getIt<Logger>().i('Balance updated: ${data.availableBalance}');
             service.balance.value = data;
           },
         ),
       );
     } else {
-      logger.i(
+      getIt<Logger>().i(
         "Couldn't subscribe to balance, because service.keyring.current.address is NULL",
       );
     }

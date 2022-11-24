@@ -1,8 +1,9 @@
 import 'dart:math';
 
 import 'package:intl/intl.dart';
+import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/api/types/balanceData.dart';
-import 'package:threedpass/common/logger.dart';
+import 'package:threedpass/setup.dart';
 
 class BalanceUtils {
   static BigInt balanceTotal(final BalanceData? balance) {
@@ -81,7 +82,7 @@ class BalanceUtils {
         v = double.parse(value);
       }
     } on Exception catch (err) {
-      logger.e('BalanceUtils.tokenInt() error: ${err.toString()}');
+      getIt<Logger>().e('BalanceUtils.tokenInt() error: ${err.toString()}');
       // debugPrint();
     }
     return BigInt.from(v * pow(10, decimals));

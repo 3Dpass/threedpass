@@ -55,34 +55,53 @@ android {
         targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+
+        if (System.getenv("KEYSTORE_PATH")) {
+            resValue "string", "app_name", "3DPass"
+
+            println "Release properties"
+        } else {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-DEBUG'
+            resValue "string", "app_name", "3DPass debug"
+
+            println "Debug properties"
+        }
     }
+
+    // buildTypes {
+    //     release {
+    //         if (false) {
+    //             signingConfig signingConfigs.release
+    //             println "Signing with key.properties"
+    //         } else {
+    //             signingConfig signingConfigs.debug
+    //             applicationIdSuffix '.debug'
+    //             versionNameSuffix '-DEBUG'
+    //             resValue "string", "app_name", "3DPass debug"
+
+    //             println "Signing with debug keys"
+    //         }
+    //     }
+    // }
 
 
     signingConfigs {
         release {
-            // If you are reading these lines check the link:
-            // https://proandroiddev.com/how-to-securely-build-and-sign-your-android-app-with-github-actions-ad5323452ce
-            storeFile = file(System.getenv("KEYSTORE_PATH"))
-            storePassword System.getenv("SIGNING_STORE_PASSWORD")
-            keyAlias System.getenv("SIGNING_KEY_ALIAS")
-            keyPassword System.getenv("SIGNING_KEY_PASSWORD")
+            if (System.getenv("KEYSTORE_PATH")){
+                println("signingConfigs release")
+                // If you are reading these lines check the link:
+                // https://proandroiddev.com/how-to-securely-build-and-sign-your-android-app-with-github-actions-ad5323452ce
+                storeFile = file(System.getenv("KEYSTORE_PATH"))
+                storePassword System.getenv("SIGNING_STORE_PASSWORD")
+                keyAlias System.getenv("SIGNING_KEY_ALIAS")
+                keyPassword System.getenv("SIGNING_KEY_PASSWORD")
+            } else{
+                println("signingConfigs debug")
+            }
         }
     }
-
-    buildTypes {
-        release {           
-            signingConfig signingConfigs.release
-        }
-    }
-
 }
-
-// https://github.com/flutter/flutter/issues/41553#issuecomment-565214081
-// repositories {
-//   maven {
-//     url 'https://storage.googleapis.com/download.flutter.io'
-//   }
-// }
 
 flutter {
     source '../..'
