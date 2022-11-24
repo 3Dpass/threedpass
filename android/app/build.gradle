@@ -57,12 +57,10 @@ android {
         versionName flutterVersionName
 
         if (System.getenv("KEYSTORE_PATH")) {
-            signingConfig signingConfigs.release
             resValue "string", "app_name", "3DPass"
 
             println "Release properties"
         } else {
-            signingConfig signingConfigs.debug
             applicationIdSuffix '.debug'
             versionNameSuffix '-DEBUG'
             resValue "string", "app_name", "3DPass debug"
