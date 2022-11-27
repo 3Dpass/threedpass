@@ -23,7 +23,6 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    print('settings' + Theme.of(context).brightness.toString());
     return Scaffold(
       appBar: SettingsAppbar(
         theme: Theme.of(context),

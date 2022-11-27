@@ -45,9 +45,6 @@ class D3pThemeData {
   );
 
   static ThemeData themeData(final Brightness brightness) {
-    print('themeData ' + darkTheme.brightness.toString());
-    final d = darkTheme.copyWith(brightness: Brightness.dark);
-    print('d4 ' + d.brightness.toString());
     return brightness == Brightness.light ? lightTheme : darkTheme;
   }
 }

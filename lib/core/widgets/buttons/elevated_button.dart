@@ -11,6 +11,8 @@ class D3pElevatedButton extends StatelessWidget {
     this.minimumSize,
     this.padding,
     this.icon,
+    this.backgroundColor,
+    this.foregroundColor,
   }) : super(key: key);
 
   final void Function()? onPressed;
@@ -19,6 +21,8 @@ class D3pElevatedButton extends StatelessWidget {
   final Size? minimumSize;
   final EdgeInsets? padding;
   final Widget? icon;
+  final Color? foregroundColor;
+  final Color? backgroundColor;
 
   @override
   Widget build(final BuildContext context) {
