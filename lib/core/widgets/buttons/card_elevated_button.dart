@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 
 class D3pCardElevatedButton extends StatelessWidget {
@@ -17,51 +18,60 @@ class D3pCardElevatedButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
     return D3pElevatedButton(
       text: text,
       iconData: iconData,
       onPressed: onPressed,
       backgroundColor: _ElevatedButtonDefaultBackground(
-        colorScheme.onPrimary,
-        colorScheme.onSurface,
-      ).resolve(isActive),
-      foregroundColor: _ElevatedButtonDefaultForeground(
-        colorScheme.onPrimary,
-        colorScheme.onSurface,
-      ).resolve(isActive),
+        themeData: theme,
+        isActive: isActive,
+      ).resolve(),
+      foregroundColor: _D3pCardElevatedButtonForeground(
+        isActive: isActive,
+        themeData: theme,
+      ).resolve(),
     );
   }
 }
 
-/// Just copied from https://github.com/flutter/flutter/blob/b8f7f1f9869bb2d116aa6a70dbeac61000b52849/packages/flutter/lib/src/material/elevated_button.dart#L182
-class _ElevatedButtonDefaultForeground {
-  _ElevatedButtonDefaultForeground(this.onPrimary, this.onSurface);
+class _D3pCardElevatedButtonForeground {
+  _D3pCardElevatedButtonForeground({
+    required this.isActive,
+    required this.themeData,
+  });
 
-  final Color onPrimary;
-  final Color onSurface;
+  final bool isActive;
+  final ThemeData themeData;
 
-  Color resolve(bool isActive) {
+  Color resolve() {
+    final brightness = themeData.brightness;
+
     if (isActive) {
-      return onSurface.withOpacity(0.38);
+      return themeData.colorScheme.onPrimary;
     } else {
-      return onPrimary;
+      return brightness == Brightness.light
+          ? themeData.colorScheme.onSurface.withOpacity(0.38)
+          : themeData.customColors.disabled;
     }
   }
 }
 
-/// Just copied from https://github.com/flutter/flutter/blob/b8f7f1f9869bb2d116aa6a70dbeac61000b52849/packages/flutter/lib/src/material/elevated_button.dart#L177
+/// Copied from https://github.com/flutter/flutter/blob/b8f7f1f9869bb2d116aa6a70dbeac61000b52849/packages/flutter/lib/src/material/elevated_button.dart#L177
 class _ElevatedButtonDefaultBackground {
-  _ElevatedButtonDefaultBackground(this.onPrimary, this.onSurface);
+  _ElevatedButtonDefaultBackground({
+    required this.isActive,
+    required this.themeData,
+  });
 
-  final Color onPrimary;
-  final Color onSurface;
+  final bool isActive;
+  final ThemeData themeData;
 
-  Color resolve(bool isActive) {
+  Color resolve() {
     if (isActive) {
-      return onSurface.withOpacity(0.12);
+      return themeData.colorScheme.primary;
     } else {
-      return onPrimary;
+      return themeData.colorScheme.onSurface.withOpacity(0.12);
     }
   }
 }

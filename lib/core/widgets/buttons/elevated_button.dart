@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
 
 class D3pElevatedButton extends StatelessWidget {
   const D3pElevatedButton({
@@ -26,22 +25,12 @@ class D3pElevatedButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    // TODO Turn into OOP
-    final theme = Theme.of(context);
-
-    final d3pButtonTheme = onPressed == null
-        ? D3pButtonThemeData.disabled(theme)
-        : D3pButtonThemeData.active(theme);
-
-    final basicMaterial = ElevatedButton.styleFrom(
-      minimumSize: minimumSize ?? const Size.fromHeight(50),
-    );
-    // TODO Do same for cupertino
-    final materialTheme = basicMaterial.copyWith(
-      foregroundColor:
-          MaterialStateProperty.all(d3pButtonTheme.foregroundColor),
-      backgroundColor:
-          MaterialStateProperty.all(d3pButtonTheme.backgroundColor),
+    final d3pElevatedTheme = D3pElevatedButtonStyle(
+      themeData: Theme.of(context),
+      isButtonActive: onPressed != null,
+      minimumSize: minimumSize,
+      foregroundColor: foregroundColor,
+      backgroundColor: backgroundColor,
     );
 
     return Padding(
@@ -51,7 +40,8 @@ class D3pElevatedButton extends StatelessWidget {
           padding: padding ?? EdgeInsets.zero,
           onPressed: onPressed,
           material: (final context, final _) => MaterialElevatedButtonData(
-            style: materialTheme,
+            style: d3pElevatedTheme
+                .resolveMaterial(), // TODO Do same for cupertino
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -69,22 +59,61 @@ class D3pElevatedButton extends StatelessWidget {
   }
 }
 
-class D3pButtonThemeData {
+/// Default styles are for elevated buttons on canvas background
+class D3pElevatedButtonThemeData {
   final Color backgroundColor;
   final Color foregroundColor;
 
-  D3pButtonThemeData({
-    required this.backgroundColor,
-    required this.foregroundColor,
-  });
+  // const D3pElevatedButtonThemeData._({
+  //   required this.backgroundColor,
+  //   required this.foregroundColor,
+  // });
 
-  D3pButtonThemeData.active(final ThemeData themeData)
+  D3pElevatedButtonThemeData.active(final ThemeData themeData)
       : backgroundColor = themeData.colorScheme.primary,
         foregroundColor = themeData.colorScheme.onPrimary;
 
-  D3pButtonThemeData.disabled(final ThemeData themeData)
+  D3pElevatedButtonThemeData.disabled(final ThemeData themeData)
       : backgroundColor = themeData.cardColor,
         foregroundColor = themeData.colorScheme.onSurface.withOpacity(0.50);
+}
+
+class D3pElevatedButtonStyle {
+  final bool isButtonActive;
+  final ThemeData themeData;
+
+  final Size? minimumSize;
+  final Color? foregroundColor;
+  final Color? backgroundColor;
+
+  const D3pElevatedButtonStyle({
+    required this.isButtonActive,
+    required this.themeData,
+    required this.foregroundColor,
+    required this.backgroundColor,
+    required this.minimumSize,
+  });
+
+  ButtonStyle resolveMaterial() {
+    final d3pButtonDefaultTheme = isButtonActive
+        ? D3pElevatedButtonThemeData.active(themeData)
+        : D3pElevatedButtonThemeData.disabled(themeData);
+
+    final basicMaterial = ElevatedButton.styleFrom(
+      minimumSize: minimumSize ?? const Size.fromHeight(50),
+    );
+
+    final materialTheme = basicMaterial.copyWith(
+      foregroundColor: MaterialStateProperty.all(
+        foregroundColor ?? d3pButtonDefaultTheme.foregroundColor,
+      ),
+      backgroundColor: MaterialStateProperty.all(
+        backgroundColor ?? d3pButtonDefaultTheme.backgroundColor,
+      ),
+    );
+
+    return materialTheme;
+  }
 }
 
 class _Icon extends StatelessWidget {
