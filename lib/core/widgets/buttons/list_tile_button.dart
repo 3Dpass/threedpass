@@ -83,17 +83,37 @@ class ListTileButton extends StatelessWidget {
             ],
           ),
           // TODO Check cupertino theme
-          material: (final context, final platform) => MaterialTextButtonData(
-            style: Theme.of(context).textButtonTheme.style!.copyWith(
-                  // padding: MaterialStateProperty.all(EdgeInsets.zero),
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                    backgroundColor ?? theme.cardColor,
-                  ),
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  shape: MaterialStateProperty.all<OutlinedBorder>(border),
-                ),
-          ),
+          material: (final context, final platform) => _ListTileMaterial(
+            themeData: theme,
+            backgroundColor: backgroundColor,
+            border: border,
+          ).style(),
         ),
+      ),
+    );
+  }
+}
+
+class _ListTileMaterial {
+  final ThemeData themeData;
+  final Color? backgroundColor;
+  final RoundedRectangleBorder border;
+
+  _ListTileMaterial({
+    required this.themeData,
+    required this.backgroundColor,
+    required this.border,
+  });
+
+  MaterialTextButtonData style() {
+    return MaterialTextButtonData(
+      style: themeData.textButtonTheme.style!.copyWith(
+        // padding: MaterialStateProperty.all(EdgeInsets.zero),
+        backgroundColor: MaterialStateProperty.all<Color>(
+          backgroundColor ?? themeData.cardColor,
+        ),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        shape: MaterialStateProperty.all<OutlinedBorder>(border),
       ),
     );
   }
