@@ -8,8 +8,7 @@ import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/theme_builder.dart';
-import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/app/presentation/global_states_provider.dart';
 import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart' as di_setup;
 
@@ -45,35 +44,13 @@ class ThreeDApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
 
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<HashesListBloc>(
-          create: (final _) => di_setup.getIt<HashesListBloc>(),
-        ),
-        BlocProvider<SettingsConfigCubit>(
-          create: (final _) => di_setup.getIt<SettingsConfigCubit>(),
-        ),
-        BlocProvider<AppServiceLoaderCubit>(
-          create: (final _) => di_setup.getIt<AppServiceLoaderCubit>(),
-          lazy: false,
-        ),
-      ],
-      child: ThemeBuilder(
+    return GlobalStatesProvider(
+      builder: (final BuildContext context) => ThemeBuilder(
         builder: (final BuildContext context, final Brightness brightness) {
           return PlatformApp.router(
-            title: '3D pass',
-            material: (final _, final __) => MaterialAppRouterData(
-              theme: D3pThemeData.themeData(brightness),
-              darkTheme: D3pThemeData.darkTheme,
-              themeMode: brightness == Brightness.light
-                  ? ThemeMode.light
-                  : ThemeMode.dark,
-            ),
-            cupertino: (final _, final __) => CupertinoAppRouterData(
-              theme: CupertinoThemeData(
-                primaryColor: D3pThemeData.themeData(brightness).primaryColor,
-              ),
-            ),
+            title: 'appTitle'.tr(),
+            material: _MainMaterialAppRouterData(brightness).theme,
+            cupertino: _MainCupertinoAppRouterData(brightness).theme,
             routerDelegate: _appRouter.delegate(),
             routeInformationParser: _appRouter.defaultRouteParser(),
             localizationsDelegates: context.localizationDelegates,
@@ -81,6 +58,41 @@ class ThreeDApp extends StatelessWidget {
             locale: context.locale,
           );
         },
+      ),
+    );
+  }
+}
+
+class _MainMaterialAppRouterData {
+  final Brightness brightness;
+
+  _MainMaterialAppRouterData(this.brightness);
+
+  MaterialAppRouterData theme(
+    final BuildContext context,
+    final PlatformTarget platform,
+  ) {
+    return MaterialAppRouterData(
+      theme: D3pThemeData.themeData(brightness),
+      darkTheme: D3pThemeData.darkTheme,
+      themeMode:
+          brightness == Brightness.light ? ThemeMode.light : ThemeMode.dark,
+    );
+  }
+}
+
+class _MainCupertinoAppRouterData {
+  final Brightness brightness;
+
+  _MainCupertinoAppRouterData(this.brightness);
+
+  CupertinoAppRouterData theme(
+    final BuildContext context,
+    final PlatformTarget platform,
+  ) {
+    return CupertinoAppRouterData(
+      theme: CupertinoThemeData(
+        primaryColor: D3pThemeData.themeData(brightness).primaryColor,
       ),
     );
   }

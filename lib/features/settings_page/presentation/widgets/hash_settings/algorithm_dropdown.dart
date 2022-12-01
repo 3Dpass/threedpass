@@ -33,15 +33,19 @@ class AlgorithmDropdown extends StatelessWidget {
         value: state.scanSettings.algorithm,
         onChanged: (final String? newValue) =>
             _onAlgorithmChanged(context, newValue),
-        items: Algorithm.values
-            .map(
-              (final e) => DropdownMenuItem<String>(
-                value: e.name,
-                child: Text(e.name),
-              ),
-            )
-            .toList(),
+        items: _AlgorithmDropdownMenuItems().items,
       ),
     );
   }
+}
+
+class _AlgorithmDropdownMenuItems {
+  List<DropdownMenuItem<String>> get items => Algorithm.values
+      .map(
+        (final e) => DropdownMenuItem<String>(
+          value: e.name,
+          child: Text(e.name),
+        ),
+      )
+      .toList();
 }
