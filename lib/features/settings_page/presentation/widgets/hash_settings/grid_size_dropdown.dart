@@ -1,12 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
-import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
-import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
+part of '../../settings_page.dart';
 
-class GridSizeDropdown extends StatelessWidget {
-  const GridSizeDropdown({final Key? key}) : super(key: key);
+class _GridSizeDropdown extends StatelessWidget {
+  const _GridSizeDropdown({final Key? key}) : super(key: key);
 
   static const _gridSizes = [6, 7, 8, 9, 10];
 

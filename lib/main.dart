@@ -2,10 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
-import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/theme_builder.dart';
 import 'package:threedpass/features/app/presentation/global_states_provider.dart';
@@ -45,7 +43,7 @@ class ThreeDApp extends StatelessWidget {
     ]);
 
     return GlobalStatesProvider(
-      builder: (final BuildContext context) => ThemeBuilder(
+      builder: (final BuildContext __) => ThemeBuilder(
         builder: (final BuildContext context, final Brightness brightness) {
           return PlatformApp.router(
             title: 'appTitle'.tr(),
