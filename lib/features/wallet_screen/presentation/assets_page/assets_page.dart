@@ -1,15 +1,22 @@
+import 'dart:async';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/accounts_drawer.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/asset_page_appbar.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/assets_count.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/recieve_button.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/transfer_button.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/transactions_history_page.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 part './widgets/buttons_panel.dart';
+part './widgets/open_history.dart';
 
 class AssetsPage extends StatelessWidget {
   const AssetsPage({final Key? key}) : super(key: key);
@@ -38,6 +45,8 @@ class AssetsPage extends StatelessWidget {
               AssetsCount(),
               SizedBoxH16(),
               _ButtonsPanel(),
+              SizedBoxH16(),
+              _OpenHistory(),
             ],
           ),
         );
