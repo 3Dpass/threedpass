@@ -48,6 +48,7 @@ class CustomColors {
   // Text
   Color get themeOpposite =>
       brightness == Brightness.light ? Colors.black : Colors.white;
+
   // Color get themedIcon =>
   //     brightness == Brightness.light ? Colors.black : Colors.white;
 }

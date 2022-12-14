@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/accounts_drawer.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/asset_page_appbar.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/assets_count.dart';
@@ -17,24 +18,25 @@ class AssetsPage extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
       builder: (final context, final state) {
+        final theme = Theme.of(context);
         return Scaffold(
           appBar: AssetPageAppbar(
             account: state.keyring.current,
-            themeData: Theme.of(context),
+            themeData: theme,
           ),
           drawer: AccountsDrawer(
             appServiceCubit: BlocProvider.of<AppServiceLoaderCubit>(context),
             accounts: state.keyring.allAccounts,
             current: state.keyring.current,
             context: context,
-            theme: Theme.of(context),
+            theme: theme,
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: const [
               AssetsCount(),
-              SizedBox(height: 16),
+              SizedBoxH16(),
               _ButtonsPanel(),
             ],
           ),

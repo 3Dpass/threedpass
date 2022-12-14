@@ -11,7 +11,6 @@ class MnemonicTextField extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    print('a' + Theme.of(context).brightness.toString());
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
