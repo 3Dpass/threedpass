@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
@@ -31,10 +30,7 @@ class GlobalStatesProvider extends StatelessWidget {
           lazy: false,
         ),
       ],
-      child: GraphQLProvider(
-        client: di_setup.getIt<ValueNotifier<GraphQLClient>>(),
-        child: builder(context),
-      ),
+      child: builder(context),
     );
   }
 }
