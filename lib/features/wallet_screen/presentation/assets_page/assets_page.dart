@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
@@ -12,7 +13,7 @@ import 'package:threedpass/features/wallet_screen/presentation/assets_page/widge
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/assets_count.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/recieve_button.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/transfer_button.dart';
-import 'package:threedpass/features/wallet_screen/presentation/transactions_history/transactions_history_page.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/presentation/transactions_history_page.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 part './widgets/buttons_panel.dart';

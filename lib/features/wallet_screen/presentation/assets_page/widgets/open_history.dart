@@ -10,7 +10,8 @@ class _OpenHistory extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return D3pElevatedButton(
-      text: 'Show transactions MOVE TO JSON',
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      text: 'show_transfers'.tr(),
       onPressed: () => _onPressed(context),
     );
   }

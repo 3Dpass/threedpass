@@ -10,8 +10,10 @@ import 'package:threedpass/features/hashes_list/domain/repositories/hashes_repos
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/data/repositories/settings_store.dart';
 import 'package:threedpass/features/settings_page/domain/repositories/settings_repository.dart';
-import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transactions_list_from_bloc.dart';
-import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transactions_list_to_bloc.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transfers_from_cubit.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transfers_to_cubit.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/data/repositories/transfers_repository.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/usecases/get_transfers.dart';
 
 final getIt = GetIt.instance;
 
@@ -64,24 +66,49 @@ Future<void> setup() async {
     ),
   );
 
-  getIt.registerFactory<AppServiceLoaderCubit>(
-    () => AppServiceLoaderCubit(
+  getIt.registerSingleton<AppServiceLoaderCubit>(
+    AppServiceLoaderCubit(
       settingsConfigCubit: getIt<SettingsConfigCubit>(),
     ),
   );
 
-  getIt.registerFactory<TransactionsListFromBloc>(
-    () => TransactionsListFromBloc(
+  getIt.registerSingleton<TransfersRepository>(
+    TransfersRepository(
       client: getIt<Client>(),
-      fromMultiAddressAccountId:
-          '0xc46140845e922cb3c2c10c55b90dc6a959ec5414835fb2d5e8f2bed89e7d4c6f', //TODO keyring...
     ),
   );
-  getIt.registerFactory<TransactionsListToBloc>(
-    () => TransactionsListToBloc(
-      client: getIt<Client>(),
-      toMultiAddressAccountId:
-          '0xc46140845e922cb3c2c10c55b90dc6a959ec5414835fb2d5e8f2bed89e7d4c6f', //TODO keyring...
+
+  getIt.registerLazySingleton<GetTransfers>(
+    () => GetTransfers(
+      repository: getIt<TransfersRepository>(),
     ),
   );
+
+//TODO keyring...
+  getIt.registerFactory<TransfersToCubit>(() => TransfersToCubit(
+        getTransfers: getIt<GetTransfers>(),
+        toMultiAddressAccountId:
+            '0xc46140845e922cb3c2c10c55b90dc6a959ec5414835fb2d5e8f2bed89e7d4c6f',
+      ));
+
+  getIt.registerFactory<TransfersFromCubit>(() => TransfersFromCubit(
+        getTransfers: getIt<GetTransfers>(),
+        fromMultiAddressAccountId:
+            '0xc46140845e922cb3c2c10c55b90dc6a959ec5414835fb2d5e8f2bed89e7d4c6f',
+      ));
+
+  // getIt.registerFactory<TransactionsListFromBloc>(
+  //   () => TransactionsListFromBloc(
+  //     client: getIt<Client>(),
+  //     fromMultiAddressAccountId:
+  //         '0xc46140845e922cb3c2c10c55b90dc6a959ec5414835fb2d5e8f2bed89e7d4c6f',
+  //   ),
+  // );
+  // getIt.registerFactory<TransactionsListToBloc>(
+  //   () => TransactionsListToBloc(
+  //     client: getIt<Client>(),
+  //     toMultiAddressAccountId:
+  //         '0xc46140845e922cb3c2c10c55b90dc6a959ec5414835fb2d5e8f2bed89e7d4c6f', //TODO keyring...
+  //   ),
+  // );
 }

@@ -46,7 +46,7 @@ class ThreeDApp extends StatelessWidget {
       builder: (final BuildContext __) => ThemeBuilder(
         builder: (final BuildContext context, final Brightness brightness) {
           return PlatformApp.router(
-            title: 'appTitle'.tr(),
+            title: '3Dpass',
             material: _MainMaterialAppRouterData(brightness).theme,
             cupertino: _MainCupertinoAppRouterData(brightness).theme,
             routerDelegate: _appRouter.delegate(),
