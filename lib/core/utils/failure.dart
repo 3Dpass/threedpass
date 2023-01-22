@@ -8,3 +8,7 @@ abstract class Failure extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class NetworkFailure extends Failure {
+  const NetworkFailure([final String? cause]) : super(cause);
+}

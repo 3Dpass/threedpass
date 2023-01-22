@@ -25,7 +25,8 @@ abstract class GetTransfersCubit extends Cubit<void> {
     final queryRes = await getData(pageKey);
     queryRes.when(
       left: (final e) {
-        // TODO add error to pagingController
+        pagingController.error = e;
+        // final b = 1 + 1;
       },
       right: (final data) {
         if (data.objects.isEmpty) {

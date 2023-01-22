@@ -16,9 +16,11 @@ class TransfersFromCubit extends GetTransfersCubit {
 
   @override
   Future<Either<Failure, TransfersDTO>> getData(final String pageKey) {
-    return getTransfers(GetTransfersParams(
-      pageKey: pageKey,
-      fromMultiAddressAccountId: fromMultiAddressAccountId,
-    ));
+    return getTransfers(
+      GetTransfersParams(
+        pageKey: pageKey,
+        fromMultiAddressAccountId: fromMultiAddressAccountId,
+      ),
+    );
   }
 }

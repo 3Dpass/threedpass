@@ -26,6 +26,12 @@ class TransfersRepository {
     });
     final response = await client.request(request).first;
 
+    if (response.hasErrors) {
+      return Either.left(
+        NetworkFailure(response.linkException.toString()),
+      );
+    }
+
     final newTransfers = response.data!.getTransfers;
     final newObjects = newTransfers!.objects!.toList();
     final nextPageKey = newTransfers.pageInfo!.pageNext!;

@@ -55,7 +55,6 @@ class D3pThemeData {
   }
 }
 
-// TODO Move to getIt<>()
 class RealBrightness {
   static Brightness get fromSettings =>
       getIt<SettingsConfigCubit>().state.appSettings.darkTheme

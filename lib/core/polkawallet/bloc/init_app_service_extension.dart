@@ -41,6 +41,7 @@ extension _ on AppServiceLoaderCubit {
 
     final newAppService = await _buildNewAppServiceWithProperties(service);
 
+    // In case we need to subscribe to blocks
     // unawaited(
     //   newAppService.plugin.sdk.api.setting
     //       .subscribeBestNumber((final String value) {
@@ -49,7 +50,7 @@ extension _ on AppServiceLoaderCubit {
     // );
 
     unawaited(AppServiceLoaderCubit.subscribeToBalance(newAppService));
-
+    registerTransferCubits(newAppService);
     _emit(newAppService);
   }
 
@@ -107,5 +108,30 @@ extension _ on AppServiceLoaderCubit {
     }
 
     return newAppService;
+  }
+
+  // Good id to test '0xc46140845e922cb3c2c10c55b90dc6a959ec5414835fb2d5e8f2bed89e7d4c6f'
+  static void registerTransferCubits(final AppService appService) {
+    final userPubKey = appService.keyring.current.pubKey ?? '';
+
+    if (getIt.isRegistered<TransfersToCubit>()) {
+      getIt.unregister<TransfersToCubit>();
+    }
+    getIt.registerFactory<TransfersToCubit>(
+      () => TransfersToCubit(
+        getTransfers: getIt<GetTransfers>(),
+        toMultiAddressAccountId: userPubKey,
+      ),
+    );
+
+    if (getIt.isRegistered<TransfersFromCubit>()) {
+      getIt.unregister<TransfersFromCubit>();
+    }
+    getIt.registerFactory<TransfersFromCubit>(
+      () => TransfersFromCubit(
+        getTransfers: getIt<GetTransfers>(),
+        fromMultiAddressAccountId: userPubKey,
+      ),
+    );
   }
 }

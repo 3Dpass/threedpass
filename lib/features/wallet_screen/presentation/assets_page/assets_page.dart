@@ -13,7 +13,6 @@ import 'package:threedpass/features/wallet_screen/presentation/assets_page/widge
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/assets_count.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/recieve_button.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/transfer_button.dart';
-import 'package:threedpass/features/wallet_screen/presentation/transactions_history/presentation/transactions_history_page.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 part './widgets/buttons_panel.dart';
