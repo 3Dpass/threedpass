@@ -1,6 +1,11 @@
 # p3d
 3D object shape recognition tools for WASM, which not only has the same functionality to [pass3d](https://github.com/3Dpass/pass3d), but also it's compatible to Substrate. Now, it's used as a part of 3Dpass network Node.
 
+### Environment
+To compile 0.3.1 version:
+- Rust - nightly-2022-06-13-x86_64-apple-darwin
+- Android NDK - 22.0.7026061
+
 ### How to update library in [threedpass](https://github.com/3Dpass/threedpass)
 - Make your changes.
 - Check the lib name is ```calc``` [see the source](https://github.com/L3odr0id/p3d/blob/912236d154d6511129d730ecc203fd1a50e054b3/Cargo.toml#L11), the exported functions have bindable types. Also make sure to annotate your exported functions with `#[no_mangle]` and `pub extern` so the function names can be matched from Dart. See [working bindable function example](https://github.com/L3odr0id/p3d/blob/912236d154d6511129d730ecc203fd1a50e054b3/src/ffi_interface.rs#L11).
