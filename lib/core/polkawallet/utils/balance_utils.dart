@@ -96,6 +96,7 @@ class BalanceUtils {
   }
 }
 
+/// We use this as an indicator of a successful account load.
 extension NullCheck on BalanceData {
   bool get isNull =>
       availableBalance == null ||

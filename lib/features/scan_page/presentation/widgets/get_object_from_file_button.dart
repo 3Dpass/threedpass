@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/utils/show_text_snackbar.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/snapshot_create_from_file.dart';
@@ -12,15 +13,12 @@ import 'package:threedpass/features/scan_page/presentation/widgets/calc_hash_loa
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 
+// TODO refactor. Move logit out of UI
 class GetObjectFromFileFloatingButton extends StatelessWidget {
   const GetObjectFromFileFloatingButton({final Key? key}) : super(key: key);
 
   void showSnackBar(final String text, final BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(text),
-      ),
-    );
+    FastSnackBar(textCode: text, context: context).show();
   }
 
   void showLoader(final BuildContext context) {

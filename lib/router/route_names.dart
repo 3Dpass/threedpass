@@ -30,6 +30,7 @@ class RouteNames {
   static const settingsPage = 'SettingsRoute';
   static const transferPage = 'TransferRoute';
   static const transferPageWrapper = 'TransferWrapperRoute';
+  static const transactionsHistoryPage = 'TransactionsHistoryRoute';
   static const walletPage = 'WalletRoute';
   static const walletPageWrapper = 'WalletWrapperRoute';
   static const webWalletPage = 'WebWalletRoute';

@@ -35,6 +35,7 @@ class TransferPage extends StatelessWidget {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     return Scaffold(
       appBar: CommonLogoAppbar(
+        // TODO Add back button
         title: 'recieve_page_title'.tr(),
         theme: Theme.of(context),
       ),

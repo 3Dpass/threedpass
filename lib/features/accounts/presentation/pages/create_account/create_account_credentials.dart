@@ -22,6 +22,7 @@ class CreateAccountCredentials extends StatelessWidget {
 
   final String appbarText;
 
+  // TODO refactor. Move logit out of UI
   Future<void> _onSubmit({
     required final BuildContext context,
     required final GlobalKey<FormState> formKey,
@@ -53,7 +54,10 @@ class CreateAccountCredentials extends StatelessWidget {
         ).createAccount(
           appServiceLoaderCubit,
           () {
-            showTextSnackBar('error_import_duplicate', context);
+            FastSnackBar(
+              textCode: 'error_import_duplicate',
+              context: context,
+            ).show();
           },
         );
       } on Exception catch (e) {

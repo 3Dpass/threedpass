@@ -1,3 +1,6 @@
+#![feature(alloc_c_string)]
+#![feature(core_ffi_c)]
+
 extern crate p3d;
 use crate::p3d::{p3d_process, AlgoType, P3DError};
 

@@ -16,6 +16,9 @@ import 'package:threedpass/features/accounts/domain/account_info.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transfers_from_cubit.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transfers_to_cubit.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/usecases/get_transfers.dart';
 import 'package:threedpass/setup.dart';
 
 part 'init_app_service_extension.dart';
@@ -146,6 +149,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     final pseudoNewState = state.copyWith();
 
     subscribeToBalance(pseudoNewState);
+    registerTransferCubits(pseudoNewState);
 
     emit(pseudoNewState);
   }
@@ -185,5 +189,30 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
   // TODO Remove this when do Clean Architecture
   void _emit(final AppService appService) {
     emit(appService);
+  }
+
+  // Good id to test '0xc46140845e922cb3c2c10c55b90dc6a959ec5414835fb2d5e8f2bed89e7d4c6f'
+  static void registerTransferCubits(final AppService appService) {
+    final userPubKey = appService.keyring.current.pubKey ?? '';
+
+    if (getIt.isRegistered<TransfersToCubit>()) {
+      getIt.unregister<TransfersToCubit>();
+    }
+    getIt.registerFactory<TransfersToCubit>(
+      () => TransfersToCubit(
+        getTransfers: getIt<GetTransfers>(),
+        toMultiAddressAccountId: userPubKey,
+      ),
+    );
+
+    if (getIt.isRegistered<TransfersFromCubit>()) {
+      getIt.unregister<TransfersFromCubit>();
+    }
+    getIt.registerFactory<TransfersFromCubit>(
+      () => TransfersFromCubit(
+        getTransfers: getIt<GetTransfers>(),
+        fromMultiAddressAccountId: userPubKey,
+      ),
+    );
   }
 }

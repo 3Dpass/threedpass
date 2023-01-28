@@ -51,4 +51,8 @@ class CustomTextStyles {
 
   TextStyle get noObjectsPlaceholder =>
       themeData.textTheme.subtitle1!.copyWith(color: Colors.grey);
+
+  TextStyle get secondaryText => themeData.textTheme.bodyText2!.copyWith(
+        color: Colors.grey,
+      );
 }
