@@ -78,7 +78,7 @@ class _TransBytesInput {
   /// Does field should show an error?
   String? get isValid {
     final realInput = hexInputFormatter.unmaskText(rawInput);
-    if (int.tryParse(realInput) != null && realInput.length == 8) {
+    if (int.tryParse(realInput, radix: 16) != null && realInput.length == 8) {
       print('Valid $realInput');
       return null;
     } else {
