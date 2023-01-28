@@ -29,6 +29,7 @@ class _TransactionsList extends StatelessWidget {
           colorFromSecondary: isFrom,
           colorToSecondary: !isFrom,
         ),
+        noItemsFoundIndicatorBuilder: (final context) => const _NoItemsFound(),
       ),
     );
   }

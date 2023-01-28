@@ -21,6 +21,7 @@ class RecievePage extends StatelessWidget {
     final address = accountData.address!;
     return Scaffold(
       appBar: CommonLogoAppbar(
+        // TODO Add back button
         title: 'recieve_page_title'.tr(),
         theme: Theme.of(context),
       ),

@@ -246,5 +246,6 @@
     "transactions_to": "To",
     "transactions_from": "From",
     "transactions_title": "Transactions History",
-    "show_transfers": "Show transfers"
+    "show_transfers": "Show transfers",
+    "no_transfers": "No transfers found"
 }

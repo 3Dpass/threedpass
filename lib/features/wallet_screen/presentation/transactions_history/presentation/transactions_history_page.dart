@@ -20,6 +20,7 @@ part './widgets/transaction_item.dart';
 part './widgets/transactions_list.dart';
 part './widgets/transactions_list_from.dart';
 part './widgets/transactions_list_to.dart';
+part './widgets/no_items_found.dart';
 
 class TransactionsHistoryPage extends StatelessWidget {
   const TransactionsHistoryPage({final Key? key}) : super(key: key);
@@ -34,12 +35,12 @@ class TransactionsHistoryPage extends StatelessWidget {
           bottom: TabBar(
             tabs: [
               Tab(
-                icon: const Icon(UniconsLine.money_insert),
-                text: 'transactions_to'.tr(),
-              ),
-              Tab(
                 icon: const Icon(UniconsLine.money_withdraw),
                 text: 'transactions_from'.tr(),
+              ),
+              Tab(
+                icon: const Icon(UniconsLine.money_insert),
+                text: 'transactions_to'.tr(),
               ),
             ],
           ),
