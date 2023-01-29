@@ -32,7 +32,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -52,7 +52,7 @@ android {
     defaultConfig {
         applicationId "com.threedpass.wallet"
         minSdkVersion 24
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
@@ -88,6 +88,10 @@ android {
 
     signingConfigs {
         release {
+            storeFile file('/Users/l3mac/codes/threedpass/keys/key3')
+            keyPassword '6M64I05kOt'
+            storePassword '6M64I05kOt'
+            keyAlias 'VbfpgnPvoK'
             if (System.getenv("KEYSTORE_PATH")){
                 println("signingConfigs release")
                 // If you are reading these lines check the link:
