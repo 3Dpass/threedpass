@@ -36,7 +36,7 @@ class TransferPage extends StatelessWidget {
     return Scaffold(
       appBar: CommonLogoAppbar(
         // TODO Add back button
-        title: 'recieve_page_title'.tr(),
+        title: 'transfer_page_title'.tr(),
         theme: Theme.of(context),
       ),
       body: Column(
