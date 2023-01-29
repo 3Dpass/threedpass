@@ -239,5 +239,13 @@
     "transfer_loader_text": "Transfering...",
     "transfer_success_text": "Funds are sent",
 
-    "error_empty": "Should not be empty"
+    "error_empty": "Should not be empty",
+
+    "@transactions_history":{
+    },
+    "transactions_to": "To",
+    "transactions_from": "From",
+    "transactions_title": "Transactions History",
+    "show_transfers": "Show transfers",
+    "no_transfers": "No transfers found"
 }

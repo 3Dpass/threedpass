@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget {
           SettingsRoute(),
         ],
         bottomNavigationBuilder: (final context, final tabsRouter) {
+          // TODO Fix bottom splashes
           return BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             currentIndex: tabsRouter.activeIndex,

@@ -1,12 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
-import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
-import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
+part of '../../settings_page.dart';
 
-class AlgorithmDropdown extends StatelessWidget {
-  const AlgorithmDropdown({final Key? key}) : super(key: key);
+class _AlgorithmDropdown extends StatelessWidget {
+  const _AlgorithmDropdown({final Key? key}) : super(key: key);
 
   Future<void> _onAlgorithmChanged(
     final BuildContext context,
@@ -33,15 +28,19 @@ class AlgorithmDropdown extends StatelessWidget {
         value: state.scanSettings.algorithm,
         onChanged: (final String? newValue) =>
             _onAlgorithmChanged(context, newValue),
-        items: Algorithm.values
-            .map(
-              (final e) => DropdownMenuItem<String>(
-                value: e.name,
-                child: Text(e.name),
-              ),
-            )
-            .toList(),
+        items: _AlgorithmDropdownMenuItems().items,
       ),
     );
   }
+}
+
+class _AlgorithmDropdownMenuItems {
+  List<DropdownMenuItem<String>> get items => Algorithm.values
+      .map(
+        (final e) => DropdownMenuItem<String>(
+          value: e.name,
+          child: Text(e.name),
+        ),
+      )
+      .toList();
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
+import 'package:threedpass/core/theme/d3p_tabbar_theme.dart';
 import 'package:threedpass/core/theme/d3p_text_style.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/setup.dart';
@@ -21,6 +23,8 @@ class D3pThemeData {
       bodyText1: D3pBasicTextStyle.bodyText1,
       bodyText2: D3pBasicTextStyle.bodyText2,
     ),
+    appBarTheme: const D3pAppBarTheme(),
+    tabBarTheme: const D3pTabBarTheme(),
   );
 
   static ThemeData darkTheme = ThemeData.dark().copyWith(
@@ -42,12 +46,11 @@ class D3pThemeData {
       bodyText1: D3pBasicTextStyle.bodyText1,
       bodyText2: D3pBasicTextStyle.bodyText2,
     ),
+    appBarTheme: const D3pAppBarTheme(),
+    tabBarTheme: const D3pTabBarTheme(),
   );
 
   static ThemeData themeData(final Brightness brightness) {
-    print('themeData ' + darkTheme.brightness.toString());
-    final d = darkTheme.copyWith(brightness: Brightness.dark);
-    print('d4 ' + d.brightness.toString());
     return brightness == Brightness.light ? lightTheme : darkTheme;
   }
 }

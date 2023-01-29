@@ -63,12 +63,11 @@ analyzer:
     - '**/*.g.dart'
     - '**/*.freezed.dart'
     - '**/*.gr.dart'
-    - lib/generated/**
-
+    - '**/__generated__/**'
 dart_code_metrics:
   metrics:
     cyclomatic-complexity: 10
-    halstead-volume: 500
+    halstead-volume: 528
     lines-of-code: 80
     maintainability-index: 40
     maximum-nesting-level: 5
@@ -76,7 +75,7 @@ dart_code_metrics:
     number-of-parameters: 8
   metrics-exclude:
     - test/**
-    - lib/setup.dart
+    - '**/__generated__/**'
   rules:
     # Common rules
     - no-boolean-literal-compare

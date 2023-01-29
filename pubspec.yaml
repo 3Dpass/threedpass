@@ -10,7 +10,7 @@ publish_to: 'none'
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.3.0+10
+version: 2.4.1+11
 
 environment:
   sdk: ">=2.17.5 <3.0.0"
@@ -20,18 +20,27 @@ dependencies:
     sdk: flutter
 
   ## UI
-  three_dart: ^0.0.11
-  three_dart_jsm: ^0.0.6
+  # three_dart: ^0.0.16
+  three_dart: 
+    git:
+        url: https://github.com/L3odr0id/three_dart.git
+        ref: 695b58ab4ef889c4f472fb79420a36134974da5e # mobile-branch # branch name
+  # three_dart_jsm: ^0.0.10
+  three_dart_jsm:
+    git:
+      url: https://github.com/L3odr0id/three_dart_jsm.git
+      ref: b6c8e5fcf876151d601ab092fe7fc94901edb446
   flutter_gl: ^0.0.18
   flutter_platform_widgets: ^2.0.0
+  infinite_scroll_pagination: ^3.2.0
   
   flutter_markdown: ^0.6.10+3
+  unicons: ^2.1.0
   url_launcher: ^6.1.5
   file_picker: ^5.0.1
   qr_flutter: ^4.0.0
   flutter_svg: ^1.1.1+1
   fluttertoast: ^8.0.9
-  expandable: ^5.0.1
 
   ## Core
   auto_route: ^4.2.1
@@ -46,13 +55,17 @@ dependencies:
   polkawallet_sdk: #0.4.8
     git:
         url: https://github.com/L3odr0id/polkawallet_sdk.git
-        ref: e131a7a9232f4be8aed2116ad566749bd36daf13 # mobile-branch # branch name
+        ref: cf89a0eca7cbffb1d33517a8b5d332438d898496 # mobile-branch # branch name
+  ferry: #[latest-version]
+  ferry_hive_store: ^0.4.5
+  gql_http_link: #[latest-version]
   
 
   ## Code gen
   copy_with_extension: ^4.0.2
   freezed: ^2.1.0+1
   equatable: ^2.0.3
+  json_annotation: ^4.6.0
 
   ## Utils
   intl: ^0.17.0
@@ -74,6 +87,8 @@ dev_dependencies:
   copy_with_extension_gen: ^4.0.1
   build_runner:
   auto_route_generator: ^4.2.0
+  json_serializable: ^6.3.1
+  ferry_generator: ^0.6.1 #[latest-version]
 
   ## Dev utils
   flutter_launcher_icons: ^0.9.3

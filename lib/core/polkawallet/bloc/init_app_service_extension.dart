@@ -41,6 +41,7 @@ extension _ on AppServiceLoaderCubit {
 
     final newAppService = await _buildNewAppServiceWithProperties(service);
 
+    // In case we need to subscribe to blocks
     // unawaited(
     //   newAppService.plugin.sdk.api.setting
     //       .subscribeBestNumber((final String value) {
@@ -49,6 +50,8 @@ extension _ on AppServiceLoaderCubit {
     // );
 
     unawaited(AppServiceLoaderCubit.subscribeToBalance(newAppService));
+
+    AppServiceLoaderCubit.registerTransferCubits(newAppService);
 
     _emit(newAppService);
   }

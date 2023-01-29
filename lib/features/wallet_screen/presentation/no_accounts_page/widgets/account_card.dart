@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/presentation/no_accounts_page/widgets/create_account_button.dart';
 import 'package:threedpass/features/wallet_screen/presentation/no_accounts_page/widgets/import_account_button.dart';
 
@@ -13,6 +14,7 @@ class AccountCard extends StatelessWidget {
         child: Column(
           children: const [
             CreateAccountButton(),
+            SizedBoxH4(),
             ImportAccountButton(),
           ],
         ),

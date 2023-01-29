@@ -1,0 +1,101 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/serializer.dart';
+import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
+import 'package:ferry_exec/ferry_exec.dart';
+import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
+    show OperationSerializer;
+import 'package:threedpass/core/graphql/__generated__/threedpass.schema.schema.gql.dart'
+    show
+        GBlocksFilter,
+        GDateTime,
+        GEventsFilter,
+        GExtrinsicFilter,
+        GFilterGetBlock,
+        GFilterGetEvent,
+        GFilterGetEvents,
+        GFilterGetLog,
+        GFilterGetLogs,
+        GFilterGetRuntime,
+        GFilterGetRuntimeCall,
+        GFilterGetRuntimeCallArguments,
+        GFilterGetRuntimeCalls,
+        GFilterGetRuntimeConstant,
+        GFilterGetRuntimeConstants,
+        GFilterGetRuntimeErrorMessage,
+        GFilterGetRuntimeErrorMessages,
+        GFilterGetRuntimeEvent,
+        GFilterGetRuntimeEventAttributes,
+        GFilterGetRuntimeEvents,
+        GFilterGetRuntimePallet,
+        GFilterGetRuntimePallets,
+        GFilterGetRuntimeStorage,
+        GFilterGetRuntimeStorages,
+        GFilterGetRuntimeType,
+        GFilterGetRuntimeTypes,
+        GFilterGetRuntimes,
+        GFilterGetTaggedAccount,
+        GFilterGetTransfer,
+        GFilterGetTransfers,
+        GJSONString,
+        GLogFilter,
+        GTransferFilter;
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/data/query/__generated__/get_transfers.data.gql.dart'
+    show
+        GGetTransfersData,
+        GGetTransfersData_getTransfers,
+        GGetTransfersData_getTransfers_objects,
+        GGetTransfersData_getTransfers_pageInfo;
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/data/query/__generated__/get_transfers.req.gql.dart'
+    show GGetTransfersReq;
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/data/query/__generated__/get_transfers.var.gql.dart'
+    show GGetTransfersVars;
+
+part 'serializers.gql.g.dart';
+
+final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
+  ..add(OperationSerializer())
+  ..addPlugin(StandardJsonPlugin());
+@SerializersFor([
+  GBlocksFilter,
+  GDateTime,
+  GEventsFilter,
+  GExtrinsicFilter,
+  GFilterGetBlock,
+  GFilterGetEvent,
+  GFilterGetEvents,
+  GFilterGetLog,
+  GFilterGetLogs,
+  GFilterGetRuntime,
+  GFilterGetRuntimeCall,
+  GFilterGetRuntimeCallArguments,
+  GFilterGetRuntimeCalls,
+  GFilterGetRuntimeConstant,
+  GFilterGetRuntimeConstants,
+  GFilterGetRuntimeErrorMessage,
+  GFilterGetRuntimeErrorMessages,
+  GFilterGetRuntimeEvent,
+  GFilterGetRuntimeEventAttributes,
+  GFilterGetRuntimeEvents,
+  GFilterGetRuntimePallet,
+  GFilterGetRuntimePallets,
+  GFilterGetRuntimeStorage,
+  GFilterGetRuntimeStorages,
+  GFilterGetRuntimeType,
+  GFilterGetRuntimeTypes,
+  GFilterGetRuntimes,
+  GFilterGetTaggedAccount,
+  GFilterGetTransfer,
+  GFilterGetTransfers,
+  GGetTransfersData,
+  GGetTransfersData_getTransfers,
+  GGetTransfersData_getTransfers_objects,
+  GGetTransfersData_getTransfers_pageInfo,
+  GGetTransfersReq,
+  GGetTransfersVars,
+  GJSONString,
+  GLogFilter,
+  GTransferFilter,
+])
+final Serializers serializers = _serializersBuilder.build();

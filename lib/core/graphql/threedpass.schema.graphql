@@ -1,0 +1,1695 @@
+schema {
+  query: GraphQLQueries
+  subscription: Subscription
+}
+
+type GraphQLQueries {
+  getLatestBlock: SchemaLatestBlock
+  getBlock(filters: FilterGetBlock = null): SchemaGetBlock
+  getBlocks(
+    filters: BlocksFilter = null
+    pageKey: String = null
+    pageSize: Int = null
+  ): PaginatedGetBlocks
+  getExtrinsic(filters: ExtrinsicFilter = null): SchemaGetExtrinsic
+  getExtrinsics(
+    filters: ExtrinsicFilter = null
+    pageKey: String = null
+    pageSize: Int = null
+  ): PaginatedGetExtrinsics
+  getEvent(filters: FilterGetEvent = null): SchemaGetEvent
+  getEvents(
+    pageKey: String = null
+    pageSize: Int = null
+    filters: FilterGetEvents = null
+  ): PaginatedGetEvents
+  getRuntime(filters: FilterGetRuntime = null): SchemaGetRuntime
+  getLatestRuntime: SchemaGetLatestRuntime
+  getRuntimes(
+    pageKey: String = null
+    pageSize: Int = null
+    filters: FilterGetRuntimes = null
+  ): PaginatedGetRuntimes
+  getRuntimeCall(filters: FilterGetRuntimeCall = null): SchemaGetRuntimeCall
+  getRuntimeCalls(filters: FilterGetRuntimeCalls = null): WrappedGetRuntimeCalls
+  getRuntimeCallArguments(
+    filters: FilterGetRuntimeCallArguments = null
+  ): WrappedGetRuntimeCallArguments
+  getRuntimeConstant(
+    filters: FilterGetRuntimeConstant = null
+  ): SchemaGetRuntimeConstant
+  getRuntimeConstants(
+    filters: FilterGetRuntimeConstants = null
+  ): WrappedGetRuntimeConstants
+  getRuntimeErrorMessage(
+    filters: FilterGetRuntimeErrorMessage = null
+  ): SchemaGetRuntimeErrorMessage
+  getRuntimeErrorMessages(
+    filters: FilterGetRuntimeErrorMessages = null
+  ): WrappedGetRuntimeErrorMessages
+  getRuntimeEvent(filters: FilterGetRuntimeEvent = null): SchemaGetRuntimeEvent
+  getRuntimeEvents(
+    filters: FilterGetRuntimeEvents = null
+  ): WrappedGetRuntimeEvents
+  getRuntimeEventAttributes(
+    filters: FilterGetRuntimeEventAttributes = null
+  ): WrappedGetRuntimeEventAttributes
+  getRuntimePallet(
+    filters: FilterGetRuntimePallet = null
+  ): SchemaGetRuntimePallet
+  getRuntimePallets(
+    filters: FilterGetRuntimePallets = null
+  ): WrappedGetRuntimePallets
+  getRuntimeStorage(
+    filters: FilterGetRuntimeStorage = null
+  ): SchemaGetRuntimeStorage
+  getRuntimeStorages(
+    filters: FilterGetRuntimeStorages = null
+  ): WrappedGetRuntimeStorages
+  getRuntimeType(filters: FilterGetRuntimeType = null): SchemaGetRuntimeType
+  getRuntimeTypes(filters: FilterGetRuntimeTypes = null): WrappedGetRuntimeTypes
+  getLog(filters: FilterGetLog = null): SchemaGetLog
+  getLogs(
+    pageKey: String = null
+    pageSize: Int = null
+    filters: FilterGetLogs = null
+  ): PaginatedGetLogs
+  getTransfer(filters: FilterGetTransfer = null): SchemaGetTransfer
+  getTransfers(
+    pageKey: String = null
+    pageSize: Int = null
+    filters: FilterGetTransfers = null
+  ): PaginatedGetTransfers
+  getTaggedAccount(
+    filters: FilterGetTaggedAccount = null
+  ): SchemaGetTaggedAccount
+}
+
+type SchemaLatestBlock {
+  number: Int
+  parentNumber: Int
+  hash: String!
+  parentHash: String!
+  stateRoot: String!
+  extrinsicsRoot: String!
+  datetime: DateTime
+  authorAuthorityIndex: Int
+  authorSlotNumber: Float
+  authorAccountId: String
+  countExtrinsics: Int!
+  countEvents: Int!
+  countLogs: Int!
+  totalFee: Float
+  totalFeeTreasury: Float
+  totalFeeBlockAuthor: Float
+  totalTip: Float
+  totalWeight: Float
+  totalWeightNormal: Float
+  totalWeightOperational: Float
+  totalWeightMandatory: Float
+  specName: String!
+  specVersion: Int!
+  complete: Int!
+}
+
+# The `DateTime` scalar type represents a DateTime
+# value as specified by
+# [iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+scalar DateTime
+
+type SchemaGetBlock {
+  number: Int
+  parentNumber: Int
+  hash: String!
+  parentHash: String!
+  stateRoot: String!
+  extrinsicsRoot: String!
+  datetime: DateTime
+  authorAuthorityIndex: Int
+  authorSlotNumber: Float
+  authorAccountId: String
+  countExtrinsics: Int!
+  countEvents: Int!
+  countLogs: Int!
+  totalFee: Float
+  totalFeeTreasury: Float
+  totalFeeBlockAuthor: Float
+  totalTip: Float
+  totalWeight: Float
+  totalWeightNormal: Float
+  totalWeightOperational: Float
+  totalWeightMandatory: Float
+  specName: String!
+  specVersion: Int!
+  complete: Int!
+}
+
+input FilterGetBlock {
+  # Exact match.
+  number: ID
+
+  # Exact match.
+  hash: String
+
+  # Exact match.
+  datetime: DateTime
+
+  # Greater than.
+  datetimeGt: DateTime
+
+  # Less than.
+  datetimeLt: DateTime
+
+  # Greater than or equal to.
+  datetimeGte: DateTime
+
+  # Less than or equal to.
+  datetimeLte: DateTime
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetBlock!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetBlock!]
+
+  # Negation of filters.
+  not: FilterGetBlock
+}
+
+type PaginatedGetBlocks {
+  pageInfo: PaginationType
+  objects: [SchemaGetBlocks]
+}
+
+type PaginationType {
+  pageSize: Int
+  pageNext: String
+  pagePrev: String
+}
+
+type SchemaGetBlocks {
+  number: Int
+  parentNumber: Int
+  hash: String!
+  parentHash: String!
+  stateRoot: String!
+  extrinsicsRoot: String!
+  datetime: DateTime
+  authorAuthorityIndex: Int
+  authorSlotNumber: Float
+  authorAccountId: String
+  countExtrinsics: Int!
+  countEvents: Int!
+  countLogs: Int!
+  totalFee: Float
+  totalFeeTreasury: Float
+  totalFeeBlockAuthor: Float
+  totalTip: Float
+  totalWeight: Float
+  totalWeightNormal: Float
+  totalWeightOperational: Float
+  totalWeightMandatory: Float
+  specName: String!
+  specVersion: Int!
+  complete: Int!
+}
+
+input BlocksFilter {
+  # Exact match.
+  number: ID
+
+  # Greater than.
+  numberGt: ID
+
+  # Less than.
+  numberLt: ID
+
+  # Greater than or equal to.
+  numberGte: ID
+
+  # Less than or equal to.
+  numberLte: ID
+
+  # Exact match.
+  hash: String
+
+  # Exact match.
+  datetime: DateTime
+
+  # Greater than.
+  datetimeGt: DateTime
+
+  # Less than.
+  datetimeLt: DateTime
+
+  # Greater than or equal to.
+  datetimeGte: DateTime
+
+  # Less than or equal to.
+  datetimeLte: DateTime
+
+  # Conjunction of filters joined by ``AND``.
+  and: [BlocksFilter!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [BlocksFilter!]
+
+  # Negation of filters.
+  not: BlocksFilter
+}
+
+type SchemaGetExtrinsic {
+  blockNumber: Int
+  extrinsicIdx: Int
+  hash: String
+  version: Int
+  versionInfo: String
+  call: String
+  callModule: String
+  callName: String
+  callArguments: JSONString
+  callHash: String
+  signed: Int
+  signature: String
+  signatureVersion: String
+  multiAddressType: String
+  multiAddressAccountId: String
+  multiAddressAccountIndex: Int
+  multiAddressRaw: String
+  multiAddressAddress32: String
+  multiAddressAddress20: String
+  extrinsicLength: Int
+  nonce: Int
+  era: JSONString
+  eraImmortal: Int
+  eraBirth: Int
+  eraDeath: Int
+  tip: Float
+  blockDatetime: DateTime
+  blockHash: String!
+  specName: String
+  specVersion: Int
+  complete: Int!
+}
+
+# Allows use of a JSON String for input / output from the GraphQL schema.
+#
+# Use of this type is *not recommended* as you lose the benefits of having a defined, static
+# schema (one of the key benefits of GraphQL).
+scalar JSONString
+
+input ExtrinsicFilter {
+  # Exact match.
+  blockNumber: ID
+
+  # Exact match.
+  extrinsicIdx: ID
+
+  # Exact match.
+  callModule: String
+
+  # Exact match.
+  callName: String
+
+  # Exact match.
+  signed: Int
+
+  # Exact match.
+  blockDatetime: DateTime
+
+  # Greater than.
+  blockDatetimeGt: DateTime
+
+  # Less than.
+  blockDatetimeLt: DateTime
+
+  # Greater than or equal to.
+  blockDatetimeGte: DateTime
+
+  # Less than or equal to.
+  blockDatetimeLte: DateTime
+
+  # Conjunction of filters joined by ``AND``.
+  and: [ExtrinsicFilter!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [ExtrinsicFilter!]
+
+  # Negation of filters.
+  not: ExtrinsicFilter
+
+  #
+  multiAddressAccountId: String
+}
+
+type PaginatedGetExtrinsics {
+  pageInfo: PaginationType
+  objects: [SchemaGetExtrinsics]
+}
+
+type SchemaGetExtrinsics {
+  blockNumber: Int
+  extrinsicIdx: Int
+  hash: String
+  version: Int
+  versionInfo: String
+  call: String
+  callModule: String
+  callName: String
+  callArguments: JSONString
+  callHash: String
+  signed: Int
+  signature: String
+  signatureVersion: String
+  multiAddressType: String
+  multiAddressAccountId: String
+  multiAddressAccountIndex: Int
+  multiAddressRaw: String
+  multiAddressAddress32: String
+  multiAddressAddress20: String
+  extrinsicLength: Int
+  nonce: Int
+  era: JSONString
+  eraImmortal: Int
+  eraBirth: Int
+  eraDeath: Int
+  tip: Float
+  blockDatetime: DateTime
+  blockHash: String!
+  specName: String
+  specVersion: Int
+  complete: Int!
+}
+
+type SchemaGetEvent {
+  blockNumber: Int
+  eventIdx: Int
+  extrinsicIdx: Int
+  event: String
+  eventModule: String
+  eventName: String
+  phaseIdx: Int
+  phaseName: String
+  attributes: JSONString
+  topics: JSONString
+  blockDatetime: DateTime
+  blockHash: String!
+  specName: String
+  specVersion: Int
+  complete: Int!
+}
+
+input FilterGetEvent {
+  # Exact match.
+  blockNumber: ID
+
+  # Exact match.
+  eventIdx: ID
+
+  # Exact match.
+  blockDatetime: DateTime
+
+  # Greater than.
+  blockDatetimeGt: DateTime
+
+  # Less than.
+  blockDatetimeLt: DateTime
+
+  # Greater than or equal to.
+  blockDatetimeGte: DateTime
+
+  # Less than or equal to.
+  blockDatetimeLte: DateTime
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetEvent!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetEvent!]
+
+  # Negation of filters.
+  not: FilterGetEvent
+}
+
+type PaginatedGetEvents {
+  pageInfo: PaginationType
+  objects: [SchemaGetEvents]
+}
+
+type SchemaGetEvents {
+  blockNumber: Int
+  eventIdx: Int
+  extrinsicIdx: Int
+  event: String
+  eventModule: String
+  eventName: String
+  phaseIdx: Int
+  phaseName: String
+  attributes: JSONString
+  topics: JSONString
+  blockDatetime: DateTime
+  blockHash: String!
+  specName: String
+  specVersion: Int
+  complete: Int!
+}
+
+input FilterGetEvents {
+  # Exact match.
+  blockNumber: ID
+
+  # Exact match.
+  extrinsicIdx: Int
+
+  # Exact match.
+  eventModule: String
+
+  # Exact match.
+  eventName: String
+
+  # Exact match.
+  blockDatetime: DateTime
+
+  # Greater than.
+  blockDatetimeGt: DateTime
+
+  # Less than.
+  blockDatetimeLt: DateTime
+
+  # Greater than or equal to.
+  blockDatetimeGte: DateTime
+
+  # Less than or equal to.
+  blockDatetimeLte: DateTime
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetEvents!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetEvents!]
+
+  # Negation of filters.
+  not: FilterGetEvents
+}
+
+type SchemaGetRuntime {
+  specName: String!
+  specVersion: Int
+  implName: String
+  implVersion: Int
+  authoringVersion: Int
+  countCallFunctions: Int!
+  countEvents: Int!
+  countPallets: Int!
+  countStorageFunctions: Int!
+  countConstants: Int!
+  countErrors: Int!
+}
+
+input FilterGetRuntime {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntime!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntime!]
+
+  # Negation of filters.
+  not: FilterGetRuntime
+}
+
+type SchemaGetLatestRuntime {
+  specName: String!
+  specVersion: Int
+  implName: String
+  implVersion: Int
+  authoringVersion: Int
+  countCallFunctions: Int!
+  countEvents: Int!
+  countPallets: Int!
+  countStorageFunctions: Int!
+  countConstants: Int!
+  countErrors: Int!
+}
+
+type PaginatedGetRuntimes {
+  pageInfo: PaginationType
+  objects: [SchemaGetRuntimes]
+}
+
+type SchemaGetRuntimes {
+  specName: String!
+  specVersion: Int
+  implName: String
+  implVersion: Int
+  authoringVersion: Int
+  countCallFunctions: Int!
+  countEvents: Int!
+  countPallets: Int!
+  countStorageFunctions: Int!
+  countConstants: Int!
+  countErrors: Int!
+}
+
+input FilterGetRuntimes {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimes!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimes!]
+
+  # Negation of filters.
+  not: FilterGetRuntimes
+}
+
+type SchemaGetRuntimeCall {
+  specName: String!
+  specVersion: Int
+  pallet: String!
+  callName: String!
+  palletCallIdx: Int!
+  lookup: String!
+  documentation: String
+  countArguments: Int!
+}
+
+input FilterGetRuntimeCall {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  pallet: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimeCall!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimeCall!]
+
+  # Negation of filters.
+  not: FilterGetRuntimeCall
+}
+
+type WrappedGetRuntimeCalls {
+  objects: [SchemaGetRuntimeCalls]
+}
+
+type SchemaGetRuntimeCalls {
+  specName: String!
+  specVersion: Int
+  pallet: String!
+  callName: String!
+  palletCallIdx: Int!
+  lookup: String!
+  documentation: String
+  countArguments: Int!
+}
+
+input FilterGetRuntimeCalls {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  pallet: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimeCalls!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimeCalls!]
+
+  # Negation of filters.
+  not: FilterGetRuntimeCalls
+}
+
+type WrappedGetRuntimeCallArguments {
+  objects: [SchemaGetRuntimeCallArguments]
+}
+
+type SchemaGetRuntimeCallArguments {
+  specName: String!
+  specVersion: Int
+  pallet: String!
+  callName: String!
+  callArgumentIdx: Int
+  name: String
+  scaleType: String
+}
+
+input FilterGetRuntimeCallArguments {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  pallet: String
+
+  # Exact match.
+  callName: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimeCallArguments!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimeCallArguments!]
+
+  # Negation of filters.
+  not: FilterGetRuntimeCallArguments
+}
+
+type SchemaGetRuntimeConstant {
+  specName: String!
+  specVersion: Int
+  pallet: String!
+  constantName: String!
+  palletConstantIdx: Int!
+  scaleType: String
+  value: JSONString
+  documentation: String
+}
+
+input FilterGetRuntimeConstant {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  pallet: String
+
+  # Exact match.
+  constantName: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimeConstant!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimeConstant!]
+
+  # Negation of filters.
+  not: FilterGetRuntimeConstant
+}
+
+type WrappedGetRuntimeConstants {
+  objects: [SchemaGetRuntimeConstants]
+}
+
+type SchemaGetRuntimeConstants {
+  specName: String!
+  specVersion: Int
+  pallet: String!
+  constantName: String!
+  palletConstantIdx: Int!
+  scaleType: String
+  value: JSONString
+  documentation: String
+}
+
+input FilterGetRuntimeConstants {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  pallet: String
+
+  # Exact match.
+  constantName: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimeConstants!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimeConstants!]
+
+  # Negation of filters.
+  not: FilterGetRuntimeConstants
+}
+
+type SchemaGetRuntimeErrorMessage {
+  specName: String!
+  specVersion: Int
+  pallet: String!
+  errorName: String!
+  palletIdx: Int!
+  errorIdx: Int!
+  documentation: String
+}
+
+input FilterGetRuntimeErrorMessage {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  pallet: String
+
+  # Exact match.
+  errorName: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimeErrorMessage!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimeErrorMessage!]
+
+  # Negation of filters.
+  not: FilterGetRuntimeErrorMessage
+}
+
+type WrappedGetRuntimeErrorMessages {
+  objects: [SchemaGetRuntimeErrorMessages]
+}
+
+type SchemaGetRuntimeErrorMessages {
+  specName: String!
+  specVersion: Int
+  pallet: String!
+  errorName: String!
+  palletIdx: Int!
+  errorIdx: Int!
+  documentation: String
+}
+
+input FilterGetRuntimeErrorMessages {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  pallet: String
+
+  # Exact match.
+  errorName: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimeErrorMessages!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimeErrorMessages!]
+
+  # Negation of filters.
+  not: FilterGetRuntimeErrorMessages
+}
+
+type SchemaGetRuntimeEvent {
+  specName: String!
+  specVersion: Int
+  pallet: String!
+  eventName: String!
+  palletEventIdx: Int!
+  lookup: String!
+  documentation: String
+  countAttributes: Int!
+}
+
+input FilterGetRuntimeEvent {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  pallet: String
+
+  # Exact match.
+  eventName: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimeEvent!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimeEvent!]
+
+  # Negation of filters.
+  not: FilterGetRuntimeEvent
+}
+
+type WrappedGetRuntimeEvents {
+  objects: [SchemaGetRuntimeEvents]
+}
+
+type SchemaGetRuntimeEvents {
+  specName: String!
+  specVersion: Int
+  pallet: String!
+  eventName: String!
+  palletEventIdx: Int!
+  lookup: String!
+  documentation: String
+  countAttributes: Int!
+}
+
+input FilterGetRuntimeEvents {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  pallet: String
+
+  # Exact match.
+  eventName: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimeEvents!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimeEvents!]
+
+  # Negation of filters.
+  not: FilterGetRuntimeEvents
+}
+
+type WrappedGetRuntimeEventAttributes {
+  objects: [SchemaGetRuntimeEventAttributes]
+}
+
+type SchemaGetRuntimeEventAttributes {
+  specName: String!
+  specVersion: Int
+  pallet: String!
+  eventName: String!
+  eventAttributeIdx: Int
+  scaleType: String
+}
+
+input FilterGetRuntimeEventAttributes {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  pallet: String
+
+  # Exact match.
+  eventName: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimeEventAttributes!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimeEventAttributes!]
+
+  # Negation of filters.
+  not: FilterGetRuntimeEventAttributes
+}
+
+type SchemaGetRuntimePallet {
+  specName: String!
+  specVersion: Int
+  pallet: String!
+  prefix: String
+  name: String
+  countCallFunctions: Int!
+  countStorageFunctions: Int!
+  countEvents: Int!
+  countConstants: Int!
+  countErrors: Int!
+}
+
+input FilterGetRuntimePallet {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  pallet: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimePallet!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimePallet!]
+
+  # Negation of filters.
+  not: FilterGetRuntimePallet
+}
+
+type WrappedGetRuntimePallets {
+  objects: [SchemaGetRuntimePallets]
+}
+
+type SchemaGetRuntimePallets {
+  specName: String!
+  specVersion: Int
+  pallet: String!
+  prefix: String
+  name: String
+  countCallFunctions: Int!
+  countStorageFunctions: Int!
+  countEvents: Int!
+  countConstants: Int!
+  countErrors: Int!
+}
+
+input FilterGetRuntimePallets {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  pallet: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimePallets!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimePallets!]
+
+  # Negation of filters.
+  not: FilterGetRuntimePallets
+}
+
+type SchemaGetRuntimeStorage {
+  specName: String!
+  specVersion: Int
+  pallet: String!
+  storageName: String!
+  palletStorageIdx: Int!
+  modifier: String
+  keyPrefixPallet: String
+  keyPrefixName: String
+  key1ScaleType: String
+  key1Hasher: String
+  key2ScaleType: String
+  key2Hasher: String
+  valueScaleType: String
+  isLinked: Boolean
+  documentation: String
+}
+
+input FilterGetRuntimeStorage {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  pallet: String
+
+  # Exact match.
+  storageName: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimeStorage!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimeStorage!]
+
+  # Negation of filters.
+  not: FilterGetRuntimeStorage
+}
+
+type WrappedGetRuntimeStorages {
+  objects: [SchemaGetRuntimeStorages]
+}
+
+type SchemaGetRuntimeStorages {
+  specName: String!
+  specVersion: Int
+  pallet: String!
+  storageName: String!
+  palletStorageIdx: Int!
+  modifier: String
+  keyPrefixPallet: String
+  keyPrefixName: String
+  key1ScaleType: String
+  key1Hasher: String
+  key2ScaleType: String
+  key2Hasher: String
+  valueScaleType: String
+  isLinked: Boolean
+  documentation: String
+}
+
+input FilterGetRuntimeStorages {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  pallet: String
+
+  # Exact match.
+  storageName: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimeStorages!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimeStorages!]
+
+  # Negation of filters.
+  not: FilterGetRuntimeStorages
+}
+
+type SchemaGetRuntimeType {
+  specName: String!
+  specVersion: Int
+  scaleType: String!
+  decoderClass: String
+  isCorePrimitive: Boolean
+  isRuntimePrimitive: Boolean
+}
+
+input FilterGetRuntimeType {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  scaleType: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimeType!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimeType!]
+
+  # Negation of filters.
+  not: FilterGetRuntimeType
+}
+
+type WrappedGetRuntimeTypes {
+  objects: [SchemaGetRuntimeTypes]
+}
+
+type SchemaGetRuntimeTypes {
+  specName: String!
+  specVersion: Int
+  scaleType: String!
+  decoderClass: String
+  isCorePrimitive: Boolean
+  isRuntimePrimitive: Boolean
+}
+
+input FilterGetRuntimeTypes {
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: ID
+
+  # Exact match.
+  scaleType: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetRuntimeTypes!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetRuntimeTypes!]
+
+  # Negation of filters.
+  not: FilterGetRuntimeTypes
+}
+
+type SchemaGetLog {
+  blockNumber: Int
+  logIdx: Int
+  typeId: Int
+  typeName: String
+  data: JSONString
+  blockDatetime: DateTime
+  blockHash: String!
+  specName: String
+  specVersion: Int
+  complete: Boolean!
+}
+
+input FilterGetLog {
+  # Exact match.
+  blockNumber: ID
+
+  # Exact match.
+  logIdx: ID
+
+  # Exact match.
+  typeId: Int
+
+  # Exact match.
+  typeName: String
+
+  # Exact match.
+  blockDatetime: DateTime
+
+  # Less than.
+  blockDatetimeLt: DateTime
+
+  # Less than or equal to.
+  blockDatetimeLte: DateTime
+
+  # Greater than.
+  blockDatetimeGt: DateTime
+
+  # Greater than or equal to.
+  blockDatetimeGte: DateTime
+
+  # Exact match.
+  blockHash: String
+
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: Int
+
+  # Exact match.
+  complete: Boolean
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetLog!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetLog!]
+
+  # Negation of filters.
+  not: FilterGetLog
+}
+
+type PaginatedGetLogs {
+  pageInfo: PaginationType
+  objects: [SchemaGetLogs]
+}
+
+type SchemaGetLogs {
+  blockNumber: Int
+  logIdx: Int
+  typeId: Int
+  typeName: String
+  data: JSONString
+  blockDatetime: DateTime
+  blockHash: String!
+  specName: String
+  specVersion: Int
+  complete: Boolean!
+}
+
+input FilterGetLogs {
+  # Exact match.
+  blockNumber: ID
+
+  # Exact match.
+  typeId: Int
+
+  # Exact match.
+  typeName: String
+
+  # Exact match.
+  blockDatetime: DateTime
+
+  # Less than.
+  blockDatetimeLt: DateTime
+
+  # Less than or equal to.
+  blockDatetimeLte: DateTime
+
+  # Greater than.
+  blockDatetimeGt: DateTime
+
+  # Greater than or equal to.
+  blockDatetimeGte: DateTime
+
+  # Exact match.
+  blockHash: String
+
+  # Exact match.
+  specName: String
+
+  # Exact match.
+  specVersion: Int
+
+  # Exact match.
+  complete: Boolean
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetLogs!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetLogs!]
+
+  # Negation of filters.
+  not: FilterGetLogs
+}
+
+type SchemaGetTransfer {
+  blockNumber: Int
+  eventIdx: Int
+  extrinsicIdx: Int
+  fromMultiAddressType: String
+  fromMultiAddressAccountId: String
+  fromMultiAddressAccountIndex: Int
+  fromMultiAddressRaw: String
+  fromMultiAddressAddress32: String
+  fromMultiAddressAddress20: String
+  toMultiAddressType: String
+  toMultiAddressAccountId: String
+  toMultiAddressAccountIndex: Int
+  toMultiAddressRaw: String
+  toMultiAddressAddress32: String
+  toMultiAddressAddress20: String
+  value: Float
+  blockDatetime: DateTime
+  blockHash: String!
+  complete: Boolean!
+}
+
+input FilterGetTransfer {
+  # Exact match.
+  blockNumber: ID
+
+  # Exact match.
+  eventIdx: ID
+
+  # Exact match.
+  extrinsicIdx: Int
+
+  # Exact match.
+  fromMultiAddressType: String
+
+  # Exact match.
+  fromMultiAddressAccountId: String
+
+  # Exact match.
+  fromMultiAddressAddress32: String
+
+  # Exact match.
+  fromMultiAddressAddress20: String
+
+  # Exact match.
+  toMultiAddressType: String
+
+  # Exact match.
+  toMultiAddressAccountId: String
+
+  # Exact match.
+  toMultiAddressAddress32: String
+
+  # Exact match.
+  toMultiAddressAddress20: String
+
+  # Exact match.
+  blockDatetime: DateTime
+
+  # Less than.
+  blockDatetimeLt: DateTime
+
+  # Less than or equal to.
+  blockDatetimeLte: DateTime
+
+  # Greater than.
+  blockDatetimeGt: DateTime
+
+  # Greater than or equal to.
+  blockDatetimeGte: DateTime
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetTransfer!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetTransfer!]
+
+  # Negation of filters.
+  not: FilterGetTransfer
+}
+
+type PaginatedGetTransfers {
+  pageInfo: PaginationType
+  objects: [SchemaGetTransfers]
+}
+
+type SchemaGetTransfers {
+  blockNumber: Int
+  eventIdx: Int
+  extrinsicIdx: Int
+  fromMultiAddressType: String
+  fromMultiAddressAccountId: String
+  fromMultiAddressAccountIndex: Int
+  fromMultiAddressRaw: String
+  fromMultiAddressAddress32: String
+  fromMultiAddressAddress20: String
+  toMultiAddressType: String
+  toMultiAddressAccountId: String
+  toMultiAddressAccountIndex: Int
+  toMultiAddressRaw: String
+  toMultiAddressAddress32: String
+  toMultiAddressAddress20: String
+  value: Float
+  blockDatetime: DateTime
+  blockHash: String!
+  complete: Boolean!
+}
+
+input FilterGetTransfers {
+  # Exact match.
+  blockNumber: ID
+
+  # Exact match.
+  eventIdx: ID
+
+  # Exact match.
+  extrinsicIdx: Int
+
+  # Exact match.
+  fromMultiAddressType: String
+
+  # Exact match.
+  fromMultiAddressAccountId: String
+
+  # Exact match.
+  fromMultiAddressAddress32: String
+
+  # Exact match.
+  fromMultiAddressAddress20: String
+
+  # Exact match.
+  toMultiAddressType: String
+
+  # Exact match.
+  toMultiAddressAccountId: String
+
+  # Exact match.
+  toMultiAddressAddress32: String
+
+  # Exact match.
+  toMultiAddressAddress20: String
+
+  # Exact match.
+  blockDatetime: DateTime
+
+  # Less than.
+  blockDatetimeLt: DateTime
+
+  # Less than or equal to.
+  blockDatetimeLte: DateTime
+
+  # Greater than.
+  blockDatetimeGt: DateTime
+
+  # Greater than or equal to.
+  blockDatetimeGte: DateTime
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetTransfers!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetTransfers!]
+
+  # Negation of filters.
+  not: FilterGetTransfers
+}
+
+type SchemaGetTaggedAccount {
+  accountId: String!
+  tagName: String!
+  tagType: String!
+  tagSubType: String
+  riskLevel: Int
+  riskLevelVerbose: String
+  originatorInfo: JSONString
+  beneficiaryInfo: JSONString
+}
+
+input FilterGetTaggedAccount {
+  # Exact match.
+  accountId: String
+
+  # Conjunction of filters joined by ``AND``.
+  and: [FilterGetTaggedAccount!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [FilterGetTaggedAccount!]
+
+  # Negation of filters.
+  not: FilterGetTaggedAccount
+}
+
+type Subscription {
+  subscribeNewBlock: BlockSchema
+  subscribeNewEvent(filters: EventsFilter = null): EventSchema
+  subscribeNewExtrinsic(filters: ExtrinsicFilter = null): ExtrinsicSchema
+  subscribeNewTransfer(filters: TransferFilter = null): TransferSchema
+  subscribeNewLog(filters: LogFilter = null): LogSchema
+}
+
+type BlockSchema {
+  number: Int
+  parentNumber: Int
+  hash: String!
+  parentHash: String!
+  stateRoot: String!
+  extrinsicsRoot: String!
+  datetime: DateTime
+  authorAuthorityIndex: Int
+  authorSlotNumber: Float
+  authorAccountId: String
+  countExtrinsics: Int!
+  countEvents: Int!
+  countLogs: Int!
+  totalFee: Float
+  totalFeeTreasury: Float
+  totalFeeBlockAuthor: Float
+  totalTip: Float
+  totalWeight: Float
+  totalWeightNormal: Float
+  totalWeightOperational: Float
+  totalWeightMandatory: Float
+  specName: String!
+  specVersion: Int!
+  complete: Int!
+}
+
+type EventSchema {
+  blockNumber: Int
+  eventIdx: Int
+  extrinsicIdx: Int
+  event: String
+  eventModule: String
+  eventName: String
+  phaseIdx: Int
+  phaseName: String
+  attributes: JSONString
+  topics: JSONString
+  blockDatetime: DateTime
+  blockHash: String!
+  specName: String
+  specVersion: Int
+  complete: Int!
+}
+
+input EventsFilter {
+  # Exact match.
+  blockNumber: ID
+
+  # Exact match.
+  eventModule: String
+
+  # Exact match.
+  eventName: String
+
+  # Exact match.
+  blockDatetime: DateTime
+
+  # Greater than.
+  blockDatetimeGt: DateTime
+
+  # Less than.
+  blockDatetimeLt: DateTime
+
+  # Greater than or equal to.
+  blockDatetimeGte: DateTime
+
+  # Less than or equal to.
+  blockDatetimeLte: DateTime
+
+  # Conjunction of filters joined by ``AND``.
+  and: [EventsFilter!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [EventsFilter!]
+
+  # Negation of filters.
+  not: EventsFilter
+}
+
+type ExtrinsicSchema {
+  blockNumber: Int
+  extrinsicIdx: Int
+  hash: String
+  version: Int
+  versionInfo: String
+  call: String
+  callModule: String
+  callName: String
+  callArguments: JSONString
+  callHash: String
+  signed: Int
+  signature: String
+  signatureVersion: String
+  multiAddressType: String
+  multiAddressAccountId: String
+  multiAddressAccountIndex: Int
+  multiAddressRaw: String
+  multiAddressAddress32: String
+  multiAddressAddress20: String
+  extrinsicLength: Int
+  nonce: Int
+  era: JSONString
+  eraImmortal: Int
+  eraBirth: Int
+  eraDeath: Int
+  tip: Float
+  blockDatetime: DateTime
+  blockHash: String!
+  specName: String
+  specVersion: Int
+  complete: Int!
+}
+
+type TransferSchema {
+  blockNumber: Int
+  eventIdx: Int
+  extrinsicIdx: Int
+  fromMultiAddressType: String
+  fromMultiAddressAccountId: String
+  fromMultiAddressAccountIndex: Int
+  fromMultiAddressRaw: String
+  fromMultiAddressAddress32: String
+  fromMultiAddressAddress20: String
+  toMultiAddressType: String
+  toMultiAddressAccountId: String
+  toMultiAddressAccountIndex: Int
+  toMultiAddressRaw: String
+  toMultiAddressAddress32: String
+  toMultiAddressAddress20: String
+  value: Float
+  blockDatetime: DateTime
+  blockHash: String!
+  complete: Boolean!
+}
+
+input TransferFilter {
+  # Exact match.
+  blockNumber: ID
+
+  # Exact match.
+  eventIdx: ID
+
+  # Exact match.
+  blockDatetime: DateTime
+
+  # Greater than.
+  blockDatetimeGt: DateTime
+
+  # Less than.
+  blockDatetimeLt: DateTime
+
+  # Greater than or equal to.
+  blockDatetimeGte: DateTime
+
+  # Less than or equal to.
+  blockDatetimeLte: DateTime
+
+  # Conjunction of filters joined by ``AND``.
+  and: [TransferFilter!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [TransferFilter!]
+
+  # Negation of filters.
+  not: TransferFilter
+
+  #
+  fromMultiAddressAccountId: String
+
+  #
+  toMultiAddressAccountId: String
+}
+
+type LogSchema {
+  blockNumber: Int
+  logIdx: Int
+  typeId: Int
+  typeName: String
+  data: JSONString
+  blockDatetime: DateTime
+  blockHash: String!
+  specName: String
+  specVersion: Int
+  complete: Boolean!
+}
+
+input LogFilter {
+  # Exact match.
+  blockNumber: ID
+
+  # Exact match.
+  logIdx: ID
+
+  # Exact match.
+  typeId: Int
+
+  # Exact match.
+  blockDatetime: DateTime
+
+  # Greater than.
+  blockDatetimeGt: DateTime
+
+  # Less than.
+  blockDatetimeLt: DateTime
+
+  # Greater than or equal to.
+  blockDatetimeGte: DateTime
+
+  # Less than or equal to.
+  blockDatetimeLte: DateTime
+
+  # Conjunction of filters joined by ``AND``.
+  and: [LogFilter!]
+
+  # Conjunction of filters joined by ``OR``.
+  or: [LogFilter!]
+
+  # Negation of filters.
+  not: LogFilter
+}

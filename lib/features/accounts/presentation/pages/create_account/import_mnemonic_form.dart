@@ -48,10 +48,16 @@ class ImportMnemonicForm extends StatelessWidget {
           ),
         );
       } else {
-        showTextSnackBar('error_mnemonic_not_found', outerContext);
+        FastSnackBar(
+          textCode: 'error_mnemonic_not_found',
+          context: outerContext,
+        ).show();
       }
     } else {
-      showTextSnackBar('invalid_input', outerContext);
+      FastSnackBar(
+        textCode: 'invalid_input',
+        context: outerContext,
+      ).show();
     }
   }
 

@@ -7,6 +7,7 @@ import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
+import 'package:threedpass/features/wallet_screen/presentation/widgets/is_account_ready_builder.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class TransferButton extends StatelessWidget {
@@ -22,16 +23,13 @@ class TransferButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return BlocBuilder<AppServiceLoaderCubit, AppService>(
-      builder: (final context, final state) => ValueListenableBuilder(
-        valueListenable: state.balance,
-        builder: (final context, final BalanceData balance, final child) {
-          return D3pElevatedButton(
-            text: 'transfer_coins_button_label'.tr(),
-            onPressed: balance.isNull ? null : () => onPressed(context),
-          );
-        },
-      ),
+    return IsAccountReadyBuilder(
+      builder: (final BuildContext context, final bool isReady) {
+        return D3pElevatedButton(
+          text: 'transfer_coins_button_label'.tr(),
+          onPressed: isReady ? () => onPressed(context) : null,
+        );
+      },
     );
   }
 }

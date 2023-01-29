@@ -1,57 +1,41 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
-import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
-import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
+part of '../../settings_page.dart';
 
-class TransBytesInput extends StatelessWidget {
-  TransBytesInput({
-    required final SettingsConfigCubit settingsConfigCubit,
-    final Key? key,
-  })  : controller = TextEditingController(
-          text: hexInputFormatter.maskText(
-            settingsConfigCubit.state.scanSettings.transBytes,
-          ),
-        ),
-        super(key: key);
+/// Empty input means, that trans bytes should be taken from chain.
+/// Else user's 8 len input will be used by calc library
+class _TransBytesInputField extends StatefulWidget {
+  const _TransBytesInputField({final Key? key}) : super(key: key);
 
-  static final hexInputFormatter = MaskTextInputFormatter(
-    mask: '0x########',
-    filter: {'#': RegExp(r'[0-9A-Fa-f]')},
-    type: MaskAutoCompletionType.lazy,
-  );
+  @override
+  State<StatefulWidget> createState() => _State();
+}
 
-  final TextEditingController controller;
+class _State extends State<_TransBytesInputField> {
+  @override
+  void initState() {
+    controller = TextEditingController(
+      text: hexInputFormatter.maskText(
+        BlocProvider.of<SettingsConfigCubit>(context)
+            .state
+            .scanSettings
+            .transBytes,
+      ),
+    );
+    super.initState();
+  }
 
-  void changeSettings(final String input, final BuildContext context) {
-    final realInput = hexInputFormatter.unmaskText(input);
+  static final hexInputFormatter = _TransBytesMaskTextInputFormatter();
 
-    /// @see [validator] comment
-    if (realInput.isEmpty || realInput.length == 8) {
+  late final TextEditingController controller;
+
+  void changeSettings(final String rawInput, final BuildContext context) {
+    final smartInput = _TransBytesInput(rawInput);
+    if (smartInput.isValid == null) {
+      final realInput = smartInput.unmasked;
       final cubit = BlocProvider.of<SettingsConfigCubit>(context);
       final newScanConfig =
           cubit.state.scanSettings.copyWith(transBytes: realInput);
       final newState = cubit.state.copyWith(scanSettings: newScanConfig);
       cubit.updateSettings(newState);
-    }
-  }
-
-  /// Empty input means, that trans bytes should be taken from chain.
-  /// Else user's 8 len input will be used by calc library
-  String? validator(final String? value) {
-    if (value == null || value.isEmpty) {
-      return null;
-    }
-
-    final realInput = hexInputFormatter.unmaskText(value);
-    print(realInput.length);
-    if (int.tryParse(value) != null && realInput.length == 8) {
-      return null;
-    } else {
-      return 'error_hex'.tr();
     }
   }
 
@@ -68,9 +52,39 @@ class TransBytesInput extends StatelessWidget {
       suffixButton: 'Clear'.tr(),
       onSuffixButtonPressed: () => onClearPressed(context),
       onChanged: (final value) => changeSettings(value ?? '', context),
-      validator: validator,
+      validator: (final input) => _TransBytesInput(input ?? '').isValid,
       inputFormatters: [hexInputFormatter],
       bottomHelpText: 'trans_help_text'.tr(),
     );
   }
+}
+
+class _TransBytesMaskTextInputFormatter extends MaskTextInputFormatter {
+  _TransBytesMaskTextInputFormatter()
+      : super(
+          mask: '0x########',
+          filter: {'#': RegExp(r'[0-9A-Fa-f]')},
+          type: MaskAutoCompletionType.lazy,
+        );
+}
+
+class _TransBytesInput {
+  final String rawInput;
+
+  static final hexInputFormatter = _TransBytesMaskTextInputFormatter();
+
+  _TransBytesInput(this.rawInput);
+
+  /// Does field should show an error?
+  String? get isValid {
+    final realInput = hexInputFormatter.unmaskText(rawInput);
+    if (int.tryParse(realInput, radix: 16) != null && realInput.length == 8) {
+      print('Valid $realInput');
+      return null;
+    } else {
+      return 'error_hex'.tr();
+    }
+  }
+
+  String get unmasked => hexInputFormatter.unmaskText(rawInput);
 }
