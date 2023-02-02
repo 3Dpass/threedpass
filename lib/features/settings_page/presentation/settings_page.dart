@@ -47,6 +47,7 @@ class SettingsPage extends StatelessWidget {
               PreviewSettingsBlock(),
               WalletSettingsBlock(),
               _AppSettingsBlock(),
+              // TODO Add package info
             ],
           ),
         ),

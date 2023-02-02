@@ -69,29 +69,9 @@ android {
         }
     }
 
-    // buildTypes {
-    //     release {
-    //         if (false) {
-    //             signingConfig signingConfigs.release
-    //             println "Signing with key.properties"
-    //         } else {
-    //             signingConfig signingConfigs.debug
-    //             applicationIdSuffix '.debug'
-    //             versionNameSuffix '-DEBUG'
-    //             resValue "string", "app_name", "3DPass debug"
-
-    //             println "Signing with debug keys"
-    //         }
-    //     }
-    // }
-
 
     signingConfigs {
         release {
-            storeFile file('/Users/l3mac/codes/threedpass/keys/key3')
-            keyPassword '6M64I05kOt'
-            storePassword '6M64I05kOt'
-            keyAlias 'VbfpgnPvoK'
             if (System.getenv("KEYSTORE_PATH")){
                 println("signingConfigs release")
                 // If you are reading these lines check the link:
