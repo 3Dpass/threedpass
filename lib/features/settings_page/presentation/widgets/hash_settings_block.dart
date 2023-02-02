@@ -8,7 +8,9 @@ class _HashSettingsBlock extends StatelessWidget {
     return Column(
       children: const [
         _ScanSettingsTitle(),
-        // AlgorithmDropdown(),
+        SizedBoxH8(),
+        _AlgorithmDropdown(),
+        SizedBoxH8(),
         _GridSizeDropdown(),
         SizedBoxH8(),
         _SectionsTextField(),

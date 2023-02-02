@@ -18,7 +18,7 @@ class GlobalSettings {
   });
 
   GlobalSettings.defaultValues()
-      : scanSettings = ScanSettings.defaultValues(),
+      : scanSettings = const ScanSettings.defaultValues(),
         walletSettings = const WalletSettings.defaultValues(),
         appSettings = const AppSettings.defaultValues(),
         previewSettings = const PreviewSettings.defaultValues();
@@ -34,4 +34,15 @@ class GlobalSettings {
 
   @HiveField(1)
   final WalletSettings walletSettings;
+
+  GlobalSettings selfValidate() {
+    final newScan = scanSettings.selfValidate();
+    // walletSettings.selfCheck();
+    // previewSettings.selfCheck();
+    // appSettings.selfCheck();
+
+    return this.copyWith(
+      scanSettings: newScan,
+    );
+  }
 }

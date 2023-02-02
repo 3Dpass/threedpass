@@ -23,6 +23,7 @@ class _AlgorithmDropdown extends StatelessWidget {
       buildWhen: (final previous, final current) => false,
       builder: (final context, final state) => DropdownButtonFormField<String>(
         decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 8),
           label: Text('choose_algorithm_label'.tr()),
         ),
         value: state.scanSettings.algorithm,
@@ -35,11 +36,11 @@ class _AlgorithmDropdown extends StatelessWidget {
 }
 
 class _AlgorithmDropdownMenuItems {
-  List<DropdownMenuItem<String>> get items => Algorithm.values
+  List<DropdownMenuItem<String>> get items => AlgorithmMaster.list
       .map(
         (final e) => DropdownMenuItem<String>(
-          value: e.name,
-          child: Text(e.name),
+          value: e,
+          child: Text(e),
         ),
       )
       .toList();

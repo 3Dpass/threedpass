@@ -21,7 +21,8 @@ extension ToText on ScanSettings {
           text: '- ' + 'lib_version_span'.tr() + ': $libVersion\n',
         ),
         TextSpan(
-          text: '- ' + 'trans_bytes_span'.tr() + ': $transBytes\n',
+          text:
+              '- ' + 'trans_bytes_span'.tr() + ': ${transBytes.toLowerCase()}',
         ),
       ],
     );

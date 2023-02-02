@@ -29,7 +29,7 @@ jobs:
     - uses: subosito/flutter-action@v2
       with:
         #channel: 'stable' # 'dev', 'alpha', default to: 'stable'
-        flutter-version: '3.0.4'
+        flutter-version: '3.7.0'
     
 
     # Getting  flutter dependencies

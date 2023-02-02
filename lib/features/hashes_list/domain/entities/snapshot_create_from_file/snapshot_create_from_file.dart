@@ -8,6 +8,7 @@ import 'package:threedpass/core/utils/random_hex.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/settings_page/domain/entities/algorithm.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/setup.dart';
 
@@ -122,6 +123,7 @@ class SnapshotFileFactory {
       nSections: settings.nSections,
       filePath: filePath,
       transBytes: transBytes,
+      algorithm: AlgorithmMaster.mapToRust[settings.algorithm]!,
     );
 
     return calculator.calcHashes();
