@@ -23,6 +23,7 @@ class _AlgorithmDropdown extends StatelessWidget {
       buildWhen: (final previous, final current) => false,
       builder: (final context, final state) => DropdownButtonFormField<String>(
         decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 8),
           label: Text('choose_algorithm_label'.tr()),
         ),
         value: state.scanSettings.algorithm,
