@@ -6,6 +6,7 @@ import 'package:threedpass/core/widgets/input/switch_button.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/domain/entities/algorithm.dart';
 import 'package:threedpass/features/settings_page/domain/entities/app_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';

@@ -16,12 +16,14 @@ class Calc2 {
     required this.nSections,
     required this.filePath,
     required this.transBytes,
+    required this.algorithm,
   });
 
   final int gridSize;
   final int nSections;
   final String filePath;
   final String transBytes;
+  final String algorithm;
 
   Future<String> calcHashes() async {
     final p = ReceivePort();
@@ -73,6 +75,7 @@ class Calc2 {
       gridSize,
       nSections,
       trans,
+      _stringToPointer(algorithm),
     );
 
     final result = rawData.cast<Utf8>().toDartString();
@@ -88,6 +91,21 @@ class Calc2 {
 
     for (var i = 0; i < length; ++i) {
       result[i] = uint8List[i];
+    }
+
+    return result;
+  }
+
+  static Pointer<UnsignedChar> _stringToPointer(String str) {
+    // final uint8List = byteData.buffer.asUint8List();
+    final ints = str.codeUnits;
+    final length = ints.length;
+
+    final result =
+        calloc<UnsignedChar>(length); // allocate<Uint8>(count: length);
+
+    for (var i = 0; i < length; ++i) {
+      result[i] = ints[i];
     }
 
     return result;

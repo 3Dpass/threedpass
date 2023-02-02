@@ -9,7 +9,8 @@ class HiveSettingsStore extends HiveUniversalStore<GlobalSettings> {
   GlobalSettings getSettings() {
     final currentData = getAt(0);
     if (currentData != null) {
-      return currentData;
+      final correctData = currentData.selfValidate();
+      return correctData;
     } else {
       setSettings(_defaultValue);
       return _defaultValue;

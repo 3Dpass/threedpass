@@ -1,6 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:threedpass/features/settings_page/domain/entities/algorithm.dart';
 
 part 'scan_settings.g.dart';
 
@@ -26,9 +27,9 @@ class ScanSettings extends Equatable {
     required this.transBytes,
   });
 
-  ScanSettings.defaultValues()
+  const ScanSettings.defaultValues()
       : gridSize = 8,
-        algorithm = Algorithm.grid2d.name,
+        algorithm = AlgorithmMaster.defaultAlgo,
         nSections = 66,
         libVersion = 'unknown',
         transBytes = '';
@@ -40,9 +41,15 @@ class ScanSettings extends Equatable {
         nSections,
         libVersion,
       ];
-}
 
-enum Algorithm {
-  spectrum,
-  grid2d,
+  ScanSettings selfValidate() {
+    String algorithm = this.algorithm;
+    if (!AlgorithmMaster.list.contains(algorithm)) {
+      algorithm = AlgorithmMaster.defaultAlgo;
+    }
+
+    return this.copyWith(
+      algorithm: algorithm,
+    );
+  }
 }
