@@ -6,7 +6,6 @@ import 'package:threedpass/features/accounts/router/create_account_page_route.da
 import 'package:threedpass/features/home_page/router/home_page_route.dart';
 import 'package:threedpass/features/preview_page/router/preview_page_route.dart';
 import 'package:threedpass/features/scan_page/router/calc_hash_loading_widget_route.dart';
-import 'package:threedpass/features/web_wallet/router/web_wallet_route.dart';
 
 // part 'router.gr.dart';
 
@@ -17,8 +16,6 @@ import 'package:threedpass/features/web_wallet/router/web_wallet_route.dart';
     homePageAutoRoute,
     // Preview snapshots
     previewPageRoute,
-    // web wallet page
-    webWalletPageRoute,
 
     // Error page route
     errorPageRoute,
