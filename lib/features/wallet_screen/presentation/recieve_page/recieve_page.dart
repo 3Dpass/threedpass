@@ -20,10 +20,8 @@ class RecievePage extends StatelessWidget {
         BlocProvider.of<AppServiceLoaderCubit>(context).state.keyring.current;
     final address = accountData.address!;
     return Scaffold(
-      appBar: CommonLogoAppbar(
-        // TODO Add back button
-        title: 'recieve_page_title'.tr(),
-        theme: Theme.of(context),
+      appBar: AppBar(
+        title: Text('recieve_page_title'.tr()),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
