@@ -9,5 +9,5 @@ void copyAndNotify({
 }) {
   Clipboard.setData(ClipboardData(text: textToCopy));
 
-  Fluttertoast.showToast(msg: textToShow ?? textToCopy + ' ' + 'Copied'.tr());
+  Fluttertoast.showToast(msg: textToShow ?? 'Copied'.tr() + ' ' + textToCopy);
 }

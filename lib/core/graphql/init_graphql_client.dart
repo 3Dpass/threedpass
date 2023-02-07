@@ -13,6 +13,7 @@ import 'package:hive_flutter/adapters.dart';
 //   return client;
 // }
 
+// TODO Move graphql to external package
 class FerryClient {
   static const apiUrl = 'https://explorer-api.3dpass.org/graphql/';
   late final Client client;

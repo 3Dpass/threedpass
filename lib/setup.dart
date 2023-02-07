@@ -73,6 +73,7 @@ Future<void> setup() async {
   getIt.registerSingleton<TransfersRepository>(
     TransfersRepository(
       client: getIt<Client>(),
+      appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
     ),
   );
 

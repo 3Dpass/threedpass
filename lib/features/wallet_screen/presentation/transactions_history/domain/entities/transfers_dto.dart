@@ -1,7 +1,8 @@
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/data/query/__generated__/get_transfers.data.gql.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/entities/transfer_item.dart';
 
 class TransfersDTO {
-  final List<GGetTransfersData_getTransfers_objects> objects;
+  final List<TransferItem> objects;
   final String nextPageKey;
 
   const TransfersDTO({
