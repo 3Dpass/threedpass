@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/input/switch_button.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
@@ -13,17 +15,18 @@ import 'package:threedpass/features/settings_page/domain/entities/scan_settings.
 import 'package:threedpass/features/settings_page/presentation/widgets/preview_settings_block.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/settings_appbar.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/wallet_settings_block.dart';
+import 'package:threedpass/setup.dart';
 
 part './widgets/app_settings/app_settings.dart';
-part './widgets/app_settings/requirements_textfield.dart';
 part './widgets/app_settings/dark_theme_switch.dart';
-
-part './widgets/hash_settings_block.dart';
+part './widgets/app_settings/requirements_textfield.dart';
 part './widgets/hash_settings/algorithm_dropdown.dart';
 part './widgets/hash_settings/grid_size_dropdown.dart';
 part './widgets/hash_settings/hash_settings_title.dart';
 part './widgets/hash_settings/sections_textfield.dart';
 part './widgets/hash_settings/trans_bytes.dart';
+part './widgets/hash_settings_block.dart';
+part './widgets/version_info.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({
@@ -47,7 +50,9 @@ class SettingsPage extends StatelessWidget {
               PreviewSettingsBlock(),
               WalletSettingsBlock(),
               _AppSettingsBlock(),
-              // TODO Add package info
+              SizedBoxH16(),
+              _VersionInfo(),
+              SizedBoxH8(),
             ],
           ),
         ),

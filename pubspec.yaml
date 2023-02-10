@@ -41,6 +41,7 @@ dependencies:
   qr_flutter: ^4.0.0
   flutter_svg: ^1.1.1+1
   fluttertoast: ^8.0.9
+  package_info_plus: ^3.0.3
 
   ## Core
   auto_route: ^4.2.1
