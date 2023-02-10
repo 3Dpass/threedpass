@@ -1,9 +1,8 @@
-import 'package:threedpass/core/utils/either.dart';
-import 'package:threedpass/core/utils/failure.dart';
+import 'package:super_core/super_core.dart';
+import 'package:threedp_graphql/features/transfers_history/domain/entities/transfers_request_params.dart';
 import 'package:threedpass/core/utils/usecase.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/data/repositories/transfers_repository.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/entities/transfers_dto.dart';
-import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/entities/transfers_request_params.dart';
 
 class GetTransfers extends UseCase<TransfersDTO, GetTransfersParams> {
   final TransfersRepository repository;

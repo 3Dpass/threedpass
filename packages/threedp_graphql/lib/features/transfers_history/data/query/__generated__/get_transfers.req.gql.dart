@@ -6,13 +6,13 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:ferry_exec/ferry_exec.dart' as _i1;
 import 'package:gql_exec/gql_exec.dart' as _i4;
-import 'package:threedpass/core/graphql/__generated__/serializers.gql.dart'
+import 'package:threedp_graphql/core/graphql/__generated__/serializers.gql.dart'
     as _i6;
-import 'package:threedpass/features/wallet_screen/presentation/transactions_history/data/query/__generated__/get_transfers.ast.gql.dart'
+import 'package:threedp_graphql/features/transfers_history/data/query/__generated__/get_transfers.ast.gql.dart'
     as _i5;
-import 'package:threedpass/features/wallet_screen/presentation/transactions_history/data/query/__generated__/get_transfers.data.gql.dart'
+import 'package:threedp_graphql/features/transfers_history/data/query/__generated__/get_transfers.data.gql.dart'
     as _i2;
-import 'package:threedpass/features/wallet_screen/presentation/transactions_history/data/query/__generated__/get_transfers.var.gql.dart'
+import 'package:threedp_graphql/features/transfers_history/data/query/__generated__/get_transfers.var.gql.dart'
     as _i3;
 
 part 'get_transfers.req.gql.g.dart';

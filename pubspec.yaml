@@ -75,6 +75,12 @@ dependencies:
   flutter_keyboard_visibility: ^5.3.0
   mask_text_input_formatter: ^2.4.0
 
+  # Child packages
+  super_core:
+    path: ./packages/super_core
+  threedp_graphql:
+    path: ./packages/threedp_graphql
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
