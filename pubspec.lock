@@ -660,6 +660,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.14.0"
+  gql_code_builder:
+    dependency: "direct dev"
+    description:
+      name: gql_code_builder
+      sha256: "27fd7dee009cea2bc982cacc461f66cc03e08ebf71cf8b0c78028cf280107ce7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.0"
   gql_exec:
     dependency: transitive
     description:

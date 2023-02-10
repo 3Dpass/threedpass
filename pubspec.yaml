@@ -88,6 +88,7 @@ dev_dependencies:
   build_runner:
   auto_route_generator: ^4.2.0
   json_serializable: ^6.3.1
+  gql_code_builder: ^0.6.0 # We doesn't need this in main package, but it's required to fix compile error in subpackage threedp_graphql
 
   ## Dev utils
   flutter_launcher_icons: ^0.9.3
