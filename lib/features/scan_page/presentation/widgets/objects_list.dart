@@ -51,7 +51,7 @@ class _ObjectTitle extends StatelessWidget {
         padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
         child: Text(
           'object_title_prefix'.tr() + ' ' + title,
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
       );
 }

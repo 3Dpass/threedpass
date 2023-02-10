@@ -6,6 +6,6 @@ class _ChooseObjectTitle extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => Text(
         'create_from_object_text1'.tr(),
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme.of(context).textTheme.titleLarge,
       );
 }

@@ -31,7 +31,7 @@ class CompareRow extends StatelessWidget {
             child: Text(
               origSnap.name.cutWithEllipsis(16),
               overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
         ),
@@ -41,7 +41,7 @@ class CompareRow extends StatelessWidget {
             child: Text(
               'VS',
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
         ),

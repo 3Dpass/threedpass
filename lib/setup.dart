@@ -1,8 +1,9 @@
 import 'package:ferry/ferry.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:logger/logger.dart';
-import 'package:threedpass/core/graphql/init_graphql_client.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:threedp_graphql/features/transfers_history/data/repositories/transfers_repository.dart';
+import 'package:threedp_graphql/threedp_graphql.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/data/repositories/hash_list_store.dart';
@@ -16,6 +17,9 @@ import 'package:threedpass/features/wallet_screen/presentation/transactions_hist
 final getIt = GetIt.instance;
 
 Future<void> setup() async {
+  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  getIt.registerSingleton<PackageInfo>(packageInfo);
+
   // Storages
   getIt.registerSingleton<HiveHashStore>(
     HiveHashStore(),
@@ -43,11 +47,7 @@ Future<void> setup() async {
     ),
   );
 
-  // await Hive.initFlutter();
-  final box = await Hive.openBox<Map<String, dynamic>>("graphql_cache_ferry");
-  await box.clear();
-  final ferryClient = FerryClient(box).client;
-  getIt.registerSingleton<Client>(ferryClient);
+  await ThreedpGraphql.init(getIt);
 
   // BLoCs
   getIt.registerFactory<HashesListBloc>(
@@ -73,6 +73,8 @@ Future<void> setup() async {
   getIt.registerSingleton<TransfersRepository>(
     TransfersRepository(
       client: getIt<Client>(),
+      appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+      transfersDatasourceGQL: getIt<TransfersDatasourceGQL>(),
     ),
   );
 

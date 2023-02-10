@@ -74,7 +74,7 @@ class ListTileButton extends StatelessWidget {
             children: [
               Text(
                 text,
-                style: theme.textTheme.button!.copyWith(color: mainColor),
+                style: theme.textTheme.labelLarge!.copyWith(color: mainColor),
               ),
               Icon(
                 Icons.arrow_right_outlined,

@@ -4541,7 +4541,10 @@ class _$GDateTime extends GDateTime {
 
   @override
   int get hashCode {
-    return $jf($jc(0, value.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, value.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -4657,22 +4660,19 @@ class _$GFilterGetBlock extends GFilterGetBlock {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc($jc($jc(0, number.hashCode), hash.hashCode),
-                                    datetime.hashCode),
-                                datetimeGt.hashCode),
-                            datetimeLt.hashCode),
-                        datetimeGte.hashCode),
-                    datetimeLte.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, number.hashCode);
+    _$hash = $jc(_$hash, hash.hashCode);
+    _$hash = $jc(_$hash, datetime.hashCode);
+    _$hash = $jc(_$hash, datetimeGt.hashCode);
+    _$hash = $jc(_$hash, datetimeLt.hashCode);
+    _$hash = $jc(_$hash, datetimeGte.hashCode);
+    _$hash = $jc(_$hash, datetimeLte.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -4905,32 +4905,23 @@ class _$GBlocksFilter extends GBlocksFilter {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc(
-                                            $jc(
-                                                $jc(
-                                                    $jc($jc(0, number.hashCode),
-                                                        numberGt.hashCode),
-                                                    numberLt.hashCode),
-                                                numberGte.hashCode),
-                                            numberLte.hashCode),
-                                        hash.hashCode),
-                                    datetime.hashCode),
-                                datetimeGt.hashCode),
-                            datetimeLt.hashCode),
-                        datetimeGte.hashCode),
-                    datetimeLte.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, number.hashCode);
+    _$hash = $jc(_$hash, numberGt.hashCode);
+    _$hash = $jc(_$hash, numberLt.hashCode);
+    _$hash = $jc(_$hash, numberGte.hashCode);
+    _$hash = $jc(_$hash, numberLte.hashCode);
+    _$hash = $jc(_$hash, hash.hashCode);
+    _$hash = $jc(_$hash, datetime.hashCode);
+    _$hash = $jc(_$hash, datetimeGt.hashCode);
+    _$hash = $jc(_$hash, datetimeLt.hashCode);
+    _$hash = $jc(_$hash, datetimeGte.hashCode);
+    _$hash = $jc(_$hash, datetimeLte.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -5137,7 +5128,10 @@ class _$GJSONString extends GJSONString {
 
   @override
   int get hashCode {
-    return $jf($jc(0, value.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, value.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -5270,36 +5264,23 @@ class _$GExtrinsicFilter extends GExtrinsicFilter {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc(
-                                            $jc(
-                                                $jc(
-                                                    $jc(
-                                                        $jc(
-                                                            0,
-                                                            blockNumber
-                                                                .hashCode),
-                                                        extrinsicIdx.hashCode),
-                                                    callModule.hashCode),
-                                                callName.hashCode),
-                                            signed.hashCode),
-                                        blockDatetime.hashCode),
-                                    blockDatetimeGt.hashCode),
-                                blockDatetimeLt.hashCode),
-                            blockDatetimeGte.hashCode),
-                        blockDatetimeLte.hashCode),
-                    and.hashCode),
-                or.hashCode),
-            not.hashCode),
-        multiAddressAccountId.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, blockNumber.hashCode);
+    _$hash = $jc(_$hash, extrinsicIdx.hashCode);
+    _$hash = $jc(_$hash, callModule.hashCode);
+    _$hash = $jc(_$hash, callName.hashCode);
+    _$hash = $jc(_$hash, signed.hashCode);
+    _$hash = $jc(_$hash, blockDatetime.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGte.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLte.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jc(_$hash, multiAddressAccountId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -5548,24 +5529,19 @@ class _$GFilterGetEvent extends GFilterGetEvent {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc($jc(0, blockNumber.hashCode),
-                                        eventIdx.hashCode),
-                                    blockDatetime.hashCode),
-                                blockDatetimeGt.hashCode),
-                            blockDatetimeLt.hashCode),
-                        blockDatetimeGte.hashCode),
-                    blockDatetimeLte.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, blockNumber.hashCode);
+    _$hash = $jc(_$hash, eventIdx.hashCode);
+    _$hash = $jc(_$hash, blockDatetime.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGte.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLte.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -5794,28 +5770,21 @@ class _$GFilterGetEvents extends GFilterGetEvents {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc(
-                                            $jc($jc(0, blockNumber.hashCode),
-                                                extrinsicIdx.hashCode),
-                                            eventModule.hashCode),
-                                        eventName.hashCode),
-                                    blockDatetime.hashCode),
-                                blockDatetimeGt.hashCode),
-                            blockDatetimeLt.hashCode),
-                        blockDatetimeGte.hashCode),
-                    blockDatetimeLte.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, blockNumber.hashCode);
+    _$hash = $jc(_$hash, extrinsicIdx.hashCode);
+    _$hash = $jc(_$hash, eventModule.hashCode);
+    _$hash = $jc(_$hash, eventName.hashCode);
+    _$hash = $jc(_$hash, blockDatetime.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGte.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLte.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -6026,12 +5995,14 @@ class _$GFilterGetRuntime extends GFilterGetRuntime {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -6174,12 +6145,14 @@ class _$GFilterGetRuntimes extends GFilterGetRuntimes {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -6330,14 +6303,15 @@ class _$GFilterGetRuntimeCall extends GFilterGetRuntimeCall {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                    pallet.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, pallet.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -6495,14 +6469,15 @@ class _$GFilterGetRuntimeCalls extends GFilterGetRuntimeCalls {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                    pallet.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, pallet.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -6664,16 +6639,16 @@ class _$GFilterGetRuntimeCallArguments extends GFilterGetRuntimeCallArguments {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                        pallet.hashCode),
-                    callName.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, pallet.hashCode);
+    _$hash = $jc(_$hash, callName.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -6845,16 +6820,16 @@ class _$GFilterGetRuntimeConstant extends GFilterGetRuntimeConstant {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                        pallet.hashCode),
-                    constantName.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, pallet.hashCode);
+    _$hash = $jc(_$hash, constantName.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -7024,16 +6999,16 @@ class _$GFilterGetRuntimeConstants extends GFilterGetRuntimeConstants {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                        pallet.hashCode),
-                    constantName.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, pallet.hashCode);
+    _$hash = $jc(_$hash, constantName.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -7203,16 +7178,16 @@ class _$GFilterGetRuntimeErrorMessage extends GFilterGetRuntimeErrorMessage {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                        pallet.hashCode),
-                    errorName.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, pallet.hashCode);
+    _$hash = $jc(_$hash, errorName.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -7383,16 +7358,16 @@ class _$GFilterGetRuntimeErrorMessages extends GFilterGetRuntimeErrorMessages {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                        pallet.hashCode),
-                    errorName.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, pallet.hashCode);
+    _$hash = $jc(_$hash, errorName.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -7564,16 +7539,16 @@ class _$GFilterGetRuntimeEvent extends GFilterGetRuntimeEvent {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                        pallet.hashCode),
-                    eventName.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, pallet.hashCode);
+    _$hash = $jc(_$hash, eventName.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -7742,16 +7717,16 @@ class _$GFilterGetRuntimeEvents extends GFilterGetRuntimeEvents {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                        pallet.hashCode),
-                    eventName.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, pallet.hashCode);
+    _$hash = $jc(_$hash, eventName.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -7922,16 +7897,16 @@ class _$GFilterGetRuntimeEventAttributes
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                        pallet.hashCode),
-                    eventName.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, pallet.hashCode);
+    _$hash = $jc(_$hash, eventName.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -8099,14 +8074,15 @@ class _$GFilterGetRuntimePallet extends GFilterGetRuntimePallet {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                    pallet.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, pallet.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -8265,14 +8241,15 @@ class _$GFilterGetRuntimePallets extends GFilterGetRuntimePallets {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                    pallet.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, pallet.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -8435,16 +8412,16 @@ class _$GFilterGetRuntimeStorage extends GFilterGetRuntimeStorage {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                        pallet.hashCode),
-                    storageName.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, pallet.hashCode);
+    _$hash = $jc(_$hash, storageName.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -8614,16 +8591,16 @@ class _$GFilterGetRuntimeStorages extends GFilterGetRuntimeStorages {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                        pallet.hashCode),
-                    storageName.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, pallet.hashCode);
+    _$hash = $jc(_$hash, storageName.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -8789,14 +8766,15 @@ class _$GFilterGetRuntimeType extends GFilterGetRuntimeType {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                    scaleType.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, scaleType.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -8954,14 +8932,15 @@ class _$GFilterGetRuntimeTypes extends GFilterGetRuntimeTypes {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc($jc($jc(0, specName.hashCode), specVersion.hashCode),
-                    scaleType.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, scaleType.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -9156,41 +9135,25 @@ class _$GFilterGetLog extends GFilterGetLog {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc(
-                                            $jc(
-                                                $jc(
-                                                    $jc(
-                                                        $jc(
-                                                            $jc(
-                                                                $jc(
-                                                                    0,
-                                                                    blockNumber
-                                                                        .hashCode),
-                                                                logIdx
-                                                                    .hashCode),
-                                                            typeId.hashCode),
-                                                        typeName.hashCode),
-                                                    blockDatetime.hashCode),
-                                                blockDatetimeLt.hashCode),
-                                            blockDatetimeLte.hashCode),
-                                        blockDatetimeGt.hashCode),
-                                    blockDatetimeGte.hashCode),
-                                blockHash.hashCode),
-                            specName.hashCode),
-                        specVersion.hashCode),
-                    complete.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, blockNumber.hashCode);
+    _$hash = $jc(_$hash, logIdx.hashCode);
+    _$hash = $jc(_$hash, typeId.hashCode);
+    _$hash = $jc(_$hash, typeName.hashCode);
+    _$hash = $jc(_$hash, blockDatetime.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLte.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGte.hashCode);
+    _$hash = $jc(_$hash, blockHash.hashCode);
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, complete.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -9472,38 +9435,24 @@ class _$GFilterGetLogs extends GFilterGetLogs {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc(
-                                            $jc(
-                                                $jc(
-                                                    $jc(
-                                                        $jc(
-                                                            $jc(
-                                                                0,
-                                                                blockNumber
-                                                                    .hashCode),
-                                                            typeId.hashCode),
-                                                        typeName.hashCode),
-                                                    blockDatetime.hashCode),
-                                                blockDatetimeLt.hashCode),
-                                            blockDatetimeLte.hashCode),
-                                        blockDatetimeGt.hashCode),
-                                    blockDatetimeGte.hashCode),
-                                blockHash.hashCode),
-                            specName.hashCode),
-                        specVersion.hashCode),
-                    complete.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, blockNumber.hashCode);
+    _$hash = $jc(_$hash, typeId.hashCode);
+    _$hash = $jc(_$hash, typeName.hashCode);
+    _$hash = $jc(_$hash, blockDatetime.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLte.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGte.hashCode);
+    _$hash = $jc(_$hash, blockHash.hashCode);
+    _$hash = $jc(_$hash, specName.hashCode);
+    _$hash = $jc(_$hash, specVersion.hashCode);
+    _$hash = $jc(_$hash, complete.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -9796,54 +9745,28 @@ class _$GFilterGetTransfer extends GFilterGetTransfer {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc(
-                                            $jc(
-                                                $jc(
-                                                    $jc(
-                                                        $jc(
-                                                            $jc(
-                                                                $jc(
-                                                                    $jc(
-                                                                        $jc(
-                                                                            $jc(
-                                                                                0,
-                                                                                blockNumber
-                                                                                    .hashCode),
-                                                                            eventIdx
-                                                                                .hashCode),
-                                                                        extrinsicIdx
-                                                                            .hashCode),
-                                                                    fromMultiAddressType
-                                                                        .hashCode),
-                                                                fromMultiAddressAccountId
-                                                                    .hashCode),
-                                                            fromMultiAddressAddress32
-                                                                .hashCode),
-                                                        fromMultiAddressAddress20
-                                                            .hashCode),
-                                                    toMultiAddressType
-                                                        .hashCode),
-                                                toMultiAddressAccountId
-                                                    .hashCode),
-                                            toMultiAddressAddress32.hashCode),
-                                        toMultiAddressAddress20.hashCode),
-                                    blockDatetime.hashCode),
-                                blockDatetimeLt.hashCode),
-                            blockDatetimeLte.hashCode),
-                        blockDatetimeGt.hashCode),
-                    blockDatetimeGte.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, blockNumber.hashCode);
+    _$hash = $jc(_$hash, eventIdx.hashCode);
+    _$hash = $jc(_$hash, extrinsicIdx.hashCode);
+    _$hash = $jc(_$hash, fromMultiAddressType.hashCode);
+    _$hash = $jc(_$hash, fromMultiAddressAccountId.hashCode);
+    _$hash = $jc(_$hash, fromMultiAddressAddress32.hashCode);
+    _$hash = $jc(_$hash, fromMultiAddressAddress20.hashCode);
+    _$hash = $jc(_$hash, toMultiAddressType.hashCode);
+    _$hash = $jc(_$hash, toMultiAddressAccountId.hashCode);
+    _$hash = $jc(_$hash, toMultiAddressAddress32.hashCode);
+    _$hash = $jc(_$hash, toMultiAddressAddress20.hashCode);
+    _$hash = $jc(_$hash, blockDatetime.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLte.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGte.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -10172,54 +10095,28 @@ class _$GFilterGetTransfers extends GFilterGetTransfers {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc(
-                                            $jc(
-                                                $jc(
-                                                    $jc(
-                                                        $jc(
-                                                            $jc(
-                                                                $jc(
-                                                                    $jc(
-                                                                        $jc(
-                                                                            $jc(
-                                                                                0,
-                                                                                blockNumber
-                                                                                    .hashCode),
-                                                                            eventIdx
-                                                                                .hashCode),
-                                                                        extrinsicIdx
-                                                                            .hashCode),
-                                                                    fromMultiAddressType
-                                                                        .hashCode),
-                                                                fromMultiAddressAccountId
-                                                                    .hashCode),
-                                                            fromMultiAddressAddress32
-                                                                .hashCode),
-                                                        fromMultiAddressAddress20
-                                                            .hashCode),
-                                                    toMultiAddressType
-                                                        .hashCode),
-                                                toMultiAddressAccountId
-                                                    .hashCode),
-                                            toMultiAddressAddress32.hashCode),
-                                        toMultiAddressAddress20.hashCode),
-                                    blockDatetime.hashCode),
-                                blockDatetimeLt.hashCode),
-                            blockDatetimeLte.hashCode),
-                        blockDatetimeGt.hashCode),
-                    blockDatetimeGte.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, blockNumber.hashCode);
+    _$hash = $jc(_$hash, eventIdx.hashCode);
+    _$hash = $jc(_$hash, extrinsicIdx.hashCode);
+    _$hash = $jc(_$hash, fromMultiAddressType.hashCode);
+    _$hash = $jc(_$hash, fromMultiAddressAccountId.hashCode);
+    _$hash = $jc(_$hash, fromMultiAddressAddress32.hashCode);
+    _$hash = $jc(_$hash, fromMultiAddressAddress20.hashCode);
+    _$hash = $jc(_$hash, toMultiAddressType.hashCode);
+    _$hash = $jc(_$hash, toMultiAddressAccountId.hashCode);
+    _$hash = $jc(_$hash, toMultiAddressAddress32.hashCode);
+    _$hash = $jc(_$hash, toMultiAddressAddress20.hashCode);
+    _$hash = $jc(_$hash, blockDatetime.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLte.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGte.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -10484,9 +10381,13 @@ class _$GFilterGetTaggedAccount extends GFilterGetTaggedAccount {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc(0, accountId.hashCode), and.hashCode), or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, accountId.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -10648,26 +10549,20 @@ class _$GEventsFilter extends GEventsFilter {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc($jc(0, blockNumber.hashCode),
-                                            eventModule.hashCode),
-                                        eventName.hashCode),
-                                    blockDatetime.hashCode),
-                                blockDatetimeGt.hashCode),
-                            blockDatetimeLt.hashCode),
-                        blockDatetimeGte.hashCode),
-                    blockDatetimeLte.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, blockNumber.hashCode);
+    _$hash = $jc(_$hash, eventModule.hashCode);
+    _$hash = $jc(_$hash, eventName.hashCode);
+    _$hash = $jc(_$hash, blockDatetime.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGte.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLte.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -10901,28 +10796,21 @@ class _$GTransferFilter extends GTransferFilter {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc(
-                                            $jc($jc(0, blockNumber.hashCode),
-                                                eventIdx.hashCode),
-                                            blockDatetime.hashCode),
-                                        blockDatetimeGt.hashCode),
-                                    blockDatetimeLt.hashCode),
-                                blockDatetimeGte.hashCode),
-                            blockDatetimeLte.hashCode),
-                        and.hashCode),
-                    or.hashCode),
-                not.hashCode),
-            fromMultiAddressAccountId.hashCode),
-        toMultiAddressAccountId.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, blockNumber.hashCode);
+    _$hash = $jc(_$hash, eventIdx.hashCode);
+    _$hash = $jc(_$hash, blockDatetime.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGte.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLte.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jc(_$hash, fromMultiAddressAccountId.hashCode);
+    _$hash = $jc(_$hash, toMultiAddressAccountId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -11161,26 +11049,20 @@ class _$GLogFilter extends GLogFilter {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc($jc(0, blockNumber.hashCode),
-                                            logIdx.hashCode),
-                                        typeId.hashCode),
-                                    blockDatetime.hashCode),
-                                blockDatetimeGt.hashCode),
-                            blockDatetimeLt.hashCode),
-                        blockDatetimeGte.hashCode),
-                    blockDatetimeLte.hashCode),
-                and.hashCode),
-            or.hashCode),
-        not.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, blockNumber.hashCode);
+    _$hash = $jc(_$hash, logIdx.hashCode);
+    _$hash = $jc(_$hash, typeId.hashCode);
+    _$hash = $jc(_$hash, blockDatetime.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLt.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeGte.hashCode);
+    _$hash = $jc(_$hash, blockDatetimeLte.hashCode);
+    _$hash = $jc(_$hash, and.hashCode);
+    _$hash = $jc(_$hash, or.hashCode);
+    _$hash = $jc(_$hash, not.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -11341,4 +11223,4 @@ class GLogFilterBuilder implements Builder<GLogFilter, GLogFilterBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

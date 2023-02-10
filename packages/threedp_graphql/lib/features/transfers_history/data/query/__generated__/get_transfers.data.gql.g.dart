@@ -380,7 +380,11 @@ class _$GGetTransfersData extends GGetTransfersData {
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, G__typename.hashCode), getTransfers.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, getTransfers.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -497,8 +501,12 @@ class _$GGetTransfersData_getTransfers extends GGetTransfersData_getTransfers {
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, G__typename.hashCode), pageInfo.hashCode),
-        objects.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, pageInfo.hashCode);
+    _$hash = $jc(_$hash, objects.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -636,10 +644,13 @@ class _$GGetTransfersData_getTransfers_pageInfo
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc(0, G__typename.hashCode), pageSize.hashCode),
-            pageNext.hashCode),
-        pagePrev.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, pageSize.hashCode);
+    _$hash = $jc(_$hash, pageNext.hashCode);
+    _$hash = $jc(_$hash, pagePrev.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -785,20 +796,17 @@ class _$GGetTransfersData_getTransfers_objects
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc($jc(0, G__typename.hashCode),
-                                blockNumber.hashCode),
-                            extrinsicIdx.hashCode),
-                        eventIdx.hashCode),
-                    fromMultiAddressAccountId.hashCode),
-                toMultiAddressAccountId.hashCode),
-            value.hashCode),
-        blockDatetime.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, blockNumber.hashCode);
+    _$hash = $jc(_$hash, extrinsicIdx.hashCode);
+    _$hash = $jc(_$hash, eventIdx.hashCode);
+    _$hash = $jc(_$hash, fromMultiAddressAccountId.hashCode);
+    _$hash = $jc(_$hash, toMultiAddressAccountId.hashCode);
+    _$hash = $jc(_$hash, value.hashCode);
+    _$hash = $jc(_$hash, blockDatetime.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -926,4 +934,4 @@ class GGetTransfersData_getTransfers_objectsBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

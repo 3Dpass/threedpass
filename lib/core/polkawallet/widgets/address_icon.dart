@@ -30,7 +30,7 @@ class AddressIcon extends StatelessWidget {
           BoxDecoration(
             color: theme.customColors.addressIconBackground,
             border: Border.all(
-              color: Theme.of(context).toggleableActiveColor,
+              color: Theme.of(context).colorScheme.secondary,
               width: 2,
             ),
             borderRadius: BorderRadius.all(

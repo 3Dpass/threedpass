@@ -6,7 +6,7 @@ import 'package:threedpass/features/settings_page/domain/entities/global_setting
 class ThemeBuilder extends StatelessWidget {
   const ThemeBuilder({
     required this.builder,
-    final super.key,
+    super.key,
   });
 
   final Widget Function(

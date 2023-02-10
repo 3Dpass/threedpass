@@ -7,9 +7,9 @@ import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/utils/validators.dart';
-import 'package:threedpass/core/widgets/appbars/common_logo_appbar.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
+import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer.dart';
 
@@ -30,14 +30,21 @@ class TransferPage extends StatelessWidget {
   final passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  void outerPop(final BuildContext context) {
+    final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
+    Navigator.pop(outerContext);
+  }
+
   @override
   Widget build(final BuildContext context) {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
+    // appService.keyring.
     return Scaffold(
-      appBar: CommonLogoAppbar(
-        // TODO Add back button
-        title: 'transfer_page_title'.tr(),
-        theme: Theme.of(context),
+      appBar: AppBar(
+        leading: BackButton(
+          onPressed: () => outerPop(context),
+        ),
+        title: Text('transfer_page_title'.tr()),
       ),
       body: Column(
         children: [

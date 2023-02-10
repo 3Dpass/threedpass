@@ -10,10 +10,10 @@ class D3pBasicTextStyle {
     fontSize: 18,
   );
 
-  static const bodyText1 = TextStyle(
+  static const bodyLarge = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.normal,
   );
 
-  static const bodyText2 = TextStyle(fontSize: 14);
+  static const bodyMedium = TextStyle(fontSize: 14);
 }

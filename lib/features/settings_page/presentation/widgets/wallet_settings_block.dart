@@ -16,7 +16,7 @@ class WalletSettingsBlock extends StatelessWidget {
       children: [
         Text(
           'wallet_settings_title'.tr(),
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         const TestNetSwitch(),
         NodeUrlTextfield(

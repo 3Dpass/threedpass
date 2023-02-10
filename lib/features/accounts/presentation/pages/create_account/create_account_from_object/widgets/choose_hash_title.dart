@@ -7,11 +7,11 @@ class _ChooseHashTitle extends StatelessWidget {
   Widget build(final BuildContext context) => Text.rich(
         TextSpan(
           text: 'create_from_object_text2'.tr(),
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
           children: [
             TextSpan(
               text: '\n' + 'create_from_object_text2_hint'.tr(),
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),

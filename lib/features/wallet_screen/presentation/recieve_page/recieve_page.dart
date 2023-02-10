@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/copy_and_notify.dart';
-import 'package:threedpass/core/widgets/appbars/common_logo_appbar.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 
 part './widgets/copy_button.dart';
@@ -20,10 +19,8 @@ class RecievePage extends StatelessWidget {
         BlocProvider.of<AppServiceLoaderCubit>(context).state.keyring.current;
     final address = accountData.address!;
     return Scaffold(
-      appBar: CommonLogoAppbar(
-        // TODO Add back button
-        title: 'recieve_page_title'.tr(),
-        theme: Theme.of(context),
+      appBar: AppBar(
+        title: Text('recieve_page_title'.tr()),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.min,

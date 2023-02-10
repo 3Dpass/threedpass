@@ -1,5 +1,4 @@
-import 'package:threedpass/core/utils/either.dart';
-import 'package:threedpass/core/utils/failure.dart';
+import 'package:super_core/super_core.dart';
 
 abstract class UseCase<Type, Params> {
   const UseCase();

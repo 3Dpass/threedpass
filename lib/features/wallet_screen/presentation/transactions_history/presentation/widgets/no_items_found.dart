@@ -6,7 +6,7 @@ class _NoItemsFound extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 8),
+      padding: const EdgeInsets.only(top: 8),
       child: Align(
         alignment: Alignment.topCenter,
         child: Text('no_transfers'.tr()),

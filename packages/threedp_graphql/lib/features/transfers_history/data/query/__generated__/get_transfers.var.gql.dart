@@ -4,9 +4,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:threedpass/core/graphql/__generated__/serializers.gql.dart'
+import 'package:threedp_graphql/core/graphql/__generated__/serializers.gql.dart'
     as _i2;
-import 'package:threedpass/core/graphql/__generated__/threedpass.schema.schema.gql.dart'
+import 'package:threedp_graphql/core/graphql/__generated__/threedpass.schema.schema.gql.dart'
     as _i1;
 
 part 'get_transfers.var.gql.g.dart';

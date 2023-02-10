@@ -30,7 +30,7 @@ class CommonDialog extends StatelessWidget {
       // TODO Use PlatfromAlertDialog
       title: Text(
         title,
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme.of(context).textTheme.titleLarge,
       ),
       content: SingleChildScrollView(
         child: Column(

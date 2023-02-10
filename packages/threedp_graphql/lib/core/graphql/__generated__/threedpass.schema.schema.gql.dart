@@ -7,7 +7,7 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:gql_code_builder/src/serializers/default_scalar_serializer.dart'
     as _i1;
-import 'package:threedpass/core/graphql/__generated__/serializers.gql.dart'
+import 'package:threedp_graphql/core/graphql/__generated__/serializers.gql.dart'
     as _i2;
 
 part 'threedpass.schema.schema.gql.g.dart';

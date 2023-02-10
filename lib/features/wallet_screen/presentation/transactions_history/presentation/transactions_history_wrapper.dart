@@ -7,7 +7,7 @@ import 'package:threedpass/setup.dart';
 
 class TransactionsHistoryWrapper extends StatelessWidget {
   const TransactionsHistoryWrapper({
-    final super.key,
+    super.key,
   });
 
   @override

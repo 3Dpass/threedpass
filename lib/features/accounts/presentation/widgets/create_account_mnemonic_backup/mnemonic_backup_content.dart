@@ -26,7 +26,7 @@ class MnemonicBackupContent extends StatelessWidget {
             'backup_warn1_header'.tr(),
             style: Theme.of(context)
                 .textTheme
-                .headline6
+                .titleLarge
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),

@@ -60,7 +60,7 @@ class SaveObjectDialog extends StatelessWidget {
             children: <Widget>[
               Text(
                 'create_object_title'.tr(),
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               Padding(
                 padding: const EdgeInsets.only(
