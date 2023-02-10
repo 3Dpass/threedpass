@@ -56,7 +56,7 @@ class _State extends State<PixelRatioSlider> {
       children: [
         Text(
           'preview_settings_pixel_ratio_label'.tr(),
-          style: Theme.of(context).textTheme.caption,
+          style: Theme.of(context).textTheme.bodySmall,
         ),
         Row(
           children: [
@@ -78,7 +78,7 @@ class _State extends State<PixelRatioSlider> {
           padding: const EdgeInsets.only(top: 0, left: 16, right: 16),
           child: Text(
             'pixel_ratio_help_text'.tr(),
-            style: Theme.of(context).textTheme.caption,
+            style: Theme.of(context).textTheme.bodySmall,
           ),
         ),
       ],

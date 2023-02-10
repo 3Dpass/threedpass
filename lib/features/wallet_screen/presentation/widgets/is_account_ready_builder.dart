@@ -7,7 +7,7 @@ import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 
 class IsAccountReadyBuilder extends StatelessWidget {
   const IsAccountReadyBuilder({
-    required final this.builder,
+    required this.builder,
     final Key? key,
   }) : super(key: key);
 

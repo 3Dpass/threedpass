@@ -36,12 +36,12 @@ class _ChooseHashDropdown extends StatelessWidget {
 class _DropdownButtonString extends DropdownButton<String> {
   _DropdownButtonString({
     required final HashObject hashObject,
-    required final super.onChanged,
+    required super.onChanged,
     required final BuildContext context,
     required final ValueNotifier<String> chosenHash,
   }) : super(
           isExpanded: true,
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
           value: chosenHash.value,
           items: hashObject.stableHashes
               .map(
@@ -50,7 +50,7 @@ class _DropdownButtonString extends DropdownButton<String> {
                   child: Text(
                     e,
                     maxLines: 3,
-                    style: Theme.of(context).textTheme.bodyText1,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),
               )

@@ -17,7 +17,7 @@ class ChooseList extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return DropdownButton<Snapshot>(
-      style: Theme.of(context).textTheme.bodyText1,
+      style: Theme.of(context).textTheme.bodyLarge,
       value: chosen,
       items: list
           .map(
@@ -26,7 +26,7 @@ class ChooseList extends StatelessWidget {
               child: Text(
                 e.name.cutWithEllipsis(12),
                 overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
             ),
           )

@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/copy_and_notify.dart';
-import 'package:threedpass/core/widgets/appbars/common_logo_appbar.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 
 part './widgets/copy_button.dart';

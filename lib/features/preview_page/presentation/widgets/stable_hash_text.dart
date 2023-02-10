@@ -46,7 +46,7 @@ class StableHashText extends StatelessWidget {
         text: 'stable_hashes_list_title'.tr() + '\n',
         children: children,
       ),
-      style: Theme.of(context).textTheme.bodyText1,
+      style: Theme.of(context).textTheme.bodyLarge,
     );
   }
 }
@@ -58,11 +58,11 @@ class _Placeholder extends StatelessWidget {
   Widget build(final BuildContext context) => Text.rich(
         TextSpan(
           text: 'no_stable_hash_placeholder'.tr() + '\n',
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
           children: [
             TextSpan(
               text: 'no_stable_hash_help'.tr(),
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
         ),

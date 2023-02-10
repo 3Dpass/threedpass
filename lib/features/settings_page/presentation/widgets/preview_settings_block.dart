@@ -12,7 +12,7 @@ class PreviewSettingsBlock extends StatelessWidget {
       children: [
         Text(
           'preview_settings_title'.tr(),
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         const PixelRatioSlider(),
         const SizedBox(height: 8),

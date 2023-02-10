@@ -6,7 +6,7 @@ import 'package:threedpass/features/wallet_screen/presentation/transactions_hist
 
 class TransfersToCubit extends GetTransfersCubit {
   TransfersToCubit({
-    required final this.toMultiAddressAccountId,
+    required this.toMultiAddressAccountId,
     required this.getTransfers,
   });
 

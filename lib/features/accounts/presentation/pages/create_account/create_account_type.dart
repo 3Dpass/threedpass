@@ -21,7 +21,7 @@ class CreateAccountType extends StatelessWidget {
           children: [
             Text(
               'import_account_type_title'.tr(),
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 8),
             const _Item(CreateType.mnemonic),

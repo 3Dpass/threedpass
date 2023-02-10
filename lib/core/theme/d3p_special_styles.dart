@@ -19,18 +19,18 @@ class CustomTextStyles {
         color: brightness == Brightness.light ? Colors.black : Colors.white,
       );
 
-  TextStyle get switchButtonLabelEnabled => themeData.textTheme.bodyText2!;
+  TextStyle get switchButtonLabelEnabled => themeData.textTheme.bodyMedium!;
 
   TextStyle get switchButtonLabelDisabled =>
-      themeData.textTheme.bodyText2!.copyWith(
+      themeData.textTheme.bodyMedium!.copyWith(
         color: themeData.customColors.disabled,
       );
 
-  TextStyle get matchesHyperlink => themeData.textTheme.bodyText2!.copyWith(
+  TextStyle get matchesHyperlink => themeData.textTheme.bodyMedium!.copyWith(
         color: themeData.customColors.hyperlink,
       );
 
-  TextStyle get appTitle => themeData.textTheme.bodyText1!.copyWith(
+  TextStyle get appTitle => themeData.textTheme.bodyLarge!.copyWith(
         color: Colors.white,
       );
   TextStyle get appBarText => const TextStyle(
@@ -42,17 +42,17 @@ class CustomTextStyles {
         color: Colors.white,
       );
 
-  TextStyle get accountName => themeData.textTheme.bodyText1!.copyWith(
+  TextStyle get accountName => themeData.textTheme.bodyLarge!.copyWith(
         color: Colors.white,
       );
-  TextStyle get accountAddress => themeData.textTheme.bodyText2!.copyWith(
+  TextStyle get accountAddress => themeData.textTheme.bodyMedium!.copyWith(
         color: Colors.grey,
       );
 
   TextStyle get noObjectsPlaceholder =>
-      themeData.textTheme.subtitle1!.copyWith(color: Colors.grey);
+      themeData.textTheme.titleMedium!.copyWith(color: Colors.grey);
 
-  TextStyle get secondaryText => themeData.textTheme.bodyText2!.copyWith(
+  TextStyle get secondaryText => themeData.textTheme.bodyMedium!.copyWith(
         color: Colors.grey,
       );
 }

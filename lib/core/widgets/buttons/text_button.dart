@@ -30,7 +30,8 @@ class D3pTextButton extends StatelessWidget {
           onPressed: onPressed,
           material: (final _, final __) => MaterialTextButtonData(
             style: TextButton.styleFrom(
-              primary: textColor ?? Theme.of(context).colorScheme.primary,
+              foregroundColor:
+                  textColor ?? Theme.of(context).colorScheme.primary,
             ),
           ),
           cupertino: (final _, final __) => CupertinoTextButtonData(

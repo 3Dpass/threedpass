@@ -6,7 +6,7 @@ extension ToText on ScanSettings {
   TextSpan toText(final BuildContext context) {
     return TextSpan(
       text: 'settings_text_span_title'.tr() + '\n',
-      style: Theme.of(context).textTheme.bodyText1,
+      style: Theme.of(context).textTheme.bodyLarge,
       children: [
         TextSpan(
           text: '- ' + 'algorithm_span'.tr() + ': ' + algorithm + '\n',

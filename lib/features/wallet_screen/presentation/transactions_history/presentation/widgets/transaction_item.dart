@@ -3,9 +3,9 @@ part of '../transactions_history_page.dart';
 class TransactionItem extends StatelessWidget {
   const TransactionItem({
     required this.object,
-    final this.colorFromSecondary = false,
-    final this.colorToSecondary = false,
-    final super.key,
+    this.colorFromSecondary = false,
+    this.colorToSecondary = false,
+    super.key,
   });
 
   final TransferItem object;
@@ -54,7 +54,7 @@ class _TransactionAmount extends StatelessWidget {
     final symbol = appService.networkStateData.tokenSymbol?.first ?? '';
     return Text(
       '$moneyStr $symbol',
-      style: Theme.of(context).textTheme.bodyText1,
+      style: Theme.of(context).textTheme.bodyLarge,
     );
   }
 }

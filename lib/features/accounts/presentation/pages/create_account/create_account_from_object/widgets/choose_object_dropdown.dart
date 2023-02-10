@@ -35,11 +35,11 @@ class _ChooseObjectDropdown extends StatelessWidget {
 class _DropdownButtonHashObject extends DropdownButton<HashObject> {
   _DropdownButtonHashObject({
     required final List<HashObject> objectsToUse,
-    required final super.onChanged,
+    required super.onChanged,
     required final BuildContext context,
     required final ValueNotifier<HashObject> objectValueNotifier,
   }) : super(
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
           value: objectValueNotifier.value,
           items: objectsToUse
               .map(
@@ -48,7 +48,7 @@ class _DropdownButtonHashObject extends DropdownButton<HashObject> {
                   child: Text(
                     e.name.cutWithEllipsis(20),
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyText1,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),
               )

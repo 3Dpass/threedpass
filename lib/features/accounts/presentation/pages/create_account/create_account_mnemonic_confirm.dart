@@ -30,7 +30,7 @@ class CreateAccountMnemonicConfirm extends StatelessWidget {
             'backup_confirm_header'.tr(),
             style: Theme.of(context)
                 .textTheme
-                .headline6
+                .titleLarge
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),

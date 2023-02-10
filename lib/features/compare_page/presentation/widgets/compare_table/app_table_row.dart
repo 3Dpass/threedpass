@@ -22,7 +22,7 @@ class AppTableRow extends StatelessWidget {
           Flexible(
             child: Text(
               rowData.hash,
-              style: Theme.of(context).textTheme.bodyText2!.copyWith(
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontWeight: rowData.isStableHash ? FontWeight.bold : null,
                   ),
             ),

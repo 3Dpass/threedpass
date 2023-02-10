@@ -35,6 +35,7 @@ class PreviewPageBody extends StatelessWidget {
         HashProperties(
           snapshot: previewPageCubitState.snapshot,
         ),
+        const SizedBoxH16(),
         PreviewSaveButton(
           state: previewPageCubitState,
         ),

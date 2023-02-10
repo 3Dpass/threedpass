@@ -41,12 +41,12 @@ class SnapshotCard extends StatelessWidget {
                     Flexible(
                       child: Text(
                         'snap_card_name'.tr() + snapshot.name,
-                        style: Theme.of(context).textTheme.bodyText1,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                     Text(
                       'snap_card_stamp'.tr() + formatter.format(snapshot.stamp),
-                      style: Theme.of(context).textTheme.bodyText1,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     const SizedBox(height: 8),
                     Text.rich(snapshot.settingsConfig.toText(context)),

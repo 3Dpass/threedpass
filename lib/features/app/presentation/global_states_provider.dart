@@ -8,7 +8,7 @@ import 'package:threedpass/setup.dart' as di_setup;
 class GlobalStatesProvider extends StatelessWidget {
   const GlobalStatesProvider({
     required this.builder,
-    final super.key,
+    super.key,
   });
 
   final Widget Function(

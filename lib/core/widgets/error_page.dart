@@ -15,8 +15,8 @@ class ErrorPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Text(
-          'Error: ${error.toString()}',
-          style: Theme.of(context).textTheme.subtitle1,
+          'Error: ${error}',
+          style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
     );

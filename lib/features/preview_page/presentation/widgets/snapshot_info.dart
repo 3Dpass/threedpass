@@ -17,13 +17,13 @@ class SnapshotInfo extends StatelessWidget {
         children: [
           TextSpan(
             text: state.snapshot.name,
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontStyle: FontStyle.normal,
                 ),
           ),
         ],
       ),
-      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
             fontStyle: FontStyle.italic,
           ),
     );
