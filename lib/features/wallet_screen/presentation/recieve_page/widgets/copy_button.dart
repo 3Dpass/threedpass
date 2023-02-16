@@ -11,7 +11,7 @@ class _CopyButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       text: 'Copy'.tr(),
       iconData: Icons.copy,
-      minimumSize: const Size(120, 50),
+      // minimumSize: const Size(120, 50),
       onPressed: () => copyAndNotify(textToCopy: textToCopy),
     );
   }

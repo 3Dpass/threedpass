@@ -33,26 +33,28 @@ class D3pElevatedButton extends StatelessWidget {
       backgroundColor: backgroundColor,
     );
 
+    final child = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _Icon(
+          icon: icon,
+          iconData: iconData,
+        ),
+        Text(text),
+      ],
+    );
+
     return Padding(
       padding: padding ?? EdgeInsets.zero,
       child: SizedBox(
         child: PlatformElevatedButton(
           padding: padding ?? EdgeInsets.zero,
           onPressed: onPressed,
-          material: (final context, final _) => MaterialElevatedButtonData(
-            style: d3pElevatedTheme
-                .resolveMaterial(), // TODO Do same for cupertino
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _Icon(
-                icon: icon,
-                iconData: iconData,
-              ),
-              Text(text),
-            ],
-          ),
+          material: (context, platform) =>
+              d3pElevatedTheme.resolveMaterial(context, child),
+          cupertino: (final context, final _) =>
+              d3pElevatedTheme.resolveCupertino(context, child),
+          // child:
         ),
       ),
     );
@@ -94,25 +96,22 @@ class D3pElevatedButtonStyle {
     required this.minimumSize,
   });
 
-  ButtonStyle resolveMaterial() {
-    final d3pButtonDefaultTheme = isButtonActive
-        ? D3pElevatedButtonThemeData.active(themeData)
-        : D3pElevatedButtonThemeData.disabled(themeData);
+  MaterialElevatedButtonData resolveMaterial(
+      BuildContext context, Widget child) {
+    return MaterialElevatedButtonData(child: child);
+  }
 
-    final basicMaterial = ElevatedButton.styleFrom(
-      minimumSize: minimumSize ?? const Size.fromHeight(50),
+  CupertinoElevatedButtonData resolveCupertino(
+      BuildContext context, Widget child) {
+    final t = Theme.of(context);
+    print('active; backgroundColor: $backgroundColor');
+    return CupertinoElevatedButtonData(
+      color: t.colorScheme.primary,
+      originalStyle: true,
+      // onPressed: () {},
+      disabledColor: Colors.amber,
+      child: child,
     );
-
-    final materialTheme = basicMaterial.copyWith(
-      foregroundColor: MaterialStateProperty.all(
-        foregroundColor ?? d3pButtonDefaultTheme.foregroundColor,
-      ),
-      backgroundColor: MaterialStateProperty.all(
-        backgroundColor ?? d3pButtonDefaultTheme.backgroundColor,
-      ),
-    );
-
-    return materialTheme;
   }
 }
 

@@ -46,6 +46,7 @@ class ThreeDApp extends StatelessWidget {
       builder: (final BuildContext __) => ThemeBuilder(
         builder: (final BuildContext context, final Brightness brightness) {
           return PlatformApp.router(
+            debugShowCheckedModeBanner: false,
             title: '3Dpass',
             material: _MainMaterialAppRouterData(brightness).theme,
             cupertino: _MainCupertinoAppRouterData(brightness).theme,
@@ -89,8 +90,10 @@ class _MainCupertinoAppRouterData {
     final PlatformTarget platform,
   ) {
     return CupertinoAppRouterData(
+      color: D3pThemeData.themeData(brightness).primaryColor,
       theme: CupertinoThemeData(
         primaryColor: D3pThemeData.themeData(brightness).primaryColor,
+        brightness: brightness,
       ),
     );
   }
