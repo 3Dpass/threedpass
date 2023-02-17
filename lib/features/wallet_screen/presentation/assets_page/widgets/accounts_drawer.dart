@@ -19,14 +19,15 @@ class AccountsDrawer extends Drawer {
     final Key? key,
   }) : super(
           key: key,
-          child: ListView(
+          child: Column(
             // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
+            // padding: EdgeInsets.zero,
+            // physics: const NeverScrollableScrollPhysics(),
             children: [
               PlatformAppBar(
                 title: Text(
                   'choose_account_assets_page_drawer'.tr(),
-                  style: theme.customTextStyles.appBarText,
+                  // style: theme.customTextStyles.appBarText,
                 ),
                 material: (final _, final __) => MaterialAppBarData(
                   automaticallyImplyLeading: false,
@@ -53,18 +54,22 @@ class AccountsDrawer extends Drawer {
                 onPressed: () => CreateAccountWrapper.pushToImportType(context),
               ),
               const Divider(),
-              ...List.generate(
-                accounts.length,
-                (final index) => ListTileButton.usual(
-                  text: accounts[index].name ?? 'Anonymous',
-                  onPressed: accounts[index].address == current.address
-                      ? null
-                      : () {
-                          appServiceCubit.changeAccount(accounts[index]);
-                          Navigator.of(context).pop();
-                        },
-                  // backgroundColor: Theme.of(context).canvasColor,
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
+              Flexible(
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shrinkWrap: true,
+                  itemCount: accounts.length,
+                  itemBuilder: (final _, final index) => ListTileButton.usual(
+                    text: accounts[index].name ?? 'Anonymous',
+                    onPressed: accounts[index].address == current.address
+                        ? null
+                        : () {
+                            appServiceCubit.changeAccount(accounts[index]);
+                            Navigator.of(context).pop();
+                          },
+                    // backgroundColor: Theme.of(context).canvasColor,
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                  ),
                 ),
               ),
             ],

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/preview_settings.dart';
@@ -62,13 +63,16 @@ class _State extends State<PixelRatioSlider> {
           children: [
             const Text('$minValue'),
             Flexible(
-              child: Slider(
-                value: value,
-                min: minValue,
-                max: maxValue,
-                divisions: 5,
-                onChanged: (final double? newValue) =>
-                    _onFieldChanged(context, settings, newValue),
+              child: Container(
+                width: double.infinity,
+                child: PlatformSlider(
+                  value: value,
+                  min: minValue,
+                  max: maxValue,
+                  divisions: 5,
+                  onChanged: (final double? newValue) =>
+                      _onFieldChanged(context, settings, newValue),
+                ),
               ),
             ),
             const Text('$maxValue'),

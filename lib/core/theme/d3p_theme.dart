@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
@@ -6,24 +7,14 @@ import 'package:threedpass/core/theme/d3p_text_style.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/setup.dart';
 
+import 'd3p_elevated_button_theme.dart';
+
 class D3pThemeData {
-  static ThemeData _elevatedButtonThemeData(final ThemeData t) {
-    return t.copyWith(
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: t.colorScheme.primary,
-          foregroundColor: t.colorScheme.onPrimary,
-          disabledBackgroundColor: t.cardColor,
-          disabledForegroundColor: t.colorScheme.onSurface.withOpacity(0.50),
-          minimumSize: const Size.fromHeight(50),
-        ),
-      ),
-    );
-  }
+  static MaterialColor mainColor = Colors.green;
 
   static ThemeData get lightTheme {
     final t = ThemeData(
-      primarySwatch: Colors.green,
+      primarySwatch: mainColor,
       primaryColor: Colors.black,
       disabledColor: D3pColors.disabled,
       visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -41,7 +32,9 @@ class D3pThemeData {
       appBarTheme: const D3pAppBarTheme(),
       tabBarTheme: const D3pTabBarTheme(),
     );
-    final t1 = _elevatedButtonThemeData(t);
+    final t1 = t.copyWith(
+      elevatedButtonTheme: D3pElevatedButtonTheme.theme(t),
+    );
     return t1;
   }
 
@@ -49,7 +42,7 @@ class D3pThemeData {
     final t = ThemeData.dark().copyWith(
       brightness: Brightness.dark,
       colorScheme: ColorScheme.fromSwatch(
-        primarySwatch: Colors.green,
+        primarySwatch: mainColor,
       ),
       disabledColor: D3pColors.disabled,
       primaryColor: Colors.black,
@@ -69,7 +62,9 @@ class D3pThemeData {
       tabBarTheme: const D3pTabBarTheme(),
     );
 
-    final t1 = _elevatedButtonThemeData(t);
+    final t1 = t.copyWith(
+      elevatedButtonTheme: D3pElevatedButtonTheme.theme(t),
+    );
     return t1;
   }
 

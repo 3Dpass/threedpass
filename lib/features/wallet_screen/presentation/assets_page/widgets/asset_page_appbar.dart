@@ -39,7 +39,7 @@ class AssetPageAppbar extends AppBar {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AddressIcon(
+                  D3pAddressIcon(
                     account.address,
                     svg: account.icon,
                   ),
@@ -60,7 +60,7 @@ class AssetPageAppbar extends AppBar {
                   ),
                   const SizedBox(width: 16),
                   const SizedBox(
-                    width: AddressIcon.defaultSize,
+                    width: D3pAddressIcon.defaultSize,
                     child: Center(
                       child: ConnectionIndicator(),
                     ),

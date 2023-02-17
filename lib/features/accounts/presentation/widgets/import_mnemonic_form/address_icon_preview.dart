@@ -27,7 +27,7 @@ class AddressIconPreview extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AddressIcon(
+                D3pAddressIcon(
                   state.svg,
                   size: 40,
                 ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
+import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/theme_builder.dart';
 import 'package:threedpass/features/app/presentation/global_states_provider.dart';
@@ -89,11 +90,17 @@ class _MainCupertinoAppRouterData {
     final BuildContext context,
     final PlatformTarget platform,
   ) {
+    final mainTheme = brightness == Brightness.light
+        ? D3pThemeData.lightTheme
+        : D3pThemeData.darkTheme;
+
     return CupertinoAppRouterData(
-      color: D3pThemeData.themeData(brightness).primaryColor,
+      color: D3pThemeData.mainColor,
       theme: CupertinoThemeData(
-        primaryColor: D3pThemeData.themeData(brightness).primaryColor,
+        primaryColor: D3pThemeData.mainColor,
+        primaryContrastingColor: mainTheme.colorScheme.onPrimary,
         brightness: brightness,
+        barBackgroundColor: const D3pAppBarTheme().backgroundColor,
       ),
     );
   }

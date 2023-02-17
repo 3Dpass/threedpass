@@ -26,6 +26,7 @@ class CustomColors {
   // Appbar decoration
   Color get appBarBackground => Colors.black;
   Color get appBarButton => Colors.white;
+  Color get appBarColor => Colors.white;
 
   // Mnemonic input
   Color get mnemonicInputBackground {

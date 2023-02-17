@@ -34,9 +34,7 @@ class D3pTextButton extends StatelessWidget {
                   textColor ?? Theme.of(context).colorScheme.primary,
             ),
           ),
-          cupertino: (final _, final __) => CupertinoTextButtonData(
-            color: textColor ?? Theme.of(context).colorScheme.primary,
-          ),
+          cupertino: (final _, final __) => CupertinoTextButtonData(),
           child: Text(text),
         ),
       ),

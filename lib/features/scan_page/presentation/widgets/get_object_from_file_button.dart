@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -18,7 +19,9 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
   const GetObjectFromFileFloatingButton({final Key? key}) : super(key: key);
 
   void showSnackBar(final String text, final BuildContext context) {
-    FastSnackBar(textCode: text, context: context).show();
+    if (Platform.isAndroid) {
+      FastSnackBar(textCode: text, context: context).show();
+    } // TODO Notify users with CupertinoApp
   }
 
   void showLoader(final BuildContext context) {
