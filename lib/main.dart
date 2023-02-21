@@ -2,9 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
 import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
+import 'package:threedpass/core/theme/d3p_colors.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/theme_builder.dart';
 import 'package:threedpass/features/app/presentation/global_states_provider.dart';
@@ -46,16 +49,18 @@ class ThreeDApp extends StatelessWidget {
     return GlobalStatesProvider(
       builder: (final BuildContext __) => ThemeBuilder(
         builder: (final BuildContext context, final Brightness brightness) {
-          return PlatformApp.router(
-            debugShowCheckedModeBanner: false,
-            title: '3Dpass',
-            material: _MainMaterialAppRouterData(brightness).theme,
-            cupertino: _MainCupertinoAppRouterData(brightness).theme,
-            routerDelegate: _appRouter.delegate(),
-            routeInformationParser: _appRouter.defaultRouteParser(),
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
+          return Phoenix(
+            child: PlatformApp.router(
+              debugShowCheckedModeBanner: false,
+              title: '3Dpass',
+              material: _MainMaterialAppRouterData(brightness).theme,
+              cupertino: _MainCupertinoAppRouterData(brightness).theme,
+              routerDelegate: _appRouter.delegate(),
+              routeInformationParser: _appRouter.defaultRouteParser(),
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+            ),
           );
         },
       ),
@@ -100,7 +105,8 @@ class _MainCupertinoAppRouterData {
         primaryColor: D3pThemeData.mainColor,
         primaryContrastingColor: mainTheme.colorScheme.onPrimary,
         brightness: brightness,
-        barBackgroundColor: const D3pAppBarTheme().backgroundColor,
+        barBackgroundColor: mainTheme.customColors.scaffoldBackground,
+        scaffoldBackgroundColor: mainTheme.customColors.scaffoldBackground,
       ),
     );
   }

@@ -15,12 +15,10 @@ class D3pScaffold extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final scaffoldColor = Theme.of(context).customColors.scaffoldBackground;
     return PlatformScaffold(
       appBar: D3pPlatformAppBar(
         titleText: appbarTitle,
       ),
-      backgroundColor: scaffoldColor,
       body: body,
     );
   }
