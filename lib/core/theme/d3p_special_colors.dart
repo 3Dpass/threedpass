@@ -50,6 +50,14 @@ class CustomColors {
   Color get themeOpposite =>
       brightness == Brightness.light ? Colors.black : Colors.white;
 
+  // Scaffold - page themed backgrounds
+  Color get scaffoldBackground => brightness == Brightness.light
+      ? D3pColors.lightScaffoldBackground
+      : D3pColors.darkScaffoldBackground;
+  Color get cardBackground => brightness == Brightness.light
+      ? D3pColors.lightCardBackground
+      : D3pColors.darkCardBackground;
+
   // Color get themedIcon =>
   //     brightness == Brightness.light ? Colors.black : Colors.white;
 }

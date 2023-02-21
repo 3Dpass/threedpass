@@ -55,4 +55,42 @@ class CustomTextStyles {
   TextStyle get secondaryText => themeData.textTheme.bodyMedium!.copyWith(
         color: Colors.grey,
       );
+
+  // Coloring to fix cupertino
+  Color get _themeOpposite => themeData.customColors.themeOpposite;
+
+  TextStyle get d3pheadlineLarge => themeData.textTheme.headlineLarge!.copyWith(
+        color: _themeOpposite,
+      );
+  TextStyle get d3pheadlineMedium =>
+      themeData.textTheme.headlineMedium!.copyWith(
+        color: _themeOpposite,
+      );
+  TextStyle get d3pheadlineSmall => themeData.textTheme.headlineSmall!.copyWith(
+        color: _themeOpposite,
+      );
+
+  TextStyle get d3ptitleLarge => themeData.textTheme.titleLarge!.copyWith(
+        color: _themeOpposite,
+      );
+  TextStyle get d3ptitleMedium => themeData.textTheme.titleMedium!.copyWith(
+        color: _themeOpposite,
+      );
+  TextStyle get dp3titleSmall => themeData.textTheme.titleSmall!.copyWith(
+        color: _themeOpposite,
+      );
+
+  TextStyle get d3pBodyLarge => themeData.textTheme.bodyLarge!.copyWith(
+        color: _themeOpposite,
+      );
+  TextStyle get d3pBodyMedium => themeData.textTheme.bodyMedium!.copyWith(
+        color: _themeOpposite,
+      );
+  TextStyle get dp3BodySmall => themeData.textTheme.bodySmall!.copyWith(
+        color: _themeOpposite,
+      );
+
+  TextStyle get d3plabelLarge => themeData.textTheme.labelLarge!.copyWith(
+        color: _themeOpposite,
+      );
 }

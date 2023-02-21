@@ -33,8 +33,9 @@ class MnemonicBackupContent extends StatelessWidget {
           Text('backup_warn1_text'.tr()),
           const SizedBox(height: 12),
           MnemonicTextField(text: mnemonic),
+          const SizedBox(height: 12),
           D3pElevatedButton(
-            padding: const EdgeInsets.only(bottom: 36, top: 12),
+            // padding: const EdgeInsets.only(bottom: 36, top: 12),
             onPressed: () => context.router.push(
               const MnemonicConfirmRoute(),
             ),

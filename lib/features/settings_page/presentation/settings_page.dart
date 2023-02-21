@@ -35,6 +35,7 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    print('Settings');
     return Scaffold(
       appBar: SettingsAppbar(
         theme: Theme.of(context),

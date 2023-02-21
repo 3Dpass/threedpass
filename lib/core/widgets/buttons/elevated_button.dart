@@ -81,10 +81,12 @@ class _ElevatedButtonChild extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _Icon(
-          icon: icon,
-          iconData: iconData,
-        ),
+        (icon != null || iconData != null)
+            ? _Icon(
+                icon: icon,
+                iconData: iconData,
+              )
+            : SizedBox(),
         Text(
           text,
           style: textStyle,

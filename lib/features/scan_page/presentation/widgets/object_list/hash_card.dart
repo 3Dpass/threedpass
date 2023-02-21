@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/object_list/hash_card_popup_menu.dart';
@@ -20,7 +21,7 @@ class SnapshotCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Card(
+    return D3pCard(
       child: InkWell(
         onTap: () => context.router.push(
           PreviewWrapperRoute(
