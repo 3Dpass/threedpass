@@ -30,9 +30,7 @@ class CustomColors {
 
   // Mnemonic input
   Color get mnemonicInputBackground {
-    return brightness == Brightness.light
-        ? Colors.grey[300]!
-        : themeData.cardColor;
+    return brightness == Brightness.light ? Colors.grey[300]! : cardBackground;
   }
 
   // Color for all links

@@ -39,7 +39,8 @@ class _DropdownButtonHashObject extends DropdownButton<HashObject> {
     required final BuildContext context,
     required final ValueNotifier<HashObject> objectValueNotifier,
   }) : super(
-          style: Theme.of(context).textTheme.bodyLarge,
+          dropdownColor: Theme.of(context).customColors.scaffoldBackground,
+          style: Theme.of(context).customTextStyles.d3pBodyLarge,
           value: objectValueNotifier.value,
           items: objectsToUse
               .map(
@@ -48,7 +49,7 @@ class _DropdownButtonHashObject extends DropdownButton<HashObject> {
                   child: Text(
                     e.name.cutWithEllipsis(20),
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).customTextStyles.d3pBodyLarge,
                   ),
                 ),
               )

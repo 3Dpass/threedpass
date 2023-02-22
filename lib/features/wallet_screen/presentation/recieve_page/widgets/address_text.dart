@@ -12,7 +12,6 @@ class _AddressText extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Text(
         address,
-        // style: Theme.of(context).textTheme.bodyLarge,
       ),
     );
   }

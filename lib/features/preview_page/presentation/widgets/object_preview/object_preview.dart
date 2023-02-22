@@ -46,7 +46,7 @@ class _State extends State<ObjectPreview> {
   late final THREE.WebGLRenderTarget renderTarget;
   late final THREE.WebGLRenderer renderer;
   late final THREE.Scene scene;
-  late final Size screenSize;
+  late Size screenSize;
   late final int sourceTexture;
   // Prevent from re-init
   bool startedInit = false;
@@ -128,6 +128,8 @@ class _State extends State<ObjectPreview> {
   }
 
   bool get _objectFileExists {
+    print('FILE EXITST');
+    print(File(widget.snapshot.externalPathToObj!).existsSync());
     return widget.snapshot.externalPathToObj != null &&
         File(widget.snapshot.externalPathToObj!).existsSync();
   }
@@ -140,6 +142,7 @@ class _State extends State<ObjectPreview> {
     // but the [SingleChildScrollView] controller has to
     // detect the lack of space to be triggered. That's why I used SizedBox
     // with heitgh-1 and removed the glow.
+    screenSize = MediaQuery.of(context).size;
     return SizedBox(
       width: width,
       height: height - 0.001,

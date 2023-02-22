@@ -52,9 +52,8 @@ class _TransactionAmount extends StatelessWidget {
       appService.networkStateData.safeDecimals,
     );
     final symbol = appService.networkStateData.tokenSymbol?.first ?? '';
-    return Text(
+    return D3pBodyLargeText(
       '$moneyStr $symbol',
-      style: Theme.of(context).textTheme.bodyLarge,
     );
   }
 }

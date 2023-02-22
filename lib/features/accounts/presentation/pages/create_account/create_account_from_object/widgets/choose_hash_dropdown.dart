@@ -40,8 +40,9 @@ class _DropdownButtonString extends DropdownButton<String> {
     required final BuildContext context,
     required final ValueNotifier<String> chosenHash,
   }) : super(
+          dropdownColor: Theme.of(context).customColors.scaffoldBackground,
+          style: Theme.of(context).customTextStyles.d3pBodyLarge,
           isExpanded: true,
-          style: Theme.of(context).textTheme.bodyLarge,
           value: chosenHash.value,
           items: hashObject.stableHashes
               .map(
@@ -50,7 +51,6 @@ class _DropdownButtonString extends DropdownButton<String> {
                   child: Text(
                     e,
                     maxLines: 3,
-                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),
               )
