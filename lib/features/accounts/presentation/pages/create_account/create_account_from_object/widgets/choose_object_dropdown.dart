@@ -32,16 +32,15 @@ class _ChooseObjectDropdown extends StatelessWidget {
   }
 }
 
-class _DropdownButtonHashObject extends DropdownButton<HashObject> {
+class _DropdownButtonHashObject extends D3pDropdownButton<HashObject> {
   _DropdownButtonHashObject({
     required final List<HashObject> objectsToUse,
     required super.onChanged,
     required final BuildContext context,
     required final ValueNotifier<HashObject> objectValueNotifier,
   }) : super(
-          dropdownColor: Theme.of(context).customColors.scaffoldBackground,
-          style: Theme.of(context).customTextStyles.d3pBodyLarge,
           value: objectValueNotifier.value,
+          context: context,
           items: objectsToUse
               .map(
                 (final e) => DropdownMenuItem<HashObject>(
@@ -49,7 +48,7 @@ class _DropdownButtonHashObject extends DropdownButton<HashObject> {
                   child: Text(
                     e.name.cutWithEllipsis(20),
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).customTextStyles.d3pBodyLarge,
+                    // style: Theme.of(context).customTextStyles.d3pBodyLarge,
                   ),
                 ),
               )

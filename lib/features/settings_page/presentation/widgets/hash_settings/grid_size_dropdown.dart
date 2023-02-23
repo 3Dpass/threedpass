@@ -23,11 +23,9 @@ class _GridSizeDropdown extends StatelessWidget {
     final settings =
         BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings;
 
-    return DropdownButtonFormField<int>(
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-        label: Text('grid_size_label'.tr()),
-      ),
+    return D3pDropdownButtonFormField<int>(
+      context: context,
+      label: 'grid_size_label',
       value: settings.gridSize,
       onChanged: (final int? newValue) => _onGridChanged(context, newValue),
       items: _gridSizes

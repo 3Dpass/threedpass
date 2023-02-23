@@ -65,14 +65,16 @@ class _State extends State<ObjectPreview> {
 
   @override
   void dispose() {
-    three3dRender.dispose();
-    renderer.dispose();
-    renderTarget.dispose();
-    scene.dispose();
-    camera.dispose();
-    // mesh.dispose();
-    object.dispose();
-    texture.dispose();
+    if (_objectFileExists) {
+      three3dRender.dispose();
+      renderer.dispose();
+      renderTarget.dispose();
+      scene.dispose();
+      camera.dispose();
+      // mesh.dispose();
+      object.dispose();
+      texture.dispose();
+    }
 
     super.dispose();
   }

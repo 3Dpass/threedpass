@@ -33,15 +33,14 @@ class _ChooseHashDropdown extends StatelessWidget {
   }
 }
 
-class _DropdownButtonString extends DropdownButton<String> {
+class _DropdownButtonString extends D3pDropdownButton<String> {
   _DropdownButtonString({
     required final HashObject hashObject,
     required super.onChanged,
     required final BuildContext context,
     required final ValueNotifier<String> chosenHash,
   }) : super(
-          dropdownColor: Theme.of(context).customColors.scaffoldBackground,
-          style: Theme.of(context).customTextStyles.d3pBodyLarge,
+          context: context,
           isExpanded: true,
           value: chosenHash.value,
           items: hashObject.stableHashes

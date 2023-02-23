@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/utils/cut_string.dart';
+import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class ChooseList extends StatelessWidget {
@@ -16,8 +17,8 @@ class ChooseList extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return DropdownButton<Snapshot>(
-      style: Theme.of(context).textTheme.bodyLarge,
+    return D3pDropdownButton<Snapshot>(
+      context: context,
       value: chosen,
       items: list
           .map(
@@ -26,7 +27,6 @@ class ChooseList extends StatelessWidget {
               child: Text(
                 e.name.cutWithEllipsis(12),
                 overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.bodyLarge,
               ),
             ),
           )
