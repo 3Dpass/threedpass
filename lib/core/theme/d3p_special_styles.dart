@@ -19,10 +19,9 @@ class CustomTextStyles {
         color: brightness == Brightness.light ? Colors.black : Colors.white,
       );
 
-  TextStyle get switchButtonLabelEnabled => themeData.textTheme.bodyMedium!;
+  TextStyle get switchButtonLabelEnabled => d3pBodyMedium;
 
-  TextStyle get switchButtonLabelDisabled =>
-      themeData.textTheme.bodyMedium!.copyWith(
+  TextStyle get switchButtonLabelDisabled => d3pBodyMedium.copyWith(
         color: themeData.customColors.disabled,
       );
 

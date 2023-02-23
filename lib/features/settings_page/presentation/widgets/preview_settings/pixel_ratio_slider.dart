@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/preview_settings.dart';
@@ -51,17 +52,22 @@ class _State extends State<PixelRatioSlider> {
     final settings =
         BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings;
 
+    final textStyles = Theme.of(context).customTextStyles;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'preview_settings_pixel_ratio_label'.tr(),
-          style: Theme.of(context).textTheme.bodySmall,
+          style: textStyles.dp3BodySmall,
         ),
         Row(
           children: [
-            const Text('$minValue'),
+            Text(
+              '$minValue',
+              style: textStyles.dp3BodySmall,
+            ),
             Flexible(
               child: Container(
                 width: double.infinity,
@@ -75,14 +81,17 @@ class _State extends State<PixelRatioSlider> {
                 ),
               ),
             ),
-            const Text('$maxValue'),
+            Text(
+              '$maxValue',
+              style: textStyles.dp3BodySmall,
+            ),
           ],
         ),
         Padding(
           padding: const EdgeInsets.only(top: 0, left: 16, right: 16),
           child: Text(
             'pixel_ratio_help_text'.tr(),
-            style: Theme.of(context).textTheme.bodySmall,
+            style: textStyles.dp3BodySmall,
           ),
         ),
       ],
