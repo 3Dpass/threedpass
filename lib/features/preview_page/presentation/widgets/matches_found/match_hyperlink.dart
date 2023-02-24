@@ -16,15 +16,18 @@ class MatchHyperlink extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final theme = Theme.of(context);
+    final textStyles = Theme.of(context).customTextStyles;
 
     return RichText(
       text: TextSpan(
         children: <TextSpan>[
-          TextSpan(text: mainText),
+          TextSpan(
+            text: mainText,
+            style: textStyles.d3pBodyMedium,
+          ),
           TextSpan(
             text: clickable,
-            style: theme.customTextStyles.matchesHyperlink,
+            style: textStyles.matchesHyperlink,
             recognizer: TapGestureRecognizer()..onTap = onTap,
           ),
         ],

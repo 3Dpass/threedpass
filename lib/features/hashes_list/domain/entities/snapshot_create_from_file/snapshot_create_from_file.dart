@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:calc/calc.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:logger/logger.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/utils/hash_file.dart';
 import 'package:threedpass/core/utils/pair.dart';
@@ -8,6 +11,7 @@ import 'package:threedpass/core/utils/random_hex.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/file_copy.dart';
 import 'package:threedpass/features/settings_page/domain/entities/algorithm.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/setup.dart';
@@ -33,7 +37,9 @@ class SnapshotFileFactory {
   }
 
   Future<Pair<HashObject?, Snapshot>> createSnapshotFromFile() async {
-    final pickedFile = await _FilePicker().pickFile();
+    final pickedFilePath = await _FilePicker().pickFile();
+
+    final copiedFilePath = await FileCopy().write(pickedFilePath);
 
     showLoader();
 
@@ -43,12 +49,12 @@ class SnapshotFileFactory {
 
     final hashes = await calcHashes(
       scanSettings,
-      pickedFile,
+      copiedFilePath,
       transBytes,
     );
 
     final res = await _createSnapshot(
-      filePath: pickedFile,
+      filePath: copiedFilePath,
       settings: scanSettings,
       hashListState: hashesListBloc.state,
       hashes: hashes,
@@ -89,7 +95,9 @@ class SnapshotFileFactory {
     required final String hashes,
     required final String transBytes,
   }) async {
-    final rawObjName = filePath.split('/').last;
+    // replaceAll('|', '/') returns the original path after copy op
+    final rawObjName = filePath.replaceAll('|', '/').split('/').last;
+
     final snapName = snapshotName(rawObjName);
 
     if (hashListState is HashesListLoaded) {

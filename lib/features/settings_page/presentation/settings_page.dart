@@ -39,7 +39,6 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    print('Settings');
     return PlatformScaffold(
       appBar: SettingsAppbar(),
       body: SingleChildScrollView(

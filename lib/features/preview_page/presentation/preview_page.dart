@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/appbar/preview_appbar.dart';
@@ -24,11 +25,12 @@ class PreviewPage extends StatelessWidget {
     final previewPageCubitState =
         BlocProvider.of<PreviewPageCubit>(context).state;
 
-    return Scaffold(
+    return PlatformScaffold(
       appBar: PreviewAppBar(
         hashObject: previewPageCubitState.hashObject,
         snapshot: previewPageCubitState.snapshot,
         themeData: Theme.of(context),
+        context: context,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
