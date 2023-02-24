@@ -9,7 +9,7 @@ class CalcHashLoadingWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return AlertDialog(
+    return PlatformAlertDialog(
       content: Row(
         children: [
           PlatformCircularProgressIndicator(),

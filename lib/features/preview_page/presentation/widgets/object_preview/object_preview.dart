@@ -93,7 +93,7 @@ class _State extends State<ObjectPreview> {
 
   SnackBar errorSnackBar() => SnackBar(
         content: Text(
-          '.obj file for "${widget.snapshot.name}" does not exists. Path: ${widget.snapshot.externalPathToObj}',
+          '.obj file for "${widget.snapshot.name}" does not exists. Path: ${widget.snapshot.relativePath}',
         ),
       );
 
@@ -131,8 +131,11 @@ class _State extends State<ObjectPreview> {
   }
 
   bool get _objectFileExists {
-    return widget.snapshot.externalPathToObj != null &&
-        File(widget.snapshot.externalPathToObj!).existsSync();
+    print(
+      'FILE EXISTS: ${File(widget.snapshot.realPath).existsSync()} ${widget.snapshot.realPath}',
+    );
+    return widget.snapshot.realPath != null &&
+        File(widget.snapshot.realPath!).existsSync();
   }
 
   @override

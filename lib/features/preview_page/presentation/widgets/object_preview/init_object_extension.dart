@@ -26,8 +26,7 @@ extension _ on _State {
 
   Future<void> loadObj() async {
     final loader = THREE_JSM.OBJLoader(null);
-    object = await loader.loadAsync(widget.snapshot.externalPathToObj)
-        as THREE.Object3D;
+    object = await loader.loadAsync(widget.snapshot.realPath) as THREE.Object3D;
     object.traverse((final dynamic child) {
       if (child is THREE.Mesh) {
         child.material.map = texture;

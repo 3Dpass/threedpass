@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:polkawallet_sdk/api/types/balanceData.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/balance_card/avaliable_balance_card.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/balance_card/locked_balance_card.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/balance_card/reserved_balance_card.dart';
@@ -33,11 +34,11 @@ class ActualBalance extends StatelessWidget {
               children: [
                 TextSpan(
                   text: ' ' + tokenSymbol,
-                  style: Theme.of(context).textTheme.bodySmall,
+                  style: Theme.of(context).customTextStyles.dp3BodySmall,
                 ),
               ],
             ),
-            style: Theme.of(context).textTheme.headlineMedium,
+            style: Theme.of(context).customTextStyles.d3pheadlineMedium,
           ),
           const SizedBox(height: 16),
           Column(

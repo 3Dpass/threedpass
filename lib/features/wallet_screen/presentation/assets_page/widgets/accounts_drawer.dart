@@ -19,7 +19,9 @@ class AccountsDrawer extends Drawer {
     final Key? key,
   }) : super(
           key: key,
+          backgroundColor: Theme.of(context).customColors.scaffoldBackground,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             // Important: Remove any padding from the ListView.
             // padding: EdgeInsets.zero,
             // physics: const NeverScrollableScrollPhysics(),

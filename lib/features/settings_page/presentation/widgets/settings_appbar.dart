@@ -10,7 +10,7 @@ class SettingsAppbar extends D3pPlatformAppBar {
     final Key? key,
   }) : super(
           key: key,
-          titleText: 'settings_title'.tr(),
+          titleText: 'settings_title',
           trailingActions: const [
             SizedBox(
               height: kToolbarHeight,

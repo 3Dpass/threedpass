@@ -4,8 +4,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/accounts_drawer.dart';
@@ -28,6 +30,7 @@ class AssetsPage extends StatelessWidget {
       builder: (final context, final state) {
         final theme = Theme.of(context);
         return Scaffold(
+          backgroundColor: Theme.of(context).customColors.scaffoldBackground,
           appBar: AssetPageAppbar(
             account: state.keyring.current,
             themeData: theme,

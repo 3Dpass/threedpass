@@ -1,9 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/remove_account_dialog.dart';
 
@@ -14,7 +16,7 @@ class AccountActions extends StatelessWidget {
     final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
     switch (value) {
       case 1:
-        await showDialog(
+        await showPlatformDialog(
           context: outerContext,
           builder: (final _) => const RemoveAccountDialog(),
         );
@@ -24,6 +26,31 @@ class AccountActions extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    // TODO CHECK ANDROID
+    return BlocBuilder<AppServiceLoaderCubit, AppService>(
+      builder: (final context, final state) {
+        return PlatformPopupMenu(
+          icon: Icon(
+            Icons.more_horiz_outlined,
+            color: Theme.of(context).customColors.appBarButton,
+          ),
+          options: [
+            PopupMenuOption(
+              label: 'remove_account_button_label'.tr(),
+              onTap: (final _) => onSelected(1, context),
+              cupertino: (final _, final __) => CupertinoPopupMenuOptionData(
+                isDestructiveAction: true,
+              ),
+            ),
+          ],
+          // onSelected: (final int? value) => onSelected(value, context),
+          // itemBuilder: (final context) => [
+          //   _RemoveAccountMenuItem(appService: state),
+          // ],
+        );
+      },
+    );
+
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
       builder: (final context, final state) => PopupMenuButton(
         icon: Icon(

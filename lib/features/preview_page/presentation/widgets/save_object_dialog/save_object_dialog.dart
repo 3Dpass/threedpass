@@ -2,8 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/utils/validators.dart';
+import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -50,55 +54,32 @@ class SaveObjectDialog extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Dialog(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                'create_object_title'.tr(),
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 8,
-                  right: 8,
-                  bottom: 8,
-                  top: 16,
-                ),
-                child: _ObjectNameInput(objectNameController),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8, bottom: 16),
-                child: _SnapshotNameInput(snapshotNameController),
-              ),
-              Flexible(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: TextButton(
-                        child: Text('Cancel'.tr()),
-                        onPressed: () => context.router.pop(),
-                      ),
-                    ),
-                    const Spacer(),
-                    Flexible(
-                      child: TextButton(
-                        child: Text('Save'.tr()),
-                        onPressed: () => saveObject(context),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+    return PlatformAlertDialog(
+      title: Text(
+        'create_object_title'.tr(),
+        style: Theme.of(context).customTextStyles.d3ptitleMedium,
+      ),
+      content: Form(
+        key: _formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            _ObjectNameInput(objectNameController),
+            const SizedBoxH8(),
+            _SnapshotNameInput(snapshotNameController),
+          ],
         ),
       ),
+      actions: [
+        D3pTextButton(
+          text: 'Cancel'.tr(),
+          onPressed: () => context.router.pop(),
+        ),
+        D3pTextButton(
+          text: 'Save'.tr(),
+          onPressed: () => saveObject(context),
+        ),
+      ],
     );
   }
 }

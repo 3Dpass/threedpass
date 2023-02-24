@@ -59,11 +59,11 @@ class _Placeholder extends StatelessWidget {
   Widget build(final BuildContext context) => Text.rich(
         TextSpan(
           text: 'no_stable_hash_placeholder'.tr() + '\n',
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).customTextStyles.d3pBodyLarge,
           children: [
             TextSpan(
               text: 'no_stable_hash_help'.tr(),
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).customTextStyles.d3pBodyMedium,
             ),
           ],
         ),
