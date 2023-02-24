@@ -11,6 +11,7 @@ class D3pDropdownButton<T> extends DropdownButton<T> {
     required super.value,
     super.isExpanded,
     super.key,
+    super.selectedItemBuilder,
   }) : super(
           dropdownColor: Theme.of(context).customColors.scaffoldBackground,
           style: Theme.of(context).customTextStyles.d3pBodyLarge,
@@ -27,6 +28,7 @@ class D3pDropdownButtonFormField<T> extends DropdownButtonFormField<T> {
     required final String label,
     super.isExpanded,
     super.key,
+    super.selectedItemBuilder,
   }) : super(
           dropdownColor: Theme.of(context).customColors.scaffoldBackground,
           style: Theme.of(context).customTextStyles.d3pBodyLarge,

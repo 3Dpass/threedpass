@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/theme/d3p_theme.dart';
 
 class D3pTextButton extends StatelessWidget {
   const D3pTextButton({
@@ -35,7 +36,12 @@ class D3pTextButton extends StatelessWidget {
             ),
           ),
           cupertino: (final _, final __) => CupertinoTextButtonData(),
-          child: Text(text),
+          child: Text(
+            text,
+            style: TextStyle(
+              color: textColor ?? D3pThemeData.mainColor,
+            ),
+          ),
         ),
       ),
     );

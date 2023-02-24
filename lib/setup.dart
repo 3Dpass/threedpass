@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:ferry/ferry.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:threedp_graphql/features/transfers_history/data/repositories/transfers_repository.dart';
 import 'package:threedp_graphql/threedp_graphql.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';

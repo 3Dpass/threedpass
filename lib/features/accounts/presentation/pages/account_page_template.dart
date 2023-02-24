@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/widgets/appbars/common_string_appbar.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
+import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 
 class AccountPageTemplate extends StatelessWidget {
   const AccountPageTemplate({
@@ -65,11 +65,9 @@ class AccountPageTemplate extends StatelessWidget {
   final Widget? submitButton;
 
   @override
-  Widget build(final BuildContext context) => Scaffold(
-        appBar: CommonStringAppbar(
-          title: appbarTitle.tr(),
-          theme: Theme.of(context),
-        ),
+  Widget build(final BuildContext context) => D3pScaffold(
+        // TODO Add back button in case first page of import or generation
+        appbarTitle: appbarTitle,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

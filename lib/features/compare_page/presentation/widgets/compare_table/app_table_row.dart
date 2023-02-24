@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/compare_page/domain/entities/row_data.dart';
 
 class AppTableRow extends StatelessWidget {
@@ -15,14 +17,17 @@ class AppTableRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
-          Text(rowData.rank1),
+          D3pBodyMediumText(
+            rowData.rank1,
+            translate: false,
+          ),
           const SizedBox(
             width: 48,
           ),
           Flexible(
             child: Text(
               rowData.hash,
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              style: Theme.of(context).customTextStyles.d3pBodyMedium.copyWith(
                     fontWeight: rowData.isStableHash ? FontWeight.bold : null,
                   ),
             ),
@@ -30,7 +35,10 @@ class AppTableRow extends StatelessWidget {
           const SizedBox(
             width: 48,
           ),
-          Text(rowData.rank2),
+          D3pBodyMediumText(
+            rowData.rank2,
+            translate: false,
+          ),
         ],
       ),
     );

@@ -6,7 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/utils/cut_string.dart';
-import 'package:threedpass/core/widgets/appbars/common_string_appbar.dart';
 import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
