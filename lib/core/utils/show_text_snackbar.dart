@@ -11,6 +11,7 @@ class FastSnackBar {
   final BuildContext context;
 
   void show() {
+    // TODO FIX FOR ANDROID
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(textCode.tr()),

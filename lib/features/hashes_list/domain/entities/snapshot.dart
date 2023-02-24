@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:threedpass/core/utils/hash2.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
+import 'package:threedpass/setup.dart';
 
 part 'snapshot.g.dart';
 
@@ -19,8 +20,13 @@ class Snapshot {
   @HiveField(2)
   final List<String> hashes;
 
-  @HiveField(3)
-  final String? externalPathToObj;
+  @HiveField(6)
+  final String? relativePath;
+
+  String get realPath =>
+      getIt<String>(instanceName: 'documentsPath') +
+      '/objects/' +
+      relativePath!;
 
   @HiveField(4)
   final ScanSettings settingsConfig;
@@ -34,7 +40,7 @@ class Snapshot {
     required this.hashes,
     required this.settingsConfig,
     required this.fileHash,
-    this.externalPathToObj,
+    this.relativePath,
   });
 
   String get shareText => hashes.join('\n');

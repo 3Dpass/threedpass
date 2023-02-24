@@ -86,4 +86,8 @@ Future<void> setup() async {
       repository: getIt<TransfersRepository>(),
     ),
   );
+
+  final Directory supportDir = await getApplicationDocumentsDirectory();
+  getIt.registerSingleton<String>(supportDir.path,
+      instanceName: 'documentsPath');
 }

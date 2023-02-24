@@ -39,7 +39,7 @@ class SnapshotFileFactory {
   Future<Pair<HashObject?, Snapshot>> createSnapshotFromFile() async {
     final pickedFilePath = await _FilePicker().pickFile();
 
-    final copiedFilePath = await FileCopy().write(pickedFilePath);
+    final relativePath = await FileCopy().write(pickedFilePath);
 
     showLoader();
 
@@ -49,13 +49,14 @@ class SnapshotFileFactory {
 
     final hashes = await calcHashes(
       scanSettings,
-      copiedFilePath,
+      pickedFilePath,
       transBytes,
     );
 
     final res = await _createSnapshot(
-      filePath: copiedFilePath,
+      filePath: pickedFilePath,
       settings: scanSettings,
+      relativePath: relativePath,
       hashListState: hashesListBloc.state,
       hashes: hashes,
       transBytes: transBytes,
@@ -94,9 +95,9 @@ class SnapshotFileFactory {
     required final HashesListState hashListState,
     required final String hashes,
     required final String transBytes,
+    required final String relativePath,
   }) async {
-    // replaceAll('|', '/') returns the original path after copy op
-    final rawObjName = filePath.replaceAll('|', '/').split('/').last;
+    final rawObjName = filePath.split('/').last;
 
     final snapName = snapshotName(rawObjName);
 
@@ -105,7 +106,7 @@ class SnapshotFileFactory {
         name: snapName,
         hashes: hashes.split('\n'),
         stamp: DateTime.now(),
-        externalPathToObj: filePath,
+        relativePath: relativePath,
         settingsConfig: settings.copyWith(
           transBytes: transBytes,
         ),

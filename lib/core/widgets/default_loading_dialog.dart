@@ -10,7 +10,7 @@ class DefaultLoadingDialog extends StatelessWidget {
   final String? text;
 
   static void show(final BuildContext context, [final String? text]) {
-    showDialog(
+    showPlatformDialog(
       useRootNavigator: false,
       context: context,
       barrierDismissible: false,

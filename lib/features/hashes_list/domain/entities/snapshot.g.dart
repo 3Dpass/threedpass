@@ -7,13 +7,13 @@ part of 'snapshot.dart';
 // **************************************************************************
 
 abstract class _$SnapshotCWProxy {
-  Snapshot externalPathToObj(String? externalPathToObj);
-
   Snapshot fileHash(int fileHash);
 
   Snapshot hashes(List<String> hashes);
 
   Snapshot name(String name);
+
+  Snapshot relativePath(String? relativePath);
 
   Snapshot settingsConfig(ScanSettings settingsConfig);
 
@@ -26,10 +26,10 @@ abstract class _$SnapshotCWProxy {
   /// Snapshot(...).copyWith(id: 12, name: "My name")
   /// ````
   Snapshot call({
-    String? externalPathToObj,
     int? fileHash,
     List<String>? hashes,
     String? name,
+    String? relativePath,
     ScanSettings? settingsConfig,
     DateTime? stamp,
   });
@@ -42,10 +42,6 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
   const _$SnapshotCWProxyImpl(this._value);
 
   @override
-  Snapshot externalPathToObj(String? externalPathToObj) =>
-      this(externalPathToObj: externalPathToObj);
-
-  @override
   Snapshot fileHash(int fileHash) => this(fileHash: fileHash);
 
   @override
@@ -53,6 +49,10 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
 
   @override
   Snapshot name(String name) => this(name: name);
+
+  @override
+  Snapshot relativePath(String? relativePath) =>
+      this(relativePath: relativePath);
 
   @override
   Snapshot settingsConfig(ScanSettings settingsConfig) =>
@@ -70,18 +70,14 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
   /// Snapshot(...).copyWith(id: 12, name: "My name")
   /// ````
   Snapshot call({
-    Object? externalPathToObj = const $CopyWithPlaceholder(),
     Object? fileHash = const $CopyWithPlaceholder(),
     Object? hashes = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
+    Object? relativePath = const $CopyWithPlaceholder(),
     Object? settingsConfig = const $CopyWithPlaceholder(),
     Object? stamp = const $CopyWithPlaceholder(),
   }) {
     return Snapshot(
-      externalPathToObj: externalPathToObj == const $CopyWithPlaceholder()
-          ? _value.externalPathToObj
-          // ignore: cast_nullable_to_non_nullable
-          : externalPathToObj as String?,
       fileHash: fileHash == const $CopyWithPlaceholder() || fileHash == null
           ? _value.fileHash
           // ignore: cast_nullable_to_non_nullable
@@ -94,6 +90,10 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
           : name as String,
+      relativePath: relativePath == const $CopyWithPlaceholder()
+          ? _value.relativePath
+          // ignore: cast_nullable_to_non_nullable
+          : relativePath as String?,
       settingsConfig: settingsConfig == const $CopyWithPlaceholder() ||
               settingsConfig == null
           ? _value.settingsConfig
@@ -133,7 +133,7 @@ class SnapshotAdapter extends TypeAdapter<Snapshot> {
       hashes: (fields[2] as List).cast<String>(),
       settingsConfig: fields[4] as ScanSettings,
       fileHash: fields[5] as int,
-      externalPathToObj: fields[3] as String?,
+      relativePath: fields[6] as String?,
     );
   }
 
@@ -147,8 +147,8 @@ class SnapshotAdapter extends TypeAdapter<Snapshot> {
       ..write(obj.stamp)
       ..writeByte(2)
       ..write(obj.hashes)
-      ..writeByte(3)
-      ..write(obj.externalPathToObj)
+      ..writeByte(6)
+      ..write(obj.relativePath)
       ..writeByte(4)
       ..write(obj.settingsConfig)
       ..writeByte(5)
