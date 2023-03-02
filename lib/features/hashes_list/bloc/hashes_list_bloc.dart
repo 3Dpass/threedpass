@@ -63,7 +63,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
           obj.snapshots.remove(snapshotToRemove);
 
           // if only one snapshot, delete whole object
-          if (obj.snapshots.length == 0) {
+          if (obj.snapshots.isEmpty) {
             add(DeleteObject(object: obj));
             return;
           }

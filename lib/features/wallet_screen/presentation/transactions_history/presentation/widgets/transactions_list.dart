@@ -15,9 +15,6 @@ class _TransactionsList extends StatelessWidget {
     return PagedListView<String, TransferItem>.separated(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       pagingController: pagingController,
-      physics: Platform.isIOS
-          ? const BouncingScrollPhysics()
-          : const ClampingScrollPhysics(),
       separatorBuilder: (final context, final index) => const Divider(),
       builderDelegate: PagedChildBuilderDelegate<TransferItem>(
         itemBuilder: (final context, final item, final index) =>

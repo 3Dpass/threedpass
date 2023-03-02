@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';

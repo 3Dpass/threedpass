@@ -4,7 +4,6 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/list_tile_button.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart';

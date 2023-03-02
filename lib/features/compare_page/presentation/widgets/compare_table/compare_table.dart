@@ -21,67 +21,89 @@ class CompareTable extends StatelessWidget {
     final mainObject = cubit.origObj;
     final stableHashes = cubit.stableHashes;
 
-    return BlocBuilder<CompareCubit, Snapshot>(builder: (context, state) {
-      final comparable = state;
+    return BlocBuilder<CompareCubit, Snapshot>(
+      builder: (final context, final state) {
+        final rowsData = RowsData(
+          context: context,
+          objectToCompare: state,
+          mainObject: mainObject,
+          stableHashes: stableHashes,
+        ).build();
 
-      final rowsData = <RowData>[];
-      for (final mainHash in mainObject.hashes) {
-        if (comparable.hashes.contains(mainHash)) {
-          rowsData.add(
-            RowData(
-              rank1: (mainObject.hashes.indexOf(mainHash) + 1).toString(),
-              hash: mainHash,
-              rank2: (comparable.hashes.indexOf(mainHash) + 1).toString(),
-              isStableHash: stableHashes.contains(mainHash),
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(
+              height: 16,
             ),
-          );
-        }
-      }
-
-      print(rowsData.length);
-
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(
-            height: 16,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Rank'.tr(),
-                  style: customStyles.tableHeader,
-                ),
-                Text(
-                  'Hash'.tr(),
-                  style: customStyles.tableHeader,
-                ),
-                Text(
-                  'Rank'.tr(),
-                  style: customStyles.tableHeader,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Flexible(
-            child: ListView.separated(
-              shrinkWrap: true,
-              itemBuilder: (final context, final index) =>
-                  AppTableRow(rowData: rowsData[index]),
-              separatorBuilder: (final _, final __) => Divider(
-                color: theme.customColors.dividerColor,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Rank'.tr(),
+                    style: customStyles.tableHeader,
+                  ),
+                  Text(
+                    'Hash'.tr(),
+                    style: customStyles.tableHeader,
+                  ),
+                  Text(
+                    'Rank'.tr(),
+                    style: customStyles.tableHeader,
+                  ),
+                ],
               ),
-              itemCount: rowsData.length,
             ),
+            const SizedBox(
+              height: 16,
+            ),
+            Flexible(
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (final context, final index) =>
+                    AppTableRow(rowData: rowsData[index]),
+                separatorBuilder: (final _, final __) => Divider(
+                  color: theme.customColors.dividerColor,
+                ),
+                itemCount: rowsData.length,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class RowsData {
+  const RowsData({
+    required this.context,
+    required this.objectToCompare,
+    required this.mainObject,
+    required this.stableHashes,
+  });
+  final BuildContext context;
+  final Snapshot objectToCompare;
+  final Snapshot mainObject;
+  final List<String> stableHashes;
+
+  List<RowData> build() {
+    final rowsData = <RowData>[];
+    for (final mainHash in mainObject.hashes) {
+      if (objectToCompare.hashes.contains(mainHash)) {
+        rowsData.add(
+          RowData(
+            rank1: (mainObject.hashes.indexOf(mainHash) + 1).toString(),
+            hash: mainHash,
+            rank2: (objectToCompare.hashes.indexOf(mainHash) + 1).toString(),
+            isStableHash: stableHashes.contains(mainHash),
           ),
-        ],
-      );
-    });
+        );
+      }
+    }
+
+    return rowsData;
   }
 }

@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:calc/calc.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:logger/logger.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/utils/hash_file.dart';
 import 'package:threedpass/core/utils/pair.dart';

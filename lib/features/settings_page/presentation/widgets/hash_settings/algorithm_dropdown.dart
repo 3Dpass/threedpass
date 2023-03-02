@@ -19,7 +19,6 @@ class _AlgorithmDropdown extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final textStyles = Theme.of(context).customTextStyles;
     return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
       buildWhen: (final previous, final current) => false,
       builder: (final context, final state) =>

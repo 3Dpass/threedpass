@@ -6,9 +6,6 @@ import 'package:share_plus/share_plus.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/features/hashes_list/presentation/widgets/hashes_primitive_list.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
-import 'package:threedpass/router/router.gr.dart';
-
-part 'save_top_hashes_button.dart';
 
 class SaveTopHashesDialog extends StatelessWidget {
   const SaveTopHashesDialog({

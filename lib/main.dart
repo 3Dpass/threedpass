@@ -5,8 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
-import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
-import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/theme_builder.dart';

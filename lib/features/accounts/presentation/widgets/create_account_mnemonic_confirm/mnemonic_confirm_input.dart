@@ -36,7 +36,7 @@ class MnemonicConfirmInput extends StatelessWidget {
             children: List.generate(
               state.words.length,
               (final index) => ConstrainedBox(
-                constraints: BoxConstraints.loose(Size(100, 50)),
+                constraints: BoxConstraints.loose(const Size(100, 50)),
                 child: D3pElevatedButton(
                   text: state.words[index],
                   onPressed: () => BlocProvider.of<MnemonicInputCubit>(context)

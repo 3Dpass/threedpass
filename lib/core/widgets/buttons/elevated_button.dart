@@ -25,14 +25,6 @@ class D3pElevatedButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    // final d3pElevatedTheme = D3pElevatedButtonStyle(
-    //   themeData: Theme.of(context),
-    //   isButtonActive: onPressed != null,
-    //   minimumSize: minimumSize,
-    //   foregroundColor: foregroundColor,
-    //   backgroundColor: backgroundColor,
-    // );
-
     return Padding(
       padding: padding ?? EdgeInsets.zero,
       child: SizedBox(
@@ -68,13 +60,11 @@ class _ElevatedButtonChild extends StatelessWidget {
     required this.icon,
     required this.iconData,
     required this.text,
-    this.textStyle,
   });
 
   final String text;
   final IconData? iconData;
   final Widget? icon;
-  final TextStyle? textStyle;
 
   @override
   Widget build(final BuildContext context) {
@@ -86,10 +76,9 @@ class _ElevatedButtonChild extends StatelessWidget {
                 icon: icon,
                 iconData: iconData,
               )
-            : SizedBox(),
+            : const SizedBox(),
         Text(
           text,
-          style: textStyle,
         ),
       ],
     );

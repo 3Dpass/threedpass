@@ -27,8 +27,13 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
     // I fixed them here: https://github.com/L3odr0id/polkawallet_sdk/commit/ccafe364cb231c7d1888648257f5f3002ebb8b2b
     // But it turned out that there is a problem with the JS code deep inside.
     final fee = await appService.plugin.sdk.api.tx.estimateFees(txInfo, params);
+    print(appService.networkStateData.tokenDecimals);
+    print(fee.partialFee);
+    print(fee.weight);
     // TODO Add fees
     final b = 1 + 1;
+
+    emit(TransferInfo(balance: state.balance, fees: fee));
   }
 }
 

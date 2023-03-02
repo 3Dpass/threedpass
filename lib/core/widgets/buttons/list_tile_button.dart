@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 
