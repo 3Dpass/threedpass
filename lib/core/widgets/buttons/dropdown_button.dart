@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/theme/d3p_theme.dart';
 
 class D3pDropdownButton<T> extends DropdownButton<T> {
   D3pDropdownButton({
@@ -37,6 +38,9 @@ class D3pDropdownButtonFormField<T> extends DropdownButtonFormField<T> {
             label: Text(
               label.tr(),
               style: Theme.of(context).customTextStyles.d3pBodyMedium,
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: D3pThemeData.mainColor),
             ),
           ),
         );
