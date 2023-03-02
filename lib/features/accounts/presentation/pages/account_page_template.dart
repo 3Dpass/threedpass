@@ -10,6 +10,7 @@ class AccountPageTemplate extends StatelessWidget {
     final Key? key,
     this.onSubmitPressed,
     this.submitButton,
+    this.disableScrolling,
     this.disableBottomButton = false,
     final bool? needHorizontalPadding,
   })  : assert(
@@ -26,6 +27,7 @@ class AccountPageTemplate extends StatelessWidget {
     final Key? key,
     this.onSubmitPressed,
     this.submitButton,
+    this.disableScrolling,
     this.disableBottomButton = false,
     final bool? needHorizontalPadding,
   })  : assert(
@@ -43,6 +45,7 @@ class AccountPageTemplate extends StatelessWidget {
     final Key? key,
     this.onSubmitPressed,
     this.submitButton,
+    this.disableScrolling,
     this.disableBottomButton = false,
     final bool? needHorizontalPadding,
   })  :
@@ -63,6 +66,7 @@ class AccountPageTemplate extends StatelessWidget {
   final bool disableBottomButton;
   final bool needHorizontalPadding;
   final Widget? submitButton;
+  final bool? disableScrolling;
 
   @override
   Widget build(final BuildContext context) => D3pScaffold(
@@ -74,7 +78,9 @@ class AccountPageTemplate extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: ListView(
-                  // physics: NeverScrollableScrollPhysics(),
+                  physics: disableScrolling ?? false
+                      ? const NeverScrollableScrollPhysics()
+                      : null,
                   padding: EdgeInsets.symmetric(
                     vertical: 16,
                     horizontal: needHorizontalPadding ? 16 : 0,

@@ -34,10 +34,9 @@ class AccountsDrawer extends Drawer {
                 material: (final _, final __) => MaterialAppBarData(
                   automaticallyImplyLeading: false,
                   backgroundColor: theme.customColors.appBarBackground,
-                  foregroundColor: theme.customColors.appBarBackground,
+                  foregroundColor: theme.customColors.appBarColor,
                   centerTitle: true,
                 ),
-                // TODO Check cupertino theme
                 cupertino: (final _, final __) => CupertinoNavigationBarData(
                   automaticallyImplyLeading: false,
                   backgroundColor: theme.customColors.appBarBackground,

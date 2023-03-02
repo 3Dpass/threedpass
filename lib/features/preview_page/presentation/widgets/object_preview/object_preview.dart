@@ -134,8 +134,7 @@ class _State extends State<ObjectPreview> {
     print(
       'FILE EXISTS: ${File(widget.snapshot.realPath).existsSync()} ${widget.snapshot.realPath}',
     );
-    return widget.snapshot.realPath != null &&
-        File(widget.snapshot.realPath!).existsSync();
+    return File(widget.snapshot.realPath).existsSync();
   }
 
   @override
