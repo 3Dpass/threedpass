@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:threedpass/core/utils/hash2.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/setup.dart';
 
@@ -20,13 +21,14 @@ class Snapshot {
   @HiveField(2)
   final List<String> hashes;
 
+  @HiveField(3)
+  final String? externalPathToObj;
+
   @HiveField(6)
   final String? relativePath;
 
   String get realPath =>
-      getIt<String>(instanceName: 'documentsPath') +
-      '/objects/' +
-      relativePath!;
+      externalPathToObj ?? getIt<ObjectsDirectory>().path + relativePath!;
 
   @HiveField(4)
   final ScanSettings settingsConfig;
@@ -41,6 +43,7 @@ class Snapshot {
     required this.settingsConfig,
     required this.fileHash,
     this.relativePath,
+    this.externalPathToObj,
   });
 
   String get shareText => hashes.join('\n');

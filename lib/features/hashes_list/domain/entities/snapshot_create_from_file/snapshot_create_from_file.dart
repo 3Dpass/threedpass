@@ -10,6 +10,7 @@ import 'package:threedpass/core/utils/pair.dart';
 import 'package:threedpass/core/utils/random_hex.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/file_copy.dart';
 import 'package:threedpass/features/settings_page/domain/entities/algorithm.dart';
@@ -23,12 +24,14 @@ class SnapshotFileFactory {
   final ScanSettings scanSettings;
   final HashesListBloc hashesListBloc;
   final void Function() showLoader;
+  final ObjectsDirectory objectsDirectory;
   // final void Function() hideLoader;
 
   SnapshotFileFactory({
     required this.scanSettings,
     required this.hashesListBloc,
     required this.showLoader,
+    required this.objectsDirectory,
     // required this.hideLoader,
   });
 
@@ -39,9 +42,9 @@ class SnapshotFileFactory {
   Future<Pair<HashObject?, Snapshot>> createSnapshotFromFile() async {
     final pickedFilePath = await _FilePicker().pickFile();
 
-    final relativePath = await FileCopy().write(pickedFilePath);
-
     showLoader();
+
+    final relativePath = await FileCopy(objectsDirectory).write(pickedFilePath);
 
     final transBytes = await _TransBytes(
       scanSettings: scanSettings,

@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/domain/repositories/hashes_repository.dart';
 import 'package:threedpass/setup.dart';
@@ -11,6 +14,7 @@ part 'hashes_list_state.dart';
 class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
   HashesListBloc({
     required this.hashesRepository,
+    required this.objectsDirectory,
   }) : super(HashesListInitial()) {
     on<DeleteHash>(_deleteHash);
     on<DeleteObject>(_deleteObject);
@@ -21,6 +25,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
   }
 
   final HashesRepository hashesRepository;
+  final ObjectsDirectory objectsDirectory;
 
   Future<void> init() async {
     final objects = hashesRepository.getAll();
@@ -43,14 +48,26 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       bool f = false;
       for (final obj in list) {
         if (obj.localId == event.object.localId) {
+          // get snapshot to remove
+          final snapshotToRemove = obj.snapshots.firstWhere(
+            (final snap) => snap == event.hash,
+          );
+
+          final shouldDeleteFile =
+              obj.isObjectFileCanBeDeletedWithSnapshot(snapshotToRemove);
+
+          if (shouldDeleteFile) {
+            File(snapshotToRemove.realPath).deleteSync();
+          }
+
+          obj.snapshots.remove(snapshotToRemove);
+
           // if only one snapshot, delete whole object
-          if (obj.snapshots.length == 1) {
+          if (obj.snapshots.length == 0) {
             add(DeleteObject(object: obj));
             return;
           }
-          obj.snapshots.removeWhere(
-            (final snap) => snap == event.hash,
-          );
+
           f = true;
           break;
         }

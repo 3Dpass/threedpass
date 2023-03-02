@@ -7,6 +7,8 @@ part of 'snapshot.dart';
 // **************************************************************************
 
 abstract class _$SnapshotCWProxy {
+  Snapshot externalPathToObj(String? externalPathToObj);
+
   Snapshot fileHash(int fileHash);
 
   Snapshot hashes(List<String> hashes);
@@ -26,6 +28,7 @@ abstract class _$SnapshotCWProxy {
   /// Snapshot(...).copyWith(id: 12, name: "My name")
   /// ````
   Snapshot call({
+    String? externalPathToObj,
     int? fileHash,
     List<String>? hashes,
     String? name,
@@ -40,6 +43,10 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
   final Snapshot _value;
 
   const _$SnapshotCWProxyImpl(this._value);
+
+  @override
+  Snapshot externalPathToObj(String? externalPathToObj) =>
+      this(externalPathToObj: externalPathToObj);
 
   @override
   Snapshot fileHash(int fileHash) => this(fileHash: fileHash);
@@ -70,6 +77,7 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
   /// Snapshot(...).copyWith(id: 12, name: "My name")
   /// ````
   Snapshot call({
+    Object? externalPathToObj = const $CopyWithPlaceholder(),
     Object? fileHash = const $CopyWithPlaceholder(),
     Object? hashes = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
@@ -78,6 +86,10 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
     Object? stamp = const $CopyWithPlaceholder(),
   }) {
     return Snapshot(
+      externalPathToObj: externalPathToObj == const $CopyWithPlaceholder()
+          ? _value.externalPathToObj
+          // ignore: cast_nullable_to_non_nullable
+          : externalPathToObj as String?,
       fileHash: fileHash == const $CopyWithPlaceholder() || fileHash == null
           ? _value.fileHash
           // ignore: cast_nullable_to_non_nullable
@@ -134,19 +146,22 @@ class SnapshotAdapter extends TypeAdapter<Snapshot> {
       settingsConfig: fields[4] as ScanSettings,
       fileHash: fields[5] as int,
       relativePath: fields[6] as String?,
+      externalPathToObj: fields[3] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Snapshot obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
       ..write(obj.stamp)
       ..writeByte(2)
       ..write(obj.hashes)
+      ..writeByte(3)
+      ..write(obj.externalPathToObj)
       ..writeByte(6)
       ..write(obj.relativePath)
       ..writeByte(4)

@@ -10,6 +10,7 @@ import 'package:threedp_graphql/threedp_graphql.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/data/repositories/hash_list_store.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/hashes_list/domain/repositories/hashes_repository.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/data/repositories/settings_store.dart';
@@ -22,6 +23,11 @@ final getIt = GetIt.instance;
 Future<void> setup() async {
   final PackageInfo packageInfo = await PackageInfo.fromPlatform();
   getIt.registerSingleton<PackageInfo>(packageInfo);
+
+  final Directory supportDir = await getApplicationDocumentsDirectory();
+  getIt.registerSingleton<ObjectsDirectory>(
+    ObjectsDirectory(supportDir.path),
+  );
 
   // Storages
   getIt.registerSingleton<HiveHashStore>(
@@ -56,6 +62,7 @@ Future<void> setup() async {
   getIt.registerFactory<HashesListBloc>(
     () => HashesListBloc(
       hashesRepository: getIt<HashesRepository>(),
+      objectsDirectory: getIt<ObjectsDirectory>(),
     )..init(),
   );
 
@@ -86,8 +93,4 @@ Future<void> setup() async {
       repository: getIt<TransfersRepository>(),
     ),
   );
-
-  final Directory supportDir = await getApplicationDocumentsDirectory();
-  getIt.registerSingleton<String>(supportDir.path,
-      instanceName: 'documentsPath');
 }
