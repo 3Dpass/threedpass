@@ -14,38 +14,32 @@ class MnemonicConfirmInput extends StatelessWidget {
         children: [
           MnemonicTextField(text: state.result),
           const SizedBox(height: 12),
-          // GridView.builder(
-          //   itemCount: state.words.length,
-          //   shrinkWrap: true,
-          //   gridDelegate:
-          //       SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-          //   itemBuilder: (final context, final index) => SizedBox(
-          //     width: 100,
-          //     height: 100,
-          //     child: D3pElevatedButton(
-          //       text: state.words[index],
-          //       onPressed: () => BlocProvider.of<MnemonicInputCubit>(context)
-          //           .onWordPressed(index),
-          //     ),
-          //   ),
-          // ),
-
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: List.generate(
-              state.words.length,
-              (final index) => ConstrainedBox(
-                constraints: BoxConstraints.loose(const Size(100, 50)),
-                child: D3pElevatedButton(
-                  text: state.words[index],
-                  onPressed: () => BlocProvider.of<MnemonicInputCubit>(context)
-                      .onWordPressed(index),
-                ),
-              ),
-            ),
-          ),
+          _MnemonicGrid(state),
         ],
+      ),
+    );
+  }
+}
+
+class _MnemonicGrid extends StatelessWidget {
+  final MnemonicInputState state;
+  const _MnemonicGrid(this.state);
+
+  @override
+  Widget build(final BuildContext context) {
+    return Wrap(
+      spacing: 10,
+      runSpacing: 10,
+      children: List.generate(
+        state.words.length,
+        (final index) => ConstrainedBox(
+          constraints: BoxConstraints.loose(const Size(100, 50)),
+          child: D3pElevatedButton(
+            text: state.words[index],
+            onPressed: () => BlocProvider.of<MnemonicInputCubit>(context)
+                .onWordPressed(index),
+          ),
+        ),
       ),
     );
   }

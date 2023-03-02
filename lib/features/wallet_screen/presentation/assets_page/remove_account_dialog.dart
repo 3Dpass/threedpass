@@ -6,6 +6,7 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
+import 'package:threedpass/core/widgets/dialog/d3p_platform_dialog.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 
 class RemoveAccountDialog extends StatelessWidget {
@@ -50,13 +51,11 @@ class RemoveAccountDialog extends StatelessWidget {
     final appService = appServiceLoaderCubit.state;
     final customColors = Theme.of(context).customColors;
 
-    return PlatformAlertDialog(
-      title: Text(
-        'remove_accout_dialog_title'.tr(
-          args: [
-            Fmt.shorterAddress(appService.keyring.current.address),
-          ],
-        ),
+    return D3pPlatformDialog(
+      title: 'remove_accout_dialog_title'.tr(
+        args: [
+          Fmt.shorterAddress(appService.keyring.current.address),
+        ],
       ),
       content: const D3pBodyMediumText('remove_accout_dialog_text'),
       actions: [

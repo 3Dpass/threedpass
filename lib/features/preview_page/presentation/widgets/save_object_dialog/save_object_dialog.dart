@@ -6,6 +6,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/utils/validators.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
+import 'package:threedpass/core/widgets/dialog/d3p_platform_dialog.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
@@ -54,11 +55,8 @@ class SaveObjectDialog extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return PlatformAlertDialog(
-      title: Text(
-        'create_object_title'.tr(),
-        style: Theme.of(context).customTextStyles.d3ptitleMedium,
-      ),
+    return D3pPlatformDialog(
+      title: 'create_object_title'.tr(),
       content: Form(
         key: _formKey,
         child: Column(

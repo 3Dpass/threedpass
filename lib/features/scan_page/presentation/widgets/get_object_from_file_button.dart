@@ -21,9 +21,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
   const GetObjectFromFileFloatingButton({final Key? key}) : super(key: key);
 
   void showSnackBar(final String text, final BuildContext context) {
-    if (Platform.isAndroid) {
-      FastSnackBar(textCode: text, context: context).show();
-    } // TODO Notify users with CupertinoApp
+    FastSnackBar(textCode: text, context: context).show();
   }
 
   void showLoader(final BuildContext context) {

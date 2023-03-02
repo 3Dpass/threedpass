@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/compare_page/bloc/compare_cubit.dart';
 import 'package:threedpass/features/compare_page/domain/entities/row_data.dart';
 import 'package:threedpass/features/compare_page/presentation/widgets/compare_table/app_table_row.dart';
+import 'package:threedpass/features/compare_page/presentation/widgets/compare_table/table_header.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class CompareTable extends StatelessWidget {
@@ -16,7 +18,6 @@ class CompareTable extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final customStyles = theme.customTextStyles;
     final cubit = context.read<CompareCubit>();
     final mainObject = cubit.origObj;
     final stableHashes = cubit.stableHashes;
@@ -33,32 +34,9 @@ class CompareTable extends StatelessWidget {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(
-              height: 16,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Rank'.tr(),
-                    style: customStyles.tableHeader,
-                  ),
-                  Text(
-                    'Hash'.tr(),
-                    style: customStyles.tableHeader,
-                  ),
-                  Text(
-                    'Rank'.tr(),
-                    style: customStyles.tableHeader,
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBoxH16(),
+            TableHeader(),
+            const SizedBoxH16(),
             Flexible(
               child: ListView.separated(
                 shrinkWrap: true,

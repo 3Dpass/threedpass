@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
+import 'package:threedpass/core/widgets/dialog/d3p_platform_dialog.dart';
 import 'package:threedpass/features/hashes_list/presentation/widgets/hashes_primitive_list.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 
@@ -22,8 +23,8 @@ class SaveTopHashesDialog extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return PlatformAlertDialog(
-      title: Text('top_10_hashes'.tr()),
+    return D3pPlatformDialog(
+      title: 'top_10_hashes'.tr(),
       content: SingleChildScrollView(
         child: HashesPrimitiveList(
           hashesModel: pageCubitState.snapshot,

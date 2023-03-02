@@ -24,6 +24,7 @@ class TransferItem {
     late final String? fromAddress;
     late final String? toAddress;
 
+    // I know this is not debuggable and unreadable. But this is the way it works.
     try {
       final d1 = await service.encodeAddress([fromAccountId!], [ss58Format]);
       fromAddress = d1![ss58Format.toString()][fromAccountId] as String;

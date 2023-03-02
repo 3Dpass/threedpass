@@ -16,7 +16,9 @@ class _DarkThemeSwitch extends StatelessWidget {
     final newState = cubit.state.copyWith(appSettings: newAppSettings);
     cubit.updateSettings(newState);
     // test1.value = !test1.value;
-    Phoenix.rebirth(context);
+    if (Platform.isIOS) {
+      Phoenix.rebirth(context);
+    }
   }
 
   @override

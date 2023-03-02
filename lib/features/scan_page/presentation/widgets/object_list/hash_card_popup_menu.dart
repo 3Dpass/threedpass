@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -36,35 +38,52 @@ class HashCardPopUpMenuButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final customColors = Theme.of(context).customColors;
-    return PopupMenuButton(
+    return PlatformPopupMenu(
       icon: Icon(Icons.more_vert, color: customColors.popMenuIcon),
-      onSelected: (final int? value) => onSelected(value, context),
-      itemBuilder: (final context) => [
-        PopupMenuItem(
-          value: 1,
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
-                child: Icon(Icons.share, color: customColors.popMenuIcon),
-              ),
-              Text('Share'.tr()),
-            ],
-          ),
+      options: [
+        _PopupMenuOption(
+          onTap: () => onSelected(1, context),
+          label: 'Share',
+          isDestructiveActioniOS: false,
+          iconColorAndroid: customColors.popMenuIcon,
+          iconDataAndroid: Icons.share,
         ),
-        PopupMenuItem(
-          value: 2,
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
-                child: Icon(Icons.delete, color: customColors.popMenuIcon),
-              ),
-              Text('Delete'.tr()),
-            ],
-          ),
+        _PopupMenuOption(
+          onTap: () => onSelected(2, context),
+          label: 'Delete',
+          isDestructiveActioniOS: true,
+          iconColorAndroid: customColors.popMenuIcon,
+          iconDataAndroid: Icons.delete,
         ),
       ],
     );
   }
+}
+
+class _PopupMenuOption extends PopupMenuOption {
+  _PopupMenuOption({
+    required final void Function() onTap,
+    required final String label,
+    required final IconData iconDataAndroid,
+    required final Color iconColorAndroid,
+    final bool isDestructiveActioniOS = false,
+  }) : super(
+          label: label.tr(),
+          onTap: (final _) => onTap(),
+          material: (final context, final platform) =>
+              MaterialPopupMenuOptionData(
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+                  child: Icon(iconDataAndroid, color: iconColorAndroid),
+                ),
+                D3pBodyMediumText(label.tr()),
+              ],
+            ),
+          ),
+          cupertino: (final _, final __) => CupertinoPopupMenuOptionData(
+            isDestructiveAction: isDestructiveActioniOS,
+          ),
+        );
 }

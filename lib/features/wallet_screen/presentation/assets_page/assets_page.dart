@@ -29,7 +29,7 @@ class AssetsPage extends StatelessWidget {
       builder: (final context, final state) {
         final theme = Theme.of(context);
         return Scaffold(
-          backgroundColor: Theme.of(context).customColors.scaffoldBackground,
+          backgroundColor: theme.customColors.scaffoldBackground,
           appBar: AssetPageAppbar(
             account: state.keyring.current,
             themeData: theme,

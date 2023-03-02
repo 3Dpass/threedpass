@@ -23,7 +23,6 @@ class SnapshotCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final textStyles = Theme.of(context).customTextStyles;
     return D3pCard(
       child: InkWell(
         onTap: () => context.router.push(

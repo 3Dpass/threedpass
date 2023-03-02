@@ -46,21 +46,20 @@ class ThreeDApp extends StatelessWidget {
 
     return GlobalStatesProvider(
       builder: (final BuildContext __) => ThemeBuilder(
-        builder: (final BuildContext context, final Brightness brightness) {
-          return Phoenix(
-            child: PlatformApp.router(
-              debugShowCheckedModeBanner: false,
-              title: '3Dpass',
-              material: _MainMaterialAppRouterData(brightness).theme,
-              cupertino: _MainCupertinoAppRouterData(brightness).theme,
-              routerDelegate: _appRouter.delegate(),
-              routeInformationParser: _appRouter.defaultRouteParser(),
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
-            ),
-          );
-        },
+        builder: (final BuildContext context, final Brightness brightness) =>
+            Phoenix(
+          child: PlatformApp.router(
+            debugShowCheckedModeBanner: false,
+            title: '3Dpass',
+            material: _MainMaterialAppRouterData(brightness).theme,
+            cupertino: _MainCupertinoAppRouterData(brightness).theme,
+            routerDelegate: _appRouter.delegate(),
+            routeInformationParser: _appRouter.defaultRouteParser(),
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+          ),
+        ),
       ),
     );
   }

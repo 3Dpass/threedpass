@@ -32,7 +32,6 @@ class DeleteSnapshotButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return D3pElevatedButton(
-      // minimumSize: const Size.fromHeight(50),
       text: 'delete_snapshot_button'.tr(),
       onPressed: () => deleteSnapshot(context),
     );

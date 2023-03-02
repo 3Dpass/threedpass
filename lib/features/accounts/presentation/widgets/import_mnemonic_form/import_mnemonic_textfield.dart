@@ -27,7 +27,7 @@ class ImportMnemonicTextfield extends StatelessWidget {
 
   void changeAddressIconPreview(final String? s, final BuildContext context) {
     if (s != null) {
-      final mnemonic = s.trim();
+      final String mnemonic = s.trim().toLowerCase();
       if (mnemonic.split(' ').length >= 12) {
         BlocProvider.of<AddressIconDataPreviewCubit>(context)
             .updateInfo(mnemonic);
