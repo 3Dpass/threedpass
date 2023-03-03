@@ -1,10 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
+import 'package:threedpass/core/widgets/dialog/d3p_platform_dialog.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 
 class RemoveAccountDialog extends StatelessWidget {
   const RemoveAccountDialog({final Key? key}) : super(key: key);
@@ -48,37 +51,22 @@ class RemoveAccountDialog extends StatelessWidget {
     final appService = appServiceLoaderCubit.state;
     final customColors = Theme.of(context).customColors;
 
-    return AlertDialog(
-      title: Text(
-        'remove_accout_dialog_title'.tr(
-          args: [
-            Fmt.shorterAddress(appService.keyring.current.address),
-          ],
-        ),
+    return D3pPlatformDialog(
+      title: 'remove_accout_dialog_title'.tr(
+        args: [
+          Fmt.shorterAddress(appService.keyring.current.address),
+        ],
       ),
-      content: Text('remove_accout_dialog_text'.tr()),
+      content: const D3pBodyMediumText('remove_accout_dialog_text'),
       actions: [
-        SizedBox(
-          // height: 35,
-          child: Row(
-            children: [
-              const Spacer(),
-              Flexible(
-                child: D3pTextButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  text: 'Cancel'.tr(),
-                ),
-              ),
-              Flexible(
-                child: D3pTextButton(
-                  onPressed: () =>
-                      deleteAccount(appServiceLoaderCubit, context),
-                  text: 'Delete'.tr(),
-                  textColor: customColors.dangerColor,
-                ),
-              ),
-            ],
-          ),
+        D3pTextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          text: 'Cancel'.tr(),
+        ),
+        D3pTextButton(
+          onPressed: () => deleteAccount(appServiceLoaderCubit, context),
+          text: 'Delete'.tr(),
+          textColor: customColors.dangerColor,
         ),
       ],
     );

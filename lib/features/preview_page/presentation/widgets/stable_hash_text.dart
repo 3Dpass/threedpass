@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 
 class StableHashText extends StatelessWidget {
@@ -46,7 +47,7 @@ class StableHashText extends StatelessWidget {
         text: 'stable_hashes_list_title'.tr() + '\n',
         children: children,
       ),
-      style: Theme.of(context).textTheme.bodyLarge,
+      style: Theme.of(context).customTextStyles.d3pBodyLarge,
     );
   }
 }
@@ -58,11 +59,11 @@ class _Placeholder extends StatelessWidget {
   Widget build(final BuildContext context) => Text.rich(
         TextSpan(
           text: 'no_stable_hash_placeholder'.tr() + '\n',
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).customTextStyles.d3pBodyLarge,
           children: [
             TextSpan(
               text: 'no_stable_hash_help'.tr(),
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).customTextStyles.d3pBodyMedium,
             ),
           ],
         ),

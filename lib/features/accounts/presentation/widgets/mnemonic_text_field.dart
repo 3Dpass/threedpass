@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
 class MnemonicTextField extends StatelessWidget {
   const MnemonicTextField({
@@ -22,6 +23,7 @@ class MnemonicTextField extends StatelessWidget {
       ),
       child: Text(
         text,
+        style: Theme.of(context).customTextStyles.d3pBodyMedium,
       ),
     );
   }

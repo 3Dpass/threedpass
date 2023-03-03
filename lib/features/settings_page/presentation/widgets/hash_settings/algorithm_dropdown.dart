@@ -21,11 +21,10 @@ class _AlgorithmDropdown extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
       buildWhen: (final previous, final current) => false,
-      builder: (final context, final state) => DropdownButtonFormField<String>(
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-          label: Text('choose_algorithm_label'.tr()),
-        ),
+      builder: (final context, final state) =>
+          D3pDropdownButtonFormField<String>(
+        context: context,
+        label: 'choose_algorithm_label',
         value: state.scanSettings.algorithm,
         onChanged: (final String? newValue) =>
             _onAlgorithmChanged(context, newValue),

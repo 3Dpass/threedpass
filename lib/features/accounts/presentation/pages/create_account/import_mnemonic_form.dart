@@ -30,7 +30,7 @@ class ImportMnemonicForm extends StatelessWidget {
     if (_formKey.currentState != null && _formKey.currentState!.validate()) {
       // Api call to check mnemonic
       DefaultLoadingDialog.show(outerContext);
-      final input = mnemonicInput.trim();
+      final input = mnemonicInput.trim().toLowerCase();
       final res =
           await appService.plugin.sdk.api.keyring.checkMnemonicValid(input);
 

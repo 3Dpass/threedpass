@@ -32,7 +32,6 @@ class D3pSwitchButton extends StatelessWidget {
           valueListenable: switchValueNotifier,
           builder: (final context, final hasError, final child) =>
               PlatformSwitch(
-            activeColor: Theme.of(context).colorScheme.secondary,
             value: switchValueNotifier.value,
             // ignore: prefer-extracting-callbacks
             onChanged: onChanged != null

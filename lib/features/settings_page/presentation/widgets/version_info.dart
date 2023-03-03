@@ -1,10 +1,7 @@
-// import 'package:flutter/material.dart';
-// import 'package:package_info_plus/package_info_plus.dart';
-// import 'package:threedpass/setup.dart';
 part of '../settings_page.dart';
 
 class _VersionInfo extends StatelessWidget {
-  const _VersionInfo({super.key});
+  const _VersionInfo();
 
   @override
   Widget build(final BuildContext context) {

@@ -4,7 +4,6 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/list_tile_button.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart';
@@ -19,22 +18,24 @@ class AccountsDrawer extends Drawer {
     final Key? key,
   }) : super(
           key: key,
-          child: ListView(
+          backgroundColor: Theme.of(context).customColors.scaffoldBackground,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
+            // padding: EdgeInsets.zero,
+            // physics: const NeverScrollableScrollPhysics(),
             children: [
               PlatformAppBar(
                 title: Text(
                   'choose_account_assets_page_drawer'.tr(),
-                  style: theme.customTextStyles.appBarText,
+                  // style: theme.customTextStyles.appBarText,
                 ),
                 material: (final _, final __) => MaterialAppBarData(
                   automaticallyImplyLeading: false,
                   backgroundColor: theme.customColors.appBarBackground,
-                  foregroundColor: theme.customColors.appBarBackground,
+                  foregroundColor: theme.customColors.appBarColor,
                   centerTitle: true,
                 ),
-                // TODO Check cupertino theme
                 cupertino: (final _, final __) => CupertinoNavigationBarData(
                   automaticallyImplyLeading: false,
                   backgroundColor: theme.customColors.appBarBackground,
@@ -53,18 +54,22 @@ class AccountsDrawer extends Drawer {
                 onPressed: () => CreateAccountWrapper.pushToImportType(context),
               ),
               const Divider(),
-              ...List.generate(
-                accounts.length,
-                (final index) => ListTileButton.usual(
-                  text: accounts[index].name ?? 'Anonymous',
-                  onPressed: accounts[index].address == current.address
-                      ? null
-                      : () {
-                          appServiceCubit.changeAccount(accounts[index]);
-                          Navigator.of(context).pop();
-                        },
-                  // backgroundColor: Theme.of(context).canvasColor,
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
+              Flexible(
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shrinkWrap: true,
+                  itemCount: accounts.length,
+                  itemBuilder: (final _, final index) => ListTileButton.usual(
+                    text: accounts[index].name ?? 'Anonymous',
+                    onPressed: accounts[index].address == current.address
+                        ? null
+                        : () {
+                            appServiceCubit.changeAccount(accounts[index]);
+                            Navigator.of(context).pop();
+                          },
+                    // backgroundColor: Theme.of(context).canvasColor,
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                  ),
                 ),
               ),
             ],

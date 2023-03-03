@@ -9,7 +9,7 @@ class _AppSettingsBlock extends StatelessWidget {
       children: [
         Text(
           'app_settings_title'.tr(),
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).customTextStyles.d3ptitleLarge,
         ),
         const SizedBoxH8(),
         const _RequirementsTextField(),

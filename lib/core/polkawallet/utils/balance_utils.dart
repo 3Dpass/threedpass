@@ -82,7 +82,7 @@ class BalanceUtils {
         v = double.parse(value);
       }
     } on Exception catch (err) {
-      getIt<Logger>().e('BalanceUtils.tokenInt() error: ${err.toString()}');
+      getIt<Logger>().e('BalanceUtils.tokenInt() error: ${err}');
       // debugPrint();
     }
     return BigInt.from(v * pow(10, decimals));

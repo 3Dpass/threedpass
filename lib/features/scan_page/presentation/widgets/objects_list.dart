@@ -1,5 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/snapshots_list.dart';
 
@@ -50,8 +50,8 @@ class _ObjectTitle extends StatelessWidget {
   Widget build(final BuildContext context) => Padding(
         padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
         child: Text(
-          'object_title_prefix'.tr() + ' ' + title,
-          style: Theme.of(context).textTheme.titleLarge,
+          title,
+          style: Theme.of(context).customTextStyles.d3ptitleLarge,
         ),
       );
 }

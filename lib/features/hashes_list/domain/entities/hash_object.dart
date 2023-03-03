@@ -114,4 +114,26 @@ class HashObject {
 
     return hashFreq;
   }
+
+  /// if more than 1 snapshots connected to the file or
+  /// it's external, it can NOT be deleted
+  bool isObjectFileCanBeDeletedWithSnapshot(final Snapshot snapshot) {
+    final relativePath = snapshot.relativePath;
+
+    if (relativePath == null) {
+      // Snapshot linked to the external object
+      return false;
+    } else {
+      // find how many snapshots connected
+      int connections = 0;
+      for (final snap in snapshots) {
+        if (snap.relativePath == relativePath) {
+          connections += 1;
+        }
+      }
+
+      // 1 connection is the snapshot itself
+      return connections < 2;
+    }
+  }
 }

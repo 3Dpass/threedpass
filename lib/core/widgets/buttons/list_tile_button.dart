@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/theme/d3p_theme.dart';
 
 class ListTileButton extends StatelessWidget {
   const ListTileButton.bottom({
@@ -62,7 +64,7 @@ class ListTileButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     final mainColor =
-        onPressed != null ? theme.colorScheme.primary : theme.disabledColor;
+        onPressed != null ? D3pThemeData.mainColor : theme.disabledColor;
 
     return Padding(
       padding: padding ?? EdgeInsets.zero,
@@ -74,7 +76,8 @@ class ListTileButton extends StatelessWidget {
             children: [
               Text(
                 text,
-                style: theme.textTheme.labelLarge!.copyWith(color: mainColor),
+                style: theme.customTextStyles.d3plabelLarge
+                    .copyWith(color: mainColor),
               ),
               Icon(
                 Icons.arrow_right_outlined,
@@ -82,12 +85,15 @@ class ListTileButton extends StatelessWidget {
               ),
             ],
           ),
-          // TODO Check cupertino theme
           material: (final context, final platform) => _ListTileMaterial(
             themeData: theme,
             backgroundColor: backgroundColor,
             border: border,
           ).style(),
+          cupertino: (final context, final platform) => CupertinoTextButtonData(
+            // color: mainColor,
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+          ),
         ),
       ),
     );

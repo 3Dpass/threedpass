@@ -25,33 +25,29 @@ class D3pElevatedButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final d3pElevatedTheme = D3pElevatedButtonStyle(
-      themeData: Theme.of(context),
-      isButtonActive: onPressed != null,
-      minimumSize: minimumSize,
-      foregroundColor: foregroundColor,
-      backgroundColor: backgroundColor,
-    );
-
     return Padding(
       padding: padding ?? EdgeInsets.zero,
       child: SizedBox(
         child: PlatformElevatedButton(
           padding: padding ?? EdgeInsets.zero,
           onPressed: onPressed,
-          material: (final context, final _) => MaterialElevatedButtonData(
-            style: d3pElevatedTheme
-                .resolveMaterial(), // TODO Do same for cupertino
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _Icon(
-                icon: icon,
-                iconData: iconData,
-              ),
-              Text(text),
-            ],
+          // material: (final context, final platform) =>
+          //     d3pElevatedTheme.resolveMaterial(
+          //   text: text,
+          //   icon: icon,
+          //   iconData: iconData,
+          // ),
+          // cupertino: (final context, final _) =>
+          //     d3pElevatedTheme.resolveCupertino(
+          //   context: context,
+          //   text: text,
+          //   icon: icon,
+          //   iconData: iconData,
+          // ),
+          child: _ElevatedButtonChild(
+            icon: icon,
+            iconData: iconData,
+            text: text,
           ),
         ),
       ),
@@ -59,62 +55,104 @@ class D3pElevatedButton extends StatelessWidget {
   }
 }
 
-/// Default styles are for elevated buttons on canvas background
-class D3pElevatedButtonThemeData {
-  final Color backgroundColor;
-  final Color foregroundColor;
-
-  // const D3pElevatedButtonThemeData._({
-  //   required this.backgroundColor,
-  //   required this.foregroundColor,
-  // });
-
-  D3pElevatedButtonThemeData.active(final ThemeData themeData)
-      : backgroundColor = themeData.colorScheme.primary,
-        foregroundColor = themeData.colorScheme.onPrimary;
-
-  D3pElevatedButtonThemeData.disabled(final ThemeData themeData)
-      : backgroundColor = themeData.cardColor,
-        foregroundColor = themeData.colorScheme.onSurface.withOpacity(0.50);
-}
-
-class D3pElevatedButtonStyle {
-  final bool isButtonActive;
-  final ThemeData themeData;
-
-  final Size? minimumSize;
-  final Color? foregroundColor;
-  final Color? backgroundColor;
-
-  const D3pElevatedButtonStyle({
-    required this.isButtonActive,
-    required this.themeData,
-    required this.foregroundColor,
-    required this.backgroundColor,
-    required this.minimumSize,
+class _ElevatedButtonChild extends StatelessWidget {
+  const _ElevatedButtonChild({
+    required this.icon,
+    required this.iconData,
+    required this.text,
   });
 
-  ButtonStyle resolveMaterial() {
-    final d3pButtonDefaultTheme = isButtonActive
-        ? D3pElevatedButtonThemeData.active(themeData)
-        : D3pElevatedButtonThemeData.disabled(themeData);
+  final String text;
+  final IconData? iconData;
+  final Widget? icon;
 
-    final basicMaterial = ElevatedButton.styleFrom(
-      minimumSize: minimumSize ?? const Size.fromHeight(50),
+  @override
+  Widget build(final BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        (icon != null || iconData != null)
+            ? _Icon(
+                icon: icon,
+                iconData: iconData,
+              )
+            : const SizedBox(),
+        Text(
+          text,
+        ),
+      ],
     );
-
-    final materialTheme = basicMaterial.copyWith(
-      foregroundColor: MaterialStateProperty.all(
-        foregroundColor ?? d3pButtonDefaultTheme.foregroundColor,
-      ),
-      backgroundColor: MaterialStateProperty.all(
-        backgroundColor ?? d3pButtonDefaultTheme.backgroundColor,
-      ),
-    );
-
-    return materialTheme;
   }
 }
+
+// /// Default styles are for elevated buttons on canvas background
+// class D3pElevatedButtonThemeData {
+//   final Color backgroundColor;
+//   final Color foregroundColor;
+
+//   // const D3pElevatedButtonThemeData._({
+//   //   required this.backgroundColor,
+//   //   required this.foregroundColor,
+//   // });
+
+//   D3pElevatedButtonThemeData.active(final ThemeData themeData)
+//       : backgroundColor = themeData.colorScheme.primary,
+//         foregroundColor = themeData.colorScheme.onPrimary;
+
+//   D3pElevatedButtonThemeData.disabled(final ThemeData themeData)
+//       : backgroundColor = themeData.cardColor,
+//         foregroundColor = themeData.colorScheme.onSurface.withOpacity(0.50);
+// }
+
+// class D3pElevatedButtonStyle {
+//   final bool isButtonActive;
+//   final ThemeData themeData;
+
+//   final Size? minimumSize;
+//   final Color? foregroundColor;
+//   final Color? backgroundColor;
+
+//   const D3pElevatedButtonStyle({
+//     required this.isButtonActive,
+//     required this.themeData,
+//     required this.foregroundColor,
+//     required this.backgroundColor,
+//     required this.minimumSize,
+//   });
+
+//   MaterialElevatedButtonData resolveMaterial({
+//     required final Widget? icon,
+//     required final IconData? iconData,
+//     required final String text,
+//   }) {
+//     return MaterialElevatedButtonData(
+//       child: _ElevatedButtonChild(
+//         icon: icon,
+//         iconData: iconData,
+//         text: text,
+//       ),
+//     );
+//   }
+
+//   CupertinoElevatedButtonData resolveCupertino({
+//     required final BuildContext context,
+//     required final Widget? icon,
+//     required final IconData? iconData,
+//     required final String text,
+//   }) {
+//     return CupertinoElevatedButtonData(
+//       // color: Colors.orange,
+//       originalStyle: false,
+//       // onPressed: () {},
+//       // disabledColor: Colors.amber,
+//       child: _ElevatedButtonChild(
+//         icon: icon,
+//         iconData: iconData,
+//         text: text,
+//       ),
+//     );
+//   }
+// }
 
 class _Icon extends StatelessWidget {
   const _Icon({

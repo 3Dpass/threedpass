@@ -11,14 +11,15 @@ class _ScanSettingsTitle extends StatelessWidget {
         .scanSettings
         .libVersion;
 
+    final textStyles = Theme.of(context).customTextStyles;
     return Text.rich(
       TextSpan(
         text: 'hash_settings_title'.tr() + ' ',
-        style: Theme.of(context).textTheme.titleLarge,
+        style: textStyles.d3ptitleLarge,
         children: [
           TextSpan(
             text: 'lib version: ' + libVersion,
-            style: Theme.of(context).textTheme.bodySmall,
+            style: textStyles.dp3BodySmall,
           ),
         ],
       ),

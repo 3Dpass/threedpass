@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class FastSnackBar {
   const FastSnackBar({
@@ -11,10 +14,14 @@ class FastSnackBar {
   final BuildContext context;
 
   void show() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(textCode.tr()),
-      ),
-    );
+    if (Platform.isIOS) {
+      Fluttertoast.showToast(msg: textCode.tr());
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(textCode.tr()),
+        ),
+      );
+    }
   }
 }

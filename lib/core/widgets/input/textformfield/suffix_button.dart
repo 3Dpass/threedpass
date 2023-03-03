@@ -22,7 +22,8 @@ class _SuffixButton {
               labelButton != null
                   ? SizedBox(
                       width: 60,
-                      child: TextButton(
+                      child: PlatformTextButton(
+                        padding: EdgeInsets.zero,
                         onPressed: onLabelButtonPressed ?? emptyFunction,
                         child: Text(labelButton!),
                       ),
@@ -34,7 +35,8 @@ class _SuffixButton {
               suffixButton != null
                   ? SizedBox(
                       width: 60,
-                      child: TextButton(
+                      child: PlatformTextButton(
+                        padding: EdgeInsets.zero,
                         onPressed: onSuffixButtonPressed ?? emptyFunction,
                         child: Text(suffixButton!),
                       ),

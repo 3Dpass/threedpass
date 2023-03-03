@@ -18,8 +18,11 @@ class HashesPrimitiveList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List<Widget>.generate(
         len,
-        (final int index) => HashPrimitiveItem(
-          hash: hashesModel.hashes[index],
+        (final int index) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: HashPrimitiveItem(
+            hash: hashesModel.hashes[index],
+          ),
         ),
       ),
     );

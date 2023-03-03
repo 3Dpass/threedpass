@@ -9,7 +9,7 @@ class _NoItemsFound extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8),
       child: Align(
         alignment: Alignment.topCenter,
-        child: Text('no_transfers'.tr()),
+        child: D3pBodyMediumText('no_transfers'.tr()),
       ),
     );
   }
