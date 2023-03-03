@@ -70,7 +70,6 @@ class AccountPageTemplate extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => D3pScaffold(
-        // TODO Add back button in case first page of import or generation
         appbarTitle: appbarTitle,
         body: SafeArea(
           child: Column(

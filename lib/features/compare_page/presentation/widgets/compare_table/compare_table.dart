@@ -1,8 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/compare_page/bloc/compare_cubit.dart';
 import 'package:threedpass/features/compare_page/domain/entities/row_data.dart';
@@ -35,7 +33,7 @@ class CompareTable extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBoxH16(),
-            TableHeader(),
+            const TableHeader(),
             const SizedBoxH16(),
             Flexible(
               child: ListView.separated(

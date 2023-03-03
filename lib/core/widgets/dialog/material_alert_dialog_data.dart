@@ -9,7 +9,7 @@ class D3pMaterialAlertDialog extends MaterialAlertDialogData {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ...actions.map<Widget>(
-                  (e) => Flexible(
+                  (final e) => Flexible(
                     child: e,
                   ),
                 ),

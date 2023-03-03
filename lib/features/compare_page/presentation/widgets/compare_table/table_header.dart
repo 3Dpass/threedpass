@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
 class TableHeader extends StatelessWidget {
+  const TableHeader({super.key});
+
   @override
   Widget build(final BuildContext context) {
     final customStyles = Theme.of(context).customTextStyles;

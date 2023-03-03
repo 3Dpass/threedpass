@@ -85,7 +85,6 @@ class ListTileButton extends StatelessWidget {
               ),
             ],
           ),
-          // TODO Check cupertino theme
           material: (final context, final platform) => _ListTileMaterial(
             themeData: theme,
             backgroundColor: backgroundColor,
