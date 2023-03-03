@@ -72,6 +72,11 @@ android {
 
     signingConfigs {
         release {
+//            storeFile file('aaaaa')
+//            keyPassword 'aaa'
+//            storePassword 'aaa'
+//            keyAlias 'aaaa'
+
             if (System.getenv("KEYSTORE_PATH")){
                 println("signingConfigs release")
                 // If you are reading these lines check the link:
