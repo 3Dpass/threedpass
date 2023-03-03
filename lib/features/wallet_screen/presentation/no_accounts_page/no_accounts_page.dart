@@ -1,6 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/widgets/appbars/common_logo_appbar.dart';
+import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/presentation/no_accounts_page/widgets/account_card.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/connect_status.dart';
@@ -10,18 +9,15 @@ class NoAccountsPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Scaffold(
-      appBar: CommonLogoAppbar(
-        title: 'wallet_header_title'.tr(),
-        theme: Theme.of(context),
-      ),
+    return D3pScaffold(
+      removeBackButton: true,
+      appbarTitle: 'wallet_header_title',
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
           ConnectStatus(),
           SizedBoxH24(),
           AccountCard(),
-          SizedBox(),
         ],
       ),
     );

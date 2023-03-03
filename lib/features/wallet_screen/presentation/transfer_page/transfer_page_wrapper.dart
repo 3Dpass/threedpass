@@ -26,7 +26,7 @@ class TransferPageWrapper extends StatelessWidget implements AutoRouteWrapper {
       providers: [
         BlocProvider<TransferInfoCubit>(
           // We are not calculating fees now
-          create: (final _) => TransferInfoCubit(balance), //..init(appService)
+          create: (final _) => TransferInfoCubit(balance)..init(appService),
           lazy: false,
         ),
         BlocProvider(

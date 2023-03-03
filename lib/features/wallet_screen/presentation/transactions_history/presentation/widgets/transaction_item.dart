@@ -52,9 +52,8 @@ class _TransactionAmount extends StatelessWidget {
       appService.networkStateData.safeDecimals,
     );
     final symbol = appService.networkStateData.tokenSymbol?.first ?? '';
-    return Text(
+    return D3pBodyLargeText(
       '$moneyStr $symbol',
-      style: Theme.of(context).textTheme.bodyLarge,
     );
   }
 }
@@ -73,14 +72,13 @@ class _ShortAddress extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final addressStr = Fmt.shorterAddress(address, pad: 10);
+    final styles = Theme.of(context).customTextStyles;
     return Row(
       children: [
         Flexible(
           child: Text(
             '$prefix $addressStr',
-            style: colorSecondary
-                ? Theme.of(context).customTextStyles.secondaryText
-                : null,
+            style: colorSecondary ? styles.secondaryText : styles.d3pBodyMedium,
           ),
         ),
         colorSecondary ? const SizedBox() : _CopyButton(address),
@@ -96,7 +94,7 @@ class _BlockDatetime extends StatelessWidget {
   Widget build(final BuildContext context) {
     final dt = DateTime.parse(dateTime.value);
     final fmt = DateFormat('kk:mm – dd-MM-yyyy').format(dt);
-    return Text(fmt);
+    return D3pBodyMediumText(fmt);
   }
 }
 

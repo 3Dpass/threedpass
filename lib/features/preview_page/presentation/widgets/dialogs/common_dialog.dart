@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
+import 'package:threedpass/core/widgets/dialog/d3p_platform_dialog.dart';
+import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
@@ -26,42 +28,28 @@ class CommonDialog extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return AlertDialog(
-      // TODO Use PlatfromAlertDialog
-      title: Text(
-        title,
-        style: Theme.of(context).textTheme.titleLarge,
-      ),
+    return D3pPlatformDialog(
+      title: title,
       content: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            TextField(
-              decoration: const InputDecoration(
-                isCollapsed: false,
-              ),
+            D3pTextFormField(
+              // decoration: const InputDecoration(
+              //   isCollapsed: false,
+              // ),
               controller: controller,
             ),
           ],
         ),
       ),
       actions: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Flexible(
-              child: D3pTextButton(
-                text: 'Cancel'.tr(),
-                onPressed: () => context.router.pop(),
-              ),
-            ),
-            const Spacer(),
-            Flexible(
-              child: D3pTextButton(
-                text: actionText,
-                onPressed: () => action(controller.text),
-              ),
-            ),
-          ],
+        D3pTextButton(
+          text: 'Cancel'.tr(),
+          onPressed: () => context.router.pop(),
+        ),
+        D3pTextButton(
+          text: actionText,
+          onPressed: () => action(controller.text),
         ),
       ],
     );

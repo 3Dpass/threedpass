@@ -7,11 +7,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/utils/show_text_snackbar.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/snapshot_create_from_file.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
+import 'package:threedpass/setup.dart';
 
 // TODO refactor. Move logit out of UI
 class GetObjectFromFileFloatingButton extends StatelessWidget {
@@ -42,6 +44,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       hashesListBloc: BlocProvider.of<HashesListBloc>(context),
       scanSettings:
           BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings,
+      objectsDirectory: getIt<ObjectsDirectory>(),
     );
 
     try {

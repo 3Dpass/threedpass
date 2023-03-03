@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/theme/d3p_colors.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/utils/empty_function.dart';
 
 part 'suffix_button.dart';
@@ -51,15 +55,23 @@ class D3pTextFormField extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final textStyle = Theme.of(context).customTextStyles;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
           height: labelText == null ? 44 : null,
           child: TextFormField(
+            style: textStyle.d3pBodyLarge,
             decoration: InputDecoration(
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: D3pThemeData.mainColor),
+              ),
               contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-              label: Text(labelText ?? ''),
+              label: Text(
+                labelText ?? '',
+                style: textStyle.d3pBodyMedium,
+              ),
               suffixIcon: _SuffixButton(
                 labelButton: labelButton,
                 suffixButton: suffixButton,
@@ -67,6 +79,10 @@ class D3pTextFormField extends StatelessWidget {
                 onSuffixButtonPressed: onSuffixButtonPressed,
               ).build(context),
               hintText: hintText,
+              hintStyle: Theme.of(context)
+                  .customTextStyles
+                  .d3pBodyMedium
+                  .copyWith(color: D3pColors.disabled),
               isCollapsed: isCollapsed,
             ),
             controller: controller,
@@ -75,7 +91,7 @@ class D3pTextFormField extends StatelessWidget {
             maxLength: maxLen,
             enabled: enabled,
             validator: validator,
-            maxLines: maxLines,
+            maxLines: obscureText ?? false ? 1 : maxLines,
             keyboardType: keyboardType,
             obscureText: obscureText ?? false,
             autovalidateMode: AutovalidateMode.onUserInteraction,

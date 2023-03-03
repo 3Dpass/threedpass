@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/widgets/appbars/common_string_appbar.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
+import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 
 class AccountPageTemplate extends StatelessWidget {
   const AccountPageTemplate({
@@ -10,6 +10,7 @@ class AccountPageTemplate extends StatelessWidget {
     final Key? key,
     this.onSubmitPressed,
     this.submitButton,
+    this.disableScrolling,
     this.disableBottomButton = false,
     final bool? needHorizontalPadding,
   })  : assert(
@@ -26,6 +27,7 @@ class AccountPageTemplate extends StatelessWidget {
     final Key? key,
     this.onSubmitPressed,
     this.submitButton,
+    this.disableScrolling,
     this.disableBottomButton = false,
     final bool? needHorizontalPadding,
   })  : assert(
@@ -43,6 +45,7 @@ class AccountPageTemplate extends StatelessWidget {
     final Key? key,
     this.onSubmitPressed,
     this.submitButton,
+    this.disableScrolling,
     this.disableBottomButton = false,
     final bool? needHorizontalPadding,
   })  :
@@ -63,19 +66,20 @@ class AccountPageTemplate extends StatelessWidget {
   final bool disableBottomButton;
   final bool needHorizontalPadding;
   final Widget? submitButton;
+  final bool? disableScrolling;
 
   @override
-  Widget build(final BuildContext context) => Scaffold(
-        appBar: CommonStringAppbar(
-          title: appbarTitle.tr(),
-          theme: Theme.of(context),
-        ),
+  Widget build(final BuildContext context) => D3pScaffold(
+        appbarTitle: appbarTitle,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Expanded(
                 child: ListView(
+                  physics: disableScrolling ?? false
+                      ? const NeverScrollableScrollPhysics()
+                      : null,
                   padding: EdgeInsets.symmetric(
                     vertical: 16,
                     horizontal: needHorizontalPadding ? 16 : 0,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/widgets/d3p_card.dart';
 
 class BasicBalanceCard extends StatelessWidget {
   final String tokenSymbol;
@@ -19,7 +21,8 @@ class BasicBalanceCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Card(
+    final textStyles = Theme.of(context).customTextStyles;
+    return D3pCard(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Column(
@@ -32,7 +35,10 @@ class BasicBalanceCard extends StatelessWidget {
                   size: 20,
                 ),
                 const SizedBox(width: 8),
-                Text(title),
+                Text(
+                  title,
+                  style: textStyles.d3pBodyMedium,
+                ),
               ],
             ),
             const SizedBox(height: 4),
@@ -45,11 +51,11 @@ class BasicBalanceCard extends StatelessWidget {
                 children: [
                   TextSpan(
                     text: ' ' + tokenSymbol,
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: textStyles.dp3BodySmall,
                   ),
                 ],
               ),
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: textStyles.d3pBodyMedium,
             ),
           ],
         ),

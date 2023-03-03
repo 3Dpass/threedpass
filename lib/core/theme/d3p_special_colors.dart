@@ -14,41 +14,49 @@ class CustomColors {
 
   final Brightness brightness;
   final ThemeData themeData;
-  // final TargetPlatform platform;
 
+  // Card backgound
+  Color get mnemonicInputBackground {
+    return brightness == Brightness.light ? Colors.grey[300]! : cardBackground;
+  }
+}
+
+extension SpecialCustomColors on CustomColors {
   // Meaninful
   Color get dangerColor => Colors.red;
   // For disabled items text
   Color get disabled => D3pColors.disabled;
-
+  // Icon preview
   Color get addressIconBackground => Colors.white;
-
-  // Appbar decoration
-  Color get appBarBackground => Colors.black;
-  Color get appBarButton => Colors.white;
-
-  // Mnemonic input
-  Color get mnemonicInputBackground {
-    return brightness == Brightness.light
-        ? Colors.grey[300]!
-        : themeData.cardColor;
-  }
-
   // Color for all links
   Color get hyperlink => Colors.blue;
   // Misc
   Color get dividerColor => Colors.grey;
+}
 
-  // Icons
+extension AppBarCustomColors on CustomColors {
+  Color get appBarBackground => Colors.black;
+  Color get appBarButton => Colors.white;
+  Color get appBarColor => Colors.white;
+}
+
+extension IconCustomColors on CustomColors {
   Color get positiveIcon => Colors.green;
   Color get errorIcon => dangerColor;
   Color get uncertainIcon => Colors.orange;
   Color get popMenuIcon => Colors.grey;
+}
 
-  // Text
+extension TextCustomColors on CustomColors {
   Color get themeOpposite =>
       brightness == Brightness.light ? Colors.black : Colors.white;
+}
 
-  // Color get themedIcon =>
-  //     brightness == Brightness.light ? Colors.black : Colors.white;
+extension ScaffoldCustomColors on CustomColors {
+  Color get scaffoldBackground => brightness == Brightness.light
+      ? D3pColors.lightScaffoldBackground
+      : D3pColors.darkScaffoldBackground;
+  Color get cardBackground => brightness == Brightness.light
+      ? D3pColors.lightCardBackground
+      : D3pColors.darkCardBackground;
 }

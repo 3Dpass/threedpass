@@ -2,11 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:threedpass/core/widgets/buttons/text_button.dart';
+import 'package:threedpass/core/widgets/dialog/d3p_platform_dialog.dart';
 import 'package:threedpass/features/hashes_list/presentation/widgets/hashes_primitive_list.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
-import 'package:threedpass/router/router.gr.dart';
-
-part 'save_top_hashes_button.dart';
 
 class SaveTopHashesDialog extends StatelessWidget {
   const SaveTopHashesDialog({
@@ -23,20 +22,20 @@ class SaveTopHashesDialog extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return AlertDialog(
-      title: Text('top_10_hashes'.tr()),
+    return D3pPlatformDialog(
+      title: 'top_10_hashes'.tr(),
       content: SingleChildScrollView(
         child: HashesPrimitiveList(
           hashesModel: pageCubitState.snapshot,
         ),
       ),
       actions: <Widget>[
-        TextButton(
-          child: Text('Cancel'.tr()),
+        D3pTextButton(
+          text: 'Cancel'.tr(),
           onPressed: () => context.router.pop(),
         ),
-        TextButton(
-          child: Text('Share'.tr()),
+        D3pTextButton(
+          text: 'Share'.tr(),
           onPressed: () => shareSnapshots(context),
         ),
         // _SaveTopHashesButton(pageCubitState),

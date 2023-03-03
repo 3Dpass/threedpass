@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/widgets/d3p_card.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/object_list/hash_card_popup_menu.dart';
@@ -20,7 +22,7 @@ class SnapshotCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Card(
+    return D3pCard(
       child: InkWell(
         onTap: () => context.router.push(
           PreviewWrapperRoute(
@@ -39,14 +41,12 @@ class SnapshotCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Flexible(
-                      child: Text(
+                      child: D3pBodyLargeText(
                         'snap_card_name'.tr() + snapshot.name,
-                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
-                    Text(
+                    D3pBodyLargeText(
                       'snap_card_stamp'.tr() + formatter.format(snapshot.stamp),
-                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     const SizedBox(height: 8),
                     Text.rich(snapshot.settingsConfig.toText(context)),

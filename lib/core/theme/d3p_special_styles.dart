@@ -19,17 +19,35 @@ class CustomTextStyles {
         color: brightness == Brightness.light ? Colors.black : Colors.white,
       );
 
-  TextStyle get switchButtonLabelEnabled => themeData.textTheme.bodyMedium!;
+  TextStyle get matchesHyperlink => themeData.textTheme.bodyMedium!
+      .copyWith(color: themeData.customColors.hyperlink);
+
+  TextStyle get accountName =>
+      themeData.textTheme.bodyLarge!.copyWith(color: Colors.white);
+  TextStyle get accountAddress =>
+      themeData.textTheme.bodyMedium!.copyWith(color: Colors.grey);
+
+  TextStyle get noObjectsPlaceholder =>
+      themeData.textTheme.titleMedium!.copyWith(color: Colors.grey);
+
+  TextStyle get secondaryText =>
+      themeData.textTheme.bodyMedium!.copyWith(color: Colors.grey);
+
+  // Coloring to fix cupertino
+  Color get _themeOpposite => themeData.customColors.themeOpposite;
+
+  TextStyle get d3plabelLarge =>
+      themeData.textTheme.labelLarge!.copyWith(color: _themeOpposite);
+}
+
+extension SwitchCustomText on CustomTextStyles {
+  TextStyle get switchButtonLabelEnabled => d3pBodyMedium;
 
   TextStyle get switchButtonLabelDisabled =>
-      themeData.textTheme.bodyMedium!.copyWith(
-        color: themeData.customColors.disabled,
-      );
+      d3pBodyMedium.copyWith(color: themeData.customColors.disabled);
+}
 
-  TextStyle get matchesHyperlink => themeData.textTheme.bodyMedium!.copyWith(
-        color: themeData.customColors.hyperlink,
-      );
-
+extension AppBarCustomText on CustomTextStyles {
   TextStyle get appTitle => themeData.textTheme.bodyLarge!.copyWith(
         color: Colors.white,
       );
@@ -41,18 +59,31 @@ class CustomTextStyles {
         fontSize: 18,
         color: Colors.white,
       );
+}
 
-  TextStyle get accountName => themeData.textTheme.bodyLarge!.copyWith(
-        color: Colors.white,
-      );
-  TextStyle get accountAddress => themeData.textTheme.bodyMedium!.copyWith(
-        color: Colors.grey,
-      );
+extension HeadLineCustomText on CustomTextStyles {
+  TextStyle get d3pheadlineLarge =>
+      themeData.textTheme.headlineLarge!.copyWith(color: _themeOpposite);
+  TextStyle get d3pheadlineMedium =>
+      themeData.textTheme.headlineMedium!.copyWith(color: _themeOpposite);
+  TextStyle get d3pheadlineSmall =>
+      themeData.textTheme.headlineSmall!.copyWith(color: _themeOpposite);
+}
 
-  TextStyle get noObjectsPlaceholder =>
-      themeData.textTheme.titleMedium!.copyWith(color: Colors.grey);
+extension TitleCustomText on CustomTextStyles {
+  TextStyle get d3ptitleLarge =>
+      themeData.textTheme.titleLarge!.copyWith(color: _themeOpposite);
+  TextStyle get d3ptitleMedium =>
+      themeData.textTheme.titleMedium!.copyWith(color: _themeOpposite);
+  TextStyle get dp3titleSmall =>
+      themeData.textTheme.titleSmall!.copyWith(color: _themeOpposite);
+}
 
-  TextStyle get secondaryText => themeData.textTheme.bodyMedium!.copyWith(
-        color: Colors.grey,
-      );
+extension BodyCustomText on CustomTextStyles {
+  TextStyle get d3pBodyLarge =>
+      themeData.textTheme.bodyLarge!.copyWith(color: _themeOpposite);
+  TextStyle get d3pBodyMedium =>
+      themeData.textTheme.bodyMedium!.copyWith(color: _themeOpposite);
+  TextStyle get dp3BodySmall =>
+      themeData.textTheme.bodySmall!.copyWith(color: _themeOpposite);
 }

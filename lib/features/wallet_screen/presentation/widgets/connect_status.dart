@@ -1,27 +1,27 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 
 class ConnectStatus extends StatelessWidget {
   const ConnectStatus({final Key? key}) : super(key: key);
 
-  String text(final AppServiceInitStatus status, final BuildContext context) {
+  String text(final AppServiceInitStatus status) {
     switch (status) {
       case AppServiceInitStatus.init:
-        return 'init_status_sdk'.tr();
+        return 'init_status_sdk';
 
       case AppServiceInitStatus.connecting:
-        return 'init_status_connecting_to_node'.tr();
+        return 'init_status_connecting_to_node';
 
       case AppServiceInitStatus.connected:
-        return 'init_status_completed'.tr();
+        return 'init_status_completed';
 
       case AppServiceInitStatus.error:
-        return 'init_status_connecting_to_node_failed'.tr();
+        return 'init_status_connecting_to_node_failed';
     }
   }
 
@@ -33,8 +33,8 @@ class ConnectStatus extends StatelessWidget {
         children: [
           _Indicator(state.status),
           const SizedBox(width: 8),
-          Text(
-            text(state.status, context),
+          D3pBodyMediumText(
+            text(state.status),
           ),
         ],
       ),

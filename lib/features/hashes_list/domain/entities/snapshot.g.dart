@@ -15,6 +15,8 @@ abstract class _$SnapshotCWProxy {
 
   Snapshot name(String name);
 
+  Snapshot relativePath(String? relativePath);
+
   Snapshot settingsConfig(ScanSettings settingsConfig);
 
   Snapshot stamp(DateTime stamp);
@@ -30,6 +32,7 @@ abstract class _$SnapshotCWProxy {
     int? fileHash,
     List<String>? hashes,
     String? name,
+    String? relativePath,
     ScanSettings? settingsConfig,
     DateTime? stamp,
   });
@@ -55,6 +58,10 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
   Snapshot name(String name) => this(name: name);
 
   @override
+  Snapshot relativePath(String? relativePath) =>
+      this(relativePath: relativePath);
+
+  @override
   Snapshot settingsConfig(ScanSettings settingsConfig) =>
       this(settingsConfig: settingsConfig);
 
@@ -74,6 +81,7 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
     Object? fileHash = const $CopyWithPlaceholder(),
     Object? hashes = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
+    Object? relativePath = const $CopyWithPlaceholder(),
     Object? settingsConfig = const $CopyWithPlaceholder(),
     Object? stamp = const $CopyWithPlaceholder(),
   }) {
@@ -94,6 +102,10 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
           : name as String,
+      relativePath: relativePath == const $CopyWithPlaceholder()
+          ? _value.relativePath
+          // ignore: cast_nullable_to_non_nullable
+          : relativePath as String?,
       settingsConfig: settingsConfig == const $CopyWithPlaceholder() ||
               settingsConfig == null
           ? _value.settingsConfig
@@ -133,6 +145,7 @@ class SnapshotAdapter extends TypeAdapter<Snapshot> {
       hashes: (fields[2] as List).cast<String>(),
       settingsConfig: fields[4] as ScanSettings,
       fileHash: fields[5] as int,
+      relativePath: fields[6] as String?,
       externalPathToObj: fields[3] as String?,
     );
   }
@@ -140,7 +153,7 @@ class SnapshotAdapter extends TypeAdapter<Snapshot> {
   @override
   void write(BinaryWriter writer, Snapshot obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -149,6 +162,8 @@ class SnapshotAdapter extends TypeAdapter<Snapshot> {
       ..write(obj.hashes)
       ..writeByte(3)
       ..write(obj.externalPathToObj)
+      ..writeByte(6)
+      ..write(obj.relativePath)
       ..writeByte(4)
       ..write(obj.settingsConfig)
       ..writeByte(5)

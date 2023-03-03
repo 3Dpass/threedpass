@@ -2,8 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/theme_builder.dart';
 import 'package:threedpass/features/app/presentation/global_states_provider.dart';
@@ -44,8 +46,10 @@ class ThreeDApp extends StatelessWidget {
 
     return GlobalStatesProvider(
       builder: (final BuildContext __) => ThemeBuilder(
-        builder: (final BuildContext context, final Brightness brightness) {
-          return PlatformApp.router(
+        builder: (final BuildContext context, final Brightness brightness) =>
+            Phoenix(
+          child: PlatformApp.router(
+            debugShowCheckedModeBanner: false,
             title: '3Dpass',
             material: _MainMaterialAppRouterData(brightness).theme,
             cupertino: _MainCupertinoAppRouterData(brightness).theme,
@@ -54,8 +58,8 @@ class ThreeDApp extends StatelessWidget {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-          );
-        },
+          ),
+        ),
       ),
     );
   }
@@ -88,9 +92,18 @@ class _MainCupertinoAppRouterData {
     final BuildContext context,
     final PlatformTarget platform,
   ) {
+    final mainTheme = brightness == Brightness.light
+        ? D3pThemeData.lightTheme
+        : D3pThemeData.darkTheme;
+
     return CupertinoAppRouterData(
+      color: D3pThemeData.mainColor,
       theme: CupertinoThemeData(
-        primaryColor: D3pThemeData.themeData(brightness).primaryColor,
+        primaryColor: D3pThemeData.mainColor,
+        primaryContrastingColor: mainTheme.colorScheme.onPrimary,
+        brightness: brightness,
+        barBackgroundColor: mainTheme.customColors.scaffoldBackground,
+        scaffoldBackgroundColor: mainTheme.customColors.scaffoldBackground,
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/widgets/address_icon.dart';
+import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/utils/copy_and_notify.dart';
@@ -16,8 +17,10 @@ class AssetPageAppbar extends AppBar {
     final Key? key,
   }) : super(
           key: key,
-          backgroundColor: themeData.customColors.appBarBackground,
+          backgroundColor: const D3pAppBarTheme().backgroundColor,
+          // material: (_, __) => MaterialAppBarData(
           centerTitle: true,
+          // ),
           leading: Builder(
             builder: (final context) => IconButton(
               onPressed: () => Scaffold.of(context).openDrawer(),
@@ -39,7 +42,7 @@ class AssetPageAppbar extends AppBar {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AddressIcon(
+                  D3pAddressIcon(
                     account.address,
                     svg: account.icon,
                   ),
@@ -60,7 +63,7 @@ class AssetPageAppbar extends AppBar {
                   ),
                   const SizedBox(width: 16),
                   const SizedBox(
-                    width: AddressIcon.defaultSize,
+                    width: D3pAddressIcon.defaultSize,
                     child: Center(
                       child: ConnectionIndicator(),
                     ),
@@ -71,6 +74,7 @@ class AssetPageAppbar extends AppBar {
           ),
           actions: const [
             AccountActions(),
+            SizedBox(width: 16),
           ],
         );
 }

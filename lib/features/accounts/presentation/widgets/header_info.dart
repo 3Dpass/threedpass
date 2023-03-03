@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
 class HeaderInfo extends StatelessWidget {
   const HeaderInfo({
@@ -15,9 +16,9 @@ class HeaderInfo extends StatelessWidget {
       child: Text(
         text,
         style: Theme.of(context)
-            .textTheme
-            .titleLarge
-            ?.copyWith(fontWeight: FontWeight.bold),
+            .customTextStyles
+            .d3ptitleLarge
+            .copyWith(fontWeight: FontWeight.bold),
       ),
     );
   }

@@ -8,6 +8,7 @@ import 'package:flutter_gl/flutter_gl.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:three_dart/three_dart.dart' as THREE;
 import 'package:three_dart_jsm/three_dart_jsm.dart' as THREE_JSM;
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/preview_settings.dart';
@@ -46,7 +47,7 @@ class _State extends State<ObjectPreview> {
   late final THREE.WebGLRenderTarget renderTarget;
   late final THREE.WebGLRenderer renderer;
   late final THREE.Scene scene;
-  late final Size screenSize;
+  late Size screenSize;
   late final int sourceTexture;
   // Prevent from re-init
   bool startedInit = false;
@@ -65,14 +66,16 @@ class _State extends State<ObjectPreview> {
 
   @override
   void dispose() {
-    three3dRender.dispose();
-    renderer.dispose();
-    renderTarget.dispose();
-    scene.dispose();
-    camera.dispose();
-    // mesh.dispose();
-    object.dispose();
-    texture.dispose();
+    if (_objectFileExists) {
+      three3dRender.dispose();
+      renderer.dispose();
+      renderTarget.dispose();
+      scene.dispose();
+      camera.dispose();
+      // mesh.dispose();
+      object.dispose();
+      texture.dispose();
+    }
 
     super.dispose();
   }
@@ -90,7 +93,7 @@ class _State extends State<ObjectPreview> {
 
   SnackBar errorSnackBar() => SnackBar(
         content: Text(
-          '.obj file for "${widget.snapshot.name}" does not exists. Path: ${widget.snapshot.externalPathToObj}',
+          '.obj file for "${widget.snapshot.name}" does not exists. Path: ${widget.snapshot.relativePath}',
         ),
       );
 
@@ -128,8 +131,10 @@ class _State extends State<ObjectPreview> {
   }
 
   bool get _objectFileExists {
-    return widget.snapshot.externalPathToObj != null &&
-        File(widget.snapshot.externalPathToObj!).existsSync();
+    print(
+      'FILE EXISTS: ${File(widget.snapshot.realPath).existsSync()} ${widget.snapshot.realPath}',
+    );
+    return File(widget.snapshot.realPath).existsSync();
   }
 
   @override
@@ -140,6 +145,7 @@ class _State extends State<ObjectPreview> {
     // but the [SingleChildScrollView] controller has to
     // detect the lack of space to be triggered. That's why I used SizedBox
     // with heitgh-1 and removed the glow.
+    screenSize = MediaQuery.of(context).size;
     return SizedBox(
       width: width,
       height: height - 0.001,

@@ -4,7 +4,9 @@ extension ___ on _State {
   void initScene() {
     // scene
     scene = THREE.Scene();
-    scene.background = THREE.Color(Theme.of(context).canvasColor.value);
+    final currentScaffoldBG =
+        Theme.of(context).customColors.scaffoldBackground.value;
+    scene.background = THREE.Color(currentScaffoldBG);
   }
 
   void initCamera() {

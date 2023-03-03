@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
+import 'package:threedpass/core/theme/d3p_theme.dart';
 
 /// Fork of
 /// https://github.com/polkawallet-io/ui/blob/ce62db0d9b5abab5ce3167f0d1976480a33304ff/lib/components/v3/addressIcon.dart#L59
-class AddressIcon extends StatelessWidget {
-  const AddressIcon(
+class D3pAddressIcon extends StatelessWidget {
+  const D3pAddressIcon(
     this.address, {
     final Key? key,
     this.size,
@@ -29,9 +30,8 @@ class AddressIcon extends StatelessWidget {
       decoration: decoration ??
           BoxDecoration(
             color: theme.customColors.addressIconBackground,
-            border: Border.all(
-              color: Theme.of(context).colorScheme.secondary,
-              width: 2,
+            border: Border.fromBorderSide(
+              BorderSide(color: D3pThemeData.mainColor, width: 2),
             ),
             borderRadius: BorderRadius.all(
               Radius.circular((size ?? defaultSize) / 2),

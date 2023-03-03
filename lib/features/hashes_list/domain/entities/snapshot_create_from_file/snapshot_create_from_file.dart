@@ -7,7 +7,9 @@ import 'package:threedpass/core/utils/pair.dart';
 import 'package:threedpass/core/utils/random_hex.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/file_copy.dart';
 import 'package:threedpass/features/settings_page/domain/entities/algorithm.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/setup.dart';
@@ -19,12 +21,14 @@ class SnapshotFileFactory {
   final ScanSettings scanSettings;
   final HashesListBloc hashesListBloc;
   final void Function() showLoader;
+  final ObjectsDirectory objectsDirectory;
   // final void Function() hideLoader;
 
   SnapshotFileFactory({
     required this.scanSettings,
     required this.hashesListBloc,
     required this.showLoader,
+    required this.objectsDirectory,
     // required this.hideLoader,
   });
 
@@ -33,9 +37,11 @@ class SnapshotFileFactory {
   }
 
   Future<Pair<HashObject?, Snapshot>> createSnapshotFromFile() async {
-    final pickedFile = await _FilePicker().pickFile();
+    final pickedFilePath = await _FilePicker().pickFile();
 
     showLoader();
+
+    final relativePath = await FileCopy(objectsDirectory).write(pickedFilePath);
 
     final transBytes = await _TransBytes(
       scanSettings: scanSettings,
@@ -43,13 +49,14 @@ class SnapshotFileFactory {
 
     final hashes = await calcHashes(
       scanSettings,
-      pickedFile,
+      pickedFilePath,
       transBytes,
     );
 
     final res = await _createSnapshot(
-      filePath: pickedFile,
+      filePath: pickedFilePath,
       settings: scanSettings,
+      relativePath: relativePath,
       hashListState: hashesListBloc.state,
       hashes: hashes,
       transBytes: transBytes,
@@ -88,8 +95,10 @@ class SnapshotFileFactory {
     required final HashesListState hashListState,
     required final String hashes,
     required final String transBytes,
+    required final String relativePath,
   }) async {
     final rawObjName = filePath.split('/').last;
+
     final snapName = snapshotName(rawObjName);
 
     if (hashListState is HashesListLoaded) {
@@ -97,7 +106,7 @@ class SnapshotFileFactory {
         name: snapName,
         hashes: hashes.split('\n'),
         stamp: DateTime.now(),
-        externalPathToObj: filePath,
+        relativePath: relativePath,
         settingsConfig: settings.copyWith(
           transBytes: transBytes,
         ),

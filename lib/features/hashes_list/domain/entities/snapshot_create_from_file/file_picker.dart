@@ -11,7 +11,8 @@ class _FilePicker {
     if (result != null && result.files.isNotEmpty) {
       final filExtension = result.files.first.extension;
       if (filExtension != null && allowedExtentions.contains(filExtension)) {
-        return result.files.first.path!;
+        final realFilePath = result.files.first.path!;
+        return realFilePath;
       }
     }
     throw FilePickerException('No file selected');

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
@@ -8,8 +9,9 @@ import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.d
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/utils/validators.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
+import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
-import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer.dart';
 
@@ -30,22 +32,12 @@ class TransferPage extends StatelessWidget {
   final passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  void outerPop(final BuildContext context) {
-    final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
-    Navigator.pop(outerContext);
-  }
-
   @override
   Widget build(final BuildContext context) {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     // appService.keyring.
-    return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(
-          onPressed: () => outerPop(context),
-        ),
-        title: Text('transfer_page_title'.tr()),
-      ),
+    return D3pScaffold(
+      appbarTitle: 'transfer_page_title',
       body: Column(
         children: [
           Flexible(

@@ -10,10 +10,7 @@ class _AddressText extends StatelessWidget {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       scrollDirection: Axis.horizontal,
-      child: Text(
-        address,
-        // style: Theme.of(context).textTheme.bodyLarge,
-      ),
+      child: D3pBodyMediumText(address),
     );
   }
 }

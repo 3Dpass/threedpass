@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,10 +6,15 @@ import 'package:threedp_graphql/core/graphql/__generated__/threedpass.schema.sch
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
+import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/utils/copy_and_notify.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transfers_from_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transfers_to_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/entities/transfer_item.dart';
@@ -31,7 +34,9 @@ class TransactionsHistoryPage extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        backgroundColor: Theme.of(context).customColors.scaffoldBackground,
         appBar: AppBar(
+          backgroundColor: const D3pAppBarTheme().backgroundColor,
           title: Text('transactions_title'.tr()),
           bottom: TabBar(
             tabs: [
@@ -44,6 +49,7 @@ class TransactionsHistoryPage extends StatelessWidget {
                 text: 'transactions_to'.tr(),
               ),
             ],
+            indicatorColor: D3pThemeData.mainColor,
           ),
         ),
         body: const TabBarView(
