@@ -6,8 +6,8 @@ import 'package:threedpass/features/wallet_screen/presentation/assets_page/widge
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/balance_card/locked_balance_card.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/balance_card/reserved_balance_card.dart';
 
-class ActualBalance extends StatelessWidget {
-  const ActualBalance({
+class BalanceCards extends StatelessWidget {
+  const BalanceCards({
     required this.balance,
     required this.tokenDecimals,
     required this.tokenSymbol,
@@ -41,7 +41,7 @@ class ActualBalance extends StatelessWidget {
             style: Theme.of(context).customTextStyles.d3pheadlineMedium,
           ),
           const SizedBox(height: 16),
-          Column(
+          Row(
             mainAxisSize: MainAxisSize.min,
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -50,13 +50,13 @@ class ActualBalance extends StatelessWidget {
                 tokenSymbol: tokenSymbol,
                 tokenDecimals: tokenDecimals,
               ),
-              const SizedBox(height: 8),
+              const SizedBox(width: 8),
               LockedBalanceCard(
                 balance: balance.lockedBalance as String,
                 tokenSymbol: tokenSymbol,
                 tokenDecimals: tokenDecimals,
               ),
-              const SizedBox(height: 8),
+              const SizedBox(width: 8),
               ReservedBalanceCard(
                 balance: balance.reservedBalance as String,
                 tokenSymbol: tokenSymbol,

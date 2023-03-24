@@ -5,9 +5,11 @@ import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/api/apiKeyring.dart';
 import 'package:polkawallet_sdk/api/types/addressIconData.dart';
 import 'package:polkawallet_sdk/api/types/networkParams.dart';
+import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/core/polkawallet/bloc/non_native_tokens_api.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_core_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
@@ -149,6 +151,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     final pseudoNewState = state.copyWith();
 
     subscribeToBalance(pseudoNewState);
+    setTokensData(pseudoNewState);
     registerTransferCubits(pseudoNewState);
 
     emit(pseudoNewState);
@@ -159,8 +162,19 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     emit(state.copyWith());
   }
 
+  /// Sets balances and data for assets
+  /// Should be called in 3 cases:
+  /// 1. Start app. Init account.
+  /// 2. Change account. Calculate new balances
+  /// 3. Transfer sent TODO
+  static Future<void> setTokensData(final AppService service) async {
+    final nnta = NonNativeTokensApi(service);
+    await nnta.setTokens();
+  }
+
   static Future<void> subscribeToBalance(final AppService service) async {
     final address = service.keyring.current.address;
+
     if (address != null) {
       unawaited(
         service.plugin.sdk.api.account.subscribeBalance(

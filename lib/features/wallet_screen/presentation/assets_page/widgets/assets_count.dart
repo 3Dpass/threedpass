@@ -8,8 +8,8 @@ import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/actual_balance.dart';
 
-class AssetsCount extends StatelessWidget {
-  const AssetsCount({final Key? key}) : super(key: key);
+class CoinsBalance extends StatelessWidget {
+  const CoinsBalance({final Key? key}) : super(key: key);
 
   static final placeHolder = Row(
     mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +36,7 @@ class AssetsCount extends StatelessWidget {
               return placeHolder;
             }
 
-            return ActualBalance(
+            return BalanceCards(
               balance: balance,
               tokenDecimals: tokenDecimals,
               tokenSymbol: tokenSymbol,

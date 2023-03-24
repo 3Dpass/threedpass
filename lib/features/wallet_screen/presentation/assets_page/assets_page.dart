@@ -45,7 +45,7 @@ class AssetsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: const [
-              AssetsCount(),
+              CoinsBalance(),
               SizedBoxH16(),
               _ButtonsPanel(),
               SizedBoxH16(),
