@@ -12,6 +12,7 @@ import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/accounts_drawer.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/asset_page_appbar.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/assets_count.dart';
+import 'package:threedpass/features/wallet_screen/presentation/assets_page/non_native_tokens/non_native_tokens.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/recieve_button.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/transfer_button.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/is_account_ready_builder.dart';
@@ -42,14 +43,17 @@ class AssetsPage extends StatelessWidget {
             theme: theme,
           ),
           body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: const [
+              SizedBoxH36(),
               CoinsBalance(),
               SizedBoxH16(),
               _ButtonsPanel(),
               SizedBoxH16(),
               _OpenHistory(),
+              Flexible(
+                child: NonNativeTokens(),
+              ),
             ],
           ),
         );

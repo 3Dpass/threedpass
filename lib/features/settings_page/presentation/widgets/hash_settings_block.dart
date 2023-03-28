@@ -16,7 +16,7 @@ class _HashSettingsBlock extends StatelessWidget {
         _SectionsTextField(),
         SizedBoxH8(),
         _TransBytesInputField(),
-        SizedBoxH16(),
+        SizedBoxH36(),
       ],
     );
   }
