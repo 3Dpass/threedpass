@@ -16,6 +16,7 @@ class RemoveAccountDialog extends StatelessWidget {
     final AppServiceLoaderCubit appServiceLoaderCubit,
     final BuildContext context,
   ) async {
+    // TODO Move from UI
     final appService = appServiceLoaderCubit.state;
 
     // remove current account
@@ -25,7 +26,7 @@ class RemoveAccountDialog extends StatelessWidget {
     );
 
     if (appService.keyring.allAccounts.isNotEmpty) {
-      appServiceLoaderCubit.changeAccount(appService.keyring.current);
+      await appServiceLoaderCubit.changeAccount(appService.keyring.current);
     } else {
       appServiceLoaderCubit.justEmit();
     }

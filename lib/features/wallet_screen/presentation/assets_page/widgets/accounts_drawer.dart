@@ -63,8 +63,9 @@ class AccountsDrawer extends Drawer {
                     text: accounts[index].name ?? 'Anonymous',
                     onPressed: accounts[index].address == current.address
                         ? null
-                        : () {
-                            appServiceCubit.changeAccount(accounts[index]);
+                        : () async {
+                            await appServiceCubit
+                                .changeAccount(accounts[index]);
                             Navigator.of(context).pop();
                           },
                     // backgroundColor: Theme.of(context).canvasColor,
