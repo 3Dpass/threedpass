@@ -114,6 +114,7 @@
     "trans_bytes_span": "Rotation bytes",
 
     "dark_theme_switch_label": "Dark theme",
+    "show_zero_assets_label": "Show zero amount assets",
 
     "@wallet_base":{
     },

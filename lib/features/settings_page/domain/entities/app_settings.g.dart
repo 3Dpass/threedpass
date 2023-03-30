@@ -9,6 +9,8 @@ part of 'app_settings.dart';
 abstract class _$AppSettingsCWProxy {
   AppSettings darkTheme(bool darkTheme);
 
+  AppSettings showZeroAssets(bool? showZeroAssets);
+
   AppSettings stableRequirement(int stableRequirement);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AppSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -19,6 +21,7 @@ abstract class _$AppSettingsCWProxy {
   /// ````
   AppSettings call({
     bool? darkTheme,
+    bool? showZeroAssets,
     int? stableRequirement,
   });
 }
@@ -31,6 +34,10 @@ class _$AppSettingsCWProxyImpl implements _$AppSettingsCWProxy {
 
   @override
   AppSettings darkTheme(bool darkTheme) => this(darkTheme: darkTheme);
+
+  @override
+  AppSettings showZeroAssets(bool? showZeroAssets) =>
+      this(showZeroAssets: showZeroAssets);
 
   @override
   AppSettings stableRequirement(int stableRequirement) =>
@@ -46,6 +53,7 @@ class _$AppSettingsCWProxyImpl implements _$AppSettingsCWProxy {
   /// ````
   AppSettings call({
     Object? darkTheme = const $CopyWithPlaceholder(),
+    Object? showZeroAssets = const $CopyWithPlaceholder(),
     Object? stableRequirement = const $CopyWithPlaceholder(),
   }) {
     return AppSettings(
@@ -53,6 +61,10 @@ class _$AppSettingsCWProxyImpl implements _$AppSettingsCWProxy {
           ? _value.darkTheme
           // ignore: cast_nullable_to_non_nullable
           : darkTheme as bool,
+      showZeroAssets: showZeroAssets == const $CopyWithPlaceholder()
+          ? _value.showZeroAssets
+          // ignore: cast_nullable_to_non_nullable
+          : showZeroAssets as bool?,
       stableRequirement: stableRequirement == const $CopyWithPlaceholder() ||
               stableRequirement == null
           ? _value.stableRequirement
@@ -85,17 +97,20 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
     return AppSettings(
       darkTheme: fields[1] as bool,
       stableRequirement: fields[0] as int,
+      showZeroAssets: fields[2] as bool?,
     );
   }
 
   @override
   void write(BinaryWriter writer, AppSettings obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.stableRequirement)
       ..writeByte(1)
-      ..write(obj.darkTheme);
+      ..write(obj.darkTheme)
+      ..writeByte(2)
+      ..write(obj.showZeroAssets);
   }
 
   @override

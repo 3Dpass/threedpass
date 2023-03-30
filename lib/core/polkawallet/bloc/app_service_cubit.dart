@@ -142,16 +142,19 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     // }
   }
 
-  void changeAccount(final KeyPairData keyPairData) {
-    state.plugin.sdk.api.account.unsubscribeBalance();
+  Future<void> changeAccount(final KeyPairData keyPairData) async {
+    emit(state.copyWith(status: AppServiceInitStatus.connecting));
 
-    state.plugin.changeAccount(keyPairData);
+    state.plugin.sdk.api.account.unsubscribeBalance();
+    await state.plugin.changeAccount(keyPairData);
+
     state.keyring.setCurrent(keyPairData);
 
     final pseudoNewState = state.copyWith();
 
-    subscribeToBalance(pseudoNewState);
-    setTokensData(pseudoNewState);
+    await subscribeToBalance(pseudoNewState);
+    await setTokensData(pseudoNewState);
+
     registerTransferCubits(pseudoNewState);
 
     emit(pseudoNewState);

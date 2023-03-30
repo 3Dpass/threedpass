@@ -15,6 +15,8 @@ class _AppSettingsBlock extends StatelessWidget {
         const _RequirementsTextField(),
         const SizedBoxH8(),
         const _DarkThemeSwitch(),
+        const SizedBoxH8(),
+        const _ShowZeroAssets(),
         const SizedBoxH16(),
       ],
     );
