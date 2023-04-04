@@ -2,29 +2,22 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:threedp_graphql/core/graphql/__generated__/threedpass.schema.schema.gql.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
-import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
-import 'package:threedpass/core/utils/copy_and_notify.dart';
-import 'package:threedpass/core/utils/formatters.dart';
-import 'package:threedpass/core/widgets/paddings.dart';
-import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
+import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transfers_from_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transfers_to_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/entities/transfer_item.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/entities/mapper_transfer_item.dart';
+import 'package:threedpass/features/wallet_screen/presentation/widgets/transaction_item.dart';
 import 'package:unicons/unicons.dart';
 
-part './widgets/transaction_item.dart';
 part './widgets/transactions_list.dart';
 part './widgets/transactions_list_from.dart';
 part './widgets/transactions_list_to.dart';
-part './widgets/no_items_found.dart';
 
 class TransactionsHistoryPage extends StatelessWidget {
   const TransactionsHistoryPage({final Key? key}) : super(key: key);

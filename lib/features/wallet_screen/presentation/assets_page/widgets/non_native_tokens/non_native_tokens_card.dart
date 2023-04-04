@@ -5,11 +5,17 @@ class _NonNativeTokensCard extends StatelessWidget {
 
   final TokenBalanceData data;
 
+  void onCardClick(BuildContext context) {
+    context.router.push(
+      NonNativeTokenRoute(tokenData: data),
+    );
+  }
+
   @override
   Widget build(final BuildContext context) {
     return D3pCard(
       child: InkWell(
-        onTap: () {},
+        onTap: () => onCardClick(context),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           child: Row(

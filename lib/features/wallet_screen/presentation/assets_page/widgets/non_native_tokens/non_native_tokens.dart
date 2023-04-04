@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +15,7 @@ import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 part './non_native_tokens_loading.dart';
 part './non_native_tokens_placeholder.dart';
@@ -26,7 +28,7 @@ class NonNativeTokens extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
-      buildWhen: (previous, current) =>
+      buildWhen: (final previous, final current) =>
           previous.appSettings.showZeroAssets !=
           current.appSettings.showZeroAssets,
       builder: (final context, final settings) {
@@ -47,9 +49,6 @@ class NonNativeTokens extends StatelessWidget {
             final settings =
                 BlocProvider.of<SettingsConfigCubit>(context).state;
             final showZeroAssets = settings.appSettings.showZeroAssets!;
-            print('a');
-            print(allTokensEmpty);
-            print(showZeroAssets);
 
             if (allTokensEmpty && !showZeroAssets) {
               return const _NonNativeTokensPlaceholder();
