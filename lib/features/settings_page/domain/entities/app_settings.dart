@@ -25,7 +25,7 @@ class AppSettings {
   @HiveField(1)
   final bool darkTheme;
 
-  @HiveField(2)
+  @HiveField(2) // TODO SET DEFAULT VALUES INSTEAD OF SELF_VALIDATING
   final bool? showZeroAssets;
 
   AppSettings selfValidate() {

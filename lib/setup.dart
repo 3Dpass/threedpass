@@ -93,4 +93,6 @@ Future<void> setup() async {
       repository: getIt<TransfersRepository>(),
     ),
   );
+
+  getIt.registerFactoryParam<>((param1, param2) => null);
 }

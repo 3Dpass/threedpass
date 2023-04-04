@@ -22,7 +22,9 @@ class BalanceUtils {
         // eg. 1.63e+25
         return BigInt.from(double.parse(raw));
       }
-      return BigInt.from(NumberFormat(',##0.000').parse(raw));
+      return BigInt.from(
+        NumberFormat(',##0.000').parse(raw),
+      ); // NumberFormat(',##0.000')
     } else {
       return BigInt.parse(raw);
     }
