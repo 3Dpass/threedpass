@@ -215,6 +215,10 @@
     "remove_accout_dialog_text": "Are you sure you want to delete this account?",
     "assets_title": "Assets",
 
+    "@non_native_token":{
+    },
+    "non_native_token_token": "Asset {}",
+
     "@recieve_page":{
     },
     "recieve_page_title": "Recieve",
