@@ -13,7 +13,6 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i32;
 import 'package:flutter/material.dart' as _i33;
-import 'package:polkawallet_sdk/plugin/store/balances.dart' as _i37;
 
 import '../core/widgets/default_loading_dialog.dart' as _i6;
 import '../core/widgets/error_page.dart' as _i3;
@@ -58,7 +57,9 @@ import '../features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart
 import '../features/settings_page/presentation/settings_page.dart' as _i9;
 import '../features/wallet_screen/presentation/assets_page/remove_account_dialog.dart'
     as _i16;
-import '../features/wallet_screen/presentation/non_native_token_screen/presentation/non_native_token_screen.dart'
+import '../features/wallet_screen/presentation/non_native_token_screen/domain/entities/get_extrinsics_usecase_params.dart'
+    as _i37;
+import '../features/wallet_screen/presentation/non_native_token_screen/presentation/non_native_token_wrapper.dart'
     as _i15;
 import '../features/wallet_screen/presentation/recieve_page/recieve_page.dart'
     as _i13;
@@ -189,8 +190,8 @@ class AppRouter extends _i32.RootStackRouter {
       final args = routeData.argsAs<NonNativeTokenRouteArgs>();
       return _i32.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i15.NonNativeTokenScreen(
-          args.tokenData,
+        child: _i15.NonNativeTokenWrapper(
+          args.params,
           key: args.key,
         ),
       );
@@ -394,7 +395,7 @@ class AppRouter extends _i32.RootStackRouter {
                 ),
                 _i32.RouteConfig(
                   NonNativeTokenRoute.name,
-                  path: 'non-native-token-screen',
+                  path: 'non-native-token-wrapper',
                   parent: WalletWrapperRoute.name,
                 ),
                 _i32.RouteConfig(
@@ -761,16 +762,16 @@ class TransactionsHistoryRoute extends _i32.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i15.NonNativeTokenScreen]
+/// [_i15.NonNativeTokenWrapper]
 class NonNativeTokenRoute extends _i32.PageRouteInfo<NonNativeTokenRouteArgs> {
   NonNativeTokenRoute({
-    required _i37.TokenBalanceData tokenData,
+    required _i37.GetExtrinsicsUseCaseParams params,
     _i33.Key? key,
   }) : super(
           NonNativeTokenRoute.name,
-          path: 'non-native-token-screen',
+          path: 'non-native-token-wrapper',
           args: NonNativeTokenRouteArgs(
-            tokenData: tokenData,
+            params: params,
             key: key,
           ),
         );
@@ -780,17 +781,17 @@ class NonNativeTokenRoute extends _i32.PageRouteInfo<NonNativeTokenRouteArgs> {
 
 class NonNativeTokenRouteArgs {
   const NonNativeTokenRouteArgs({
-    required this.tokenData,
+    required this.params,
     this.key,
   });
 
-  final _i37.TokenBalanceData tokenData;
+  final _i37.GetExtrinsicsUseCaseParams params;
 
   final _i33.Key? key;
 
   @override
   String toString() {
-    return 'NonNativeTokenRouteArgs{tokenData: $tokenData, key: $key}';
+    return 'NonNativeTokenRouteArgs{params: $params, key: $key}';
   }
 }
 

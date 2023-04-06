@@ -10,11 +10,12 @@ class D3pPlatformAppBar extends PlatformAppBar {
     super.key,
     super.trailingActions,
     final Widget? leading,
+    final bool translateAppbar = true,
   }) : super(
           automaticallyImplyLeading: false,
           leading: leading,
           title: Text(
-            titleText.tr(),
+            translateAppbar ? titleText.tr() : titleText,
             style: const TextStyle(color: Colors.white),
           ),
           backgroundColor: const D3pAppBarTheme().backgroundColor,

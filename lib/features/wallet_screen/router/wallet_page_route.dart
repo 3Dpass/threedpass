@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/remove_account_dialog.dart';
-import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/presentation/non_native_token_screen.dart';
+import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/presentation/non_native_token_wrapper.dart';
 import 'package:threedpass/features/wallet_screen/presentation/recieve_page/recieve_page.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/presentation/transactions_history_wrapper.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/transfer_page.dart';
@@ -39,7 +39,7 @@ const AutoRoute walletPageRoute = AutoRoute(
       name: RouteNames.transactionsHistoryPage,
     ),
     AutoRoute(
-      page: NonNativeTokenScreen,
+      page: NonNativeTokenWrapper,
       name: RouteNames.nonNativeTokenScreen,
     ),
     CustomRoute(
