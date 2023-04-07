@@ -26,6 +26,7 @@ class D3pScaffold extends StatelessWidget {
       appBar: D3pPlatformAppBar(
         titleText: appbarTitle,
         leading: removeBackButton ?? false ? null : const _CustomBackButton(),
+        translateAppbar: translateAppbar,
       ),
       body: body,
     );

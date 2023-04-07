@@ -5,9 +5,19 @@ class _NonNativeTokensCard extends StatelessWidget {
 
   final TokenBalanceData data;
 
-  void onCardClick(BuildContext context) {
+  void onCardClick(final BuildContext context) {
+    final address = BlocProvider.of<AppServiceLoaderCubit>(context)
+        .state
+        .keyring
+        .current
+        .address!;
     context.router.push(
-      NonNativeTokenRoute(tokenData: data),
+      NonNativeTokenRoute(
+        params: GetExtrinsicsUseCaseParams(
+          address: address,
+          tokenBalanceData: data,
+        ),
+      ),
     );
   }
 

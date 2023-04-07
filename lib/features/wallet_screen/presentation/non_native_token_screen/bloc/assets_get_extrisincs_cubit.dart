@@ -1,14 +1,13 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedp_graphql/features/tokens_events_history/domain/extrisincs_request_params.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/transfer_non_native_tokens_dto.dart';
-import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/usecases/get_extrinsics.dart';
+import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/usecases/assets_get_extrinsics.dart';
 
-class GetExtrinsicsCubit extends Cubit<void> {
-  GetExtrinsicsCubit({
+class AssetsGetExtrinsicsCubit extends Cubit<void> {
+  AssetsGetExtrinsicsCubit({
     required this.getExtrinsics,
   }) : super(null) {
     pagingController = PagingController(firstPageKey: '1')
@@ -17,9 +16,9 @@ class GetExtrinsicsCubit extends Cubit<void> {
       });
   }
 
-  late final PagingController<String, TransferNonNativeTokenAtom>
+  late final PagingController<String, NonNativeTokenHistoryAtomBase>
       pagingController;
-  final GetExtrinsics getExtrinsics;
+  final AssetsGetExtrinsics getExtrinsics;
 
   /// Override this method and call proper UseCase.
   Future<Either<Failure, TransfersNonNativeTokenDTO>> getData(
@@ -28,6 +27,7 @@ class GetExtrinsicsCubit extends Cubit<void> {
     return getExtrinsics.call(
       GetExtrisincsParams(
         pageKey: pageKey,
+        callModule: 'Assets',
         // TODO SET PARAMS
       ),
     );
