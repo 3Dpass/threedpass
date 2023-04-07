@@ -5,7 +5,7 @@ class _NonNativeTokensHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     // return BlocBuilder<>(builder: builder);
     final pagingController =
-        BlocProvider.of<GetExtrinsicsCubit>(context).pagingController;
+        BlocProvider.of<AssetsGetExtrinsicsCubit>(context).pagingController;
     return PagedListView<String, NonNativeTokenHistoryAtomBase>.separated(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       pagingController: pagingController,

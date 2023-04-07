@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/bloc/assets_get_extrisincs_cubit.dart';
-import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/non_native_token_create.dart';
+import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/non_native_token_mint.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/block_datetime_w.dart';
 
-class NonNativeTokenCreateWidget extends StatelessWidget {
-  final NonNativeTokenCreate data;
+class NonNativeTokenMintWidget extends StatelessWidget {
+  final NonNativeTokenMint data;
 
-  const NonNativeTokenCreateWidget(this.data, {super.key});
+  const NonNativeTokenMintWidget(this.data, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class NonNativeTokenCreateWidget extends StatelessWidget {
         .tokenBalanceData;
     return Column(
       children: [
-        Text('CREATE TOKEN'),
+        Text('MINT TOKEN'),
         BlockDateTimeW(
           data.blockDatetime,
         ),

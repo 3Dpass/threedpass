@@ -6,7 +6,7 @@ import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
-import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/bloc/get_extrisincs_cubit.dart';
+import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/bloc/assets_get_extrisincs_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/presentation/widgets/non_native_tokens_list_item.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/transaction_item.dart';
@@ -18,7 +18,7 @@ class NonNativeTokenScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final symbol = BlocProvider.of<GetExtrinsicsCubit>(context)
+    final symbol = BlocProvider.of<AssetsGetExtrinsicsCubit>(context)
             .getExtrinsics
             .params
             .tokenBalanceData
