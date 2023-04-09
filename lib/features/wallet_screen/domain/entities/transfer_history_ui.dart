@@ -7,6 +7,7 @@ class TransferHistoryUI {
     required this.symbols,
     required this.toAddress,
     required this.extrisincStatus,
+    required this.decimals,
   });
 
   final String amount;
@@ -16,6 +17,8 @@ class TransferHistoryUI {
 
   /// This item is about fact that tokens were send FROM THIS account TO ANOTHER
   final bool isFrom;
+
+  final int decimals;
 
   final DateTime blockDateTime;
   final ExtrisincStatus? extrisincStatus;

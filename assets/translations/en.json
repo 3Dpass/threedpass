@@ -218,6 +218,13 @@
     "@non_native_token":{
     },
     "non_native_token_token": "Asset {}",
+    "no_asset_history": "No extrinsics found",
+    "mint_asset_history_label": "Mint {} {}",
+    "mint_asset_history_prefix": "For:",
+    "set_metadata_asset_history_label": "Set metadata for assetID: {}",
+    "set_metadata_asset_history_name": "Name: {}",
+    "set_metadata_asset_history_symbol": "Symbol: {}",
+    "set_metadata_asset_history_decimals": "Decimals: {}",
 
     "@recieve_page":{
     },

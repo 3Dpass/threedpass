@@ -1,8 +1,8 @@
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
 
-class NonNativeTokenTransfer extends NonNativeTokenHistoryAtomBase {
-  const NonNativeTokenTransfer({
+class AssetHistoryTransfer extends NonNativeTokenHistoryAtomBase {
+  const AssetHistoryTransfer({
     required super.blockDatetime,
     required super.extrinsicIdx,
     required super.authorAddress,
@@ -10,12 +10,14 @@ class NonNativeTokenTransfer extends NonNativeTokenHistoryAtomBase {
     required this.targetAddress,
     required this.isFrom,
     required this.symbols,
+    required this.decimals,
   });
 
   final String value;
   final String targetAddress;
   final bool isFrom;
   final String symbols;
+  final int decimals;
 
   TransferHistoryUI transferHistoryUI() {
     return TransferHistoryUI(
@@ -26,6 +28,7 @@ class NonNativeTokenTransfer extends NonNativeTokenHistoryAtomBase {
       symbols: symbols,
       toAddress: targetAddress,
       extrisincStatus: null,
+      decimals: decimals,
       // TODO Extrinsic status
     );
   }

@@ -11,7 +11,7 @@ import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/accounts_drawer.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/asset_page_appbar.dart';
-import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/assets_count.dart';
+import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/coins_balance.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/non_native_tokens/non_native_tokens.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/recieve_button.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/transfer_button.dart';

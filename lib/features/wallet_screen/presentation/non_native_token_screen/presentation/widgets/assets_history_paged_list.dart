@@ -1,6 +1,6 @@
 part of '../non_native_token_screen.dart';
 
-class _NonNativeTokensHistory extends StatelessWidget {
+class _AssetsHistoryPagetList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // return BlocBuilder<>(builder: builder);
@@ -12,9 +12,9 @@ class _NonNativeTokensHistory extends StatelessWidget {
       separatorBuilder: (final context, final index) => const Divider(),
       builderDelegate: PagedChildBuilderDelegate<NonNativeTokenHistoryAtomBase>(
         itemBuilder: (final context, final item, final index) =>
-            NonNativeTokensListItem(item),
+            AssetHistoryListItem(item),
         noItemsFoundIndicatorBuilder: (final context) =>
-            const NoTransferItemsFound(),
+            const _NoHistoryFound(),
       ),
     );
   }

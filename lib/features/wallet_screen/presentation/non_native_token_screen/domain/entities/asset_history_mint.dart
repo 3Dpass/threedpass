@@ -1,18 +1,17 @@
+
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
 
-class NonNativeTokenUnkown extends NonNativeTokenHistoryAtomBase {
-  const NonNativeTokenUnkown({
+class AssetHistoryMint extends NonNativeTokenHistoryAtomBase {
+  const AssetHistoryMint({
     required super.blockDatetime,
     required super.extrinsicIdx,
     required super.authorAddress,
-    required this.arguments,
-    required this.callModule,
+    required this.value,
   });
 
-  final String callModule;
-  final String arguments;
+  final String value;
 
   @override
   NonNativeTokenExtrinsicType get extrinsicType =>
-      NonNativeTokenExtrinsicType.unknown;
+      NonNativeTokenExtrinsicType.mint;
 }

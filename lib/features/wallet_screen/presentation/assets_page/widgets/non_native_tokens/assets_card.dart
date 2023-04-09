@@ -1,7 +1,7 @@
 part of './non_native_tokens.dart';
 
-class _NonNativeTokensCard extends StatelessWidget {
-  const _NonNativeTokensCard(this.data);
+class _AssetsCard extends StatelessWidget {
+  const _AssetsCard(this.data);
 
   final TokenBalanceData data;
 

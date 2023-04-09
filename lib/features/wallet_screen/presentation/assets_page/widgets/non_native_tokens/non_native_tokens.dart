@@ -18,10 +18,10 @@ import 'package:threedpass/features/settings_page/domain/entities/global_setting
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/get_extrinsics_usecase_params.dart';
 import 'package:threedpass/router/router.gr.dart';
 
-part './non_native_tokens_loading.dart';
-part './non_native_tokens_placeholder.dart';
-part './non_native_tokens_column.dart';
-part './non_native_tokens_card.dart';
+part 'assets_loading.dart';
+part 'assets_placeholder.dart';
+part 'assets_column.dart';
+part 'assets_card.dart';
 
 class NonNativeTokens extends StatelessWidget {
   const NonNativeTokens({super.key});
@@ -36,7 +36,7 @@ class NonNativeTokens extends StatelessWidget {
         return BlocBuilder<AppServiceLoaderCubit, AppService>(
           builder: (final context, final appService) {
             if (appService.networkStateData.isNull) {
-              return const _NonNativeTokensLoading();
+              return const _AssetsLoading();
             }
 
             bool allTokensEmpty = true;
@@ -52,9 +52,9 @@ class NonNativeTokens extends StatelessWidget {
             final showZeroAssets = settings.appSettings.showZeroAssets!;
 
             if (allTokensEmpty && !showZeroAssets) {
-              return const _NonNativeTokensPlaceholder();
+              return const _AssetsPlaceholder();
             } else {
-              return _NonNativeTokensColumn(tokensData);
+              return _AssetsColumn(tokensData);
             }
           },
         );

@@ -1,7 +1,7 @@
 part of './non_native_tokens.dart';
 
-class _NonNativeTokensColumn extends StatelessWidget {
-  const _NonNativeTokensColumn(this.tokens);
+class _AssetsColumn extends StatelessWidget {
+  const _AssetsColumn(this.tokens);
 
   final List<TokenBalanceData> tokens;
 
@@ -29,7 +29,7 @@ class _NonNativeTokensColumn extends StatelessWidget {
               itemCount: resolvedList.length,
               itemBuilder: (final context, final index) => Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
-                child: _NonNativeTokensCard(resolvedList[index]),
+                child: _AssetsCard(resolvedList[index]),
               ),
             ),
           ),

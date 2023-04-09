@@ -27,6 +27,7 @@ class NonNativeTokensApi {
         symbol: tcd.symbol,
         type: tcd.type,
         amount: balances[i].balance ?? '0',
+        decimals: tcd.decimals,
       );
       result.add(balanceData);
     }

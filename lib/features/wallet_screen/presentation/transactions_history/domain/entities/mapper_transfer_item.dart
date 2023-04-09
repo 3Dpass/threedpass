@@ -1,4 +1,6 @@
 import 'package:polkawallet_sdk/api/types/networkStateData.dart';
+import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/entities/transfer_item.dart';
 
@@ -17,6 +19,7 @@ class MapperTransferItemToUI {
       symbols: data.tokenSymbol?.first ?? '',
       isFrom: isFrom,
       extrisincStatus: null,
+      decimals: data.safeDecimals,
     );
   }
 }

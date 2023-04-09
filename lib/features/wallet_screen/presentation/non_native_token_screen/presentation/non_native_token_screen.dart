@@ -2,16 +2,29 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:polkawallet_sdk/plugin/store/balances.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/bloc/assets_get_extrisincs_cubit.dart';
+import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/asset_history_create.dart';
+import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/asset_history_mint.dart';
+import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/asset_history_set_meta_data.dart';
+import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/asset_history_transfer.dart';
+import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/asset_history_unknown.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
-import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/presentation/widgets/non_native_tokens_list_item.dart';
+import 'package:threedpass/features/wallet_screen/presentation/widgets/block_datetime_w.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/transaction_item.dart';
 
-part './widgets/non_native_tokens_list.dart';
+part 'widgets/assets_history_paged_list.dart';
+part './widgets/no_history_found.dart';
+part './widgets/asset_history_create_widget.dart';
+part './widgets/asset_history_mint_widget.dart';
+part './widgets/asset_history_set_metadata_widget.dart';
+part './widgets/asset_history_unknown_widget.dart';
+part './widgets/asset_history_list_item.dart';
 
 class NonNativeTokenScreen extends StatelessWidget {
   const NonNativeTokenScreen({super.key});
@@ -43,7 +56,7 @@ class NonNativeTokenScreen extends StatelessWidget {
           Text('History:'),
           SizedBoxH8(),
           Flexible(
-            child: _NonNativeTokensHistory(),
+            child: _AssetsHistoryPagetList(),
           ),
         ],
       ),
