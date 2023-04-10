@@ -24,4 +24,4 @@ class TransferHistoryUI {
   final ExtrisincStatus? extrisincStatus;
 }
 
-enum ExtrisincStatus { none, loading, loaded }
+enum ExtrisincStatus { error, loading, loaded }

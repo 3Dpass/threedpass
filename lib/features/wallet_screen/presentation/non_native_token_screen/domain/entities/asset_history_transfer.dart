@@ -1,6 +1,10 @@
+import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
 
+part 'asset_history_transfer.g.dart';
+
+@CopyWith()
 class AssetHistoryTransfer extends NonNativeTokenHistoryAtomBase {
   const AssetHistoryTransfer({
     required super.blockDatetime,
@@ -11,6 +15,7 @@ class AssetHistoryTransfer extends NonNativeTokenHistoryAtomBase {
     required this.isFrom,
     required this.symbols,
     required this.decimals,
+    required super.extrisincStatus,
   });
 
   final String value;
