@@ -13,6 +13,7 @@ class AssetHistoryUnknownWidget extends StatelessWidget {
         .tokenBalanceData;
     return Column(
       children: [
+        Text(data.extrisincStatus.toString()),
         Text('Unknown TOKEN'),
         Text(data.callModule),
         Text(data.arguments),

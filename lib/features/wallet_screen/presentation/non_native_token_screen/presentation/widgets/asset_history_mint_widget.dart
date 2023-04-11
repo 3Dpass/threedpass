@@ -15,6 +15,7 @@ class AssetHistoryMintWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBoxH8(),
+        Text(data.extrisincStatus.toString()),
         D3pBodyLargeText(
           'mint_asset_history_label'.tr(
             args: [data.value, cubit.symbol ?? ''],

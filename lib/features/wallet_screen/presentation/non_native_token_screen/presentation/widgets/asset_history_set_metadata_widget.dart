@@ -16,6 +16,7 @@ class AssetHistorySetMetadataWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBoxH8(),
+        Text(data.extrisincStatus.toString()),
         Text.rich(
           TextSpan(
             text: 'set_metadata_asset_history_label'.tr(args: [tbd.id ?? '']) +

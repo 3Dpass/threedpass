@@ -14,6 +14,7 @@ class AssetHistoryCreateWidget extends StatelessWidget {
     return Column(
       children: [
         Text('CREATE TOKEN'),
+        Text(data.extrisincStatus.toString()),
         BlockDateTimeW(
           data.blockDatetime,
         ),

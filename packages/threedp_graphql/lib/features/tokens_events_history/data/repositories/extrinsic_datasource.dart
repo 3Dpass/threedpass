@@ -30,9 +30,6 @@ class ExtrinsicDatasourceGQL {
     });
     final response = await client.request(request).first;
 
-    print('fetchExtrinsincs');
-    print(response.data?.getExtrinsics?.objects?.length ?? 'null');
-
     if (response.hasErrors || response.data == null) {
       return Either.left(
         NetworkFailure(response.linkException.toString()),
