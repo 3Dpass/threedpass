@@ -17,8 +17,11 @@ public class SwiftCalcPlugin: NSObject, FlutterPlugin {
   }
 
   public static func dummyMethodToEnforceBundling() {
+    print("iOS Call")
     // dummy calls to prevent tree shaking
     calc("", 0, 1, 1, "", "");
-    version();
+    print("iOS calc")
+    versionInterface();
+    print("iOS version")
   }
 }

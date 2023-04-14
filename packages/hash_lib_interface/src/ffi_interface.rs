@@ -55,7 +55,7 @@ pub extern fn calc(input: *const c_uchar, input_len: c_int,  par1: c_short, par2
 }
 
 #[no_mangle]
-pub extern fn version() -> *mut c_char {
+pub extern fn versionInterface() -> *mut c_char {
     let r = env!("CARGO_PKG_VERSION");
 
     return CString::new(r).unwrap().into_raw();

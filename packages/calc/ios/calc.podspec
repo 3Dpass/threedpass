@@ -18,6 +18,9 @@ A new Flutter plugin project.
   s.static_framework = true
   s.vendored_libraries = "**/*.a"
   s.dependency 'Flutter'
+  s.pod_target_xcconfig = { 
+    'OTHER_LDFLAGS' => '-lxyz'
+  }
   s.platform = :ios, '9.0'
 
   # Flutter.framework does not contain a i386 slice.

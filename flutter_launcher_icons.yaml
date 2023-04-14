@@ -1,3 +1,8 @@
+# My fix: https://github.com/fluttercommunity/flutter_launcher_icons/issues/221#issuecomment-1150707790
+#
+# Command:
+# fvm flutter pub run flutter_launcher_icons:main
+#
 flutter_icons:
   android: "icon"
   ios: "AppIcon" # Crucial step
