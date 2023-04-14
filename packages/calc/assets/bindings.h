@@ -7,4 +7,4 @@ char *calc(const unsigned char *input,
            const unsigned char *trans,
            const unsigned char *version);
 
-char *version(void);
+char *versionInterface();

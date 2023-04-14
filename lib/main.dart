@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+// import 'package:logger_flutter_plus/logger_flutter_plus.dart';
 import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
@@ -11,6 +12,7 @@ import 'package:threedpass/core/widgets/theme_builder.dart';
 import 'package:threedpass/features/app/presentation/global_states_provider.dart';
 import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart' as di_setup;
+import 'package:threedpass/setup.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +20,13 @@ Future<void> main() async {
   await hive_setup.hiveSetup();
   await di_setup.setup();
   await EasyLocalization.ensureInitialized();
+  // var logConsoleManager = LogConsoleManager(
+  //   isDark: true,
+  // );
+  // logConsoleManager.addLog(OutputEvent(Level.verbose, ['Lol', 'kek']));
+  // getIt.registerSingleton<LogConsoleManager>(logConsoleManager);
+  // LogConsoleWidget();
+  // LogConsole.init();
 
   runApp(
     EasyLocalization(
@@ -31,6 +40,38 @@ Future<void> main() async {
     ),
   );
 }
+
+// class CustomError extends StatelessWidget {
+//   final FlutterErrorDetails errorDetails;
+
+//   const CustomError({
+//     Key? key,
+//     required this.errorDetails,
+//   })  : assert(errorDetails != null),
+//         super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Card(
+//       child: Padding(
+//         child: Text(
+//           errorDetails.exception.toString() +
+//               '\n' +
+//               errorDetails.library.toString() +
+//               '\n' +
+//               errorDetails.stack.toString(),
+//           style: const TextStyle(
+//             color: Colors.white,
+//             fontWeight: FontWeight.bold,
+//           ),
+//         ),
+//         padding: const EdgeInsets.all(8.0),
+//       ),
+//       color: Colors.red,
+//       margin: EdgeInsets.zero,
+//     );
+//   }
+// }
 
 class ThreeDApp extends StatelessWidget {
   ThreeDApp({final Key? key}) : super(key: key);
@@ -51,6 +92,16 @@ class ThreeDApp extends StatelessWidget {
           child: PlatformApp.router(
             debugShowCheckedModeBanner: false,
             title: '3Dpass',
+            // builder: (BuildContext context, Widget? widget) {
+            //   ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+            //     return CustomError(errorDetails: errorDetails);
+            //   };
+
+            //   return widget ??
+            //       Material(
+            //         child: Text('Error'),
+            //       );
+            // },
             material: _MainMaterialAppRouterData(brightness).theme,
             cupertino: _MainCupertinoAppRouterData(brightness).theme,
             routerDelegate: _appRouter.delegate(),
