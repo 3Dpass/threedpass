@@ -37,13 +37,13 @@ class GlobalSettings {
 
   GlobalSettings selfValidate() {
     final newScan = scanSettings.selfValidate();
-    final newApp = appSettings.selfValidate();
+    // final newApp = appSettings.selfValidate();
     // walletSettings.selfCheck();
     // previewSettings.selfCheck();
 
     return this.copyWith(
       scanSettings: newScan,
-      appSettings: newApp,
+      // appSettings: newApp,
     );
   }
 }

@@ -25,16 +25,11 @@ class AppSettings {
   @HiveField(1)
   final bool darkTheme;
 
-  @HiveField(2) // TODO SET DEFAULT VALUES INSTEAD OF SELF_VALIDATING
-  final bool? showZeroAssets;
-
-  AppSettings selfValidate() {
-    final newShowZeroAssets = showZeroAssets ?? defaultShowZeroAssets;
-
-    return this.copyWith(
-      showZeroAssets: newShowZeroAssets,
-    );
-  }
+  @HiveField(
+    2,
+    defaultValue: false,
+  ) // TODO SET DEFAULT VALUES INSTEAD OF SELF_VALIDATING
+  final bool showZeroAssets;
 
   static const defaultShowZeroAssets = true;
 }

@@ -9,7 +9,7 @@ part of 'app_settings.dart';
 abstract class _$AppSettingsCWProxy {
   AppSettings darkTheme(bool darkTheme);
 
-  AppSettings showZeroAssets(bool? showZeroAssets);
+  AppSettings showZeroAssets(bool showZeroAssets);
 
   AppSettings stableRequirement(int stableRequirement);
 
@@ -36,7 +36,7 @@ class _$AppSettingsCWProxyImpl implements _$AppSettingsCWProxy {
   AppSettings darkTheme(bool darkTheme) => this(darkTheme: darkTheme);
 
   @override
-  AppSettings showZeroAssets(bool? showZeroAssets) =>
+  AppSettings showZeroAssets(bool showZeroAssets) =>
       this(showZeroAssets: showZeroAssets);
 
   @override
@@ -61,10 +61,11 @@ class _$AppSettingsCWProxyImpl implements _$AppSettingsCWProxy {
           ? _value.darkTheme
           // ignore: cast_nullable_to_non_nullable
           : darkTheme as bool,
-      showZeroAssets: showZeroAssets == const $CopyWithPlaceholder()
+      showZeroAssets: showZeroAssets == const $CopyWithPlaceholder() ||
+              showZeroAssets == null
           ? _value.showZeroAssets
           // ignore: cast_nullable_to_non_nullable
-          : showZeroAssets as bool?,
+          : showZeroAssets as bool,
       stableRequirement: stableRequirement == const $CopyWithPlaceholder() ||
               stableRequirement == null
           ? _value.stableRequirement
@@ -97,7 +98,7 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
     return AppSettings(
       darkTheme: fields[1] as bool,
       stableRequirement: fields[0] as int,
-      showZeroAssets: fields[2] as bool?,
+      showZeroAssets: fields[2] == null ? false : fields[2] as bool,
     );
   }
 

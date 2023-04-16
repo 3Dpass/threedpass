@@ -171,8 +171,11 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
   /// 2. Change account. Calculate new balances
   /// 3. Transfer sent TODO
   static Future<void> setTokensData(final AppService service) async {
-    final nnta = NonNativeTokensApi(service);
-    await nnta.setTokens();
+    if (service.keyring.current.address != null) {
+      // Get tokens only if there is an account
+      final nnta = NonNativeTokensApi(service);
+      await nnta.setTokens();
+    }
   }
 
   static Future<void> subscribeToBalance(final AppService service) async {

@@ -8,15 +8,8 @@ import 'package:threedpass/setup.dart';
 class ScanPage extends StatelessWidget {
   const ScanPage({final Key? key}) : super(key: key);
 
-  Future<void> a() async {
-    final res = await Calc2.getVersion();
-    print(res);
-  }
-
   @override
   Widget build(final BuildContext context) {
-    // return LogConsole();
-    a();
     return D3pScaffold(
       removeBackButton: true,
       appbarTitle: 'recognize_your_objects',
