@@ -1,16 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:super_core/super_core.dart';
-import 'package:threedp_graphql/features/tokens_events_history/domain/extrisincs_request_params.dart';
+import 'package:threedp_graphql/features/extrinsics/domain/extrisincs_request_params.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/asset_history_transfer.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/transfer_non_native_tokens_dto.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/usecases/assets_get_extrinsics.dart';
+import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/usecases/get_events_usecase.dart';
 
 class AssetsGetExtrinsicsCubit extends Cubit<void> {
   AssetsGetExtrinsicsCubit({
     required this.getExtrinsics,
+    required this.getEvents,
   }) : super(null) {
     pagingController = PagingController(firstPageKey: '1')
       ..addPageRequestListener((final String pageKey) {
@@ -21,6 +23,7 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
   late final PagingController<String, NonNativeTokenHistoryAtomBase>
       pagingController;
   final AssetsGetExtrinsics getExtrinsics;
+  final GetEventsUseCase getEvents;
 
   Future<void> update() async {
     for (var item in pagingController.itemList!.reversed) {
@@ -28,7 +31,12 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
       final list = pagingController.itemList!;
       var index = list.indexOf(item);
       list.replaceRange(
-          index, index + 1, [item.ultimateCopyWith(ExtrisincStatus.loaded)]);
+        index,
+        index + 1,
+        [
+          item.ultimateCopyWith(ExtrisincStatus.loaded),
+        ],
+      );
       pagingController.itemList = list;
       pagingController.notifyListeners();
       print('${item.blockDatetime} ${item.runtimeType}');
@@ -43,7 +51,6 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
       GetExtrisincsParams(
         pageKey: pageKey,
         callModule: 'Assets',
-        // TODO SET PARAMS
       ),
     );
   }

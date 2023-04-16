@@ -1,9 +1,9 @@
 import 'package:ferry/ferry.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedp_graphql/core/utils/int_to_nullable_string.dart';
-import 'package:threedp_graphql/features/tokens_events_history/data/query/__generated__/get_tokens_events.data.gql.dart';
-import 'package:threedp_graphql/features/tokens_events_history/data/query/__generated__/get_tokens_events.req.gql.dart';
-import 'package:threedp_graphql/features/tokens_events_history/domain/extrisincs_request_params.dart';
+import 'package:threedp_graphql/features/extrinsics/data/query/__generated__/get_extrnsics.data.gql.dart';
+import 'package:threedp_graphql/features/extrinsics/data/query/__generated__/get_extrnsics.req.gql.dart';
+import 'package:threedp_graphql/features/extrinsics/domain/extrisincs_request_params.dart';
 
 class ExtrinsicDatasourceGQL {
   final Client client;

@@ -1,8 +1,8 @@
 import 'package:ferry/ferry.dart';
 import 'package:super_core/super_core.dart';
-import 'package:threedp_graphql/features/tokens_events_history/data/query/__generated__/get_tokens_events.data.gql.dart';
-import 'package:threedp_graphql/features/tokens_events_history/data/repositories/extrinsic_datasource.dart';
-import 'package:threedp_graphql/features/tokens_events_history/domain/extrisincs_request_params.dart';
+import 'package:threedp_graphql/features/extrinsics/data/query/__generated__/get_extrnsics.data.gql.dart';
+import 'package:threedp_graphql/features/extrinsics/data/repositories/extrinsic_datasource.dart';
+import 'package:threedp_graphql/features/extrinsics/domain/extrisincs_request_params.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/decode_address.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
@@ -29,10 +29,7 @@ class AssetsExtrinsicsRepository {
 
     final state = appServiceLoaderCubit.state;
     final address = state.keyring.current.address;
-    print(state);
     final decoded = await state.decodeAddress(address!);
-    print(decoded);
-    final b = 1 + 1;
 
     final transferItems = <NonNativeTokenHistoryAtomBase>[];
 
@@ -45,9 +42,6 @@ class AssetsExtrinsicsRepository {
         transferItems.add(tmp);
       }
     }
-
-    print('transferItems');
-    print(transferItems.length);
 
     return Either.right(
       TransfersNonNativeTokenDTO(

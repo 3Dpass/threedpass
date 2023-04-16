@@ -1,8 +1,8 @@
 import 'package:ferry/ferry.dart';
 import 'package:super_core/super_core.dart';
-import 'package:threedp_graphql/features/tokens_events_history/data/query/__generated__/get_tokens_events.data.gql.dart';
-import 'package:threedp_graphql/features/tokens_events_history/data/query/__generated__/get_tokens_events.req.gql.dart';
-import 'package:threedp_graphql/features/tokens_events_history/domain/events_request_params.dart';
+import 'package:threedp_graphql/features/events/data/query/__generated__/get_events.data.gql.dart';
+import 'package:threedp_graphql/features/events/data/query/__generated__/get_events.req.gql.dart';
+import 'package:threedp_graphql/features/events/domain/events_request_params.dart';
 
 class EventsDatasourceGQL {
   final Client client;
