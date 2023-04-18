@@ -10,9 +10,7 @@ class TransferButton extends StatelessWidget {
 
   void onPressed(final BuildContext context) {
     context.router.push(
-      const TransferWrapperRoute(
-          // appService: BlocProvider.of<AppServiceLoaderCubit>(context).state,
-          ),
+      const TransferWrapperRoute(),
     );
   }
 
