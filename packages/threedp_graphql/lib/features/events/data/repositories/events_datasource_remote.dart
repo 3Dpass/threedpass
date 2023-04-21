@@ -1,5 +1,6 @@
 import 'package:ferry/ferry.dart';
 import 'package:super_core/super_core.dart';
+import 'package:threedp_graphql/core/bloated_response.dart';
 import 'package:threedp_graphql/features/events/data/query/__generated__/get_events.data.gql.dart';
 import 'package:threedp_graphql/features/events/data/query/__generated__/get_events.req.gql.dart';
 import 'package:threedp_graphql/features/events/domain/events_request_params.dart';
@@ -11,7 +12,8 @@ class EventsDatasourceGQL {
     required this.client,
   });
 
-  Future<Either<Failure, GGetEventsData>> fetchTransfers(
+  Future<Either<Failure, BloatedResponse<GGetEventsReq, GGetEventsData>>>
+      fetchTransfers(
     final GetEventsParams requestParams,
   ) async {
     final request = GGetEventsReq((final b) {
@@ -30,7 +32,12 @@ class EventsDatasourceGQL {
         NetworkFailure(response.linkException.toString()),
       );
     } else {
-      return Either.right(response.data!);
+      return Either.right(
+        BloatedResponse(
+          request: request,
+          data: response.data!,
+        ),
+      );
     }
   }
 }

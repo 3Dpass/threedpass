@@ -96,12 +96,14 @@ class Transfer {
             }
           },
         );
-      } on Exception catch (e) {
+
+        DefaultLoadingDialog.hide(outerContext);
+        context.router.pop();
+        Fluttertoast.showToast(msg: 'transfer_success_text'.tr());
+      } on Object catch (e) {
+        DefaultLoadingDialog.hide(outerContext);
         unawaited(Fluttertoast.showToast(msg: e.toString()));
       }
-
-      // This works only when the transaction is impossible. I don't know why.
-      DefaultLoadingDialog.hide(outerContext);
     }
   }
 }

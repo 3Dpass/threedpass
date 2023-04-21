@@ -11,6 +11,8 @@ abstract class _$AssetHistorySetMetadataCWProxy {
 
   AssetHistorySetMetadata blockDatetime(DateTime blockDatetime);
 
+  AssetHistorySetMetadata blockNumber(int blockNumber);
+
   AssetHistorySetMetadata decimals(String decimals);
 
   AssetHistorySetMetadata extrinsicIdx(int extrinsicIdx);
@@ -30,6 +32,7 @@ abstract class _$AssetHistorySetMetadataCWProxy {
   AssetHistorySetMetadata call({
     String? authorAddress,
     DateTime? blockDatetime,
+    int? blockNumber,
     String? decimals,
     int? extrinsicIdx,
     ExtrisincStatus? extrisincStatus,
@@ -52,6 +55,10 @@ class _$AssetHistorySetMetadataCWProxyImpl
   @override
   AssetHistorySetMetadata blockDatetime(DateTime blockDatetime) =>
       this(blockDatetime: blockDatetime);
+
+  @override
+  AssetHistorySetMetadata blockNumber(int blockNumber) =>
+      this(blockNumber: blockNumber);
 
   @override
   AssetHistorySetMetadata decimals(String decimals) => this(decimals: decimals);
@@ -81,6 +88,7 @@ class _$AssetHistorySetMetadataCWProxyImpl
   AssetHistorySetMetadata call({
     Object? authorAddress = const $CopyWithPlaceholder(),
     Object? blockDatetime = const $CopyWithPlaceholder(),
+    Object? blockNumber = const $CopyWithPlaceholder(),
     Object? decimals = const $CopyWithPlaceholder(),
     Object? extrinsicIdx = const $CopyWithPlaceholder(),
     Object? extrisincStatus = const $CopyWithPlaceholder(),
@@ -98,6 +106,11 @@ class _$AssetHistorySetMetadataCWProxyImpl
               ? _value.blockDatetime
               // ignore: cast_nullable_to_non_nullable
               : blockDatetime as DateTime,
+      blockNumber:
+          blockNumber == const $CopyWithPlaceholder() || blockNumber == null
+              ? _value.blockNumber
+              // ignore: cast_nullable_to_non_nullable
+              : blockNumber as int,
       decimals: decimals == const $CopyWithPlaceholder() || decimals == null
           ? _value.decimals
           // ignore: cast_nullable_to_non_nullable

@@ -21,5 +21,40 @@ class EventsRepository {
 
   Future<Either<Failure, SuccessEvenType>> fetchEvent(
     final GetEventsParams requestParams,
-  ) async {}
+  ) async {
+    // Get local data
+    final localRes = eventsDatasourceLocal.fetchTransfers(requestParams);
+
+    return localRes.when(
+      right: (final data) {
+        // if has local data, use it
+        return Either.right(
+          SuccessEvenType(data),
+        );
+      },
+      left: (final error) async {
+        // if no local data, ask for remote
+        final remoteRes =
+            await eventsDatasourceGQL.fetchTransfers(requestParams);
+
+        return remoteRes.when(
+          right: (final bloatedResp) {
+            // is no local data, but has remote
+            // save it and use.
+            eventsDatasourceLocal.writeCache(
+              bloatedResp.request,
+              bloatedResp.data,
+            );
+            return Either.right(
+              SuccessEvenType(bloatedResp.data),
+            );
+          },
+          left: (final err) {
+            // if neither local not remote data, return error
+            return Either.left(err);
+          },
+        );
+      },
+    );
+  }
 }

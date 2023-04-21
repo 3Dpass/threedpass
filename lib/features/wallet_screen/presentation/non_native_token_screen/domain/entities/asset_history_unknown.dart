@@ -13,6 +13,7 @@ class AssetHistoryUnkown extends NonNativeTokenHistoryAtomBase {
     required this.arguments,
     required this.callModule,
     required super.extrisincStatus,
+    required super.blockNumber,
   });
 
   final String callModule;

@@ -12,6 +12,7 @@ class AssetHistoryMint extends NonNativeTokenHistoryAtomBase {
     required super.authorAddress,
     required this.value,
     required super.extrisincStatus,
+    required super.blockNumber,
   });
 
   final String value;

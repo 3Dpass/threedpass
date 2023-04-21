@@ -16,6 +16,7 @@ class AssetHistoryTransfer extends NonNativeTokenHistoryAtomBase {
     required this.symbols,
     required this.decimals,
     required super.extrisincStatus,
+    required super.blockNumber,
   });
 
   final String value;

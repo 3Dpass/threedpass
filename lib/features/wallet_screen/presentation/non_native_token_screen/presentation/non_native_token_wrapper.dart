@@ -27,7 +27,6 @@ class NonNativeTokenWrapper extends StatelessWidget {
             ),
             param2: getIt<GetEventsUseCase>(
               param1: getIt<EventsRepository>(),
-              param2: getIt<GetEventsParams>(),
             ),
           ),
         ),

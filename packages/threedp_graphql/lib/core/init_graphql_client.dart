@@ -7,11 +7,7 @@ class FerryClient {
   static const apiUrl = 'https://explorer-api.3dpass.org/graphql/';
   late final Client client;
 
-  FerryClient(final Box<Map<String, dynamic>> cacheHiveBox) {
-    final store = HiveStore(cacheHiveBox);
-
-    final cache = Cache(store: store);
-
+  FerryClient({required Cache cache}) {
     final link = HttpLink(apiUrl);
 
     client = Client(

@@ -1,15 +1,26 @@
 import 'package:threedp_graphql/features/events/data/query/__generated__/get_events.data.gql.dart';
+import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
 
 class SuccessEvenType {
-  final bool isSuccessful;
+  final ExtrisincStatus isSuccessful;
 
   SuccessEvenType(GGetEventsData event)
       : isSuccessful = _initIsSuccessful(event);
 
-  static bool _initIsSuccessful(GGetEventsData event) {
-    event.getEvents?.objects
-        ?.firstWhere((p0) => p0.eventName == 'ExtrinsicFailed111');
-
-    return true;
+  static ExtrisincStatus _initIsSuccessful(GGetEventsData event) {
+    try {
+      final ex = event.getEvents?.objects
+          ?.firstWhere((p0) => p0.eventModule == 'System');
+      switch (ex?.eventName ?? '') {
+        case 'ExtrinsicFailed':
+          return ExtrisincStatus.fail;
+        case 'ExtrinsicSuccess':
+          return ExtrisincStatus.success;
+        default:
+          return ExtrisincStatus.error;
+      }
+    } on Object catch (e) {
+      return ExtrisincStatus.error;
+    }
   }
 }

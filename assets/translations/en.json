@@ -63,7 +63,7 @@
 
     "stable_hashes_list_title": "Stable hashes:",
     "no_stable_hash_placeholder": "No stable hash found.",
-    "no_stable_hash_help": "To get a stable hash, you try to scan the object several times with the same scan settings.",
+    "no_stable_hash_help": "To get a stable hash, try to scan the object several times with the same scan settings.",
 
     "@rename_snap_dialog":{
     },

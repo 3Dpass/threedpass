@@ -6,11 +6,9 @@ import 'package:threedpass/features/wallet_screen/presentation/non_native_token_
 
 class GetEventsUseCase extends UseCase<SuccessEvenType, GetEventsParams> {
   final EventsRepository repository;
-  final GetEventsParams params;
 
   const GetEventsUseCase({
     required this.repository,
-    required this.params,
   });
 
   @override

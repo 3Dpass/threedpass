@@ -14,6 +14,7 @@ class AssetHistorySetMetadata extends NonNativeTokenHistoryAtomBase {
     required this.name,
     required this.symbol,
     required super.extrisincStatus,
+    required super.blockNumber,
   });
 
   final String decimals;

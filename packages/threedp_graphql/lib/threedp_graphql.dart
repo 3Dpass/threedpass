@@ -4,6 +4,7 @@ import 'package:ferry/ferry.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:super_core/super_core.dart';
+import 'package:threedp_graphql/core/ferry_cache.dart';
 import 'package:threedp_graphql/core/init_graphql_client.dart';
 import 'package:threedp_graphql/features/events/data/repositories/events_datasource_local.dart';
 import 'package:threedp_graphql/features/events/data/repositories/events_datasource_remote.dart';
@@ -17,7 +18,11 @@ class ThreedpGraphql extends DIModule {
         await Hive.openBox<Map<String, dynamic>>("graphql_cache_ferry");
     await cacheHiveBox.clear();
 
-    getIt.registerSingleton<Client>(FerryClient(cacheHiveBox).client);
+    getIt.registerSingleton<Cache>(FerryCache(cacheHiveBox).cache);
+
+    getIt.registerSingleton<Client>(FerryClient(
+      cache: getIt<Cache>(),
+    ).client);
 
     getIt.registerSingleton<TransfersDatasourceGQL>(
       TransfersDatasourceGQL(client: getIt<Client>()),
@@ -31,7 +36,7 @@ class ThreedpGraphql extends DIModule {
       EventsDatasourceGQL(client: getIt<Client>()),
     );
     getIt.registerSingleton<EventsDatasourceLocal>(
-      EventsDatasourceLocal(),
+      EventsDatasourceLocal(cache: getIt<Cache>()),
     );
   }
 }

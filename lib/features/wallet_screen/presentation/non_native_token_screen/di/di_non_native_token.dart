@@ -42,11 +42,9 @@ class DINonNativeToken extends DIModule {
       ),
     );
 
-    getIt.registerFactoryParam<GetEventsUseCase, EventsRepository,
-        GetEventsParams>(
+    getIt.registerFactoryParam<GetEventsUseCase, EventsRepository, void>(
       (final param1, final param2) => GetEventsUseCase(
         repository: param1,
-        params: param2,
       ),
     );
 

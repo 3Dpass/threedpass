@@ -11,6 +11,8 @@ abstract class _$AssetHistoryTransferCWProxy {
 
   AssetHistoryTransfer blockDatetime(DateTime blockDatetime);
 
+  AssetHistoryTransfer blockNumber(int blockNumber);
+
   AssetHistoryTransfer decimals(int decimals);
 
   AssetHistoryTransfer extrinsicIdx(int extrinsicIdx);
@@ -34,6 +36,7 @@ abstract class _$AssetHistoryTransferCWProxy {
   AssetHistoryTransfer call({
     String? authorAddress,
     DateTime? blockDatetime,
+    int? blockNumber,
     int? decimals,
     int? extrinsicIdx,
     ExtrisincStatus? extrisincStatus,
@@ -58,6 +61,10 @@ class _$AssetHistoryTransferCWProxyImpl
   @override
   AssetHistoryTransfer blockDatetime(DateTime blockDatetime) =>
       this(blockDatetime: blockDatetime);
+
+  @override
+  AssetHistoryTransfer blockNumber(int blockNumber) =>
+      this(blockNumber: blockNumber);
 
   @override
   AssetHistoryTransfer decimals(int decimals) => this(decimals: decimals);
@@ -94,6 +101,7 @@ class _$AssetHistoryTransferCWProxyImpl
   AssetHistoryTransfer call({
     Object? authorAddress = const $CopyWithPlaceholder(),
     Object? blockDatetime = const $CopyWithPlaceholder(),
+    Object? blockNumber = const $CopyWithPlaceholder(),
     Object? decimals = const $CopyWithPlaceholder(),
     Object? extrinsicIdx = const $CopyWithPlaceholder(),
     Object? extrisincStatus = const $CopyWithPlaceholder(),
@@ -113,6 +121,11 @@ class _$AssetHistoryTransferCWProxyImpl
               ? _value.blockDatetime
               // ignore: cast_nullable_to_non_nullable
               : blockDatetime as DateTime,
+      blockNumber:
+          blockNumber == const $CopyWithPlaceholder() || blockNumber == null
+              ? _value.blockNumber
+              // ignore: cast_nullable_to_non_nullable
+              : blockNumber as int,
       decimals: decimals == const $CopyWithPlaceholder() || decimals == null
           ? _value.decimals
           // ignore: cast_nullable_to_non_nullable

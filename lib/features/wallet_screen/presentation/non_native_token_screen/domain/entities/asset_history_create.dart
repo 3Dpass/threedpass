@@ -11,6 +11,7 @@ class AssetHistoryCreate extends NonNativeTokenHistoryAtomBase {
     required super.extrinsicIdx,
     required super.authorAddress,
     required super.extrisincStatus,
+    required super.blockNumber,
   });
 
   @override

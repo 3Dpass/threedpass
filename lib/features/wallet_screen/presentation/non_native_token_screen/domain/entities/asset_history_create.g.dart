@@ -11,6 +11,8 @@ abstract class _$AssetHistoryCreateCWProxy {
 
   AssetHistoryCreate blockDatetime(DateTime blockDatetime);
 
+  AssetHistoryCreate blockNumber(int blockNumber);
+
   AssetHistoryCreate extrinsicIdx(int extrinsicIdx);
 
   AssetHistoryCreate extrisincStatus(ExtrisincStatus extrisincStatus);
@@ -24,6 +26,7 @@ abstract class _$AssetHistoryCreateCWProxy {
   AssetHistoryCreate call({
     String? authorAddress,
     DateTime? blockDatetime,
+    int? blockNumber,
     int? extrinsicIdx,
     ExtrisincStatus? extrisincStatus,
   });
@@ -44,6 +47,10 @@ class _$AssetHistoryCreateCWProxyImpl implements _$AssetHistoryCreateCWProxy {
       this(blockDatetime: blockDatetime);
 
   @override
+  AssetHistoryCreate blockNumber(int blockNumber) =>
+      this(blockNumber: blockNumber);
+
+  @override
   AssetHistoryCreate extrinsicIdx(int extrinsicIdx) =>
       this(extrinsicIdx: extrinsicIdx);
 
@@ -62,6 +69,7 @@ class _$AssetHistoryCreateCWProxyImpl implements _$AssetHistoryCreateCWProxy {
   AssetHistoryCreate call({
     Object? authorAddress = const $CopyWithPlaceholder(),
     Object? blockDatetime = const $CopyWithPlaceholder(),
+    Object? blockNumber = const $CopyWithPlaceholder(),
     Object? extrinsicIdx = const $CopyWithPlaceholder(),
     Object? extrisincStatus = const $CopyWithPlaceholder(),
   }) {
@@ -76,6 +84,11 @@ class _$AssetHistoryCreateCWProxyImpl implements _$AssetHistoryCreateCWProxy {
               ? _value.blockDatetime
               // ignore: cast_nullable_to_non_nullable
               : blockDatetime as DateTime,
+      blockNumber:
+          blockNumber == const $CopyWithPlaceholder() || blockNumber == null
+              ? _value.blockNumber
+              // ignore: cast_nullable_to_non_nullable
+              : blockNumber as int,
       extrinsicIdx:
           extrinsicIdx == const $CopyWithPlaceholder() || extrinsicIdx == null
               ? _value.extrinsicIdx
