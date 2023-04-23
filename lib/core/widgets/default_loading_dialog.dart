@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/router.dart';
 
@@ -44,6 +45,9 @@ class DefaultLoadingDialog extends StatelessWidget {
                           const SizedBox(width: 24),
                           Text(
                             text!,
+                            style: Theme.of(context)
+                                .customTextStyles
+                                .d3pBodyMedium,
                           ),
                         ],
                       )
@@ -53,32 +57,6 @@ class DefaultLoadingDialog extends StatelessWidget {
           ),
         ),
       ),
-      // WillPopScope(
-      //   onWillPop: () async => false,
-      //   child: SizedBox(
-      //     // height: 69,
-      //     child: Center(
-      //       child:
-      // Row(
-      //         crossAxisAlignment: CrossAxisAlignment.center,
-      //         mainAxisAlignment: MainAxisAlignment.center,
-      //         children: [
-      //           PlatformCircularProgressIndicator(),
-      //           text != null
-      //               ? Row(
-      //                   children: [
-      //                     const SizedBox(width: 24),
-      //                     Text(
-      //                       text!,
-      //                     ),
-      //                   ],
-      //                 )
-      //               : const SizedBox(),
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

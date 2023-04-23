@@ -12,3 +12,7 @@ abstract class Failure extends Equatable {
 class NetworkFailure extends Failure {
   const NetworkFailure([final String? cause]) : super(cause);
 }
+
+class NoDataFailure extends Failure {
+  const NoDataFailure([final String? cause]) : super(cause);
+}

@@ -12,6 +12,7 @@ class _TransactionsList extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     return PagedListView<String, TransferItem>.separated(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       pagingController: pagingController,
@@ -19,11 +20,14 @@ class _TransactionsList extends StatelessWidget {
       builderDelegate: PagedChildBuilderDelegate<TransferItem>(
         itemBuilder: (final context, final item, final index) =>
             TransactionItem(
-          object: item,
-          colorFromSecondary: isFrom,
-          colorToSecondary: !isFrom,
+          object: MapperTransferItemToUI.fromP3DTransfer(
+            item: item,
+            data: appService.networkStateData,
+            isFrom: isFrom,
+          ),
         ),
-        noItemsFoundIndicatorBuilder: (final context) => const _NoItemsFound(),
+        noItemsFoundIndicatorBuilder: (final context) =>
+            const NoTransferItemsFound(),
       ),
     );
   }

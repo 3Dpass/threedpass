@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/preview_settings/antialias_switch.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/preview_settings/pixel_ratio_slider.dart';
 
@@ -18,7 +19,7 @@ class PreviewSettingsBlock extends StatelessWidget {
         const PixelRatioSlider(),
         const SizedBox(height: 8),
         const AntialiasSwitch(),
-        const SizedBox(height: 16),
+        const SizedBoxH36(),
       ],
     );
   }

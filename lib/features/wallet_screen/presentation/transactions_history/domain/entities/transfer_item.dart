@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'package:threedp_graphql/features/transfers_history/data/query/__generated__/get_transfers.data.gql.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 

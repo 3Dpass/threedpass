@@ -1,9 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:threedpass/core/widgets/input/switch_button.dart';
-// import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
-// import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
-// import 'package:threedpass/features/settings_page/domain/entities/preview_settings.dart';
 part of '../../settings_page.dart';
 
 class _DarkThemeSwitch extends StatelessWidget {

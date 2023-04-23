@@ -13,6 +13,7 @@ class D3pCard extends StatelessWidget {
   Widget build(final BuildContext context) {
     final bgColor = Theme.of(context).customColors.cardBackground;
     return Card(
+      margin: EdgeInsets.zero,
       color: bgColor,
       child: child,
     );

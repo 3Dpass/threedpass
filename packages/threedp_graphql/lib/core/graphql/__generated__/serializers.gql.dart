@@ -42,6 +42,26 @@ import 'package:threedp_graphql/core/graphql/__generated__/threedpass.schema.sch
         GJSONString,
         GLogFilter,
         GTransferFilter;
+import 'package:threedp_graphql/features/events/data/query/__generated__/get_events.data.gql.dart'
+    show
+        GGetEventsData,
+        GGetEventsData_getEvents,
+        GGetEventsData_getEvents_objects,
+        GGetEventsData_getEvents_pageInfo;
+import 'package:threedp_graphql/features/events/data/query/__generated__/get_events.req.gql.dart'
+    show GGetEventsReq;
+import 'package:threedp_graphql/features/events/data/query/__generated__/get_events.var.gql.dart'
+    show GGetEventsVars;
+import 'package:threedp_graphql/features/extrinsics/data/query/__generated__/get_extrnsics.data.gql.dart'
+    show
+        GGetExtrinsicsData,
+        GGetExtrinsicsData_getExtrinsics,
+        GGetExtrinsicsData_getExtrinsics_objects,
+        GGetExtrinsicsData_getExtrinsics_pageInfo;
+import 'package:threedp_graphql/features/extrinsics/data/query/__generated__/get_extrnsics.req.gql.dart'
+    show GGetExtrinsicsReq;
+import 'package:threedp_graphql/features/extrinsics/data/query/__generated__/get_extrnsics.var.gql.dart'
+    show GGetExtrinsicsVars;
 import 'package:threedp_graphql/features/transfers_history/data/query/__generated__/get_transfers.data.gql.dart'
     show
         GGetTransfersData,
@@ -89,6 +109,18 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GFilterGetTaggedAccount,
   GFilterGetTransfer,
   GFilterGetTransfers,
+  GGetEventsData,
+  GGetEventsData_getEvents,
+  GGetEventsData_getEvents_objects,
+  GGetEventsData_getEvents_pageInfo,
+  GGetEventsReq,
+  GGetEventsVars,
+  GGetExtrinsicsData,
+  GGetExtrinsicsData_getExtrinsics,
+  GGetExtrinsicsData_getExtrinsics_objects,
+  GGetExtrinsicsData_getExtrinsics_pageInfo,
+  GGetExtrinsicsReq,
+  GGetExtrinsicsVars,
   GGetTransfersData,
   GGetTransfersData_getTransfers,
   GGetTransfersData_getTransfers_objects,

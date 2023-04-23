@@ -24,6 +24,7 @@ import 'package:threedpass/setup.dart';
 
 part './widgets/app_settings/app_settings.dart';
 part './widgets/app_settings/dark_theme_switch.dart';
+part './widgets/app_settings/show_zero_assets.dart';
 part './widgets/app_settings/requirements_textfield.dart';
 part './widgets/hash_settings/algorithm_dropdown.dart';
 part './widgets/hash_settings/grid_size_dropdown.dart';

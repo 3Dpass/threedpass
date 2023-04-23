@@ -21,6 +21,7 @@ class BasicBalanceCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    // TODO Make final balance string not longer 7 symbols using formatting
     final textStyles = Theme.of(context).customTextStyles;
     return D3pCard(
       child: Padding(

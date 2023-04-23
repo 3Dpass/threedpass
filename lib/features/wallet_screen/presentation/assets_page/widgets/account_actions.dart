@@ -25,7 +25,6 @@ class AccountActions extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    // TODO CHECK ANDROID
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
       builder: (final context, final state) {
         return PlatformPopupMenu(
@@ -48,11 +47,11 @@ class AccountActions extends StatelessWidget {
   }
 }
 
-class _RemoveAccountMenuItem extends PopupMenuItem<int> {
-  _RemoveAccountMenuItem({required final AppService appService})
-      : super(
-          enabled: appService.status == AppServiceInitStatus.connected,
-          value: 1,
-          child: Text('remove_account_button_label'.tr()),
-        );
-}
+// class _RemoveAccountMenuItem extends PopupMenuItem<int> {
+//   _RemoveAccountMenuItem({required final AppService appService})
+//       : super(
+//           enabled: appService.status == AppServiceInitStatus.connected,
+//           value: 1,
+//           child: Text('remove_account_button_label'.tr()),
+//         );
+// }
