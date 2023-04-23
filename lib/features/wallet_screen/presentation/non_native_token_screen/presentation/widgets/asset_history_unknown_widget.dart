@@ -6,15 +6,15 @@ class AssetHistoryUnknownWidget extends StatelessWidget {
   const AssetHistoryUnknownWidget(this.data, {super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<AssetsGetExtrinsicsCubit>(context)
-        .getExtrinsics
-        .params
-        .tokenBalanceData;
+  Widget build(final BuildContext context) {
+    // final cubit = BlocProvider.of<AssetsGetExtrinsicsCubit>(context)
+    //     .getExtrinsics
+    //     .params
+    //     .tokenBalanceData;
     return Column(
       children: [
         Text(data.extrisincStatus.toString()),
-        Text('Unknown TOKEN'),
+        Text('Unknown Event'),
         Text(data.callModule),
         Text(data.arguments),
         BlockDateTimeW(

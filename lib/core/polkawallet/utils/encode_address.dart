@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'package:threedpass/core/polkawallet/app_service.dart';
 
 extension EncodeAddress on AppService {
@@ -10,7 +12,7 @@ extension EncodeAddress on AppService {
     // I know this is not debuggable and unreadable. But this is the way it works.
     var res = '';
     try {
-      final d1 = await service.encodeAddress([accountId!], [ss58Format]);
+      final d1 = await service.encodeAddress([accountId], [ss58Format]);
       res = d1![ss58Format.toString()][accountId] as String;
     } on Object {
       res = 'ERROR';

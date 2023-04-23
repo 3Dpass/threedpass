@@ -6,12 +6,10 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
-import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transfers_from_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transfers_to_cubit.dart';
-import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/entities/transfer_item.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/entities/mapper_transfer_item.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/entities/transfer_item.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/transaction_item.dart';
 import 'package:unicons/unicons.dart';
 

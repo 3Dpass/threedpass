@@ -12,8 +12,8 @@ class NonNativeTokensApi {
     final result = <TokenBalanceData>[];
 
     final tokensCommonData = await service.plugin.sdk.api.assets.getAssetsAll();
-    final ids = tokensCommonData.map((e) => e.id ?? '').toList();
-    ids.removeWhere((element) => element.isEmpty);
+    final ids = tokensCommonData.map((final e) => e.id ?? '').toList();
+    ids.removeWhere((final element) => element.isEmpty);
 
     final balances =
         await service.plugin.sdk.api.assets.queryAssetsBalances(ids, address);

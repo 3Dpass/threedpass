@@ -8,7 +8,7 @@ class _AssetsColumn extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final settings = BlocProvider.of<SettingsConfigCubit>(context).state;
-    final showZeroAssets = settings.appSettings.showZeroAssets!;
+    final showZeroAssets = settings.appSettings.showZeroAssets;
 
     final resolvedList = _TokensToShowList(tokens, showZeroAssets).resolve();
 
@@ -18,10 +18,7 @@ class _AssetsColumn extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBoxH36(),
-          Text(
-            'assets_title'.tr(),
-            style: Theme.of(context).customTextStyles.d3ptitleLarge,
-          ),
+          const D3pTitleLargeText('assets_title'),
           Flexible(
             child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),

@@ -19,7 +19,7 @@ class _ShowZeroAssets extends StatelessWidget {
       initialValue: BlocProvider.of<SettingsConfigCubit>(context)
           .state
           .appSettings
-          .showZeroAssets!,
+          .showZeroAssets,
     );
   }
 }

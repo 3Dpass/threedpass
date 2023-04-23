@@ -4,13 +4,13 @@ import 'package:threedpass/features/wallet_screen/domain/entities/transfer_histo
 class SuccessEvenType {
   final ExtrisincStatus isSuccessful;
 
-  SuccessEvenType(GGetEventsData event)
+  SuccessEvenType(final GGetEventsData event)
       : isSuccessful = _initIsSuccessful(event);
 
-  static ExtrisincStatus _initIsSuccessful(GGetEventsData event) {
+  static ExtrisincStatus _initIsSuccessful(final GGetEventsData event) {
     try {
       final ex = event.getEvents?.objects
-          ?.firstWhere((p0) => p0.eventModule == 'System');
+          ?.firstWhere((final p0) => p0.eventModule == 'System');
       switch (ex?.eventName ?? '') {
         case 'ExtrinsicFailed':
           return ExtrisincStatus.fail;
@@ -19,7 +19,7 @@ class SuccessEvenType {
         default:
           return ExtrisincStatus.error;
       }
-    } on Object catch (e) {
+    } on Object catch (_) {
       return ExtrisincStatus.error;
     }
   }

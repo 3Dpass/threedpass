@@ -2,7 +2,7 @@ part of '../non_native_token_screen.dart';
 
 class _AssetsHistoryPagetList extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     // return BlocBuilder<>(builder: builder);
     final pagingController =
         BlocProvider.of<AssetsGetExtrinsicsCubit>(context).pagingController;

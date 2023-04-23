@@ -3,7 +3,6 @@ import 'package:get_it/get_it.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedp_graphql/features/events/data/repositories/events_datasource_local.dart';
 import 'package:threedp_graphql/features/events/data/repositories/events_datasource_remote.dart';
-import 'package:threedp_graphql/features/events/domain/events_request_params.dart';
 import 'package:threedp_graphql/features/extrinsics/data/repositories/extrinsic_datasource.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/bloc/assets_get_extrisincs_cubit.dart';

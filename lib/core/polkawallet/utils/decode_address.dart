@@ -7,12 +7,12 @@ extension DecodeAddress on AppService {
     final String address,
   ) async {
     final service = plugin.sdk.api.account.service;
-    final ss58Format = networkStateData.ss58Format;
+    // final ss58Format = networkStateData.ss58Format;
 
     // I know this is not debuggable and unreadable. But this is the way it works.
     var res = '';
     try {
-      final d1 = await service.decodeAddress([address!]);
+      final d1 = await service.decodeAddress([address]);
       res = d1!.keys.first as String;
     } on Object catch (e) {
       getIt<Logger>().e(e);

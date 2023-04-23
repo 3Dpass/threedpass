@@ -83,7 +83,7 @@ class Transfer {
       DefaultLoadingDialog.show(outerContext, 'transfer_loader_text'.tr());
 
       try {
-        final res = await appService.plugin.sdk.api.tx.signAndSend(
+        final __ = await appService.plugin.sdk.api.tx.signAndSend(
           txInfo,
           params,
           password,
@@ -98,8 +98,8 @@ class Transfer {
         );
 
         DefaultLoadingDialog.hide(outerContext);
-        context.router.pop();
-        Fluttertoast.showToast(msg: 'transfer_success_text'.tr());
+        unawaited(context.router.pop());
+        unawaited(Fluttertoast.showToast(msg: 'transfer_success_text'.tr()));
       } on Object catch (e) {
         DefaultLoadingDialog.hide(outerContext);
         unawaited(Fluttertoast.showToast(msg: e.toString()));

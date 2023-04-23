@@ -6,7 +6,7 @@ class AssetHistorySetMetadataWidget extends StatelessWidget {
   const AssetHistorySetMetadataWidget(this.data, {super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final tbd = BlocProvider.of<AssetsGetExtrinsicsCubit>(context)
         .getExtrinsics
         .params
@@ -16,12 +16,19 @@ class AssetHistorySetMetadataWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBoxH8(),
-        Text(data.extrisincStatus.toString()),
+        Row(
+          children: [
+            D3pBodyLargeText(
+              'set_metadata_asset_history_label'.tr(args: [tbd.id ?? '']),
+              translate: false,
+            ),
+            const SizedBox(width: 16),
+            ExtrinsicStatusIcon(data.extrisincStatus),
+          ],
+        ),
+        const SizedBoxH8(),
         Text.rich(
           TextSpan(
-            text: 'set_metadata_asset_history_label'.tr(args: [tbd.id ?? '']) +
-                '\n\n',
-            style: textStyles.d3pBodyLarge,
             children: [
               TextSpan(
                 text: 'set_metadata_asset_history_name'.tr(args: [data.name]) +

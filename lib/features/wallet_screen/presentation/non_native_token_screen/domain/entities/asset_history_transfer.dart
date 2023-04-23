@@ -33,9 +33,8 @@ class AssetHistoryTransfer extends NonNativeTokenHistoryAtomBase {
       isFrom: isFrom,
       symbols: symbols,
       toAddress: targetAddress,
-      extrisincStatus: null,
+      extrisincStatus: extrisincStatus,
       decimals: decimals,
-      // TODO Extrinsic status
     );
   }
 

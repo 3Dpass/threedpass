@@ -28,7 +28,7 @@ class AppSettings {
   @HiveField(
     2,
     defaultValue: false,
-  ) // TODO SET DEFAULT VALUES INSTEAD OF SELF_VALIDATING
+  )
   final bool showZeroAssets;
 
   static const defaultShowZeroAssets = true;

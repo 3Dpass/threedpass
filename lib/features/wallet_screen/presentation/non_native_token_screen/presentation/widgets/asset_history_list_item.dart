@@ -6,7 +6,7 @@ class AssetHistoryListItem extends StatelessWidget {
   const AssetHistoryListItem(this.data, {super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     switch (data.extrinsicType) {
       case NonNativeTokenExtrinsicType.create:
         return AssetHistoryCreateWidget(data as AssetHistoryCreate);

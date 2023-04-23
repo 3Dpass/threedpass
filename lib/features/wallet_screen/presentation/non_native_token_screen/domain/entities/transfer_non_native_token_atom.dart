@@ -4,7 +4,6 @@ import 'dart:convert';
 
 import 'package:threedp_graphql/features/extrinsics/data/query/__generated__/get_extrnsics.data.gql.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
-import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/decode_address.dart';
 import 'package:threedpass/core/polkawallet/utils/encode_address.dart';
 import 'package:threedpass/core/polkawallet/utils/find_token_symbol.dart';

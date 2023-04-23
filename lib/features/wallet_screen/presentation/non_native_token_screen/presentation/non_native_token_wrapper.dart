@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedp_graphql/features/events/domain/events_request_params.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/bloc/assets_get_extrisincs_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/data/repositories/assets_extrinsics_repository.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/data/repositories/events_repository.dart';

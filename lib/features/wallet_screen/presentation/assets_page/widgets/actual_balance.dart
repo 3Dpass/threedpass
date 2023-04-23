@@ -5,6 +5,7 @@ import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/balance_card/avaliable_balance_card.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/balance_card/locked_balance_card.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/balance_card/reserved_balance_card.dart';
+import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_balance_text.dart';
 
 class BalanceCards extends StatelessWidget {
   const BalanceCards({
@@ -25,6 +26,13 @@ class BalanceCards extends StatelessWidget {
       child: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          AssetBalanceText(
+            balance: BalanceUtils.formattedTotal(
+              balance,
+              tokenDecimals,
+            ),
+            tokenSymbol: tokenSymbol,
+          ),
           Text.rich(
             TextSpan(
               text: BalanceUtils.formattedTotal(

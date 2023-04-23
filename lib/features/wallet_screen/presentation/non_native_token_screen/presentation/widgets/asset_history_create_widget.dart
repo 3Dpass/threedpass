@@ -6,15 +6,17 @@ class AssetHistoryCreateWidget extends StatelessWidget {
   const AssetHistoryCreateWidget(this.data, {super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<AssetsGetExtrinsicsCubit>(context)
-        .getExtrinsics
-        .params
-        .tokenBalanceData;
+  Widget build(final BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('CREATE TOKEN'),
-        Text(data.extrisincStatus.toString()),
+        Row(
+          children: [
+            const D3pBodyLargeText('create_token_widget'),
+            const SizedBox(width: 16),
+            ExtrinsicStatusIcon(data.extrisincStatus),
+          ],
+        ),
         BlockDateTimeW(
           data.blockDatetime,
         ),

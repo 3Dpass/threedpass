@@ -6,7 +6,7 @@ class AssetHistoryMintWidget extends StatelessWidget {
   const AssetHistoryMintWidget(this.data, {super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final cubit = BlocProvider.of<AssetsGetExtrinsicsCubit>(context)
         .getExtrinsics
         .params
@@ -15,11 +15,17 @@ class AssetHistoryMintWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBoxH8(),
-        Text(data.extrisincStatus.toString()),
-        D3pBodyLargeText(
-          'mint_asset_history_label'.tr(
-            args: [data.value, cubit.symbol ?? ''],
-          ),
+        Row(
+          children: [
+            D3pBodyLargeText(
+              'mint_asset_history_label'.tr(
+                args: [data.value, cubit.symbol ?? ''],
+              ),
+              translate: false,
+            ),
+            const SizedBox(width: 16),
+            ExtrinsicStatusIcon(data.extrisincStatus),
+          ],
         ),
         const SizedBoxH8(),
         ShortAddress(
