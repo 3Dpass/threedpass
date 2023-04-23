@@ -26,7 +26,7 @@ class AssetHistorySetMetadataWidget extends StatelessWidget {
             ExtrinsicStatusIcon(data.extrisincStatus),
           ],
         ),
-        const SizedBoxH8(),
+        // const SizedBoxH8(),
         Text.rich(
           TextSpan(
             children: [

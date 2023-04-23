@@ -33,21 +33,6 @@ class BalanceCards extends StatelessWidget {
             ),
             tokenSymbol: tokenSymbol,
           ),
-          Text.rich(
-            TextSpan(
-              text: BalanceUtils.formattedTotal(
-                balance,
-                tokenDecimals,
-              ),
-              children: [
-                TextSpan(
-                  text: ' ' + tokenSymbol,
-                  style: Theme.of(context).customTextStyles.dp3BodySmall,
-                ),
-              ],
-            ),
-            style: Theme.of(context).customTextStyles.d3pheadlineMedium,
-          ),
           const SizedBox(height: 16),
           Row(
             mainAxisSize: MainAxisSize.min,

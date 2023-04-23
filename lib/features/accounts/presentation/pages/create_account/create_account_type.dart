@@ -102,7 +102,9 @@ class _D3ObjectItem extends StatelessWidget {
   Widget build(final BuildContext context) {
     return ListTileButton.usual(
       text: titleText(context),
-      onPressed: isHashesAvaliable(context) ? () => onTap(context) : null,
+      onPressed: isHashesAvaliable(context)
+          ? () => onTap(context)
+          : null, // TODO Make 3D object button always active
     );
   }
 }

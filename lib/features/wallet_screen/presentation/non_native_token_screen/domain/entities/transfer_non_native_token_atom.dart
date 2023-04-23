@@ -116,7 +116,7 @@ abstract class NonNativeTokenHistoryAtomBase {
 
         final value = a2[2]['value'].toString();
         final targetAccountId = a2[1]['value'] as String;
-        final targetAddress = await appService.decodeAddress(targetAccountId);
+        final targetAddress2 = await appService.encodeAddress(targetAccountId);
 
         return AssetHistoryTransfer(
           blockDatetime: date,
@@ -125,7 +125,7 @@ abstract class NonNativeTokenHistoryAtomBase {
           authorAddress: authorAddress,
           value: value,
           isFrom: isFrom,
-          targetAddress: targetAddress,
+          targetAddress: targetAddress2,
           symbols: tokenBalanceData.symbol ?? '',
           decimals: tokenBalanceData.decimals ?? safeDecimals,
           extrisincStatus: ExtrisincStatus.loading,
