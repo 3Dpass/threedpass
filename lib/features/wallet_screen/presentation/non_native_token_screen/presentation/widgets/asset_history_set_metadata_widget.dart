@@ -9,7 +9,7 @@ class AssetHistorySetMetadataWidget extends StatelessWidget {
   Widget build(final BuildContext context) {
     final tbd = BlocProvider.of<AssetsGetExtrinsicsCubit>(context)
         .getExtrinsics
-        .params
+        .paramsUseCase
         .tokenBalanceData;
     final textStyles = Theme.of(context).customTextStyles;
     return Column(

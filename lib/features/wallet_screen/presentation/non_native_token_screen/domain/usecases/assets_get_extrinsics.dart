@@ -8,17 +8,20 @@ import 'package:threedpass/features/wallet_screen/presentation/non_native_token_
 class AssetsGetExtrinsics
     extends UseCase<TransfersNonNativeTokenDTO, GetExtrisincsParams> {
   final AssetsExtrinsicsRepository repository;
-  final GetExtrinsicsUseCaseParams params;
+  final GetExtrinsicsUseCaseParams paramsUseCase;
 
   const AssetsGetExtrinsics({
     required this.repository,
-    required this.params,
+    required this.paramsUseCase,
   });
 
   @override
   Future<Either<Failure, TransfersNonNativeTokenDTO>> call(
     final GetExtrisincsParams params,
   ) async {
-    return repository.fetchExtrinsincs(params);
+    return repository.fetchExtrinsincs(
+      params,
+      int.tryParse(paramsUseCase.tokenBalanceData.id ?? '') ?? -1,
+    );
   }
 }

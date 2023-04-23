@@ -9,7 +9,7 @@ class AssetHistoryMintWidget extends StatelessWidget {
   Widget build(final BuildContext context) {
     final cubit = BlocProvider.of<AssetsGetExtrinsicsCubit>(context)
         .getExtrinsics
-        .params
+        .paramsUseCase
         .tokenBalanceData;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

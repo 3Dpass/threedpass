@@ -1,5 +1,6 @@
 import 'package:ferry/ferry.dart';
 import 'package:get_it/get_it.dart';
+import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedp_graphql/features/events/data/repositories/events_datasource_local.dart';
 import 'package:threedp_graphql/features/events/data/repositories/events_datasource_remote.dart';
@@ -37,7 +38,7 @@ class DINonNativeToken extends DIModule {
         GetExtrinsicsUseCaseParams>(
       (final param1, final param2) => AssetsGetExtrinsics(
         repository: param1,
-        params: param2,
+        paramsUseCase: param2,
       ),
     );
 

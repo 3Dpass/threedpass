@@ -37,7 +37,7 @@ class NonNativeTokenScreen extends StatelessWidget {
   Widget build(final BuildContext context) {
     final tkb = BlocProvider.of<AssetsGetExtrinsicsCubit>(context)
         .getExtrinsics
-        .params
+        .paramsUseCase
         .tokenBalanceData;
     final symbol = tkb.symbol ?? '';
     return D3pScaffold(
