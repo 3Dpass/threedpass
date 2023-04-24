@@ -15,9 +15,12 @@ class SnapshotsList extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: currentObject.snapshots.length,
-        itemBuilder: (final context, final hashIndex) => SnapshotCard(
-          snapshot: currentObject.snapshots[hashIndex],
-          hashObject: currentObject,
+        itemBuilder: (final context, final hashIndex) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: SnapshotCard(
+            snapshot: currentObject.snapshots[hashIndex],
+            hashObject: currentObject,
+          ),
         ),
       );
 }

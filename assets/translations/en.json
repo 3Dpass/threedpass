@@ -63,7 +63,7 @@
 
     "stable_hashes_list_title": "Stable hashes:",
     "no_stable_hash_placeholder": "No stable hash found.",
-    "no_stable_hash_help": "To get a stable hash, you try to scan the object several times with the same scan settings.",
+    "no_stable_hash_help": "To get a stable hash, try to scan the object several times with the same scan settings.",
 
     "@rename_snap_dialog":{
     },
@@ -114,6 +114,7 @@
     "trans_bytes_span": "Rotation bytes",
 
     "dark_theme_switch_label": "Dark theme",
+    "show_zero_assets_label": "Show zero amount assets",
 
     "@wallet_base":{
     },
@@ -212,6 +213,20 @@
 
     "remove_accout_dialog_title": "Delete account {}",
     "remove_accout_dialog_text": "Are you sure you want to delete this account?",
+    "assets_title": "Assets",
+
+    "@non_native_token":{
+    },
+    "non_native_token_token": "Asset {}",
+    "no_asset_history": "No extrinsics found",
+    "mint_asset_history_label": "Mint {} {}",
+    "mint_asset_history_prefix": "For:",
+    "set_metadata_asset_history_label": "Set metadata for assetID: {}",
+    "set_metadata_asset_history_name": "Name: {}",
+    "set_metadata_asset_history_symbol": "Symbol: {}",
+    "set_metadata_asset_history_decimals": "Decimals: {}",
+    "non_native_history_title_label": "History",
+    "create_token_widget": "Create token",
 
     "@recieve_page":{
     },

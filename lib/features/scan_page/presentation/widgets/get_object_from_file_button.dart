@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/utils/show_text_snackbar.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
@@ -19,8 +19,8 @@ import 'package:threedpass/setup.dart';
 class GetObjectFromFileFloatingButton extends StatelessWidget {
   const GetObjectFromFileFloatingButton({final Key? key}) : super(key: key);
 
-  void showSnackBar(final String text, final BuildContext context) {
-    FastSnackBar(textCode: text, context: context).show();
+  void showToast(final String text, final BuildContext context) {
+    Fluttertoast.showToast(msg: text);
   }
 
   void showLoader(final BuildContext context) {
@@ -60,11 +60,11 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
         ),
       );
     } on FilePickerException catch (e) {
-      showSnackBar(e.message, context);
+      showToast(e.message, context);
     } on Exception catch (e) {
       hideLoader(context);
 
-      showSnackBar(e.toString(), context);
+      showToast(e.toString(), context);
     }
   }
 

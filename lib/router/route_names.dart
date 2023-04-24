@@ -17,6 +17,7 @@ class RouteNames {
   static const importMnemonicForm = 'ImportMnemonicFormRoute';
   static const mnemonicBackup = 'MnemonicBackupRoute';
   static const mnemonicConfirm = 'MnemonicConfirmRoute';
+  static const nonNativeTokenScreen = 'NonNativeTokenRoute';
   static const previewPage = 'PreviewRoute';
   static const previewPageWrapper = 'PreviewWrapperRoute';
   static const recievePage = 'RecieveRoute';

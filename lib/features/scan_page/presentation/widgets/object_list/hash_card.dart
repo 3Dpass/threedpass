@@ -43,10 +43,12 @@ class SnapshotCard extends StatelessWidget {
                     Flexible(
                       child: D3pBodyLargeText(
                         'snap_card_name'.tr() + snapshot.name,
+                        translate: false,
                       ),
                     ),
                     D3pBodyLargeText(
                       'snap_card_stamp'.tr() + formatter.format(snapshot.stamp),
+                      translate: false,
                     ),
                     const SizedBox(height: 8),
                     Text.rich(snapshot.settingsConfig.toText(context)),

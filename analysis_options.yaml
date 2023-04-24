@@ -1,8 +1,10 @@
+############################################################################
 # This file configures the analyzer, which statically analyzes Dart code to
 # check for errors, warnings, and lints.
 
 # Get result
-# flutter pub run dart_code_metrics:metrics analyze lib    
+# flutter pub run dart_code_metrics:metrics analyze lib   
+############################################################################
 
 
 ##################### Standart flutter linter #####################

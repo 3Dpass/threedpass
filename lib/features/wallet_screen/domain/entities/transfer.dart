@@ -83,7 +83,7 @@ class Transfer {
       DefaultLoadingDialog.show(outerContext, 'transfer_loader_text'.tr());
 
       try {
-        final res = await appService.plugin.sdk.api.tx.signAndSend(
+        final __ = await appService.plugin.sdk.api.tx.signAndSend(
           txInfo,
           params,
           password,
@@ -96,12 +96,14 @@ class Transfer {
             }
           },
         );
-      } on Exception catch (e) {
+
+        DefaultLoadingDialog.hide(outerContext);
+        unawaited(context.router.pop());
+        unawaited(Fluttertoast.showToast(msg: 'transfer_success_text'.tr()));
+      } on Object catch (e) {
+        DefaultLoadingDialog.hide(outerContext);
         unawaited(Fluttertoast.showToast(msg: e.toString()));
       }
-
-      // This works only when the transaction is impossible. I don't know why.
-      DefaultLoadingDialog.hide(outerContext);
     }
   }
 }

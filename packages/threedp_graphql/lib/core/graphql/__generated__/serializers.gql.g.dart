@@ -38,6 +38,18 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GFilterGetTaggedAccount.serializer)
       ..add(GFilterGetTransfer.serializer)
       ..add(GFilterGetTransfers.serializer)
+      ..add(GGetEventsData.serializer)
+      ..add(GGetEventsData_getEvents.serializer)
+      ..add(GGetEventsData_getEvents_objects.serializer)
+      ..add(GGetEventsData_getEvents_pageInfo.serializer)
+      ..add(GGetEventsReq.serializer)
+      ..add(GGetEventsVars.serializer)
+      ..add(GGetExtrinsicsData.serializer)
+      ..add(GGetExtrinsicsData_getExtrinsics.serializer)
+      ..add(GGetExtrinsicsData_getExtrinsics_objects.serializer)
+      ..add(GGetExtrinsicsData_getExtrinsics_pageInfo.serializer)
+      ..add(GGetExtrinsicsReq.serializer)
+      ..add(GGetExtrinsicsVars.serializer)
       ..add(GGetTransfersData.serializer)
       ..add(GGetTransfersData_getTransfers.serializer)
       ..add(GGetTransfersData_getTransfers_objects.serializer)
@@ -257,6 +269,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(GFilterGetTransfers)]),
           () => new ListBuilder<GFilterGetTransfers>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GGetEventsData_getEvents_objects)]),
+          () => new ListBuilder<GGetEventsData_getEvents_objects>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GGetExtrinsicsData_getExtrinsics_objects)]),
+          () => new ListBuilder<GGetExtrinsicsData_getExtrinsics_objects>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GGetTransfersData_getTransfers_objects)]),

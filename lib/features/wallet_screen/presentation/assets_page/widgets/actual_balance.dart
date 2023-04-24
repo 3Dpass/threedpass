@@ -5,9 +5,10 @@ import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/balance_card/avaliable_balance_card.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/balance_card/locked_balance_card.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/balance_card/reserved_balance_card.dart';
+import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_balance_text.dart';
 
-class ActualBalance extends StatelessWidget {
-  const ActualBalance({
+class BalanceCards extends StatelessWidget {
+  const BalanceCards({
     required this.balance,
     required this.tokenDecimals,
     required this.tokenSymbol,
@@ -25,23 +26,15 @@ class ActualBalance extends StatelessWidget {
       child: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text.rich(
-            TextSpan(
-              text: BalanceUtils.formattedTotal(
-                balance,
-                tokenDecimals,
-              ),
-              children: [
-                TextSpan(
-                  text: ' ' + tokenSymbol,
-                  style: Theme.of(context).customTextStyles.dp3BodySmall,
-                ),
-              ],
+          AssetBalanceText(
+            balance: BalanceUtils.formattedTotal(
+              balance,
+              tokenDecimals,
             ),
-            style: Theme.of(context).customTextStyles.d3pheadlineMedium,
+            tokenSymbol: tokenSymbol,
           ),
           const SizedBox(height: 16),
-          Column(
+          Row(
             mainAxisSize: MainAxisSize.min,
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -50,13 +43,13 @@ class ActualBalance extends StatelessWidget {
                 tokenSymbol: tokenSymbol,
                 tokenDecimals: tokenDecimals,
               ),
-              const SizedBox(height: 8),
+              const SizedBox(width: 8),
               LockedBalanceCard(
                 balance: balance.lockedBalance as String,
                 tokenSymbol: tokenSymbol,
                 tokenDecimals: tokenDecimals,
               ),
-              const SizedBox(height: 8),
+              const SizedBox(width: 8),
               ReservedBalanceCard(
                 balance: balance.reservedBalance as String,
                 tokenSymbol: tokenSymbol,

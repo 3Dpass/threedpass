@@ -43,7 +43,7 @@ class FullAccountContext {
       );
 
       // apply current account
-      appServiceLoaderCubit.changeAccount(keyPairData);
+      await appServiceLoaderCubit.changeAccount(keyPairData);
     }
   }
 

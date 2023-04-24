@@ -25,7 +25,7 @@ class HashObject {
   }) : localId = Random().nextInt(1 << 32);
 
   @HiveField(0)
-  final int localId;
+  final int localId; // TODO Remove localID. Override == operator
 
   @HiveField(1)
   final String name;

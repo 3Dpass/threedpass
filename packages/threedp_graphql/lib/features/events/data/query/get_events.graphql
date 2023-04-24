@@ -1,0 +1,22 @@
+query GetEvents($pageKey: String!, $pageSize: Int!, $filters: FilterGetEvents!){
+    getEvents(pageKey: $pageKey, pageSize: $pageSize, filters: $filters)
+    {
+        pageInfo{
+            pageSize,
+            pageNext,
+            pagePrev
+        }
+        objects{
+            blockNumber,
+            eventIdx,
+            extrinsicIdx,
+            event,
+            eventModule,
+            eventName,
+            phaseIdx,
+            phaseName,
+            attributes,
+            topics
+        }
+    }
+}

@@ -1,0 +1,19 @@
+query GetExtrinsics($pageKey: String!, $pageSize: Int!, $filters: ExtrinsicFilter!){
+    getExtrinsics(pageKey: $pageKey, pageSize: $pageSize, filters: $filters){
+            pageInfo{
+            pageSize,
+            pageNext,
+            pagePrev
+        }
+        objects{
+            multiAddressAccountId,
+            extrinsicIdx,
+            blockNumber,
+            callModule,
+            callName,
+            callArguments,
+            blockDatetime,
+            complete,
+        }
+    }
+}

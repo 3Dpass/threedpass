@@ -50,6 +50,7 @@ extension _ on AppServiceLoaderCubit {
     // );
 
     unawaited(AppServiceLoaderCubit.subscribeToBalance(newAppService));
+    await AppServiceLoaderCubit.setTokensData(newAppService);
 
     AppServiceLoaderCubit.registerTransferCubits(newAppService);
 

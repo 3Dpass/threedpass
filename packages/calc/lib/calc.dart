@@ -45,7 +45,7 @@ class Calc2 {
         : DynamicLibrary.process(); // Load the static library on iOS
 
     final bindings = CalcBindings(nativeLib);
-    final rawData = bindings.version();
+    final rawData = bindings.versionInterface();
 
     final result = rawData.cast<Utf8>().toDartString();
     Isolate.exit(p, result);

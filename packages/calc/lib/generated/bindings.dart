@@ -50,12 +50,13 @@ class CalcBindings {
       ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.UnsignedChar>, int, int,
           int, ffi.Pointer<ffi.UnsignedChar>, ffi.Pointer<ffi.UnsignedChar>)>();
 
-  ffi.Pointer<ffi.Char> version() {
-    return _version();
+  ffi.Pointer<ffi.Char> versionInterface() {
+    return _versionInterface();
   }
 
-  late final _versionPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>('version');
-  late final _version =
-      _versionPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
+  late final _versionInterfacePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'versionInterface');
+  late final _versionInterface =
+      _versionInterfacePtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
 }
