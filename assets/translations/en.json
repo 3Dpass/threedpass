@@ -22,6 +22,7 @@
     "Invalid": "Invalid",
     "Clear": "Clear",
     "Copy": "Copy",
+    "OK": "OK",
 
     "@home_page":{
     },
@@ -201,6 +202,9 @@
     "invalid_input": "Invalid input",
     "error_mnemonic_not_found": "Error: mnemonic not found",
     "error_empty_account_address": "Address can't be empty",
+
+    "no_stable_hash_dialog_title": "No stable hash",
+    "no_stable_hash_dialog_text": "You can't create account from 3D object, because you don't have a stable hash. To create one scan the object more times or change the hash requirement.",
 
     "@assets_page":{
     },

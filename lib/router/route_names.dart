@@ -1,3 +1,5 @@
+import 'package:threedpass/features/accounts/presentation/pages/no_stable_hash_dialog.dart';
+
 class RouteNames {
   static const calcHashLoadingDialog = 'CalcHashLoadingDialogRoute';
   static const comparePageWrapper = 'CompareWrapperRoute';
@@ -18,6 +20,7 @@ class RouteNames {
   static const mnemonicBackup = 'MnemonicBackupRoute';
   static const mnemonicConfirm = 'MnemonicConfirmRoute';
   static const nonNativeTokenScreen = 'NonNativeTokenRoute';
+  static const noStableHashDialog = 'NoStableHashDialogRoute';
   static const previewPage = 'PreviewRoute';
   static const previewPageWrapper = 'PreviewWrapperRoute';
   static const recievePage = 'RecieveRoute';

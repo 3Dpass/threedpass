@@ -91,7 +91,11 @@ class _D3ObjectItem extends StatelessWidget {
   }
 
   void onTap(final BuildContext context) {
-    context.router.push(const CreateAccountFromObjectRoute());
+    if (isHashesAvaliable(context)) {
+      context.router.push(const CreateAccountFromObjectRoute());
+    } else {
+      context.router.push(const NoStableHashDialogRoute());
+    }
   }
 
   String titleText(final BuildContext context) {
@@ -102,9 +106,7 @@ class _D3ObjectItem extends StatelessWidget {
   Widget build(final BuildContext context) {
     return ListTileButton.usual(
       text: titleText(context),
-      onPressed: isHashesAvaliable(context)
-          ? () => onTap(context)
-          : null, // TODO Make 3D object button always active
+      onPressed: () => onTap(context),
     );
   }
 }

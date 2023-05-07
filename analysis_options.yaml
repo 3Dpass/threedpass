@@ -6,7 +6,7 @@
 # flutter pub run dart_code_metrics:metrics analyze lib   
 ############################################################################
 
-
+# DEPRECATED
 ##################### Standart flutter linter #####################
 
 # include: package:flutter_lints/flutter.yaml
