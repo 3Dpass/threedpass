@@ -7,8 +7,6 @@ part of 'hash_object.dart';
 // **************************************************************************
 
 abstract class _$HashObjectCWProxy {
-  HashObject localId(int localId);
-
   HashObject name(String name);
 
   HashObject snapshots(List<Snapshot> snapshots);
@@ -20,7 +18,6 @@ abstract class _$HashObjectCWProxy {
   /// HashObject(...).copyWith(id: 12, name: "My name")
   /// ````
   HashObject call({
-    int? localId,
     String? name,
     List<Snapshot>? snapshots,
   });
@@ -31,9 +28,6 @@ class _$HashObjectCWProxyImpl implements _$HashObjectCWProxy {
   final HashObject _value;
 
   const _$HashObjectCWProxyImpl(this._value);
-
-  @override
-  HashObject localId(int localId) => this(localId: localId);
 
   @override
   HashObject name(String name) => this(name: name);
@@ -50,15 +44,10 @@ class _$HashObjectCWProxyImpl implements _$HashObjectCWProxy {
   /// HashObject(...).copyWith(id: 12, name: "My name")
   /// ````
   HashObject call({
-    Object? localId = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? snapshots = const $CopyWithPlaceholder(),
   }) {
     return HashObject(
-      localId: localId == const $CopyWithPlaceholder() || localId == null
-          ? _value.localId
-          // ignore: cast_nullable_to_non_nullable
-          : localId as int,
       name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
@@ -94,16 +83,13 @@ class HashObjectAdapter extends TypeAdapter<HashObject> {
     return HashObject(
       name: fields[1] as String,
       snapshots: (fields[2] as List).cast<Snapshot>(),
-      localId: fields[0] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, HashObject obj) {
     writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.localId)
+      ..writeByte(2)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)

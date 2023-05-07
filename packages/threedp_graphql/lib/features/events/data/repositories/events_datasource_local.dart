@@ -30,7 +30,7 @@ class EventsDatasourceLocal {
     final response = cache.readQuery(request);
 
     if (response == null) {
-      return Either.left(
+      return const Either.left(
         NoDataFailure('No data stored'),
       );
     } else {

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/list_tile_button.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/router/router.gr.dart';
@@ -25,9 +26,8 @@ class CreateAccountType extends StatelessWidget {
               'import_account_type_title'.tr(),
               style: Theme.of(context).customTextStyles.d3ptitleLarge,
             ),
-            const SizedBox(height: 8),
+            const SizedBoxH8(),
             const _Item(CreateType.mnemonic),
-            // const _Item(CreateType.rawSeed), // TODO Add raw seed method
             const _D3ObjectItem(),
           ],
         ),

@@ -36,7 +36,7 @@ class MoreInfo extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            D3pBodyLargeText('top_10_hashes'.tr()),
+            const D3pBodyLargeText('top_10_hashes'),
             Text.rich(
               TextSpan(
                 text: 'show_and_share_dialog_button'.tr(),

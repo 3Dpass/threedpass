@@ -1,9 +1,7 @@
-import 'dart:math';
-
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:threedpass/core/utils/hash2.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/setup.dart';
@@ -12,20 +10,18 @@ part 'hash_object.g.dart';
 
 @CopyWith()
 @HiveType(typeId: 3)
-class HashObject {
-  HashObject({
+class HashObject extends Equatable {
+  const HashObject({
     required this.name,
     required this.snapshots,
-    required this.localId,
+    // required this.localId,
   });
 
-  HashObject.create({
-    required this.name,
-    required this.snapshots,
-  }) : localId = Random().nextInt(1 << 32);
-
-  @HiveField(0)
-  final int localId; // TODO Remove localID. Override == operator
+  // HashObject.create({
+  //   required this.name,
+  //   required this.snapshots,
+  // });
+  //: localId = Random().nextInt(1 << 32);
 
   @HiveField(1)
   final String name;
@@ -33,17 +29,20 @@ class HashObject {
   @HiveField(2)
   final List<Snapshot> snapshots;
 
-  @override
-  bool operator ==(final dynamic other) {
-    if (other is HashObject) {
-      return localId == other.localId;
-    } else {
-      return false;
-    }
-  }
+  // @HiveField(0)
+  // final int localId; // Remove localID. Override == operator
 
-  @override
-  int get hashCode => hash2(0, localId);
+  // @override
+  // bool operator ==(final dynamic other) {
+  //   if (other is HashObject) {
+  //     return localId == other.localId;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
+  // @override
+  // int get hashCode => hash2(0, localId);
 
   Set<int> get fileHashes {
     final res = <int>{};
@@ -136,4 +135,7 @@ class HashObject {
       return connections < 2;
     }
   }
+
+  @override
+  List<Object?> get props => [name, ...snapshots];
 }

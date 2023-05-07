@@ -12,7 +12,6 @@ import 'package:threedpass/core/widgets/theme_builder.dart';
 import 'package:threedpass/features/app/presentation/global_states_provider.dart';
 import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart' as di_setup;
-import 'package:threedpass/setup.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

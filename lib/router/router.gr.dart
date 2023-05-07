@@ -332,7 +332,7 @@ class AppRouter extends _i33.RootStackRouter {
     NoStableHashDialogRoute.name: (routeData) {
       return _i33.CustomPage<dynamic>(
         routeData: routeData,
-        child: _i30.NoStableHashDialog(),
+        child: const _i30.NoStableHashDialog(),
         customRouteBuilder: _i35.dialogBuilder,
         opaque: true,
         barrierDismissible: false,
