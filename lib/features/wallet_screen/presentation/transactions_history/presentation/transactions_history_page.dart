@@ -10,6 +10,7 @@ import 'package:threedpass/features/wallet_screen/presentation/transactions_hist
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transfers_to_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/entities/mapper_transfer_item.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/entities/transfer_item.dart';
+import 'package:threedpass/features/wallet_screen/presentation/widgets/no_transfer_items_found.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/transaction_item.dart';
 import 'package:unicons/unicons.dart';
 

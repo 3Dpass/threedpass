@@ -8,6 +8,7 @@ import 'package:threedpass/core/utils/empty_function.dart';
 
 part 'suffix_button.dart';
 part 'bottom_help_text.dart';
+part 'label.dart';
 
 class D3pTextFormField extends StatelessWidget {
   D3pTextFormField({
@@ -26,7 +27,7 @@ class D3pTextFormField extends StatelessWidget {
     this.maxLen,
     this.bottomHelpText,
     this.enabled,
-    this.obscureText,
+    this.obscureText = false,
     this.maxLines,
     this.isCollapsed = false,
   })  : controller = controller ?? TextEditingController(),
@@ -50,8 +51,20 @@ class D3pTextFormField extends StatelessWidget {
   final int? maxLen;
   final int? maxLines;
   final String? suffixButton;
-  final bool? obscureText;
+  final bool obscureText;
   final bool isCollapsed;
+
+  TextStyle hintStyle(final CustomTextStyles textStyles) {
+    return textStyles.d3pBodyMedium.copyWith(color: D3pColors.disabled);
+  }
+
+  UnderlineInputBorder get focusedBorder => UnderlineInputBorder(
+        borderSide: BorderSide(color: D3pThemeData.mainColor),
+      );
+
+  int? get mMaxLines => obscureText ? 1 : maxLines ?? 1;
+
+  double? get mHeight => labelText == null ? 44 : null;
 
   @override
   Widget build(final BuildContext context) {
@@ -60,18 +73,13 @@ class D3pTextFormField extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
-          height: labelText == null ? 44 : null,
+          height: mHeight,
           child: TextFormField(
             style: textStyle.d3pBodyLarge,
             decoration: InputDecoration(
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: D3pThemeData.mainColor),
-              ),
+              focusedBorder: focusedBorder,
               contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-              label: Text(
-                labelText ?? '',
-                style: textStyle.d3pBodyMedium,
-              ),
+              label: _Label(labelText).build(context),
               suffixIcon: _SuffixButton(
                 labelButton: labelButton,
                 suffixButton: suffixButton,
@@ -79,10 +87,7 @@ class D3pTextFormField extends StatelessWidget {
                 onSuffixButtonPressed: onSuffixButtonPressed,
               ).build(context),
               hintText: hintText,
-              hintStyle: Theme.of(context)
-                  .customTextStyles
-                  .d3pBodyMedium
-                  .copyWith(color: D3pColors.disabled),
+              hintStyle: hintStyle(textStyle),
               isCollapsed: isCollapsed,
             ),
             controller: controller,
@@ -91,9 +96,9 @@ class D3pTextFormField extends StatelessWidget {
             maxLength: maxLen,
             enabled: enabled,
             validator: validator,
-            maxLines: obscureText ?? false ? 1 : maxLines,
+            maxLines: mMaxLines,
             keyboardType: keyboardType,
-            obscureText: obscureText ?? false,
+            obscureText: obscureText,
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
         ),

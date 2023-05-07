@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+
 part of './app_service_cubit.dart';
 
 extension _ on AppServiceLoaderCubit {
@@ -17,7 +19,7 @@ extension _ on AppServiceLoaderCubit {
       webView: appService.plugin.sdk.webView,
     );
 
-    _emit(appService);
+    emit(appService);
     unawaited(_startPlugin(appService));
   }
 
@@ -49,12 +51,12 @@ extension _ on AppServiceLoaderCubit {
     //   }),
     // );
 
-    unawaited(AppServiceLoaderCubit.subscribeToBalance(newAppService));
-    await AppServiceLoaderCubit.setTokensData(newAppService);
+    unawaited(newAppService.subscribeToBalance());
+    await newAppService.setTokensData();
 
     AppServiceLoaderCubit.registerTransferCubits(newAppService);
 
-    _emit(newAppService);
+    emit(newAppService);
   }
 
   /// Gets network properties from node and creates new [AppService] instance
