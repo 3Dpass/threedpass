@@ -12,7 +12,7 @@
     <application
         android:name="${applicationName}"
         android:label="@string/app_name"
-        android:icon="@mipmap/icon"
+        android:icon="@mipmap/app_icon2"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:label">
 

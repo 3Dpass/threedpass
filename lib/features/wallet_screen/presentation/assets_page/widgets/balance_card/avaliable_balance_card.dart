@@ -16,14 +16,12 @@ class AvaliableBalanceCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Flexible(
-      child: BasicBalanceCard(
-        iconData: Icons.wallet,
-        balance: balance,
-        tokenSymbol: tokenSymbol,
-        tokenDecimals: tokenDecimals,
-        title: 'balance_avaliable_title'.tr(),
-      ),
+    return BasicBalanceRow(
+      iconData: Icons.wallet,
+      balance: balance,
+      tokenSymbol: tokenSymbol,
+      tokenDecimals: tokenDecimals,
+      title: 'balance_avaliable_title'.tr(),
     );
   }
 }

@@ -30,41 +30,53 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
   final GetEventsUseCase getEvents;
 
   Future<void> update() async {
-    for (final item in pagingController.itemList!) {
-      // await Future.delayed(Duration(seconds: 2));
-      if (item.extrisincStatus == ExtrisincStatus.loading ||
-          item.extrisincStatus == ExtrisincStatus.error) {
-        final events = await getEvents(
-          GetEventsParams(
-            pageKey: '1',
-            blockNumber: item.blockNumber,
-            extrinsicIdx: item.extrinsicIdx,
-          ),
-        );
-        events.when(
-          left: (final err) {
-            getIt<Logger>().wtf(err);
-          },
-          right: (final event) {
-            final list = pagingController.itemList!;
-            final index = list.indexOf(item);
-            // print(index);
-            // print(list.length);
-            list.replaceRange(
-              index,
-              index + 1,
-              [
-                item.ultimateCopyWith(
-                  event.isSuccessful,
-                ),
-              ],
-            );
-            pagingController.itemList = list;
-            pagingController.notifyListeners();
-            // print('${item.blockDatetime} ${item.runtimeType}');
-          },
-        );
+    if (pagingController.itemList != null) {
+      for (final item in pagingController.itemList!) {
+        // await Future.delayed(Duration(seconds: 2));
+        if (item.extrisincStatus == ExtrisincStatus.loading ||
+            item.extrisincStatus == ExtrisincStatus.error) {
+          final events = await getEvents(
+            GetEventsParams(
+              pageKey: '1',
+              blockNumber: item.blockNumber,
+              extrinsicIdx: item.extrinsicIdx,
+            ),
+          );
+          events.when(
+            left: (final err) {
+              getIt<Logger>().e(err);
+            },
+            right: (final event) {
+              final list = pagingController.itemList!;
+              final index = list.indexOf(item);
+              if (index != -1) {
+                // print(index);
+                // print(list.length);
+                list.replaceRange(
+                  index,
+                  index + 1,
+                  [
+                    item.ultimateCopyWith(
+                      event.isSuccessful,
+                    ),
+                  ],
+                );
+              } else {
+                getIt<Logger>().wtf(
+                  'Block ${item.blockNumber} with id ${item.extrinsicIdx} and status ${item.extrisincStatus} was not found in list. I do not understand why is this possible?! Somehow it throws errors...',
+                );
+              }
+              pagingController.itemList = list;
+              pagingController.notifyListeners();
+              // print('${item.blockDatetime} ${item.runtimeType}');
+            },
+          );
+        }
       }
+    } else {
+      getIt<Logger>().wtf(
+        'AssetsGetExtrinsicsCubit pagingController.itemList is null. This situation is impossible. If you see this in the console, something really bad happens.',
+      );
     }
   }
 

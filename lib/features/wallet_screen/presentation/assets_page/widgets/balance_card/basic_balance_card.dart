@@ -3,14 +3,14 @@ import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
 
-class BasicBalanceCard extends StatelessWidget {
+class BasicBalanceRow extends StatelessWidget {
   final String tokenSymbol;
   final String balance;
   final int tokenDecimals;
   final IconData iconData;
   final String title;
 
-  const BasicBalanceCard({
+  const BasicBalanceRow({
     required this.balance,
     required this.tokenDecimals,
     required this.tokenSymbol,
@@ -21,45 +21,42 @@ class BasicBalanceCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    // TODO Make final balance string not longer 7 symbols using formatting
     final textStyles = Theme.of(context).customTextStyles;
-    return D3pCard(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                iconData,
+                size: 20,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                title,
+                style: textStyles.d3pBodyMedium,
+              ),
+            ],
+          ),
+          Text.rich(
+            TextSpan(
+              text: BalanceUtils.balance(
+                balance,
+                tokenDecimals,
+              ),
               children: [
-                Icon(
-                  iconData,
-                  size: 20,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  title,
-                  style: textStyles.d3pBodyMedium,
+                TextSpan(
+                  text: ' ' + tokenSymbol,
+                  style: textStyles.dp3BodySmall,
                 ),
               ],
             ),
-            const SizedBox(height: 4),
-            Text.rich(
-              TextSpan(
-                text: BalanceUtils.balance(
-                  balance,
-                  tokenDecimals,
-                ),
-                children: [
-                  TextSpan(
-                    text: ' ' + tokenSymbol,
-                    style: textStyles.dp3BodySmall,
-                  ),
-                ],
-              ),
-              style: textStyles.d3pBodyMedium,
-            ),
-          ],
-        ),
+            style: textStyles.d3pBodyMedium,
+          ),
+        ],
       ),
     );
   }

@@ -1,14 +1,18 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:polkawallet_sdk/api/types/balanceData.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/balance_card/avaliable_balance_card.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/balance_card/locked_balance_card.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/balance_card/reserved_balance_card.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/asset_balance_text.dart';
+import 'package:threedpass/router/router.gr.dart';
 
-class BalanceCards extends StatelessWidget {
-  const BalanceCards({
+part './balance_card/main_balance_content.dart';
+
+class BalanceCard extends StatelessWidget {
+  const BalanceCard({
     required this.balance,
     required this.tokenDecimals,
     required this.tokenSymbol,
@@ -19,45 +23,29 @@ class BalanceCards extends StatelessWidget {
   final int tokenDecimals;
   final String tokenSymbol;
 
+  void onCardClick(final BuildContext context) {
+    context.router.push(const TransactionsHistoryRoute());
+  }
+
   @override
   Widget build(final BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AssetBalanceText(
-            balance: BalanceUtils.formattedTotal(
-              balance,
-              tokenDecimals,
+      child: D3pCard(
+        child: InkWell(
+          onTap: () => onCardClick(context),
+          child: SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              child: _MainBalanceContent(
+                balance: balance,
+                tokenDecimals: tokenDecimals,
+                tokenSymbol: tokenSymbol,
+              ),
             ),
-            tokenSymbol: tokenSymbol,
           ),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              AvaliableBalanceCard(
-                balance: balance.availableBalance as String,
-                tokenSymbol: tokenSymbol,
-                tokenDecimals: tokenDecimals,
-              ),
-              const SizedBox(width: 8),
-              LockedBalanceCard(
-                balance: balance.lockedBalance as String,
-                tokenSymbol: tokenSymbol,
-                tokenDecimals: tokenDecimals,
-              ),
-              const SizedBox(width: 8),
-              ReservedBalanceCard(
-                balance: balance.reservedBalance as String,
-                tokenSymbol: tokenSymbol,
-                tokenDecimals: tokenDecimals,
-              ),
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }

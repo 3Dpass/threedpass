@@ -22,6 +22,8 @@ import 'package:threedpass/features/wallet_screen/presentation/widgets/block_dat
 import 'package:threedpass/features/wallet_screen/presentation/widgets/extrinsic_status_icon.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/transaction_item.dart';
 
+import '../../widgets/short_address.dart';
+
 part 'widgets/assets_history_paged_list.dart';
 part './widgets/no_history_found.dart';
 part './widgets/asset_history_create_widget.dart';

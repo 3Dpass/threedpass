@@ -47,7 +47,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       final list = (state as HashesListLoaded).objects;
       bool f = false;
       for (final obj in list) {
-        if (obj.localId == event.object.localId) {
+        if (obj == event.object) {
           // get snapshot to remove
           final snapshotToRemove = obj.snapshots.firstWhere(
             (final snap) => snap == event.hash,
@@ -75,7 +75,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
 
       if (!f) {
         getIt<Logger>().e(
-          'Not found an object with id=${event.object.localId} name=${event.object.name}',
+          'Not found an object with id=${event.object} name=${event.object.name}',
         );
       } else {
         await hashesRepository.replaceObject(event.object);
@@ -93,7 +93,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     if (state is HashesListLoaded) {
       final list = (state as HashesListLoaded).objects;
       list.removeWhere(
-        (final element) => element.localId == event.object.localId,
+        (final element) => element == event.object,
       );
       emit(HashesListLoaded(objects: list));
     }
@@ -120,7 +120,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       final list = (state as HashesListLoaded).objects;
       bool f = false;
       for (final obj in list) {
-        if (obj.localId == event.object.localId) {
+        if (obj == event.object) {
           obj.snapshots.add(event.hash);
           f = true;
           break;
@@ -128,7 +128,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       }
       if (!f) {
         getIt<Logger>().e(
-          'Not found an object with id=${event.object.localId} name=${event.object.name}',
+          'Not found an object with name=${event.object.name}',
         );
       } else {
         await hashesRepository.replaceObject(event.object);
@@ -146,7 +146,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       bool f = false;
       for (final obj in list) {
         // find object
-        if (obj.localId == event.object.localId) {
+        if (obj == event.object) {
           // find old snapshot place
           final oldSnapIndex = obj.snapshots.indexOf(event.oldSnapshot);
           // replace it with new one
@@ -163,7 +163,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       }
       if (!f) {
         getIt<Logger>().e(
-          'Not found an object with id=${event.object.localId} name=${event.object.name}',
+          'Not found an object with name=${event.object.name}',
         );
       } else {
         await hashesRepository.replaceObject(event.object);

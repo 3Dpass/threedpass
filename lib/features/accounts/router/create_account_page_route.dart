@@ -8,6 +8,7 @@ import 'package:threedpass/features/accounts/presentation/pages/create_account/c
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_type.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/import_mnemonic_form.dart';
+import 'package:threedpass/features/accounts/presentation/pages/no_stable_hash_dialog.dart';
 import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/route_paths.dart';
 import 'package:threedpass/router/router.dart';
@@ -42,6 +43,11 @@ const AutoRoute createAccountPageRoute = AutoRoute(
     CustomRoute(
       page: CreateAccountLoader,
       name: RouteNames.createAccountLoader,
+      customRouteBuilder: dialogBuilder,
+    ),
+    CustomRoute(
+      page: NoStableHashDialog,
+      name: RouteNames.noStableHashDialog,
       customRouteBuilder: dialogBuilder,
     ),
     // create from object
