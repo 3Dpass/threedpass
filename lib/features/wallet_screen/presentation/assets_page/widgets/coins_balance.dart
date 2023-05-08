@@ -36,7 +36,7 @@ class CoinsBalance extends StatelessWidget {
               return placeHolder;
             }
 
-            return BalanceCards(
+            return BalanceCard(
               balance: balance,
               tokenDecimals: tokenDecimals,
               tokenSymbol: tokenSymbol,

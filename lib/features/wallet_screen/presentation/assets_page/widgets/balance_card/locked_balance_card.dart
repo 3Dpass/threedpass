@@ -17,7 +17,7 @@ class LockedBalanceCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Flexible(
-      child: BasicBalanceCard(
+      child: BasicBalanceRow(
         iconData: Icons.lock_outline,
         balance: balance,
         tokenSymbol: tokenSymbol,
