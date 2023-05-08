@@ -15,8 +15,8 @@ class ThreedpGraphql extends DIModule {
   @override
   Future<void> setup(GetIt getIt) async {
     final cacheHiveBox =
-        await Hive.openBox<Map<String, dynamic>>("graphql_cache_ferry");
-    await cacheHiveBox.clear();
+        await Hive.openBox<Map<dynamic, dynamic>>("graphql_cache_ferry");
+    // await cacheHiveBox.clear();
 
     getIt.registerSingleton<Cache>(FerryCache(cacheHiveBox).cache);
 
