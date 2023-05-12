@@ -35,6 +35,7 @@ extension _ on AppServiceLoaderCubit {
     final AppService service, {
     final NetworkParams? node,
   }) async {
+    // TODO Solve server creation failure
     // ignore: unused_local_variable
     final connected = await service.plugin.sdk.api.connectNode(
       service.keyring,

@@ -15,7 +15,7 @@ class AppSettings {
   const AppSettings.defaultValues()
       :
         // Minimum number of hash matches to be considered stable
-        stableRequirement = 1,
+        stableRequirement = 3,
         darkTheme = false,
         showZeroAssets = defaultShowZeroAssets;
 

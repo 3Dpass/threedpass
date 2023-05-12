@@ -42,7 +42,7 @@ class NodeUrlTextfield extends StatelessWidget {
     );
   }
 
-  void onLabelButtonPressed(final BuildContext context) {
+  void onResetButtonPressed(final BuildContext context) {
     textEditingController.text = d3pDefaultNodeUrl;
     apply(textEditingController.text, context);
   }
@@ -53,7 +53,7 @@ class NodeUrlTextfield extends StatelessWidget {
       controller: textEditingController,
       labelText: 'node_url_label'.tr(),
       labelButton: 'Reset'.tr(),
-      onLabelButtonPressed: () => onLabelButtonPressed(context),
+      onLabelButtonPressed: () => onResetButtonPressed(context),
       suffixButton: 'Apply'.tr(),
       onSuffixButtonPressed: () => apply(textEditingController.text, context),
     );
