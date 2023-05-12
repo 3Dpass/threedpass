@@ -20,4 +20,16 @@ class WalletSettings {
   final bool isTestNet;
   @HiveField(1)
   final String nodeUrl;
+
+  WalletSettings selfValidate() {
+    // Fix deprecated URL
+    String nodeUrl = this.nodeUrl;
+    if (nodeUrl == deprecatedD3pDefaultNodeUrl) {
+      nodeUrl = d3pDefaultNodeUrl;
+    }
+
+    return this.copyWith(
+      nodeUrl: nodeUrl,
+    );
+  }
 }
