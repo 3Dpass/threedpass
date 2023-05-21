@@ -27,24 +27,22 @@ class _AmountTextField extends StatelessWidget {
   }) : super(key: key);
 
   final TextEditingController amountController;
-  final double balance;
+  final String balance;
 
   String? _amountValidator(final String? v) {
-    return v != null && double.tryParse(v) != null && double.parse(v) <= balance
+    return v != null &&
+            double.tryParse(v) != null &&
+            double.parse(v) <= double.parse(balance)
         ? null
         : 'error_wrong_amount'.tr();
   }
 
   @override
   Widget build(final BuildContext context) {
-    final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     return D3pTextFormField(
       labelText: 'amount_label'.tr(
         args: [
-          BalanceUtils.balance(
-            appService.balance.value.availableBalance as String?,
-            appService.networkStateData.safeDecimals,
-          ),
+          balance,
         ],
       ),
       controller: amountController,

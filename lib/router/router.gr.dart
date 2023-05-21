@@ -41,7 +41,7 @@ import '../features/compare_page/presentation/pages/compare_page_wrapper.dart'
 import '../features/hashes_list/domain/entities/hash_object.dart' as _i36;
 import '../features/hashes_list/domain/entities/snapshot.dart' as _i37;
 import '../features/home_page/presentation/home_page.dart' as _i1;
-import '../features/preview_page/bloc/preview_page_cubit.dart' as _i39;
+import '../features/preview_page/bloc/preview_page_cubit.dart' as _i40;
 import '../features/preview_page/presentation/preview_page.dart' as _i18;
 import '../features/preview_page/presentation/preview_page_wrapper.dart' as _i2;
 import '../features/preview_page/presentation/widgets/rename_snapshot_dialog.dart'
@@ -57,10 +57,12 @@ import '../features/scan_page/presentation/pages/scan_page_wrapper.dart' as _i7;
 import '../features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart'
     as _i5;
 import '../features/settings_page/presentation/settings_page.dart' as _i9;
+import '../features/wallet_screen/domain/entities/transfer_meta_dto.dart'
+    as _i38;
 import '../features/wallet_screen/presentation/assets_page/remove_account_dialog.dart'
     as _i16;
 import '../features/wallet_screen/presentation/non_native_token_screen/domain/entities/get_extrinsics_usecase_params.dart'
-    as _i38;
+    as _i39;
 import '../features/wallet_screen/presentation/non_native_token_screen/presentation/non_native_token_wrapper.dart'
     as _i15;
 import '../features/wallet_screen/presentation/recieve_page/recieve_page.dart'
@@ -171,9 +173,13 @@ class AppRouter extends _i33.RootStackRouter {
       );
     },
     TransferWrapperRoute.name: (routeData) {
+      final args = routeData.argsAs<TransferWrapperRouteArgs>();
       return _i33.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i12.TransferPageWrapper(),
+        child: _i12.TransferPageWrapper(
+          metadata: args.metadata,
+          key: args.key,
+        ),
       );
     },
     RecieveRoute.name: (routeData) {
@@ -742,15 +748,39 @@ class WalletRoute extends _i33.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i12.TransferPageWrapper]
-class TransferWrapperRoute extends _i33.PageRouteInfo<void> {
-  const TransferWrapperRoute({List<_i33.PageRouteInfo>? children})
-      : super(
+class TransferWrapperRoute
+    extends _i33.PageRouteInfo<TransferWrapperRouteArgs> {
+  TransferWrapperRoute({
+    required _i38.TransferMetaDTO metadata,
+    _i34.Key? key,
+    List<_i33.PageRouteInfo>? children,
+  }) : super(
           TransferWrapperRoute.name,
           path: 'transfer-page-wrapper',
+          args: TransferWrapperRouteArgs(
+            metadata: metadata,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'TransferWrapperRoute';
+}
+
+class TransferWrapperRouteArgs {
+  const TransferWrapperRouteArgs({
+    required this.metadata,
+    this.key,
+  });
+
+  final _i38.TransferMetaDTO metadata;
+
+  final _i34.Key? key;
+
+  @override
+  String toString() {
+    return 'TransferWrapperRouteArgs{metadata: $metadata, key: $key}';
+  }
 }
 
 /// generated route for
@@ -781,7 +811,7 @@ class TransactionsHistoryRoute extends _i33.PageRouteInfo<void> {
 /// [_i15.NonNativeTokenWrapper]
 class NonNativeTokenRoute extends _i33.PageRouteInfo<NonNativeTokenRouteArgs> {
   NonNativeTokenRoute({
-    required _i38.GetExtrinsicsUseCaseParams params,
+    required _i39.GetExtrinsicsUseCaseParams params,
     _i34.Key? key,
   }) : super(
           NonNativeTokenRoute.name,
@@ -801,7 +831,7 @@ class NonNativeTokenRouteArgs {
     this.key,
   });
 
-  final _i38.GetExtrinsicsUseCaseParams params;
+  final _i39.GetExtrinsicsUseCaseParams params;
 
   final _i34.Key? key;
 
@@ -903,7 +933,7 @@ class CompareWrapperRouteArgs {
 class SaveTopHashesDialogRoute
     extends _i33.PageRouteInfo<SaveTopHashesDialogRouteArgs> {
   SaveTopHashesDialogRoute({
-    required _i39.PreviewPageCubitState pageCubitState,
+    required _i40.PreviewPageCubitState pageCubitState,
     _i34.Key? key,
   }) : super(
           SaveTopHashesDialogRoute.name,
@@ -923,7 +953,7 @@ class SaveTopHashesDialogRouteArgs {
     this.key,
   });
 
-  final _i39.PreviewPageCubitState pageCubitState;
+  final _i40.PreviewPageCubitState pageCubitState;
 
   final _i34.Key? key;
 

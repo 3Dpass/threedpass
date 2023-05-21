@@ -231,6 +231,7 @@
     "set_metadata_asset_history_decimals": "Decimals: {}",
     "non_native_history_title_label": "History",
     "create_token_widget": "Create token",
+    "nnt_transfer_button_label": "Transfer assets",
 
     "@recieve_page":{
     },

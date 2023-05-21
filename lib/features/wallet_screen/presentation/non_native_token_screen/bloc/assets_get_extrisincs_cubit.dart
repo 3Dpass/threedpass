@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:logger/logger.dart';
+import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedp_graphql/features/events/domain/events_request_params.dart';
 import 'package:threedp_graphql/features/extrinsics/domain/extrisincs_request_params.dart';
@@ -28,6 +29,9 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
       pagingController;
   final AssetsGetExtrinsics getExtrinsics;
   final GetEventsUseCase getEvents;
+
+  TokenBalanceData get tokenBalanceData =>
+      getExtrinsics.paramsUseCase.tokenBalanceData;
 
   Future<void> update() async {
     if (pagingController.itemList != null) {

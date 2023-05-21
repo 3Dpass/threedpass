@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/api/types/balanceData.dart';
 import 'package:polkawallet_sdk/api/types/networkStateData.dart';
+import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:polkawallet_sdk/plugin/index.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:threedpass/core/polkawallet/non_native_tokens_api.dart';
@@ -63,6 +64,11 @@ class AppService {
       );
     }
   }
+
+  TxSenderData get userSenderData => TxSenderData(
+        keyring.current.address,
+        keyring.current.pubKey,
+      );
 
   // final subScan = SubScanApi();
 }

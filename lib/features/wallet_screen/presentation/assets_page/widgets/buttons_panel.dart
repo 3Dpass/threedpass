@@ -1,7 +1,9 @@
-part of '../assets_page.dart';
+import 'package:flutter/material.dart';
+import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/recieve_button.dart';
+import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/transfer_button.dart';
 
-class _ButtonsPanel extends StatelessWidget {
-  const _ButtonsPanel();
+class AssetPageButtonsPanel extends StatelessWidget {
+  const AssetPageButtonsPanel({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -10,7 +12,7 @@ class _ButtonsPanel extends StatelessWidget {
       children: const [
         SizedBox(width: 16),
         Flexible(
-          child: TransferButton(),
+          child: CoinTransferButton(),
         ),
         SizedBox(width: 8),
         Flexible(
