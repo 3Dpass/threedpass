@@ -34,11 +34,11 @@ class AppService {
   /// Should be called in 3 cases:
   /// 1. Start app. Init account.
   /// 2. Change account. Calculate new balances
-  /// 3. Transfer sent TODO
-  Future<void> setTokensData() async {
+  /// 3. Transfer sent
+  Future<void> _setTokensData(final String address) async {
     if (keyring.current.address != null) {
       // Get tokens only if there is an account
-      final nnta = NonNativeTokensApi(this);
+      final nnta = NonNativeTokensApi(this, address);
       await nnta.setTokens();
     }
   }
@@ -52,8 +52,10 @@ class AppService {
       unawaited(
         plugin.sdk.api.account.subscribeBalance(
           address,
-          (final data) {
+          (final data) async {
             getIt<Logger>().i('Balance updated: ${data.availableBalance}');
+            // TODO SET LOADING STATE WHEN UPDATE BALANCE
+            await _setTokensData(address);
             balance.value = data;
           },
         ),

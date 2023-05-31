@@ -65,7 +65,7 @@ class Transfer {
       DefaultLoadingDialog.show(outerContext, 'transfer_loader_text'.tr());
 
       try {
-        final a = await appService.plugin.sdk.api.tx.signAndSend(
+        final __ = await appService.plugin.sdk.api.tx.signAndSend(
           txInfo,
           params,
           password,
@@ -79,7 +79,7 @@ class Transfer {
             }
           },
         );
-        final b = 1 + 1;
+        // final b = 1 + 1;
 
         // DefaultLoadingDialog.hide(outerContext);
         // unawaited(context.router.pop());
