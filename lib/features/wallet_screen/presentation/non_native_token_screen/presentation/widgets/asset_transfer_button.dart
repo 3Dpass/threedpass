@@ -17,8 +17,7 @@ class AssetTransferButton extends StatelessWidget {
     context.router.push(
       TransferWrapperRoute(
         metadata: AssetTransferMetaDTO(
-          assetID: tkd.id ?? '',
-          assetName: tkd.symbol ?? '',
+          tokenBalanceData: tkd,
         ),
       ),
     );

@@ -14,7 +14,8 @@ import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 
 class Transfer {
   const Transfer({
-    required this.amount,
+    required this.txInfo,
+    required this.params,
     required this.appService,
     required this.context,
     required this.formKey,
@@ -22,8 +23,10 @@ class Transfer {
     required this.toAddress,
   });
 
-  final String amount;
+  // final String amount;
   final AppService appService;
+  final TxInfoData txInfo;
+  final List<String> params;
   final BuildContext context;
   final GlobalKey<FormState> formKey;
   final String password;
@@ -49,27 +52,6 @@ class Transfer {
     return true;
   }
 
-  BigInt get realAmount => BalanceUtils.tokenInt(
-        amount,
-        appService.networkStateData.safeDecimals,
-      );
-
-  TxInfoData get txInfo => TxInfoData(
-        'balances',
-        'transfer',
-        TxSenderData(
-          appService.keyring.current.address,
-          appService.keyring.current.pubKey,
-        ),
-      );
-
-  List<dynamic> get params => [
-        // params.to
-        toAddress,
-        // params.amount
-        realAmount.toString(),
-      ];
-
   Future<void> sendFunds() async {
     if (formKey.currentState!.validate()) {
       final addressCorrect = await checkAddressAndNotify();
@@ -83,12 +65,13 @@ class Transfer {
       DefaultLoadingDialog.show(outerContext, 'transfer_loader_text'.tr());
 
       try {
-        final __ = await appService.plugin.sdk.api.tx.signAndSend(
+        final a = await appService.plugin.sdk.api.tx.signAndSend(
           txInfo,
           params,
           password,
           onStatusChange: (final p0) {
             // There are two calls of this callback: p0 == 'Ready' and p0 == 'Broadcast'
+            print(p0 + ' ' + params.toString());
             if (p0 == 'Ready') {
               DefaultLoadingDialog.hide(outerContext);
               context.router.pop();
@@ -96,12 +79,17 @@ class Transfer {
             }
           },
         );
+        final b = 1 + 1;
 
-        DefaultLoadingDialog.hide(outerContext);
-        unawaited(context.router.pop());
-        unawaited(Fluttertoast.showToast(msg: 'transfer_success_text'.tr()));
+        // DefaultLoadingDialog.hide(outerContext);
+        // unawaited(context.router.pop());
+        // unawaited(Fluttertoast.showToast(msg: 'transfer_success_text'.tr()));
       } on Object catch (e) {
-        DefaultLoadingDialog.hide(outerContext);
+        try {
+          DefaultLoadingDialog.hide(outerContext);
+        } on Object catch (e) {
+          unawaited(Fluttertoast.showToast(msg: e.toString()));
+        }
         unawaited(Fluttertoast.showToast(msg: e.toString()));
       }
     }
