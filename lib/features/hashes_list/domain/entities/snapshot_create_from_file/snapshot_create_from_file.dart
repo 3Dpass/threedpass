@@ -127,12 +127,16 @@ class SnapshotFileFactory {
     final String filePath,
     final String transBytes,
   ) async {
+    final algo = AlgorithmMaster.mapToRust[settings.algorithm]!;
+    getIt<Logger>().i(
+      "Scan\n  file: $filePath\n  transBytes: $transBytes\n  gridSize: ${settings.gridSize}\n  nSections:${settings.nSections}\n  algorithm: $algo",
+    );
     final calculator = Calc2(
       gridSize: settings.gridSize,
       nSections: settings.nSections,
       filePath: filePath,
       transBytes: transBytes,
-      algorithm: AlgorithmMaster.mapToRust[settings.algorithm]!,
+      algorithm: algo,
     );
 
     return calculator.calcHashes();

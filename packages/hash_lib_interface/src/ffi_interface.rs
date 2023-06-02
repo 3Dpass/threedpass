@@ -33,16 +33,26 @@ pub extern fn calc(input: *const c_uchar, input_len: c_int,  par1: c_short, par2
     println!("Trans: {:?}", trans2);
     println!("Version: {:?}", version2);
 
-    let r: String ;
-    if version2 == "0.3.1".as_bytes() {
-        r = match calc_inner_0_3_1(input2, par1, par2, trans2) {
+    let r: Vec<String> ;
+    if version2 == "0.3.0".as_bytes() {
+        r = match p3d_0_3_0::p3d_process(input2, p3d_0_3_0::AlgoType::Grid2d, par1, par2, trans2) {
             Ok(h) => h,
-            Err(_e) => "Error".to_string(),
+            Err(_e) => vec!["Error".to_string()],    
         };
-    } else if version2 == "0.3.0".as_bytes()  {
-        r = match calc_inner_0_3_0(input2, par1, par2, trans2) {
+    } else if version2 == "0.3.1".as_bytes()  {
+        r = match p3d_0_3_1::p3d_process(input2, p3d_0_3_1::AlgoType::Grid2dV2, par1, par2, trans2) {
             Ok(h) => h,
-            Err(_e) => "Error".to_string(),
+            Err(_e) => vec!["Error".to_string()],    
+        };
+    } else if version2 == "0.3.2".as_bytes()  {
+        r = match p3d_0_3_2::p3d_process(input2, p3d_0_3_2::AlgoType::Grid2dV2, par1, par2, trans2) {
+            Ok(h) => h,
+            Err(_e) => vec!["Error".to_string()],    
+        };
+    } else if version2 == "0.3.3".as_bytes()  {
+        r = match p3d_0_3_3::p3d_process(input2, p3d_0_3_3::AlgoType::Grid2dV3, par1, par2, trans2) {
+            Ok(h) => h,
+            Err(_e) => vec!["Error".to_string()],    
         };
     } else {
         return CString::new("Version not found").unwrap().into_raw();
@@ -51,7 +61,7 @@ pub extern fn calc(input: *const c_uchar, input_len: c_int,  par1: c_short, par2
     // Maybe we should free the CString. This can be a potential memory leak
     // In the example they call the [free] function 
     // https://github.com/brickpop/flutter-rust-ffi/blob/f7b5d399bab542641b67466c31294b106d57bb9e/rust/src/lib.rs#L16
-    return CString::new(r).unwrap().into_raw(); 
+    return CString::new(r.join("\n")).unwrap().into_raw(); 
 }
 
 #[no_mangle]
@@ -59,32 +69,6 @@ pub extern fn versionInterface() -> *mut c_char {
     let r = env!("CARGO_PKG_VERSION");
 
     return CString::new(r).unwrap().into_raw();
-}
-
-pub fn calc_inner_0_3_1(input: &[u8], par1: i16, par2: i16, trans: Option<[u8;4]>)->Result<String, p3d_0_3_1::P3DError>{    
-    let res_hashes = p3d_0_3_1::p3d_process(input, p3d_0_3_1::AlgoType::Grid2d, par1, par2, trans);
-
-    let r = match res_hashes {
-        Ok(h) => h,
-        Err(_e) => vec!["Error".to_string()], // Alloc new string
-    };
-
-    let res = r.join("\n");
-
-   return Ok(res);
-}
-
-pub fn calc_inner_0_3_0(input: &[u8], par1: i16, par2: i16, trans: Option<[u8;4]>)->Result<String, p3d_0_3_0::P3DError>{    
-    let res_hashes = p3d_0_3_0::p3d_process(input, p3d_0_3_0::AlgoType::Grid2d, par1, par2, trans);
-
-    let r = match res_hashes {
-        Ok(h) => h,
-        Err(_e) => vec!["Error".to_string()], // Alloc new string
-    };
-
-    let res = r.join("\n");
-
-   return Ok(res);
 }
 
 // OLD TEMPLATE

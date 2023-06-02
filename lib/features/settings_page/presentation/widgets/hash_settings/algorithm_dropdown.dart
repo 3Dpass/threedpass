@@ -19,6 +19,7 @@ class _AlgorithmDropdown extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    // TODO Show warning when user chooses not the latest algo
     return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
       buildWhen: (final previous, final current) => false,
       builder: (final context, final state) =>
