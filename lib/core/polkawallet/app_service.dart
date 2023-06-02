@@ -21,9 +21,11 @@ class AppService {
     required this.status,
     final NetworkStateData? networkStateData,
   })  : networkStateData = networkStateData ?? NetworkStateData(),
-        balance = ValueNotifier<BalanceData>(BalanceData());
+        balance = ValueNotifier<BalanceData>(BalanceData()),
+        tokensAreLoading = ValueNotifier<bool>(false);
 
   final ValueNotifier<BalanceData> balance;
+  final ValueNotifier<bool> tokensAreLoading;
   // final ValueNotifier<String> bestNumber = ValueNotifier<String>('');
   final Keyring keyring;
   final NetworkStateData networkStateData;
@@ -54,9 +56,11 @@ class AppService {
           address,
           (final data) async {
             getIt<Logger>().i('Balance updated: ${data.availableBalance}');
-            // TODO SET LOADING STATE WHEN UPDATE BALANCE
-            await _setTokensData(address);
             balance.value = data;
+
+            tokensAreLoading.value = true;
+            await _setTokensData(address);
+            tokensAreLoading.value = false;
           },
         ),
       );

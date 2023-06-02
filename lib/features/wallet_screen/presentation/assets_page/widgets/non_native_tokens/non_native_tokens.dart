@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:polkawallet_sdk/api/types/balanceData.dart';
 import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
@@ -21,6 +22,7 @@ part 'assets_loading.dart';
 part 'assets_placeholder.dart';
 part 'assets_column.dart';
 part 'assets_card.dart';
+part 'assets_loading_placeholder.dart';
 
 class NonNativeTokens extends StatelessWidget {
   const NonNativeTokens({super.key});
@@ -40,10 +42,10 @@ class NonNativeTokens extends StatelessWidget {
 
             /// Subscribe to balance to update widget after transfer
             return ValueListenableBuilder(
-              valueListenable: appService.balance,
-              builder: (final context, final BalanceData balance, final child) {
-                if (balance.isNull) {
-                  return const _AssetsPlaceholder();
+              valueListenable: appService.tokensAreLoading,
+              builder: (final context, final bool isLoading, final child) {
+                if (isLoading) {
+                  return const _AssetsLoadingPlaceholder();
                 }
 
                 bool allTokensEmpty = true;

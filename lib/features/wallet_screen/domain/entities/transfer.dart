@@ -71,7 +71,7 @@ class Transfer {
           password,
           onStatusChange: (final p0) {
             // There are two calls of this callback: p0 == 'Ready' and p0 == 'Broadcast'
-            print(p0 + ' ' + params.toString());
+            // print(p0 + ' ' + params.toString());
             if (p0 == 'Ready') {
               DefaultLoadingDialog.hide(outerContext);
               context.router.pop();
