@@ -15,7 +15,6 @@ import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart'
 import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart';
 
-// TODO refactor. Move logit out of UI
 class GetObjectFromFileFloatingButton extends StatelessWidget {
   const GetObjectFromFileFloatingButton({final Key? key}) : super(key: key);
 

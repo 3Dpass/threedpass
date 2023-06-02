@@ -15,7 +15,6 @@ class RemoveAccountDialog extends StatelessWidget {
     final AppServiceLoaderCubit appServiceLoaderCubit,
     final BuildContext context,
   ) async {
-    // TODO Move from UI
     final appService = appServiceLoaderCubit.state;
 
     // remove current account

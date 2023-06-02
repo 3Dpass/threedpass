@@ -51,7 +51,7 @@ class NonNativeTokens extends StatelessWidget {
                 bool allTokensEmpty = true;
                 final tokensData = appService.plugin.balances.tokens;
                 for (final token in tokensData) {
-                  if (token.amountIsPositive) {
+                  if (token.isAmountPositive) {
                     allTokensEmpty = false;
                   }
                 }

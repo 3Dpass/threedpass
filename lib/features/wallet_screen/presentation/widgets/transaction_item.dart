@@ -1,8 +1,6 @@
 // part of '../transactions_history_page.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
@@ -89,7 +87,7 @@ class _TransactionAmount extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
+    // final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     final moneyStr = BalanceUtils.balance(
       amount,
       decimals,

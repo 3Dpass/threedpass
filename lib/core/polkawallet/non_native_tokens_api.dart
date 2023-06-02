@@ -11,7 +11,6 @@ class NonNativeTokensApi {
   Future<List<TokenBalanceData>> process() async {
     final result = <TokenBalanceData>[];
 
-    // TODO GET ALL ASSETS ONLY ON START
     final tokensCommonData = await service.plugin.sdk.api.assets.getAssetsAll();
     final ids = tokensCommonData.map((final e) => e.id ?? '').toList();
     ids.removeWhere((final element) => element.isEmpty);
