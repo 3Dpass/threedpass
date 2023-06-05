@@ -12,12 +12,12 @@ class ScanPage extends StatelessWidget {
       removeBackButton: true,
       appbarTitle: 'recognize_your_objects',
       body: Stack(
-        children: const [
-          ScanPageContent(),
+        children: [
+          const ScanPageContent(),
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: GetObjectFromFileFloatingButton(),
             ),
           ),

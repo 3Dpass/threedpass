@@ -25,9 +25,12 @@ class Calc2 {
   final String transBytes;
   final String algorithm;
 
-  Future<String> calcHashes() async {
+  Future<String> calcHashes(
+    void updateIsolateListener(final Isolate i, final ReceivePort p),
+  ) async {
     final p = ReceivePort();
-    await Isolate.spawn(_callLib, p.sendPort);
+    final i = await Isolate.spawn(_callLib, p.sendPort);
+    updateIsolateListener(i, p);
     return await p.first as String;
   }
 

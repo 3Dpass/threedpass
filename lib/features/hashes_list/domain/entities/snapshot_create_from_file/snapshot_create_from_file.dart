@@ -10,6 +10,7 @@ import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/file_copy.dart';
+import 'package:threedpass/features/scan_page/bloc/scan_isolate_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/algorithm.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/setup.dart';
@@ -22,6 +23,7 @@ class SnapshotFileFactory {
   final HashesListBloc hashesListBloc;
   final void Function() showLoader;
   final ObjectsDirectory objectsDirectory;
+  final ScanIsolateCubit scanIsolateCubit;
   // final void Function() hideLoader;
 
   SnapshotFileFactory({
@@ -29,6 +31,7 @@ class SnapshotFileFactory {
     required this.hashesListBloc,
     required this.showLoader,
     required this.objectsDirectory,
+    required this.scanIsolateCubit,
     // required this.hideLoader,
   });
 
@@ -52,6 +55,11 @@ class SnapshotFileFactory {
       pickedFilePath,
       transBytes,
     );
+
+    getIt<Logger>().i('Got hashes: $hashes');
+    if (hashes == ScanIsolateCubit.cancelMsg) {
+      throw Exception('Scanning canceled by user');
+    }
 
     final res = await _createSnapshot(
       filePath: pickedFilePath,
@@ -122,7 +130,7 @@ class SnapshotFileFactory {
   }
 
   /// Calc hashes
-  static Future<String> calcHashes(
+  Future<String> calcHashes(
     final ScanSettings settings,
     final String filePath,
     final String transBytes,
@@ -139,6 +147,6 @@ class SnapshotFileFactory {
       algorithm: algo,
     );
 
-    return calculator.calcHashes();
+    return calculator.calcHashes(scanIsolateCubit.setData);
   }
 }
