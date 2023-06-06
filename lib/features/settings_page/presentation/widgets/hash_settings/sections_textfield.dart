@@ -37,6 +37,7 @@ class _SectionsTextField extends StatelessWidget {
       keyboardType: TextInputType.number,
       validator: onlyNumValidator,
       labelText: 'n_sections_label'.tr(),
+      bottomHelpText: 'n_sections_help'.tr(),
     );
   }
 }

@@ -2,9 +2,9 @@
 #![feature(core_ffi_c)]
 
 extern crate p3d_0_3_3;
-extern crate p3d_0_3_2;
-extern crate p3d_0_3_1;
-extern crate p3d_0_3_0;
+// extern crate p3d_0_3_2;
+// extern crate p3d_0_3_1;
+// extern crate p3d_0_3_0;
 
 #[macro_use]
 extern crate alloc;

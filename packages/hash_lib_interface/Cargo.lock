@@ -241,51 +241,6 @@ dependencies = [
 
 [[package]]
 name = "p3d"
-version = "0.3.0"
-source = "git+https://github.com/3Dpass/p3d?rev=91c72dfe7f7bacf5de088009133c64ca2197aef7#91c72dfe7f7bacf5de088009133c64ca2197aef7"
-dependencies = [
- "base16ct",
- "cgmath",
- "libm 0.2.7",
- "ndarray",
- "obj-rs",
- "peroxide",
- "sha2",
- "tri-mesh",
-]
-
-[[package]]
-name = "p3d"
-version = "0.3.1"
-source = "git+https://github.com/3Dpass/p3d?rev=4a98da181478ac9ba5e27e96a31a8c695d200c61#4a98da181478ac9ba5e27e96a31a8c695d200c61"
-dependencies = [
- "base16ct",
- "cgmath",
- "libm 0.2.7",
- "ndarray",
- "obj-rs",
- "peroxide",
- "sha2",
- "tri-mesh",
-]
-
-[[package]]
-name = "p3d"
-version = "0.3.2"
-source = "git+https://github.com/3Dpass/p3d?rev=22d9efb4dd6f2cb523b3a24037b866e3369f33cb#22d9efb4dd6f2cb523b3a24037b866e3369f33cb"
-dependencies = [
- "base16ct",
- "cgmath",
- "libm 0.2.7",
- "ndarray",
- "obj-rs",
- "peroxide",
- "sha2",
- "tri-mesh",
-]
-
-[[package]]
-name = "p3d"
 version = "0.3.3"
 source = "git+https://github.com/3Dpass/p3d?rev=39cd16488d271c8cc1352dbd1807b70e18cf0eba#39cd16488d271c8cc1352dbd1807b70e18cf0eba"
 dependencies = [
@@ -303,10 +258,7 @@ dependencies = [
 name = "p3d_interface"
 version = "0.3.3"
 dependencies = [
- "p3d 0.3.0",
- "p3d 0.3.1",
- "p3d 0.3.2",
- "p3d 0.3.3",
+ "p3d",
 ]
 
 [[package]]

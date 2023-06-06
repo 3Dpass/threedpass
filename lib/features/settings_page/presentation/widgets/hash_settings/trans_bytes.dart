@@ -54,7 +54,7 @@ class _State extends State<_TransBytesInputField> {
       onChanged: (final value) => changeSettings(value ?? '', context),
       validator: (final input) => _TransBytesInput(input ?? '').isValid,
       inputFormatters: [hexInputFormatter],
-      bottomHelpText: 'trans_help_text'.tr(),
+      // bottomHelpText: 'trans_help_text'.tr(),
     );
   }
 }

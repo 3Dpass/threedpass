@@ -48,7 +48,7 @@ class SnapshotFileFactory {
 
     final transBytes = await _TransBytes(
       scanSettings: scanSettings,
-    ).transBytes();
+    ).calc();
 
     final hashes = await calcHashes(
       scanSettings,

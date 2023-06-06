@@ -4,7 +4,6 @@ use alloc::string::{ToString, String};
 use core::ffi::{c_uchar, c_short, c_char, c_int};
 
 
-
 // Interface for the C binding
 #[no_mangle]
 pub extern fn calc(input: *const c_uchar, input_len: c_int,  par1: c_short, par2: c_short, trans: *const c_uchar, version: *const c_uchar) -> *mut c_char 
@@ -27,35 +26,36 @@ pub extern fn calc(input: *const c_uchar, input_len: c_int,  par1: c_short, par2
         let d4 = make_slice(input, input_len as usize); // Cast works ONLY for 64-bit platforms! https://stackoverflow.com/a/50437859/15776812
         input2 = d4;
 
-        version2 = make_slice(version, 5);
+        version2 = make_slice(version, 15); // Length of version string
     }
 
     println!("Trans: {:?}", trans2);
     println!("Version: {:?}", version2);
 
     let r: Vec<String> ;
-    if version2 == "0.3.0".as_bytes() {
-        r = match p3d_0_3_0::p3d_process(input2, p3d_0_3_0::AlgoType::Grid2d, par1, par2, trans2) {
+    if version2 == "0.3.3_Grid2d_v1".as_bytes() {
+        r = match p3d_0_3_3::p3d_process(input2, p3d_0_3_3::AlgoType::Grid2d, par1, par2, trans2) {
             Ok(h) => h,
             Err(_e) => vec!["Error".to_string()],    
         };
-    } else if version2 == "0.3.1".as_bytes()  {
-        r = match p3d_0_3_1::p3d_process(input2, p3d_0_3_1::AlgoType::Grid2dV2, par1, par2, trans2) {
+    } else if version2 == "0.3.3_Grid2d_v2".as_bytes() {
+        r = match p3d_0_3_3::p3d_process(input2, p3d_0_3_3::AlgoType::Grid2dV2, par1, par2, trans2) {
             Ok(h) => h,
             Err(_e) => vec!["Error".to_string()],    
         };
-    } else if version2 == "0.3.2".as_bytes()  {
-        r = match p3d_0_3_2::p3d_process(input2, p3d_0_3_2::AlgoType::Grid2dV2, par1, par2, trans2) {
-            Ok(h) => h,
-            Err(_e) => vec!["Error".to_string()],    
-        };
-    } else if version2 == "0.3.3".as_bytes()  {
+    } else if version2 == "0.3.3_Grid2d_v3".as_bytes() {
         r = match p3d_0_3_3::p3d_process(input2, p3d_0_3_3::AlgoType::Grid2dV3, par1, par2, trans2) {
             Ok(h) => h,
             Err(_e) => vec!["Error".to_string()],    
         };
     } else {
-        return CString::new("Version not found").unwrap().into_raw();
+        let mut s = match String::from_utf8(version2.to_vec()) {
+            Ok(v) => v,
+            Err(e) => panic!("Invalid UTF-8 sequence: {}", e),
+        }.to_owned();
+        let not_found: &str = " not found";
+        s.push_str(not_found);
+        return CString::new(s).unwrap().into_raw();
     }
 
     // Maybe we should free the CString. This can be a potential memory leak
