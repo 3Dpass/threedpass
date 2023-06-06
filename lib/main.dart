@@ -19,13 +19,6 @@ Future<void> main() async {
   await hive_setup.hiveSetup();
   await di_setup.setup();
   await EasyLocalization.ensureInitialized();
-  // var logConsoleManager = LogConsoleManager(
-  //   isDark: true,
-  // );
-  // logConsoleManager.addLog(OutputEvent(Level.verbose, ['Lol', 'kek']));
-  // getIt.registerSingleton<LogConsoleManager>(logConsoleManager);
-  // LogConsoleWidget();
-  // LogConsole.init();
 
   runApp(
     EasyLocalization(

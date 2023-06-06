@@ -35,9 +35,12 @@ class TransferPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
+    final transferInfo = BlocProvider.of<TransferInfoCubit>(context);
     // appService.keyring.
     return D3pScaffold(
-      appbarTitle: 'transfer_page_title',
+      appbarTitle:
+          'transfer_page_title'.tr() + ' ' + transferInfo.metaDTO.getName(),
+      translateAppbar: false,
       body: Column(
         children: [
           Flexible(

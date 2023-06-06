@@ -52,7 +52,7 @@ class _TokensToShowList {
 
     final res = <TokenBalanceData>[];
     for (final token in initialTokens) {
-      if (token.amountIsPositive) {
+      if (token.isAmountPositive) {
         res.add(token);
       }
     }

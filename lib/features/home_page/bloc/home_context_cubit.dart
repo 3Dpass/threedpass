@@ -13,7 +13,7 @@ class HomeContextCubit extends Cubit<HomeContextState> {
   HomeContextCubit(final HomeContextState s) : super(s);
 
   Future<void> showDialogC(
-    final Widget Function(BuildContext context) builder,
+    final Widget Function(BuildContext __) builder,
   ) async {
     await showPlatformDialog(
       useRootNavigator: false,

@@ -1,10 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/features/wallet_screen/domain/entities/transfer_meta_dto.dart';
 
 class TransferInfoCubit extends Cubit<TransferInfo> {
-  TransferInfoCubit(final double balance)
-      : super(TransferInfo(balance: balance, fees: null));
+  TransferInfoCubit({
+    required final String balance,
+    required this.metaDTO,
+  }) : super(TransferInfo(balance: balance, fees: null));
+
+  final TransferMetaDTO metaDTO;
 
   Future<void> init(final AppService appService) async {
     final params = [
@@ -15,10 +20,7 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
     final txInfo = TxInfoData(
       'balances',
       'transferKeepAlive',
-      TxSenderData(
-        appService.keyring.current.address,
-        appService.keyring.current.pubKey,
-      ),
+      appService.userSenderData,
     );
 
     // This line throws error:
@@ -39,7 +41,7 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
 
 class TransferInfo {
   // Max avaliable balance in wallet in human-readable double format
-  final double balance;
+  final String balance;
   final TxFeeEstimateResult? fees;
 
   const TransferInfo({

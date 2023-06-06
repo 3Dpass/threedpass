@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return BlocProvider<HomeContextCubit>(
-      create: (final context) => HomeContextCubit(
+      create: (final __) => HomeContextCubit(
         HomeContextState(context: context),
       ),
       child: AutoTabsRouter(

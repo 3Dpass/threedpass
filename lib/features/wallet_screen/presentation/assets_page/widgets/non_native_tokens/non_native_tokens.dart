@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
@@ -19,6 +20,7 @@ part 'assets_loading.dart';
 part 'assets_placeholder.dart';
 part 'assets_column.dart';
 part 'assets_card.dart';
+part 'assets_loading_placeholder.dart';
 
 class NonNativeTokens extends StatelessWidget {
   const NonNativeTokens({super.key});
@@ -36,23 +38,33 @@ class NonNativeTokens extends StatelessWidget {
               return const _AssetsLoading();
             }
 
-            bool allTokensEmpty = true;
-            final tokensData = appService.plugin.balances.tokens;
-            for (final token in tokensData) {
-              if (token.amountIsPositive) {
-                allTokensEmpty = false;
-              }
-            }
+            /// Subscribe to balance to update widget after transfer
+            return ValueListenableBuilder(
+              valueListenable: appService.tokensAreLoading,
+              builder: (final context, final bool isLoading, final child) {
+                if (isLoading) {
+                  return const _AssetsLoadingPlaceholder();
+                }
 
-            final settings =
-                BlocProvider.of<SettingsConfigCubit>(context).state;
-            final showZeroAssets = settings.appSettings.showZeroAssets;
+                bool allTokensEmpty = true;
+                final tokensData = appService.plugin.balances.tokens;
+                for (final token in tokensData) {
+                  if (token.isAmountPositive) {
+                    allTokensEmpty = false;
+                  }
+                }
 
-            if (allTokensEmpty && !showZeroAssets) {
-              return const _AssetsPlaceholder();
-            } else {
-              return _AssetsColumn(tokensData);
-            }
+                final settings =
+                    BlocProvider.of<SettingsConfigCubit>(context).state;
+                final showZeroAssets = settings.appSettings.showZeroAssets;
+
+                if (allTokensEmpty && !showZeroAssets) {
+                  return const _AssetsPlaceholder();
+                } else {
+                  return _AssetsColumn(tokensData);
+                }
+              },
+            );
           },
         );
       },

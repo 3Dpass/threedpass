@@ -10,6 +10,7 @@ import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/file_copy.dart';
+import 'package:threedpass/features/scan_page/bloc/scan_isolate_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/algorithm.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/setup.dart';
@@ -22,6 +23,7 @@ class SnapshotFileFactory {
   final HashesListBloc hashesListBloc;
   final void Function() showLoader;
   final ObjectsDirectory objectsDirectory;
+  final ScanIsolateCubit scanIsolateCubit;
   // final void Function() hideLoader;
 
   SnapshotFileFactory({
@@ -29,6 +31,7 @@ class SnapshotFileFactory {
     required this.hashesListBloc,
     required this.showLoader,
     required this.objectsDirectory,
+    required this.scanIsolateCubit,
     // required this.hideLoader,
   });
 
@@ -45,13 +48,18 @@ class SnapshotFileFactory {
 
     final transBytes = await _TransBytes(
       scanSettings: scanSettings,
-    ).transBytes();
+    ).calc();
 
     final hashes = await calcHashes(
       scanSettings,
       pickedFilePath,
       transBytes,
     );
+
+    getIt<Logger>().i('Got hashes: $hashes');
+    if (hashes == ScanIsolateCubit.cancelMsg) {
+      throw Exception(ScanIsolateCubit.cancelMsg);
+    }
 
     final res = await _createSnapshot(
       filePath: pickedFilePath,
@@ -122,19 +130,23 @@ class SnapshotFileFactory {
   }
 
   /// Calc hashes
-  static Future<String> calcHashes(
+  Future<String> calcHashes(
     final ScanSettings settings,
     final String filePath,
     final String transBytes,
   ) async {
+    final algo = AlgorithmMaster.mapToRust[settings.algorithm]!;
+    getIt<Logger>().i(
+      "Scan\n  file: $filePath\n  transBytes: $transBytes\n  gridSize: ${settings.gridSize}\n  nSections:${settings.nSections}\n  algorithm: $algo",
+    );
     final calculator = Calc2(
       gridSize: settings.gridSize,
       nSections: settings.nSections,
       filePath: filePath,
       transBytes: transBytes,
-      algorithm: AlgorithmMaster.mapToRust[settings.algorithm]!,
+      algorithm: algo,
     );
 
-    return calculator.calcHashes();
+    return calculator.calcHashes(scanIsolateCubit.setData);
   }
 }

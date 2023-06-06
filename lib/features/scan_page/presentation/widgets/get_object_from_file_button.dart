@@ -10,12 +10,12 @@ import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/snapshot_create_from_file.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
+import 'package:threedpass/features/scan_page/bloc/scan_isolate_cubit.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart';
 
-// TODO refactor. Move logit out of UI
 class GetObjectFromFileFloatingButton extends StatelessWidget {
   const GetObjectFromFileFloatingButton({final Key? key}) : super(key: key);
 
@@ -25,13 +25,20 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
 
   void showLoader(final BuildContext context) {
     final homeContext = BlocProvider.of<HomeContextCubit>(context);
+
+    // homeContext.router.push(
+    //   const CalcHashLoadingDialogRoute(),
+    // );
     unawaited(
-      homeContext.showDialogC((final context) => const CalcHashLoadingWidget()),
+      homeContext.showDialogC(
+        (final __) => const CalcHashLoadingWidget(),
+      ),
     );
   }
 
   void hideLoader(final BuildContext context) {
     final homeContext = BlocProvider.of<HomeContextCubit>(context);
+    // homeContext.state.context.router.pop();
     homeContext.hideDialogC();
   }
 
@@ -45,6 +52,8 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       scanSettings:
           BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings,
       objectsDirectory: getIt<ObjectsDirectory>(),
+      scanIsolateCubit: BlocProvider.of<ScanIsolateCubit>(context),
+      // recievePort: recievePort,
     );
 
     try {
@@ -64,7 +73,11 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
     } on Exception catch (e) {
       hideLoader(context);
 
-      showToast(e.toString(), context);
+      if (e.toString().contains(ScanIsolateCubit.cancelMsg)) {
+        showToast('Scanning canceled by user', context);
+      } else {
+        showToast(e.toString(), context);
+      }
     }
   }
 

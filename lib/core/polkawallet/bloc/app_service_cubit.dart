@@ -150,7 +150,6 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     final pseudoNewState = state.copyWith();
 
     await pseudoNewState.subscribeToBalance();
-    await pseudoNewState.setTokensData();
 
     registerTransferCubits(pseudoNewState);
 

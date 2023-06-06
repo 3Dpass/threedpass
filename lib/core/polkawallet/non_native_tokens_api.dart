@@ -1,4 +1,3 @@
-
 import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 
@@ -7,7 +6,7 @@ class NonNativeTokensApi {
   final AppService service;
   final String address;
 
-  NonNativeTokensApi(this.service) : address = service.keyring.current.address!;
+  NonNativeTokensApi(this.service, this.address);
 
   Future<List<TokenBalanceData>> process() async {
     final result = <TokenBalanceData>[];

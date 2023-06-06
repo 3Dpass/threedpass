@@ -7,14 +7,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
-import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
-import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 
 class Transfer {
   const Transfer({
-    required this.amount,
+    required this.txInfo,
+    required this.params,
     required this.appService,
     required this.context,
     required this.formKey,
@@ -22,8 +21,10 @@ class Transfer {
     required this.toAddress,
   });
 
-  final String amount;
+  // final String amount;
   final AppService appService;
+  final TxInfoData txInfo;
+  final List<String> params;
   final BuildContext context;
   final GlobalKey<FormState> formKey;
   final String password;
@@ -49,27 +50,6 @@ class Transfer {
     return true;
   }
 
-  BigInt get realAmount => BalanceUtils.tokenInt(
-        amount,
-        appService.networkStateData.safeDecimals,
-      );
-
-  TxInfoData get txInfo => TxInfoData(
-        'balances',
-        'transfer',
-        TxSenderData(
-          appService.keyring.current.address,
-          appService.keyring.current.pubKey,
-        ),
-      );
-
-  List<dynamic> get params => [
-        // params.to
-        toAddress,
-        // params.amount
-        realAmount.toString(),
-      ];
-
   Future<void> sendFunds() async {
     if (formKey.currentState!.validate()) {
       final addressCorrect = await checkAddressAndNotify();
@@ -89,6 +69,7 @@ class Transfer {
           password,
           onStatusChange: (final p0) {
             // There are two calls of this callback: p0 == 'Ready' and p0 == 'Broadcast'
+            // print(p0 + ' ' + params.toString());
             if (p0 == 'Ready') {
               DefaultLoadingDialog.hide(outerContext);
               context.router.pop();
@@ -96,12 +77,17 @@ class Transfer {
             }
           },
         );
+        // final b = 1 + 1;
 
-        DefaultLoadingDialog.hide(outerContext);
-        unawaited(context.router.pop());
-        unawaited(Fluttertoast.showToast(msg: 'transfer_success_text'.tr()));
+        // DefaultLoadingDialog.hide(outerContext);
+        // unawaited(context.router.pop());
+        // unawaited(Fluttertoast.showToast(msg: 'transfer_success_text'.tr()));
       } on Object catch (e) {
-        DefaultLoadingDialog.hide(outerContext);
+        try {
+          DefaultLoadingDialog.hide(outerContext);
+        } on Object catch (e) {
+          unawaited(Fluttertoast.showToast(msg: e.toString()));
+        }
         unawaited(Fluttertoast.showToast(msg: e.toString()));
       }
     }

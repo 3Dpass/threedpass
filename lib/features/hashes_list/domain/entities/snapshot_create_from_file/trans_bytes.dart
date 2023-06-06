@@ -7,7 +7,7 @@ class _TransBytes {
     required this.scanSettings,
   });
 
-  Future<String> transBytes() async {
+  Future<String> calc() async {
     final String userTransBytes = scanSettings.transBytes;
 
     if (userTransBytes.isNotEmpty) {

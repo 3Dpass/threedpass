@@ -22,7 +22,6 @@ class CreateAccountCredentials extends StatelessWidget {
 
   final String appbarText;
 
-  // TODO refactor. Move logit out of UI
   Future<void> _onSubmit({
     required final BuildContext context,
     required final GlobalKey<FormState> formKey,

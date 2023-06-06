@@ -6,12 +6,9 @@ import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/accounts_drawer.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/asset_page_appbar.dart';
+import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/buttons_panel.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/coins_balance.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/non_native_tokens/non_native_tokens.dart';
-import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/recieve_button.dart';
-import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/transfer_button.dart';
-
-part './widgets/buttons_panel.dart';
 
 class AssetsPage extends StatelessWidget {
   const AssetsPage({final Key? key}) : super(key: key);
@@ -40,7 +37,7 @@ class AssetsPage extends StatelessWidget {
               SizedBoxH36(),
               CoinsBalance(),
               SizedBoxH16(),
-              _ButtonsPanel(),
+              AssetPageButtonsPanel(),
               Flexible(
                 child: NonNativeTokens(),
               ),

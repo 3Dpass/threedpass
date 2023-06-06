@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/api/types/balanceData.dart';
 import 'package:polkawallet_sdk/api/types/networkStateData.dart';
+import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:polkawallet_sdk/plugin/index.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:threedpass/core/polkawallet/non_native_tokens_api.dart';
@@ -20,9 +21,11 @@ class AppService {
     required this.status,
     final NetworkStateData? networkStateData,
   })  : networkStateData = networkStateData ?? NetworkStateData(),
-        balance = ValueNotifier<BalanceData>(BalanceData());
+        balance = ValueNotifier<BalanceData>(BalanceData()),
+        tokensAreLoading = ValueNotifier<bool>(false);
 
   final ValueNotifier<BalanceData> balance;
+  final ValueNotifier<bool> tokensAreLoading;
   // final ValueNotifier<String> bestNumber = ValueNotifier<String>('');
   final Keyring keyring;
   final NetworkStateData networkStateData;
@@ -33,11 +36,11 @@ class AppService {
   /// Should be called in 3 cases:
   /// 1. Start app. Init account.
   /// 2. Change account. Calculate new balances
-  /// 3. Transfer sent TODO
-  Future<void> setTokensData() async {
+  /// 3. Transfer sent
+  Future<void> _setTokensData(final String address) async {
     if (keyring.current.address != null) {
       // Get tokens only if there is an account
-      final nnta = NonNativeTokensApi(this);
+      final nnta = NonNativeTokensApi(this, address);
       await nnta.setTokens();
     }
   }
@@ -51,9 +54,13 @@ class AppService {
       unawaited(
         plugin.sdk.api.account.subscribeBalance(
           address,
-          (final data) {
+          (final data) async {
             getIt<Logger>().i('Balance updated: ${data.availableBalance}');
             balance.value = data;
+
+            tokensAreLoading.value = true;
+            await _setTokensData(address);
+            tokensAreLoading.value = false;
           },
         ),
       );
@@ -63,6 +70,11 @@ class AppService {
       );
     }
   }
+
+  TxSenderData get userSenderData => TxSenderData(
+        keyring.current.address,
+        keyring.current.pubKey,
+      );
 
   // final subScan = SubScanApi();
 }
