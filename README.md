@@ -1,24 +1,27 @@
 # threedpass
 
-3DPass mobile light wallet for Android and iOS. [Read more](https://3dpass.org/mobile_wallet.html) about its features.
+3Dpass mobile light wallet for Android and iOS. [Read more](https://3dpass.org/mobile-wallet) about its features.
 
 ## 3D object recognition
 This embedded option allows to recognize the same shaped 3D objects by means of processing its 3D models in .obj format. Due to the fact, that the app hasn't had a native 3D scanner integrated yet, now you can only process 3D models made by third party scanning/modeling apps and devices. 
 
-[pass3d](https://github.com/3Dpass/pass3d) recognition tool is used as an implementation of [Grid2d](https://3dpass.org/grid2d.html) algorithm.
+[pass3d](https://github.com/3Dpass/pass3d) recognition tool is used as an implementation of [Grid2d](https://3dpass.org/grid2d) algorithm.
 
-[![logo](https://3dpass.org/assets/img/recognition.png)](https://3dpass.org/mobile_wallet.html#recognition)
+[![recognition](https://github.com/3Dpass/threedpass/assets/107915078/acacc1b0-223e-4c4f-a6c4-3b74fa32c9a9)](https://3dpass.org/features#3drecognition)
 
 ## P3D Transfers
 Tha wallet connects to the Node via RPC/API endpoints. These are the mainnet public endpoints:
 - wss://rpc.3dpass.org 
 - wss://rpc2.3dpass.org
+- wss://rpc.3dpscan.io
+- wss://rpc.caldera.network
 
-[![logo](https://3dpass.org/assets/img/accounts.png)](https://3dpass.org/mobile_wallet.html#wallet_functions)
+[![accounts](https://github.com/3Dpass/threedpass/assets/107915078/4e58f82c-e61e-4780-b89b-dfe0b4ae2a64)](https://3dpass.org/mobile-wallet#light)
 
 ## 3D-object-wallet
 Tis option allows to produce crypto wallet (address + keys) out of 3D object and its recovery by means of scanning.
-[![logo](https://3dpass.org/assets/img/3d-object-wallet.png)](https://3dpass.org/mobile_wallet.html#3d_object-wallet)
+
+[![3d-object-wallet](https://github.com/3Dpass/threedpass/assets/107915078/6997f689-d91d-48b0-8c02-f305e0512c9a)](https://3dpass.org/mobile-wallet#creation)
 
 ## How to translate the UI
 
@@ -46,4 +49,4 @@ EasyLocalization(
 
 ### Copyright
 
-threedpass Copyright (C) 2022 3DPass https://3dpass.org/
+threedpass Copyright (C) 2023 3Dpass https://3dpass.org/
