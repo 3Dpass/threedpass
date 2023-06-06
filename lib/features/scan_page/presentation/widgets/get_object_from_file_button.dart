@@ -73,7 +73,11 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
     } on Exception catch (e) {
       hideLoader(context);
 
-      showToast(e.toString(), context);
+      if (e.toString().contains(ScanIsolateCubit.cancelMsg)) {
+        showToast('Scanning canceled by user', context);
+      } else {
+        showToast(e.toString(), context);
+      }
     }
   }
 

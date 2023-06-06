@@ -15,7 +15,8 @@ class ScanIsolateData {
 class ScanIsolateCubit extends Cubit<ScanIsolateData?> {
   ScanIsolateCubit() : super(null);
 
-  static const String cancelMsg = 'cancel';
+  static const String cancelMsg =
+      '%#User canceled scan tag#%'; // Tag for message handler
 
   void setData(final Isolate i, final ReceivePort p) {
     emit(

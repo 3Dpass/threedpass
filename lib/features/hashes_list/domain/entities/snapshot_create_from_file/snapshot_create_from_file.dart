@@ -58,7 +58,7 @@ class SnapshotFileFactory {
 
     getIt<Logger>().i('Got hashes: $hashes');
     if (hashes == ScanIsolateCubit.cancelMsg) {
-      throw Exception('Scanning canceled by user');
+      throw Exception(ScanIsolateCubit.cancelMsg);
     }
 
     final res = await _createSnapshot(
