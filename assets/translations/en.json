@@ -90,7 +90,7 @@
     "choose_algorithm_label": "Choose algorithm",
     "grid_size_label": "Grid size",
     "n_sections_label": "N Sections",
-    "n_sections_help": "Recomendation: use 66-68 sections for Grid2d and 15-16 for Grid2d_v2, Grid2d_v3.",
+    "n_sections_help": "Tip. Use 66-68 sections for Grid2d and 15-16 for Grid2d_v2, Grid2d_v3.",
     "trans_bytes_input_label": "Rotation bytes",
     "error_n_sections_validator": "N Sections must be a number",
     "hash_settings_title": "Hash settings",
