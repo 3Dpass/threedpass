@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:isolate';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -18,9 +17,7 @@ import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart';
 
 class GetObjectFromFileFloatingButton extends StatelessWidget {
-  GetObjectFromFileFloatingButton({final Key? key}) : super(key: key);
-
-  final recievePort = ReceivePort();
+  const GetObjectFromFileFloatingButton({final Key? key}) : super(key: key);
 
   void showToast(final String text, final BuildContext context) {
     Fluttertoast.showToast(msg: text);

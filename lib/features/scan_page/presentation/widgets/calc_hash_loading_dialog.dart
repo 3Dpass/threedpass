@@ -39,7 +39,7 @@ class CalcHashLoadingWidget extends StatelessWidget {
               builder:
                   (final BuildContext context, final ScanIsolateData? value) =>
                       D3pTextButton(
-                text: 'Отмена',
+                text: 'Cancel'.tr(),
                 onPressed: value != null
                     ? () {
                         // value.isolate.

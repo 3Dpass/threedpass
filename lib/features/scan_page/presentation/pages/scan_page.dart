@@ -14,10 +14,10 @@ class ScanPage extends StatelessWidget {
       body: Stack(
         children: [
           const ScanPageContent(),
-          Align(
+          const Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16),
               child: GetObjectFromFileFloatingButton(),
             ),
           ),
