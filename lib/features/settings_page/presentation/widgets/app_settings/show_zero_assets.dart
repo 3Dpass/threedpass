@@ -13,13 +13,15 @@ class _ShowZeroAssets extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return D3pSwitchButton(
+    return DefaultSettingsButton.boolean(
       text: 'show_zero_assets_label'.tr(),
-      onChanged: (final value) => onChanged(value, context),
+      iconData: Icons.exposure_zero_outlined,
+      iconColor: Colors.green,
       initialValue: BlocProvider.of<SettingsConfigCubit>(context)
           .state
           .appSettings
           .showZeroAssets,
+      onPressedBool: (final bool p0) => onChanged(p0, context),
     );
   }
 }

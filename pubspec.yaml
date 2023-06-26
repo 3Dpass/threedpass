@@ -36,16 +36,17 @@ dependencies:
       ref: b6c8e5fcf876151d601ab092fe7fc94901edb446
   flutter_gl: ^0.0.18
   flutter_platform_widgets: ^2.0.0
+  flutter_screen_lock: ^9.0.1
+  flutter_svg: ^1.1.1+1
+  fluttertoast: ^8.0.9
   infinite_scroll_pagination: ^3.2.0
   
   unicons: ^2.1.0
   url_launcher: ^6.1.5
   file_picker: ^5.2.5
   qr_flutter: ^4.0.0
-  flutter_svg: ^1.1.1+1
-  fluttertoast: ^8.0.9
   package_info_plus: ^3.0.3
-
+  
   ## Core
   auto_route: ^4.2.1
   ffi: ^2.0.1

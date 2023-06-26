@@ -9,6 +9,8 @@ part of 'app_settings.dart';
 abstract class _$AppSettingsCWProxy {
   AppSettings darkTheme(bool darkTheme);
 
+  AppSettings pinCode(String pinCode);
+
   AppSettings showZeroAssets(bool showZeroAssets);
 
   AppSettings stableRequirement(int stableRequirement);
@@ -21,6 +23,7 @@ abstract class _$AppSettingsCWProxy {
   /// ````
   AppSettings call({
     bool? darkTheme,
+    String? pinCode,
     bool? showZeroAssets,
     int? stableRequirement,
   });
@@ -34,6 +37,9 @@ class _$AppSettingsCWProxyImpl implements _$AppSettingsCWProxy {
 
   @override
   AppSettings darkTheme(bool darkTheme) => this(darkTheme: darkTheme);
+
+  @override
+  AppSettings pinCode(String pinCode) => this(pinCode: pinCode);
 
   @override
   AppSettings showZeroAssets(bool showZeroAssets) =>
@@ -53,6 +59,7 @@ class _$AppSettingsCWProxyImpl implements _$AppSettingsCWProxy {
   /// ````
   AppSettings call({
     Object? darkTheme = const $CopyWithPlaceholder(),
+    Object? pinCode = const $CopyWithPlaceholder(),
     Object? showZeroAssets = const $CopyWithPlaceholder(),
     Object? stableRequirement = const $CopyWithPlaceholder(),
   }) {
@@ -61,6 +68,10 @@ class _$AppSettingsCWProxyImpl implements _$AppSettingsCWProxy {
           ? _value.darkTheme
           // ignore: cast_nullable_to_non_nullable
           : darkTheme as bool,
+      pinCode: pinCode == const $CopyWithPlaceholder() || pinCode == null
+          ? _value.pinCode
+          // ignore: cast_nullable_to_non_nullable
+          : pinCode as String,
       showZeroAssets: showZeroAssets == const $CopyWithPlaceholder() ||
               showZeroAssets == null
           ? _value.showZeroAssets
@@ -99,19 +110,22 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
       darkTheme: fields[1] as bool,
       stableRequirement: fields[0] as int,
       showZeroAssets: fields[2] == null ? false : fields[2] as bool,
+      pinCode: fields[3] == null ? '' : fields[3] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, AppSettings obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.stableRequirement)
       ..writeByte(1)
       ..write(obj.darkTheme)
       ..writeByte(2)
-      ..write(obj.showZeroAssets);
+      ..write(obj.showZeroAssets)
+      ..writeByte(3)
+      ..write(obj.pinCode);
   }
 
   @override
