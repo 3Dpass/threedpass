@@ -15,6 +15,7 @@ class RouteNames {
   static const importAccountSelectType = 'ImportAccountSelectTypeRoute';
   static const importAccountWrapper = 'ImportAccountWrapperRoute';
   static const importMnemonicForm = 'ImportMnemonicFormRoute';
+  static const innerSettingsPage = 'InnerSettingsRoute';
   static const mnemonicBackup = 'MnemonicBackupRoute';
   static const mnemonicConfirm = 'MnemonicConfirmRoute';
   static const nonNativeTokenScreen = 'NonNativeTokenRoute';
@@ -29,6 +30,7 @@ class RouteNames {
   static const saveTopHashesDialog = 'SaveTopHashesDialogRoute';
   static const scanPage = 'ScanRoute';
   static const scanPageWrapper = 'ScanWrapperRoute';
+  static const stableHashSubPage = 'StableHashSubPageRoute';
   static const settingsPage = 'SettingsRoute';
   static const transferPage = 'TransferRoute';
   static const transferPageWrapper = 'TransferWrapperRoute';
