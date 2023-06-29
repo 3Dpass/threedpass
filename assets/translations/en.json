@@ -117,6 +117,8 @@
 
     "dark_theme_switch_label": "Dark theme",
     "show_zero_assets_label": "Show zero amount assets",
+    "set_pin_button_label": "Set pin code",
+    "remove_pin_button_label": "Remove pin code",
 
     "@wallet_base":{
     },
