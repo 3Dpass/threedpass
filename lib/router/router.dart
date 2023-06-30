@@ -17,7 +17,7 @@ class RootRouter extends $RootRouter {
 
   @override
   List<AutoRoute> routes = [
-    homePageAutoRoute,
+    initialAutoRoute,
 
     // Preview snapshots
     previewPageRoute,
@@ -31,28 +31,6 @@ class RootRouter extends $RootRouter {
     defaultLoadingDialog,
   ];
 }
-
-// @AdaptiveAutoRouter(
-//   replaceInRouteName: 'Page,Route',
-//   routes: <AutoRoute>[
-//     // Root route with bottom bar
-//     homePageAutoRoute,
-//     // Preview snapshots
-//     previewPageRoute,
-
-//     // Error page route
-//     errorPageRoute,
-
-//     // Create account route
-//     createAccountPageRoute,
-
-//     // Loader for scan page
-//     calcHashLoadingWidgetRoute,
-//     // Default loader
-//     defaultLoadingDialog,
-//   ],
-// )
-// class $AppRouter {}
 
 Route<T> dialogBuilder<T>(
   final BuildContext context,
