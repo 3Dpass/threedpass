@@ -113,7 +113,7 @@ class _SettingsButtonContent extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return SizedBox(
-      height: 14,
+      height: 24,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -147,18 +147,21 @@ class _BoolSwitch extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: switchValueNotifier,
-      builder: (final context, final hasError, final child) => PlatformSwitch(
-        value: switchValueNotifier.value,
-        onChanged: onChangedInner,
+    return SizedBox(
+      height: 16,
+      child: ValueListenableBuilder(
+        valueListenable: switchValueNotifier,
+        builder: (final context, final hasError, final child) => PlatformSwitch(
+          value: switchValueNotifier.value,
+          onChanged: onChangedInner,
+        ),
       ),
     );
   }
 
   void onChangedInner(final bool p0) {
-    switchValueNotifier.value = p0;
     onChanged(p0);
+    switchValueNotifier.value = p0;
   }
 }
 
@@ -172,9 +175,10 @@ class _Value extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         _ValueText(value: value),
-        const SizedBox(width: 16),
+        const SizedBox(width: 8),
         const _RightChevron(),
       ],
     );
@@ -262,10 +266,13 @@ class _RightChevron extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final themeOppositeColor = Theme.of(context).customColors.themeOpposite;
+    final colors = Theme.of(context).customColors;
+    final themeOppositeColor = colors.themeOpposite;
+    final iconColor = colors.moreFadedGrey;
     return Icon(
-      Icons.keyboard_arrow_right_outlined,
-      color: themeOppositeColor,
+      Icons.arrow_forward_ios_outlined,
+      size: 16,
+      color: iconColor,
     );
   }
 }

@@ -30,6 +30,7 @@ class D3pTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.maxLines,
     this.isCollapsed = false,
+    this.autofocus = false,
   })  : controller = controller ?? TextEditingController(),
         super(key: key);
 
@@ -53,6 +54,7 @@ class D3pTextFormField extends StatelessWidget {
   final String? suffixButton;
   final bool obscureText;
   final bool isCollapsed;
+  final bool autofocus;
 
   TextStyle hintStyle(final CustomTextStyles textStyles) {
     return textStyles.d3pBodyMedium.copyWith(color: D3pColors.disabled);
@@ -77,8 +79,10 @@ class D3pTextFormField extends StatelessWidget {
           child: TextFormField(
             style: textStyle.d3pBodyLarge,
             decoration: InputDecoration(
+              filled: true,
               focusedBorder: focusedBorder,
-              contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               label: _Label(labelText).build(context),
               suffixIcon: _SuffixButton(
                 labelButton: labelButton,
@@ -90,6 +94,7 @@ class D3pTextFormField extends StatelessWidget {
               hintStyle: hintStyle(textStyle),
               isCollapsed: isCollapsed,
             ),
+            autofocus: autofocus,
             controller: controller,
             onChanged: onChanged,
             inputFormatters: inputFormatters,

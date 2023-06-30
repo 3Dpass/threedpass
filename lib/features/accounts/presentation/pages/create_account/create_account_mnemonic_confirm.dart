@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,8 +12,9 @@ import 'package:threedpass/features/accounts/presentation/widgets/create_account
 import 'package:threedpass/features/accounts/presentation/widgets/create_account_mnemonic_confirm/reset_mnemonic_input.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/create_account_mnemonic_confirm/submit_mnemonic_confirm_button.dart';
 
-class CreateAccountMnemonicConfirm extends StatelessWidget {
-  const CreateAccountMnemonicConfirm({final Key? key}) : super(key: key);
+@RoutePage()
+class CreateAccountMnemonicConfirmPage extends StatelessWidget {
+  const CreateAccountMnemonicConfirmPage({final Key? key}) : super(key: key);
 
   @override
   Widget build(final BuildContext context) {

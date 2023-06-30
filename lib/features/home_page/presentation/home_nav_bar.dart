@@ -7,7 +7,7 @@ class HomeNavBar {
   Widget build(
     final BuildContext context,
     final Widget child,
-    final Animation<double> animation,
+    // final Animation<double> animation,
   ) {
     final tabsRouter = context.tabsRouter;
     // print('a');

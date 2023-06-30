@@ -11,11 +11,12 @@ import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
-import 'package:threedpass/router/route_names.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 part './widgets/object_name_input.dart';
 part './widgets/snapshot_name_input.dart';
 
+@RoutePage()
 class SaveObjectDialog extends StatelessWidget {
   SaveObjectDialog({
     required this.snapshot,
@@ -47,7 +48,7 @@ class SaveObjectDialog extends StatelessWidget {
       );
 
       final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
-      outerContext.router.popUntilRouteWithName(RouteNames.homePage);
+      outerContext.router.popUntilRouteWithName(HomeRoute.name);
     }
   }
 

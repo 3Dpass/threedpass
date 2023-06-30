@@ -10,6 +10,7 @@ import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/theme_builder.dart';
 import 'package:threedpass/features/app/presentation/global_states_provider.dart';
+import 'package:threedpass/router/router.dart';
 import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart' as di_setup;
 
@@ -68,7 +69,7 @@ Future<void> main() async {
 class ThreeDApp extends StatelessWidget {
   ThreeDApp({final Key? key}) : super(key: key);
 
-  final _appRouter = AppRouter();
+  final _appRouter = RootRouter();
 
   @override
   Widget build(final BuildContext context) {

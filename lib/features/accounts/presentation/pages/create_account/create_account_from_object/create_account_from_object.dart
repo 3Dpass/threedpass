@@ -25,8 +25,9 @@ part './widgets/choose_hash_dropdown.dart';
 part './widgets/choose_object_title.dart';
 part './widgets/choose_object_dropdown.dart';
 
-class CreateAccountFromObject extends StatelessWidget {
-  const CreateAccountFromObject({final Key? key}) : super(key: key);
+@RoutePage()
+class CreateAccountFromObjectPage extends StatelessWidget {
+  const CreateAccountFromObjectPage({final Key? key}) : super(key: key);
 
   @override
   Widget build(final BuildContext context) {

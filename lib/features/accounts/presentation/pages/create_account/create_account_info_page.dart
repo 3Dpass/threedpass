@@ -11,6 +11,7 @@ import 'package:threedpass/features/accounts/presentation/widgets/header_info.da
 import 'package:threedpass/features/accounts/presentation/widgets/text_info.dart';
 import 'package:threedpass/router/router.gr.dart';
 
+@RoutePage()
 class CreateAccountInfoPage extends StatelessWidget {
   const CreateAccountInfoPage({final Key? key}) : super(key: key);
 
@@ -27,7 +28,7 @@ class CreateAccountInfoPage extends StatelessWidget {
 
     unawaited(
       context.router.push(
-        const MnemonicBackupRoute(),
+        const CreateAccountMnemonicBackupRoute(),
       ),
     );
   }

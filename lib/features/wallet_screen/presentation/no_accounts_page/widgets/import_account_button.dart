@@ -18,7 +18,7 @@ class ImportAccountButton extends StatelessWidget {
         iconData: Icons.import_export_outlined,
         text: 'import_account_button_label'.tr(),
         onPressed: state.status == AppServiceInitStatus.connected
-            ? () => CreateAccountWrapper.pushToImportType(context)
+            ? () => CreateAccountPageWrapper.pushToImportType(context)
             : null,
       ),
     );

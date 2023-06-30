@@ -14,7 +14,7 @@ class _ShowZeroAssets extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return DefaultSettingsButton.boolean(
-      text: 'show_zero_assets_label'.tr(),
+      text: 'show_zero_assets_label',
       iconData: Icons.exposure_zero_outlined,
       iconColor: Colors.green,
       initialValue: BlocProvider.of<SettingsConfigCubit>(context)

@@ -5,7 +5,7 @@ class _RequirementsButton extends StatelessWidget {
 
   void onPressed(final BuildContext context) {
     final settingsState = BlocProvider.of<SettingsConfigCubit>(context).state;
-    context.router.push(StableHashSubPageRoute(initialState: settingsState));
+    context.router.push(StableHashSubRoute(initialState: settingsState));
   }
 
   @override

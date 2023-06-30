@@ -31,7 +31,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
     // );
     unawaited(
       homeContext.showDialogC(
-        (final __) => const CalcHashLoadingWidget(),
+        (final __) => const CalcHashLoadingDialog(),
       ),
     );
   }
@@ -61,7 +61,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       hideLoader(context);
       unawaited(
         context.router.push(
-          PreviewWrapperRoute(
+          PreviewRouteWrapper(
             hashObject: pair.left,
             snapshot: pair.right,
             createNewAnyway: true,

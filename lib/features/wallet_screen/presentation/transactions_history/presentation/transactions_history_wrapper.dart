@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transfers_from_cubit.dart';
@@ -5,8 +6,9 @@ import 'package:threedpass/features/wallet_screen/presentation/transactions_hist
 import 'package:threedpass/features/wallet_screen/presentation/transactions_history/presentation/transactions_history_page.dart';
 import 'package:threedpass/setup.dart';
 
-class TransactionsHistoryWrapper extends StatelessWidget {
-  const TransactionsHistoryWrapper({
+@RoutePage()
+class TransactionsHistoryPageWrapper extends StatelessWidget {
+  const TransactionsHistoryPageWrapper({
     super.key,
   });
 

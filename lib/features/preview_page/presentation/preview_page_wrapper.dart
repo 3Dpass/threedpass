@@ -6,6 +6,7 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 
+@RoutePage()
 class PreviewPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   const PreviewPageWrapper({
     required this.hashObject,

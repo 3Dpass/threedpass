@@ -23,7 +23,7 @@ class MatchesFoundText extends StatelessWidget {
       clickable: 'matches_FOUND'.tr(),
       onTap: number > 0
           ? () => context.router.push(
-                CompareWrapperRoute(
+                CompareRouteWrapper(
                   origObj: state.snapshot,
                   hashObject: state.hashObject!,
                 ),

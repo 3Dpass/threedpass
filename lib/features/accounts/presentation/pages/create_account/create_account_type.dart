@@ -9,8 +9,9 @@ import 'package:threedpass/features/accounts/presentation/pages/account_page_tem
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/router/router.gr.dart';
 
-class CreateAccountType extends StatelessWidget {
-  const CreateAccountType({final Key? key}) : super(key: key);
+@RoutePage()
+class CreateAccountTypePage extends StatelessWidget {
+  const CreateAccountTypePage({final Key? key}) : super(key: key);
 
   @override
   Widget build(final BuildContext context) {
@@ -94,7 +95,7 @@ class _D3ObjectItem extends StatelessWidget {
     if (isHashesAvaliable(context)) {
       context.router.push(const CreateAccountFromObjectRoute());
     } else {
-      context.router.push(const NoStableHashDialogRoute());
+      context.router.push(const NoStableHashRoute());
     }
   }
 

@@ -10,9 +10,12 @@ class _Label {
 
     if (labelText == null) return null;
 
-    return Text(
-      labelText!,
-      style: textStyles.d3pBodyMedium,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2),
+      child: Text(
+        labelText!,
+        style: textStyles.d3pBodyMedium,
+      ),
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:threedpass/features/settings_page/domain/entities/global_setting
 import 'package:threedpass/features/settings_page/presentation/settings_sub_page/setting_sub_page.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/app_settings/requirements_textfield.dart';
 
+@RoutePage()
 class StableHashSubPage extends SettingSubPage {
   StableHashSubPage({
     required final GlobalSettings initialState,

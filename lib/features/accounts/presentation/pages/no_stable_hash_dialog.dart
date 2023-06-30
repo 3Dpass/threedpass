@@ -5,6 +5,7 @@ import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/core/widgets/dialog/d3p_platform_dialog.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 
+@RoutePage()
 class NoStableHashDialog extends StatelessWidget {
   const NoStableHashDialog({super.key});
 

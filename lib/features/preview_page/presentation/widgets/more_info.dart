@@ -19,7 +19,7 @@ class MoreInfo extends StatelessWidget {
 
   void onTap(final BuildContext context) {
     context.router.push(
-      SaveTopHashesDialogRoute(
+      SaveTopHashesRoute(
         pageCubitState: state,
       ),
     );

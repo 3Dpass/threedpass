@@ -18,7 +18,7 @@ class CreateAccountButton extends StatelessWidget {
         iconData: Icons.add,
         text: 'create_account_button_label'.tr(),
         onPressed: state.status == AppServiceInitStatus.connected
-            ? () => CreateAccountWrapper.pushToGenerateRandom(context)
+            ? () => CreateAccountPageWrapper.pushToGenerateRandom(context)
             : null,
       ),
     );

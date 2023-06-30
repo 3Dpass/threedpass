@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
@@ -6,6 +7,7 @@ import 'package:threedpass/features/wallet_screen/presentation/assets_page/asset
 import 'package:threedpass/features/wallet_screen/presentation/init_page/appservice_init_loader_page.dart';
 import 'package:threedpass/features/wallet_screen/presentation/no_accounts_page/no_accounts_page.dart';
 
+@RoutePage()
 class WalletPage extends StatelessWidget {
   const WalletPage({final Key? key}) : super(key: key);
 

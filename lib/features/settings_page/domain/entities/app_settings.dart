@@ -27,10 +27,7 @@ class AppSettings {
   @HiveField(1)
   final bool darkTheme;
 
-  @HiveField(
-    2,
-    defaultValue: false,
-  )
+  @HiveField(2, defaultValue: false)
   final bool showZeroAssets;
 
   @HiveField(3, defaultValue: '')

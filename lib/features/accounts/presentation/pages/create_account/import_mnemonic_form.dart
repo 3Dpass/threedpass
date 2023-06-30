@@ -14,8 +14,9 @@ import 'package:threedpass/features/accounts/presentation/widgets/import_mnemoni
 import 'package:threedpass/features/accounts/presentation/widgets/import_mnemonic_form/import_mnemonic_textfield.dart';
 import 'package:threedpass/router/router.gr.dart';
 
-class ImportMnemonicForm extends StatelessWidget {
-  ImportMnemonicForm({final Key? key}) : super(key: key);
+@RoutePage()
+class ImportMnemonicFormPage extends StatelessWidget {
+  ImportMnemonicFormPage({final Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
   final TextEditingController controller = TextEditingController();

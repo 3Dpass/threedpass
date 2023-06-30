@@ -25,6 +25,7 @@ class CompareRow extends StatelessWidget {
             child: D3pBodyLargeText(
               'VS',
               textAlign: TextAlign.center,
+              translate: false,
             ),
           ),
         ),

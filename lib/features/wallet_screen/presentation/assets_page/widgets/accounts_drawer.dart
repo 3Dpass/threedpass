@@ -46,12 +46,13 @@ class AccountsDrawer extends Drawer {
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 text: 'create_account_button_label'.tr(),
                 onPressed: () =>
-                    CreateAccountWrapper.pushToGenerateRandom(context),
+                    CreateAccountPageWrapper.pushToGenerateRandom(context),
               ),
               D3pTextButton(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 text: 'import_account_button_label'.tr(),
-                onPressed: () => CreateAccountWrapper.pushToImportType(context),
+                onPressed: () =>
+                    CreateAccountPageWrapper.pushToImportType(context),
               ),
               const Divider(),
               Flexible(

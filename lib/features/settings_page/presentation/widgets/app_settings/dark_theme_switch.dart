@@ -17,13 +17,16 @@ class _DarkThemeSwitch extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return D3pSwitchButton(
-      text: 'dark_theme_switch_label'.tr(),
-      onChanged: (final value) => onChanged(value, context),
-      initialValue: BlocProvider.of<SettingsConfigCubit>(context)
-          .state
-          .appSettings
-          .darkTheme,
+    return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
+      builder: (context, state) => DefaultSettingsButton.boolean(
+        text: 'dark_theme_switch_label',
+        iconData: Icons.wb_sunny_outlined,
+        iconColor: Colors.green,
+        initialValue:
+            // BlocProvider.of<SettingsConfigCubit>(context)
+            state.appSettings.darkTheme,
+        onPressedBool: (final bool p0) => onChanged(p0, context),
+      ),
     );
   }
 }

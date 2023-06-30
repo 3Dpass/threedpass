@@ -39,7 +39,7 @@ class MnemonicBackupContent extends StatelessWidget {
           const SizedBox(height: 12),
           D3pElevatedButton(
             onPressed: () => context.router.push(
-              const MnemonicConfirmRoute(),
+              const CreateAccountMnemonicConfirmRoute(),
             ),
             text: 'Next'.tr(),
           ),

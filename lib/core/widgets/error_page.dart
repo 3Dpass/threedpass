@@ -2,8 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
-import 'package:threedpass/router/route_names.dart';
+import 'package:threedpass/router/router.gr.dart';
 
+@RoutePage()
 class ErrorPage extends StatelessWidget {
   const ErrorPage({
     required this.error,
@@ -25,7 +26,6 @@ class ErrorPage extends StatelessWidget {
   }
 }
 
-const AutoRoute errorPageRoute = AutoRoute(
-  page: ErrorPage,
-  name: RouteNames.errorPage,
+AutoRoute errorPageRoute = AutoRoute(
+  page: ErrorRoute.page,
 );

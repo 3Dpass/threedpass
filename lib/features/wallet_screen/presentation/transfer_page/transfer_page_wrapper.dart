@@ -6,6 +6,7 @@ import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_meta_dto.dart';
 
+@RoutePage()
 class TransferPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   const TransferPageWrapper({
     required this.metadata,
