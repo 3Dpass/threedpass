@@ -62,3 +62,9 @@ extension ScaffoldCustomColors on CustomColors {
       ? D3pColors.lightCardBackground
       : D3pColors.darkCardBackground;
 }
+
+extension PinCodeColors on CustomColors {
+  Color get pinButtonBGColor => brightness == Brightness.light
+      ? D3pColors.lightScaffoldBackground
+      : D3pColors.alternativeDarkBackground;
+}

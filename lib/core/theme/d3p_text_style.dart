@@ -6,9 +6,9 @@ class D3pBasicTextStyle {
     color: Colors.white,
   );
 
-  static const subtitle = TextStyle(
-    fontSize: 18,
-  );
+  // static const subtitle = TextStyle(
+  //   fontSize: 18,
+  // );
 
   static const bodyLarge = TextStyle(
     fontSize: 16,
