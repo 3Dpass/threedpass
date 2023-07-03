@@ -18,7 +18,7 @@ class _DarkThemeSwitch extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
-      builder: (context, state) => DefaultSettingsButton.boolean(
+      builder: (final context, final state) => DefaultSettingsButton.boolean(
         text: 'dark_theme_switch_label',
         iconData: Icons.wb_sunny_outlined,
         iconColor: Colors.green,

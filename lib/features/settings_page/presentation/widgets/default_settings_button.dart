@@ -127,7 +127,9 @@ class _SettingsButtonContent extends StatelessWidget {
           ),
           isBoolean
               ? _BoolSwitch(value: boolValue!, onChanged: onPressedBool)
-              : _Value(value: value),
+              : Flexible(
+                  child: _Value(value: value),
+                ),
         ],
       ),
     );
@@ -177,8 +179,10 @@ class _Value extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        _ValueText(value: value),
-        const SizedBox(width: 8),
+        if (value != null)
+          Flexible(
+            child: _ValueText(value: value),
+          ),
         const _RightChevron(),
       ],
     );
@@ -254,7 +258,16 @@ class _ValueText extends StatelessWidget {
       final style = Theme.of(context).customTextStyles.d3pBodyMedium.copyWith(
             color: D3pColors.disabled,
           );
-      return Text(value!, style: style);
+      return Padding(
+        padding: const EdgeInsets.only(left: 16, right: 8),
+        child: Text(
+          value!,
+          style: style,
+          textAlign: TextAlign.end,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+      );
     } else {
       return const SizedBox();
     }

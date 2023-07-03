@@ -33,8 +33,10 @@ class _NoPasswordSet extends StatelessWidget {
     final homeContextBloc = BlocProvider.of<HomeContextCubit>(context);
     final actualHomeContext = homeContextBloc.state.context;
 
-    screenLockCreate(
+    final screenLockDialog = D3pScreenLockDialog(
       context: actualHomeContext,
+    );
+    screenLockDialog.showScreenLockCreate(
       onConfirmed: (final String res) {
         final settings = BlocProvider.of<SettingsConfigCubit>(context);
         final oldGlobal = settings.state;
@@ -71,8 +73,10 @@ class _PasswordWasSet extends StatelessWidget {
     final appSettings = settings.state.appSettings;
     final currentPin = appSettings.pinCode;
 
-    screenLock(
+    final screenLockDialog = D3pScreenLockDialog(
       context: actualHomeContext,
+    );
+    screenLockDialog.showScreenLock(
       correctString: currentPin,
       onUnlocked: () {
         final settings = BlocProvider.of<SettingsConfigCubit>(context);

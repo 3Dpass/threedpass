@@ -115,6 +115,11 @@
     "lib_version_span": "Hash lib version",
     "trans_bytes_span": "Rotation bytes",
 
+    "node_url_button_label": "Node url",
+    "node_url_subpage_label": "Node url",
+
+    "antialias_button_label": "Antialias",
+
     "dark_theme_switch_label": "Dark theme",
     "show_zero_assets_label": "Show zero amount assets",
     "set_pin_button_label": "Set pin code",
@@ -270,5 +275,11 @@
     "transactions_from": "From",
     "transactions_title": "Transactions History",
     "show_transfers": "Show transfers",
-    "no_transfers": "No transfers found"
+    "no_transfers": "No transfers found",
+
+    "@Screen_lock":{
+    },
+    "screen_lock_title": "Enter PIN code",
+    "screen_lock_title_set": "Set your PIN code",
+    "screen_lock_title_confirm": "Confirm your PIN code"
 }
