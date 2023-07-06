@@ -11,5 +11,7 @@ AutoRoute settingsAutoRoute = AutoRoute(
     AutoRoute(page: StableHashSubRoute.page),
     AutoRoute(page: WalletNodeSubRoute.page),
     AutoRoute(page: PixelRatioSubRoute.page),
+    AutoRoute(page: ChooseAlgorithmSubRoute.page),
+    AutoRoute(page: GridSizeSubRoute.page),
   ],
 );

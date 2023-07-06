@@ -30,8 +30,7 @@ class NodeUrlTextfield extends StatelessWidget {
       labelText: 'node_url_label'.tr(),
       labelButton: 'Reset'.tr(),
       onLabelButtonPressed: () => onResetButtonPressed(context),
-      // suffixButton: 'Apply'.tr(),
-      // onSuffixButtonPressed: () => apply(textEditingController.text, context),
+      autofocus: true,
     );
   }
 }

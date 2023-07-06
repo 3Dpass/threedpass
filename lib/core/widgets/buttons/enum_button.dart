@@ -1,53 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/utils/empty_function.dart';
 
-class ListTileButton extends StatelessWidget {
-  const ListTileButton.bottom({
+class EnumButton extends StatelessWidget {
+  const EnumButton({
     required this.text,
-    this.onPressed,
-    this.backgroundColor,
-    this.padding,
-    final Key? key,
-  })  : border = const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: buttonRadius,
-            bottomRight: buttonRadius,
-          ),
-        ),
-        super(key: key);
-
-  const ListTileButton.middle({
-    required this.text,
+    required this.isChosen,
     final Key? key,
     this.onPressed,
-    this.backgroundColor,
-    this.padding,
-  })  : border = const RoundedRectangleBorder(
-          borderRadius: BorderRadius.zero,
-        ),
-        super(key: key);
-
-  const ListTileButton.top({
-    required this.text,
-    final Key? key,
-    this.onPressed,
-    this.backgroundColor,
-    this.padding,
-  })  : border = const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: buttonRadius,
-            topRight: buttonRadius,
-          ),
-        ),
-        super(key: key);
-
-  const ListTileButton.usual({
-    required this.text,
-    final Key? key,
-    this.onPressed,
-    this.backgroundColor,
+    // this.backgroundColor,
     this.padding,
   })  : border = const RoundedRectangleBorder(),
         super(key: key);
@@ -55,10 +19,11 @@ class ListTileButton extends StatelessWidget {
   static const buttonRadius = Radius.circular(8);
 
   final void Function()? onPressed;
-  final Color? backgroundColor;
+  // final Color? backgroundColor;
   final RoundedRectangleBorder border;
   final String text;
   final EdgeInsetsGeometry? padding;
+  final bool isChosen;
 
   @override
   Widget build(final BuildContext context) {
@@ -70,32 +35,52 @@ class ListTileButton extends StatelessWidget {
       padding: padding ?? EdgeInsets.zero,
       child: SizedBox(
         child: PlatformTextButton(
-          onPressed: onPressed,
+          onPressed: isChosen ? emptyFunction : onPressed,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              _Icon(
+                isEmpty: !isChosen,
+              ),
               Text(
                 text,
-                style: theme.customTextStyles.d3plabelLarge
-                    .copyWith(color: mainColor),
-              ),
-              Icon(
-                Icons.arrow_right_rounded,
-                color: mainColor,
+                // style: theme.textTheme.labelLarge,
               ),
             ],
           ),
-          material: (final context, final platform) => _ListTileMaterial(
-            themeData: theme,
-            backgroundColor: backgroundColor,
-            border: border,
-          ).style(),
+          material: (final context, final platform) => MaterialTextButtonData(
+            style: theme.textButtonTheme.style!.copyWith(
+              // padding: MaterialStateProperty.all(EdgeInsets.zero),
+              // backgroundColor: MaterialStateProperty.all<Color>(
+              //   backgroundColor ?? themeData.cardColor,
+              // ),
+              foregroundColor: MaterialStateProperty.all(
+                isChosen ? mainColor : theme.customColors.themeOpposite,
+              ),
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              shape: MaterialStateProperty.all<OutlinedBorder>(border),
+            ),
+          ),
           cupertino: (final context, final platform) => CupertinoTextButtonData(
             // color: mainColor,
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
           ),
         ),
       ),
+    );
+  }
+}
+
+class _Icon extends StatelessWidget {
+  final bool isEmpty;
+
+  const _Icon({required this.isEmpty});
+
+  @override
+  Widget build(BuildContext context) {
+    return Icon(
+      Icons.chevron_right_outlined,
+      color: isEmpty ? Colors.transparent : null,
     );
   }
 }

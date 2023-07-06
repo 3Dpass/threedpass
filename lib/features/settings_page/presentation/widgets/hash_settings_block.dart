@@ -9,9 +9,8 @@ class _HashSettingsBlock extends StatelessWidget {
       children: const [
         _ScanSettingsTitle(),
         SizedBoxH8(),
-        _AlgorithmDropdown(),
-        SizedBoxH8(),
-        _GridSizeDropdown(),
+        AlgorithmButton(),
+        GridSizeButton(),
         SizedBoxH8(),
         _SectionsTextField(),
         SizedBoxH8(),

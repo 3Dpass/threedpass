@@ -88,6 +88,7 @@
     },
     "settings_title": "Settings",
     "choose_algorithm_label": "Choose algorithm",
+    "algorithm_button_label": "Scan algorithm",
     "grid_size_label": "Grid size",
     "n_sections_label": "N Sections",
     "n_sections_help": "Tip. Use 66-68 sections for Grid2d and 15-16 for Grid2d_v2, Grid2d_v3.",
@@ -124,6 +125,7 @@
     "show_zero_assets_label": "Show zero amount assets",
     "set_pin_button_label": "Set pin code",
     "remove_pin_button_label": "Remove pin code",
+
 
     "@wallet_base":{
     },
