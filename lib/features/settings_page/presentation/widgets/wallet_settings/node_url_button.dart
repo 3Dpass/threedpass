@@ -17,6 +17,8 @@ class NodeUrlButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
+      buildWhen: (final previous, final current) =>
+          previous.walletSettings.nodeUrl != current.walletSettings.nodeUrl,
       builder: (final context, final state) {
         final nodeUrlValue = BlocProvider.of<SettingsConfigCubit>(context)
             .state

@@ -1,7 +1,15 @@
-part of '../../settings_page.dart';
+import 'dart:io';
 
-class _DarkThemeSwitch extends StatelessWidget {
-  const _DarkThemeSwitch({final Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/domain/entities/app_settings.dart';
+import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
+import 'package:threedpass/features/settings_page/presentation/widgets/default_settings_button.dart';
+
+class DarkThemeSwitch extends StatelessWidget {
+  const DarkThemeSwitch({final Key? key}) : super(key: key);
 
   void onChanged(final bool newValue, final BuildContext context) {
     final cubit = BlocProvider.of<SettingsConfigCubit>(context);

@@ -1,19 +1,17 @@
-part of '../../settings_page.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
+import 'package:threedpass/core/widgets/screen_lock/d3p_screen_lock_create_dialog.dart';
+import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/domain/entities/app_settings.dart';
+import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
+import 'package:threedpass/features/settings_page/presentation/widgets/default_settings_button.dart';
+import 'package:threedpass/setup.dart';
 
-class _PinCodeSettings extends StatelessWidget {
-  const _PinCodeSettings({final Key? key}) : super(key: key);
-
-  void onChanged(final bool newValue, final BuildContext context) {
-    final cubit = BlocProvider.of<SettingsConfigCubit>(context);
-    final newAppSettings =
-        cubit.state.appSettings.copyWith(darkTheme: newValue);
-    final newState = cubit.state.copyWith(appSettings: newAppSettings);
-    cubit.updateSettings(newState);
-    // test1.value = !test1.value;
-    if (Platform.isIOS) {
-      Phoenix.rebirth(context);
-    }
-  }
+class PinCodeSettings extends StatelessWidget {
+  const PinCodeSettings({final Key? key}) : super(key: key);
 
   @override
   Widget build(final BuildContext context) {

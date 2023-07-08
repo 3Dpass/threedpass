@@ -5,28 +5,28 @@ import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart'
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/default_settings_button.dart';
 import 'package:threedpass/router/router.gr.dart';
+import 'package:unicons/unicons.dart';
 
-class RequirementsButton extends StatelessWidget {
-  const RequirementsButton({super.key});
+class SectionsButton extends StatelessWidget {
+  const SectionsButton({super.key});
 
   void onPressed(final BuildContext context) {
     final settingsState = BlocProvider.of<SettingsConfigCubit>(context).state;
-    context.router.push(StableHashSubRoute(initialState: settingsState));
+    context.router.push(SectionsSubRoute(initialState: settingsState));
   }
 
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
       buildWhen: (final previous, final current) =>
-          previous.appSettings.stableRequirement !=
-          current.appSettings.stableRequirement,
+          previous.scanSettings.nSections != current.scanSettings.nSections,
       builder: (final context, final state) {
         return DefaultSettingsButton.openButton(
-          iconData: Icons.settings,
+          text: 'n_sections_label',
+          iconData: UniconsLine.th_slash,
           iconColor: Colors.purple,
-          textValue: state.appSettings.stableRequirement.toString(),
+          textValue: state.scanSettings.nSections.toString(),
           onPressed: () => onPressed(context),
-          text: 'stable_requirement_button_text',
         );
       },
     );

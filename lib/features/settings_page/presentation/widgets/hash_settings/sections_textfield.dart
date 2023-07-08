@@ -1,20 +1,12 @@
-part of '../../settings_page.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 
-class _SectionsTextField extends StatelessWidget {
-  const _SectionsTextField({final Key? key}) : super(key: key);
+class SectionsTextField extends StatelessWidget {
+  const SectionsTextField({required this.controller, final Key? key})
+      : super(key: key);
 
-  Future<void> _onFieldChanged(
-    final BuildContext context,
-    final String? newValue,
-  ) async {
-    if (newValue != null && int.tryParse(newValue) != null) {
-      final cubit = BlocProvider.of<SettingsConfigCubit>(context);
-      final newScanConfig =
-          cubit.state.scanSettings.copyWith(nSections: int.parse(newValue));
-      final newState = cubit.state.copyWith(scanSettings: newScanConfig);
-      cubit.updateSettings(newState);
-    }
-  }
+  final TextEditingController controller;
 
   static String? onlyNumValidator(final String? value) {
     if (value != null && int.tryParse(value) != null) {
@@ -26,14 +18,9 @@ class _SectionsTextField extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final settings =
-        BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings;
-
     return D3pTextFormField(
-      controller: TextEditingController(
-        text: settings.nSections.toString(),
-      ),
-      onChanged: (final String? newValue) => _onFieldChanged(context, newValue),
+      controller: controller,
+      // onChanged: (final String? newValue) => _onFieldChanged(context, newValue),
       keyboardType: TextInputType.number,
       validator: onlyNumValidator,
       labelText: 'n_sections_label'.tr(),

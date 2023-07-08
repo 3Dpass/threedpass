@@ -13,5 +13,7 @@ AutoRoute settingsAutoRoute = AutoRoute(
     AutoRoute(page: PixelRatioSubRoute.page),
     AutoRoute(page: ChooseAlgorithmSubRoute.page),
     AutoRoute(page: GridSizeSubRoute.page),
+    AutoRoute(page: SectionsSubRoute.page),
+    AutoRoute(page: TransBytesSubRoute.page),
   ],
 );

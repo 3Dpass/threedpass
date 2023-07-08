@@ -280,7 +280,6 @@ class _RightChevron extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final colors = Theme.of(context).customColors;
-    final themeOppositeColor = colors.themeOpposite;
     final iconColor = colors.moreFadedGrey;
     return Icon(
       Icons.arrow_forward_ios_outlined,
