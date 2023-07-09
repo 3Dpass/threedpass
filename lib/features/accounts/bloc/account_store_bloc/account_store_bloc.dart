@@ -6,7 +6,7 @@ import 'package:polkawallet_sdk/api/types/recoveryInfo.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/features/accounts/domain/account_advanced_options.dart';
 import 'package:threedpass/features/accounts/domain/account_info.dart';
-import 'package:threedpass/router/route_names.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 part 'account_store_event.dart';
 part 'account_store_state.dart';
@@ -28,7 +28,7 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     final PopToRoout event,
     final Emitter<AccountStoreState> emit,
   ) async {
-    outerContext.router.popUntilRouteWithName(RouteNames.homePage);
+    outerContext.router.popUntilRouteWithName(HomeRoute.name);
   }
 
   Future<void> _setCredentials(

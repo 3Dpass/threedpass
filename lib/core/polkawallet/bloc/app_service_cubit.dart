@@ -162,6 +162,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
   }
 
   Future<void> changeNetwork(final WalletSettings walletSettings) async {
+    // TODO Make real network change
     emit(
       state.copyWith(
         status: AppServiceInitStatus.init,

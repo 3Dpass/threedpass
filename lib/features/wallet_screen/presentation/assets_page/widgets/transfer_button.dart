@@ -15,7 +15,7 @@ class CoinTransferButton extends StatelessWidget {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
 
     context.router.push(
-      TransferWrapperRoute(
+      TransferRouteWrapper(
         metadata: CoinsTransferMetaDTO(
           coinName: appService.networkStateData.tokenSymbol?.first ?? '',
         ),

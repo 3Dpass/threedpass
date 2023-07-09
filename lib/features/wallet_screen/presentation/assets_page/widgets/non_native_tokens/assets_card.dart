@@ -12,7 +12,7 @@ class _AssetsCard extends StatelessWidget {
         .current
         .address!;
     context.router.push(
-      NonNativeTokenRoute(
+      NonNativeTokenRouteWrapper(
         params: GetExtrinsicsUseCaseParams(
           address: address,
           tokenBalanceData: data,

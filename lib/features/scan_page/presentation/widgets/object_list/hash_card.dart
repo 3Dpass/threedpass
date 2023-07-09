@@ -25,7 +25,7 @@ class SnapshotCard extends StatelessWidget {
     return D3pCard(
       child: InkWell(
         onTap: () => context.router.push(
-          PreviewWrapperRoute(
+          PreviewRouteWrapper(
             hashObject: hashObject,
             snapshot: snapshot,
           ),

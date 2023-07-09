@@ -5,6 +5,7 @@ import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/home_page/presentation/home_nav_bar.dart';
 import 'package:threedpass/router/router.gr.dart';
 
+@RoutePage()
 class HomePage extends StatelessWidget {
   const HomePage({final Key? key}) : super(key: key);
 
@@ -16,8 +17,8 @@ class HomePage extends StatelessWidget {
       ),
       child: AutoTabsRouter(
         routes: const [
-          ScanWrapperRoute(),
-          WalletWrapperRoute(),
+          ScanRouteWrapper(),
+          WalletRouteWrapper(),
           SettingsRoute(),
         ],
         builder: HomeNavBar().build,

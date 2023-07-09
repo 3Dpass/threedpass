@@ -24,7 +24,7 @@ class BalanceCard extends StatelessWidget {
   final String tokenSymbol;
 
   void onCardClick(final BuildContext context) {
-    context.router.push(const TransactionsHistoryRoute());
+    context.router.push(const TransactionsHistoryRouteWrapper());
   }
 
   @override

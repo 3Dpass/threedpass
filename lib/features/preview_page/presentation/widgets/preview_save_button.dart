@@ -29,16 +29,16 @@ class PreviewSaveButton extends StatelessWidget {
   PageRouteInfo get routeToPush {
     switch (state.runtimeType) {
       case PreviewNewObject:
-        return SaveObjectDialogRoute(
+        return SaveObjectRoute(
           snapshot: state.snapshot,
         );
       case PreviewNewSnapshot:
-        return SaveHashDialogRoute(
+        return SaveHashRoute(
           hashObject: state.hashObject!,
           snapshot: state.snapshot,
         );
       case PreviewExistingSnapshot:
-        return RenameSnapshotDialogRoute(
+        return RenameSnapshotRoute(
           hashObject: state.hashObject!,
           snapshot: state.snapshot,
         );

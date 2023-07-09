@@ -16,8 +16,9 @@ import 'package:threedpass/features/accounts/presentation/widgets/create_account
 import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart';
 
-class CreateAccountCredentials extends StatelessWidget {
-  const CreateAccountCredentials({required this.appbarText, final Key? key})
+@RoutePage()
+class CreateAccountCredentialsPage extends StatelessWidget {
+  const CreateAccountCredentialsPage({required this.appbarText, final Key? key})
       : super(key: key);
 
   final String appbarText;

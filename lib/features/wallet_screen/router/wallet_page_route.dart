@@ -1,50 +1,42 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:threedpass/features/wallet_screen/presentation/assets_page/remove_account_dialog.dart';
-import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/presentation/non_native_token_wrapper.dart';
-import 'package:threedpass/features/wallet_screen/presentation/recieve_page/recieve_page.dart';
-import 'package:threedpass/features/wallet_screen/presentation/transactions_history/presentation/transactions_history_wrapper.dart';
-import 'package:threedpass/features/wallet_screen/presentation/transfer_page/transfer_page.dart';
-import 'package:threedpass/features/wallet_screen/presentation/transfer_page/transfer_page_wrapper.dart';
-import 'package:threedpass/features/wallet_screen/presentation/wallet_page/wallet_page.dart';
-import 'package:threedpass/features/wallet_screen/presentation/wallet_page/wallet_page_wrapper.dart';
-import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/router.dart';
+import 'package:threedpass/router/router.gr.dart';
 
-const AutoRoute walletPageRoute = AutoRoute(
-  page: WalletPageWrapper,
-  name: RouteNames.walletPageWrapper,
+AutoRoute walletPageRoute = AutoRoute(
+  page: WalletRouteWrapper.page,
+  // name: RouteNames.walletPageWrapper,
   children: [
     AutoRoute(
-      page: WalletPage,
-      name: RouteNames.walletPage,
+      page: WalletRoute.page,
+      // name: RouteNames.walletPage,
       path: '',
     ),
     AutoRoute(
-      page: TransferPageWrapper,
-      name: RouteNames.transferPageWrapper,
+      page: TransferRouteWrapper.page,
+      // name: RouteNames.transferPageWrapper,
       children: [
         AutoRoute(
-          page: TransferPage,
-          name: RouteNames.transferPage,
+          page: TransferRoute.page,
+          // name: RouteNames.transferPage,
           path: '',
         ),
       ],
     ),
     AutoRoute(
-      page: RecievePage,
-      name: RouteNames.recievePage,
+      page: RecieveRoute.page,
+      // name: RouteNames.recievePage,
     ),
     AutoRoute(
-      page: TransactionsHistoryWrapper,
-      name: RouteNames.transactionsHistoryPage,
+      page: TransactionsHistoryRouteWrapper.page,
+      // name: RouteNames.transactionsHistoryPage,
     ),
     AutoRoute(
-      page: NonNativeTokenWrapper,
-      name: RouteNames.nonNativeTokenScreen,
+      page: NonNativeTokenRouteWrapper.page,
+      // name: RouteNames.nonNativeTokenScreen,
     ),
     CustomRoute(
-      page: RemoveAccountDialog,
-      name: RouteNames.removeAccountDialog,
+      page: RemoveAccountRoute.page,
+      // name: RouteNames.removeAccountDialog,
       customRouteBuilder: dialogBuilder,
     ),
   ],

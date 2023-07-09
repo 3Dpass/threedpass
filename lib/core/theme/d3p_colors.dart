@@ -11,4 +11,6 @@ class D3pColors {
 
   static const darkCardBackground = Color(0xff424242);
   static const lightCardBackground = Color(0xffffffff);
+
+  static const alternativeDarkBackground = Color(0xff5E5E5E);
 }

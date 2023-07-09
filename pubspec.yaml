@@ -10,7 +10,7 @@ publish_to: 'none'
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.6.3+25
+version: 2.7.0+26
 
 environment:
   sdk: ">=2.17.5 <3.0.0"
@@ -36,18 +36,19 @@ dependencies:
       ref: b6c8e5fcf876151d601ab092fe7fc94901edb446
   flutter_gl: ^0.0.18
   flutter_platform_widgets: ^2.0.0
+  flutter_screen_lock: ^9.0.1
+  flutter_svg: ^1.1.1+1
+  fluttertoast: ^8.0.9
   infinite_scroll_pagination: ^3.2.0
   
   unicons: ^2.1.0
   url_launcher: ^6.1.5
   file_picker: ^5.2.5
   qr_flutter: ^4.0.0
-  flutter_svg: ^1.1.1+1
-  fluttertoast: ^8.0.9
   package_info_plus: ^3.0.3
-
+  
   ## Core
-  auto_route: ^4.2.1
+  auto_route: ^7.5.0
   ffi: ^2.0.1
   calc:
     path: packages/calc
@@ -56,7 +57,7 @@ dependencies:
   # flutter_form_bloc: ^0.30.1  # Use reactive forms instead
   provider: ^6.0.3
   path_provider: ^2.0.13
-  hive_flutter: ^1.1.0
+  hive: ^2.2.3
   polkawallet_sdk: #0.5.1
     git:
         url: https://github.com/L3odr0id/polkawallet_sdk.git
@@ -90,10 +91,10 @@ dev_dependencies:
     sdk: flutter
 
   ## Generators
-  hive_generator: ^1.1.2
+  hive_generator: ^2.0.0
   copy_with_extension_gen: ^4.0.1
   build_runner:
-  auto_route_generator: ^4.2.0
+  auto_route_generator: ^7.1.1
   json_serializable: ^6.3.1
 
   ## Dev utils
@@ -103,7 +104,7 @@ dev_dependencies:
   
   ## Linters
   flutter_lints: ^1.0.4
-  dart_code_metrics: ^4.16.0
+  dart_code_metrics: ^5.7.5
   extra_pedantic: ^3.0.0
 
 # The following section is specific to Flutter.

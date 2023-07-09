@@ -9,9 +9,9 @@ import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/dialogs/common_dialog.dart';
-import 'package:threedpass/router/route_names.dart';
 import 'package:threedpass/router/router.gr.dart';
 
+@RoutePage()
 class RenameSnapshotDialog extends StatelessWidget {
   const RenameSnapshotDialog({
     required this.snapshot,
@@ -38,11 +38,11 @@ class RenameSnapshotDialog extends StatelessWidget {
 
     final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
 
-    outerContext.router.popUntilRouteWithName(RouteNames.homePage);
+    outerContext.router.popUntilRouteWithName(HomeRoute.name);
 
     unawaited(
       outerContext.router.push(
-        PreviewWrapperRoute(
+        PreviewRouteWrapper(
           hashObject: hashObject,
           snapshot: newNamedModel,
         ),

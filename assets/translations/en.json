@@ -88,16 +88,20 @@
     },
     "settings_title": "Settings",
     "choose_algorithm_label": "Choose algorithm",
+    "algorithm_button_label": "Scan algorithm",
     "grid_size_label": "Grid size",
     "n_sections_label": "N Sections",
     "n_sections_help": "Tip. Use 66-68 sections for Grid2d and 15-16 for Grid2d_v2, Grid2d_v3.",
     "trans_bytes_input_label": "Rotation bytes",
+    "trans_bytes_empty_input": "Random",
     "error_n_sections_validator": "N Sections must be a number",
-    "hash_settings_title": "Hash settings",
+    "hash_settings_title": "Scan settings",
+    "lib_version_label": "lib version:",
     "wallet_settings_title": "Wallet settings",
     "preview_settings_title": "Preview settings",
     "app_settings_title": "App settings",
-    "stable_requirement_label": "Stable hash requirement",
+    "stable_requirement_label": "Stable hash",
+    "stable_requirement_button_text": "Stable hash requirement",
     "stable_requirement_help": "How many times a hash must repeat to be considered stable",
     "error_stable_is_invalid": "Stable requirement has to be a positive integer",
     "preview_settings_pixel_ratio_label": "Pixel ratio",
@@ -114,8 +118,16 @@
     "lib_version_span": "Hash lib version",
     "trans_bytes_span": "Rotation bytes",
 
+    "node_url_button_label": "Node url",
+    "node_url_subpage_label": "Node url",
+
+    "antialias_button_label": "Antialias",
+
     "dark_theme_switch_label": "Dark theme",
     "show_zero_assets_label": "Show zero amount assets",
+    "set_pin_button_label": "Set pin code",
+    "remove_pin_button_label": "Remove pin code",
+
 
     "@wallet_base":{
     },
@@ -267,5 +279,14 @@
     "transactions_from": "From",
     "transactions_title": "Transactions History",
     "show_transfers": "Show transfers",
-    "no_transfers": "No transfers found"
+    "no_transfers": "No transfers found",
+    "first_page_error_title": "Something went wrong",
+    "first_page_error_message": "The application has encountered an unknown error.\nPlease try again later.",
+    "first_page_error_button": "Try Again",
+
+    "@Screen_lock":{
+    },
+    "screen_lock_title": "Enter PIN code",
+    "screen_lock_title_set": "Set your PIN code",
+    "screen_lock_title_confirm": "Confirm your PIN code"
 }

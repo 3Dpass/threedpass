@@ -1,7 +1,10 @@
-part of '../settings_page.dart';
+import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/setup.dart';
 
-class _VersionInfo extends StatelessWidget {
-  const _VersionInfo();
+class VersionInfo extends StatelessWidget {
+  const VersionInfo({super.key});
 
   @override
   Widget build(final BuildContext context) {

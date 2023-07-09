@@ -87,3 +87,11 @@ extension BodyCustomText on CustomTextStyles {
   TextStyle get dp3BodySmall =>
       themeData.textTheme.bodySmall!.copyWith(color: _themeOpposite);
 }
+
+extension SpecialText on CustomTextStyles {
+  TextStyle get d3pSettingsHeader => themeData.textTheme.bodyLarge!
+      .copyWith(color: themeData.customColors.moreFadedGrey);
+
+  TextStyle get d3pSettingsHeaderSmall => themeData.textTheme.bodySmall!
+      .copyWith(color: themeData.customColors.moreFadedGrey);
+}

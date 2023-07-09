@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 
+@RoutePage()
 class WalletPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   const WalletPageWrapper({
     final Key? key,

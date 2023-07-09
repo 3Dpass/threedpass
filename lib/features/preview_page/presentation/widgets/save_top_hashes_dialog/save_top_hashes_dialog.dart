@@ -7,6 +7,7 @@ import 'package:threedpass/core/widgets/dialog/d3p_platform_dialog.dart';
 import 'package:threedpass/features/hashes_list/presentation/widgets/hashes_primitive_list.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 
+@RoutePage()
 class SaveTopHashesDialog extends StatelessWidget {
   const SaveTopHashesDialog({
     required this.pageCubitState,

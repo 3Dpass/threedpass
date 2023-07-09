@@ -8,8 +8,10 @@ import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_sto
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/router/route_paths.dart';
 
-class CreateAccountWrapper extends StatelessWidget implements AutoRouteWrapper {
-  const CreateAccountWrapper({
+@RoutePage()
+class CreateAccountPageWrapper extends StatelessWidget
+    implements AutoRouteWrapper {
+  const CreateAccountPageWrapper({
     final Key? key,
   }) : super(key: key);
 

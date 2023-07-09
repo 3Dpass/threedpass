@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/bloc/assets_get_extrisincs_cubit.dart';
@@ -9,10 +10,11 @@ import 'package:threedpass/features/wallet_screen/presentation/non_native_token_
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/presentation/non_native_token_screen.dart';
 import 'package:threedpass/setup.dart';
 
-class NonNativeTokenWrapper extends StatelessWidget {
+@RoutePage()
+class NonNativeTokenPageWrapper extends StatelessWidget {
   final GetExtrinsicsUseCaseParams params;
 
-  const NonNativeTokenWrapper(this.params, {super.key});
+  const NonNativeTokenPageWrapper(this.params, {super.key});
 
   @override
   Widget build(final BuildContext context) {

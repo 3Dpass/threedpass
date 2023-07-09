@@ -9,6 +9,7 @@ class _OrigObjectTitle extends StatelessWidget {
     return D3pBodyLargeText(
       origSnap.name.cutWithEllipsis(16),
       overflow: TextOverflow.ellipsis,
+      translate: false,
     );
   }
 }

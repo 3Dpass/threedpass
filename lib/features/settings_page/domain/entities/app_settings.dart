@@ -10,6 +10,7 @@ class AppSettings {
     required this.darkTheme,
     required this.stableRequirement,
     required this.showZeroAssets,
+    required this.pinCode,
   });
 
   const AppSettings.defaultValues()
@@ -17,6 +18,7 @@ class AppSettings {
         // Minimum number of hash matches to be considered stable
         stableRequirement = 3,
         darkTheme = false,
+        pinCode = '',
         showZeroAssets = defaultShowZeroAssets;
 
   @HiveField(0)
@@ -25,11 +27,11 @@ class AppSettings {
   @HiveField(1)
   final bool darkTheme;
 
-  @HiveField(
-    2,
-    defaultValue: false,
-  )
+  @HiveField(2, defaultValue: false)
   final bool showZeroAssets;
+
+  @HiveField(3, defaultValue: '')
+  final String pinCode;
 
   static const defaultShowZeroAssets = true;
 }

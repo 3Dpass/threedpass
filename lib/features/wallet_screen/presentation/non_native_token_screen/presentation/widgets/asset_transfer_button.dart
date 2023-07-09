@@ -15,7 +15,7 @@ class AssetTransferButton extends StatelessWidget {
         BlocProvider.of<AssetsGetExtrinsicsCubit>(context).tokenBalanceData;
 
     context.router.push(
-      TransferWrapperRoute(
+      TransferRouteWrapper(
         metadata: AssetTransferMetaDTO(
           tokenBalanceData: tkd,
         ),

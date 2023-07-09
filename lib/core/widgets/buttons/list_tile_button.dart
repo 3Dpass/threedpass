@@ -80,7 +80,7 @@ class ListTileButton extends StatelessWidget {
                     .copyWith(color: mainColor),
               ),
               Icon(
-                Icons.arrow_right_outlined,
+                Icons.arrow_right_rounded,
                 color: mainColor,
               ),
             ],

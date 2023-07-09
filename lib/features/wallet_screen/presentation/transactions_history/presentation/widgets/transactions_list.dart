@@ -28,6 +28,10 @@ class _TransactionsList extends StatelessWidget {
         ),
         noItemsFoundIndicatorBuilder: (final context) =>
             const NoTransferItemsFound(),
+        firstPageErrorIndicatorBuilder: (final context) =>
+            FirstPageExceptionIndicator(
+          onTryAgain: pagingController.refresh,
+        ),
       ),
     );
   }

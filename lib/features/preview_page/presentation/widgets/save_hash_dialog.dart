@@ -7,8 +7,9 @@ import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/dialogs/common_dialog.dart';
-import 'package:threedpass/router/route_names.dart';
+import 'package:threedpass/router/router.gr.dart';
 
+@RoutePage()
 class SaveHashDialog extends StatelessWidget {
   const SaveHashDialog({
     required this.snapshot,
@@ -33,7 +34,7 @@ class SaveHashDialog extends StatelessWidget {
     );
 
     final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
-    outerContext.router.popUntilRouteWithName(RouteNames.homePage);
+    outerContext.router.popUntilRouteWithName(HomeRoute.name);
   }
 
   @override
