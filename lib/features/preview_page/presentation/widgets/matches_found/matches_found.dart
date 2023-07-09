@@ -20,7 +20,8 @@ class MatchesFound extends StatelessWidget {
       case PreviewNewSnapshot:
         return MatchesFoundText(
           state: state,
-          number: state.hashObject!.snapshots.length,
+          number: state.hashObject!.snapshots
+              .length, // TODO Calc real mathches, not just count snapshots
         );
       case PreviewExistingSnapshot:
         return MatchesFoundText(

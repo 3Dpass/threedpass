@@ -28,7 +28,7 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     final PopToRoout event,
     final Emitter<AccountStoreState> emit,
   ) async {
-    outerContext.router.popUntilRouteWithName(HomeRoute.name);
+    outerContext.router.popUntilRouteWithName(InitialWrapperRoute.name);
   }
 
   Future<void> _setCredentials(
