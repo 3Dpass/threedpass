@@ -46,7 +46,7 @@ extension IconCustomColors on CustomColors {
   Color get uncertainIcon => Colors.orange;
   Color get popMenuIcon => Colors.grey;
   Color get moreFadedGrey =>
-      brightness == Brightness.light ? Colors.grey[350]! : Colors.grey[700]!;
+      brightness == Brightness.light ? Colors.grey[400]! : Colors.grey[700]!;
 }
 
 extension TextCustomColors on CustomColors {
