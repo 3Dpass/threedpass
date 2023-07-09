@@ -22,11 +22,14 @@ class _ChooseHashDropdown extends StatelessWidget {
       builder: (final ___, final HashObject hashObject, final __) =>
           ValueListenableBuilder(
         valueListenable: chosenHash,
-        builder: (final context, final _, final __) => _DropdownButtonString(
-          context: context,
-          hashObject: hashObject,
-          chosenHash: chosenHash,
-          onChanged: (final String? modelChosen) => onHashChoose(modelChosen),
+        builder: (final context, final _, final __) => SizedBox(
+          height: 55,
+          child: _DropdownButtonString(
+            context: context,
+            hashObject: hashObject,
+            chosenHash: chosenHash,
+            onChanged: (final String? modelChosen) => onHashChoose(modelChosen),
+          ),
         ),
       ),
     );
@@ -47,9 +50,12 @@ class _DropdownButtonString extends D3pDropdownButton<String> {
               .map(
                 (final e) => DropdownMenuItem<String>(
                   value: e,
-                  child: Text(
-                    e,
-                    maxLines: 3,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 2),
+                    child: Text(
+                      e,
+                      maxLines: 3,
+                    ),
                   ),
                 ),
               )

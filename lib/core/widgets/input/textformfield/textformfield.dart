@@ -75,14 +75,15 @@ class D3pTextFormField extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
-          height: mHeight,
+          // height: 55,
           child: TextFormField(
             style: textStyle.d3pBodyLarge,
             decoration: InputDecoration(
+              isDense: true,
               filled: true,
               focusedBorder: focusedBorder,
               contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
               label: _Label(labelText).build(context),
               suffixIcon: _SuffixButton(
                 labelButton: labelButton,
