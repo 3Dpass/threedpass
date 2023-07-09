@@ -9,6 +9,8 @@ class D3pScreenLockDialog {
     required this.context,
   });
 
+  static const pinDigits = 6;
+
   void showScreenLock({
     required final void Function() onUnlocked,
     required final String correctString,
@@ -37,6 +39,7 @@ class D3pScreenLockDialog {
       secretsConfig: slTheme.secretsConfig,
       title: slTheme.createTitle,
       confirmTitle: slTheme.confirmTitle,
+      digits: pinDigits,
     );
   }
 }
