@@ -280,6 +280,9 @@
     "transactions_title": "Transactions History",
     "show_transfers": "Show transfers",
     "no_transfers": "No transfers found",
+    "first_page_error_title": "Something went wrong",
+    "first_page_error_message": "The application has encountered an unknown error.\nPlease try again later.",
+    "first_page_error_button": "Try Again",
 
     "@Screen_lock":{
     },
