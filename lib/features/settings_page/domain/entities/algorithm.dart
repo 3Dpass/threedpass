@@ -12,7 +12,7 @@ class AlgorithmMaster {
   ];
 
   /// Default value for settings
-  static const defaultAlgo = grid2d_0_3_3_v1;
+  static const defaultAlgo = grid2d_0_3_3_v3;
 
   /// Map to rust lib
   /// Must be the same strings as in packages/hash_lib_interface/ffi_interface ...

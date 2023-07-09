@@ -15,6 +15,8 @@ class CalcHashLoadingDialog extends StatelessWidget {
     final Key? key,
   }) : super(key: key);
 
+  static const indicatorSize = 26.0;
+
   @override
   Widget build(final BuildContext context) {
     return PlatformAlertDialog(
@@ -22,13 +24,28 @@ class CalcHashLoadingDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Row(
+            mainAxisSize: MainAxisSize.max,
             children: [
-              PlatformCircularProgressIndicator(),
+              SizedBox(
+                width: indicatorSize,
+                height: indicatorSize,
+                child: PlatformCircularProgressIndicator(),
+              ),
+              SizedBox(width: 8),
               Flexible(
                 child: Container(
-                  margin: const EdgeInsets.only(left: 16),
-                  child: Text('calc_hashes_loader_text'.tr()),
+                  width: double.infinity,
+                  // color: Colors.amber,
+                  // margin: const EdgeInsets.only(left: 16),
+                  child: Text(
+                    'calc_hashes_loader_text'.tr(),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
+              ),
+              SizedBox(width: 8),
+              SizedBox(
+                width: indicatorSize,
               ),
             ],
           ),

@@ -5,6 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:logger/logger.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
@@ -70,13 +71,15 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       );
     } on FilePickerException catch (e) {
       showToast(e.message, context);
+      getIt<Logger>().e('Caught FilePickerException: $e');
     } on Exception catch (e) {
-      hideLoader(context);
+      getIt<Logger>().e('Caught Exception during file scan: $e');
 
       if (e.toString().contains(ScanIsolateCubit.cancelMsg)) {
-        showToast('Scanning canceled by user', context);
+        showToast('Scanning canceled by user.', context);
+        hideLoader(context);
       } else {
-        showToast(e.toString(), context);
+        showToast('Error during file pick. $e', context);
       }
     }
   }

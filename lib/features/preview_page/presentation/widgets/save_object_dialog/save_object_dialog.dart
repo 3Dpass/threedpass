@@ -48,7 +48,7 @@ class SaveObjectDialog extends StatelessWidget {
       );
 
       final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
-      outerContext.router.popUntilRouteWithName(HomeRoute.name);
+      outerContext.router.popUntilRouteWithName(InitialWrapperRoute.name);
     }
   }
 
