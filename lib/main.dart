@@ -35,38 +35,6 @@ Future<void> main() async {
   );
 }
 
-// class CustomError extends StatelessWidget {
-//   final FlutterErrorDetails errorDetails;
-
-//   const CustomError({
-//     Key? key,
-//     required this.errorDetails,
-//   })  : assert(errorDetails != null),
-//         super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Card(
-//       child: Padding(
-//         child: Text(
-//           errorDetails.exception.toString() +
-//               '\n' +
-//               errorDetails.library.toString() +
-//               '\n' +
-//               errorDetails.stack.toString(),
-//           style: const TextStyle(
-//             color: Colors.white,
-//             fontWeight: FontWeight.bold,
-//           ),
-//         ),
-//         padding: const EdgeInsets.all(8.0),
-//       ),
-//       color: Colors.red,
-//       margin: EdgeInsets.zero,
-//     );
-//   }
-// }
-
 class ThreeDApp extends StatelessWidget {
   ThreeDApp({final Key? key}) : super(key: key);
 
@@ -86,16 +54,6 @@ class ThreeDApp extends StatelessWidget {
           child: PlatformApp.router(
             debugShowCheckedModeBanner: false,
             title: '3Dpass',
-            // builder: (BuildContext context, Widget? widget) {
-            //   ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
-            //     return CustomError(errorDetails: errorDetails);
-            //   };
-
-            //   return widget ??
-            //       Material(
-            //         child: Text('Error'),
-            //       );
-            // },
             material: _MainMaterialAppRouterData(brightness).theme,
             cupertino: _MainCupertinoAppRouterData(brightness).theme,
             routerDelegate: _appRouter.delegate(),
