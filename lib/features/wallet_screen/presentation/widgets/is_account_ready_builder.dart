@@ -17,7 +17,7 @@ class IsAccountReadyBuilder extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
       builder: (final context, final state) => ValueListenableBuilder(
-        valueListenable: state.balance,
+        valueListenable: state.chosenAccountBalance,
         builder: (final context, final BalanceData balance, final child) {
           return builder(context, !balance.isNull);
         },

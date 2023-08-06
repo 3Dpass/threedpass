@@ -21,10 +21,10 @@ class AppService {
     required this.status,
     final NetworkStateData? networkStateData,
   })  : networkStateData = networkStateData ?? NetworkStateData(),
-        balance = ValueNotifier<BalanceData>(BalanceData()),
+        chosenAccountBalance = ValueNotifier<BalanceData>(BalanceData()),
         tokensAreLoading = ValueNotifier<bool>(false);
 
-  final ValueNotifier<BalanceData> balance;
+  final ValueNotifier<BalanceData> chosenAccountBalance;
   final ValueNotifier<bool> tokensAreLoading;
   // final ValueNotifier<String> bestNumber = ValueNotifier<String>('');
   final Keyring keyring;
@@ -56,7 +56,10 @@ class AppService {
           address,
           (final data) async {
             getIt<Logger>().i('Balance updated: ${data.availableBalance}');
-            balance.value = data;
+
+            if (keyring.current.address == data.accountId) {
+              chosenAccountBalance.value = data;
+            }
 
             tokensAreLoading.value = true;
             await _setTokensData(address);

@@ -32,7 +32,7 @@ class CoinsTransferMetaDTO extends TransferMetaDTO {
   @override
   String getBalance(final AppService appService) {
     return BalanceUtils.balance(
-      appService.balance.value.availableBalance as String?,
+      appService.chosenAccountBalance.value.availableBalance as String?,
       appService.networkStateData.safeDecimals,
     );
   }
