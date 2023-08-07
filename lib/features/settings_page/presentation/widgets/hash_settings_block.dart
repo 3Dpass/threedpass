@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/hash_settings/algorithm_button.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/hash_settings/grid_size_button.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/hash_settings/hash_settings_title.dart';

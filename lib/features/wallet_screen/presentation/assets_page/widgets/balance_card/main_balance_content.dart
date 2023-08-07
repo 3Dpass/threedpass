@@ -24,7 +24,7 @@ class _MainBalanceContent extends StatelessWidget {
           ),
           tokenSymbol: tokenSymbol,
         ),
-        const SizedBox(height: 16),
+        // const SizedBox(height: 16),
         AvaliableBalanceCard(
           balance: balance.availableBalance as String,
           tokenSymbol: tokenSymbol,

@@ -31,7 +31,7 @@ class CalcHashLoadingDialog extends StatelessWidget {
                 height: indicatorSize,
                 child: PlatformCircularProgressIndicator(),
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Flexible(
                 child: Container(
                   width: double.infinity,
@@ -43,8 +43,8 @@ class CalcHashLoadingDialog extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: 8),
-              SizedBox(
+              const SizedBox(width: 8),
+              const SizedBox(
                 width: indicatorSize,
               ),
             ],

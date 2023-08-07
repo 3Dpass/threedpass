@@ -16,12 +16,14 @@ class CreateAccountPageWrapper extends StatelessWidget
   }) : super(key: key);
 
   static void pushToGenerateRandom(final BuildContext context) {
+    Navigator.of(context).pop();
     context.router.pushNamed(
       RoutePaths.createAccountMain + RoutePaths.createAccountRandomMnemonic,
     );
   }
 
   static void pushToImportType(final BuildContext context) {
+    Navigator.of(context).pop();
     context.router.pushNamed(
       RoutePaths.createAccountMain + RoutePaths.createAccountChooseType,
     );
