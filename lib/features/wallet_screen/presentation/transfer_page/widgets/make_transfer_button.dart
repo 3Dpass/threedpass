@@ -16,28 +16,17 @@ class _MakeTransferButton extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   final AppService appService;
 
-  // TODO Move from UI
   Future<void> onPressed(final BuildContext context) async {
-    final transferInfoMeta =
-        BlocProvider.of<TransferInfoCubit>(context).metaDTO;
-    // transferInfoMeta.
-    final txInfo = transferInfoMeta.getTxInfo(appService);
-    final params = transferInfoMeta.getParams(
-      appService,
-      amountController.text,
-      toAddressController.text,
-    );
+    final transferInfoMeta = BlocProvider.of<TransferInfoCubit>(context);
 
-    await Transfer(
-      txInfo: txInfo,
-      params: params,
-      // amount: amountController.text,
+    await transferInfoMeta.sendTransfer(
       appService: appService,
-      context: context,
       toAddress: toAddressController.text,
+      amount: amountController.text,
       password: passwordController.text,
       formKey: formKey,
-    ).sendFunds();
+      context: context,
+    );
   }
 
   @override

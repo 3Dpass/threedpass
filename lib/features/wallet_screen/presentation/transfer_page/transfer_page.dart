@@ -13,7 +13,6 @@ import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
-import 'package:threedpass/features/wallet_screen/domain/entities/transfer.dart';
 
 part './widgets/make_transfer_button.dart';
 part 'widgets/from_address_textfield.dart';

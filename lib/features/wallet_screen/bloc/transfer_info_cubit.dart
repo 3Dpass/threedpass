@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/features/wallet_screen/domain/entities/transfer.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_meta_dto.dart';
 
 class TransferInfoCubit extends Cubit<TransferInfo> {
@@ -36,6 +38,33 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
     final b = 1 + 1;
 
     emit(TransferInfo(balance: state.balance, fees: fee));
+  }
+
+  Future<void> sendTransfer({
+    required final AppService appService,
+    required final String amount,
+    required final String toAddress,
+    required final BuildContext context,
+    required final String password,
+    required final GlobalKey<FormState> formKey,
+  }) async {
+    final txInfo = metaDTO.getTxInfo(appService);
+    final params = metaDTO.getParams(
+      appService,
+      amount,
+      toAddress,
+    );
+
+    await Transfer(
+      txInfo: txInfo,
+      params: params,
+      // amount: amountController.text,
+      appService: appService,
+      context: context,
+      toAddress: toAddress,
+      password: password,
+      formKey: formKey,
+    ).sendFunds();
   }
 }
 

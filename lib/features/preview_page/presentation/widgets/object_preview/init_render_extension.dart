@@ -2,7 +2,7 @@ part of 'object_preview.dart';
 
 extension __ on _State {
   void initRenderer() {
-    final Map<String, dynamic> _options = {
+    final Map<String, dynamic> _options = <String, dynamic>{
       'width': width,
       'height': height,
       'gl': three3dRender.gl,
@@ -16,7 +16,9 @@ extension __ on _State {
     renderer.setSize(width, height, false);
     renderer.shadowMap.enabled = false;
 
-    final pars = THREE.WebGLRenderTargetOptions({'format': THREE.RGBAFormat});
+    final pars = THREE.WebGLRenderTargetOptions(
+      <String, dynamic>{'format': THREE.RGBAFormat},
+    );
     renderTarget = THREE.WebGLRenderTarget(
       (width * dpr).toInt(),
       (height * dpr).toInt(),
@@ -46,7 +48,7 @@ extension __ on _State {
     final int _t = DateTime.now().millisecondsSinceEpoch;
 
     // This variable is unused, but NEVER DELETE IT!!
-    final _gl = three3dRender.gl;
+    final dynamic _gl = three3dRender.gl;
 
     controls.update();
 

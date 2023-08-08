@@ -12,6 +12,7 @@ abstract class TransferMetaDTO {
   String getBalance(final AppService appService);
   String getName();
   TxInfoData getTxInfo(final AppService appService);
+
   List<String> getParams(
     final AppService appService,
     final String? amount,

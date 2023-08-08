@@ -8,9 +8,9 @@ class PreviewSettingsBlock extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
         SettingsSectionHeader(
           title: 'preview_settings_title',
         ),

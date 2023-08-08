@@ -12,10 +12,10 @@ void main() {
     testWidgets('MyWidget has a title and message', (tester) async {
       // Create the widget by telling the tester to build it.
       await tester.pumpWidget(
-        Directionality(
+        const Directionality(
           textDirection: TextDirection.ltr,
           child: Column(
-            children: const [
+            children: [
               LockedBalanceCard(
                 tokenSymbol: 'P3D',
                 tokenDecimals: 12,

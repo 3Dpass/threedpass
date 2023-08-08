@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-// import 'package:logger_flutter_plus/logger_flutter_plus.dart';
 import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/theme_builder.dart';
 import 'package:threedpass/features/app/presentation/global_states_provider.dart';
 import 'package:threedpass/router/router.dart';
-import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart' as di_setup;
 
 Future<void> main() async {

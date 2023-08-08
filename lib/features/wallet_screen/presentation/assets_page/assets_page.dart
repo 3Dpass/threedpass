@@ -31,9 +31,9 @@ class AssetsPage extends StatelessWidget {
             context: context,
             theme: theme,
           ),
-          body: Column(
+          body: const Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
+            children: [
               SizedBoxH24(),
               CoinsBalance(),
               SizedBoxH16(),

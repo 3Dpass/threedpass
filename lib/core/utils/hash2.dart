@@ -2,7 +2,8 @@
 // https://github.com/google/quiver-dart/blob/d5e5ddc5d4476cc35f3de9afc49925a7140b88a2/lib/src/core/hash.dart#L20
 // ignore_for_file: parameter_assignments, prefer_final_parameters, type_annotate_public_apis, inference_failure_on_untyped_parameter
 
-int hash2(a, b) => _finish(_combine(_combine(0, a.hashCode), b.hashCode));
+int hash2(dynamic a, dynamic b) =>
+    _finish(_combine(_combine(0, a.hashCode), b.hashCode));
 
 // Jenkins hash functions
 

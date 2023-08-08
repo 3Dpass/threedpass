@@ -46,10 +46,10 @@ linter:
 
 analyzer:
   ### extra_pedantic ###
-  strong-mode:
-      # https://github.com/dart-lang/language/tree/master/resources/type-system
-      implicit-casts: false
-      implicit-dynamic: true
+  # strong-mode:
+  #     # https://github.com/dart-lang/language/tree/master/resources/type-system
+  #     implicit-casts: false
+  #     implicit-dynamic: true
   language:
     # https://github.com/dart-lang/language/tree/master/resources/type-system
     strict-inference: true

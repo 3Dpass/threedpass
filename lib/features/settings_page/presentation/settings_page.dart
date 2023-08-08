@@ -19,10 +19,10 @@ class SettingsPage extends StatelessWidget {
   Widget build(final BuildContext context) {
     return PlatformScaffold(
       appBar: SettingsAppbar(),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: const [
+          children: [
             SizedBoxH16(),
             HashSettingsBlock(),
             PreviewSettingsBlock(),

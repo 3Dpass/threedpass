@@ -60,7 +60,6 @@ class Transfer {
         return;
       }
 
-      // final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
       final globalContext =
           BlocProvider.of<HomeContextCubit>(context).state.context;
 

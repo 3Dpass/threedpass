@@ -7,14 +7,14 @@ class WalletSettingsBlock extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SettingsSectionHeader(
+        SettingsSectionHeader(
           title: 'wallet_settings_title',
         ),
-        const NodeUrlButton(),
+        NodeUrlButton(),
       ],
     );
   }

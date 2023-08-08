@@ -111,7 +111,7 @@ class _State extends State<ObjectPreview> {
     dpr = mqd.devicePixelRatio * previewSettings.pixelRatio;
 
     // init three3dRender
-    final Map<String, dynamic> _options = {
+    final Map<String, dynamic> _options = <String, dynamic>{
       'antialias': previewSettings.antialias,
       'alpha': false,
       'width': width.toInt(),

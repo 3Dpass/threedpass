@@ -9,12 +9,12 @@ class NoAccountsPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return D3pScaffold(
+    return const D3pScaffold(
       removeBackButton: true,
       appbarTitle: 'wallet_header_title',
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           ConnectStatus(),
           SizedBoxH24(),
           AccountCard(),
