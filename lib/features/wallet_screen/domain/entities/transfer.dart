@@ -9,9 +9,7 @@ import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
-import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 
-// TODO Add transfer options: keep_alive or just transfer
 class Transfer {
   const Transfer({
     required this.txInfo,

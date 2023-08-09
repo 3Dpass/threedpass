@@ -7,9 +7,9 @@ part of 'preview_settings.dart';
 // **************************************************************************
 
 abstract class _$PreviewSettingsCWProxy {
-  PreviewSettings antialias(bool antialias);
-
   PreviewSettings pixelRatio(double pixelRatio);
+
+  PreviewSettings antialias(bool antialias);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PreviewSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -18,22 +18,22 @@ abstract class _$PreviewSettingsCWProxy {
   /// PreviewSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   PreviewSettings call({
-    bool? antialias,
     double? pixelRatio,
+    bool? antialias,
   });
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPreviewSettings.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfPreviewSettings.copyWith.fieldName(...)`
 class _$PreviewSettingsCWProxyImpl implements _$PreviewSettingsCWProxy {
-  final PreviewSettings _value;
-
   const _$PreviewSettingsCWProxyImpl(this._value);
 
-  @override
-  PreviewSettings antialias(bool antialias) => this(antialias: antialias);
+  final PreviewSettings _value;
 
   @override
   PreviewSettings pixelRatio(double pixelRatio) => this(pixelRatio: pixelRatio);
+
+  @override
+  PreviewSettings antialias(bool antialias) => this(antialias: antialias);
 
   @override
 
@@ -44,19 +44,19 @@ class _$PreviewSettingsCWProxyImpl implements _$PreviewSettingsCWProxy {
   /// PreviewSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   PreviewSettings call({
-    Object? antialias = const $CopyWithPlaceholder(),
     Object? pixelRatio = const $CopyWithPlaceholder(),
+    Object? antialias = const $CopyWithPlaceholder(),
   }) {
     return PreviewSettings(
-      antialias: antialias == const $CopyWithPlaceholder() || antialias == null
-          ? _value.antialias
-          // ignore: cast_nullable_to_non_nullable
-          : antialias as bool,
       pixelRatio:
           pixelRatio == const $CopyWithPlaceholder() || pixelRatio == null
               ? _value.pixelRatio
               // ignore: cast_nullable_to_non_nullable
               : pixelRatio as double,
+      antialias: antialias == const $CopyWithPlaceholder() || antialias == null
+          ? _value.antialias
+          // ignore: cast_nullable_to_non_nullable
+          : antialias as bool,
     );
   }
 }

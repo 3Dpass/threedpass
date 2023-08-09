@@ -9,11 +9,11 @@ part of 'app_settings.dart';
 abstract class _$AppSettingsCWProxy {
   AppSettings darkTheme(bool darkTheme);
 
-  AppSettings pinCode(String pinCode);
+  AppSettings stableRequirement(int stableRequirement);
 
   AppSettings showZeroAssets(bool showZeroAssets);
 
-  AppSettings stableRequirement(int stableRequirement);
+  AppSettings pinCode(String pinCode);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AppSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -23,31 +23,31 @@ abstract class _$AppSettingsCWProxy {
   /// ````
   AppSettings call({
     bool? darkTheme,
-    String? pinCode,
-    bool? showZeroAssets,
     int? stableRequirement,
+    bool? showZeroAssets,
+    String? pinCode,
   });
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAppSettings.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAppSettings.copyWith.fieldName(...)`
 class _$AppSettingsCWProxyImpl implements _$AppSettingsCWProxy {
-  final AppSettings _value;
-
   const _$AppSettingsCWProxyImpl(this._value);
+
+  final AppSettings _value;
 
   @override
   AppSettings darkTheme(bool darkTheme) => this(darkTheme: darkTheme);
 
   @override
-  AppSettings pinCode(String pinCode) => this(pinCode: pinCode);
+  AppSettings stableRequirement(int stableRequirement) =>
+      this(stableRequirement: stableRequirement);
 
   @override
   AppSettings showZeroAssets(bool showZeroAssets) =>
       this(showZeroAssets: showZeroAssets);
 
   @override
-  AppSettings stableRequirement(int stableRequirement) =>
-      this(stableRequirement: stableRequirement);
+  AppSettings pinCode(String pinCode) => this(pinCode: pinCode);
 
   @override
 
@@ -59,29 +59,29 @@ class _$AppSettingsCWProxyImpl implements _$AppSettingsCWProxy {
   /// ````
   AppSettings call({
     Object? darkTheme = const $CopyWithPlaceholder(),
-    Object? pinCode = const $CopyWithPlaceholder(),
-    Object? showZeroAssets = const $CopyWithPlaceholder(),
     Object? stableRequirement = const $CopyWithPlaceholder(),
+    Object? showZeroAssets = const $CopyWithPlaceholder(),
+    Object? pinCode = const $CopyWithPlaceholder(),
   }) {
     return AppSettings(
       darkTheme: darkTheme == const $CopyWithPlaceholder() || darkTheme == null
           ? _value.darkTheme
           // ignore: cast_nullable_to_non_nullable
           : darkTheme as bool,
-      pinCode: pinCode == const $CopyWithPlaceholder() || pinCode == null
-          ? _value.pinCode
-          // ignore: cast_nullable_to_non_nullable
-          : pinCode as String,
-      showZeroAssets: showZeroAssets == const $CopyWithPlaceholder() ||
-              showZeroAssets == null
-          ? _value.showZeroAssets
-          // ignore: cast_nullable_to_non_nullable
-          : showZeroAssets as bool,
       stableRequirement: stableRequirement == const $CopyWithPlaceholder() ||
               stableRequirement == null
           ? _value.stableRequirement
           // ignore: cast_nullable_to_non_nullable
           : stableRequirement as int,
+      showZeroAssets: showZeroAssets == const $CopyWithPlaceholder() ||
+              showZeroAssets == null
+          ? _value.showZeroAssets
+          // ignore: cast_nullable_to_non_nullable
+          : showZeroAssets as bool,
+      pinCode: pinCode == const $CopyWithPlaceholder() || pinCode == null
+          ? _value.pinCode
+          // ignore: cast_nullable_to_non_nullable
+          : pinCode as String,
     );
   }
 }

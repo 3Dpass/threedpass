@@ -26,9 +26,9 @@ abstract class _$AccountAdvancedOptionsCWProxy {
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAccountAdvancedOptions.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAccountAdvancedOptions.copyWith.fieldName(...)`
 class _$AccountAdvancedOptionsCWProxyImpl
     implements _$AccountAdvancedOptionsCWProxy {
-  final AccountAdvancedOptions _value;
-
   const _$AccountAdvancedOptionsCWProxyImpl(this._value);
+
+  final AccountAdvancedOptions _value;
 
   @override
   AccountAdvancedOptions path(String path) => this(path: path);

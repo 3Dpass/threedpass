@@ -20,7 +20,6 @@ class _MakeTransferButton extends StatelessWidget {
     final transferInfoMeta = BlocProvider.of<TransferInfoCubit>(context);
 
     await transferInfoMeta.sendTransfer(
-      appService: appService,
       toAddress: toAddressController.text,
       amount: amountController.text,
       password: passwordController.text,

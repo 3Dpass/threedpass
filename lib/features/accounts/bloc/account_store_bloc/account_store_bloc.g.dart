@@ -7,9 +7,6 @@ part of 'account_store_bloc.dart';
 // **************************************************************************
 
 abstract class _$AccountStoreStateCWProxy {
-  AccountStoreState accountAdvancedOptions(
-      AccountAdvancedOptions accountAdvancedOptions);
-
   AccountStoreState addressIconsMap(Map<String, String> addressIconsMap);
 
   AccountStoreState newAccount(AccountInfo newAccount);
@@ -19,6 +16,9 @@ abstract class _$AccountStoreStateCWProxy {
 
   AccountStoreState recoveryInfo(RecoveryInfo recoveryInfo);
 
+  AccountStoreState accountAdvancedOptions(
+      AccountAdvancedOptions accountAdvancedOptions);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountStoreState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -26,24 +26,19 @@ abstract class _$AccountStoreStateCWProxy {
   /// AccountStoreState(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountStoreState call({
-    AccountAdvancedOptions? accountAdvancedOptions,
     Map<String, String>? addressIconsMap,
     AccountInfo? newAccount,
     Map<int, Map<String, String>>? pubKeyAddressMap,
     RecoveryInfo? recoveryInfo,
+    AccountAdvancedOptions? accountAdvancedOptions,
   });
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAccountStoreState.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAccountStoreState.copyWith.fieldName(...)`
 class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
-  final AccountStoreState _value;
-
   const _$AccountStoreStateCWProxyImpl(this._value);
 
-  @override
-  AccountStoreState accountAdvancedOptions(
-          AccountAdvancedOptions accountAdvancedOptions) =>
-      this(accountAdvancedOptions: accountAdvancedOptions);
+  final AccountStoreState _value;
 
   @override
   AccountStoreState addressIconsMap(Map<String, String> addressIconsMap) =>
@@ -63,6 +58,11 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
       this(recoveryInfo: recoveryInfo);
 
   @override
+  AccountStoreState accountAdvancedOptions(
+          AccountAdvancedOptions accountAdvancedOptions) =>
+      this(accountAdvancedOptions: accountAdvancedOptions);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountStoreState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -71,19 +71,13 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
   /// AccountStoreState(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountStoreState call({
-    Object? accountAdvancedOptions = const $CopyWithPlaceholder(),
     Object? addressIconsMap = const $CopyWithPlaceholder(),
     Object? newAccount = const $CopyWithPlaceholder(),
     Object? pubKeyAddressMap = const $CopyWithPlaceholder(),
     Object? recoveryInfo = const $CopyWithPlaceholder(),
+    Object? accountAdvancedOptions = const $CopyWithPlaceholder(),
   }) {
     return AccountStoreState(
-      accountAdvancedOptions:
-          accountAdvancedOptions == const $CopyWithPlaceholder() ||
-                  accountAdvancedOptions == null
-              ? _value.accountAdvancedOptions
-              // ignore: cast_nullable_to_non_nullable
-              : accountAdvancedOptions as AccountAdvancedOptions,
       addressIconsMap: addressIconsMap == const $CopyWithPlaceholder() ||
               addressIconsMap == null
           ? _value.addressIconsMap
@@ -104,6 +98,12 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
               ? _value.recoveryInfo
               // ignore: cast_nullable_to_non_nullable
               : recoveryInfo as RecoveryInfo,
+      accountAdvancedOptions:
+          accountAdvancedOptions == const $CopyWithPlaceholder() ||
+                  accountAdvancedOptions == null
+              ? _value.accountAdvancedOptions
+              // ignore: cast_nullable_to_non_nullable
+              : accountAdvancedOptions as AccountAdvancedOptions,
     );
   }
 }

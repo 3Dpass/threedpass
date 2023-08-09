@@ -18,6 +18,7 @@ class CoinTransferButton extends StatelessWidget {
       TransferRouteWrapper(
         metadata: CoinsTransferMetaDTO(
           coinName: appService.networkStateData.tokenSymbol?.first ?? '',
+          appService: appService,
         ),
       ),
     );

@@ -7,13 +7,13 @@ part of 'global_settings.dart';
 // **************************************************************************
 
 abstract class _$GlobalSettingsCWProxy {
-  GlobalSettings appSettings(AppSettings appSettings);
-
-  GlobalSettings previewSettings(PreviewSettings previewSettings);
-
   GlobalSettings scanSettings(ScanSettings scanSettings);
 
   GlobalSettings walletSettings(WalletSettings walletSettings);
+
+  GlobalSettings previewSettings(PreviewSettings previewSettings);
+
+  GlobalSettings appSettings(AppSettings appSettings);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GlobalSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -22,26 +22,18 @@ abstract class _$GlobalSettingsCWProxy {
   /// GlobalSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   GlobalSettings call({
-    AppSettings? appSettings,
-    PreviewSettings? previewSettings,
     ScanSettings? scanSettings,
     WalletSettings? walletSettings,
+    PreviewSettings? previewSettings,
+    AppSettings? appSettings,
   });
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfGlobalSettings.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfGlobalSettings.copyWith.fieldName(...)`
 class _$GlobalSettingsCWProxyImpl implements _$GlobalSettingsCWProxy {
-  final GlobalSettings _value;
-
   const _$GlobalSettingsCWProxyImpl(this._value);
 
-  @override
-  GlobalSettings appSettings(AppSettings appSettings) =>
-      this(appSettings: appSettings);
-
-  @override
-  GlobalSettings previewSettings(PreviewSettings previewSettings) =>
-      this(previewSettings: previewSettings);
+  final GlobalSettings _value;
 
   @override
   GlobalSettings scanSettings(ScanSettings scanSettings) =>
@@ -52,6 +44,14 @@ class _$GlobalSettingsCWProxyImpl implements _$GlobalSettingsCWProxy {
       this(walletSettings: walletSettings);
 
   @override
+  GlobalSettings previewSettings(PreviewSettings previewSettings) =>
+      this(previewSettings: previewSettings);
+
+  @override
+  GlobalSettings appSettings(AppSettings appSettings) =>
+      this(appSettings: appSettings);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GlobalSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -60,22 +60,12 @@ class _$GlobalSettingsCWProxyImpl implements _$GlobalSettingsCWProxy {
   /// GlobalSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   GlobalSettings call({
-    Object? appSettings = const $CopyWithPlaceholder(),
-    Object? previewSettings = const $CopyWithPlaceholder(),
     Object? scanSettings = const $CopyWithPlaceholder(),
     Object? walletSettings = const $CopyWithPlaceholder(),
+    Object? previewSettings = const $CopyWithPlaceholder(),
+    Object? appSettings = const $CopyWithPlaceholder(),
   }) {
     return GlobalSettings(
-      appSettings:
-          appSettings == const $CopyWithPlaceholder() || appSettings == null
-              ? _value.appSettings
-              // ignore: cast_nullable_to_non_nullable
-              : appSettings as AppSettings,
-      previewSettings: previewSettings == const $CopyWithPlaceholder() ||
-              previewSettings == null
-          ? _value.previewSettings
-          // ignore: cast_nullable_to_non_nullable
-          : previewSettings as PreviewSettings,
       scanSettings:
           scanSettings == const $CopyWithPlaceholder() || scanSettings == null
               ? _value.scanSettings
@@ -86,6 +76,16 @@ class _$GlobalSettingsCWProxyImpl implements _$GlobalSettingsCWProxy {
           ? _value.walletSettings
           // ignore: cast_nullable_to_non_nullable
           : walletSettings as WalletSettings,
+      previewSettings: previewSettings == const $CopyWithPlaceholder() ||
+              previewSettings == null
+          ? _value.previewSettings
+          // ignore: cast_nullable_to_non_nullable
+          : previewSettings as PreviewSettings,
+      appSettings:
+          appSettings == const $CopyWithPlaceholder() || appSettings == null
+              ? _value.appSettings
+              // ignore: cast_nullable_to_non_nullable
+              : appSettings as AppSettings,
     );
   }
 }

@@ -19,6 +19,7 @@ class _AmountTextFieldBuilder extends StatelessWidget {
   }
 }
 
+// TODO When input 0.2 it throws error
 class _AmountTextField extends StatelessWidget {
   const _AmountTextField({
     required this.amountController,

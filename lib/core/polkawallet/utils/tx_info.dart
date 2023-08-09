@@ -4,6 +4,7 @@ import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
+import 'package:threedpass/core/polkawallet/utils/transfer_type.dart';
 import 'package:threedpass/setup.dart';
 
 abstract class TransferTxInfoI {
@@ -13,7 +14,9 @@ abstract class TransferTxInfoI {
     required this.appService,
   });
 
-  TxInfoData get txInfo;
+  TxInfoData txInfo(
+    final TransferType transferType,
+  );
   List<String> params(final String? amount, final String toAddress);
 }
 
@@ -25,14 +28,20 @@ class AssetsTransferTx extends TransferTxInfoI {
   });
 
   @override
-  TxInfoData get txInfo => TxInfoData(
+  TxInfoData txInfo(
+    final TransferType transferType,
+  ) =>
+      TxInfoData(
         'assets',
-        'transfer',
+        TransferTypeValue(transferType).toString(),
         appService.userSenderData,
       );
 
   @override
-  List<String> params(final String? amount, final String toAddress) {
+  List<String> params(
+    final String? amount,
+    final String toAddress,
+  ) {
     // https://polkadot.js.org/docs/substrate/extrinsics/#transferid-compactu32-target-multiaddress-amount-compactu128
 
     if (tokenBalanceData.decimals == null) {
@@ -61,12 +70,17 @@ class AssetsTransferTx extends TransferTxInfoI {
 }
 
 class CoinsTransferTx extends TransferTxInfoI {
-  const CoinsTransferTx({required super.appService});
+  const CoinsTransferTx({
+    required super.appService,
+  });
 
   @override
-  TxInfoData get txInfo => TxInfoData(
+  TxInfoData txInfo(
+    final TransferType transferType,
+  ) =>
+      TxInfoData(
         'balances',
-        'transfer',
+        TransferTypeValue(transferType).toString(),
         TxSenderData(
           appService.keyring.current.address,
           appService.keyring.current.pubKey,
@@ -74,7 +88,10 @@ class CoinsTransferTx extends TransferTxInfoI {
       );
 
   @override
-  List<String> params(final String? amount, final String toAddress) {
+  List<String> params(
+    final String? amount,
+    final String toAddress,
+  ) {
     final realAmount = BalanceUtils.tokenInt(
       amount,
       appService.networkStateData.safeDecimals,

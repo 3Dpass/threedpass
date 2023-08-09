@@ -11,8 +11,10 @@ import 'package:threedpass/core/utils/validators.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/transfer_type_dropdown.dart';
 
 part './widgets/make_transfer_button.dart';
 part 'widgets/from_address_textfield.dart';
@@ -52,20 +54,22 @@ class TransferPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 16),
+                      const SizedBoxH16(),
                       const _FromAddressTextField(),
-                      const SizedBox(height: 24),
+                      const SizedBoxH24(),
                       _ToAddressTextField(
                         toAddressController: toAddressController,
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBoxH24(),
                       _AmountTextFieldBuilder(
                         amountController: amountController,
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBoxH24(),
                       _PasswordTextField(
                         passwordController: passwordController,
                       ),
+                      const SizedBoxH24(),
+                      const TransferTypeDropdown(),
                       // const SizedBox(height: 24),
                       // const _FeesText(),
                       const SizedBox(height: 36),

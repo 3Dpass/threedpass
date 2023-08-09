@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/coin_transfer_button.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/recieve_button.dart';
-import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/transfer_button.dart';
 
 class AssetPageButtonsPanel extends StatelessWidget {
   const AssetPageButtonsPanel({super.key});

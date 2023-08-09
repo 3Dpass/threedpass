@@ -71,7 +71,7 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
                 );
               }
               pagingController.itemList = list;
-              pagingController.notifyListeners();
+              // pagingController.notifyListeners();
               // print('${item.blockDatetime} ${item.runtimeType}');
             },
           );

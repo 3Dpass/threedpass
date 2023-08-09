@@ -25,9 +25,9 @@ abstract class _$WalletSettingsCWProxy {
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfWalletSettings.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfWalletSettings.copyWith.fieldName(...)`
 class _$WalletSettingsCWProxyImpl implements _$WalletSettingsCWProxy {
-  final WalletSettings _value;
-
   const _$WalletSettingsCWProxyImpl(this._value);
+
+  final WalletSettings _value;
 
   @override
   WalletSettings isTestNet(bool isTestNet) => this(isTestNet: isTestNet);
