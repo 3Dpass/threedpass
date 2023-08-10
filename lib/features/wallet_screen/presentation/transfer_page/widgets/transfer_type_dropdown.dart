@@ -1,8 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/utils/transfer_type.dart';
-import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
-import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
+import 'package:threedpass/core/widgets/input/switch_button.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
 
 class TransferTypeDropdown extends StatelessWidget {
@@ -18,31 +18,17 @@ class TransferTypeDropdown extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return BlocBuilder<TransferInfoCubit, TransferInfo>(
-      builder: (final context, final state) {
-        final items = TransferType.values
-            .map(
-              (final e) => DropdownMenuItem<TransferType>(
-                value: e,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: D3pBodyMediumText(
-                    e.name,
-                    translate: false,
-                  ),
-                ),
-              ),
-            )
-            .toList();
-        final value = state.type;
-
-        return D3pDropdownButton<TransferType>(
-          context: context,
-          items: items,
-          onChanged: (final TransferType? value) => onChanged(context, value),
-          value: value,
-        );
-      },
+    final initialValue =
+        BlocProvider.of<TransferInfoCubit>(context).state.type ==
+            TransferType.transferKeepAlive;
+    return D3pSwitchButton(
+      initialValue: initialValue,
+      helpText: 'transfer_keep_alive_help'.tr(),
+      onChanged: (final value) => onChanged(
+        context,
+        value ? TransferType.transferKeepAlive : TransferType.transfer,
+      ),
+      text: 'choose_transfer_keep_alive'.tr(),
     );
   }
 }
