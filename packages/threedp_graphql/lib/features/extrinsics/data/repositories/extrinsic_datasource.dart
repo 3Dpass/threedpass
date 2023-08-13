@@ -17,6 +17,7 @@ class ExtrinsicDatasourceGQL {
   ) async {
     final request = GGetExtrinsicsReq((final b) {
       b
+        ..fetchPolicy = FetchPolicy.NoCache
         ..vars.pageKey = requestParams.pageKey
         ..vars.pageSize = requestParams.pageSize
         ..vars.filters.blockNumber =

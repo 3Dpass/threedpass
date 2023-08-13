@@ -16,6 +16,7 @@ class TransfersDatasourceGQL {
   ) async {
     final request = GGetTransfersReq((final b) {
       b
+        ..fetchPolicy = FetchPolicy.NoCache
         ..vars.pageKey = requestParams.pageKey
         ..vars.pageSize = requestParams.pageSize
         ..vars.filters.toMultiAddressAccountId =
