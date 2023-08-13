@@ -31,7 +31,8 @@ class D3pIconButton extends StatelessWidget {
         color: iconColor,
       ),
       onPressed: onPressed,
-      material: (_, __) => MaterialIconButtonData(padding: EdgeInsets.zero),
+      material: (final _, final __) =>
+          MaterialIconButtonData(padding: EdgeInsets.zero),
     );
   }
 }

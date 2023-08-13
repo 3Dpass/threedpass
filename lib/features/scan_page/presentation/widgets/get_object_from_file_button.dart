@@ -9,6 +9,8 @@ import 'package:logger/logger.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/file_copy.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/file_picker.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/snapshot_create_from_file.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/scan_page/bloc/scan_isolate_cubit.dart';
@@ -52,14 +54,27 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       hashesListBloc: BlocProvider.of<HashesListBloc>(context),
       scanSettings:
           BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings,
-      objectsDirectory: getIt<ObjectsDirectory>(),
+      // objectsDirectory: getIt<ObjectsDirectory>(),
       scanIsolateCubit: BlocProvider.of<ScanIsolateCubit>(context),
       // recievePort: recievePort,
     );
 
     try {
-      final pair = await snapFactory.createSnapshotFromFile();
+      final objectsDirectory = getIt<ObjectsDirectory>();
+      final pickedFilePath = await FilePickerShortCut().pickFile();
+
+      showLoader(context);
+
+      final relativePath =
+          await FileCopy(objectsDirectory).write(pickedFilePath);
+
+      final pair = await snapFactory.createSnapshotFromFile(
+        relativePath: relativePath,
+        pickedFilePath: pickedFilePath,
+      );
+
       hideLoader(context);
+
       unawaited(
         context.router.push(
           PreviewRouteWrapper(

@@ -1,6 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/utils/transfer_type.dart';
@@ -60,21 +61,25 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
     required final String password,
     required final GlobalKey<FormState> formKey,
   }) async {
-    final txInfo = metaDTO.getTxInfo(state.type);
-    final params = metaDTO.getParams(
-      amount,
-      toAddress,
-    );
+    try {
+      final txInfo = metaDTO.getTxInfo(state.type);
+      final params = metaDTO.getParams(
+        amount,
+        toAddress,
+      );
 
-    await Transfer(
-      txInfo: txInfo,
-      params: params,
-      appService: appService,
-      context: context,
-      toAddress: toAddress,
-      password: password,
-      formKey: formKey,
-    ).sendFunds();
+      await Transfer(
+        txInfo: txInfo,
+        params: params,
+        appService: appService,
+        context: context,
+        toAddress: toAddress,
+        password: password,
+        formKey: formKey,
+      ).sendFunds();
+    } on Exception catch (e) {
+      await Fluttertoast.showToast(msg: e.toString());
+    }
   }
 
   void updateTransferType(final TransferType type) {
