@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/error_page.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/matches_count.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/matches_found/matches_found_text.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/matches_found/no_matches_found_text.dart';
@@ -18,16 +19,23 @@ class MatchesFound extends StatelessWidget {
       case PreviewNewObject:
         return const NoMatchesFoundText();
       case PreviewNewSnapshot:
-        return MatchesFoundText(
-          state: state,
-          number: state.hashObject!.snapshots
-              .length, // TODO Calc real mathches, not just count snapshots
-        );
       case PreviewExistingSnapshot:
-        return MatchesFoundText(
-          state: state,
-          number: state.hashObject!.snapshots.length - 1,
-        );
+        final mc =
+            MatchesCount(object: state.hashObject, snapshot: state.snapshot);
+
+        if (mc.matchesCount == 0) {
+          return const NoMatchesFoundText();
+        } else {
+          return MatchesFoundText(
+            state: state,
+            number: mc.matchesCount,
+          );
+        }
+
+      // return MatchesFoundText(
+      //   state: state,
+      //   number: state.hashObject!.snapshots.length - 1,
+      // );
       default:
         return const ErrorPage(
           error: '[MatchesFound] Unknown state for PreviewPageCubitState',

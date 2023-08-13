@@ -27,16 +27,16 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
   final AppService appService;
 
   Future<void> init() async {
-    final params = [
-      appService.keyring.allWithContacts.first.address,
-      '10000000000',
-    ];
+    // final params = [
+    //   appService.keyring.allWithContacts.first.address,
+    //   '10000000000',
+    // ];
 
-    final txInfo = TxInfoData(
-      'balances',
-      TransferTypeValue(state.type).toString(),
-      appService.userSenderData,
-    );
+    // final txInfo = TxInfoData(
+    //   'balances',
+    //   TransferTypeValue(state.type).toString(),
+    //   appService.userSenderData,
+    // );
 
     // This line throws error:
     // {"path":"log","data":{"call":"uid=8;keyring.txFeeEstimate","error":"t.rpc.payment.queryInfo is not a function"}}
