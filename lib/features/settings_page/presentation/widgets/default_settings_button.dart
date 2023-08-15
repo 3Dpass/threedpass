@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/utils/empty_function.dart';
+import 'package:threedpass/core/widgets/other/right_chevron.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 
 class DefaultSettingsButton extends StatelessWidget {
@@ -45,7 +45,7 @@ class DefaultSettingsButton extends StatelessWidget {
   final Color iconColor;
   final String text;
   final String? textValue;
-  final void Function() onPressed;
+  final void Function()? onPressed;
   final bool isBoolean;
   final bool? initialValue;
   final void Function(bool) onPressedBool;
@@ -68,7 +68,7 @@ class DefaultSettingsButton extends StatelessWidget {
     final wrappedChild = isBoolean
         ? child
         : InkWell(
-            onTap: () => onPressed(),
+            onTap: onPressed != null ? () => onPressed!() : null,
             child: child,
           );
 
@@ -183,7 +183,7 @@ class _Value extends StatelessWidget {
           Flexible(
             child: _ValueText(value: value),
           ),
-        const _RightChevron(),
+        const RightChevron(),
       ],
     );
   }
@@ -271,20 +271,5 @@ class _ValueText extends StatelessWidget {
     } else {
       return const SizedBox();
     }
-  }
-}
-
-class _RightChevron extends StatelessWidget {
-  const _RightChevron();
-
-  @override
-  Widget build(final BuildContext context) {
-    final colors = Theme.of(context).customColors;
-    final iconColor = colors.moreFadedGrey;
-    return Icon(
-      Icons.arrow_forward_ios_outlined,
-      size: 16,
-      color: iconColor,
-    );
   }
 }

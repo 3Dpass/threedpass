@@ -8,7 +8,7 @@ class GetTransfersParams extends Equatable {
 
   const GetTransfersParams({
     required this.pageKey,
-    this.pageSize = 15,
+    this.pageSize = 25,
     this.toMultiAddressAccountId,
     this.fromMultiAddressAccountId,
   });

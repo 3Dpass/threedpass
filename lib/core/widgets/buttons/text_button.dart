@@ -11,6 +11,8 @@ class D3pTextButton extends StatelessWidget {
     this.padding,
     this.onPressed,
     this.textColor,
+    this.icon,
+    this.mainAxisAlignment = MainAxisAlignment.center,
   }) : super(key: key);
 
   final void Function()? onPressed;
@@ -19,6 +21,8 @@ class D3pTextButton extends StatelessWidget {
   final String text;
   final Color? textColor;
   final double? width;
+  final IconData? icon;
+  final MainAxisAlignment mainAxisAlignment;
 
   @override
   Widget build(final BuildContext context) {
@@ -36,11 +40,21 @@ class D3pTextButton extends StatelessWidget {
             ),
           ),
           cupertino: (final _, final __) => CupertinoTextButtonData(),
-          child: Text(
-            text,
-            style: TextStyle(
-              color: textColor ?? D3pThemeData.mainColor,
-            ),
+          child: Row(
+            mainAxisAlignment: mainAxisAlignment,
+            children: [
+              if (icon != null)
+                Padding(
+                  padding: EdgeInsets.only(right: 8),
+                  child: Icon(icon),
+                ),
+              Text(
+                text,
+                style: TextStyle(
+                  color: textColor ?? D3pThemeData.mainColor,
+                ),
+              ),
+            ],
           ),
         ),
       ),

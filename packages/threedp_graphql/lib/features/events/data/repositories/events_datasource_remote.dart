@@ -18,6 +18,7 @@ class EventsDatasourceGQL {
   ) async {
     final request = GGetEventsReq((final b) {
       b
+        ..fetchPolicy = FetchPolicy.CacheFirst
         ..vars.pageKey = requestParams.pageKey
         ..vars.pageSize = requestParams.pageSize
         ..vars.filters.blockNumber = requestParams.blockNumber.toString()
