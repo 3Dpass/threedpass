@@ -8,7 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
-import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
+import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 
 class Transfer {
   const Transfer({
@@ -58,9 +58,10 @@ class Transfer {
         return;
       }
 
-      final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
-      // Very dangerous showDialog
-      DefaultLoadingDialog.show(outerContext, 'transfer_loader_text'.tr());
+      final globalContext =
+          BlocProvider.of<HomeContextCubit>(context).state.context;
+
+      DefaultLoadingDialog.show(globalContext, 'transfer_loader_text'.tr());
 
       try {
         final __ = await appService.plugin.sdk.api.tx.signAndSend(
@@ -71,20 +72,16 @@ class Transfer {
             // There are two calls of this callback: p0 == 'Ready' and p0 == 'Broadcast'
             // print(p0 + ' ' + params.toString());
             if (p0 == 'Ready') {
-              DefaultLoadingDialog.hide(outerContext);
+              DefaultLoadingDialog.hide(globalContext);
               context.router.pop();
               Fluttertoast.showToast(msg: 'transfer_success_text'.tr());
             }
           },
         );
         // final b = 1 + 1;
-
-        // DefaultLoadingDialog.hide(outerContext);
-        // unawaited(context.router.pop());
-        // unawaited(Fluttertoast.showToast(msg: 'transfer_success_text'.tr()));
       } on Object catch (e) {
         try {
-          DefaultLoadingDialog.hide(outerContext);
+          DefaultLoadingDialog.hide(globalContext);
         } on Object catch (e) {
           unawaited(Fluttertoast.showToast(msg: e.toString()));
         }

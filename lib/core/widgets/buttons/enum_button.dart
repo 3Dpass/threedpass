@@ -76,7 +76,7 @@ class _Icon extends StatelessWidget {
   const _Icon({required this.isEmpty});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Icon(
       Icons.chevron_right_outlined,
       color: isEmpty ? Colors.transparent : null,
@@ -84,27 +84,27 @@ class _Icon extends StatelessWidget {
   }
 }
 
-class _ListTileMaterial {
-  final ThemeData themeData;
-  final Color? backgroundColor;
-  final RoundedRectangleBorder border;
+// class _ListTileMaterial {
+//   final ThemeData themeData;
+//   final Color? backgroundColor;
+//   final RoundedRectangleBorder border;
 
-  _ListTileMaterial({
-    required this.themeData,
-    required this.backgroundColor,
-    required this.border,
-  });
+//   _ListTileMaterial({
+//     required this.themeData,
+//     required this.backgroundColor,
+//     required this.border,
+//   });
 
-  MaterialTextButtonData style() {
-    return MaterialTextButtonData(
-      style: themeData.textButtonTheme.style!.copyWith(
-        // padding: MaterialStateProperty.all(EdgeInsets.zero),
-        backgroundColor: MaterialStateProperty.all<Color>(
-          backgroundColor ?? themeData.cardColor,
-        ),
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        shape: MaterialStateProperty.all<OutlinedBorder>(border),
-      ),
-    );
-  }
-}
+//   MaterialTextButtonData style() {
+//     return MaterialTextButtonData(
+//       style: themeData.textButtonTheme.style!.copyWith(
+//         // padding: MaterialStateProperty.all(EdgeInsets.zero),
+//         backgroundColor: MaterialStateProperty.all<Color>(
+//           backgroundColor ?? themeData.cardColor,
+//         ),
+//         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+//         shape: MaterialStateProperty.all<OutlinedBorder>(border),
+//       ),
+//     );
+//   }
+// }

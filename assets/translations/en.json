@@ -132,7 +132,7 @@
     "@wallet_base":{
     },
     "wallet_header_title": "Wallet",
-    "create_account_button_label": "New random account",
+    "create_account_button_label": "Random account",
     "import_account_button_label": "Import account",
 
     "init_status_sdk": "Initializing...",
@@ -288,5 +288,10 @@
     },
     "screen_lock_title": "Enter PIN code",
     "screen_lock_title_set": "Set your PIN code",
-    "screen_lock_title_confirm": "Confirm your PIN code"
+    "screen_lock_title_confirm": "Confirm your PIN code",
+
+    "@2.7.2":{
+    },
+    "choose_transfer_keep_alive": "Keep sender alive",
+    "transfer_keep_alive_help": "With the keep-alive option set, the account is protected against removal due to low balances."
 }

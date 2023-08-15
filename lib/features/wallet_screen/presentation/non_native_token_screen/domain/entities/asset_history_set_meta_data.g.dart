@@ -7,21 +7,21 @@ part of 'asset_history_set_meta_data.dart';
 // **************************************************************************
 
 abstract class _$AssetHistorySetMetadataCWProxy {
-  AssetHistorySetMetadata authorAddress(String authorAddress);
-
   AssetHistorySetMetadata blockDatetime(DateTime blockDatetime);
-
-  AssetHistorySetMetadata blockNumber(int blockNumber);
-
-  AssetHistorySetMetadata decimals(String decimals);
 
   AssetHistorySetMetadata extrinsicIdx(int extrinsicIdx);
 
-  AssetHistorySetMetadata extrisincStatus(ExtrisincStatus extrisincStatus);
+  AssetHistorySetMetadata authorAddress(String authorAddress);
+
+  AssetHistorySetMetadata decimals(String decimals);
 
   AssetHistorySetMetadata name(String name);
 
   AssetHistorySetMetadata symbol(String symbol);
+
+  AssetHistorySetMetadata extrisincStatus(ExtrisincStatus extrisincStatus);
+
+  AssetHistorySetMetadata blockNumber(int blockNumber);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AssetHistorySetMetadata(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -30,46 +30,38 @@ abstract class _$AssetHistorySetMetadataCWProxy {
   /// AssetHistorySetMetadata(...).copyWith(id: 12, name: "My name")
   /// ````
   AssetHistorySetMetadata call({
-    String? authorAddress,
     DateTime? blockDatetime,
-    int? blockNumber,
-    String? decimals,
     int? extrinsicIdx,
-    ExtrisincStatus? extrisincStatus,
+    String? authorAddress,
+    String? decimals,
     String? name,
     String? symbol,
+    ExtrisincStatus? extrisincStatus,
+    int? blockNumber,
   });
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAssetHistorySetMetadata.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAssetHistorySetMetadata.copyWith.fieldName(...)`
 class _$AssetHistorySetMetadataCWProxyImpl
     implements _$AssetHistorySetMetadataCWProxy {
-  final AssetHistorySetMetadata _value;
-
   const _$AssetHistorySetMetadataCWProxyImpl(this._value);
 
-  @override
-  AssetHistorySetMetadata authorAddress(String authorAddress) =>
-      this(authorAddress: authorAddress);
+  final AssetHistorySetMetadata _value;
 
   @override
   AssetHistorySetMetadata blockDatetime(DateTime blockDatetime) =>
       this(blockDatetime: blockDatetime);
 
   @override
-  AssetHistorySetMetadata blockNumber(int blockNumber) =>
-      this(blockNumber: blockNumber);
-
-  @override
-  AssetHistorySetMetadata decimals(String decimals) => this(decimals: decimals);
-
-  @override
   AssetHistorySetMetadata extrinsicIdx(int extrinsicIdx) =>
       this(extrinsicIdx: extrinsicIdx);
 
   @override
-  AssetHistorySetMetadata extrisincStatus(ExtrisincStatus extrisincStatus) =>
-      this(extrisincStatus: extrisincStatus);
+  AssetHistorySetMetadata authorAddress(String authorAddress) =>
+      this(authorAddress: authorAddress);
+
+  @override
+  AssetHistorySetMetadata decimals(String decimals) => this(decimals: decimals);
 
   @override
   AssetHistorySetMetadata name(String name) => this(name: name);
@@ -78,6 +70,14 @@ class _$AssetHistorySetMetadataCWProxyImpl
   AssetHistorySetMetadata symbol(String symbol) => this(symbol: symbol);
 
   @override
+  AssetHistorySetMetadata extrisincStatus(ExtrisincStatus extrisincStatus) =>
+      this(extrisincStatus: extrisincStatus);
+
+  @override
+  AssetHistorySetMetadata blockNumber(int blockNumber) =>
+      this(blockNumber: blockNumber);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AssetHistorySetMetadata(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -86,45 +86,35 @@ class _$AssetHistorySetMetadataCWProxyImpl
   /// AssetHistorySetMetadata(...).copyWith(id: 12, name: "My name")
   /// ````
   AssetHistorySetMetadata call({
-    Object? authorAddress = const $CopyWithPlaceholder(),
     Object? blockDatetime = const $CopyWithPlaceholder(),
-    Object? blockNumber = const $CopyWithPlaceholder(),
-    Object? decimals = const $CopyWithPlaceholder(),
     Object? extrinsicIdx = const $CopyWithPlaceholder(),
-    Object? extrisincStatus = const $CopyWithPlaceholder(),
+    Object? authorAddress = const $CopyWithPlaceholder(),
+    Object? decimals = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? symbol = const $CopyWithPlaceholder(),
+    Object? extrisincStatus = const $CopyWithPlaceholder(),
+    Object? blockNumber = const $CopyWithPlaceholder(),
   }) {
     return AssetHistorySetMetadata(
-      authorAddress:
-          authorAddress == const $CopyWithPlaceholder() || authorAddress == null
-              ? _value.authorAddress
-              // ignore: cast_nullable_to_non_nullable
-              : authorAddress as String,
       blockDatetime:
           blockDatetime == const $CopyWithPlaceholder() || blockDatetime == null
               ? _value.blockDatetime
               // ignore: cast_nullable_to_non_nullable
               : blockDatetime as DateTime,
-      blockNumber:
-          blockNumber == const $CopyWithPlaceholder() || blockNumber == null
-              ? _value.blockNumber
-              // ignore: cast_nullable_to_non_nullable
-              : blockNumber as int,
-      decimals: decimals == const $CopyWithPlaceholder() || decimals == null
-          ? _value.decimals
-          // ignore: cast_nullable_to_non_nullable
-          : decimals as String,
       extrinsicIdx:
           extrinsicIdx == const $CopyWithPlaceholder() || extrinsicIdx == null
               ? _value.extrinsicIdx
               // ignore: cast_nullable_to_non_nullable
               : extrinsicIdx as int,
-      extrisincStatus: extrisincStatus == const $CopyWithPlaceholder() ||
-              extrisincStatus == null
-          ? _value.extrisincStatus
+      authorAddress:
+          authorAddress == const $CopyWithPlaceholder() || authorAddress == null
+              ? _value.authorAddress
+              // ignore: cast_nullable_to_non_nullable
+              : authorAddress as String,
+      decimals: decimals == const $CopyWithPlaceholder() || decimals == null
+          ? _value.decimals
           // ignore: cast_nullable_to_non_nullable
-          : extrisincStatus as ExtrisincStatus,
+          : decimals as String,
       name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
@@ -133,6 +123,16 @@ class _$AssetHistorySetMetadataCWProxyImpl
           ? _value.symbol
           // ignore: cast_nullable_to_non_nullable
           : symbol as String,
+      extrisincStatus: extrisincStatus == const $CopyWithPlaceholder() ||
+              extrisincStatus == null
+          ? _value.extrisincStatus
+          // ignore: cast_nullable_to_non_nullable
+          : extrisincStatus as ExtrisincStatus,
+      blockNumber:
+          blockNumber == const $CopyWithPlaceholder() || blockNumber == null
+              ? _value.blockNumber
+              // ignore: cast_nullable_to_non_nullable
+              : blockNumber as int,
     );
   }
 }

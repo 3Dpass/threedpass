@@ -7,19 +7,19 @@ part of 'snapshot.dart';
 // **************************************************************************
 
 abstract class _$SnapshotCWProxy {
-  Snapshot externalPathToObj(String? externalPathToObj);
+  Snapshot name(String name);
 
-  Snapshot fileHash(int fileHash);
+  Snapshot stamp(DateTime stamp);
 
   Snapshot hashes(List<String> hashes);
 
-  Snapshot name(String name);
+  Snapshot settingsConfig(ScanSettings settingsConfig);
+
+  Snapshot fileHash(int fileHash);
 
   Snapshot relativePath(String? relativePath);
 
-  Snapshot settingsConfig(ScanSettings settingsConfig);
-
-  Snapshot stamp(DateTime stamp);
+  Snapshot externalPathToObj(String? externalPathToObj);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Snapshot(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -28,45 +28,45 @@ abstract class _$SnapshotCWProxy {
   /// Snapshot(...).copyWith(id: 12, name: "My name")
   /// ````
   Snapshot call({
-    String? externalPathToObj,
-    int? fileHash,
-    List<String>? hashes,
     String? name,
-    String? relativePath,
-    ScanSettings? settingsConfig,
     DateTime? stamp,
+    List<String>? hashes,
+    ScanSettings? settingsConfig,
+    int? fileHash,
+    String? relativePath,
+    String? externalPathToObj,
   });
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfSnapshot.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfSnapshot.copyWith.fieldName(...)`
 class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
-  final Snapshot _value;
-
   const _$SnapshotCWProxyImpl(this._value);
 
-  @override
-  Snapshot externalPathToObj(String? externalPathToObj) =>
-      this(externalPathToObj: externalPathToObj);
-
-  @override
-  Snapshot fileHash(int fileHash) => this(fileHash: fileHash);
-
-  @override
-  Snapshot hashes(List<String> hashes) => this(hashes: hashes);
+  final Snapshot _value;
 
   @override
   Snapshot name(String name) => this(name: name);
 
   @override
-  Snapshot relativePath(String? relativePath) =>
-      this(relativePath: relativePath);
+  Snapshot stamp(DateTime stamp) => this(stamp: stamp);
+
+  @override
+  Snapshot hashes(List<String> hashes) => this(hashes: hashes);
 
   @override
   Snapshot settingsConfig(ScanSettings settingsConfig) =>
       this(settingsConfig: settingsConfig);
 
   @override
-  Snapshot stamp(DateTime stamp) => this(stamp: stamp);
+  Snapshot fileHash(int fileHash) => this(fileHash: fileHash);
+
+  @override
+  Snapshot relativePath(String? relativePath) =>
+      this(relativePath: relativePath);
+
+  @override
+  Snapshot externalPathToObj(String? externalPathToObj) =>
+      this(externalPathToObj: externalPathToObj);
 
   @override
 
@@ -77,44 +77,44 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
   /// Snapshot(...).copyWith(id: 12, name: "My name")
   /// ````
   Snapshot call({
-    Object? externalPathToObj = const $CopyWithPlaceholder(),
-    Object? fileHash = const $CopyWithPlaceholder(),
-    Object? hashes = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
-    Object? relativePath = const $CopyWithPlaceholder(),
-    Object? settingsConfig = const $CopyWithPlaceholder(),
     Object? stamp = const $CopyWithPlaceholder(),
+    Object? hashes = const $CopyWithPlaceholder(),
+    Object? settingsConfig = const $CopyWithPlaceholder(),
+    Object? fileHash = const $CopyWithPlaceholder(),
+    Object? relativePath = const $CopyWithPlaceholder(),
+    Object? externalPathToObj = const $CopyWithPlaceholder(),
   }) {
     return Snapshot(
-      externalPathToObj: externalPathToObj == const $CopyWithPlaceholder()
-          ? _value.externalPathToObj
-          // ignore: cast_nullable_to_non_nullable
-          : externalPathToObj as String?,
-      fileHash: fileHash == const $CopyWithPlaceholder() || fileHash == null
-          ? _value.fileHash
-          // ignore: cast_nullable_to_non_nullable
-          : fileHash as int,
-      hashes: hashes == const $CopyWithPlaceholder() || hashes == null
-          ? _value.hashes
-          // ignore: cast_nullable_to_non_nullable
-          : hashes as List<String>,
       name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
           : name as String,
-      relativePath: relativePath == const $CopyWithPlaceholder()
-          ? _value.relativePath
+      stamp: stamp == const $CopyWithPlaceholder() || stamp == null
+          ? _value.stamp
           // ignore: cast_nullable_to_non_nullable
-          : relativePath as String?,
+          : stamp as DateTime,
+      hashes: hashes == const $CopyWithPlaceholder() || hashes == null
+          ? _value.hashes
+          // ignore: cast_nullable_to_non_nullable
+          : hashes as List<String>,
       settingsConfig: settingsConfig == const $CopyWithPlaceholder() ||
               settingsConfig == null
           ? _value.settingsConfig
           // ignore: cast_nullable_to_non_nullable
           : settingsConfig as ScanSettings,
-      stamp: stamp == const $CopyWithPlaceholder() || stamp == null
-          ? _value.stamp
+      fileHash: fileHash == const $CopyWithPlaceholder() || fileHash == null
+          ? _value.fileHash
           // ignore: cast_nullable_to_non_nullable
-          : stamp as DateTime,
+          : fileHash as int,
+      relativePath: relativePath == const $CopyWithPlaceholder()
+          ? _value.relativePath
+          // ignore: cast_nullable_to_non_nullable
+          : relativePath as String?,
+      externalPathToObj: externalPathToObj == const $CopyWithPlaceholder()
+          ? _value.externalPathToObj
+          // ignore: cast_nullable_to_non_nullable
+          : externalPathToObj as String?,
     );
   }
 }

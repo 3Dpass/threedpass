@@ -10,17 +10,17 @@ class AppSettingsBlock extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SettingsSectionHeader(
+        SettingsSectionHeader(
           title: 'app_settings_title',
         ),
         // const _RequirementsTextField(),
-        const RequirementsButton(),
-        const DarkThemeSwitch(),
-        const ShowZeroAssets(),
-        const PinCodeSettings(),
+        RequirementsButton(),
+        DarkThemeSwitch(),
+        ShowZeroAssets(),
+        PinCodeSettings(),
       ],
     );
   }

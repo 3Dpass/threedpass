@@ -8,7 +8,6 @@ import 'package:threedpass/core/widgets/buttons/list_tile_button.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart';
 
-// TODO Close drawer, when create new account and return to the route navigator
 class AccountsDrawer extends Drawer {
   AccountsDrawer({
     required final List<KeyPairData> accounts,
@@ -22,9 +21,6 @@ class AccountsDrawer extends Drawer {
           backgroundColor: Theme.of(context).customColors.scaffoldBackground,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            // Important: Remove any padding from the ListView.
-            // padding: EdgeInsets.zero,
-            // physics: const NeverScrollableScrollPhysics(),
             children: [
               PlatformAppBar(
                 title: Text(
@@ -45,12 +41,16 @@ class AccountsDrawer extends Drawer {
               const SizedBox(height: 4),
               D3pTextButton(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                mainAxisAlignment: MainAxisAlignment.start,
+                icon: Icons.add_circle,
                 text: 'create_account_button_label'.tr(),
                 onPressed: () =>
                     CreateAccountPageWrapper.pushToGenerateRandom(context),
               ),
               D3pTextButton(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                mainAxisAlignment: MainAxisAlignment.start,
+                icon: Icons.import_export,
                 text: 'import_account_button_label'.tr(),
                 onPressed: () =>
                     CreateAccountPageWrapper.pushToImportType(context),
@@ -70,8 +70,6 @@ class AccountsDrawer extends Drawer {
                                 .changeAccount(accounts[index]);
                             Navigator.of(context).pop();
                           },
-                    // backgroundColor: Theme.of(context).canvasColor,
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
                   ),
                 ),
               ),

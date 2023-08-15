@@ -9,11 +9,11 @@ class AccountCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return D3pCard(
+    return const D3pCard(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Column(
-          children: const [
+          children: [
             SizedBoxH8(),
             CreateAccountButton(),
             SizedBoxH4(),

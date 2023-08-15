@@ -3,17 +3,18 @@ import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
+import 'package:threedpass/core/polkawallet/utils/transfer_type.dart';
 import 'package:threedpass/core/polkawallet/utils/tx_info.dart';
 
 abstract class TransferMetaDTO {
   const TransferMetaDTO();
   MetaInfoType get type;
 
-  String getBalance(final AppService appService);
+  String getBalance();
   String getName();
-  TxInfoData getTxInfo(final AppService appService);
+  TxInfoData getTxInfo(final TransferType transferType);
+
   List<String> getParams(
-    final AppService appService,
     final String? amount,
     final String toAddress,
   );
@@ -21,18 +22,23 @@ abstract class TransferMetaDTO {
 
 class CoinsTransferMetaDTO extends TransferMetaDTO {
   final String coinName;
+  final CoinsTransferTx txInfoValue;
+  final AppService appService;
 
-  const CoinsTransferMetaDTO({
+  CoinsTransferMetaDTO({
     required this.coinName,
-  });
+    required this.appService,
+  }) : txInfoValue = CoinsTransferTx(
+          appService: appService,
+        );
 
   @override
   MetaInfoType get type => MetaInfoType.coin;
 
   @override
-  String getBalance(final AppService appService) {
+  String getBalance() {
     return BalanceUtils.balance(
-      appService.balance.value.availableBalance as String?,
+      appService.chosenAccountBalance.value.availableBalance as String?,
       appService.networkStateData.safeDecimals,
     );
   }
@@ -43,32 +49,36 @@ class CoinsTransferMetaDTO extends TransferMetaDTO {
   }
 
   @override
-  TxInfoData getTxInfo(final AppService appService) {
-    return CoinsTransferTx(appService: appService).txInfo;
+  TxInfoData getTxInfo(final TransferType transferType) {
+    return txInfoValue.txInfo(transferType);
   }
 
   @override
   List<String> getParams(
-    final AppService appService,
     final String? amount,
     final String toAddress,
   ) {
-    return CoinsTransferTx(appService: appService).params(amount, toAddress);
+    return txInfoValue.params(amount, toAddress);
   }
 }
 
 class AssetTransferMetaDTO extends TransferMetaDTO {
   final TokenBalanceData tokenBalanceData;
+  final AssetsTransferTx txInfoValue;
 
-  const AssetTransferMetaDTO({
+  AssetTransferMetaDTO({
     required this.tokenBalanceData,
-  });
+    required final AppService appService,
+  }) : txInfoValue = AssetsTransferTx(
+          appService: appService,
+          tokenBalanceData: tokenBalanceData,
+        );
 
   @override
   MetaInfoType get type => MetaInfoType.asset;
 
   @override
-  String getBalance(final AppService appService) {
+  String getBalance() {
     return BalanceUtils.balance(
       tokenBalanceData.amount,
       tokenBalanceData.decimals ?? 12,
@@ -81,23 +91,16 @@ class AssetTransferMetaDTO extends TransferMetaDTO {
   }
 
   @override
-  TxInfoData getTxInfo(final AppService appService) {
-    return AssetsTransferTx(
-      appService: appService,
-      tokenBalanceData: tokenBalanceData,
-    ).txInfo;
+  TxInfoData getTxInfo(final TransferType transferType) {
+    return txInfoValue.txInfo(transferType);
   }
 
   @override
   List<String> getParams(
-    final AppService appService,
     final String? amount,
     final String toAddress,
   ) {
-    return AssetsTransferTx(
-      appService: appService,
-      tokenBalanceData: tokenBalanceData,
-    ).params(amount, toAddress);
+    return txInfoValue.params(amount, toAddress);
   }
 }
 

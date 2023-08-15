@@ -7,11 +7,11 @@ class CompareRow extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: const [
+      children: [
         Flexible(
           flex: 2,
           child: SizedBox(

@@ -10,7 +10,7 @@ class _QRCode extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.width - 16 * 2,
       alignment: Alignment.center,
-      child: QrImage(
+      child: QrImageView(
         padding: EdgeInsets.zero,
         data: address,
         version: QrVersions.auto,

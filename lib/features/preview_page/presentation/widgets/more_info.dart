@@ -49,7 +49,7 @@ class MoreInfo extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.center,
-          child: QrImage(
+          child: QrImageView(
             padding: EdgeInsets.zero,
             data: state.snapshot.hashes.join('\n'),
             version: QrVersions.auto,

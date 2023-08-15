@@ -7,13 +7,13 @@ part of 'scan_settings.dart';
 // **************************************************************************
 
 abstract class _$ScanSettingsCWProxy {
-  ScanSettings algorithm(String algorithm);
-
   ScanSettings gridSize(int gridSize);
 
-  ScanSettings libVersion(String libVersion);
-
   ScanSettings nSections(int nSections);
+
+  ScanSettings algorithm(String algorithm);
+
+  ScanSettings libVersion(String libVersion);
 
   ScanSettings transBytes(String transBytes);
 
@@ -24,31 +24,31 @@ abstract class _$ScanSettingsCWProxy {
   /// ScanSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   ScanSettings call({
-    String? algorithm,
     int? gridSize,
-    String? libVersion,
     int? nSections,
+    String? algorithm,
+    String? libVersion,
     String? transBytes,
   });
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfScanSettings.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfScanSettings.copyWith.fieldName(...)`
 class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
-  final ScanSettings _value;
-
   const _$ScanSettingsCWProxyImpl(this._value);
 
-  @override
-  ScanSettings algorithm(String algorithm) => this(algorithm: algorithm);
+  final ScanSettings _value;
 
   @override
   ScanSettings gridSize(int gridSize) => this(gridSize: gridSize);
 
   @override
-  ScanSettings libVersion(String libVersion) => this(libVersion: libVersion);
+  ScanSettings nSections(int nSections) => this(nSections: nSections);
 
   @override
-  ScanSettings nSections(int nSections) => this(nSections: nSections);
+  ScanSettings algorithm(String algorithm) => this(algorithm: algorithm);
+
+  @override
+  ScanSettings libVersion(String libVersion) => this(libVersion: libVersion);
 
   @override
   ScanSettings transBytes(String transBytes) => this(transBytes: transBytes);
@@ -62,30 +62,30 @@ class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
   /// ScanSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   ScanSettings call({
-    Object? algorithm = const $CopyWithPlaceholder(),
     Object? gridSize = const $CopyWithPlaceholder(),
-    Object? libVersion = const $CopyWithPlaceholder(),
     Object? nSections = const $CopyWithPlaceholder(),
+    Object? algorithm = const $CopyWithPlaceholder(),
+    Object? libVersion = const $CopyWithPlaceholder(),
     Object? transBytes = const $CopyWithPlaceholder(),
   }) {
     return ScanSettings(
-      algorithm: algorithm == const $CopyWithPlaceholder() || algorithm == null
-          ? _value.algorithm
-          // ignore: cast_nullable_to_non_nullable
-          : algorithm as String,
       gridSize: gridSize == const $CopyWithPlaceholder() || gridSize == null
           ? _value.gridSize
           // ignore: cast_nullable_to_non_nullable
           : gridSize as int,
+      nSections: nSections == const $CopyWithPlaceholder() || nSections == null
+          ? _value.nSections
+          // ignore: cast_nullable_to_non_nullable
+          : nSections as int,
+      algorithm: algorithm == const $CopyWithPlaceholder() || algorithm == null
+          ? _value.algorithm
+          // ignore: cast_nullable_to_non_nullable
+          : algorithm as String,
       libVersion:
           libVersion == const $CopyWithPlaceholder() || libVersion == null
               ? _value.libVersion
               // ignore: cast_nullable_to_non_nullable
               : libVersion as String,
-      nSections: nSections == const $CopyWithPlaceholder() || nSections == null
-          ? _value.nSections
-          // ignore: cast_nullable_to_non_nullable
-          : nSections as int,
       transBytes:
           transBytes == const $CopyWithPlaceholder() || transBytes == null
               ? _value.transBytes

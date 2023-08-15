@@ -25,9 +25,9 @@ abstract class _$HashObjectCWProxy {
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfHashObject.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfHashObject.copyWith.fieldName(...)`
 class _$HashObjectCWProxyImpl implements _$HashObjectCWProxy {
-  final HashObject _value;
-
   const _$HashObjectCWProxyImpl(this._value);
+
+  final HashObject _value;
 
   @override
   HashObject name(String name) => this(name: name);

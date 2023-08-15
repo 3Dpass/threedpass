@@ -30,7 +30,7 @@ class CoinsBalance extends StatelessWidget {
         final int tokenDecimals = state.networkStateData.safeDecimals;
 
         return ValueListenableBuilder(
-          valueListenable: state.balance,
+          valueListenable: state.chosenAccountBalance,
           builder: (final context, final BalanceData balance, final child) {
             if (balance.isNull) {
               return placeHolder;

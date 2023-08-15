@@ -7,19 +7,19 @@ part of 'asset_history_unknown.dart';
 // **************************************************************************
 
 abstract class _$AssetHistoryUnkownCWProxy {
-  AssetHistoryUnkown arguments(String arguments);
-
-  AssetHistoryUnkown authorAddress(String authorAddress);
-
   AssetHistoryUnkown blockDatetime(DateTime blockDatetime);
-
-  AssetHistoryUnkown blockNumber(int blockNumber);
-
-  AssetHistoryUnkown callModule(String callModule);
 
   AssetHistoryUnkown extrinsicIdx(int extrinsicIdx);
 
+  AssetHistoryUnkown authorAddress(String authorAddress);
+
+  AssetHistoryUnkown arguments(String arguments);
+
+  AssetHistoryUnkown callModule(String callModule);
+
   AssetHistoryUnkown extrisincStatus(ExtrisincStatus extrisincStatus);
+
+  AssetHistoryUnkown blockNumber(int blockNumber);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AssetHistoryUnkown(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -28,48 +28,48 @@ abstract class _$AssetHistoryUnkownCWProxy {
   /// AssetHistoryUnkown(...).copyWith(id: 12, name: "My name")
   /// ````
   AssetHistoryUnkown call({
-    String? arguments,
-    String? authorAddress,
     DateTime? blockDatetime,
-    int? blockNumber,
-    String? callModule,
     int? extrinsicIdx,
+    String? authorAddress,
+    String? arguments,
+    String? callModule,
     ExtrisincStatus? extrisincStatus,
+    int? blockNumber,
   });
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAssetHistoryUnkown.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAssetHistoryUnkown.copyWith.fieldName(...)`
 class _$AssetHistoryUnkownCWProxyImpl implements _$AssetHistoryUnkownCWProxy {
-  final AssetHistoryUnkown _value;
-
   const _$AssetHistoryUnkownCWProxyImpl(this._value);
 
-  @override
-  AssetHistoryUnkown arguments(String arguments) => this(arguments: arguments);
-
-  @override
-  AssetHistoryUnkown authorAddress(String authorAddress) =>
-      this(authorAddress: authorAddress);
+  final AssetHistoryUnkown _value;
 
   @override
   AssetHistoryUnkown blockDatetime(DateTime blockDatetime) =>
       this(blockDatetime: blockDatetime);
 
   @override
-  AssetHistoryUnkown blockNumber(int blockNumber) =>
-      this(blockNumber: blockNumber);
+  AssetHistoryUnkown extrinsicIdx(int extrinsicIdx) =>
+      this(extrinsicIdx: extrinsicIdx);
+
+  @override
+  AssetHistoryUnkown authorAddress(String authorAddress) =>
+      this(authorAddress: authorAddress);
+
+  @override
+  AssetHistoryUnkown arguments(String arguments) => this(arguments: arguments);
 
   @override
   AssetHistoryUnkown callModule(String callModule) =>
       this(callModule: callModule);
 
   @override
-  AssetHistoryUnkown extrinsicIdx(int extrinsicIdx) =>
-      this(extrinsicIdx: extrinsicIdx);
-
-  @override
   AssetHistoryUnkown extrisincStatus(ExtrisincStatus extrisincStatus) =>
       this(extrisincStatus: extrisincStatus);
+
+  @override
+  AssetHistoryUnkown blockNumber(int blockNumber) =>
+      this(blockNumber: blockNumber);
 
   @override
 
@@ -80,49 +80,49 @@ class _$AssetHistoryUnkownCWProxyImpl implements _$AssetHistoryUnkownCWProxy {
   /// AssetHistoryUnkown(...).copyWith(id: 12, name: "My name")
   /// ````
   AssetHistoryUnkown call({
-    Object? arguments = const $CopyWithPlaceholder(),
-    Object? authorAddress = const $CopyWithPlaceholder(),
     Object? blockDatetime = const $CopyWithPlaceholder(),
-    Object? blockNumber = const $CopyWithPlaceholder(),
-    Object? callModule = const $CopyWithPlaceholder(),
     Object? extrinsicIdx = const $CopyWithPlaceholder(),
+    Object? authorAddress = const $CopyWithPlaceholder(),
+    Object? arguments = const $CopyWithPlaceholder(),
+    Object? callModule = const $CopyWithPlaceholder(),
     Object? extrisincStatus = const $CopyWithPlaceholder(),
+    Object? blockNumber = const $CopyWithPlaceholder(),
   }) {
     return AssetHistoryUnkown(
-      arguments: arguments == const $CopyWithPlaceholder() || arguments == null
-          ? _value.arguments
-          // ignore: cast_nullable_to_non_nullable
-          : arguments as String,
-      authorAddress:
-          authorAddress == const $CopyWithPlaceholder() || authorAddress == null
-              ? _value.authorAddress
-              // ignore: cast_nullable_to_non_nullable
-              : authorAddress as String,
       blockDatetime:
           blockDatetime == const $CopyWithPlaceholder() || blockDatetime == null
               ? _value.blockDatetime
               // ignore: cast_nullable_to_non_nullable
               : blockDatetime as DateTime,
-      blockNumber:
-          blockNumber == const $CopyWithPlaceholder() || blockNumber == null
-              ? _value.blockNumber
-              // ignore: cast_nullable_to_non_nullable
-              : blockNumber as int,
-      callModule:
-          callModule == const $CopyWithPlaceholder() || callModule == null
-              ? _value.callModule
-              // ignore: cast_nullable_to_non_nullable
-              : callModule as String,
       extrinsicIdx:
           extrinsicIdx == const $CopyWithPlaceholder() || extrinsicIdx == null
               ? _value.extrinsicIdx
               // ignore: cast_nullable_to_non_nullable
               : extrinsicIdx as int,
+      authorAddress:
+          authorAddress == const $CopyWithPlaceholder() || authorAddress == null
+              ? _value.authorAddress
+              // ignore: cast_nullable_to_non_nullable
+              : authorAddress as String,
+      arguments: arguments == const $CopyWithPlaceholder() || arguments == null
+          ? _value.arguments
+          // ignore: cast_nullable_to_non_nullable
+          : arguments as String,
+      callModule:
+          callModule == const $CopyWithPlaceholder() || callModule == null
+              ? _value.callModule
+              // ignore: cast_nullable_to_non_nullable
+              : callModule as String,
       extrisincStatus: extrisincStatus == const $CopyWithPlaceholder() ||
               extrisincStatus == null
           ? _value.extrisincStatus
           // ignore: cast_nullable_to_non_nullable
           : extrisincStatus as ExtrisincStatus,
+      blockNumber:
+          blockNumber == const $CopyWithPlaceholder() || blockNumber == null
+              ? _value.blockNumber
+              // ignore: cast_nullable_to_non_nullable
+              : blockNumber as int,
     );
   }
 }

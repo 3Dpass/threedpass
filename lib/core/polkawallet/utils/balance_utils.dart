@@ -73,21 +73,23 @@ class BalanceUtils {
   /// number transform 4:
   /// from <String of double> to <BigInt>
   static BigInt tokenInt(final String? value, final int decimals) {
-    if (value == null) {
-      return BigInt.zero;
-    }
-    double v = 0;
+    // if (value == null) {
+    //   return BigInt.zero;
+    // }
+    // double v = 0;
     try {
-      if (value.contains(',') || value.contains('.')) {
-        v = NumberFormat(",##0.${"0" * decimals}").parse(value) as double;
-      } else {
-        v = double.parse(value);
-      }
+      final v = double.parse(value ?? '');
+      return BigInt.from(v * pow(10, decimals));
+      // if (double.tryParse(value) != null) {
+      //   v = NumberFormat(",##0.${"0" * decimals}").parse(value).toDouble();
+      // } else {
+      //   v = double.parse(value);
+      // }
     } on Exception catch (err) {
-      getIt<Logger>().e('BalanceUtils.tokenInt() error: ${err}');
+      throw Exception('BalanceUtils.tokenInt() value: ${value} error: ${err}');
+      // getIt<Logger>().e();
       // debugPrint();
     }
-    return BigInt.from(v * pow(10, decimals));
   }
 
   static String formattedTotal(

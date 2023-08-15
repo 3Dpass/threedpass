@@ -15,7 +15,7 @@ class PixelRatioSlider extends StatelessWidget {
       valueNotifier: valueNotifier,
       minValue: minValue,
       maxValue: maxValue,
-      divisions: 5,
+      divisions: 6,
       label: 'preview_settings_pixel_ratio_label',
       helpText: 'pixel_ratio_help_text',
     );

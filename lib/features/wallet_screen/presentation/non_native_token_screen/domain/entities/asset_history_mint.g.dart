@@ -7,17 +7,17 @@ part of 'asset_history_mint.dart';
 // **************************************************************************
 
 abstract class _$AssetHistoryMintCWProxy {
-  AssetHistoryMint authorAddress(String authorAddress);
-
   AssetHistoryMint blockDatetime(DateTime blockDatetime);
-
-  AssetHistoryMint blockNumber(int blockNumber);
 
   AssetHistoryMint extrinsicIdx(int extrinsicIdx);
 
-  AssetHistoryMint extrisincStatus(ExtrisincStatus extrisincStatus);
+  AssetHistoryMint authorAddress(String authorAddress);
 
   AssetHistoryMint value(String value);
+
+  AssetHistoryMint extrisincStatus(ExtrisincStatus extrisincStatus);
+
+  AssetHistoryMint blockNumber(int blockNumber);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AssetHistoryMint(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -26,43 +26,43 @@ abstract class _$AssetHistoryMintCWProxy {
   /// AssetHistoryMint(...).copyWith(id: 12, name: "My name")
   /// ````
   AssetHistoryMint call({
-    String? authorAddress,
     DateTime? blockDatetime,
-    int? blockNumber,
     int? extrinsicIdx,
-    ExtrisincStatus? extrisincStatus,
+    String? authorAddress,
     String? value,
+    ExtrisincStatus? extrisincStatus,
+    int? blockNumber,
   });
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAssetHistoryMint.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAssetHistoryMint.copyWith.fieldName(...)`
 class _$AssetHistoryMintCWProxyImpl implements _$AssetHistoryMintCWProxy {
-  final AssetHistoryMint _value;
-
   const _$AssetHistoryMintCWProxyImpl(this._value);
 
-  @override
-  AssetHistoryMint authorAddress(String authorAddress) =>
-      this(authorAddress: authorAddress);
+  final AssetHistoryMint _value;
 
   @override
   AssetHistoryMint blockDatetime(DateTime blockDatetime) =>
       this(blockDatetime: blockDatetime);
 
   @override
-  AssetHistoryMint blockNumber(int blockNumber) =>
-      this(blockNumber: blockNumber);
-
-  @override
   AssetHistoryMint extrinsicIdx(int extrinsicIdx) =>
       this(extrinsicIdx: extrinsicIdx);
+
+  @override
+  AssetHistoryMint authorAddress(String authorAddress) =>
+      this(authorAddress: authorAddress);
+
+  @override
+  AssetHistoryMint value(String value) => this(value: value);
 
   @override
   AssetHistoryMint extrisincStatus(ExtrisincStatus extrisincStatus) =>
       this(extrisincStatus: extrisincStatus);
 
   @override
-  AssetHistoryMint value(String value) => this(value: value);
+  AssetHistoryMint blockNumber(int blockNumber) =>
+      this(blockNumber: blockNumber);
 
   @override
 
@@ -73,43 +73,43 @@ class _$AssetHistoryMintCWProxyImpl implements _$AssetHistoryMintCWProxy {
   /// AssetHistoryMint(...).copyWith(id: 12, name: "My name")
   /// ````
   AssetHistoryMint call({
-    Object? authorAddress = const $CopyWithPlaceholder(),
     Object? blockDatetime = const $CopyWithPlaceholder(),
-    Object? blockNumber = const $CopyWithPlaceholder(),
     Object? extrinsicIdx = const $CopyWithPlaceholder(),
-    Object? extrisincStatus = const $CopyWithPlaceholder(),
+    Object? authorAddress = const $CopyWithPlaceholder(),
     Object? value = const $CopyWithPlaceholder(),
+    Object? extrisincStatus = const $CopyWithPlaceholder(),
+    Object? blockNumber = const $CopyWithPlaceholder(),
   }) {
     return AssetHistoryMint(
-      authorAddress:
-          authorAddress == const $CopyWithPlaceholder() || authorAddress == null
-              ? _value.authorAddress
-              // ignore: cast_nullable_to_non_nullable
-              : authorAddress as String,
       blockDatetime:
           blockDatetime == const $CopyWithPlaceholder() || blockDatetime == null
               ? _value.blockDatetime
               // ignore: cast_nullable_to_non_nullable
               : blockDatetime as DateTime,
-      blockNumber:
-          blockNumber == const $CopyWithPlaceholder() || blockNumber == null
-              ? _value.blockNumber
-              // ignore: cast_nullable_to_non_nullable
-              : blockNumber as int,
       extrinsicIdx:
           extrinsicIdx == const $CopyWithPlaceholder() || extrinsicIdx == null
               ? _value.extrinsicIdx
               // ignore: cast_nullable_to_non_nullable
               : extrinsicIdx as int,
+      authorAddress:
+          authorAddress == const $CopyWithPlaceholder() || authorAddress == null
+              ? _value.authorAddress
+              // ignore: cast_nullable_to_non_nullable
+              : authorAddress as String,
+      value: value == const $CopyWithPlaceholder() || value == null
+          ? _value.value
+          // ignore: cast_nullable_to_non_nullable
+          : value as String,
       extrisincStatus: extrisincStatus == const $CopyWithPlaceholder() ||
               extrisincStatus == null
           ? _value.extrisincStatus
           // ignore: cast_nullable_to_non_nullable
           : extrisincStatus as ExtrisincStatus,
-      value: value == const $CopyWithPlaceholder() || value == null
-          ? _value.value
-          // ignore: cast_nullable_to_non_nullable
-          : value as String,
+      blockNumber:
+          blockNumber == const $CopyWithPlaceholder() || blockNumber == null
+              ? _value.blockNumber
+              // ignore: cast_nullable_to_non_nullable
+              : blockNumber as int,
     );
   }
 }

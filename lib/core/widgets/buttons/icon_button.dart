@@ -6,27 +6,33 @@ class D3pIconButton extends StatelessWidget {
     required this.iconData,
     this.onPressed,
     this.iconColor,
+    this.size,
     super.key,
   });
 
   const D3pIconButton.fake({
     super.key,
   })  : iconData = Icons.abc,
+        size = null,
         iconColor = Colors.transparent,
         onPressed = null;
 
   final IconData iconData;
   final Color? iconColor;
   final void Function()? onPressed;
+  final double? size;
 
   @override
   Widget build(final BuildContext context) {
     return PlatformIconButton(
       icon: Icon(
         iconData,
+        size: size,
         color: iconColor,
       ),
       onPressed: onPressed,
+      material: (final _, final __) =>
+          MaterialIconButtonData(padding: EdgeInsets.zero),
     );
   }
 }

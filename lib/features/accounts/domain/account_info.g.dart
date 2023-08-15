@@ -29,9 +29,9 @@ abstract class _$AccountCreateMnemonicCWProxy {
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAccountCreateMnemonic.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAccountCreateMnemonic.copyWith.fieldName(...)`
 class _$AccountCreateMnemonicCWProxyImpl
     implements _$AccountCreateMnemonicCWProxy {
-  final AccountCreateMnemonic _value;
-
   const _$AccountCreateMnemonicCWProxyImpl(this._value);
+
+  final AccountCreateMnemonic _value;
 
   @override
   AccountCreateMnemonic mnemonic(String mnemonic) => this(mnemonic: mnemonic);
@@ -80,11 +80,11 @@ extension $AccountCreateMnemonicCopyWith on AccountCreateMnemonic {
 }
 
 abstract class _$AccountCreateSeedCWProxy {
+  AccountCreateSeed seed(String seed);
+
   AccountCreateSeed name(String name);
 
   AccountCreateSeed password(String password);
-
-  AccountCreateSeed seed(String seed);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountCreateSeed(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -93,17 +93,20 @@ abstract class _$AccountCreateSeedCWProxy {
   /// AccountCreateSeed(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountCreateSeed call({
+    String? seed,
     String? name,
     String? password,
-    String? seed,
   });
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAccountCreateSeed.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAccountCreateSeed.copyWith.fieldName(...)`
 class _$AccountCreateSeedCWProxyImpl implements _$AccountCreateSeedCWProxy {
+  const _$AccountCreateSeedCWProxyImpl(this._value);
+
   final AccountCreateSeed _value;
 
-  const _$AccountCreateSeedCWProxyImpl(this._value);
+  @override
+  AccountCreateSeed seed(String seed) => this(seed: seed);
 
   @override
   AccountCreateSeed name(String name) => this(name: name);
@@ -112,9 +115,6 @@ class _$AccountCreateSeedCWProxyImpl implements _$AccountCreateSeedCWProxy {
   AccountCreateSeed password(String password) => this(password: password);
 
   @override
-  AccountCreateSeed seed(String seed) => this(seed: seed);
-
-  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountCreateSeed(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -123,11 +123,15 @@ class _$AccountCreateSeedCWProxyImpl implements _$AccountCreateSeedCWProxy {
   /// AccountCreateSeed(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountCreateSeed call({
+    Object? seed = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? password = const $CopyWithPlaceholder(),
-    Object? seed = const $CopyWithPlaceholder(),
   }) {
     return AccountCreateSeed(
+      seed: seed == const $CopyWithPlaceholder() || seed == null
+          ? _value.seed
+          // ignore: cast_nullable_to_non_nullable
+          : seed as String,
       name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
@@ -136,10 +140,6 @@ class _$AccountCreateSeedCWProxyImpl implements _$AccountCreateSeedCWProxy {
           ? _value.password
           // ignore: cast_nullable_to_non_nullable
           : password as String,
-      seed: seed == const $CopyWithPlaceholder() || seed == null
-          ? _value.seed
-          // ignore: cast_nullable_to_non_nullable
-          : seed as String,
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:calc/calc.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:logger/logger.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/utils/hash_file.dart';
@@ -7,22 +6,19 @@ import 'package:threedpass/core/utils/pair.dart';
 import 'package:threedpass/core/utils/random_hex.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/file_copy.dart';
 import 'package:threedpass/features/scan_page/bloc/scan_isolate_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/algorithm.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/setup.dart';
 
-part './file_picker.dart';
 part './trans_bytes.dart';
 
 class SnapshotFileFactory {
   final ScanSettings scanSettings;
   final HashesListBloc hashesListBloc;
   final void Function() showLoader;
-  final ObjectsDirectory objectsDirectory;
+  // final ObjectsDirectory objectsDirectory;
   final ScanIsolateCubit scanIsolateCubit;
   // final void Function() hideLoader;
 
@@ -30,7 +26,7 @@ class SnapshotFileFactory {
     required this.scanSettings,
     required this.hashesListBloc,
     required this.showLoader,
-    required this.objectsDirectory,
+    // required this.objectsDirectory,
     required this.scanIsolateCubit,
     // required this.hideLoader,
   });
@@ -39,13 +35,10 @@ class SnapshotFileFactory {
     return '$rawObjName ${Fmt.basicDateFormat.format(DateTime.now())}';
   }
 
-  Future<Pair<HashObject?, Snapshot>> createSnapshotFromFile() async {
-    final pickedFilePath = await _FilePicker().pickFile();
-
-    showLoader();
-
-    final relativePath = await FileCopy(objectsDirectory).write(pickedFilePath);
-
+  Future<Pair<HashObject?, Snapshot>> createSnapshotFromFile({
+    required final String pickedFilePath,
+    required final String relativePath,
+  }) async {
     final transBytes = await _TransBytes(
       scanSettings: scanSettings,
     ).calc();

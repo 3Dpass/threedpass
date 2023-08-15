@@ -12,7 +12,7 @@ class NoMatchesFoundText extends StatelessWidget {
       mainText: plural('MATCHES_number_plural', 0),
       clickable: 'WHY_not_found'.tr(),
       onTap: () => launchUrlString(
-        'https://3dpass.org/features.html#3D_object_recognition',
+        'https://3dpass.org/features#3drecognition',
       ),
     );
   }

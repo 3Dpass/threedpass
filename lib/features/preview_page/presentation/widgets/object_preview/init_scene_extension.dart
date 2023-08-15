@@ -19,7 +19,7 @@ extension ___ on _State {
   void initControls() {
     // controls
     controls = THREE_JSM.ArcballControls(camera, _globalKey, scene, 1);
-    controls.addEventListener('change', (final event) {
+    controls.addEventListener('change', (final dynamic event) {
       render();
     });
   }

@@ -14,6 +14,7 @@ import 'package:threedpass/features/wallet_screen/presentation/non_native_token_
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/usecases/get_events_usecase.dart';
 import 'package:threedpass/setup.dart';
 
+// TODO Maybe parse all extrinsics, not only account holder to get all incoming transactions
 class AssetsGetExtrinsicsCubit extends Cubit<void> {
   AssetsGetExtrinsicsCubit({
     required this.getExtrinsics,
@@ -71,7 +72,7 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
                 );
               }
               pagingController.itemList = list;
-              pagingController.notifyListeners();
+              // pagingController.notifyListeners();
               // print('${item.blockDatetime} ${item.runtimeType}');
             },
           );

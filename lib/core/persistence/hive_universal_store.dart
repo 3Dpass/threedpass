@@ -23,8 +23,8 @@ class HiveUniversalStore<T> {
   /// Delete object by unknown key
   Future<StorageError?> removeObject(final T value) async {
     final map = _box.toMap();
-    final key =
-        map.keys.firstWhere((final k) => map[k] == value, orElse: () => null);
+    final dynamic key = map.keys
+        .firstWhere((final dynamic k) => map[k] == value, orElse: () => null);
 
     if (key != null) {
       await _box.delete(key);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/widgets/other/right_chevron.dart';
 
 class ListTileButton extends StatelessWidget {
   const ListTileButton.bottom({
@@ -70,20 +71,23 @@ class ListTileButton extends StatelessWidget {
       padding: padding ?? EdgeInsets.zero,
       child: SizedBox(
         child: PlatformTextButton(
+          padding: EdgeInsets.zero,
           onPressed: onPressed,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                text,
-                style: theme.customTextStyles.d3plabelLarge
-                    .copyWith(color: mainColor),
-              ),
-              Icon(
-                Icons.arrow_right_rounded,
-                color: mainColor,
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  text,
+                  style: theme.customTextStyles.d3plabelLarge
+                      .copyWith(color: mainColor),
+                ),
+                RightChevron(
+                  color: mainColor,
+                ),
+              ],
+            ),
           ),
           material: (final context, final platform) => _ListTileMaterial(
             themeData: theme,

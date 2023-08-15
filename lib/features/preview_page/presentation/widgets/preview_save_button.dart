@@ -52,7 +52,7 @@ class PreviewSaveButton extends StatelessWidget {
     return D3pElevatedButton(
       minimumSize: const Size.fromHeight(46),
       text: title,
-      onPressed: () => routeToPush.show(context),
+      onPressed: () => routeToPush.show<void>(context),
     );
   }
 }

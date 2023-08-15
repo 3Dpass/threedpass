@@ -10,13 +10,13 @@ class ScanPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return D3pScaffold(
+    return const D3pScaffold(
       removeBackButton: true,
       appbarTitle: 'recognize_your_objects',
       body: Stack(
         children: [
-          const ScanPageContent(),
-          const Align(
+          ScanPageContent(),
+          Align(
             alignment: Alignment.bottomRight,
             child: Padding(
               padding: EdgeInsets.all(16),

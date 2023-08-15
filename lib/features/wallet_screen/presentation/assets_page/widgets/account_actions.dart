@@ -15,7 +15,7 @@ class AccountActions extends StatelessWidget {
     final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
     switch (value) {
       case 1:
-        await showPlatformDialog(
+        await showPlatformDialog<void>(
           context: outerContext,
           builder: (final _) => const RemoveAccountDialog(),
         );

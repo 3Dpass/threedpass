@@ -14,7 +14,7 @@ class AssetHistoryUnknownWidget extends StatelessWidget {
     return Column(
       children: [
         Text(data.extrisincStatus.toString()),
-        Text('Unknown Event'),
+        const Text('Unknown Event'),
         Text(data.callModule),
         Text(data.arguments),
         BlockDateTimeW(

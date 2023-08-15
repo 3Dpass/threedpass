@@ -1,6 +1,6 @@
-part of './snapshot_create_from_file.dart';
+import 'package:file_picker/file_picker.dart';
 
-class _FilePicker {
+class FilePickerShortCut {
   static const allowedExtentions = ['obj', 'stl'];
 
   /// Get and validate file
