@@ -11,6 +11,8 @@ class _AmountTextFieldBuilder extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<TransferInfoCubit, TransferInfo>(
+      buildWhen: (final previous, final current) =>
+          previous.balance != current.balance,
       builder: (final context, final state) => _AmountTextField(
         amountController: amountController,
         balance: state.balance,
@@ -19,7 +21,6 @@ class _AmountTextFieldBuilder extends StatelessWidget {
   }
 }
 
-// TODO When input 0.2 it throws error
 class _AmountTextField extends StatelessWidget {
   const _AmountTextField({
     required this.amountController,
@@ -31,11 +32,26 @@ class _AmountTextField extends StatelessWidget {
   final String balance;
 
   String? _amountValidator(final String? v) {
-    return v != null &&
-            double.tryParse(v) != null &&
-            double.parse(v) <= double.parse(balance)
-        ? null
-        : 'error_wrong_amount'.tr();
+    if (v != null) {
+      try {
+        final inputD = BalanceUtils.balanceToDouble(v);
+
+        if (inputD <= BalanceUtils.balanceToDouble(balance)) {
+          return null;
+        } else {
+          getIt<Logger>().e(
+            '_amountValidator. input > balance. input: $v, balance: $balance',
+          );
+          return 'error_wrong_amount'.tr();
+        }
+      } on Exception catch (_) {
+        getIt<Logger>().e('_amountValidator. v is NOT double');
+        return 'error_wrong_amount'.tr();
+      }
+    } else {
+      getIt<Logger>().e('_amountValidator. v is null');
+      return 'error_wrong_amount'.tr();
+    }
   }
 
   @override
