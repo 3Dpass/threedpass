@@ -7,7 +7,7 @@ part of 'transfer_info_cubit.dart';
 // **************************************************************************
 
 abstract class _$TransferInfoCWProxy {
-  TransferInfo balance(String balance);
+  TransferInfo balance(double balance);
 
   TransferInfo fees(TxFeeEstimateResult? fees);
 
@@ -20,7 +20,7 @@ abstract class _$TransferInfoCWProxy {
   /// TransferInfo(...).copyWith(id: 12, name: "My name")
   /// ````
   TransferInfo call({
-    String? balance,
+    double? balance,
     TxFeeEstimateResult? fees,
     TransferType? type,
   });
@@ -33,7 +33,7 @@ class _$TransferInfoCWProxyImpl implements _$TransferInfoCWProxy {
   final TransferInfo _value;
 
   @override
-  TransferInfo balance(String balance) => this(balance: balance);
+  TransferInfo balance(double balance) => this(balance: balance);
 
   @override
   TransferInfo fees(TxFeeEstimateResult? fees) => this(fees: fees);
@@ -58,7 +58,7 @@ class _$TransferInfoCWProxyImpl implements _$TransferInfoCWProxy {
       balance: balance == const $CopyWithPlaceholder() || balance == null
           ? _value.balance
           // ignore: cast_nullable_to_non_nullable
-          : balance as String,
+          : balance as double,
       fees: fees == const $CopyWithPlaceholder()
           ? _value.fees
           // ignore: cast_nullable_to_non_nullable

@@ -10,7 +10,7 @@ abstract class TransferMetaDTO {
   const TransferMetaDTO();
   MetaInfoType get type;
 
-  String getBalance();
+  double getBalance();
   String getName();
   TxInfoData getTxInfo(final TransferType transferType);
 
@@ -36,9 +36,9 @@ class CoinsTransferMetaDTO extends TransferMetaDTO {
   MetaInfoType get type => MetaInfoType.coin;
 
   @override
-  String getBalance() {
-    return BalanceUtils.balance(
-      appService.chosenAccountBalance.value.availableBalance as String?,
+  double getBalance() {
+    return BalanceUtils.balanceToDouble(
+      appService.chosenAccountBalance.value.availableBalance as String,
       appService.networkStateData.safeDecimals,
     );
   }
@@ -78,9 +78,9 @@ class AssetTransferMetaDTO extends TransferMetaDTO {
   MetaInfoType get type => MetaInfoType.asset;
 
   @override
-  String getBalance() {
-    return BalanceUtils.balance(
-      tokenBalanceData.amount,
+  double getBalance() {
+    return BalanceUtils.balanceToDouble(
+      tokenBalanceData.amount!,
       tokenBalanceData.decimals ?? 12,
     );
   }

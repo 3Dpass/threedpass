@@ -29,14 +29,14 @@ class _AmountTextField extends StatelessWidget {
   }) : super(key: key);
 
   final TextEditingController amountController;
-  final String balance;
+  final double balance;
 
   String? _amountValidator(final String? v) {
     if (v != null) {
       try {
-        final inputD = BalanceUtils.balanceToDouble(v);
+        final inputD = double.parse(v);
 
-        if (inputD <= BalanceUtils.balanceToDouble(balance)) {
+        if (inputD <= balance) {
           return null;
         } else {
           getIt<Logger>().e(
@@ -59,12 +59,13 @@ class _AmountTextField extends StatelessWidget {
     return D3pTextFormField(
       labelText: 'amount_label'.tr(
         args: [
-          balance,
+          BalanceUtils.doubleFormat(balance),
         ],
       ),
       controller: amountController,
       hintText: 'amount_hint'.tr(),
       validator: _amountValidator,
+      keyboardType: TextInputType.number,
     );
   }
 }

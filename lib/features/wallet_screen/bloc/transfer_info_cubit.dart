@@ -12,7 +12,7 @@ part 'transfer_info_cubit.g.dart';
 
 class TransferInfoCubit extends Cubit<TransferInfo> {
   TransferInfoCubit({
-    required final String balance,
+    required final double balance,
     required this.metaDTO,
     required this.appService,
   }) : super(
@@ -90,7 +90,7 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
 @CopyWith()
 class TransferInfo {
   // Max avaliable balance in wallet in human-readable double format
-  final String balance;
+  final double balance;
   final TxFeeEstimateResult? fees;
   final TransferType type;
 
