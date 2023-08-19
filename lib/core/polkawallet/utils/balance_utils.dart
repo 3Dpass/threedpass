@@ -98,6 +98,11 @@ class BalanceUtils {
   ) {
     return doubleFormat(bigIntToDouble(balanceTotal(balanceData), decimals));
   }
+
+  /// Just to use it as double
+  static double balanceToDouble(final String balance) {
+    return double.parse(balance.replaceAll(',', ''));
+  }
 }
 
 /// We use this as an indicator of a successful account load.
