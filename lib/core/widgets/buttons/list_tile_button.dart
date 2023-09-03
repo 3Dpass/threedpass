@@ -5,44 +5,44 @@ import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/other/right_chevron.dart';
 
 class ListTileButton extends StatelessWidget {
-  const ListTileButton.bottom({
-    required this.text,
-    this.onPressed,
-    this.backgroundColor,
-    this.padding,
-    final Key? key,
-  })  : border = const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: buttonRadius,
-            bottomRight: buttonRadius,
-          ),
-        ),
-        super(key: key);
+  // const ListTileButton.bottom({
+  //   required this.text,
+  //   this.onPressed,
+  //   this.backgroundColor,
+  //   this.padding,
+  //   final Key? key,
+  // })  : border = const RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.only(
+  //           bottomLeft: buttonRadius,
+  //           bottomRight: buttonRadius,
+  //         ),
+  //       ),
+  //       super(key: key);
 
-  const ListTileButton.middle({
-    required this.text,
-    final Key? key,
-    this.onPressed,
-    this.backgroundColor,
-    this.padding,
-  })  : border = const RoundedRectangleBorder(
-          borderRadius: BorderRadius.zero,
-        ),
-        super(key: key);
+  // const ListTileButton.middle({
+  //   required this.text,
+  //   final Key? key,
+  //   this.onPressed,
+  //   this.backgroundColor,
+  //   this.padding,
+  // })  : border = const RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.zero,
+  //       ),
+  //       super(key: key);
 
-  const ListTileButton.top({
-    required this.text,
-    final Key? key,
-    this.onPressed,
-    this.backgroundColor,
-    this.padding,
-  })  : border = const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: buttonRadius,
-            topRight: buttonRadius,
-          ),
-        ),
-        super(key: key);
+  // const ListTileButton.top({
+  //   required this.text,
+  //   final Key? key,
+  //   this.onPressed,
+  //   this.backgroundColor,
+  //   this.padding,
+  // })  : border = const RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.only(
+  //           topLeft: buttonRadius,
+  //           topRight: buttonRadius,
+  //         ),
+  //       ),
+  //       super(key: key);
 
   const ListTileButton.usual({
     required this.text,
@@ -50,6 +50,7 @@ class ListTileButton extends StatelessWidget {
     this.onPressed,
     this.backgroundColor,
     this.padding,
+    this.icon,
   })  : border = const RoundedRectangleBorder(),
         super(key: key);
 
@@ -61,11 +62,19 @@ class ListTileButton extends StatelessWidget {
   final String text;
   final EdgeInsetsGeometry? padding;
 
+  // final ListTileButtonType iconType;
+  final Widget? icon;
+
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     final mainColor =
         onPressed != null ? D3pThemeData.mainColor : theme.disabledColor;
+
+    final trailingIcon = icon ??
+        RightChevron(
+          color: mainColor,
+        );
 
     return Padding(
       padding: padding ?? EdgeInsets.zero,
@@ -83,9 +92,7 @@ class ListTileButton extends StatelessWidget {
                   style: theme.customTextStyles.d3plabelLarge
                       .copyWith(color: mainColor),
                 ),
-                RightChevron(
-                  color: mainColor,
-                ),
+                trailingIcon,
               ],
             ),
           ),
@@ -102,6 +109,8 @@ class ListTileButton extends StatelessWidget {
       ),
     );
   }
+
+  Future<void> deleteAccount(BuildContext context) async {}
 }
 
 class _ListTileMaterial {

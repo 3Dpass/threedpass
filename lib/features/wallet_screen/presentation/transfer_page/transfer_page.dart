@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:logger/logger.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
@@ -16,7 +15,6 @@ import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/transfer_type_dropdown.dart';
-import 'package:threedpass/setup.dart';
 
 part './widgets/make_transfer_button.dart';
 part 'widgets/from_address_textfield.dart';

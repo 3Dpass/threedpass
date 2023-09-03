@@ -1,4 +1,4 @@
-# threedpass
+# Threedpass
 
 3Dpass mobile light wallet for Android and iOS. [Read more](https://3dpass.org/mobile-wallet) about its features.
 
@@ -32,16 +32,22 @@ Follow this short instruction:
 2. Add locale info in ```lib/main.dart```
 ```
 EasyLocalization(
-      supportedLocales: const [Locale('en')], // Add new locale here
-      ...
+      supportedLocales: const [
+        Locale('en'),
+        Locale('es'),
+        Locale('sr'),
+        // Add new locale here
+      ],
 )
 ```
 3. Add LANG_CODE in ```ios/Runner/Info.plist``` as described here:
 ```
 <key>CFBundleLocalizations</key>
 <array>
-	<string>en</string>
-	<string>nb</string>
+      <string>en</string>
+      <string>es</string>
+      <string>sr</string>
+      // Add new locale here
 </array>
 ```
 

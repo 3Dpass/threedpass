@@ -1,12 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
+import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/buttons/list_tile_button.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart';
+import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
+import 'package:threedpass/features/wallet_screen/presentation/assets_page/remove_account_dialog.dart';
 
 class AccountsDrawer extends Drawer {
   AccountsDrawer({
@@ -70,10 +74,28 @@ class AccountsDrawer extends Drawer {
                                 .changeAccount(accounts[index]);
                             Navigator.of(context).pop();
                           },
+                    icon: accounts[index].address == current.address
+                        ? D3pIconButton(
+                            iconData: Icons.delete,
+                            iconColor: Colors.red,
+                            onPressed: () => deleteAccount(context),
+                            emptyContraints: true,
+                            splashRadius: 22,
+                          )
+                        : null,
                   ),
                 ),
               ),
             ],
           ),
         );
+
+  static Future<void> deleteAccount(final BuildContext context) async {
+    final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
+
+    await showPlatformDialog<void>(
+      context: outerContext,
+      builder: (final _) => const RemoveAccountDialog(),
+    );
+  }
 }

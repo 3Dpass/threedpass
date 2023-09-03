@@ -24,19 +24,18 @@ AutoRoute walletPageRoute = AutoRoute(
     ),
     AutoRoute(
       page: RecieveRoute.page,
-      // name: RouteNames.recievePage,
+    ),
+    AutoRoute(
+      page: NotificationsRoute.page,
     ),
     AutoRoute(
       page: TransactionsHistoryRouteWrapper.page,
-      // name: RouteNames.transactionsHistoryPage,
     ),
     AutoRoute(
       page: NonNativeTokenRouteWrapper.page,
-      // name: RouteNames.nonNativeTokenScreen,
     ),
     CustomRoute(
       page: RemoveAccountRoute.page,
-      // name: RouteNames.removeAccountDialog,
       customRouteBuilder: dialogBuilder,
     ),
   ],

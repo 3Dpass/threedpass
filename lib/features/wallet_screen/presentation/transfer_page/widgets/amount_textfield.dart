@@ -39,17 +39,17 @@ class _AmountTextField extends StatelessWidget {
         if (inputD <= balance) {
           return null;
         } else {
-          getIt<Logger>().e(
-            '_amountValidator. input > balance. input: $v, balance: $balance',
-          );
+          // getIt<Logger>().e(
+          //   '_amountValidator. input > balance. input: $v, balance: $balance',
+          // );
           return 'error_wrong_amount'.tr();
         }
       } on Exception catch (_) {
-        getIt<Logger>().e('_amountValidator. v is NOT double');
+        // getIt<Logger>().e('_amountValidator. v is NOT double');
         return 'error_wrong_amount'.tr();
       }
     } else {
-      getIt<Logger>().e('_amountValidator. v is null');
+      // getIt<Logger>().e('_amountValidator. v is null');
       return 'error_wrong_amount'.tr();
     }
   }

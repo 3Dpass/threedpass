@@ -7,6 +7,8 @@ class D3pIconButton extends StatelessWidget {
     this.onPressed,
     this.iconColor,
     this.size,
+    this.splashRadius,
+    this.emptyContraints = false,
     super.key,
   });
 
@@ -15,12 +17,16 @@ class D3pIconButton extends StatelessWidget {
   })  : iconData = Icons.abc,
         size = null,
         iconColor = Colors.transparent,
+        emptyContraints = false,
+        splashRadius = null,
         onPressed = null;
 
   final IconData iconData;
   final Color? iconColor;
   final void Function()? onPressed;
   final double? size;
+  final bool emptyContraints;
+  final double? splashRadius;
 
   @override
   Widget build(final BuildContext context) {
@@ -31,8 +37,11 @@ class D3pIconButton extends StatelessWidget {
         color: iconColor,
       ),
       onPressed: onPressed,
-      material: (final _, final __) =>
-          MaterialIconButtonData(padding: EdgeInsets.zero),
+      material: (final _, final __) => MaterialIconButtonData(
+        padding: EdgeInsets.zero,
+        constraints: emptyContraints ? const BoxConstraints() : null,
+        splashRadius: splashRadius,
+      ),
     );
   }
 }
