@@ -11,6 +11,7 @@ import 'package:threedpass/core/polkawallet/constants.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_core_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_test_net_plugin.dart';
+import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
 import 'package:threedpass/features/accounts/domain/account_info.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
@@ -192,6 +193,15 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
         getTransfers: getIt<GetTransfers>(),
         fromMultiAddressAccountId: userPubKey,
       ),
+    );
+  }
+
+  void addHandler(
+    final String msgId,
+    final void Function(String) setTransactionResult,
+  ) {
+    state.plugin.sdk.webView!.addGlobalHandler(
+      TxUpdateEventLogsHandler(msgId, setTransactionResult),
     );
   }
 }

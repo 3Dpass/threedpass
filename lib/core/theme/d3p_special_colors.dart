@@ -68,3 +68,9 @@ extension PinCodeColors on CustomColors {
       ? D3pColors.lightScaffoldBackground
       : D3pColors.alternativeDarkBackground;
 }
+
+extension NotificationCard on CustomColors {
+  Color get errorCardBGColor => brightness == Brightness.light
+      ? Colors.red.shade100
+      : Colors.red.shade900;
+}

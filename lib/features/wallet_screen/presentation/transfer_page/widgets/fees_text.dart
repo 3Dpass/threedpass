@@ -1,7 +1,13 @@
-part of '../transfer_page.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
+import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
 
-class _FeesText extends StatelessWidget {
-  const _FeesText({
+class FeesText extends StatelessWidget {
+  const FeesText({
     final Key? key,
   }) : super(key: key);
 
@@ -10,6 +16,20 @@ class _FeesText extends StatelessWidget {
     return BlocBuilder<TransferInfoCubit, TransferInfo>(
       builder: (final context, final state) {
         print(state.fees?.partialFee);
+        print(state.fees?.weight);
+
+        print(
+          BalanceUtils.balance(state.fees?.partialFee.toString(), 12),
+        );
+        print(
+          BalanceUtils.balanceInt(state.fees?.partialFee.toString()),
+        );
+        print(
+          BalanceUtils.balanceToDouble(state.fees!.partialFee.toString(), 12),
+        );
+        print(
+          BalanceUtils.balance(state.fees?.weight.toString(), 12),
+        );
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

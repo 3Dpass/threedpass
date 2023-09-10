@@ -297,5 +297,9 @@
 
     "@2.8.0":{
     },
-    "notifications_titile": "Transactions"
+    "notifications_titile": "Transactions",
+    "transfer_status": "Transfer status:",
+    "status_pending": "Pending",
+    "status_success": "Success",
+    "status_failed": "Failed"
 }

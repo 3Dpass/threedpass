@@ -1151,8 +1151,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "5492466fdcb65d2dcc62672cd4672824a47d609f"
-      resolved-ref: "5492466fdcb65d2dcc62672cd4672824a47d609f"
+      ref: "7338432b20bbea4a4fe12d37df0fa9c5e572522a"
+      resolved-ref: "7338432b20bbea4a4fe12d37df0fa9c5e572522a"
       url: "https://github.com/L3odr0id/polkawallet_sdk.git"
     source: git
     version: "0.5.1"

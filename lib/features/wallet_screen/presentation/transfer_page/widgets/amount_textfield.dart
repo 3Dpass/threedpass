@@ -36,7 +36,7 @@ class _AmountTextField extends StatelessWidget {
       try {
         final inputD = double.parse(v);
 
-        if (inputD <= balance) {
+        if (inputD <= balance && inputD >= 0) {
           return null;
         } else {
           // getIt<Logger>().e(

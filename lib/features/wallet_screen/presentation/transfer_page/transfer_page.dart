@@ -14,6 +14,7 @@ import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/fees_text.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/transfer_type_dropdown.dart';
 
 part './widgets/make_transfer_button.dart';
@@ -21,7 +22,6 @@ part 'widgets/from_address_textfield.dart';
 part 'widgets/to_address_textfield.dart';
 part 'widgets/amount_textfield.dart';
 part 'widgets/password_textfield.dart';
-part 'widgets/fees_text.dart';
 
 @RoutePage()
 class TransferPage extends StatelessWidget {
@@ -71,7 +71,7 @@ class TransferPage extends StatelessWidget {
                       const SizedBoxH24(),
                       const TransferTypeDropdown(),
                       // const SizedBox(height: 24),
-                      // const _FeesText(),
+                      // const FeesText(),
                       const SizedBox(height: 36),
                     ],
                   ),

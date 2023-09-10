@@ -1,23 +1,29 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
 
 part 'notifications_cubit.g.dart';
 
 enum NotificationType { transfer, vote }
 
+@CopyWith()
 class NotificationDTO {
-  final DateTime? dateTime;
   final List<String>? fromAddresses;
   final List<String>? toAddresses;
   final String? amount;
   final NotificationType type;
+  final ExtrisincStatus status;
+  final String? message;
+  final String? symbols;
 
   const NotificationDTO({
     required this.type,
+    required this.status,
     this.amount,
-    this.dateTime,
     this.fromAddresses,
     this.toAddresses,
+    this.message,
+    this.symbols,
   });
 }
 
@@ -39,11 +45,48 @@ class NotificationsState {
 class NotificationsCubit extends Cubit<NotificationsState> {
   NotificationsCubit() : super(const NotificationsState.initial());
 
-  Future<void> init() async {}
+  Future<void> init() async {
+    final test = [
+      const NotificationDTO(
+        amount: '1231.23 P3D',
+        fromAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
+        toAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
+        status: ExtrisincStatus.loading,
+        type: NotificationType.transfer,
+        symbols: 'P3D',
+      ),
+      const NotificationDTO(
+        amount: '1231.23 P3D',
+        fromAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
+        toAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
+        status: ExtrisincStatus.success,
+        type: NotificationType.transfer,
+        symbols: 'P3D',
+      ),
+      const NotificationDTO(
+        amount: '1231.23 P3D',
+        fromAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
+        toAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
+        status: ExtrisincStatus.failed,
+        type: NotificationType.transfer,
+        symbols: 'P3D',
+      ),
+    ];
 
-  void add(NotificationDTO notification) {
+    final newList = List<NotificationDTO>.from(state.notifications);
+    newList.addAll(test);
+    emit(state.copyWith(notifications: newList));
+  }
+
+  void add(final NotificationDTO notification) {
     final newList = List<NotificationDTO>.from(state.notifications);
     newList.add(notification);
+    emit(state.copyWith(notifications: newList));
+  }
+
+  void replace(final NotificationDTO oldN, final NotificationDTO newN) {
+    final newList = List<NotificationDTO>.from(state.notifications);
+    newList[newList.indexOf(oldN)] = newN;
     emit(state.copyWith(notifications: newList));
   }
 }

@@ -3,9 +3,13 @@ import 'package:badges/badges.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/theme/d3p_colors.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
-import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/bloc/notifications_cubit.dart';
+import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class NotificationsIconButton extends StatelessWidget {
@@ -19,6 +23,9 @@ class NotificationsIconButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final customTextStyles = Theme.of(context).customTextStyles;
+    final customColors = Theme.of(context).customColors;
+
     return BlocBuilder<NotificationsCubit, NotificationsState>(
       builder: (final context, final state) {
         if (state.notifications.isEmpty) {
@@ -30,11 +37,24 @@ class NotificationsIconButton extends StatelessWidget {
             ),
           );
         }
+        bool hasErrors = false;
+        for (final notification in state.notifications) {
+          if (notification.status == ExtrisincStatus.failed) {
+            hasErrors = true;
+          }
+        }
+
+        final String badgeText = state.notifications.length.toString();
+        final badgeColor = hasErrors ? Colors.red : D3pThemeData.mainColor;
 
         return badges.Badge(
-          badgeContent: Text(state.notifications.length.toString()),
+          badgeContent: Text(
+            badgeText,
+            style: customTextStyles.d3pBodyMedium.copyWith(color: Colors.white),
+          ),
           position: badges.BadgePosition.topEnd(top: 2, end: 2),
           badgeAnimation: const BadgeAnimation.scale(),
+          badgeStyle: BadgeStyle(badgeColor: badgeColor),
           child: SizedBox(
             height: kToolbarHeight,
             child: D3pIconButton(
