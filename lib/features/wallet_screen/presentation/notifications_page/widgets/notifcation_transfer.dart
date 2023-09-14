@@ -44,7 +44,8 @@ class NotificationTransferCard extends StatelessWidget {
                     amount: notificationDTO.amount ?? 'error amount',
                     decimals: 1,
                     symbols: notificationDTO.symbols ?? 'error symbol',
-                    direction: TransferDirection.all,
+                    direction: TransferDirection
+                        .all, // Transfers are always "from", but from different accounts
                     blockDateTime: notificationDTO.blockDateTime,
                     fromAddress: notificationDTO.fromAddresses!.first,
                     toAddress: notificationDTO.toAddresses!.first,
