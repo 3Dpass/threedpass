@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
@@ -24,6 +25,8 @@ class Transfer {
     required this.toAddress,
     required this.notificationsCubit,
     required this.addHandler,
+    required this.symbols,
+    required this.decimals,
   });
 
   // final String amount;
@@ -36,6 +39,8 @@ class Transfer {
   final String toAddress;
   final NotificationsCubit notificationsCubit;
   final void Function(String, void Function(String)) addHandler;
+  final String symbols;
+  final int decimals;
 
   Future<bool> checkAddressAndNotify() async {
     final addressCorrect =
@@ -70,14 +75,16 @@ class Transfer {
 
       DefaultLoadingDialog.show(globalContext, 'transfer_loader_text'.tr());
 
-      NotificationDTO tmpN = NotificationDTO(
+      final tmpN = NotificationDTO(
         type: NotificationType.transfer,
         status: ExtrisincStatus.loading,
         toAddresses: [toAddress],
         fromAddresses: [txInfo.sender?.address ?? ''],
-        amount: params[1],
+        amount: BalanceUtils.balanceToDouble(params[1], decimals).toString(),
+        symbols: symbols,
+        blockDateTime: null,
       );
-      int i = 0;
+      // int i = 0;
 
       notificationsCubit.add(tmpN);
 
@@ -101,7 +108,7 @@ class Transfer {
                 break;
 
               case 'Broadcast':
-                i++;
+                // i++;
 
                 // final readN = tmpN.copyWith(status:TransactionStatus.pending,);
                 // notificationsCubit.replace(tmpN, readN);
@@ -122,8 +129,10 @@ class Transfer {
                 final finishedTransaction = tmpN.copyWith(
                   status: p0 == TxUpdateEventLogsHandler.extrinsicSuccess
                       ? ExtrisincStatus.success
-                      : ExtrisincStatus.error,
+                      : ExtrisincStatus.failed,
                   message: p0,
+                  blockDateTime: DateTime.now().toUtc(),
+                  // symbols: symbols,
                 );
                 notificationsCubit.replace(tmpN, finishedTransaction);
               },
@@ -136,11 +145,11 @@ class Transfer {
         );
         // final b = 1 + 1;
       } on Object catch (e) {
-        try {
-          DefaultLoadingDialog.hide(globalContext);
-        } on Object catch (e) {
-          unawaited(Fluttertoast.showToast(msg: e.toString()));
-        }
+        // try {
+        //   DefaultLoadingDialog.hide(globalContext);
+        // } on Object catch (e) {
+        //   unawaited(Fluttertoast.showToast(msg: e.toString()));
+        // }
         unawaited(Fluttertoast.showToast(msg: e.toString()));
       }
     }

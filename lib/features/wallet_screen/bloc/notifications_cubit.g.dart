@@ -19,6 +19,10 @@ abstract class _$NotificationDTOCWProxy {
 
   NotificationDTO message(String? message);
 
+  NotificationDTO symbols(String? symbols);
+
+  NotificationDTO blockDateTime(DateTime? blockDateTime);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationDTO(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -32,6 +36,8 @@ abstract class _$NotificationDTOCWProxy {
     List<String>? fromAddresses,
     List<String>? toAddresses,
     String? message,
+    String? symbols,
+    DateTime? blockDateTime,
   });
 }
 
@@ -62,6 +68,13 @@ class _$NotificationDTOCWProxyImpl implements _$NotificationDTOCWProxy {
   NotificationDTO message(String? message) => this(message: message);
 
   @override
+  NotificationDTO symbols(String? symbols) => this(symbols: symbols);
+
+  @override
+  NotificationDTO blockDateTime(DateTime? blockDateTime) =>
+      this(blockDateTime: blockDateTime);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationDTO(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -76,6 +89,8 @@ class _$NotificationDTOCWProxyImpl implements _$NotificationDTOCWProxy {
     Object? fromAddresses = const $CopyWithPlaceholder(),
     Object? toAddresses = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
+    Object? symbols = const $CopyWithPlaceholder(),
+    Object? blockDateTime = const $CopyWithPlaceholder(),
   }) {
     return NotificationDTO(
       type: type == const $CopyWithPlaceholder() || type == null
@@ -102,6 +117,14 @@ class _$NotificationDTOCWProxyImpl implements _$NotificationDTOCWProxy {
           ? _value.message
           // ignore: cast_nullable_to_non_nullable
           : message as String?,
+      symbols: symbols == const $CopyWithPlaceholder()
+          ? _value.symbols
+          // ignore: cast_nullable_to_non_nullable
+          : symbols as String?,
+      blockDateTime: blockDateTime == const $CopyWithPlaceholder()
+          ? _value.blockDateTime
+          // ignore: cast_nullable_to_non_nullable
+          : blockDateTime as DateTime?,
     );
   }
 }

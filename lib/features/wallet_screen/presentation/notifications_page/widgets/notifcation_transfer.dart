@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/wallet_screen/bloc/notifications_cubit.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
@@ -36,28 +37,20 @@ class NotificationTransferCard extends StatelessWidget {
                     _TransferStatus(notificationDTO.status),
                   ],
                 ),
-
                 const SizedBoxH4(),
-
-                _Message(notificationDTO.message),
-
+                _Message(notificationDTO.message, notificationDTO.status),
                 TransactionItem(
                   object: TransferHistoryUI(
-                    amount: notificationDTO.amount!,
+                    amount: notificationDTO.amount ?? 'error amount',
                     decimals: 1,
-                    symbols: notificationDTO.symbols!,
+                    symbols: notificationDTO.symbols ?? 'error symbol',
                     direction: TransferDirection.all,
-                    blockDateTime: DateTime.now(),
+                    blockDateTime: notificationDTO.blockDateTime,
                     fromAddress: notificationDTO.fromAddresses!.first,
                     toAddress: notificationDTO.toAddresses!.first,
                     extrisincStatus: null,
                   ),
                 ),
-
-                // Shimmer(child: child, gradient: gradient)
-                // Text(notificationDTO.fromAddresses.toString() ?? ''),
-                // Text(notificationDTO.toAddresses.toString() ?? ''),
-                // Text(notificationDTO.amount.toString() ?? ''),
               ],
             ),
           ),
@@ -108,15 +101,16 @@ class _TransferStatus extends StatelessWidget {
 
 class _Message extends StatelessWidget {
   final String? message;
+  final ExtrisincStatus? status;
 
-  const _Message(this.message);
+  const _Message(this.message, this.status);
 
   @override
   Widget build(final BuildContext context) {
-    if (message != null) {
+    if (message != null && status != ExtrisincStatus.success) {
       return Column(
         children: [
-          D3pBodyMediumText(
+          D3pBodyLargeText(
             message!,
             translate: false,
           ),

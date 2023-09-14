@@ -20,7 +20,7 @@ class TransferHistoryUI {
 
   final int decimals;
 
-  final DateTime blockDateTime;
+  final DateTime? blockDateTime;
   final ExtrisincStatus? extrisincStatus;
 }
 

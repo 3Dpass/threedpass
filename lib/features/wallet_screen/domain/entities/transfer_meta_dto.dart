@@ -18,6 +18,8 @@ abstract class TransferMetaDTO {
     final String? amount,
     final String toAddress,
   );
+
+  int get decimals;
 }
 
 class CoinsTransferMetaDTO extends TransferMetaDTO {
@@ -42,6 +44,9 @@ class CoinsTransferMetaDTO extends TransferMetaDTO {
       appService.networkStateData.safeDecimals,
     );
   }
+
+  @override
+  int get decimals => appService.networkStateData.safeDecimals;
 
   @override
   String getName() {
@@ -94,6 +99,9 @@ class AssetTransferMetaDTO extends TransferMetaDTO {
   TxInfoData getTxInfo(final TransferType transferType) {
     return txInfoValue.txInfo(transferType);
   }
+
+  @override
+  int get decimals => tokenBalanceData.decimals ?? 12;
 
   @override
   List<String> getParams(

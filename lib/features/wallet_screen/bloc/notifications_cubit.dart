@@ -15,6 +15,7 @@ class NotificationDTO {
   final ExtrisincStatus status;
   final String? message;
   final String? symbols;
+  final DateTime? blockDateTime;
 
   const NotificationDTO({
     required this.type,
@@ -24,6 +25,7 @@ class NotificationDTO {
     this.toAddresses,
     this.message,
     this.symbols,
+    this.blockDateTime,
   });
 }
 
@@ -46,41 +48,41 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   NotificationsCubit() : super(const NotificationsState.initial());
 
   Future<void> init() async {
-    final test = [
-      const NotificationDTO(
-        amount: '1231.23 P3D',
-        fromAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
-        toAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
-        status: ExtrisincStatus.loading,
-        type: NotificationType.transfer,
-        symbols: 'P3D',
-      ),
-      const NotificationDTO(
-        amount: '1231.23 P3D',
-        fromAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
-        toAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
-        status: ExtrisincStatus.success,
-        type: NotificationType.transfer,
-        symbols: 'P3D',
-      ),
-      const NotificationDTO(
-        amount: '1231.23 P3D',
-        fromAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
-        toAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
-        status: ExtrisincStatus.failed,
-        type: NotificationType.transfer,
-        symbols: 'P3D',
-      ),
-    ];
+    // final test = [
+    //   const NotificationDTO(
+    //     amount: '1231.23 P3D',
+    //     fromAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
+    //     toAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
+    //     status: ExtrisincStatus.loading,
+    //     type: NotificationType.transfer,
+    //     symbols: 'P3D',
+    //   ),
+    //   const NotificationDTO(
+    //     amount: '1231.23 P3D',
+    //     fromAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
+    //     toAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
+    //     status: ExtrisincStatus.success,
+    //     type: NotificationType.transfer,
+    //     symbols: 'P3D',
+    //   ),
+    //   const NotificationDTO(
+    //     amount: '1231.23 P3D',
+    //     fromAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
+    //     toAddresses: ['d1D8TcfAy9UWY92uFsoeiMKCvyTgLgUPvyM5gMrBGtWY86oxF'],
+    //     status: ExtrisincStatus.failed,
+    //     type: NotificationType.transfer,
+    //     symbols: 'P3D',
+    //   ),
+    // ];
 
-    final newList = List<NotificationDTO>.from(state.notifications);
-    newList.addAll(test);
-    emit(state.copyWith(notifications: newList));
+    // final newList = List<NotificationDTO>.from(state.notifications);
+    // newList.addAll(test);
+    // emit(state.copyWith(notifications: newList));
   }
 
   void add(final NotificationDTO notification) {
     final newList = List<NotificationDTO>.from(state.notifications);
-    newList.add(notification);
+    newList.insert(0, notification);
     emit(state.copyWith(notifications: newList));
   }
 

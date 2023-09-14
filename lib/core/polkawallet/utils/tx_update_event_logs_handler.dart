@@ -9,14 +9,14 @@ class TxUpdateEventLogsHandler extends WebLogsHandler {
   );
 
   final String msgId;
+
+  /// @param {String} is extrinsicSuccess or message
   final void Function(String) setTransactionResult;
 
   static const String extrinsicSuccess = 'ok';
 
   @override
-  void handle(String data) {
-    // final dynamic d1 = jsonDecode(data);
-
+  void handle(final String data) {
     final dynamic rawData = jsonDecode(data);
 
     // final d2 = !(rawData is Map);
@@ -50,6 +50,8 @@ class TxUpdateEventLogsHandler extends WebLogsHandler {
 
     final String title = dataSection['title'] as String;
     if (title == "system.ExtrinsicSuccess") {
+      setTransactionResult(extrinsicSuccess);
+    } else if (title == 'system.ExtrinsicFailed') {
       setTransactionResult(dataSection['message'] as String);
     }
   }

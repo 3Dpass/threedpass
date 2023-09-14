@@ -68,6 +68,8 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
       final notificationsCubit = BlocProvider.of<NotificationsCubit>(context);
       final appServiceCubit = BlocProvider.of<AppServiceLoaderCubit>(context);
 
+      // print(metaDTO.getName());
+
       await Transfer(
         txInfo: txInfo,
         params: params,
@@ -78,6 +80,8 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
         formKey: formKey,
         notificationsCubit: notificationsCubit,
         addHandler: appServiceCubit.addHandler,
+        symbols: metaDTO.getName(),
+        decimals: metaDTO.decimals,
       ).sendFunds();
     } on Exception catch (e) {
       await Fluttertoast.showToast(msg: e.toString());

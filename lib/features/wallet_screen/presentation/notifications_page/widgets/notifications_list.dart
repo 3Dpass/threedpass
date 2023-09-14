@@ -11,9 +11,10 @@ class NotificationsList extends StatelessWidget {
     return BlocBuilder<NotificationsCubit, NotificationsState>(
       builder: (final context, final state) {
         return ListView.builder(
+          padding: const EdgeInsets.only(top: 8),
           itemCount: state.notifications.length,
           shrinkWrap: true,
-          itemBuilder: (_, index) {
+          itemBuilder: (final _, final index) {
             return NotificationCard(
               notificationDTO: state.notifications[index],
             );
