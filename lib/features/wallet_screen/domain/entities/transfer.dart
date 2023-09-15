@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
-import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
@@ -15,7 +14,7 @@ import 'package:threedpass/features/wallet_screen/bloc/notifications_cubit.dart'
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
 
 class Transfer {
-  const Transfer({
+  Transfer({
     required this.txInfo,
     required this.params,
     required this.appService,
@@ -27,6 +26,7 @@ class Transfer {
     required this.addHandler,
     required this.symbols,
     required this.decimals,
+    required this.amountNotification,
   });
 
   // final String amount;
@@ -41,6 +41,9 @@ class Transfer {
   final void Function(String, void Function(String)) addHandler;
   final String symbols;
   final int decimals;
+  final String amountNotification;
+
+  bool isFinished = false;
 
   Future<bool> checkAddressAndNotify() async {
     final addressCorrect =
@@ -74,13 +77,15 @@ class Transfer {
           BlocProvider.of<HomeContextCubit>(context).state.context;
 
       DefaultLoadingDialog.show(globalContext, 'transfer_loader_text'.tr());
+      print(amountNotification);
 
       final tmpN = NotificationDTO(
         type: NotificationType.transfer,
         status: ExtrisincStatus.loading,
         toAddresses: [toAddress],
         fromAddresses: [txInfo.sender?.address ?? ''],
-        amount: BalanceUtils.balanceToDouble(params[1], decimals).toString(),
+        amount:
+            amountNotification, //BalanceUtils.balanceToDouble(params[1], decimals).toString(),
         symbols: symbols,
         blockDateTime: null,
       );
@@ -89,7 +94,7 @@ class Transfer {
       notificationsCubit.add(tmpN);
 
       try {
-        final __ = await appService.plugin.sdk.api.tx.signAndSend(
+        final d1 = await appService.plugin.sdk.api.tx.signAndSend(
           txInfo,
           params,
           password,
@@ -126,6 +131,7 @@ class Transfer {
             addHandler(
               msgId,
               (final String p0) {
+                isFinished = true;
                 final finishedTransaction = tmpN.copyWith(
                   status: p0 == TxUpdateEventLogsHandler.extrinsicSuccess
                       ? ExtrisincStatus.success
@@ -144,7 +150,32 @@ class Transfer {
           },
         );
         // final b = 1 + 1;
+        print('Finished');
       } on Object catch (e) {
+        // print('aaaaaaaaaaaa');
+        // final a = globalContext.router.stack;
+
+        try {
+          final ___ = context.router.stack;
+          DefaultLoadingDialog.hide(globalContext);
+          // DIALOG WAS NOT CLOSED
+        } on Object catch (e) {
+          // DIALOG WAS CLOSED
+          debugPrint('dialog was closed');
+        }
+
+        if (!isFinished) {
+          final finishedTransaction = tmpN.copyWith(
+            status: ExtrisincStatus.error,
+            message: e.toString(),
+            blockDateTime: DateTime.now().toUtc(),
+            // symbols: symbols,
+          );
+          notificationsCubit.replace(tmpN, finishedTransaction);
+        }
+
+        // final b = context.router.stack;
+        // print(context.router.stack);
         // try {
         //   DefaultLoadingDialog.hide(globalContext);
         // } on Object catch (e) {

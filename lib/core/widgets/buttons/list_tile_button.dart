@@ -109,8 +109,6 @@ class ListTileButton extends StatelessWidget {
       ),
     );
   }
-
-  Future<void> deleteAccount(BuildContext context) async {}
 }
 
 class _ListTileMaterial {

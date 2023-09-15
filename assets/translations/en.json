@@ -301,5 +301,7 @@
     "transfer_status": "Transfer status:",
     "status_pending": "Pending",
     "status_success": "Success",
-    "status_failed": "Failed"
+    "status_failed": "Failed",
+    "status_error": "Error",
+    "error_wrong_amount_int": "A positive integer expected"
 }

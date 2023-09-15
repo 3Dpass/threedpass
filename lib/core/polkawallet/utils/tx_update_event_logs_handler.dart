@@ -19,28 +19,19 @@ class TxUpdateEventLogsHandler extends WebLogsHandler {
   void handle(final String data) {
     final dynamic rawData = jsonDecode(data);
 
-    // final d2 = !(rawData is Map);
-
-    if (!(rawData is Map)) {
+    if (!(rawData is Map &&
+        rawData.keys.contains('path') &&
+        rawData.keys.contains('data'))) {
       return;
     }
 
-    final Map<String, dynamic> jsonData = <String, dynamic>{};
-
-    for (final key in rawData.keys) {
-      jsonData[key.toString()] = rawData[key];
-    }
-
-    final dynamic path = jsonData['path'];
+    final dynamic path = rawData['path'];
 
     if (!(path is String && path.contains('txUpdateEvent|msgId=$msgId'))) {
       return;
     }
 
-    if (!jsonData.keys.contains('data')) {
-      return;
-    }
-    final dynamic dataSection = jsonData['data'];
+    final dynamic dataSection = rawData['data'];
 
     if (!(dataSection is Map &&
         dataSection.keys.contains('title') &&

@@ -60,10 +60,8 @@ class EnumButton extends StatelessWidget {
               shape: MaterialStateProperty.all<OutlinedBorder>(border),
             ),
           ),
-          cupertino: (final context, final platform) => CupertinoTextButtonData(
-            // color: mainColor,
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-          ),
+          cupertino: (final context, final platform) =>
+              _CupertinoTextButtonData(),
         ),
       ),
     );
@@ -84,27 +82,9 @@ class _Icon extends StatelessWidget {
   }
 }
 
-// class _ListTileMaterial {
-//   final ThemeData themeData;
-//   final Color? backgroundColor;
-//   final RoundedRectangleBorder border;
-
-//   _ListTileMaterial({
-//     required this.themeData,
-//     required this.backgroundColor,
-//     required this.border,
-//   });
-
-//   MaterialTextButtonData style() {
-//     return MaterialTextButtonData(
-//       style: themeData.textButtonTheme.style!.copyWith(
-//         // padding: MaterialStateProperty.all(EdgeInsets.zero),
-//         backgroundColor: MaterialStateProperty.all<Color>(
-//           backgroundColor ?? themeData.cardColor,
-//         ),
-//         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-//         shape: MaterialStateProperty.all<OutlinedBorder>(border),
-//       ),
-//     );
-//   }
-// }
+class _CupertinoTextButtonData extends CupertinoTextButtonData {
+  _CupertinoTextButtonData()
+      : super(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+        );
+}

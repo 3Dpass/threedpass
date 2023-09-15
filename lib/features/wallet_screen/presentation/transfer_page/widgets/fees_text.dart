@@ -15,21 +15,6 @@ class FeesText extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BlocBuilder<TransferInfoCubit, TransferInfo>(
       builder: (final context, final state) {
-        print(state.fees?.partialFee);
-        print(state.fees?.weight);
-
-        print(
-          BalanceUtils.balance(state.fees?.partialFee.toString(), 12),
-        );
-        print(
-          BalanceUtils.balanceInt(state.fees?.partialFee.toString()),
-        );
-        print(
-          BalanceUtils.balanceToDouble(state.fees!.partialFee.toString(), 12),
-        );
-        print(
-          BalanceUtils.balance(state.fees?.weight.toString(), 12),
-        );
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -29,26 +29,39 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
   final AppService appService;
 
   Future<void> init() async {
-    final txInfo = metaDTO.getTxInfo(state.type);
-    final params = metaDTO.getParams(
-      '10',
-      appService.userSenderData.address.toString(),
-    );
+    // final txInfo = metaDTO.getTxInfo(state.type);
+    // final params = metaDTO.getParams(
+    //   '10',
+    //   appService.userSenderData.address.toString(),
+    // );
 
-    // This line throws error:
-    // {"path":"log","data":{"call":"uid=8;keyring.txFeeEstimate","error":"t.rpc.payment.queryInfo is not a function"}}
-    // Firstly there were wring types in dart code.
-    // I fixed them here: https://github.com/L3odr0id/polkawallet_sdk/commit/ccafe364cb231c7d1888648257f5f3002ebb8b2b
-    // But it turned out that there is a problem with the JS code deep inside.
+    // // This line throws error:
+    // // {"path":"log","data":{"call":"uid=8;keyring.txFeeEstimate","error":"t.rpc.payment.queryInfo is not a function"}}
+    // // Firstly there were wring types in dart code.
+    // // I fixed them here: https://github.com/L3odr0id/polkawallet_sdk/commit/ccafe364cb231c7d1888648257f5f3002ebb8b2b
+    // // But it turned out that there is a problem with the JS code deep inside.
 
-    final fee = await appService.plugin.sdk.api.tx.estimateFees(txInfo, params);
-    print(appService.networkStateData.tokenDecimals);
-    print(fee.partialFee);
-    print(fee.weight);
-    // TODO Add fees
-    final b = 1 + 1;
+    // final fee = await appService.plugin.sdk.api.tx.estimateFees(txInfo, params);
+    // print(appService.networkStateData.tokenDecimals);
+    // print(fee.partialFee);
+    // print(fee.weight);
+    // // TODO Add fees
+    // final b = 1 + 1;
 
-    emit(state.copyWith(fees: fee));
+    // emit(state.copyWith(fees: fee));
+
+    // print(
+    //   BalanceUtils.balance(state.fees?.partialFee.toString(), 12),
+    // );
+    // print(
+    //   BalanceUtils.balanceInt(state.fees?.partialFee.toString()),
+    // );
+    // print(
+    //   BalanceUtils.balanceToDouble(state.fees!.partialFee.toString(), 12),
+    // );
+    // print(
+    //   BalanceUtils.balance(state.fees?.weight.toString(), 12),
+    // );
   }
 
   Future<void> sendTransfer({
@@ -58,34 +71,31 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
     required final String password,
     required final GlobalKey<FormState> formKey,
   }) async {
-    try {
-      final txInfo = metaDTO.getTxInfo(state.type);
-      final params = metaDTO.getParams(
-        amount,
-        toAddress,
-      );
+    final txInfo = metaDTO.getTxInfo(state.type);
+    final params = metaDTO.getParams(
+      amount,
+      toAddress,
+    );
 
-      final notificationsCubit = BlocProvider.of<NotificationsCubit>(context);
-      final appServiceCubit = BlocProvider.of<AppServiceLoaderCubit>(context);
+    final notificationsCubit = BlocProvider.of<NotificationsCubit>(context);
+    final appServiceCubit = BlocProvider.of<AppServiceLoaderCubit>(context);
 
-      // print(metaDTO.getName());
+    // print(metaDTO.getName());
 
-      await Transfer(
-        txInfo: txInfo,
-        params: params,
-        appService: appService,
-        context: context,
-        toAddress: toAddress,
-        password: password,
-        formKey: formKey,
-        notificationsCubit: notificationsCubit,
-        addHandler: appServiceCubit.addHandler,
-        symbols: metaDTO.getName(),
-        decimals: metaDTO.decimals,
-      ).sendFunds();
-    } on Exception catch (e) {
-      await Fluttertoast.showToast(msg: e.toString());
-    }
+    await Transfer(
+      txInfo: txInfo,
+      params: params,
+      appService: appService,
+      context: context,
+      toAddress: toAddress,
+      password: password,
+      formKey: formKey,
+      notificationsCubit: notificationsCubit,
+      addHandler: appServiceCubit.addHandler,
+      symbols: metaDTO.getName(),
+      decimals: metaDTO.decimals,
+      amountNotification: amount,
+    ).sendFunds();
   }
 
   void updateTransferType(final TransferType type) {

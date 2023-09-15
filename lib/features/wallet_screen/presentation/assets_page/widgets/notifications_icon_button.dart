@@ -3,8 +3,6 @@ import 'package:badges/badges.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/theme/d3p_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
@@ -24,7 +22,7 @@ class NotificationsIconButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final customTextStyles = Theme.of(context).customTextStyles;
-    final customColors = Theme.of(context).customColors;
+    // final customColors = Theme.of(context).customColors;
 
     return BlocBuilder<NotificationsCubit, NotificationsState>(
       builder: (final context, final state) {

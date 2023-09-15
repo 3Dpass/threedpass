@@ -1,4 +1,4 @@
-part of '../pages/compare_page.dart';
+part of './compare_row.dart';
 
 class _OrigObjectTitle extends StatelessWidget {
   const _OrigObjectTitle();

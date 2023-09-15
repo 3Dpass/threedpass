@@ -52,40 +52,106 @@ class DefaultSettingsButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final child = Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-      child: _SettingsButtonContent(
+    return _WrapCard(
+      _ArgumentsDTO(
         iconColor: iconColor,
         iconData: iconData,
         text: text,
-        value: textValue,
-        boolValue: initialValue,
         isBoolean: isBoolean,
         onPressedBool: onPressedBool,
+        textValue: textValue,
+        initialValue: initialValue,
+        onPressed: onPressed,
       ),
     );
+  }
+}
 
-    final wrappedChild = isBoolean
-        ? child
-        : InkWell(
-            onTap: onPressed != null ? () => onPressed!() : null,
-            child: child,
-          );
+class _ArgumentsDTO {
+  const _ArgumentsDTO({
+    required this.iconColor,
+    required this.iconData,
+    required this.text,
+    required this.isBoolean,
+    required this.onPressedBool,
+    required this.textValue,
+    required this.initialValue,
+    required this.onPressed,
+  });
+
+  final IconData iconData;
+  final Color iconColor;
+  final String text;
+  final String? textValue;
+  final bool isBoolean;
+  final bool? initialValue;
+  final void Function(bool) onPressedBool;
+  final void Function()? onPressed;
+}
+
+class _WrapCard extends StatelessWidget {
+  const _WrapCard(this.args);
+
+  final _ArgumentsDTO args;
+
+  @override
+  Widget build(final BuildContext context) {
+    final wrappedInkWell = _WrappedInkWellBase(args);
 
     switch (Theme.of(context).platform) {
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
       case TargetPlatform.linux:
       case TargetPlatform.windows:
-        return wrappedChild;
+        return wrappedInkWell;
       case TargetPlatform.iOS:
       case TargetPlatform.macOS:
         return Card(
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-          child: wrappedChild,
+          child: wrappedInkWell,
         );
       // return _IOSSettingsIcon(iconColor: iconColor, iconData: iconData);
     }
+  }
+}
+
+class _WrappedInkWellBase extends StatelessWidget {
+  const _WrappedInkWellBase(this.args);
+
+  final _ArgumentsDTO args;
+
+  @override
+  Widget build(final BuildContext context) {
+    final child = _ButtonBase(args);
+
+    return args.isBoolean
+        ? child
+        : InkWell(
+            onTap: args.onPressed != null ? () => args.onPressed!() : null,
+            child: child,
+          );
+  }
+}
+
+class _ButtonBase extends StatelessWidget {
+  const _ButtonBase(this.args);
+
+  final _ArgumentsDTO args;
+
+  @override
+  Widget build(final BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      child: _SettingsButtonContent(
+        iconColor: args.iconColor,
+        iconData: args.iconData,
+        text: args.text,
+        value: args.textValue,
+        boolValue: args.initialValue,
+        isBoolean: args.isBoolean,
+        onPressedBool: args.onPressedBool,
+      ),
+    );
   }
 }
 

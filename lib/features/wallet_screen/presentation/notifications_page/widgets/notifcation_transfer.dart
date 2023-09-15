@@ -15,7 +15,8 @@ class NotificationTransferCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final cardBG = notificationDTO.status == ExtrisincStatus.failed
+    final cardBG = notificationDTO.status == ExtrisincStatus.failed ||
+            notificationDTO.status == ExtrisincStatus.error
         ? Theme.of(context).customColors.errorCardBGColor
         : null;
 
@@ -91,10 +92,12 @@ class _TransferStatus extends StatelessWidget {
           color: Colors.green,
         );
       case ExtrisincStatus.error:
+        return const D3pBodyMediumText(
+          'status_error',
+        );
       case ExtrisincStatus.failed:
         return const D3pBodyMediumText(
           'status_failed',
-          // color: Colors.red,
         );
     }
   }

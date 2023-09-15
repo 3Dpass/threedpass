@@ -12,6 +12,7 @@ import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
+import 'package:threedpass/features/wallet_screen/domain/entities/transfer_meta_dto.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/transfer_type_dropdown.dart';
 
 part './widgets/make_transfer_button.dart';
@@ -60,6 +61,7 @@ class TransferPage extends StatelessWidget {
                       const SizedBoxH24(),
                       _AmountTextFieldBuilder(
                         amountController: amountController,
+                        transferMetaDTO: transferInfo.metaDTO,
                       ),
                       const SizedBoxH24(),
                       _PasswordTextField(
