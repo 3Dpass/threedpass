@@ -77,7 +77,6 @@ class Transfer {
           BlocProvider.of<HomeContextCubit>(context).state.context;
 
       DefaultLoadingDialog.show(globalContext, 'transfer_loader_text'.tr());
-      print(amountNotification);
 
       final tmpN = NotificationDTO(
         type: NotificationType.transfer,
@@ -138,7 +137,6 @@ class Transfer {
                       : ExtrisincStatus.failed,
                   message: p0,
                   blockDateTime: DateTime.now().toUtc(),
-                  // symbols: symbols,
                 );
                 notificationsCubit.replace(tmpN, finishedTransaction);
               },
@@ -169,18 +167,10 @@ class Transfer {
             status: ExtrisincStatus.error,
             message: e.toString(),
             blockDateTime: DateTime.now().toUtc(),
-            // symbols: symbols,
           );
           notificationsCubit.replace(tmpN, finishedTransaction);
         }
 
-        // final b = context.router.stack;
-        // print(context.router.stack);
-        // try {
-        //   DefaultLoadingDialog.hide(globalContext);
-        // } on Object catch (e) {
-        //   unawaited(Fluttertoast.showToast(msg: e.toString()));
-        // }
         unawaited(Fluttertoast.showToast(msg: e.toString()));
       }
     }
