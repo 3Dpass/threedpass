@@ -3,7 +3,7 @@ class TransferHistoryUI {
     required this.amount,
     required this.blockDateTime,
     required this.fromAddress,
-    required this.isFrom,
+    required this.direction,
     required this.symbols,
     required this.toAddress,
     required this.extrisincStatus,
@@ -16,12 +16,14 @@ class TransferHistoryUI {
   final String toAddress;
 
   /// This item is about fact that tokens were send FROM THIS account TO ANOTHER
-  final bool isFrom;
+  final TransferDirection direction;
 
   final int decimals;
 
-  final DateTime blockDateTime;
+  final DateTime? blockDateTime;
   final ExtrisincStatus? extrisincStatus;
 }
 
-enum ExtrisincStatus { error, loading, success, fail }
+enum ExtrisincStatus { error, loading, success, failed }
+
+enum TransferDirection { from, to, all }

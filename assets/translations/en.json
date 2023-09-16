@@ -293,5 +293,15 @@
     "@2.7.2":{
     },
     "choose_transfer_keep_alive": "Keep sender alive",
-    "transfer_keep_alive_help": "With the keep-alive option set, the account is protected against removal due to low balances."
+    "transfer_keep_alive_help": "With the keep-alive option set, the account is protected against removal due to low balances.",
+
+    "@2.8.0":{
+    },
+    "notifications_titile": "Transactions",
+    "transfer_status": "Transfer status:",
+    "status_pending": "Pending",
+    "status_success": "Success",
+    "status_failed": "Failed",
+    "status_error": "Error",
+    "error_wrong_amount_int": "A positive integer expected"
 }

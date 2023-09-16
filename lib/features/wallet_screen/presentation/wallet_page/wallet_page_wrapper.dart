@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/notifications_cubit.dart';
 
 @RoutePage()
 class WalletPageWrapper extends StatelessWidget implements AutoRouteWrapper {
@@ -17,6 +18,9 @@ class WalletPageWrapper extends StatelessWidget implements AutoRouteWrapper {
         BlocProvider<OuterContextCubit>(
           create: (final _) => OuterContextCubit(context),
           lazy: false,
+        ),
+        BlocProvider<NotificationsCubit>(
+          create: (_) => NotificationsCubit()..init(),
         ),
       ],
       child: this,

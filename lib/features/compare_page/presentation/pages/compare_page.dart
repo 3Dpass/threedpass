@@ -1,16 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/utils/cut_string.dart';
-import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
-import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
-import 'package:threedpass/features/compare_page/bloc/compare_cubit.dart';
+import 'package:threedpass/features/compare_page/presentation/widgets/compare_row.dart';
 import 'package:threedpass/features/compare_page/presentation/widgets/compare_table/compare_table.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-
-part '../widgets/orig_obj_title.dart';
-part '../widgets/compare_row.dart';
-part '../widgets/choose_list.dart';
 
 class ComparePage extends StatelessWidget {
   const ComparePage({

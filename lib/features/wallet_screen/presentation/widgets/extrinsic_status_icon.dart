@@ -26,7 +26,7 @@ class ExtrinsicStatusIcon extends StatelessWidget {
           Icons.check,
           color: Colors.green,
         );
-      case ExtrisincStatus.fail:
+      case ExtrisincStatus.failed:
         return const Icon(
           Icons.close,
           color: Colors.red,

@@ -17,7 +17,7 @@ class _AssetsColumn extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBoxH36(),
+          const SizedBoxH24(),
           const D3pTitleLargeText('assets_title'),
           Flexible(
             child: ListView.builder(

@@ -10,7 +10,7 @@ abstract class TransferMetaDTO {
   const TransferMetaDTO();
   MetaInfoType get type;
 
-  String getBalance();
+  double getBalance();
   String getName();
   TxInfoData getTxInfo(final TransferType transferType);
 
@@ -18,6 +18,8 @@ abstract class TransferMetaDTO {
     final String? amount,
     final String toAddress,
   );
+
+  int get decimals;
 }
 
 class CoinsTransferMetaDTO extends TransferMetaDTO {
@@ -36,12 +38,15 @@ class CoinsTransferMetaDTO extends TransferMetaDTO {
   MetaInfoType get type => MetaInfoType.coin;
 
   @override
-  String getBalance() {
-    return BalanceUtils.balance(
-      appService.chosenAccountBalance.value.availableBalance as String?,
+  double getBalance() {
+    return BalanceUtils.balanceToDouble(
+      appService.chosenAccountBalance.value.availableBalance as String,
       appService.networkStateData.safeDecimals,
     );
   }
+
+  @override
+  int get decimals => appService.networkStateData.safeDecimals;
 
   @override
   String getName() {
@@ -78,9 +83,9 @@ class AssetTransferMetaDTO extends TransferMetaDTO {
   MetaInfoType get type => MetaInfoType.asset;
 
   @override
-  String getBalance() {
-    return BalanceUtils.balance(
-      tokenBalanceData.amount,
+  double getBalance() {
+    return BalanceUtils.balanceToDouble(
+      tokenBalanceData.amount!,
       tokenBalanceData.decimals ?? 12,
     );
   }
@@ -94,6 +99,9 @@ class AssetTransferMetaDTO extends TransferMetaDTO {
   TxInfoData getTxInfo(final TransferType transferType) {
     return txInfoValue.txInfo(transferType);
   }
+
+  @override
+  int get decimals => tokenBalanceData.decimals ?? 12;
 
   @override
   List<String> getParams(

@@ -1151,8 +1151,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "5492466fdcb65d2dcc62672cd4672824a47d609f"
-      resolved-ref: "5492466fdcb65d2dcc62672cd4672824a47d609f"
+      ref: "7338432b20bbea4a4fe12d37df0fa9c5e572522a"
+      resolved-ref: "7338432b20bbea4a4fe12d37df0fa9c5e572522a"
       url: "https://github.com/L3odr0id/polkawallet_sdk.git"
     source: git
     version: "0.5.1"
@@ -1364,6 +1364,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.3"
+  shimmer:
+    dependency: "direct main"
+    description:
+      name: shimmer
+      sha256: "5f88c883a22e9f9f299e5ba0e4f7e6054857224976a5d9f839d4ebdc94a14ac9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   sky_engine:
     dependency: transitive
     description: flutter

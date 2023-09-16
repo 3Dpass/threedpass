@@ -34,8 +34,7 @@ class CustomBackButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final needSpecialPop =
-        !context.router.canNavigateBack; // TODO CHECK BACKBUTTON
+    final needSpecialPop = !context.router.canNavigateBack;
     final theme = Theme.of(context);
 
     return PlatformIconButton(

@@ -30,7 +30,7 @@ class AssetHistoryTransfer extends NonNativeTokenHistoryAtomBase {
       amount: value,
       blockDateTime: blockDatetime,
       fromAddress: authorAddress,
-      isFrom: isFrom,
+      direction: isFrom ? TransferDirection.from : TransferDirection.to,
       symbols: symbols,
       toAddress: targetAddress,
       extrisincStatus: extrisincStatus,

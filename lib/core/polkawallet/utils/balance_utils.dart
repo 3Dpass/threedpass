@@ -1,9 +1,7 @@
 import 'dart:math';
 
 import 'package:intl/intl.dart';
-import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/api/types/balanceData.dart';
-import 'package:threedpass/setup.dart';
 
 class BalanceUtils {
   static BigInt balanceTotal(final BalanceData? balance) {
@@ -100,8 +98,8 @@ class BalanceUtils {
   }
 
   /// Just to use it as double
-  static double balanceToDouble(final String balance) {
-    return double.parse(balance.replaceAll(',', ''));
+  static double balanceToDouble(final String raw, final int decimals) {
+    return bigIntToDouble(balanceInt(raw), decimals);
   }
 }
 

@@ -18,15 +18,18 @@ class ShowZeroAssets extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return DefaultSettingsButton.boolean(
-      text: 'show_zero_assets_label',
-      iconData: Icons.exposure_zero_outlined,
-      iconColor: Colors.green,
-      initialValue: BlocProvider.of<SettingsConfigCubit>(context)
-          .state
-          .appSettings
-          .showZeroAssets,
-      onPressedBool: (final bool p0) => onChanged(p0, context),
+    return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
+      buildWhen: (final previous, final current) =>
+          previous.appSettings.showZeroAssets !=
+              current.appSettings.showZeroAssets ||
+          previous.appSettings.darkTheme != current.appSettings.darkTheme,
+      builder: (final context, final state) => DefaultSettingsButton.boolean(
+        text: 'show_zero_assets_label',
+        iconData: Icons.exposure_zero_outlined,
+        iconColor: Colors.green,
+        initialValue: state.appSettings.showZeroAssets,
+        onPressedBool: (final bool p0) => onChanged(p0, context),
+      ),
     );
   }
 }

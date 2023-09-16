@@ -1,13 +1,13 @@
-part of '../pages/compare_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
+import 'package:threedpass/features/compare_page/bloc/compare_cubit.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 class ChooseList extends StatelessWidget {
   const ChooseList({
     final Key? key,
   }) : super(key: key);
-
-  // final List<Snapshot> list;
-  // final Snapshot chosen;
-  // final void Function(Snapshot?) onChoose;
 
   @override
   Widget build(final BuildContext context) {

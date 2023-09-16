@@ -13,7 +13,7 @@ class SuccessEvenType {
           ?.firstWhere((final p0) => p0.eventModule == 'System');
       switch (ex?.eventName ?? '') {
         case 'ExtrinsicFailed':
-          return ExtrisincStatus.fail;
+          return ExtrisincStatus.failed;
         case 'ExtrinsicSuccess':
           return ExtrisincStatus.success;
         default:

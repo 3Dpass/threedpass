@@ -19,15 +19,18 @@ class AntialiasSwitch extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return DefaultSettingsButton.boolean(
-      text: 'antialias_button_label',
-      iconData: UniconsLine.adjust_alt,
-      iconColor: Colors.green,
-      initialValue: BlocProvider.of<SettingsConfigCubit>(context)
-          .state
-          .previewSettings
-          .antialias,
-      onPressedBool: (final bool p0) => onChanged(p0, context),
+    return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
+      buildWhen: (final previous, final current) =>
+          previous.previewSettings.antialias !=
+              current.previewSettings.antialias ||
+          previous.appSettings.darkTheme != current.appSettings.darkTheme,
+      builder: (final context, final state) => DefaultSettingsButton.boolean(
+        text: 'antialias_button_label',
+        iconData: UniconsLine.adjust_alt,
+        iconColor: Colors.green,
+        initialValue: state.previewSettings.antialias,
+        onPressedBool: (final bool p0) => onChanged(p0, context),
+      ),
     );
   }
 }
