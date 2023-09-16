@@ -148,7 +148,8 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
 
     state.keyring.setCurrent(keyPairData);
 
-    final pseudoNewState = state.copyWith();
+    final pseudoNewState =
+        state.copyWith(status: AppServiceInitStatus.connected);
 
     await pseudoNewState.subscribeToBalance();
 

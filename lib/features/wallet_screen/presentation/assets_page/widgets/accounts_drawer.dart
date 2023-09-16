@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,9 +9,12 @@ import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/buttons/list_tile_button.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/remove_account_dialog.dart';
+import 'package:threedpass/router/route_paths.dart';
+
+part './accounts_drawer/account_text_button.dart';
 
 class AccountsDrawer extends Drawer {
   AccountsDrawer({
@@ -29,7 +33,6 @@ class AccountsDrawer extends Drawer {
               PlatformAppBar(
                 title: Text(
                   'choose_account_assets_page_drawer'.tr(),
-                  // style: theme.customTextStyles.appBarText,
                 ),
                 material: (final _, final __) => MaterialAppBarData(
                   automaticallyImplyLeading: false,
@@ -42,22 +45,18 @@ class AccountsDrawer extends Drawer {
                   backgroundColor: theme.customColors.appBarBackground,
                 ),
               ),
-              const SizedBox(height: 4),
-              D3pTextButton(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                mainAxisAlignment: MainAxisAlignment.start,
+              const SizedBoxH4(),
+              const _AccountTextButton(
                 icon: Icons.add_circle,
-                text: 'create_account_button_label'.tr(),
-                onPressed: () =>
-                    CreateAccountPageWrapper.pushToGenerateRandom(context),
+                text: 'create_account_button_label',
+                path: RoutePaths.createAccountMain +
+                    RoutePaths.createAccountRandomMnemonic,
               ),
-              D3pTextButton(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                mainAxisAlignment: MainAxisAlignment.start,
+              const _AccountTextButton(
                 icon: Icons.import_export,
-                text: 'import_account_button_label'.tr(),
-                onPressed: () =>
-                    CreateAccountPageWrapper.pushToImportType(context),
+                text: 'import_account_button_label',
+                path: RoutePaths.createAccountMain +
+                    RoutePaths.createAccountChooseType,
               ),
               const Divider(),
               Flexible(

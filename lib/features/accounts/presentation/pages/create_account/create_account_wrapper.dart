@@ -15,20 +15,6 @@ class CreateAccountPageWrapper extends StatelessWidget
     final Key? key,
   }) : super(key: key);
 
-  static void pushToGenerateRandom(final BuildContext context) {
-    Navigator.of(context).pop();
-    context.router.pushNamed(
-      RoutePaths.createAccountMain + RoutePaths.createAccountRandomMnemonic,
-    );
-  }
-
-  static void pushToImportType(final BuildContext context) {
-    Navigator.of(context).pop();
-    context.router.pushNamed(
-      RoutePaths.createAccountMain + RoutePaths.createAccountChooseType,
-    );
-  }
-
   @override
   Widget wrappedRoute(final BuildContext context) {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
