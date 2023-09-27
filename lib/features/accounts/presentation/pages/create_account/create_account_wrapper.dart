@@ -6,7 +6,6 @@ import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
-import 'package:threedpass/router/route_paths.dart';
 
 @RoutePage()
 class CreateAccountPageWrapper extends StatelessWidget

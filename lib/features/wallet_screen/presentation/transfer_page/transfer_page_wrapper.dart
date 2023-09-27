@@ -18,14 +18,12 @@ class TransferPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(final BuildContext context) {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
-    final balance = metadata.getBalance();
 
     return MultiBlocProvider(
       providers: [
         BlocProvider<TransferInfoCubit>(
           // We are not calculating fees now
           create: (final _) => TransferInfoCubit(
-            balance: balance,
             metaDTO: metadata,
             appService: appService,
           )..init(),

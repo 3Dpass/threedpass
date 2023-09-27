@@ -257,7 +257,7 @@
     "to_address_hint": "Enter address",
     "amount_label": "Amount (Balance: {})",
     "amount_hint": "Enter amount",
-    "enter_password_hint": "password",
+    "enter_password_hint": "Password",
     "enter_password_label": "Your password",
     "existential_deposit_label": "existential deposit",
     "existential_deposit_text": "The minimum amount thath an account should have to be deemed active.",

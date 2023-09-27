@@ -15,7 +15,7 @@ class TransferHistoryUI {
   final String fromAddress;
   final String toAddress;
 
-  /// This item is about fact that tokens were send FROM THIS account TO ANOTHER
+  /// Its says assets were send FROM this TO another
   final TransferDirection direction;
 
   final int decimals;

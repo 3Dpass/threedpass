@@ -1,8 +1,8 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/api/types/txInfoData.dart';
+import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/transfer_type.dart';
@@ -14,16 +14,28 @@ part 'transfer_info_cubit.g.dart';
 
 class TransferInfoCubit extends Cubit<TransferInfo> {
   TransferInfoCubit({
-    required final double balance,
     required this.metaDTO,
     required this.appService,
   }) : super(
           TransferInfo(
-            balance: balance,
+            fromAddresses: [initialFrom(appService)],
+            toAddresses: [],
             fees: null,
             type: TransferTypeValue.defaultType,
           ),
         );
+
+  static _FromAddressData initialFrom(final AppService appService) {
+    final account = appService.keyring.current;
+    final balance = double.tryParse(
+      appService.chosenAccountBalance.value.availableBalance.toString(),
+    );
+    return _FromAddressData(
+      amount: 0,
+      balance: balance,
+      data: account,
+    );
+  }
 
   final TransferMetaDTO metaDTO;
   final AppService appService;
@@ -106,13 +118,35 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
 @CopyWith()
 class TransferInfo {
   // Max avaliable balance in wallet in human-readable double format
-  final double balance;
+  // final double balance;
   final TxFeeEstimateResult? fees;
   final TransferType type;
+  final List<_FromAddressData> fromAddresses;
+  final List<_ToAddressData> toAddresses;
 
   const TransferInfo({
-    required this.balance,
+    required this.fromAddresses,
+    required this.toAddresses,
     required this.fees,
     required this.type,
   });
+}
+
+class _FromAddressData {
+  const _FromAddressData({
+    required this.amount,
+    required this.balance,
+    required this.data,
+  });
+
+  final KeyPairData? data;
+  final double? amount;
+  final double? balance;
+}
+
+class _ToAddressData {
+  const _ToAddressData({
+    required this.data,
+  });
+  final KeyPairData? data;
 }

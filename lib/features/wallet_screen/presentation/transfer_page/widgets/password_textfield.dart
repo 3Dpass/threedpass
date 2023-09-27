@@ -16,14 +16,13 @@ class _PasswordTextField extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return D3pTextFormField(
+    return BasicTransferTextField(
       labelText: 'enter_password_label'.tr(),
       controller: passwordController,
       hintText: 'enter_password_hint'.tr(),
       validator: _passValidator,
       obscureText: true,
       maxLines: 1,
-      // hintText: 'amount_hint'.tr(),
     );
   }
 }

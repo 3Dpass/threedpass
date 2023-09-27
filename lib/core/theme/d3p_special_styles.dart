@@ -84,7 +84,7 @@ extension BodyCustomText on CustomTextStyles {
       themeData.textTheme.bodyLarge!.copyWith(color: _themeOpposite);
   TextStyle get d3pBodyMedium =>
       themeData.textTheme.bodyMedium!.copyWith(color: _themeOpposite);
-  TextStyle get dp3BodySmall =>
+  TextStyle get d3pBodySmall =>
       themeData.textTheme.bodySmall!.copyWith(color: _themeOpposite);
 }
 

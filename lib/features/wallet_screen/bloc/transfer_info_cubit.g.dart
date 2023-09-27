@@ -7,7 +7,9 @@ part of 'transfer_info_cubit.dart';
 // **************************************************************************
 
 abstract class _$TransferInfoCWProxy {
-  TransferInfo balance(double balance);
+  TransferInfo fromAddresses(List<_FromAddressData> fromAddresses);
+
+  TransferInfo toAddresses(List<_ToAddressData> toAddresses);
 
   TransferInfo fees(TxFeeEstimateResult? fees);
 
@@ -20,7 +22,8 @@ abstract class _$TransferInfoCWProxy {
   /// TransferInfo(...).copyWith(id: 12, name: "My name")
   /// ````
   TransferInfo call({
-    double? balance,
+    List<_FromAddressData>? fromAddresses,
+    List<_ToAddressData>? toAddresses,
     TxFeeEstimateResult? fees,
     TransferType? type,
   });
@@ -33,7 +36,12 @@ class _$TransferInfoCWProxyImpl implements _$TransferInfoCWProxy {
   final TransferInfo _value;
 
   @override
-  TransferInfo balance(double balance) => this(balance: balance);
+  TransferInfo fromAddresses(List<_FromAddressData> fromAddresses) =>
+      this(fromAddresses: fromAddresses);
+
+  @override
+  TransferInfo toAddresses(List<_ToAddressData> toAddresses) =>
+      this(toAddresses: toAddresses);
 
   @override
   TransferInfo fees(TxFeeEstimateResult? fees) => this(fees: fees);
@@ -50,15 +58,22 @@ class _$TransferInfoCWProxyImpl implements _$TransferInfoCWProxy {
   /// TransferInfo(...).copyWith(id: 12, name: "My name")
   /// ````
   TransferInfo call({
-    Object? balance = const $CopyWithPlaceholder(),
+    Object? fromAddresses = const $CopyWithPlaceholder(),
+    Object? toAddresses = const $CopyWithPlaceholder(),
     Object? fees = const $CopyWithPlaceholder(),
     Object? type = const $CopyWithPlaceholder(),
   }) {
     return TransferInfo(
-      balance: balance == const $CopyWithPlaceholder() || balance == null
-          ? _value.balance
-          // ignore: cast_nullable_to_non_nullable
-          : balance as double,
+      fromAddresses:
+          fromAddresses == const $CopyWithPlaceholder() || fromAddresses == null
+              ? _value.fromAddresses
+              // ignore: cast_nullable_to_non_nullable
+              : fromAddresses as List<_FromAddressData>,
+      toAddresses:
+          toAddresses == const $CopyWithPlaceholder() || toAddresses == null
+              ? _value.toAddresses
+              // ignore: cast_nullable_to_non_nullable
+              : toAddresses as List<_ToAddressData>,
       fees: fees == const $CopyWithPlaceholder()
           ? _value.fees
           // ignore: cast_nullable_to_non_nullable

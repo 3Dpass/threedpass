@@ -21,14 +21,17 @@ class TransferTypeDropdown extends StatelessWidget {
     final initialValue =
         BlocProvider.of<TransferInfoCubit>(context).state.type ==
             TransferType.transferKeepAlive;
-    return D3pSwitchButton(
-      initialValue: initialValue,
-      helpText: 'transfer_keep_alive_help'.tr(),
-      onChanged: (final value) => onChanged(
-        context,
-        value ? TransferType.transferKeepAlive : TransferType.transfer,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: D3pSwitchButton(
+        initialValue: initialValue,
+        helpText: 'transfer_keep_alive_help'.tr(),
+        onChanged: (final value) => onChanged(
+          context,
+          value ? TransferType.transferKeepAlive : TransferType.transfer,
+        ),
+        text: 'choose_transfer_keep_alive'.tr(),
       ),
-      text: 'choose_transfer_keep_alive'.tr(),
     );
   }
 }

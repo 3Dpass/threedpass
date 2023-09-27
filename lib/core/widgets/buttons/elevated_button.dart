@@ -12,16 +12,24 @@ class D3pElevatedButton extends StatelessWidget {
     this.icon,
     this.backgroundColor,
     this.foregroundColor,
+    this.elevation,
+    this.childAlignment,
+    this.textStyle,
+    this.child,
   }) : super(key: key);
 
   final void Function()? onPressed;
-  final String text;
+  final String? text;
   final IconData? iconData;
   final Size? minimumSize;
   final EdgeInsets? padding;
   final Widget? icon;
   final Color? foregroundColor;
   final Color? backgroundColor;
+  final double? elevation;
+  final MainAxisAlignment? childAlignment;
+  final TextStyle? textStyle;
+  final Widget? child;
 
   @override
   Widget build(final BuildContext context) {
@@ -31,23 +39,30 @@ class D3pElevatedButton extends StatelessWidget {
         child: PlatformElevatedButton(
           padding: padding ?? EdgeInsets.zero,
           onPressed: onPressed,
-          // material: (final context, final platform) =>
-          //     d3pElevatedTheme.resolveMaterial(
-          //   text: text,
-          //   icon: icon,
-          //   iconData: iconData,
-          // ),
-          // cupertino: (final context, final _) =>
-          //     d3pElevatedTheme.resolveCupertino(
-          //   context: context,
-          //   text: text,
-          //   icon: icon,
-          //   iconData: iconData,
-          // ),
-          child: _ElevatedButtonChild(
-            icon: icon,
-            iconData: iconData,
-            text: text,
+          child: child ??
+              _ElevatedButtonChild(
+                icon: icon,
+                iconData: iconData,
+                text: text ?? '',
+                childAlignment: childAlignment,
+              ),
+          // TODO CHECK CUPERTINO
+          material: (final context, final platform) =>
+              MaterialElevatedButtonData(
+            style: ButtonStyle(
+              backgroundColor: backgroundColor != null
+                  ? MaterialStateProperty.all(backgroundColor)
+                  : null,
+              elevation: elevation != null
+                  ? MaterialStateProperty.all(elevation)
+                  : null,
+              padding: MaterialStateProperty.all(
+                const EdgeInsets.symmetric(horizontal: 8),
+              ),
+              textStyle: textStyle != null
+                  ? MaterialStateProperty.all(textStyle)
+                  : null,
+            ),
           ),
         ),
       ),
@@ -60,16 +75,18 @@ class _ElevatedButtonChild extends StatelessWidget {
     required this.icon,
     required this.iconData,
     required this.text,
+    this.childAlignment,
   });
 
   final String text;
   final IconData? iconData;
   final Widget? icon;
+  final MainAxisAlignment? childAlignment;
 
   @override
   Widget build(final BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: childAlignment ?? MainAxisAlignment.center,
       children: [
         (icon != null || iconData != null)
             ? _Icon(
@@ -84,75 +101,6 @@ class _ElevatedButtonChild extends StatelessWidget {
     );
   }
 }
-
-// /// Default styles are for elevated buttons on canvas background
-// class D3pElevatedButtonThemeData {
-//   final Color backgroundColor;
-//   final Color foregroundColor;
-
-//   // const D3pElevatedButtonThemeData._({
-//   //   required this.backgroundColor,
-//   //   required this.foregroundColor,
-//   // });
-
-//   D3pElevatedButtonThemeData.active(final ThemeData themeData)
-//       : backgroundColor = themeData.colorScheme.primary,
-//         foregroundColor = themeData.colorScheme.onPrimary;
-
-//   D3pElevatedButtonThemeData.disabled(final ThemeData themeData)
-//       : backgroundColor = themeData.cardColor,
-//         foregroundColor = themeData.colorScheme.onSurface.withOpacity(0.50);
-// }
-
-// class D3pElevatedButtonStyle {
-//   final bool isButtonActive;
-//   final ThemeData themeData;
-
-//   final Size? minimumSize;
-//   final Color? foregroundColor;
-//   final Color? backgroundColor;
-
-//   const D3pElevatedButtonStyle({
-//     required this.isButtonActive,
-//     required this.themeData,
-//     required this.foregroundColor,
-//     required this.backgroundColor,
-//     required this.minimumSize,
-//   });
-
-//   MaterialElevatedButtonData resolveMaterial({
-//     required final Widget? icon,
-//     required final IconData? iconData,
-//     required final String text,
-//   }) {
-//     return MaterialElevatedButtonData(
-//       child: _ElevatedButtonChild(
-//         icon: icon,
-//         iconData: iconData,
-//         text: text,
-//       ),
-//     );
-//   }
-
-//   CupertinoElevatedButtonData resolveCupertino({
-//     required final BuildContext context,
-//     required final Widget? icon,
-//     required final IconData? iconData,
-//     required final String text,
-//   }) {
-//     return CupertinoElevatedButtonData(
-//       // color: Colors.orange,
-//       originalStyle: false,
-//       // onPressed: () {},
-//       // disabledColor: Colors.amber,
-//       child: _ElevatedButtonChild(
-//         icon: icon,
-//         iconData: iconData,
-//         text: text,
-//       ),
-//     );
-//   }
-// }
 
 class _Icon extends StatelessWidget {
   const _Icon({

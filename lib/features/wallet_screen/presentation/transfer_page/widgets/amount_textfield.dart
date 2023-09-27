@@ -4,22 +4,20 @@ class _AmountTextFieldBuilder extends StatelessWidget {
   const _AmountTextFieldBuilder({
     required this.amountController,
     required this.transferMetaDTO,
+    required this.balance,
     final Key? key,
   }) : super(key: key);
 
   final TextEditingController amountController;
   final TransferMetaDTO transferMetaDTO;
+  final double balance;
 
   @override
   Widget build(final BuildContext context) {
-    return BlocBuilder<TransferInfoCubit, TransferInfo>(
-      buildWhen: (final previous, final current) =>
-          previous.balance != current.balance,
-      builder: (final context, final state) => _AmountTextField(
-        amountController: amountController,
-        balance: state.balance,
-        transferMetaDTO: transferMetaDTO,
-      ),
+    return _AmountTextField(
+      amountController: amountController,
+      balance: balance,
+      transferMetaDTO: transferMetaDTO,
     );
   }
 }
@@ -47,7 +45,7 @@ class _AmountTextField extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return D3pTextFormField(
+    return BasicTransferTextField(
       labelText: 'amount_label'.tr(
         args: [
           BalanceUtils.doubleFormat(balance),
