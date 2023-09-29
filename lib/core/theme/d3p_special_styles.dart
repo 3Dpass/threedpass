@@ -95,3 +95,8 @@ extension SpecialText on CustomTextStyles {
   TextStyle get d3pSettingsHeaderSmall => themeData.textTheme.bodySmall!
       .copyWith(color: themeData.customColors.moreFadedGrey);
 }
+
+extension Buttons on CustomTextStyles {
+  TextStyle get d3pFloatingButton => themeData.textTheme.bodyMedium!
+      .copyWith(letterSpacing: 1.2, fontWeight: FontWeight.w500);
+}

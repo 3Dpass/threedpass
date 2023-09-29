@@ -37,7 +37,7 @@ class AssetsPage extends StatelessWidget {
               // SizedBoxH24(),
               SizedBoxH8(),
               CoinsBalance(),
-              SizedBoxH16(),
+              SizedBoxH8(),
               AssetPageButtonsPanel(),
               Flexible(
                 child: NonNativeTokens(),

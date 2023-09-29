@@ -38,6 +38,7 @@ class AssetPageAppbar extends AppBar {
                 const SizedBox(width: 16),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       Fmt.shorterAddress(account.address),
@@ -51,16 +52,20 @@ class AssetPageAppbar extends AppBar {
                   ],
                 ),
                 const SizedBox(width: 16),
-                SizedBox(
+                Container(
+                  color: Colors.red,
                   width: D3pAddressIcon.defaultSize,
-                  child: D3pIconButton(
-                    emptyContraints: true,
-                    iconData: Icons.copy,
-                    size: 20,
-                    iconColor: themeData.customColors.appBarButton,
-                    onPressed: () => copyAndNotify(
-                      textToCopy: account.address!,
-                      textToShow: 'address_copied_to_clipboard'.tr(),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: D3pIconButton(
+                      emptyContraints: true,
+                      iconData: Icons.copy,
+                      size: 20,
+                      iconColor: themeData.customColors.appBarButton,
+                      onPressed: () => copyAndNotify(
+                        textToCopy: account.address!,
+                        textToShow: 'address_copied_to_clipboard'.tr(),
+                      ),
                     ),
                   ),
                 ),
