@@ -5,12 +5,12 @@ import 'package:threedpass/core/polkawallet/utils/transfer_type.dart';
 import 'package:threedpass/core/widgets/input/switch_button.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
 
-class TransferTypeDropdown extends StatelessWidget {
-  const TransferTypeDropdown({
+class TransferTypeSwitch extends StatelessWidget {
+  const TransferTypeSwitch({
     final Key? key,
   }) : super(key: key);
 
-  void onChanged(final BuildContext context, final TransferType? value) {
+  void onChanged(final BuildContext context, final TransactionOption? value) {
     if (value != null) {
       BlocProvider.of<TransferInfoCubit>(context).updateTransferType(value);
     }
@@ -20,7 +20,7 @@ class TransferTypeDropdown extends StatelessWidget {
   Widget build(final BuildContext context) {
     final initialValue =
         BlocProvider.of<TransferInfoCubit>(context).state.type ==
-            TransferType.transferKeepAlive;
+            TransactionOption.transferKeepAlive;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: D3pSwitchButton(
@@ -28,7 +28,9 @@ class TransferTypeDropdown extends StatelessWidget {
         helpText: 'transfer_keep_alive_help'.tr(),
         onChanged: (final value) => onChanged(
           context,
-          value ? TransferType.transferKeepAlive : TransferType.transfer,
+          value
+              ? TransactionOption.transferKeepAlive
+              : TransactionOption.transfer,
         ),
         text: 'choose_transfer_keep_alive'.tr(),
       ),

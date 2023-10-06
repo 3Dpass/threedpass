@@ -9,9 +9,10 @@ class AssetPageButtonsPanel extends StatelessWidget {
   Widget build(final BuildContext context) {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         CoinTransferButton(),
-        SizedBox(width: 16),
+        SizedBox(width: 8),
         RecieveButton(),
       ],
     );

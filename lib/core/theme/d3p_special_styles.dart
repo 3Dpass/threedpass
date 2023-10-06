@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 
@@ -97,6 +98,12 @@ extension SpecialText on CustomTextStyles {
 }
 
 extension Buttons on CustomTextStyles {
-  TextStyle get d3pFloatingButton => themeData.textTheme.bodyMedium!
-      .copyWith(letterSpacing: 1.2, fontWeight: FontWeight.w500);
+  TextStyle get d3pFloatingButton =>
+      themeData.customTextStyles.d3pBodyMedium.copyWith(
+        fontSize: 16,
+        letterSpacing: 1.2,
+        fontWeight: FontWeight.w500,
+      );
+
+  TextStyle get hintStyle => d3pBodySmall.copyWith(color: D3pColors.disabled);
 }

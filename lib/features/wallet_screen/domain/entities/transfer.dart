@@ -118,15 +118,14 @@ class Transfer {
                 // notificationsCubit.replace(tmpN, readN);
                 // tmpN = readN;
 
-                print('Broadcast');
+                debugPrint('Broadcast');
 
               default:
-                print(p0);
+                debugPrint(p0);
             }
           },
           msgIdCallback: (final String msgId) {
-            print('SET MSG ID');
-            print(msgId);
+            debugPrint('SET MSG ID $msgId');
             addHandler(
               msgId,
               (final String p0) {
@@ -142,13 +141,9 @@ class Transfer {
               },
             );
           },
-          uidCallback: (final String msgId) {
-            print('SET UID');
-            print(msgId);
-          },
         );
         // final b = 1 + 1;
-        print('Finished');
+        // print('Finished');
       } on Object catch (e) {
         // print('aaaaaaaaaaaa');
         // final a = globalContext.router.stack;
@@ -157,7 +152,7 @@ class Transfer {
           final ___ = context.router.stack;
           DefaultLoadingDialog.hide(globalContext);
           // DIALOG WAS NOT CLOSED
-        } on Object catch (e) {
+        } on Object catch (_) {
           // DIALOG WAS CLOSED
           debugPrint('dialog was closed');
         }

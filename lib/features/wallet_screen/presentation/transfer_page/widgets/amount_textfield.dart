@@ -1,15 +1,19 @@
-part of '../transfer_page.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
+import 'package:threedpass/features/wallet_screen/domain/entities/transfer_meta_dto.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/basic_transfer_textfield.dart';
 
-class _AmountTextFieldBuilder extends StatelessWidget {
-  const _AmountTextFieldBuilder({
+class AmountTextFieldBuilder extends StatelessWidget {
+  const AmountTextFieldBuilder({
     required this.amountController,
-    required this.transferMetaDTO,
+    required this.transferType,
     required this.balance,
     final Key? key,
   }) : super(key: key);
 
   final TextEditingController amountController;
-  final TransferMetaDTO transferMetaDTO;
+  final MetaInfoType transferType;
   final double balance;
 
   @override
@@ -17,7 +21,7 @@ class _AmountTextFieldBuilder extends StatelessWidget {
     return _AmountTextField(
       amountController: amountController,
       balance: balance,
-      transferMetaDTO: transferMetaDTO,
+      transferType: transferType,
     );
   }
 }
@@ -26,16 +30,16 @@ class _AmountTextField extends StatelessWidget {
   const _AmountTextField({
     required this.amountController,
     required this.balance,
-    required this.transferMetaDTO,
+    required this.transferType,
     final Key? key,
   }) : super(key: key);
 
   final TextEditingController amountController;
-  final TransferMetaDTO transferMetaDTO;
+  final MetaInfoType transferType;
   final double balance;
 
   String? Function(String? v) validator() {
-    switch (transferMetaDTO.type) {
+    switch (transferType) {
       case MetaInfoType.coin:
         return _DoubleValidator(balance).amountValidator;
       case MetaInfoType.asset:

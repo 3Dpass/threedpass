@@ -88,8 +88,7 @@ class D3pTextFormField extends StatelessWidget {
             children: [
               Text(
                 labelText ?? '',
-                style:
-                    textStyle.d3pBodySmall.copyWith(color: D3pColors.disabled),
+                style: textStyle.hintStyle,
               ),
               const SizedBoxH4(),
             ],

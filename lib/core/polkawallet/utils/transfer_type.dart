@@ -1,9 +1,10 @@
 class TransferTypeValue {
-  static const TransferType defaultType = TransferType.transferKeepAlive;
+  static const TransactionOption defaultType =
+      TransactionOption.transferKeepAlive;
 
   const TransferTypeValue(this.type);
 
-  final TransferType type;
+  final TransactionOption type;
 
   @override
   String toString() {
@@ -11,7 +12,7 @@ class TransferTypeValue {
   }
 }
 
-enum TransferType {
+enum TransactionOption {
   transfer,
   transferKeepAlive,
 }

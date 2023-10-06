@@ -32,7 +32,6 @@ class _MakeTransferButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BlocBuilder<TransferInfoCubit, TransferInfo?>(
       builder: (final context, final state) => D3pElevatedButton(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
         text: 'make_transfer_label'.tr(),
         onPressed: state != null
             ? () => onPressed(context)

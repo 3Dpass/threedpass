@@ -1,7 +1,10 @@
-part of '../transfer_page.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:threedpass/core/utils/validators.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/basic_transfer_textfield.dart';
 
-class _PasswordTextField extends StatelessWidget {
-  const _PasswordTextField({
+class PasswordTextField extends StatelessWidget {
+  const PasswordTextField({
     required this.passwordController,
     final Key? key,
   }) : super(key: key);

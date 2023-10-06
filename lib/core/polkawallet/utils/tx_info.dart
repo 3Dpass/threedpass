@@ -1,21 +1,22 @@
 import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:polkawallet_sdk/plugin/store/balances.dart';
-import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
-import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/polkawallet/utils/transfer_type.dart';
 import 'package:threedpass/setup.dart';
 
 abstract class TransferTxInfoI {
-  final AppService appService;
+  final KeyPairData senderData;
+  final int decimals;
 
   const TransferTxInfoI({
-    required this.appService,
+    required this.decimals,
+    required this.senderData,
   });
 
   TxInfoData txInfo(
-    final TransferType transferType,
+    final TransactionOption transferType,
   );
   List<String> params(final String? amount, final String toAddress);
 }
@@ -23,18 +24,19 @@ abstract class TransferTxInfoI {
 class AssetsTransferTx extends TransferTxInfoI {
   final TokenBalanceData tokenBalanceData;
   const AssetsTransferTx({
-    required super.appService,
+    required super.decimals,
+    required super.senderData,
     required this.tokenBalanceData,
   });
 
   @override
   TxInfoData txInfo(
-    final TransferType transferType,
+    final TransactionOption transferType,
   ) =>
       TxInfoData(
         'assets',
         TransferTypeValue(transferType).toString(),
-        appService.userSenderData,
+        TxSenderData(senderData.address, senderData.pubKey),
       );
 
   @override
@@ -52,7 +54,7 @@ class AssetsTransferTx extends TransferTxInfoI {
 
     final realAmount = BalanceUtils.tokenInt(
       amount,
-      tokenBalanceData.decimals ?? appService.networkStateData.safeDecimals,
+      tokenBalanceData.decimals ?? decimals,
     );
 
     if (tokenBalanceData.id == null) {
@@ -71,19 +73,20 @@ class AssetsTransferTx extends TransferTxInfoI {
 
 class CoinsTransferTx extends TransferTxInfoI {
   const CoinsTransferTx({
-    required super.appService,
+    required super.decimals,
+    required super.senderData,
   });
 
   @override
   TxInfoData txInfo(
-    final TransferType transferType,
+    final TransactionOption transferType,
   ) =>
       TxInfoData(
         'balances',
         TransferTypeValue(transferType).toString(),
         TxSenderData(
-          appService.keyring.current.address,
-          appService.keyring.current.pubKey,
+          senderData.address,
+          senderData.pubKey,
         ),
       );
 
@@ -94,7 +97,7 @@ class CoinsTransferTx extends TransferTxInfoI {
   ) {
     final realAmount = BalanceUtils.tokenInt(
       amount,
-      appService.networkStateData.safeDecimals,
+      decimals,
     );
 
     return [

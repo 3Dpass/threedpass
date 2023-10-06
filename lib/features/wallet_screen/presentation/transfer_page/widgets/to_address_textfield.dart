@@ -1,7 +1,9 @@
-part of '../transfer_page.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/basic_transfer_textfield.dart';
 
-class _ToAddressTextField extends StatelessWidget {
-  const _ToAddressTextField({
+class ToAddressTextField extends StatelessWidget {
+  const ToAddressTextField({
     required this.toAddressController,
     final Key? key,
   }) : super(key: key);
@@ -10,22 +12,11 @@ class _ToAddressTextField extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(16)),
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 16,
-        ),
-        child: BasicTransferTextField(
-          labelText: 'to_address_label'.tr(),
-          controller: toAddressController,
-          maxLines: 1,
-          hintText: 'to_address_hint'.tr(),
-        ),
-      ),
+    return BasicTransferTextField(
+      labelText: 'to_address_label'.tr(),
+      controller: toAddressController,
+      maxLines: 1,
+      hintText: 'to_address_hint'.tr(),
     );
   }
 }

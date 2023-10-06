@@ -22,7 +22,6 @@ class AssetsPage extends StatelessWidget {
           backgroundColor: theme.customColors.scaffoldBackground,
           appBar: AssetPageAppbar(
             account: state.keyring.current,
-            themeData: theme,
           ),
           drawer: AccountsDrawer(
             appServiceCubit: BlocProvider.of<AppServiceLoaderCubit>(context),

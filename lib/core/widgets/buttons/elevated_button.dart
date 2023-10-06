@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
 class D3pElevatedButton extends StatelessWidget {
   const D3pElevatedButton({
@@ -33,6 +34,7 @@ class D3pElevatedButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final style = Theme.of(context).customTextStyles.d3pFloatingButton;
     return Padding(
       padding: padding ?? EdgeInsets.zero,
       child: SizedBox(
@@ -60,8 +62,12 @@ class D3pElevatedButton extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: 8),
               ),
               textStyle: textStyle != null
-                  ? MaterialStateProperty.all(textStyle)
-                  : null,
+                  ? MaterialStateProperty.all(
+                      textStyle,
+                    )
+                  : MaterialStateProperty.all(
+                      style,
+                    ),
             ),
           ),
         ),
