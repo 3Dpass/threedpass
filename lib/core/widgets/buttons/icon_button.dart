@@ -34,6 +34,7 @@ class D3pIconButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         PlatformIconButton(
           icon: Icon(

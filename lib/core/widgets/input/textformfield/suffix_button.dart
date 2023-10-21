@@ -8,8 +8,8 @@ class _SuffixButton {
     required this.onSuffixButtonPressed,
   });
 
-  final String? labelButton;
-  final String? suffixButton;
+  final Widget? labelButton;
+  final Widget? suffixButton;
 
   final void Function()? onLabelButtonPressed;
   final void Function()? onSuffixButtonPressed;
@@ -21,11 +21,12 @@ class _SuffixButton {
             children: [
               labelButton != null
                   ? SizedBox(
-                      width: 60,
+                      height: 40,
+                      width: 50,
                       child: PlatformTextButton(
                         padding: EdgeInsets.zero,
                         onPressed: onLabelButtonPressed ?? emptyFunction,
-                        child: Text(labelButton!),
+                        child: labelButton,
                       ),
                     )
                   : const SizedBox(),
@@ -34,14 +35,16 @@ class _SuffixButton {
               ),
               suffixButton != null
                   ? SizedBox(
-                      width: 60,
+                      height: 40,
+                      width: 50,
                       child: PlatformTextButton(
                         padding: EdgeInsets.zero,
                         onPressed: onSuffixButtonPressed ?? emptyFunction,
-                        child: Text(suffixButton!),
+                        child: suffixButton,
                       ),
                     )
                   : const SizedBox(),
+              const SizedBox(width: 4),
             ],
           )
         : null;

@@ -309,5 +309,7 @@
     },
     "from_select_account_title": "Select account",
     "add_account_from_label": "Add accout to send FROM",
-    "add_account_to_label": "Add accout to send TO"
+    "add_account_to_label": "Add accout to send TO",
+    "password_hint_1": "Press ",
+    "password_hint_2": " to copy the password of the account above"
 }

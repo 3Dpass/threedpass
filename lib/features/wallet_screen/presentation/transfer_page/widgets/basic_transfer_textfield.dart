@@ -24,6 +24,7 @@ class BasicTransferTextField extends D3pTextFormField {
     super.suffixButton,
     super.validator,
     super.makeLabelOutside = true,
+    super.bottomWidget,
     super.border = const UnderlineInputBorder(
       borderSide: BorderSide.none,
       borderRadius: BorderRadius.all(

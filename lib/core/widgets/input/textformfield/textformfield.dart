@@ -36,6 +36,7 @@ class D3pTextFormField extends StatelessWidget {
         const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
     this.focusedBorder,
     this.border,
+    this.bottomWidget,
     super.key,
   }) : controller = controller ?? TextEditingController();
 
@@ -46,17 +47,18 @@ class D3pTextFormField extends StatelessWidget {
 
   /// Text to display below the input field
   final String? bottomHelpText;
+  final Widget? bottomWidget;
 
   final TextEditingController controller;
   final bool? enabled;
   final String? hintText;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
-  final String? labelButton;
+  final Widget? labelButton;
   final String? labelText;
   final int? maxLen;
   final int? maxLines;
-  final String? suffixButton;
+  final Widget? suffixButton;
   final bool obscureText;
   final bool isCollapsed;
   final bool autofocus;
@@ -127,7 +129,7 @@ class D3pTextFormField extends StatelessWidget {
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
         ),
-        _BottomHelpText(bottomHelpText),
+        bottomWidget ?? _BottomHelpText(bottomHelpText),
       ],
     );
   }

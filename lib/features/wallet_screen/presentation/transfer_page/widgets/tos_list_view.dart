@@ -25,11 +25,13 @@ class ToListView extends StatelessWidget {
           transferInfo.screenType == TransferScreenType.many_to_one
               ? ToCardManyToOne(
                   data: transferInfo.toAddresses[index],
+                  isFirst: index == 0,
                 )
               : ToCardOneToMany(
                   data: transferInfo.toAddresses[index],
                   sendAmountData: transferInfo.amounts[index],
                   metaInfoType: metaInfoType,
+                  isFirst: index == 0,
                 ),
     );
   }

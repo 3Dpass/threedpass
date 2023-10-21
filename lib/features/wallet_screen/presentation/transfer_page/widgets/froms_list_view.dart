@@ -27,9 +27,11 @@ class FromsListView extends StatelessWidget {
                   data: transferInfo.fromAddresses[index],
                   sendAmountData: transferInfo.amounts[index],
                   metaInfoType: metaInfoType,
+                  isFirst: index == 0,
                 )
               : FromCardOneToMany(
                   data: transferInfo.fromAddresses[index],
+                  isFirst: index == 0,
                 ),
     );
   }

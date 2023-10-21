@@ -7,10 +7,12 @@ import 'package:threedpass/features/wallet_screen/presentation/transfer_page/wid
 class FromCardBasic extends StatelessWidget {
   const FromCardBasic({
     required this.data,
+    required this.isFirst,
     super.key,
   });
 
   final FromAddressData data;
+  final bool isFirst;
 
   @override
   Widget build(final BuildContext context) {
@@ -22,6 +24,8 @@ class FromCardBasic extends StatelessWidget {
         const SizedBoxH4(),
         PasswordTextField(
           passwordController: data.passwordController,
+          isFirst: isFirst,
+          data: data,
         ),
       ],
     );

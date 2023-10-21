@@ -1,7 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 
 class FilePickerShortCut {
-  static const allowedExtentions = ['obj', 'stl'];
+  static const allowedExtentions = ['obj', 'stl', 'glb', 'bin'];
 
   /// Get and validate file
   Future<String> pickFile() async {

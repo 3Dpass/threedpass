@@ -175,11 +175,43 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
     if (dataToChange.data == acc) {
       return;
     }
-    print('1');
+
     final newFromAddresses = List<FromAddressData>.from(state.fromAddresses);
     final newAddressData = dataToChange.copyWith(data: acc);
 
     newFromAddresses.replace(dataToChange, newAddressData);
+
+    emit(state.copyWith(fromAddresses: newFromAddresses));
+  }
+
+  void removeFromAddress(final FromAddressData fromAddressData) {
+    final newFromAddresses = List<FromAddressData>.from(state.fromAddresses);
+    newFromAddresses.remove(fromAddressData);
+
+    emit(state.copyWith(fromAddresses: newFromAddresses));
+  }
+
+  void removeToAddress(final ToAddressData toAddressData) {
+    final newToAddresses = List<ToAddressData>.from(state.toAddresses);
+    newToAddresses.remove(toAddressData);
+
+    emit(state.copyWith(toAddresses: newToAddresses));
+  }
+
+  void copyPasswordIn(final FromAddressData data) {
+    final newFromAddresses = List<FromAddressData>.from(state.fromAddresses);
+    final indexOfCurrent = newFromAddresses.indexOf(data);
+    if (indexOfCurrent == 0 || indexOfCurrent == -1) {
+      return;
+    }
+
+    final indexOfFocus = indexOfCurrent - 1;
+    final focusData = newFromAddresses[indexOfFocus];
+
+    final newData = data.copyWith();
+    newData.passwordController.text = focusData.passwordController.text;
+
+    newFromAddresses.replace(data, newData);
 
     emit(state.copyWith(fromAddresses: newFromAddresses));
   }
