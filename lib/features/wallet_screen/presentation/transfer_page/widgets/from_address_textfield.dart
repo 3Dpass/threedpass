@@ -12,7 +12,7 @@ import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/buttons/enum_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 
 class FromAddressTextField extends StatelessWidget {
   const FromAddressTextField({
@@ -87,7 +87,7 @@ class FromAddressTextField extends StatelessWidget {
         .keyring
         .allAccounts;
     final chosenFromAddresses =
-        BlocProvider.of<TransferInfoCubit>(context).state.fromAddresses;
+        BlocProvider.of<TransferInfoBloc>(context).state.fromAddresses;
 
     final accounts = AccountsList(
       allAccounts: allAccounts,
@@ -127,8 +127,9 @@ class FromAddressTextField extends StatelessWidget {
   }
 
   void onAccountChoose(final BuildContext context, final KeyPairData acc) {
-    final transferInfoCubit = BlocProvider.of<TransferInfoCubit>(context);
-    transferInfoCubit.changeChosenAccount(data, acc);
+    final transferInfoCubit = BlocProvider.of<TransferInfoBloc>(context);
+    transferInfoCubit
+        .add(ChangeChosenAccountEvent(acc: acc, dataToChange: data));
     Navigator.of(context).pop();
   }
 }

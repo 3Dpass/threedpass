@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/utils/transfer_type.dart';
 import 'package:threedpass/core/widgets/input/switch_button.dart';
-import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 
 class TransferTypeSwitch extends StatelessWidget {
   const TransferTypeSwitch({
@@ -12,14 +12,15 @@ class TransferTypeSwitch extends StatelessWidget {
 
   void onChanged(final BuildContext context, final TransactionOption? value) {
     if (value != null) {
-      BlocProvider.of<TransferInfoCubit>(context).updateTransferType(value);
+      BlocProvider.of<TransferInfoBloc>(context)
+          .add(UpdateTransferTypeEvent(value));
     }
   }
 
   @override
   Widget build(final BuildContext context) {
     final initialValue =
-        BlocProvider.of<TransferInfoCubit>(context).state.type ==
+        BlocProvider.of<TransferInfoBloc>(context).state.transactionOption ==
             TransactionOption.transferKeepAlive;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_meta_dto.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/to_card_many_to_one.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/to_card_one_to_many.dart';
@@ -12,7 +12,7 @@ class ToListView extends StatelessWidget {
     super.key,
   });
 
-  final TransferInfo transferInfo;
+  final TransferInfoBlocState transferInfo;
   final MetaInfoType metaInfoType;
 
   @override

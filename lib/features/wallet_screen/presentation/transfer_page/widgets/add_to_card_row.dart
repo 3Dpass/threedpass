@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/add_card_basic.dart';
 
 class AddToCardRow extends StatelessWidget {
@@ -10,9 +10,9 @@ class AddToCardRow extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final transferInfoCubit = BlocProvider.of<TransferInfoCubit>(context);
+    final transferInfoBloc = BlocProvider.of<TransferInfoBloc>(context);
     return AddCardRowBasic(
-      onPressed: () => transferInfoCubit.addToAddress(),
+      onPressed: () => transferInfoBloc.add(const AddToAddressEvent()),
       unlocalizedText: 'add_account_to_label',
       condition: (final state) =>
           state.screenType == TransferScreenType.one_to_many ||

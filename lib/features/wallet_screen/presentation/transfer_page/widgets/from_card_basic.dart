@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
-import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/from_address_textfield.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/password_textfield.dart';
 

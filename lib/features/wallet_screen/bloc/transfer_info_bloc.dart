@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,17 +7,23 @@ import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
+import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/polkawallet/utils/transfer_type.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_meta_dto.dart';
 
-part 'transfer_info_cubit.g.dart';
+part 'transfer_info_bloc.g.dart';
+part 'transfer_info_bloc_event.dart';
+part 'transfer_info_bloc_state.dart';
+part 'transfer_info_bloc_fields_events.dart';
 
-class TransferInfoCubit extends Cubit<TransferInfo> {
-  TransferInfoCubit({
+class TransferInfoBloc
+    extends Bloc<TransferInfoBlocEvent, TransferInfoBlocState> {
+  TransferInfoBloc({
     required this.metaDTO,
     required this.appService,
   }) : super(
-          TransferInfo(
+          TransferInfoBlocState(
             fromAddresses: [initialFrom(appService)],
             toAddresses: [
               ToAddressData(
@@ -23,14 +31,38 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
               ),
             ],
             fees: null,
-            type: TransferTypeValue.defaultType,
+            transactionOption: TransferTypeValue.defaultType,
             amounts: [
               SendAmountData(
                 amountController: TextEditingController(),
+                balance: initialBalance(appService),
               ),
             ],
           ),
-        );
+        ) {
+    final initialAddress = initialFrom(appService).data!.address!;
+    final balance = initialBalance(appService);
+
+    balanceCache = {
+      initialAddress: balance,
+    };
+
+    on<UpdateTransferTypeEvent>(_updateTransferType);
+    on<AddFromAddressEvent>(_addFromAddress);
+    on<AddToAddressEvent>(_addToAddress);
+    on<ChangeChosenAccountEvent>(_changeChosenAccount);
+    on<SetBalanceAmountEvent>(_setBalanceAmount);
+    on<RemoveFromAddressEvent>(_removeFromAddress);
+    on<RemoveToAddressEvent>(_removeToAddress);
+    on<CopyPasswordEvent>(_copyPassword);
+  }
+  static double initialBalance(final AppService appService) {
+    final rawAvaliable =
+        appService.chosenAccountBalance.value.availableBalance as String;
+    final decimals = appService.networkStateData.safeDecimals;
+    final res = BalanceUtils.balanceToDouble(rawAvaliable, decimals);
+    return res;
+  }
 
   static FromAddressData initialFrom(final AppService appService) {
     final account = appService.keyring.current;
@@ -46,6 +78,8 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
 
   final TransferMetaDTO metaDTO;
   final AppService appService;
+
+  late final Map<String, double> balanceCache;
 
   Future<void> init() async {
     // final txInfo = metaDTO.getTxInfo(state.type);
@@ -84,10 +118,7 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
   }
 
   Future<void> sendTransfer({
-    required final String amount,
-    required final String toAddress,
     required final BuildContext context,
-    required final String password,
     required final GlobalKey<FormState> formKey,
   }) async {
     // final txInfo = metaDTO.getTxInfo(state.type);
@@ -117,61 +148,22 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
     // ).sendFunds();
   }
 
-  void updateTransferType(final TransactionOption type) {
-    emit(state.copyWith(type: type));
-  }
-
-  void addFromAddress() {
-    final newFromAddresses = List<FromAddressData>.from(state.fromAddresses);
-    newFromAddresses.add(
-      FromAddressData(
-        data: null,
-        passwordController: TextEditingController(),
-      ),
-    );
-
-    final newAmountsList = List<SendAmountData>.from(state.amounts);
-    newAmountsList.add(
-      SendAmountData(
-        amountController: TextEditingController(),
-      ),
-    );
-
-    emit(
-      state.copyWith(
-        fromAddresses: newFromAddresses,
-        amounts: newAmountsList,
-      ),
-    );
-  }
-
-  void addToAddress() {
-    final newToAddresses = List<ToAddressData>.from(state.toAddresses);
-    newToAddresses.add(
-      ToAddressData(
-        toAddressController: TextEditingController(),
-      ),
-    );
-
-    final newAmountsList = List<SendAmountData>.from(state.amounts);
-    newAmountsList.add(
-      SendAmountData(
-        amountController: TextEditingController(),
-      ),
-    );
-
-    emit(
-      state.copyWith(
-        toAddresses: newToAddresses,
-        amounts: newAmountsList,
-      ),
-    );
-  }
-
-  void changeChosenAccount(
-    final FromAddressData dataToChange,
-    final KeyPairData? acc,
+  void _updateTransferType(
+    final UpdateTransferTypeEvent event,
+    final Emitter<TransferInfoBlocState> emit,
   ) {
+    // emit(state.copyWith(type: type));
+    final newState = state.copyWith(transactionOption: event.value);
+    emit(newState);
+  }
+
+  void _changeChosenAccount(
+    final ChangeChosenAccountEvent event,
+    final Emitter<TransferInfoBlocState> emit,
+  ) {
+    final dataToChange = event.dataToChange;
+    final acc = event.acc;
+
     if (dataToChange.data == acc) {
       return;
     }
@@ -182,23 +174,15 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
     newFromAddresses.replace(dataToChange, newAddressData);
 
     emit(state.copyWith(fromAddresses: newFromAddresses));
+
+    add(SetBalanceAmountEvent(newAddressData));
   }
 
-  void removeFromAddress(final FromAddressData fromAddressData) {
-    final newFromAddresses = List<FromAddressData>.from(state.fromAddresses);
-    newFromAddresses.remove(fromAddressData);
-
-    emit(state.copyWith(fromAddresses: newFromAddresses));
-  }
-
-  void removeToAddress(final ToAddressData toAddressData) {
-    final newToAddresses = List<ToAddressData>.from(state.toAddresses);
-    newToAddresses.remove(toAddressData);
-
-    emit(state.copyWith(toAddresses: newToAddresses));
-  }
-
-  void copyPasswordIn(final FromAddressData data) {
+  void _copyPassword(
+    final CopyPasswordEvent event,
+    final Emitter<TransferInfoBlocState> emit,
+  ) {
+    final data = event.fromAddressData;
     final newFromAddresses = List<FromAddressData>.from(state.fromAddresses);
     final indexOfCurrent = newFromAddresses.indexOf(data);
     if (indexOfCurrent == 0 || indexOfCurrent == -1) {
@@ -215,74 +199,43 @@ class TransferInfoCubit extends Cubit<TransferInfo> {
 
     emit(state.copyWith(fromAddresses: newFromAddresses));
   }
-}
 
-enum TransferScreenType { many_to_one, one_to_many }
+  FutureOr<double> getBalance(final String address) async {
+    if (balanceCache.containsKey(address)) {
+      return Future.value(balanceCache[address]!);
+    } else {
+      final balanceData =
+          await appService.plugin.sdk.api.account.queryBalance(address);
+      final decimals = appService.networkStateData.safeDecimals;
+      final rawAvaliableBalance = balanceData!.availableBalance as String;
+      final balance =
+          BalanceUtils.balanceToDouble(rawAvaliableBalance, decimals);
+      balanceCache[address] = balance;
+      return balance;
+    }
+  }
 
-@CopyWith()
-class TransferInfo {
-  // Max avaliable balance in wallet in human-readable double format
-  // final double balance;
-  final TxFeeEstimateResult? fees;
-  final TransactionOption type;
-  final List<FromAddressData> fromAddresses;
-  final List<ToAddressData> toAddresses;
-  final List<SendAmountData> amounts;
+  Future<void> _setBalanceAmount(
+    final SetBalanceAmountEvent event,
+    final Emitter<TransferInfoBlocState> emit,
+  ) async {
+    final accAddress = event.fromAddressData.data?.address;
 
-  const TransferInfo({
-    required this.fromAddresses,
-    required this.toAddresses,
-    required this.fees,
-    required this.type,
-    required this.amounts,
-  });
+    if (accAddress == null) {
+      return;
+    }
 
-  TransferScreenType get screenType =>
-      fromAddresses.length >= toAddresses.length
-          ? TransferScreenType.many_to_one
-          : TransferScreenType.one_to_many;
-}
+    final balance = await getBalance(accAddress);
 
-// @CopyWith()
-// class AddressData {
-//   const AddressData({
-//     required this.data,
-//     required this.addressController,
-//     required this.passwordController,
-//   });
+    // Some racing is possible
+    final newAmountsList = List<SendAmountData>.from(state.amounts);
+    final newFromAddresses = List<FromAddressData>.from(state.fromAddresses);
+    final indexOfCurrent = newFromAddresses.indexOf(event.fromAddressData);
 
-//   final KeyPairData? data;
-//   final TextEditingController addressController;
-//   final TextEditingController passwordController;
-// }
+    final oldAmount = newAmountsList[indexOfCurrent];
+    final newAmount = oldAmount.copyWith(balance: balance);
+    newAmountsList.replace(oldAmount, newAmount);
 
-@CopyWith()
-class FromAddressData {
-  const FromAddressData({
-    required this.data,
-    required this.passwordController,
-  });
-
-  final KeyPairData? data;
-  final TextEditingController passwordController;
-}
-
-@CopyWith()
-class ToAddressData {
-  const ToAddressData({
-    required this.toAddressController,
-  });
-
-  final TextEditingController toAddressController;
-}
-
-@CopyWith()
-class SendAmountData {
-  const SendAmountData({
-    required this.amountController,
-  });
-
-  final TextEditingController amountController;
-
-  // double? get amount => double.tryParse(amountController.text);
+    emit(state.copyWith(amounts: newAmountsList));
+  }
 }

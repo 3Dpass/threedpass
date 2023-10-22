@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/utils/validators.dart';
-import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/basic_transfer_textfield.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/password_hint.dart';
 
@@ -54,8 +54,8 @@ class _State extends State<PasswordTextField> {
     });
   }
 
-  void onLabelButtonPressed(BuildContext context) {
-    final transferInfo = BlocProvider.of<TransferInfoCubit>(context);
-    transferInfo.copyPasswordIn(widget.data);
+  void onLabelButtonPressed(final BuildContext context) {
+    final transferInfo = BlocProvider.of<TransferInfoBloc>(context);
+    transferInfo.add(CopyPasswordEvent(widget.data));
   }
 }

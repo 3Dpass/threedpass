@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
-import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 
 class AddCardRowBasic extends StatelessWidget {
   const AddCardRowBasic({
@@ -15,12 +15,12 @@ class AddCardRowBasic extends StatelessWidget {
 
   final void Function() onPressed;
   final String unlocalizedText;
-  final bool Function(TransferInfo state) condition;
+  final bool Function(TransferInfoBlocState state) condition;
 
   @override
   Widget build(final BuildContext context) {
     final textStyles = Theme.of(context).customTextStyles;
-    return BlocBuilder<TransferInfoCubit, TransferInfo>(
+    return BlocBuilder<TransferInfoBloc, TransferInfoBlocState>(
       builder: (final context, final state) {
         if (condition(state)) {
           return Padding(

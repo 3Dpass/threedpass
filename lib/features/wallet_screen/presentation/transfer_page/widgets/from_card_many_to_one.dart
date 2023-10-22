@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
-import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_meta_dto.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/utils/dismiss_function.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/amount_textfield.dart';
@@ -38,7 +38,7 @@ class FromCardManyToOne extends StatelessWidget {
           AmountTextFieldBuilder(
             amountController: sendAmountData.amountController,
             transferType: metaInfoType,
-            balance: 0, // TODO
+            balance: sendAmountData.balance ?? 0,
           ),
         ],
       ),
