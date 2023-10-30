@@ -1,51 +1,52 @@
 import 'dart:async';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/api/types/txInfoData.dart';
+import 'package:polkawallet_sdk/p3d/tx_info.dart';
+import 'package:polkawallet_sdk/p3d/tx_params.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/bloc/notifications_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
+import 'package:threedpass/features/wallet_screen/domain/entities/transaction.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
 
 class Transfer {
   Transfer({
-    required this.txInfo,
-    required this.params,
+    // required this.params,
     required this.appService,
     required this.context,
     required this.formKey,
-    required this.password,
-    required this.toAddress,
     required this.notificationsCubit,
     required this.addHandler,
     required this.symbols,
     required this.decimals,
-    required this.amountNotification,
+    // required this.amounts,
+    required this.passwords,
+    required this.metaInfos,
+    // required this.txInfos,
   });
 
   // final String amount;
   final AppService appService;
-  final TxInfoData txInfo;
-  final List<String> params;
+  final List<TransferTxInfoI> metaInfos;
+  // final List<TxInfoData> txInfos;
+  // final List<TxParams> params;
   final BuildContext context;
   final GlobalKey<FormState> formKey;
-  final String password;
-  final String toAddress;
+  final List<String> passwords;
   final NotificationsCubit notificationsCubit;
-  final void Function(String, void Function(String)) addHandler;
+  final void Function(String, TransactionsCallback) addHandler;
   final String symbols;
   final int decimals;
-  final String amountNotification;
+  // final List<String> amounts;
 
-  bool isFinished = false;
-
-  Future<bool> checkAddressAndNotify() async {
+  Future<bool> checkAddressAndNotify(final String toAddress) async {
     final addressCorrect =
         await appService.plugin.sdk.api.account.checkAddressFormat(
       toAddress,
@@ -65,109 +66,174 @@ class Transfer {
     return true;
   }
 
+  Future<bool> checkAllAddresses(final List<TxParams> params) async {
+    for (final p in params) {
+      if (!await checkAddressAndNotify(p.toAddress)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   Future<void> sendFunds() async {
     if (formKey.currentState!.validate()) {
-      final addressCorrect = await checkAddressAndNotify();
+      final params = metaInfos.map((final e) => e.params()).toList();
+      final addressCorrect = await checkAllAddresses(params);
 
       if (!addressCorrect) {
         return;
       }
+
+      final fromAddress =
+          metaInfos.map((final e) => e.txInfo().sender!.address!).toList();
+      final uniqueFromAddresses = Set<String>.from(fromAddress).toList();
+
+      if (uniqueFromAddresses.length != passwords.length) {
+        debugPrint(
+          'params.length != txInfos.length || txInfos.length != passwords.length',
+        );
+        return;
+      }
+
+      final toAddresses = params.map((final e) => e.toAddress).toList();
+      final uniqueToAddresses = Set<String>.from(toAddresses).toList();
+
+      final amounts = params
+          .map((final e) => e.amount)
+          .map((final e) => e.toString())
+          .toList();
 
       final globalContext =
           BlocProvider.of<HomeContextCubit>(context).state.context;
 
       DefaultLoadingDialog.show(globalContext, 'transfer_loader_text'.tr());
 
-      final tmpN = NotificationDTO(
-        type: NotificationType.transfer,
-        status: ExtrisincStatus.loading,
-        toAddresses: [toAddress],
-        fromAddresses: [txInfo.sender?.address ?? ''],
-        amount:
-            amountNotification, //BalanceUtils.balanceToDouble(params[1], decimals).toString(),
-        symbols: symbols,
-        blockDateTime: null,
-      );
-      // int i = 0;
+      final notifications = <NotificationDTO>[];
 
-      notificationsCubit.add(tmpN);
-
-      try {
-        final d1 = await appService.plugin.sdk.api.tx.signAndSend(
-          txInfo,
-          params,
-          password,
-          onStatusChange: (final p0) {
-            // There are two calls of this callback: p0 == 'Ready' and p0 == 'Broadcast'
-            // print(p0 + ' ' + params.toString());
-            switch (p0) {
-              case 'Ready':
-                // final readN = tmpN.copyWith(status: TransactionStatus.pending,);
-                // notificationsCubit.replace(tmpN, readN);
-                // tmpN = readN;
-
-                DefaultLoadingDialog.hide(globalContext);
-                context.router.pop();
-                Fluttertoast.showToast(msg: 'transfer_success_text'.tr());
-                break;
-
-              case 'Broadcast':
-                // i++;
-
-                // final readN = tmpN.copyWith(status:TransactionStatus.pending,);
-                // notificationsCubit.replace(tmpN, readN);
-                // tmpN = readN;
-
-                debugPrint('Broadcast');
-
-              default:
-                debugPrint(p0);
-            }
-          },
-          msgIdCallback: (final String msgId) {
-            debugPrint('SET MSG ID $msgId');
-            addHandler(
-              msgId,
-              (final String p0) {
-                isFinished = true;
-                final finishedTransaction = tmpN.copyWith(
-                  status: p0 == TxUpdateEventLogsHandler.extrinsicSuccess
-                      ? ExtrisincStatus.success
-                      : ExtrisincStatus.failed,
-                  message: p0,
-                  blockDateTime: DateTime.now().toUtc(),
-                );
-                notificationsCubit.replace(tmpN, finishedTransaction);
-              },
-            );
-          },
+      for (int i = 0; i < metaInfos.length; i++) {
+        notifications.add(
+          NotificationDTO(
+            type: NotificationType.transfer,
+            status: ExtrisincStatus.loading,
+            toAddress: toAddresses[i],
+            fromAddress: fromAddress[i],
+            amount: amounts[i],
+            symbols: symbols,
+            blockDateTime: null,
+          ),
         );
-        // final b = 1 + 1;
-        // print('Finished');
-      } on Object catch (e) {
-        // print('aaaaaaaaaaaa');
-        // final a = globalContext.router.stack;
-
-        try {
-          final ___ = context.router.stack;
-          DefaultLoadingDialog.hide(globalContext);
-          // DIALOG WAS NOT CLOSED
-        } on Object catch (_) {
-          // DIALOG WAS CLOSED
-          debugPrint('dialog was closed');
-        }
-
-        if (!isFinished) {
-          final finishedTransaction = tmpN.copyWith(
-            status: ExtrisincStatus.error,
-            message: e.toString(),
-            blockDateTime: DateTime.now().toUtc(),
-          );
-          notificationsCubit.replace(tmpN, finishedTransaction);
-        }
-
-        unawaited(Fluttertoast.showToast(msg: e.toString()));
       }
+
+      final addHandlerV = (final Map<List<String>, String> data) {
+        for (final k in data.keys) {
+          final msgId = data[k]!;
+          debugPrint('Add handler for $msgId');
+
+          addHandler(
+            msgId,
+            ({
+              required final ExtrisincStatus status,
+              required final String? message,
+            }) {
+              // isFinished = true;
+              // TODO Send events to notifications bloc
+              final tmp = notifications.firstWhere(
+                (final element) =>
+                    element.fromAddress == k.first &&
+                    element.toAddress == k.last,
+              );
+
+              final finishedTransaction = tmp.copyWith(
+                status: status,
+                message: message,
+                blockDateTime: DateTime.now().toUtc(),
+              );
+              notificationsCubit.replace(
+                tmp,
+                finishedTransaction,
+              );
+            },
+          );
+        }
+      };
+
+      final finishNotificationWithErrorV = (final String e) {
+        //if (!isFinished) {
+        // final tmp = notifications.firstWhere(
+        //       (final element) =>
+        //           element.fromAddress == k.first &&
+        //           element.toAddress == k.last,
+        //     );
+        // final finishedTransaction = notifications.first.copyWith(
+        //   status: ExtrisincStatus.error,
+        //   message: e,
+        //   blockDateTime: DateTime.now().toUtc(),
+        // );
+        // notificationsCubit.replace(notifications.first, finishedTransaction);
+        //}
+      };
+
+      await caseSplit(
+        txInfos: uniqueFromAddresses,
+        params: uniqueToAddresses,
+        passwords: passwords,
+        onFirst: () async {
+          notifications.forEach((final element) {
+            notificationsCubit.add(element);
+          });
+          debugPrint('SingleTransaction');
+          unawaited(SingleTransaction(
+            addHandler: addHandlerV,
+            appService: appService,
+            context: context,
+            finishNotificationWithError: finishNotificationWithErrorV,
+            globalContext: globalContext,
+            password: passwords.first,
+            txInfoMeta: metaInfos.first,
+          ).send());
+        },
+        onSecond: () async {
+          notifications.forEach((final element) {
+            notificationsCubit.add(element);
+          });
+          debugPrint('MultiTxSingleSender');
+          unawaited(MultiTxSingleSender(
+            addHandler: addHandlerV,
+            appService: appService,
+            context: context,
+            finishNotificationWithError: finishNotificationWithErrorV,
+            globalContext: globalContext,
+            // params: params.map((final e) => e.paramsToSend()).toList(),
+            password: passwords.first,
+            txInfoMetas: metaInfos,
+          ).send());
+        },
+        onThird: () async {
+          notifications.forEach((final element) {
+            notificationsCubit.add(element);
+          });
+          debugPrint('MultiTxMultiSender');
+          unawaited(MultiTxMultiSender(
+            addHandler: addHandlerV,
+            appService: appService,
+            context: context,
+            finishNotificationWithError: finishNotificationWithErrorV,
+            globalContext: globalContext,
+            // txInfos: txInfos,
+            // params: params.map((final e) => e.paramsToSend()).toList(),
+            txInfoMetas: metaInfos,
+            passwords: passwords,
+          ).send());
+        },
+        onError: () async {
+          debugPrint('Transfer case split Error');
+          DefaultLoadingDialog.hide(globalContext);
+          unawaited(
+            Fluttertoast.showToast(msg: 'Transfer error when case split.'),
+          );
+        },
+      );
     }
   }
 }

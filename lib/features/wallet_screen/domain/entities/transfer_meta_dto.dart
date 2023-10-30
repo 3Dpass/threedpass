@@ -1,32 +1,22 @@
-import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:polkawallet_sdk/plugin/store/balances.dart';
-import 'package:threedpass/core/polkawallet/app_service.dart';
-import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
-import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
-import 'package:threedpass/core/polkawallet/utils/transfer_type.dart';
-import 'package:threedpass/core/polkawallet/utils/tx_info.dart';
 
 abstract class TransferMetaDTO {
-  const TransferMetaDTO();
+  const TransferMetaDTO({
+    required this.decimals,
+    required this.name,
+  });
+
+  final int decimals;
+  final String name;
+
   MetaInfoType get type;
-  String get name;
-  // TxInfoData getTxInfo(final TransferType transferType);
-
-  // List<String> getParams(
-  //   final String? amount,
-  //   final String toAddress,
-  // );
-
-  // int get decimals;
 }
 
 class CoinsTransferMetaDTO extends TransferMetaDTO {
   const CoinsTransferMetaDTO({
-    required this.name,
+    required super.name,
+    required super.decimals,
   });
-
-  @override
-  final String name;
 
   @override
   final MetaInfoType type = MetaInfoType.coin;
@@ -34,14 +24,12 @@ class CoinsTransferMetaDTO extends TransferMetaDTO {
 
 class AssetTransferMetaDTO extends TransferMetaDTO {
   const AssetTransferMetaDTO({
-    required this.name,
-    required this.tokenId,
+    required super.name,
+    required super.decimals,
+    required this.tokenBalanceData,
   });
 
-  final int tokenId;
-
-  @override
-  final String name;
+  final TokenBalanceData tokenBalanceData;
 
   @override
   final MetaInfoType type = MetaInfoType.asset;

@@ -1,18 +1,18 @@
-class TransferTypeValue {
-  static const TransactionOption defaultType =
-      TransactionOption.transferKeepAlive;
+// class TransferTypeValue {
+//   static const TransactionOption defaultType =
+//       TransactionOption.transferKeepAlive;
 
-  const TransferTypeValue(this.type);
+//   const TransferTypeValue(this.type);
 
-  final TransactionOption type;
+//   final TransactionOption type;
 
-  @override
-  String toString() {
-    return type.name;
-  }
-}
+//   @override
+//   String toString() {
+//     return type.name;
+//   }
+// }
 
-enum TransactionOption {
-  transfer,
-  transferKeepAlive,
-}
+// enum TransactionOption {
+//   transfer,
+//   transferKeepAlive,
+// }

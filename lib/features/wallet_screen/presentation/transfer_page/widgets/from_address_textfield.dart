@@ -182,6 +182,7 @@ class _AccountChooseTileText extends StatelessWidget {
     return Text.rich(
       TextSpan(
         text: fixedName(),
+        style: textStyles.d3pBodyMedium,
         children: [
           TextSpan(
             text: shortAddress(),

@@ -17,7 +17,6 @@ extension FieldEvents on TransferInfoBloc {
     newAmountsList.add(
       SendAmountData(
         amountController: TextEditingController(),
-        balance: null,
       ),
     );
 
@@ -40,17 +39,10 @@ extension FieldEvents on TransferInfoBloc {
       ),
     );
 
-    final firstAccAddress = state.fromAddresses.first.data!.address;
-    final firstAccBalance = balanceCache[firstAccAddress];
-
-    final newAmountsList = <SendAmountData>[];
-    for (final i in state.amounts) {
-      newAmountsList.add(i.copyWith(balance: firstAccBalance));
-    }
+    final newAmountsList = List<SendAmountData>.from(state.amounts);
     newAmountsList.add(
       SendAmountData(
         amountController: TextEditingController(),
-        balance: firstAccBalance,
       ),
     );
 

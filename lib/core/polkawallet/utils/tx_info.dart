@@ -1,73 +1,54 @@
-// import 'package:logger/logger.dart';
 // import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 // import 'package:polkawallet_sdk/plugin/store/balances.dart';
 // import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-// import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 // import 'package:threedpass/core/polkawallet/utils/transfer_type.dart';
-// import 'package:threedpass/setup.dart';
+// import 'package:threedpass/core/polkawallet/utils/tx_params.dart';
 
 // abstract class TransferTxInfoI {
 //   final KeyPairData senderData;
 //   final int decimals;
+//   final TransactionOption transferType;
+//   final String toAddress;
+//   final double amount;
 
 //   const TransferTxInfoI({
 //     required this.decimals,
 //     required this.senderData,
+//     required this.amount,
+//     required this.toAddress,
+//     required this.transferType,
 //   });
 
-//   TxInfoData txInfo(
-//     final TransactionOption transferType,
-//   );
-//   List<String> params(final String? amount, final String toAddress);
+//   TxInfoData txInfo();
+//   TxParams params();
 // }
 
 // class AssetsTransferTx extends TransferTxInfoI {
 //   final TokenBalanceData tokenBalanceData;
+
 //   const AssetsTransferTx({
 //     required super.decimals,
 //     required super.senderData,
+//     required super.amount,
+//     required super.toAddress,
+//     required super.transferType,
 //     required this.tokenBalanceData,
 //   });
 
 //   @override
-//   TxInfoData txInfo(
-//     final TransactionOption transferType,
-//   ) =>
-//       TxInfoData(
+//   TxInfoData txInfo() => TxInfoData(
 //         'assets',
 //         TransferTypeValue(transferType).toString(),
 //         TxSenderData(senderData.address, senderData.pubKey),
 //       );
 
 //   @override
-//   List<String> params(
-//     final String? amount,
-//     final String toAddress,
-//   ) {
-//     // https://polkadot.js.org/docs/substrate/extrinsics/#transferid-compactu32-target-multiaddress-amount-compactu128
-
-//     if (tokenBalanceData.decimals == null) {
-//       getIt<Logger>().w(
-//         'DANGER! tokenBalanceData.decimals is null when get params for AssetsTransferTx.',
-//       );
-//     }
-
-//     final realAmount = BalanceUtils.tokenInt(
-//       amount,
-//       tokenBalanceData.decimals ?? decimals,
+//   TxParams params() {
+//     return AssetsTxParams(
+//       amount: amount,
+//       toAddress: toAddress,
+//       tokenBalanceData: tokenBalanceData,
 //     );
-
-//     if (tokenBalanceData.id == null) {
-//       throw Exception('TokenBalanceData.id is null');
-//     }
-
-//     return [
-//       tokenBalanceData.id!,
-//       // params.to
-//       toAddress,
-//       // params.amount
-//       realAmount.toString(),
-//     ];
 //   }
 // }
 
@@ -75,13 +56,13 @@
 //   const CoinsTransferTx({
 //     required super.decimals,
 //     required super.senderData,
+//     required super.amount,
+//     required super.toAddress,
+//     required super.transferType,
 //   });
 
 //   @override
-//   TxInfoData txInfo(
-//     final TransactionOption transferType,
-//   ) =>
-//       TxInfoData(
+//   TxInfoData txInfo() => TxInfoData(
 //         'balances',
 //         TransferTypeValue(transferType).toString(),
 //         TxSenderData(
@@ -91,20 +72,11 @@
 //       );
 
 //   @override
-//   List<String> params(
-//     final String? amount,
-//     final String toAddress,
-//   ) {
-//     final realAmount = BalanceUtils.tokenInt(
-//       amount,
-//       decimals,
+//   TxParams params() {
+//     return CoinsTxParams(
+//       amount: amount,
+//       decimals: decimals,
+//       toAddress: toAddress,
 //     );
-
-//     return [
-//       // params.to
-//       toAddress,
-//       // params.amount
-//       realAmount.toString(),
-//     ];
 //   }
 // }

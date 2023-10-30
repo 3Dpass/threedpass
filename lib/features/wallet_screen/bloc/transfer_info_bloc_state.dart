@@ -5,7 +5,7 @@ class TransferInfoBlocState {
   // Max avaliable balance in wallet in human-readable double format
   // final double balance;
   final TxFeeEstimateResult? fees;
-  final TransactionOption transactionOption;
+  final BalanceTransactionType transactionOption;
   final List<FromAddressData> fromAddresses;
   final List<ToAddressData> toAddresses;
   final List<SendAmountData> amounts;
@@ -50,9 +50,7 @@ class ToAddressData {
 class SendAmountData {
   const SendAmountData({
     required this.amountController,
-    required this.balance,
   });
 
   final TextEditingController amountController;
-  final double? balance;
 }

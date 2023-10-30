@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
+import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_meta_dto.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/basic_transfer_textfield.dart';
 
@@ -8,20 +10,36 @@ class AmountTextFieldBuilder extends StatelessWidget {
   const AmountTextFieldBuilder({
     required this.amountController,
     required this.transferType,
-    required this.balance,
+    required this.address,
     final Key? key,
   }) : super(key: key);
 
   final TextEditingController amountController;
   final MetaInfoType transferType;
-  final double balance;
+  final String address;
 
   @override
   Widget build(final BuildContext context) {
-    return _AmountTextField(
-      amountController: amountController,
-      balance: balance,
-      transferType: transferType,
+    final bloc = BlocProvider.of<TransferInfoBloc>(context);
+    return ValueListenableBuilder(
+      valueListenable: bloc.balanceCacheNotifier,
+      builder: (final context, final value, final ___) {
+        if (value.containsKey(address)) {
+          return _AmountTextField(
+            amountController: amountController,
+            balance: value[address]!,
+            transferType: transferType,
+            enabled: true,
+          );
+        } else {
+          return _AmountTextField(
+            amountController: amountController,
+            balance: 0,
+            transferType: transferType,
+            enabled: false,
+          );
+        }
+      },
     );
   }
 }
@@ -31,12 +49,14 @@ class _AmountTextField extends StatelessWidget {
     required this.amountController,
     required this.balance,
     required this.transferType,
+    required this.enabled,
     final Key? key,
   }) : super(key: key);
 
   final TextEditingController amountController;
   final MetaInfoType transferType;
   final double balance;
+  final bool enabled;
 
   String? Function(String? v) validator() {
     switch (transferType) {
@@ -59,6 +79,7 @@ class _AmountTextField extends StatelessWidget {
       hintText: 'amount_hint'.tr(),
       validator: validator(),
       keyboardType: TextInputType.number,
+      enabled: enabled,
     );
   }
 }

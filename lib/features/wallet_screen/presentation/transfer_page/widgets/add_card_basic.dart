@@ -1,7 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 
@@ -19,41 +20,42 @@ class AddCardRowBasic extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final textStyles = Theme.of(context).customTextStyles;
-    return BlocBuilder<TransferInfoBloc, TransferInfoBlocState>(
-      builder: (final context, final state) {
-        if (condition(state)) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Row(
-              children: [
-                const Flexible(
-                  flex: 1,
-                  child: SizedBox(
-                    width: double.infinity,
-                  ),
+    final textStyle = Theme.of(context).customTextStyles;
+    final colors = Theme.of(context).customColors;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: BlocBuilder<TransferInfoBloc, TransferInfoBlocState>(
+        builder: (final context, final state) {
+          if (condition(state)) {
+            return SizedBox(
+              height: 43,
+              child: D3pElevatedButton(
+                text: null,
+                onPressed: onPressed,
+                backgroundColor: colors.cardBackground,
+                elevation: 0,
+                childAlignment: MainAxisAlignment.start,
+                textStyle: textStyle.d3pBodyMedium,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
                 ),
-                const SizedBox(width: 8),
-                D3pIconButton(
-                  iconData: Icons.add_circle_outline_rounded,
-                  onPressed: () => onPressed(),
-                  emptyContraints: true,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    D3pIconButton(
+                      iconData: Icons.add_circle_outline_rounded,
+                      onPressed: () => onPressed(),
+                      emptyContraints: true,
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 8),
-                Flexible(
-                  flex: 1,
-                  child: Text(
-                    unlocalizedText.tr(),
-                    style: textStyles.hintStyle,
-                  ),
-                ),
-              ],
-            ),
-          );
-        } else {
-          return const SizedBox();
-        }
-      },
+              ),
+            );
+          } else {
+            return const SizedBox();
+          }
+        },
+      ),
     );
   }
 }

@@ -38,7 +38,7 @@ class FromCardManyToOne extends StatelessWidget {
           AmountTextFieldBuilder(
             amountController: sendAmountData.amountController,
             transferType: metaInfoType,
-            balance: sendAmountData.balance ?? 0,
+            address: data.data?.address ?? '',
           ),
         ],
       ),

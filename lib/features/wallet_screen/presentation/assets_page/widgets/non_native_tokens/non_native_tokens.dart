@@ -2,9 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:polkawallet_sdk/api/types/balanceData.dart';
 import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/polkawallet/utils/token_balance_data_amount_check.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
@@ -38,31 +40,42 @@ class NonNativeTokens extends StatelessWidget {
               return const _AssetsLoading();
             }
 
-            /// Subscribe to balance to update widget after transfer
+            // This builder checks if new account just immported and hides the assets
+            // until balance loads
             return ValueListenableBuilder(
-              valueListenable: appService.tokensAreLoading,
-              builder: (final context, final bool isLoading, final child) {
-                if (isLoading) {
-                  return const _AssetsLoadingPlaceholder();
+              valueListenable: appService.chosenAccountBalance,
+              builder: (final context, final BalanceData balance, final child) {
+                if (balance.isNull) {
+                  return const SizedBox();
                 }
 
-                bool allTokensEmpty = true;
-                final tokensData = appService.plugin.balances.tokens;
-                for (final token in tokensData) {
-                  if (token.isAmountPositive) {
-                    allTokensEmpty = false;
-                  }
-                }
+                /// Subscribe to balance to update widget after transfer
+                return ValueListenableBuilder(
+                  valueListenable: appService.tokensAreLoading,
+                  builder: (final context, final bool isLoading, final child) {
+                    if (isLoading) {
+                      return const _AssetsLoadingPlaceholder();
+                    }
 
-                final settings =
-                    BlocProvider.of<SettingsConfigCubit>(context).state;
-                final showZeroAssets = settings.appSettings.showZeroAssets;
+                    bool allTokensEmpty = true;
+                    final tokensData = appService.plugin.balances.tokens;
+                    for (final token in tokensData) {
+                      if (token.isAmountPositive) {
+                        allTokensEmpty = false;
+                      }
+                    }
 
-                if (allTokensEmpty && !showZeroAssets) {
-                  return const _AssetsPlaceholder();
-                } else {
-                  return _AssetsColumn(tokensData);
-                }
+                    final settings =
+                        BlocProvider.of<SettingsConfigCubit>(context).state;
+                    final showZeroAssets = settings.appSettings.showZeroAssets;
+
+                    if (allTokensEmpty && !showZeroAssets) {
+                      return const _AssetsPlaceholder();
+                    } else {
+                      return _AssetsColumn(tokensData);
+                    }
+                  },
+                );
               },
             );
           },

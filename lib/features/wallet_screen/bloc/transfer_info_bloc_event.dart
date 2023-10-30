@@ -5,7 +5,7 @@ abstract class TransferInfoBlocEvent {
 }
 
 class UpdateTransferTypeEvent extends TransferInfoBlocEvent {
-  final TransactionOption value;
+  final BalanceTransactionType value;
 
   const UpdateTransferTypeEvent(this.value);
 }

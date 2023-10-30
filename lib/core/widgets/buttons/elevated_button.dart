@@ -17,6 +17,7 @@ class D3pElevatedButton extends StatelessWidget {
     this.childAlignment,
     this.textStyle,
     this.child,
+    this.shape,
   }) : super(key: key);
 
   final void Function()? onPressed;
@@ -31,6 +32,7 @@ class D3pElevatedButton extends StatelessWidget {
   final MainAxisAlignment? childAlignment;
   final TextStyle? textStyle;
   final Widget? child;
+  final OutlinedBorder? shape;
 
   @override
   Widget build(final BuildContext context) {
@@ -61,6 +63,7 @@ class D3pElevatedButton extends StatelessWidget {
               padding: MaterialStateProperty.all(
                 const EdgeInsets.symmetric(horizontal: 8),
               ),
+              shape: shape != null ? MaterialStateProperty.all(shape) : null,
               textStyle: textStyle != null
                   ? MaterialStateProperty.all(
                       textStyle,

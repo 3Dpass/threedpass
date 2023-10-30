@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/widgets/buttons/floating_action_button.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_meta_dto.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/is_account_ready_builder.dart';
@@ -17,6 +18,7 @@ class CoinTransferButton extends StatelessWidget {
       TransferRouteWrapper(
         metadata: CoinsTransferMetaDTO(
           name: appService.networkStateData.tokenSymbol?.first ?? '',
+          decimals: appService.networkStateData.safeDecimals,
         ),
       ),
     );

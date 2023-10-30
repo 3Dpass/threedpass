@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/polkawallet/utils/transfer_type.dart';
+import 'package:polkawallet_sdk/p3d/balance_transaction_type.dart';
 import 'package:threedpass/core/widgets/input/switch_button.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 
@@ -10,7 +10,10 @@ class TransferTypeSwitch extends StatelessWidget {
     final Key? key,
   }) : super(key: key);
 
-  void onChanged(final BuildContext context, final TransactionOption? value) {
+  void onChanged(
+    final BuildContext context,
+    final BalanceTransactionType? value,
+  ) {
     if (value != null) {
       BlocProvider.of<TransferInfoBloc>(context)
           .add(UpdateTransferTypeEvent(value));
@@ -21,7 +24,7 @@ class TransferTypeSwitch extends StatelessWidget {
   Widget build(final BuildContext context) {
     final initialValue =
         BlocProvider.of<TransferInfoBloc>(context).state.transactionOption ==
-            TransactionOption.transferKeepAlive;
+            BalanceTransactionType.transferKeepAlive;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: D3pSwitchButton(
@@ -30,8 +33,8 @@ class TransferTypeSwitch extends StatelessWidget {
         onChanged: (final value) => onChanged(
           context,
           value
-              ? TransactionOption.transferKeepAlive
-              : TransactionOption.transfer,
+              ? BalanceTransactionType.transferKeepAlive
+              : BalanceTransactionType.transfer,
         ),
         text: 'choose_transfer_keep_alive'.tr(),
       ),

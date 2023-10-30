@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_meta_dto.dart';
@@ -25,6 +26,7 @@ class ToCardOneToMany extends StatelessWidget {
   Widget build(final BuildContext context) {
     final dismissFunctionFabric = DismissFunctionFabric(context);
     final dismiss = isFirst ? null : dismissFunctionFabric.buildToAddress(data);
+    final bloc = BlocProvider.of<TransferInfoBloc>(context);
     return BasicTransferBlock(
       dismiss: dismiss,
       child: Column(
@@ -36,7 +38,7 @@ class ToCardOneToMany extends StatelessWidget {
           AmountTextFieldBuilder(
             amountController: sendAmountData.amountController,
             transferType: metaInfoType,
-            balance: sendAmountData.balance ?? 0,
+            address: bloc.state.fromAddresses.first.data?.address ?? '',
           ),
         ],
       ),
