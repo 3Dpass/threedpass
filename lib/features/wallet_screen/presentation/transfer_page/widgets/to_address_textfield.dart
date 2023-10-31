@@ -1,7 +1,9 @@
-part of '../transfer_page.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/basic_transfer_textfield.dart';
 
-class _ToAddressTextField extends StatelessWidget {
-  const _ToAddressTextField({
+class ToAddressTextField extends StatelessWidget {
+  const ToAddressTextField({
     required this.toAddressController,
     final Key? key,
   }) : super(key: key);
@@ -10,7 +12,7 @@ class _ToAddressTextField extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return D3pTextFormField(
+    return BasicTransferTextField(
       labelText: 'to_address_label'.tr(),
       controller: toAddressController,
       maxLines: 1,

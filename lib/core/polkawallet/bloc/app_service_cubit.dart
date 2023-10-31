@@ -199,7 +199,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
 
   void addHandler(
     final String msgId,
-    final void Function(String) setTransactionResult,
+    final TransactionsCallback setTransactionResult,
   ) {
     state.plugin.sdk.webView!.addGlobalHandler(
       TxUpdateEventLogsHandler(msgId, setTransactionResult),

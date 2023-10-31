@@ -8,8 +8,8 @@ enum NotificationType { transfer, vote }
 
 @CopyWith()
 class NotificationDTO {
-  final List<String>? fromAddresses;
-  final List<String>? toAddresses;
+  final String? fromAddress;
+  final String? toAddress;
   final String? amount;
   final NotificationType type;
   final ExtrisincStatus status;
@@ -20,9 +20,9 @@ class NotificationDTO {
   const NotificationDTO({
     required this.type,
     required this.status,
-    this.amount,
-    this.fromAddresses,
-    this.toAddresses,
+    required this.amount,
+    this.fromAddress,
+    this.toAddress,
     this.message,
     this.symbols,
     this.blockDateTime,

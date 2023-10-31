@@ -1,6 +1,15 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/utils/web_logs_handler.dart';
+import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
+import 'package:threedpass/setup.dart';
+
+typedef TransactionsCallback = void Function({
+  required ExtrisincStatus status,
+  required String? message,
+});
 
 class TxUpdateEventLogsHandler extends WebLogsHandler {
   const TxUpdateEventLogsHandler(
@@ -10,8 +19,7 @@ class TxUpdateEventLogsHandler extends WebLogsHandler {
 
   final String msgId;
 
-  /// @param {String} is extrinsicSuccess or message
-  final void Function(String) setTransactionResult;
+  final TransactionsCallback setTransactionResult;
 
   static const String extrinsicSuccess = 'ok';
 
@@ -40,10 +48,32 @@ class TxUpdateEventLogsHandler extends WebLogsHandler {
     }
 
     final String title = dataSection['title'] as String;
+    final String message = dataSection['message'] as String;
+    debugPrint('$title $message');
+
     if (title == "system.ExtrinsicSuccess") {
-      setTransactionResult(extrinsicSuccess);
+      getIt<Logger>().d('Found ExtrinsicSuccess for $msgId');
+      setTransactionResult(status: ExtrisincStatus.success, message: null);
     } else if (title == 'system.ExtrinsicFailed') {
-      setTransactionResult(dataSection['message'] as String);
+      getIt<Logger>().d('Found ExtrinsicFailed for $msgId');
+      setTransactionResult(
+        status: ExtrisincStatus.failed,
+        message: message,
+      );
+    }
+
+    if (title.contains('error')) {
+      if (message.contains('password check failed')) {
+        setTransactionResult(
+          status: ExtrisincStatus.error,
+          message: message,
+        );
+      } else {
+        setTransactionResult(
+          status: ExtrisincStatus.failed,
+          message: message,
+        );
+      }
     }
   }
 }

@@ -8,17 +8,12 @@ class AssetPageButtonsPanel extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return const Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(width: 16),
-        Flexible(
-          child: CoinTransferButton(),
-        ),
+        CoinTransferButton(),
         SizedBox(width: 8),
-        Flexible(
-          child: RecieveButton(),
-        ),
-        SizedBox(width: 16),
+        RecieveButton(),
       ],
     );
   }
