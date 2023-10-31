@@ -12,7 +12,12 @@ class EnumButton extends StatelessWidget {
     this.onPressed,
     // this.backgroundColor,
     this.padding,
+    this.child,
   })  : border = const RoundedRectangleBorder(),
+        assert(
+          child != null || text != null,
+          'Either child or text must be provided',
+        ),
         super(key: key);
 
   static const buttonRadius = Radius.circular(8);
@@ -20,9 +25,10 @@ class EnumButton extends StatelessWidget {
   final void Function()? onPressed;
   // final Color? backgroundColor;
   final RoundedRectangleBorder border;
-  final String text;
+  final String? text;
   final EdgeInsetsGeometry? padding;
   final bool isChosen;
+  final Widget? child;
 
   @override
   Widget build(final BuildContext context) {
@@ -41,9 +47,17 @@ class EnumButton extends StatelessWidget {
               _Icon(
                 isEmpty: !isChosen,
               ),
-              Text(
-                text,
-                // style: theme.textTheme.labelLarge,
+              Flexible(
+                child: child != null
+                    ? child!
+                    : Text(
+                        text ?? '',
+                        // style: theme.textTheme.labelLarge,
+                      ),
+              ),
+              // placeholder to make flexible centered
+              const _Icon(
+                isEmpty: true,
               ),
             ],
           ),

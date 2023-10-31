@@ -7,14 +7,15 @@ class _QRCode extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final size = MediaQuery.of(context).size.width - 16 * 6;
     return Container(
-      height: MediaQuery.of(context).size.width - 16 * 2,
+      height: size,
       alignment: Alignment.center,
       child: QrImageView(
         padding: EdgeInsets.zero,
         data: address,
         version: QrVersions.auto,
-        size: MediaQuery.of(context).size.width - 16 * 2,
+        size: size,
         foregroundColor: Theme.of(context).customColors.themeOpposite,
       ),
     );

@@ -13,9 +13,9 @@ abstract class _$NotificationDTOCWProxy {
 
   NotificationDTO amount(String? amount);
 
-  NotificationDTO fromAddresses(List<String>? fromAddresses);
+  NotificationDTO fromAddress(String? fromAddress);
 
-  NotificationDTO toAddresses(List<String>? toAddresses);
+  NotificationDTO toAddress(String? toAddress);
 
   NotificationDTO message(String? message);
 
@@ -33,8 +33,8 @@ abstract class _$NotificationDTOCWProxy {
     NotificationType? type,
     ExtrisincStatus? status,
     String? amount,
-    List<String>? fromAddresses,
-    List<String>? toAddresses,
+    String? fromAddress,
+    String? toAddress,
     String? message,
     String? symbols,
     DateTime? blockDateTime,
@@ -57,12 +57,11 @@ class _$NotificationDTOCWProxyImpl implements _$NotificationDTOCWProxy {
   NotificationDTO amount(String? amount) => this(amount: amount);
 
   @override
-  NotificationDTO fromAddresses(List<String>? fromAddresses) =>
-      this(fromAddresses: fromAddresses);
+  NotificationDTO fromAddress(String? fromAddress) =>
+      this(fromAddress: fromAddress);
 
   @override
-  NotificationDTO toAddresses(List<String>? toAddresses) =>
-      this(toAddresses: toAddresses);
+  NotificationDTO toAddress(String? toAddress) => this(toAddress: toAddress);
 
   @override
   NotificationDTO message(String? message) => this(message: message);
@@ -86,8 +85,8 @@ class _$NotificationDTOCWProxyImpl implements _$NotificationDTOCWProxy {
     Object? type = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
     Object? amount = const $CopyWithPlaceholder(),
-    Object? fromAddresses = const $CopyWithPlaceholder(),
-    Object? toAddresses = const $CopyWithPlaceholder(),
+    Object? fromAddress = const $CopyWithPlaceholder(),
+    Object? toAddress = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
     Object? symbols = const $CopyWithPlaceholder(),
     Object? blockDateTime = const $CopyWithPlaceholder(),
@@ -105,14 +104,14 @@ class _$NotificationDTOCWProxyImpl implements _$NotificationDTOCWProxy {
           ? _value.amount
           // ignore: cast_nullable_to_non_nullable
           : amount as String?,
-      fromAddresses: fromAddresses == const $CopyWithPlaceholder()
-          ? _value.fromAddresses
+      fromAddress: fromAddress == const $CopyWithPlaceholder()
+          ? _value.fromAddress
           // ignore: cast_nullable_to_non_nullable
-          : fromAddresses as List<String>?,
-      toAddresses: toAddresses == const $CopyWithPlaceholder()
-          ? _value.toAddresses
+          : fromAddress as String?,
+      toAddress: toAddress == const $CopyWithPlaceholder()
+          ? _value.toAddress
           // ignore: cast_nullable_to_non_nullable
-          : toAddresses as List<String>?,
+          : toAddress as String?,
       message: message == const $CopyWithPlaceholder()
           ? _value.message
           // ignore: cast_nullable_to_non_nullable

@@ -38,13 +38,13 @@ class _State extends State<D3pSlider> {
         if (widget.label != null)
           Text(
             widget.label!.tr(),
-            style: textStyles.dp3BodySmall,
+            style: textStyles.d3pBodySmall,
           ),
         Row(
           children: [
             Text(
               '${widget.minValue}',
-              style: textStyles.dp3BodySmall,
+              style: textStyles.d3pBodySmall,
             ),
             Flexible(
               child: Container(
@@ -60,7 +60,7 @@ class _State extends State<D3pSlider> {
             ),
             Text(
               '${widget.maxValue}',
-              style: textStyles.dp3BodySmall,
+              style: textStyles.d3pBodySmall,
             ),
           ],
         ),
@@ -68,7 +68,7 @@ class _State extends State<D3pSlider> {
           padding: const EdgeInsets.only(top: 0, left: 16, right: 16),
           child: Text(
             'pixel_ratio_help_text'.tr(),
-            style: textStyles.dp3BodySmall,
+            style: textStyles.d3pBodySmall,
           ),
         ),
       ],

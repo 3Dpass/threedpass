@@ -20,7 +20,7 @@ class AssetBalanceText extends StatelessWidget {
         children: [
           TextSpan(
             text: ' ' + tokenSymbol,
-            style: styles.dp3BodySmall,
+            style: styles.d3pBodySmall,
           ),
         ],
       ),

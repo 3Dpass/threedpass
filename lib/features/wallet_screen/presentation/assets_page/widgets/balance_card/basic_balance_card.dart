@@ -49,7 +49,7 @@ class BasicBalanceRow extends StatelessWidget {
               children: [
                 TextSpan(
                   text: ' ' + tokenSymbol,
-                  style: textStyles.dp3BodySmall,
+                  style: textStyles.d3pBodySmall,
                 ),
               ],
             ),

@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
 import 'package:threedpass/features/accounts/bloc/mnemonic_input_cubit.dart';
@@ -29,7 +30,7 @@ class CreateAccountMnemonicConfirmPage extends StatelessWidget {
           child: SubmitMnemonicConfirmButton(),
         ),
         children: [
-          const SizedBox(height: 16),
+          const SizedBoxH16(),
           Text(
             'backup_confirm_header'.tr(),
             style: Theme.of(context)
@@ -37,7 +38,7 @@ class CreateAccountMnemonicConfirmPage extends StatelessWidget {
                 .d3ptitleLarge
                 .copyWith(fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 16),
+          const SizedBoxH16(),
           const D3pBodyMediumText('backup_confirm_text'),
           const SizedBox(height: 12),
           const Align(

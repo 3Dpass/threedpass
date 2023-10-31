@@ -10,7 +10,7 @@ publish_to: 'none'
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.8.0+30
+version: 2.9.0+31
 
 environment:
   sdk: ">=3.0.6 <3.0.7"
@@ -63,7 +63,7 @@ dependencies:
   polkawallet_sdk: #0.5.1
     git:
         url: https://github.com/L3odr0id/polkawallet_sdk.git
-        ref: 7338432b20bbea4a4fe12d37df0fa9c5e572522a # release/0.5.1 # branch name
+        ref: a8418594529fe60dca8d9a773ea044b8af3378ee # release/0.5.1 # branch name
 
   ## Code gen
   copy_with_extension: ^5.0.3

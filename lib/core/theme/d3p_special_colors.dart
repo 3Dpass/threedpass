@@ -61,6 +61,11 @@ extension ScaffoldCustomColors on CustomColors {
   Color get cardBackground => brightness == Brightness.light
       ? D3pColors.lightCardBackground
       : D3pColors.darkCardBackground;
+
+  // https://github.com/flutter/flutter/blob/ad200896cbe17f8b2ae3560f541c1abafa8f4cd1/packages/flutter/lib/src/material/input_decorator.dart#L4564C22-L4564C22
+  Color get defaultInputColor => brightness == Brightness.light
+      ? const Color(0x0A000000)
+      : const Color(0x1AFFFFFF);
 }
 
 extension PinCodeColors on CustomColors {

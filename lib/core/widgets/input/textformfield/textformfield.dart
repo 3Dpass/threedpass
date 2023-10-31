@@ -5,6 +5,7 @@ import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/utils/empty_function.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 
 part 'suffix_button.dart';
 part 'bottom_help_text.dart';
@@ -12,7 +13,6 @@ part 'label.dart';
 
 class D3pTextFormField extends StatelessWidget {
   D3pTextFormField({
-    final Key? key,
     final TextEditingController? controller,
     this.hintText,
     this.labelText,
@@ -31,8 +31,14 @@ class D3pTextFormField extends StatelessWidget {
     this.maxLines,
     this.isCollapsed = false,
     this.autofocus = false,
-  })  : controller = controller ?? TextEditingController(),
-        super(key: key);
+    this.makeLabelOutside = false,
+    this.contentPadding =
+        const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+    this.focusedBorder,
+    this.border,
+    this.bottomWidget,
+    super.key,
+  }) : controller = controller ?? TextEditingController();
 
   final void Function()? onLabelButtonPressed;
   final void Function()? onSuffixButtonPressed;
@@ -41,39 +47,54 @@ class D3pTextFormField extends StatelessWidget {
 
   /// Text to display below the input field
   final String? bottomHelpText;
+  final Widget? bottomWidget;
 
   final TextEditingController controller;
   final bool? enabled;
   final String? hintText;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
-  final String? labelButton;
+  final Widget? labelButton;
   final String? labelText;
   final int? maxLen;
   final int? maxLines;
-  final String? suffixButton;
+  final Widget? suffixButton;
   final bool obscureText;
   final bool isCollapsed;
   final bool autofocus;
+  final EdgeInsetsGeometry contentPadding;
+  final InputBorder? border;
+  final InputBorder? focusedBorder;
+
+  final bool makeLabelOutside;
 
   TextStyle hintStyle(final CustomTextStyles textStyles) {
     return textStyles.d3pBodyMedium.copyWith(color: D3pColors.disabled);
   }
 
-  UnderlineInputBorder get focusedBorder => UnderlineInputBorder(
+  int? get mMaxLines => obscureText ? 1 : maxLines ?? 1;
+  // double? get mHeight => labelText == null ? 44 : null;
+  InputBorder get defaultFocusedBorder => UnderlineInputBorder(
         borderSide: BorderSide(color: D3pThemeData.mainColor),
       );
-
-  int? get mMaxLines => obscureText ? 1 : maxLines ?? 1;
-
-  double? get mHeight => labelText == null ? 44 : null;
 
   @override
   Widget build(final BuildContext context) {
     final textStyle = Theme.of(context).customTextStyles;
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if (makeLabelOutside)
+          Column(
+            children: [
+              Text(
+                labelText ?? '',
+                style: textStyle.hintStyle,
+              ),
+              const SizedBoxH4(),
+            ],
+          ),
         SizedBox(
           // height: 55,
           child: TextFormField(
@@ -81,10 +102,10 @@ class D3pTextFormField extends StatelessWidget {
             decoration: InputDecoration(
               isDense: true,
               filled: true,
-              focusedBorder: focusedBorder,
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-              label: _Label(labelText).build(context),
+              border: border,
+              focusedBorder: focusedBorder ?? defaultFocusedBorder,
+              contentPadding: contentPadding,
+              label: makeLabelOutside ? null : _Label(labelText).build(context),
               suffixIcon: _SuffixButton(
                 labelButton: labelButton,
                 suffixButton: suffixButton,
@@ -108,7 +129,7 @@ class D3pTextFormField extends StatelessWidget {
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
         ),
-        _BottomHelpText(bottomHelpText),
+        bottomWidget ?? _BottomHelpText(bottomHelpText),
       ],
     );
   }

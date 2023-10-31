@@ -8,24 +8,18 @@ import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/utils/copy_and_notify.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/notifications_icon_button.dart';
 
 class AssetPageAppbar extends AppBar {
   AssetPageAppbar({
     required final KeyPairData account,
-    required final ThemeData themeData,
     final Key? key,
   }) : super(
           key: key,
           backgroundColor: const D3pAppBarTheme().backgroundColor,
           centerTitle: true,
-          leading: Builder(
-            builder: (final context) => D3pIconButton(
-              iconData: Icons.switch_account_rounded,
-              iconColor: themeData.customColors.appBarButton,
-              onPressed: () => Scaffold.of(context).openDrawer(),
-            ),
-          ),
+          leading: const _SmartLeadingBackButton(),
           title: SizedBox(
             height: kToolbarHeight,
             child: Row(
@@ -36,33 +30,13 @@ class AssetPageAppbar extends AppBar {
                   svg: account.icon,
                 ),
                 const SizedBox(width: 16),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      Fmt.shorterAddress(account.address),
-                      style: themeData.customTextStyles.accountAddress,
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      account.name ?? 'Anonymous',
-                      style: themeData.customTextStyles.accountName,
-                    ),
-                  ],
+                _AccountName(
+                  accountAddress: account.address,
+                  accountName: account.name,
                 ),
                 const SizedBox(width: 16),
-                SizedBox(
-                  width: D3pAddressIcon.defaultSize,
-                  child: D3pIconButton(
-                    emptyContraints: true,
-                    iconData: Icons.copy,
-                    size: 20,
-                    iconColor: themeData.customColors.appBarButton,
-                    onPressed: () => copyAndNotify(
-                      textToCopy: account.address!,
-                      textToShow: 'address_copied_to_clipboard'.tr(),
-                    ),
-                  ),
+                _CopyButton(
+                  accountAddress: account.address,
                 ),
               ],
             ),
@@ -71,4 +45,83 @@ class AssetPageAppbar extends AppBar {
             NotificationsIconButton(),
           ],
         );
+}
+
+class _SmartLeadingBackButton extends StatelessWidget {
+  const _SmartLeadingBackButton();
+
+  @override
+  Widget build(final BuildContext context) {
+    final theme = Theme.of(context);
+
+    return D3pIconButton(
+      iconData: Icons.switch_account_rounded,
+      iconColor: theme.customColors.appBarButton,
+      onPressed: () => Scaffold.of(context).openDrawer(),
+    );
+  }
+}
+
+class _AccountName extends StatelessWidget {
+  const _AccountName({
+    required this.accountAddress,
+    required this.accountName,
+  });
+
+  final String? accountName;
+  final String? accountAddress;
+
+  @override
+  Widget build(final BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          Fmt.shorterAddress(accountAddress),
+          style: theme.customTextStyles.accountAddress,
+        ),
+        const SizedBoxH4(),
+        Text(
+          accountName ?? 'Anonymous',
+          style: theme.customTextStyles.accountName,
+        ),
+      ],
+    );
+  }
+}
+
+class _CopyButton extends StatelessWidget {
+  const _CopyButton({
+    required this.accountAddress,
+  });
+
+  final String? accountAddress;
+
+  @override
+  Widget build(final BuildContext context) {
+    final theme = Theme.of(context);
+
+    return SizedBox(
+      // color: Colors.red,
+      width: D3pAddressIcon.defaultSize,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          D3pIconButton(
+            emptyContraints: true,
+            iconData: Icons.copy,
+            size: 20,
+            iconColor: theme.customColors.appBarButton,
+            onPressed: () => copyAndNotify(
+              textToCopy: accountAddress ?? '',
+              textToShow: 'address_copied_to_clipboard'.tr(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

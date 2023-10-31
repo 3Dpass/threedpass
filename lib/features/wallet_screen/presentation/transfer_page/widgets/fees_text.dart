@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
-import 'package:threedpass/features/wallet_screen/bloc/transfer_info_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 
 class FeesText extends StatelessWidget {
   const FeesText({
@@ -13,7 +13,7 @@ class FeesText extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return BlocBuilder<TransferInfoCubit, TransferInfo>(
+    return BlocBuilder<TransferInfoBloc, TransferInfoBlocState>(
       builder: (final context, final state) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

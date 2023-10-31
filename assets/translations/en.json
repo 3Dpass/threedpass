@@ -257,8 +257,8 @@
     "to_address_hint": "Enter address",
     "amount_label": "Amount (Balance: {})",
     "amount_hint": "Enter amount",
-    "enter_password_hint": "password",
-    "enter_password_label": "Your password",
+    "enter_password_hint": "Enter password",
+    "enter_password_label": "Password",
     "existential_deposit_label": "existential deposit",
     "existential_deposit_text": "The minimum amount thath an account should have to be deemed active.",
     "estimated_transfer_fee": "Estimated transfer fee",
@@ -303,5 +303,13 @@
     "status_success": "Success",
     "status_failed": "Failed",
     "status_error": "Error",
-    "error_wrong_amount_int": "A positive integer expected"
+    "error_wrong_amount_int": "A positive integer expected",
+
+    "@2.9.0":{
+    },
+    "from_select_account_title": "Select account",
+    "add_account_from_label": "Add accout to send FROM",
+    "add_account_to_label": "Add accout to send TO",
+    "password_hint_1": "Press ",
+    "password_hint_2": " to copy the password of the account above"
 }
