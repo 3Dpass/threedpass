@@ -37,7 +37,6 @@ class FromAddressTextField extends StatelessWidget {
     final textStyle = Theme.of(context).customTextStyles;
     final colors = Theme.of(context).customColors;
 
-    // TODO MAKE BUTTON TO COPY PASSWORD FROM TOP ACCOUNT
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

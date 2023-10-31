@@ -4,7 +4,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:polkawallet_sdk/p3d/tx_info.dart';
 import 'package:polkawallet_sdk/p3d/tx_params.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
@@ -183,15 +182,17 @@ class Transfer {
             notificationsCubit.add(element);
           });
           debugPrint('SingleTransaction');
-          unawaited(SingleTransaction(
-            addHandler: addHandlerV,
-            appService: appService,
-            context: context,
-            finishNotificationWithError: finishNotificationWithErrorV,
-            globalContext: globalContext,
-            password: passwords.first,
-            txInfoMeta: metaInfos.first,
-          ).send());
+          unawaited(
+            SingleTransaction(
+              addHandler: addHandlerV,
+              appService: appService,
+              context: context,
+              finishNotificationWithError: finishNotificationWithErrorV,
+              globalContext: globalContext,
+              password: passwords.first,
+              txInfoMeta: metaInfos.first,
+            ).send(),
+          );
         },
         onSecond: () async {
           notifications.forEach((final element) {
@@ -214,17 +215,19 @@ class Transfer {
             notificationsCubit.add(element);
           });
           debugPrint('MultiTxMultiSender');
-          unawaited(MultiTxMultiSender(
-            addHandler: addHandlerV,
-            appService: appService,
-            context: context,
-            finishNotificationWithError: finishNotificationWithErrorV,
-            globalContext: globalContext,
-            // txInfos: txInfos,
-            // params: params.map((final e) => e.paramsToSend()).toList(),
-            txInfoMetas: metaInfos,
-            passwords: passwords,
-          ).send());
+          unawaited(
+            MultiTxMultiSender(
+              addHandler: addHandlerV,
+              appService: appService,
+              context: context,
+              finishNotificationWithError: finishNotificationWithErrorV,
+              globalContext: globalContext,
+              // txInfos: txInfos,
+              // params: params.map((final e) => e.paramsToSend()).toList(),
+              txInfoMetas: metaInfos,
+              passwords: passwords,
+            ).send(),
+          );
         },
         onError: () async {
           debugPrint('Transfer case split Error');

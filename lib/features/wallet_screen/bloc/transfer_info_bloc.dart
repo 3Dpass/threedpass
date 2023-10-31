@@ -15,8 +15,6 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/non_native_tokens_api.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
-import 'package:threedpass/core/polkawallet/utils/transfer_type.dart';
-import 'package:threedpass/core/polkawallet/utils/tx_info.dart';
 import 'package:threedpass/features/wallet_screen/bloc/notifications_cubit.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_meta_dto.dart';
@@ -261,6 +259,7 @@ class TransferInfoBloc
               BalanceUtils.balanceToDouble(rawAvaliableBalance, decimals);
           balanceCacheNotifier.value[address] = balance;
       }
+      // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
       balanceCacheNotifier.notifyListeners();
     }
   }

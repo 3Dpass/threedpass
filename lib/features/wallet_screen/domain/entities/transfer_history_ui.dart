@@ -15,7 +15,7 @@ class TransferHistoryUI {
   final String fromAddress;
   final String toAddress;
 
-  /// Its says assets were send FROM this TO another
+  /// It says assets were send FROM this TO another
   final TransferDirection direction;
 
   final int decimals;
