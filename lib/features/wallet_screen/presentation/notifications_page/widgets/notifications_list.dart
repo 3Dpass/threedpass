@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/features/wallet_screen/bloc/notifications_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/presentation/notifications_page/widgets/notification_card.dart';
 
 class NotificationsList extends StatelessWidget {
@@ -8,7 +8,7 @@ class NotificationsList extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return BlocBuilder<NotificationsCubit, NotificationsState>(
+    return BlocBuilder<NotificationsBloc, NotificationsState>(
       builder: (final context, final state) {
         return ListView.builder(
           padding: const EdgeInsets.only(top: 8),

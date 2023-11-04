@@ -4,7 +4,7 @@ import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/wallet_screen/bloc/notifications_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
 import 'package:threedpass/features/wallet_screen/presentation/widgets/transaction_item.dart';
 

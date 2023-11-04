@@ -7,10 +7,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/p3d/tx_info.dart';
 import 'package:polkawallet_sdk/p3d/tx_params.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
-import 'package:threedpass/features/wallet_screen/bloc/notifications_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transaction.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
@@ -21,8 +22,8 @@ class Transfer {
     required this.appService,
     required this.context,
     required this.formKey,
-    required this.notificationsCubit,
-    required this.addHandler,
+    required this.notificationsBloc,
+    required this.appServiceCubit,
     required this.symbols,
     required this.decimals,
     // required this.amounts,
@@ -39,8 +40,9 @@ class Transfer {
   final BuildContext context;
   final GlobalKey<FormState> formKey;
   final List<String> passwords;
-  final NotificationsCubit notificationsCubit;
-  final void Function(String, TransactionsCallback) addHandler;
+  final NotificationsBloc notificationsBloc;
+  // final void Function(String, TransactionsCallback) addHandler;
+  final AppServiceLoaderCubit appServiceCubit;
   final String symbols;
   final int decimals;
   // final List<String> amounts;
@@ -73,6 +75,12 @@ class Transfer {
     }
 
     return true;
+  }
+
+  void addAllNs(final List<NotificationDTO> ns) {
+    for (final n in ns) {
+      notificationsBloc.add(AddNotification(n));
+    }
   }
 
   Future<void> sendFunds() async {
@@ -129,7 +137,7 @@ class Transfer {
           final msgId = data[k]!;
           debugPrint('Add handler for $msgId');
 
-          addHandler(
+          appServiceCubit.addHandler(
             msgId,
             ({
               required final ExtrisincStatus status,
@@ -148,29 +156,12 @@ class Transfer {
                 message: message,
                 blockDateTime: DateTime.now().toUtc(),
               );
-              notificationsCubit.replace(
-                tmp,
-                finishedTransaction,
+              notificationsBloc.add(
+                UpdateNotification(newN: finishedTransaction, oldN: tmp),
               );
             },
           );
         }
-      };
-
-      final finishNotificationWithErrorV = (final String e) {
-        //if (!isFinished) {
-        // final tmp = notifications.firstWhere(
-        //       (final element) =>
-        //           element.fromAddress == k.first &&
-        //           element.toAddress == k.last,
-        //     );
-        // final finishedTransaction = notifications.first.copyWith(
-        //   status: ExtrisincStatus.error,
-        //   message: e,
-        //   blockDateTime: DateTime.now().toUtc(),
-        // );
-        // notificationsCubit.replace(notifications.first, finishedTransaction);
-        //}
       };
 
       await caseSplit(
@@ -178,16 +169,14 @@ class Transfer {
         params: uniqueToAddresses,
         passwords: passwords,
         onFirst: () async {
-          notifications.forEach((final element) {
-            notificationsCubit.add(element);
-          });
+          addAllNs(notifications);
           debugPrint('SingleTransaction');
           unawaited(
             SingleTransaction(
               addHandler: addHandlerV,
               appService: appService,
               context: context,
-              finishNotificationWithError: finishNotificationWithErrorV,
+              // finishNotificationWithError: finishNotificationWithErrorV,
               globalContext: globalContext,
               password: passwords.first,
               txInfoMeta: metaInfos.first,
@@ -195,15 +184,13 @@ class Transfer {
           );
         },
         onSecond: () async {
-          notifications.forEach((final element) {
-            notificationsCubit.add(element);
-          });
+          addAllNs(notifications);
           debugPrint('MultiTxSingleSender');
           unawaited(MultiTxSingleSender(
             addHandler: addHandlerV,
             appService: appService,
             context: context,
-            finishNotificationWithError: finishNotificationWithErrorV,
+            // finishNotificationWithError: finishNotificationWithErrorV,
             globalContext: globalContext,
             // params: params.map((final e) => e.paramsToSend()).toList(),
             password: passwords.first,
@@ -211,16 +198,14 @@ class Transfer {
           ).send());
         },
         onThird: () async {
-          notifications.forEach((final element) {
-            notificationsCubit.add(element);
-          });
+          addAllNs(notifications);
           debugPrint('MultiTxMultiSender');
           unawaited(
             MultiTxMultiSender(
               addHandler: addHandlerV,
               appService: appService,
               context: context,
-              finishNotificationWithError: finishNotificationWithErrorV,
+              // finishNotificationWithError: finishNotificationWithErrorV,
               globalContext: globalContext,
               // txInfos: txInfos,
               // params: params.map((final e) => e.paramsToSend()).toList(),

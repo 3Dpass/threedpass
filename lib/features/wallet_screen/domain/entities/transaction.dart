@@ -11,7 +11,6 @@ abstract class _Transaction {
     required this.addHandler,
     required this.appService,
     required this.context,
-    required this.finishNotificationWithError,
     required this.globalContext,
   });
 
@@ -19,7 +18,6 @@ abstract class _Transaction {
   final BuildContext context;
   final BuildContext globalContext;
   final void Function(Map<List<String>, String> data) addHandler;
-  final void Function(String error) finishNotificationWithError;
 
   Future<void> send() async {
     try {
@@ -41,7 +39,7 @@ abstract class _Transaction {
         debugPrint('transfer dialog was already closed');
       }
 
-      finishNotificationWithError(e.toString());
+      // finishNotificationWithError(e.toString());
       debugPrint(e.toString());
       // unawaited(Fluttertoast.showToast(msg: e.toString()));
     }
@@ -112,7 +110,6 @@ class SingleTransaction extends _Transaction {
     required super.addHandler,
     required super.appService,
     required super.context,
-    required super.finishNotificationWithError,
     required super.globalContext,
     required this.password,
     required this.txInfoMeta,
@@ -138,7 +135,6 @@ class MultiTxSingleSender extends _Transaction {
     required super.addHandler,
     required super.appService,
     required super.context,
-    required super.finishNotificationWithError,
     required super.globalContext,
     required this.txInfoMetas,
     required this.password,
@@ -164,7 +160,6 @@ class MultiTxMultiSender extends _Transaction {
     required super.addHandler,
     required super.appService,
     required super.context,
-    required super.finishNotificationWithError,
     required super.globalContext,
     required this.passwords,
     required this.txInfoMetas,

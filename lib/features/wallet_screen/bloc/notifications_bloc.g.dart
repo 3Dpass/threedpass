@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'notifications_cubit.dart';
+part of 'notifications_bloc.dart';
 
 // **************************************************************************
 // CopyWithGenerator

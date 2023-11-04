@@ -15,7 +15,7 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/non_native_tokens_api.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
-import 'package:threedpass/features/wallet_screen/bloc/notifications_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_meta_dto.dart';
 
@@ -144,7 +144,7 @@ class TransferInfoBloc
     required final GlobalKey<FormState> formKey,
   }) async {
     try {
-      final notificationsCubit = BlocProvider.of<NotificationsCubit>(context);
+      final notificationsCubit = BlocProvider.of<NotificationsBloc>(context);
       final appServiceCubit = BlocProvider.of<AppServiceLoaderCubit>(context);
 
       final metaTxInfos =
@@ -162,8 +162,8 @@ class TransferInfoBloc
         context: context,
         passwords: passwords,
         formKey: formKey,
-        notificationsCubit: notificationsCubit,
-        addHandler: appServiceCubit.addHandler,
+        notificationsBloc: notificationsCubit,
+        appServiceCubit: appServiceCubit,
         symbols: metaDTO.name,
         decimals: metaDTO.decimals,
       ).sendFunds();

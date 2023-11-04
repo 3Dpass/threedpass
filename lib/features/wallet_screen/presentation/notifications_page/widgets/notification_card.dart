@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/features/wallet_screen/bloc/notifications_cubit.dart';
+import 'package:threedpass/features/wallet_screen/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/presentation/notifications_page/widgets/notifcation_transfer.dart';
 
 class NotificationCard extends StatelessWidget {
