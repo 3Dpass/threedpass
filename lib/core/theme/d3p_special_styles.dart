@@ -81,6 +81,7 @@ extension TitleCustomText on CustomTextStyles {
 }
 
 extension BodyCustomText on CustomTextStyles {
+  TextStyle get d3pReallyLarge => d3pBodyLarge.copyWith(fontSize: 18);
   TextStyle get d3pBodyLarge =>
       themeData.textTheme.bodyLarge!.copyWith(color: _themeOpposite);
   TextStyle get d3pBodyMedium =>

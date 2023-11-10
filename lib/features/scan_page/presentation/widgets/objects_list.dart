@@ -15,7 +15,7 @@ class ObjectsList extends StatelessWidget {
   Widget build(final BuildContext context) {
     if (state is HashesListLoaded) {
       return ListView.builder(
-        padding: const EdgeInsets.only(bottom: 46 * 2),
+        padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: (state as HashesListLoaded).objects.length,
@@ -48,7 +48,7 @@ class _ObjectTitle extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Padding(
-        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+        padding: const EdgeInsets.only(top: 16, right: 16),
         child: Text(
           title,
           style: Theme.of(context).customTextStyles.d3ptitleLarge,

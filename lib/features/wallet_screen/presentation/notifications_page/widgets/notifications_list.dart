@@ -11,7 +11,7 @@ class NotificationsList extends StatelessWidget {
     return BlocBuilder<NotificationsBloc, NotificationsState>(
       builder: (final context, final state) {
         return ListView.builder(
-          padding: const EdgeInsets.only(top: 8),
+          padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
           itemCount: state.notifications.length,
           shrinkWrap: true,
           itemBuilder: (final _, final index) {

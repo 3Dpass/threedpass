@@ -20,35 +20,32 @@ class NotificationTransferCard extends StatelessWidget {
         ? Theme.of(context).customColors.errorCardBGColor
         : null;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Card(
-        color: cardBG,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    const D3pBodyMediumText('transfer_status'),
-                    const SizedBox(width: 8),
-                    _TransferStatus(notificationDTO.status),
-                  ],
-                ),
-                const SizedBoxH4(),
-                _Message(notificationDTO.message, notificationDTO.status),
-                _Transaction(
-                  fromAddress: notificationDTO.fromAddress,
-                  toAddress: notificationDTO.toAddress,
-                  amount: notificationDTO.amount,
-                  symbols: notificationDTO.symbols,
-                  blockDateTime: notificationDTO.blockDateTime,
-                ),
-              ],
-            ),
+    return Card(
+      color: cardBG,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        child: SizedBox(
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  const D3pBodyMediumText('transfer_status'),
+                  const SizedBox(width: 8),
+                  _TransferStatus(notificationDTO.status),
+                ],
+              ),
+              const SizedBoxH4(),
+              _Message(notificationDTO.message, notificationDTO.status),
+              _Transaction(
+                fromAddress: notificationDTO.fromAddress,
+                toAddress: notificationDTO.toAddress,
+                amount: notificationDTO.amount,
+                symbols: notificationDTO.symbols,
+                blockDateTime: notificationDTO.blockDateTime,
+              ),
+            ],
           ),
         ),
       ),

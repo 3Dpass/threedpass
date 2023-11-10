@@ -3,18 +3,20 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
+import 'package:unicons/unicons.dart';
 
 class PreviewAppBar extends PlatformAppBar {
   PreviewAppBar({
-    required final Snapshot snapshot,
+    // required final Snapshot snapshot,
     required final ThemeData themeData,
     required final BuildContext context,
+    required final PreviewSnapshotType psType,
     final Key? key,
     final HashObject? hashObject,
   }) : super(
@@ -30,40 +32,21 @@ class PreviewAppBar extends PlatformAppBar {
               PlatformIconButton(
                 padding: EdgeInsets.zero,
                 icon: Icon(
-                  _getIconData(),
+                  _getIconData(context),
                   color: themeData.customColors.appBarButton,
                 ),
                 onPressed: () => context.router.pop(),
               ),
-              hashObject != null
-                  ? Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 16),
-                        child: Text(
-                          hashObject.name,
-                          overflow: TextOverflow.ellipsis,
-                          style: themeData.customTextStyles.appBarTextBright,
-                        ),
-                      ),
-                    )
-                  : Text(
-                      'get_new_object_appbar'.tr(),
-                      style: themeData.customTextStyles.appBarTextBright,
-                    ),
-              PlatformIconButton(
-                padding: EdgeInsets.zero,
-                icon: Icon(
-                  Icons.share,
-                  color: themeData.customColors.appBarButton,
-                ),
-                onPressed: () => Share.share(snapshot.shareText),
+              _PreviewAppbarTitle(
+                hashObject: hashObject,
               ),
+              _PseudoButtonSavedIndicator(psType),
             ],
           ),
         );
 
-  static IconData _getIconData() {
-    final platform = defaultTargetPlatform;
+  static IconData _getIconData(final BuildContext context) {
+    final platform = Theme.of(context).platform;
     switch (platform) {
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
@@ -74,5 +57,46 @@ class PreviewAppBar extends PlatformAppBar {
       case TargetPlatform.macOS:
         return Icons.arrow_back_ios;
     }
+  }
+}
+
+class _PreviewAppbarTitle extends StatelessWidget {
+  const _PreviewAppbarTitle({
+    required this.hashObject,
+    // required this.psType,
+  });
+
+  final HashObject? hashObject;
+
+  @override
+  Widget build(final BuildContext context) {
+    final themeData = Theme.of(context);
+    return hashObject != null
+        ? Flexible(
+            child: Text(
+              hashObject!.name,
+              overflow: TextOverflow.ellipsis,
+              style: themeData.customTextStyles.appBarTextBright,
+            ),
+          )
+        : Text(
+            'unsaved_object_appbar'.tr(),
+            style: themeData.customTextStyles.appBarTextBright,
+          );
+  }
+}
+
+class _PseudoButtonSavedIndicator extends StatelessWidget {
+  final PreviewSnapshotType psType;
+
+  const _PseudoButtonSavedIndicator(this.psType);
+
+  @override
+  Widget build(final BuildContext context) {
+    return D3pIconButton(
+      iconData: psType == PreviewSnapshotType.existingSnapshot
+          ? UniconsLine.file_check
+          : UniconsLine.file_exclamation,
+    );
   }
 }

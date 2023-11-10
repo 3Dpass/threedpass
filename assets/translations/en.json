@@ -27,11 +27,6 @@
     "@home_page":{
     },
     "calc_hashes_loader_text":"Calculating hashes...",
-    "snap_card_name": "Name: ",
-    "snap_card_stamp": "Stamp: ",
-    "saved_objects_header": "Saved objects",
-    "object_title_prefix": "Object -",
-    "snapshots_subtitle": "snapshots:",
 
     "recognize_your_objects":"Recognize your objects",
     "open_web_wallet_button_label": "Open web wallet",
@@ -54,13 +49,10 @@
     },
     "matches_FOUND": "found",
     "WHY_not_found": "Why?",
-    "save_this_object_button_label":"Save this object",
-    "save_this_snapshot_button_label":"Save this snapshot",
+    "save_this_object_button_label":"Save as object",
+    "save_this_snapshot_button_label":"Save as snapshot",
     "rename_this_snapshot_button_label":"Rename this snapshot",
-    "top_10_hashes": "Hash ID",
-    "get_new_object_appbar": "Get a new one",
-    "show_and_share_dialog_button": "Show and share",
-    "delete_snapshot_button": "Remove & clear the cache",
+    "delete_snapshot_button": "Delete snapshot",
 
     "stable_hashes_list_title": "Stable hashes:",
     "no_stable_hash_placeholder": "No stable hash found.",
@@ -311,5 +303,22 @@
     "add_account_from_label": "Add accout to send FROM",
     "add_account_to_label": "Add accout to send TO",
     "password_hint_1": "Press ",
-    "password_hint_2": " to copy the password of the account above"
+    "password_hint_2": " to copy the password of the account above",
+
+    "@3.0.0":{
+    },
+    "top_hashes_title": "Top hashes:",
+    "copy_hash_button_text": "Copy",
+    "HASHES_number_plural":{
+        "zero": "0 hashes",
+        "one": "{} hash",
+        "two": "{} hashes",
+        "few": "{} hashes",
+        "many": "{} hashes",
+        "other": "{} hashes"
+    },
+    "stable_hashes_copied_toast": "Stable hashes copied",
+    "scan_properties_copied_toast": "Scan properties copied",
+    "top_hashes_copied_toast": "Top hashes copied",
+    "unsaved_object_appbar": "Unnamed object"
 }

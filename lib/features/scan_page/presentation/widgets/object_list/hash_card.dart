@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_colors.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
-import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/object_list/hash_card_popup_menu.dart';
@@ -22,6 +25,7 @@ class SnapshotCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final theme = Theme.of(context).customTextStyles;
     return D3pCard(
       child: InkWell(
         onTap: () => context.router.push(
@@ -40,18 +44,19 @@ class SnapshotCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Flexible(
-                      child: D3pBodyLargeText(
-                        'snap_card_name'.tr() + snapshot.name,
-                        translate: false,
-                      ),
+                    Text(
+                      snapshot.name,
+                      style: theme.d3pBodyLarge,
                     ),
-                    D3pBodyLargeText(
-                      'snap_card_stamp'.tr() + formatter.format(snapshot.stamp),
+                    const SizedBoxH8(),
+                    Text.rich(snapshot.settingsConfig
+                        .toText(context, theme.d3pBodyMedium)),
+                    const SizedBoxH8(),
+                    D3pBodyMediumText(
+                      formatter.format(snapshot.stamp),
                       translate: false,
+                      color: D3pColors.disabled,
                     ),
-                    const SizedBox(height: 8),
-                    Text.rich(snapshot.settingsConfig.toText(context)),
                   ],
                 ),
               ),

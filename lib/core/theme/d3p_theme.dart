@@ -10,6 +10,7 @@ import 'd3p_elevated_button_theme.dart';
 
 class D3pThemeData {
   static MaterialColor mainColor = Colors.green;
+  static Color accentColor = const Color(0xFFC3F8C5);
 
   static ThemeData get lightTheme {
     final t = ThemeData(

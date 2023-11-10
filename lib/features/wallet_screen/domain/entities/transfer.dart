@@ -8,7 +8,6 @@ import 'package:polkawallet_sdk/p3d/tx_info.dart';
 import 'package:polkawallet_sdk/p3d/tx_params.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/bloc/notifications_bloc.dart';

@@ -13,10 +13,6 @@ AutoRoute previewPageRoute = AutoRoute(
       page: CompareRouteWrapper.page,
     ),
     CustomRoute(
-      page: SaveTopHashesRoute.page,
-      customRouteBuilder: dialogBuilder,
-    ),
-    CustomRoute(
       page: SaveObjectRoute.page,
       customRouteBuilder: dialogBuilder,
     ),

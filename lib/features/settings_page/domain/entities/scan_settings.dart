@@ -30,7 +30,7 @@ class ScanSettings extends Equatable {
   const ScanSettings.defaultValues()
       : gridSize = 8,
         algorithm = AlgorithmMaster.defaultAlgo,
-        nSections = 15,
+        nSections = 66,
         libVersion = 'unknown',
         transBytes = '';
 
