@@ -60,10 +60,7 @@ class PreviewPageBody extends StatelessWidget {
         const SizedBoxH8(),
 
         RenameSnapshotButton(state: previewPageCubitState),
-        DeleteSnapshotButton(
-          snapshot: previewPageCubitState.snapshot,
-          hashObject: previewPageCubitState.hashObject,
-        ),
+        DeleteSnapshotButton(state: previewPageCubitState),
 
         const SizedBoxH16(),
       ],

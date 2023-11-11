@@ -11,9 +11,16 @@ class AssetPageButtonsPanel extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        CoinTransferButton(),
+        SizedBox(width: 16),
+        Flexible(
+          flex: 3,
+          child: CoinTransferButton(),
+        ),
         SizedBox(width: 8),
-        RecieveButton(),
+        Flexible(
+          child: RecieveButton(),
+        ),
+        SizedBox(width: 16),
       ],
     );
   }

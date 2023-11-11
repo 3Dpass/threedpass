@@ -101,6 +101,7 @@ class _ElevatedButtonChild extends StatelessWidget {
             ? _Icon(
                 icon: icon,
                 iconData: iconData,
+                isTextEmpty: text.isEmpty,
               )
             : const SizedBox(),
         Text(
@@ -115,11 +116,15 @@ class _Icon extends StatelessWidget {
   const _Icon({
     required this.iconData,
     required this.icon,
+    required this.isTextEmpty,
     final Key? key,
   }) : super(key: key);
 
   final IconData? iconData;
   final Widget? icon;
+  final bool isTextEmpty;
+
+  double get padding => isTextEmpty ? 0 : 8;
 
   @override
   Widget build(final BuildContext context) {
@@ -130,12 +135,12 @@ class _Icon extends StatelessWidget {
 
     if (iconData != null) {
       return Padding(
-        padding: const EdgeInsets.only(right: 8),
+        padding: EdgeInsets.only(right: padding),
         child: Icon(iconData),
       );
     } else if (icon != null) {
       return Padding(
-        padding: const EdgeInsets.only(right: 8),
+        padding: EdgeInsets.only(right: padding),
         child: icon,
       );
     } else {

@@ -40,7 +40,8 @@ class PreviewAppBar extends PlatformAppBar {
               _PreviewAppbarTitle(
                 hashObject: hashObject,
               ),
-              _PseudoButtonSavedIndicator(psType),
+              // _PseudoButtonSavedIndicator(psType),
+              const D3pIconButton.fake(),
             ],
           ),
         );
