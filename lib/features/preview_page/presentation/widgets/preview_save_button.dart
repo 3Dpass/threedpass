@@ -48,7 +48,7 @@ class PreviewSaveButton extends StatelessWidget {
     if (state.psType == PreviewSnapshotType.newObject ||
         state.psType == PreviewSnapshotType.newSnapshot) {
       return Padding(
-        padding: const EdgeInsets.only(bottom: 8),
+        padding: const EdgeInsets.only(bottom: 16),
         child: Padding16(
           child: D3pElevatedButton(
             iconData: Icons.save,

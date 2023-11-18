@@ -45,7 +45,7 @@ class TransBytesSubPage extends SettingSubPage {
   void changeSettings(final String rawInput, final BuildContext context) {
     final smartInput = TransBytesInput(rawInput);
     if (smartInput.isValid == null) {
-      final realInput = smartInput.unmasked;
+      final realInput = smartInput.unmasked.toLowerCase();
       final cubit = BlocProvider.of<SettingsConfigCubit>(context);
       final newScanConfig =
           cubit.state.scanSettings.copyWith(transBytes: realInput);

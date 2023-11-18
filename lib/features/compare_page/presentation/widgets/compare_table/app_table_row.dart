@@ -17,12 +17,12 @@ class AppTableRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
-          D3pBodyMediumText(
-            rowData.rank1,
-            translate: false,
-          ),
-          const SizedBox(
+          SizedBox(
             width: 48,
+            child: D3pBodyMediumText(
+              rowData.rank1,
+              translate: false,
+            ),
           ),
           Flexible(
             child: Text(
@@ -32,12 +32,13 @@ class AppTableRow extends StatelessWidget {
                   ),
             ),
           ),
-          const SizedBox(
+          SizedBox(
             width: 48,
-          ),
-          D3pBodyMediumText(
-            rowData.rank2,
-            translate: false,
+            child: D3pBodyMediumText(
+              rowData.rank2,
+              translate: false,
+              textAlign: TextAlign.end,
+            ),
           ),
         ],
       ),

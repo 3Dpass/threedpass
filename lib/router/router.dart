@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/core/widgets/error_page.dart';
@@ -37,10 +38,24 @@ Route<T> dialogBuilder<T>(
   final Widget child,
   final AutoRoutePage<T> page,
 ) {
-  return DialogRoute(
-    context: context,
-    builder: (final context) => child,
-    settings: page,
-    barrierDismissible: false,
-  );
+  switch (Theme.of(context).platform) {
+    case TargetPlatform.android:
+    case TargetPlatform.fuchsia:
+    case TargetPlatform.linux:
+    case TargetPlatform.windows:
+      return DialogRoute(
+        context: context,
+        builder: (final context) => child,
+        settings: page,
+        barrierDismissible: false,
+      );
+    case TargetPlatform.macOS:
+    case TargetPlatform.iOS:
+      return CupertinoDialogRoute(
+        context: context,
+        builder: (final context) => child,
+        settings: page,
+        barrierDismissible: false,
+      );
+  }
 }

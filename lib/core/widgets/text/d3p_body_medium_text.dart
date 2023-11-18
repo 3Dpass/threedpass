@@ -6,12 +6,14 @@ class D3pBodyMediumText extends StatelessWidget {
   final String text;
   final bool translate;
   final Color? color;
+  final TextAlign? textAlign;
 
   const D3pBodyMediumText(
     this.text, {
     super.key,
     this.translate = true,
     this.color,
+    this.textAlign,
   });
 
   @override
@@ -23,6 +25,7 @@ class D3pBodyMediumText extends StatelessWidget {
           .d3pBodyMedium
           .copyWith(color: color),
       translate: translate,
+      textAlign: textAlign,
     );
   }
 }

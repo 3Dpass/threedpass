@@ -24,5 +24,9 @@ AutoRoute previewPageRoute = AutoRoute(
       page: RenameSnapshotRoute.page,
       customRouteBuilder: dialogBuilder,
     ),
+    CustomRoute(
+      page: DeleteSnapshotRoute.page,
+      customRouteBuilder: dialogBuilder,
+    ),
   ],
 );

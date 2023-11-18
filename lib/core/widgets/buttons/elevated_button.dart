@@ -54,6 +54,9 @@ class D3pElevatedButton extends StatelessWidget {
           material: (final context, final platform) =>
               MaterialElevatedButtonData(
             style: ButtonStyle(
+              foregroundColor: foregroundColor != null
+                  ? MaterialStateProperty.all(foregroundColor)
+                  : null,
               backgroundColor: backgroundColor != null
                   ? MaterialStateProperty.all(backgroundColor)
                   : null,
@@ -97,13 +100,12 @@ class _ElevatedButtonChild extends StatelessWidget {
     return Row(
       mainAxisAlignment: childAlignment ?? MainAxisAlignment.center,
       children: [
-        (icon != null || iconData != null)
-            ? _Icon(
-                icon: icon,
-                iconData: iconData,
-                isTextEmpty: text.isEmpty,
-              )
-            : const SizedBox(),
+        if (icon != null || iconData != null)
+          _Icon(
+            icon: icon,
+            iconData: iconData,
+            isTextEmpty: text.isEmpty,
+          ),
         Text(
           text,
         ),

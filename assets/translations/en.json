@@ -49,13 +49,12 @@
     },
     "matches_FOUND": "found",
     "WHY_not_found": "Why?",
-    "save_this_object_button_label":"Save as object",
-    "save_this_snapshot_button_label":"Save as snapshot",
+    "save_this_object_button_label":"Save object",
+    "save_this_snapshot_button_label":"Save snapshot",
     "rename_this_snapshot_button_label":"Rename this snapshot",
-    "delete_snapshot_button": "Delete snapshot",
 
-    "stable_hashes_list_title": "Stable hashes:",
-    "no_stable_hash_placeholder": "No stable hash found.",
+    "stable_hashes_list_title": "Stable hashes",
+    "no_stable_hash_placeholder": "No stable hash found",
     "no_stable_hash_help": "To get a stable hash, try to scan the object several times with the same scan settings.",
 
     "@rename_snap_dialog":{
@@ -103,7 +102,7 @@
 
     "pixel_ratio_help_text": "Decreasing the value reduces preview quality, but increases performance.",
     
-    "settings_text_span_title": "Scan properties:",
+    "settings_text_span_title": "Scan properties",
     "algorithm_span": "Algorithm",
     "grid_span":"Grid",
     "n_sections_span": "nSections",
@@ -215,7 +214,7 @@
     "balance_avaliable_title": "Available",
     "balance_locked_title": "Locked",
     "balance_reserved_title": "Reserved",
-    "transfer_coins_button_label": "Transfer",
+    "transfer_coins_button_label": "Send",
     "recieve_coins_button_label": "Recieve",
     "remove_account_button_label": "Delete account",
 
@@ -307,7 +306,7 @@
 
     "@3.0.0":{
     },
-    "top_hashes_title": "Top hashes:",
+    "top_hashes_title": "Top hashes",
     "copy_hash_button_text": "Copy",
     "HASHES_number_plural":{
         "zero": "0 hashes",
@@ -320,5 +319,9 @@
     "stable_hashes_copied_toast": "Stable hashes copied",
     "scan_properties_copied_toast": "Scan properties copied",
     "top_hashes_copied_toast": "Top hashes copied",
-    "unsaved_object_appbar": "Unnamed object"
+    "unsaved_object_appbar": "Unnamed object",
+    "delete_new_snapshot": "Don't save snapshot",
+    "delete_extisting_snapshot": "Delete snapshot",
+    "delete_snapshot_confirm_title": "Do you want to delete {}?",
+    "explore_hashes_button_title": "Explore hashes"
 }

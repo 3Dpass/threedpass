@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/features/hashes_list/presentation/widgets/hashes_primitive_list.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
@@ -23,10 +22,6 @@ class TopHashesCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              'top_hashes_title'.tr(),
-              style: Theme.of(context).customTextStyles.d3pBodyMedium,
-            ),
             HashesPrimitiveList(
               hashes: hashes,
             ),

@@ -16,6 +16,10 @@ abstract class PreviewPageCubitState {
   PreviewSnapshotType get psType;
 
   final Snapshot snapshot;
+
+  bool get isNew =>
+      psType == PreviewSnapshotType.newObject ||
+      psType == PreviewSnapshotType.newSnapshot;
 }
 
 class PreviewNewObject extends PreviewPageCubitState {

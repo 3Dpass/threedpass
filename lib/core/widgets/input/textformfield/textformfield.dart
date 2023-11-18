@@ -75,7 +75,7 @@ class D3pTextFormField extends StatelessWidget {
   int? get mMaxLines => obscureText ? 1 : maxLines ?? 1;
   // double? get mHeight => labelText == null ? 44 : null;
   InputBorder get defaultFocusedBorder => UnderlineInputBorder(
-        borderSide: BorderSide(color: D3pThemeData.mainColor),
+        borderSide: BorderSide(color: D3pThemeData.mainColor, width: 1),
       );
 
   @override
@@ -101,7 +101,7 @@ class D3pTextFormField extends StatelessWidget {
             style: textStyle.d3pBodyLarge,
             decoration: InputDecoration(
               isDense: true,
-              filled: true,
+              filled: false,
               border: border,
               focusedBorder: focusedBorder ?? defaultFocusedBorder,
               contentPadding: contentPadding,
