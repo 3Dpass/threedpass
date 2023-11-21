@@ -28,5 +28,8 @@ AutoRoute previewPageRoute = AutoRoute(
       page: DeleteSnapshotRoute.page,
       customRouteBuilder: dialogBuilder,
     ),
+    AutoRoute(
+      page: D3PRPCRoute.page,
+    ),
   ],
 );

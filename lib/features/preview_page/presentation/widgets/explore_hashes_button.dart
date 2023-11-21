@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 
-class ExploreSnapshotsButton extends StatelessWidget {
-  const ExploreSnapshotsButton({super.key});
+class ExploreHashesButton extends StatelessWidget {
+  const ExploreHashesButton({super.key});
 
   @override
   Widget build(final BuildContext context) {

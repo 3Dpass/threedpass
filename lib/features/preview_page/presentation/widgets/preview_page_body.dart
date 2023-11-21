@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/delete_snapshot_button.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/explore_hashes_button.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/hash_properties.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/object_preview/object_preview.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/poscan_result.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/preview_save_button.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/rename_snapshot_button.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/section_title.dart';
-import 'package:threedpass/features/preview_page/presentation/widgets/show_hashes_button.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/snapshot_info.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/stable_hashes_section.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/top_hashes_card.dart';
@@ -40,7 +40,7 @@ class PreviewPageBody extends StatelessWidget {
         ),
         const StableHashesSection(),
         const SizedBox(height: 2),
-        const ExploreSnapshotsButton(),
+        const ExploreHashesButton(),
         const SizedBoxH8(),
         const SectionTitle(titleUnlocalized: 'settings_text_span_title'),
         ScanProperties(

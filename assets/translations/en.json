@@ -323,5 +323,8 @@
     "delete_new_snapshot": "Don't save snapshot",
     "delete_extisting_snapshot": "Delete snapshot",
     "delete_snapshot_confirm_title": "Do you want to delete {}?",
-    "explore_hashes_button_title": "Explore hashes"
+    "explore_hashes_button_title": "Explore hashes",
+    "upload_to_3d_rpc_title": "Upload to 3DRPC-2",
+    "3d_rpc_button_label": "Upload to 3DRPC-2",
+    "top_hashes_empty_text": "No hashes found. This is interesting behavior. Perhaps scanning with other settings will return real hashes."
 }

@@ -7,7 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/core/widgets/dialog/d3p_platform_dialog.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
+import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 @RoutePage()
 class DeleteSnapshotDialog extends StatelessWidget {
@@ -29,8 +31,8 @@ class DeleteSnapshotDialog extends StatelessWidget {
       );
     }
 
-    await context.router.pop();
-    unawaited(popGlobal());
+    final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
+    outerContext.router.popUntilRouteWithName(InitialWrapperRoute.name);
   }
 
   @override
