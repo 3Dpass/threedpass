@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
-import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/compare_page/presentation/widgets/compare_row.dart';
 import 'package:threedpass/features/compare_page/presentation/widgets/compare_table/compare_table.dart';
 

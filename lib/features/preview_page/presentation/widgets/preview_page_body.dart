@@ -12,6 +12,7 @@ import 'package:threedpass/features/preview_page/presentation/widgets/section_ti
 import 'package:threedpass/features/preview_page/presentation/widgets/snapshot_info.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/stable_hashes_section.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/top_hashes_card.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/top_hashes_title.dart';
 
 class PreviewPageBody extends StatelessWidget {
   const PreviewPageBody({
@@ -34,33 +35,25 @@ class PreviewPageBody extends StatelessWidget {
         ObjectPreview(
           snapshot: previewPageCubitState.snapshot,
         ),
-        // const SizedBoxH16(),
         PreviewSaveButton(
           state: previewPageCubitState,
         ),
         const StableHashesSection(),
         const SizedBox(height: 2),
         const ExploreHashesButton(),
-        const SizedBoxH8(),
+        const SizedBoxH16(),
         const SectionTitle(titleUnlocalized: 'settings_text_span_title'),
         ScanProperties(
           snapshot: previewPageCubitState.snapshot,
         ),
-
         const SizedBoxH16(),
-
         const PoscanResult(),
-
         const SizedBoxH16(),
-
-        const SectionTitle(titleUnlocalized: 'top_hashes_title'),
+        const TopHashesTitle(),
         TopHashesCard(state: previewPageCubitState),
-
-        const SizedBoxH8(),
-
+        const SizedBoxH16(),
         RenameSnapshotButton(state: previewPageCubitState),
         DeleteSnapshotButton(state: previewPageCubitState),
-
         const SizedBoxH16(),
       ],
     );

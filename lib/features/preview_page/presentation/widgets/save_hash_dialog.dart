@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +9,6 @@ import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/dialogs/common_dialog.dart';
-import 'package:threedpass/router/router.gr.dart';
 
 @RoutePage()
 class SaveHashDialog extends StatelessWidget {
@@ -34,7 +35,7 @@ class SaveHashDialog extends StatelessWidget {
     );
 
     final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
-    outerContext.router.popUntilRouteWithName(InitialWrapperRoute.name);
+    unawaited(outerContext.router.pop());
   }
 
   @override

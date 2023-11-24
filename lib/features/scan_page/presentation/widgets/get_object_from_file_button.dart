@@ -57,7 +57,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       scanIsolateCubit: BlocProvider.of<ScanIsolateCubit>(context),
       // recievePort: recievePort,
     );
-
+    // TODO Do return with enum of possible situations instead of random try-catches
     try {
       final objectsDirectory = getIt<ObjectsDirectory>();
       final pickedFilePath = await FilePickerShortCut().pickFile();
@@ -79,8 +79,6 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
           PreviewRouteWrapper(
             hashObject: pair.left,
             snapshot: pair.right,
-            appServiceLoaderCubit:
-                BlocProvider.of<AppServiceLoaderCubit>(context),
             createNewAnyway: true,
           ),
         ),
@@ -103,24 +101,15 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return FloatingActionButton(
+      // shape: const RoundedRectangleBorder(
+      //   borderRadius: BorderRadius.all(
+      //     Radius.circular(4),
+      //   ),
+      // ),
       child: const Icon(Icons.folder_open_rounded),
       onPressed: () => createHashFromFile(
         context,
       ),
     );
-    // return Row(
-    //   children: [
-    //     const Spacer(),
-    //     Flexible(
-    //       child: D3pElevatedButton(
-    //         iconData: Icons.folder_open,
-    //         text: 'get_from_file_button_label'.tr(),
-    //         onPressed: () => createHashFromFile(
-    //           context,
-    //         ),
-    //       ),
-    //     ),
-    //   ],
-    // );
   }
 }

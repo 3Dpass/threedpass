@@ -47,6 +47,7 @@ class D3pIconButton extends StatelessWidget {
             padding: EdgeInsets.zero,
             constraints: emptyContraints ? const BoxConstraints() : null,
             splashRadius: splashRadius,
+            iconSize: size,
           ),
         ),
         if (text != null) Text(text!),

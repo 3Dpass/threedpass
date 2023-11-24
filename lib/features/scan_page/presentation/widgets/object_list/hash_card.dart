@@ -8,6 +8,7 @@ import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
+import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/object_list/hash_card_popup_menu.dart';
@@ -32,8 +33,6 @@ class SnapshotCard extends StatelessWidget {
         PreviewRouteWrapper(
           hashObject: hashObject,
           snapshot: snapshot,
-          appServiceLoaderCubit:
-              BlocProvider.of<AppServiceLoaderCubit>(context),
         ),
       ),
       child: Row(

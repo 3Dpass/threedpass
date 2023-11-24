@@ -46,8 +46,6 @@ class RenameSnapshotDialog extends StatelessWidget {
         PreviewRouteWrapper(
           hashObject: hashObject,
           snapshot: newNamedModel,
-          appServiceLoaderCubit:
-              BlocProvider.of<AppServiceLoaderCubit>(context),
         ),
       ),
     );

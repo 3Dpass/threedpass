@@ -8,13 +8,11 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i50;
+import 'dart:async' as _i49;
 
 import 'package:auto_route/auto_route.dart' as _i45;
 import 'package:flutter/material.dart' as _i46;
-import 'package:flutter/widgets.dart' as _i53;
-import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart'
-    as _i49;
+import 'package:flutter/widgets.dart' as _i52;
 import 'package:threedpass/core/widgets/default_loading_dialog.dart' as _i2;
 import 'package:threedpass/core/widgets/error_page.dart' as _i1;
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_credentials.dart'
@@ -70,7 +68,7 @@ import 'package:threedpass/features/scan_page/presentation/pages/scan_page_wrapp
 import 'package:threedpass/features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart'
     as _i13;
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart'
-    as _i54;
+    as _i53;
 import 'package:threedpass/features/settings_page/presentation/settings_page.dart'
     as _i36;
 import 'package:threedpass/features/settings_page/presentation/settings_sub_page/choose_algorithm_subpage.dart'
@@ -90,11 +88,11 @@ import 'package:threedpass/features/settings_page/presentation/settings_sub_page
 import 'package:threedpass/features/settings_page/router/empty_settings_route.dart'
     as _i44;
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_meta_dto.dart'
-    as _i51;
+    as _i50;
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/remove_account_dialog.dart'
     as _i17;
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/domain/entities/get_extrinsics_usecase_params.dart'
-    as _i52;
+    as _i51;
 import 'package:threedpass/features/wallet_screen/presentation/non_native_token_screen/presentation/non_native_token_wrapper.dart'
     as _i24;
 import 'package:threedpass/features/wallet_screen/presentation/notifications_page/notifications_page.dart'
@@ -163,7 +161,6 @@ abstract class $RootRouter extends _i45.RootStackRouter {
             child: _i5.PreviewPageWrapper(
           hashObject: args.hashObject,
           snapshot: args.snapshot,
-          appServiceLoaderCubit: args.appServiceLoaderCubit,
           key: args.key,
           createNewAnyway: args.createNewAnyway,
         )),
@@ -601,7 +598,6 @@ class PreviewRouteWrapper extends _i45.PageRouteInfo<PreviewRouteWrapperArgs> {
   PreviewRouteWrapper({
     required _i48.HashObject? hashObject,
     required _i47.Snapshot snapshot,
-    required _i49.AppServiceLoaderCubit appServiceLoaderCubit,
     _i46.Key? key,
     bool createNewAnyway = false,
     List<_i45.PageRouteInfo>? children,
@@ -610,7 +606,6 @@ class PreviewRouteWrapper extends _i45.PageRouteInfo<PreviewRouteWrapperArgs> {
           args: PreviewRouteWrapperArgs(
             hashObject: hashObject,
             snapshot: snapshot,
-            appServiceLoaderCubit: appServiceLoaderCubit,
             key: key,
             createNewAnyway: createNewAnyway,
           ),
@@ -627,7 +622,6 @@ class PreviewRouteWrapperArgs {
   const PreviewRouteWrapperArgs({
     required this.hashObject,
     required this.snapshot,
-    required this.appServiceLoaderCubit,
     this.key,
     this.createNewAnyway = false,
   });
@@ -636,15 +630,13 @@ class PreviewRouteWrapperArgs {
 
   final _i47.Snapshot snapshot;
 
-  final _i49.AppServiceLoaderCubit appServiceLoaderCubit;
-
   final _i46.Key? key;
 
   final bool createNewAnyway;
 
   @override
   String toString() {
-    return 'PreviewRouteWrapperArgs{hashObject: $hashObject, snapshot: $snapshot, appServiceLoaderCubit: $appServiceLoaderCubit, key: $key, createNewAnyway: $createNewAnyway}';
+    return 'PreviewRouteWrapperArgs{hashObject: $hashObject, snapshot: $snapshot, key: $key, createNewAnyway: $createNewAnyway}';
   }
 }
 
@@ -752,7 +744,7 @@ class SaveHashRouteArgs {
 /// [_i9.DeleteSnapshotDialog]
 class DeleteSnapshotRoute extends _i45.PageRouteInfo<DeleteSnapshotRouteArgs> {
   DeleteSnapshotRoute({
-    required _i50.Future<bool> Function() popGlobal,
+    required _i49.Future<bool> Function() popGlobal,
     _i46.Key? key,
     List<_i45.PageRouteInfo>? children,
   }) : super(
@@ -776,7 +768,7 @@ class DeleteSnapshotRouteArgs {
     this.key,
   });
 
-  final _i50.Future<bool> Function() popGlobal;
+  final _i49.Future<bool> Function() popGlobal;
 
   final _i46.Key? key;
 
@@ -1007,7 +999,7 @@ class WalletRouteWrapper extends _i45.PageRouteInfo<void> {
 class TransferRouteWrapper
     extends _i45.PageRouteInfo<TransferRouteWrapperArgs> {
   TransferRouteWrapper({
-    required _i51.TransferMetaDTO metadata,
+    required _i50.TransferMetaDTO metadata,
     _i46.Key? key,
     List<_i45.PageRouteInfo>? children,
   }) : super(
@@ -1031,7 +1023,7 @@ class TransferRouteWrapperArgs {
     this.key,
   });
 
-  final _i51.TransferMetaDTO metadata;
+  final _i50.TransferMetaDTO metadata;
 
   final _i46.Key? key;
 
@@ -1075,8 +1067,8 @@ class TransferRouteArgs {
 class NonNativeTokenRouteWrapper
     extends _i45.PageRouteInfo<NonNativeTokenRouteWrapperArgs> {
   NonNativeTokenRouteWrapper({
-    required _i52.GetExtrinsicsUseCaseParams params,
-    _i53.Key? key,
+    required _i51.GetExtrinsicsUseCaseParams params,
+    _i52.Key? key,
     List<_i45.PageRouteInfo>? children,
   }) : super(
           NonNativeTokenRouteWrapper.name,
@@ -1099,9 +1091,9 @@ class NonNativeTokenRouteWrapperArgs {
     this.key,
   });
 
-  final _i52.GetExtrinsicsUseCaseParams params;
+  final _i51.GetExtrinsicsUseCaseParams params;
 
-  final _i53.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -1322,7 +1314,7 @@ class SettingsRoute extends _i45.PageRouteInfo<void> {
 /// [_i37.SectionsSubPage]
 class SectionsSubRoute extends _i45.PageRouteInfo<SectionsSubRouteArgs> {
   SectionsSubRoute({
-    required _i54.GlobalSettings initialState,
+    required _i53.GlobalSettings initialState,
     _i46.Key? key,
     List<_i45.PageRouteInfo>? children,
   }) : super(
@@ -1346,7 +1338,7 @@ class SectionsSubRouteArgs {
     this.key,
   });
 
-  final _i54.GlobalSettings initialState;
+  final _i53.GlobalSettings initialState;
 
   final _i46.Key? key;
 
@@ -1360,7 +1352,7 @@ class SectionsSubRouteArgs {
 /// [_i38.TransBytesSubPage]
 class TransBytesSubRoute extends _i45.PageRouteInfo<TransBytesSubRouteArgs> {
   TransBytesSubRoute({
-    required _i54.GlobalSettings initialState,
+    required _i53.GlobalSettings initialState,
     _i46.Key? key,
     List<_i45.PageRouteInfo>? children,
   }) : super(
@@ -1384,7 +1376,7 @@ class TransBytesSubRouteArgs {
     this.key,
   });
 
-  final _i54.GlobalSettings initialState;
+  final _i53.GlobalSettings initialState;
 
   final _i46.Key? key;
 
@@ -1426,7 +1418,7 @@ class PixelRatioSubRoute extends _i45.PageRouteInfo<void> {
 /// [_i41.WalletNodeSubPage]
 class WalletNodeSubRoute extends _i45.PageRouteInfo<WalletNodeSubRouteArgs> {
   WalletNodeSubRoute({
-    required _i54.GlobalSettings initialState,
+    required _i53.GlobalSettings initialState,
     _i46.Key? key,
     List<_i45.PageRouteInfo>? children,
   }) : super(
@@ -1450,7 +1442,7 @@ class WalletNodeSubRouteArgs {
     this.key,
   });
 
-  final _i54.GlobalSettings initialState;
+  final _i53.GlobalSettings initialState;
 
   final _i46.Key? key;
 
@@ -1478,7 +1470,7 @@ class ChooseAlgorithmSubRoute extends _i45.PageRouteInfo<void> {
 /// [_i43.StableHashSubPage]
 class StableHashSubRoute extends _i45.PageRouteInfo<StableHashSubRouteArgs> {
   StableHashSubRoute({
-    required _i54.GlobalSettings initialState,
+    required _i53.GlobalSettings initialState,
     _i46.Key? key,
     List<_i45.PageRouteInfo>? children,
   }) : super(
@@ -1502,7 +1494,7 @@ class StableHashSubRouteArgs {
     this.key,
   });
 
-  final _i54.GlobalSettings initialState;
+  final _i53.GlobalSettings initialState;
 
   final _i46.Key? key;
 

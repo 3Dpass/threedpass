@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
@@ -12,14 +13,12 @@ class PreviewPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   const PreviewPageWrapper({
     required this.hashObject,
     required this.snapshot,
-    required this.appServiceLoaderCubit,
     final Key? key,
     this.createNewAnyway = false,
   }) : super(key: key);
 
   final HashObject? hashObject;
   final Snapshot snapshot;
-  final AppServiceLoaderCubit appServiceLoaderCubit;
 
   /// Guarantee to create a new snapshot
   final bool createNewAnyway;
@@ -60,9 +59,6 @@ class PreviewPageWrapper extends StatelessWidget implements AutoRouteWrapper {
         BlocProvider<OuterContextCubit>(
           create: (final _) => OuterContextCubit(context),
           lazy: false,
-        ),
-        BlocProvider<AppServiceLoaderCubit>(
-          create: (final _) => appServiceLoaderCubit,
         ),
       ],
       child: this,

@@ -15,7 +15,7 @@ class TopHashesCard extends StatelessWidget {
   Widget build(final BuildContext context) {
     final hashes = state.snapshot.hashes;
 
-    if (hashes.isEmpty || (hashes.first.isEmpty && hashes.length == 1)) {
+    if (state.snapshot.withEmptyHashes) {
       return const _NoHashesPlaceHolder();
     }
 

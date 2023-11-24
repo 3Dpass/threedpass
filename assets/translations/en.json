@@ -319,6 +319,7 @@
     "stable_hashes_copied_toast": "Stable hashes copied",
     "scan_properties_copied_toast": "Scan properties copied",
     "top_hashes_copied_toast": "Top hashes copied",
+    "trans_bytes_copied_toast": "Rotation bytes copied",
     "unsaved_object_appbar": "Unnamed object",
     "delete_new_snapshot": "Don't save snapshot",
     "delete_extisting_snapshot": "Delete snapshot",
@@ -326,5 +327,7 @@
     "explore_hashes_button_title": "Explore hashes",
     "upload_to_3d_rpc_title": "Upload to 3DRPC-2",
     "3d_rpc_button_label": "Upload to 3DRPC-2",
-    "top_hashes_empty_text": "No hashes found. This is interesting behavior. Perhaps scanning with other settings will return real hashes."
+    "no_top_hashes_found": "No hashes found",
+    "top_hashes_empty_text": "This is interesting behavior. Perhaps scanning with other settings will find real hashes.",
+    "chosen_object_to_upload_to_3drpc": "Chosen object"
 }

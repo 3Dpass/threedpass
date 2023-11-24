@@ -32,7 +32,7 @@ class DeleteSnapshotDialog extends StatelessWidget {
     }
 
     final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
-    outerContext.router.popUntilRouteWithName(InitialWrapperRoute.name);
+    unawaited(outerContext.router.pop());
   }
 
   @override

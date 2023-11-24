@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/utils/copy_and_notify.dart';
+import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 
 const int $nbsp = 0x00A0; // Non-breaking space
@@ -69,12 +71,37 @@ extension ToText on ScanSettings {
     final props = propertiesList();
     final children = <TextSpan>[];
     for (final str in props) {
+      // WidgetSpan(
+      //   child: Icon(Icons.add, size: 14),
+      // ),
+      // recognizer: TapGestureRecognizer()
+      //           ..onTap = () {
+      //             print('Privacy Policy"');
+      //           }),
       children.add(
         TextSpan(
           text: str,
+          children: [
+            if (str == props.last)
+              WidgetSpan(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: D3pIconButton(
+                    iconData: Icons.copy,
+                    size: 16,
+                    onPressed: () => copyAndNotify(
+                      textToCopy: transBytes,
+                      textToShow: 'trans_bytes_copied_toast'.tr(),
+                    ),
+                    emptyContraints: true,
+                  ),
+                ),
+              ),
+          ],
         ),
       );
     }
+
     return TextSpan(
       text: '',
       style: style ?? Theme.of(context).customTextStyles.d3pBodyMedium,
