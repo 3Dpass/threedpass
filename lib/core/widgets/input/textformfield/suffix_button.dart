@@ -8,43 +8,39 @@ class _SuffixButton {
     required this.onSuffixButtonPressed,
   });
 
-  final Widget? labelButton;
-  final Widget? suffixButton;
+  final IconData? labelButton;
+  final IconData? suffixButton;
 
   final void Function()? onLabelButtonPressed;
   final void Function()? onSuffixButtonPressed;
 
   Widget? build(final BuildContext context) {
+    final colors = Theme.of(context).customColors;
     return labelButton != null || suffixButton != null
         ? Row(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              labelButton != null
-                  ? SizedBox(
-                      height: 40,
-                      width: 50,
-                      child: PlatformTextButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: onLabelButtonPressed ?? emptyFunction,
-                        child: labelButton,
-                      ),
-                    )
-                  : const SizedBox(),
+              if (labelButton != null)
+                D3pIconButton(
+                  emptyContraints: true,
+                  iconData: labelButton!,
+                  size: 20,
+                  onPressed: onLabelButtonPressed,
+                  iconColor: colors.themeOpposite,
+                ),
               SizedBox(
-                width: labelButton != null && suffixButton != null ? 8 : 0,
+                width: labelButton != null && suffixButton != null ? 16 : 0,
               ),
-              suffixButton != null
-                  ? SizedBox(
-                      height: 40,
-                      width: 50,
-                      child: PlatformTextButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: onSuffixButtonPressed ?? emptyFunction,
-                        child: suffixButton,
-                      ),
-                    )
-                  : const SizedBox(),
-              const SizedBox(width: 4),
+              if (suffixButton != null)
+                D3pIconButton(
+                  emptyContraints: true,
+                  iconData: suffixButton!,
+                  size: 20,
+                  onPressed: onSuffixButtonPressed,
+                  iconColor: colors.themeOpposite,
+                ),
+              const SizedBox(width: 8),
             ],
           )
         : null;

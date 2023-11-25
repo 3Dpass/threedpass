@@ -13,12 +13,6 @@ import 'package:threedpass/router/router.gr.dart';
 class NotificationsIconButton extends StatelessWidget {
   const NotificationsIconButton({super.key});
 
-  void onPressed(final BuildContext context) {
-    // final outerContext = BlocProvider.of<HomeContextCubit>(context).state;
-
-    context.router.push(const NotificationsRoute());
-  }
-
   @override
   Widget build(final BuildContext context) {
     final customTextStyles = Theme.of(context).customTextStyles;
@@ -27,13 +21,7 @@ class NotificationsIconButton extends StatelessWidget {
     return BlocBuilder<NotificationsBloc, NotificationsState>(
       builder: (final context, final state) {
         if (state.notifications.isEmpty) {
-          return SizedBox(
-            height: kToolbarHeight,
-            child: D3pIconButton(
-              iconData: Icons.notifications_none_outlined,
-              onPressed: () => onPressed(context),
-            ),
-          );
+          return const _NotificationIcon();
         }
         bool hasErrors = false;
         for (final notification in state.notifications) {
@@ -51,18 +39,35 @@ class NotificationsIconButton extends StatelessWidget {
             badgeText,
             style: customTextStyles.d3pBodyMedium.copyWith(color: Colors.white),
           ),
-          position: badges.BadgePosition.topEnd(top: 2, end: 2),
+          position: badges.BadgePosition.topEnd(top: 2, end: -8),
           badgeAnimation: const BadgeAnimation.scale(),
           badgeStyle: BadgeStyle(badgeColor: badgeColor),
-          child: SizedBox(
-            height: kToolbarHeight,
-            child: D3pIconButton(
-              iconData: Icons.notifications,
-              onPressed: () => onPressed(context),
-            ),
-          ),
+          child: const _NotificationIcon(),
         );
       },
+    );
+  }
+}
+
+class _NotificationIcon extends StatelessWidget {
+  const _NotificationIcon();
+
+  void onPressed(final BuildContext context) {
+    context.router.push(const NotificationsRoute());
+  }
+
+  @override
+  Widget build(final BuildContext context) {
+    return SizedBox(
+      // width: D3pAddressIcon.defaultSize,
+      height: kToolbarHeight,
+      child: Align(
+        child: D3pIconButton(
+          emptyContraints: true,
+          iconData: Icons.notifications_none_outlined,
+          onPressed: () => onPressed(context),
+        ),
+      ),
     );
   }
 }

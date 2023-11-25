@@ -320,14 +320,20 @@
     "scan_properties_copied_toast": "Scan properties copied",
     "top_hashes_copied_toast": "Top hashes copied",
     "trans_bytes_copied_toast": "Rotation bytes copied",
+    "file_hash_copied": "File hash copied",
     "unsaved_object_appbar": "Unnamed object",
     "delete_new_snapshot": "Don't save snapshot",
     "delete_extisting_snapshot": "Delete snapshot",
     "delete_snapshot_confirm_title": "Do you want to delete {}?",
     "explore_hashes_button_title": "Explore hashes",
-    "upload_to_3d_rpc_title": "Upload to 3DRPC-2",
-    "3d_rpc_button_label": "Upload to 3DRPC-2",
+    "upload_to_3d_rpc_title": "3DRPC-2",
+    "3d_rpc_button_label": "Put object",
     "no_top_hashes_found": "No hashes found",
     "top_hashes_empty_text": "This is interesting behavior. Perhaps scanning with other settings will find real hashes.",
-    "chosen_object_to_upload_to_3drpc": "Chosen object"
+    "chosen_file_to_upload_to_3drpc": "File: {}",
+    "file_hash_title": "File hash",
+    "x_hashes_chosen": "{} chosen",
+    "n_approvals_hint": "Enter desired number of approvals",
+    "from_address_dropdown_hint": "Choose account"
+    
 }

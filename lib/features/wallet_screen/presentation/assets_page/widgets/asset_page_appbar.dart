@@ -19,11 +19,13 @@ class AssetPageAppbar extends AppBar {
           key: key,
           backgroundColor: const D3pAppBarTheme().backgroundColor,
           centerTitle: true,
-          leading: const _SmartLeadingBackButton(),
+          leading: const _OpenDrawerButton(),
           title: SizedBox(
+            // color: Colors.red,
             height: kToolbarHeight,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 D3pAddressIcon(
                   account.address,
@@ -43,21 +45,29 @@ class AssetPageAppbar extends AppBar {
           ),
           actions: const [
             NotificationsIconButton(),
+            SizedBox(width: 16),
           ],
         );
 }
 
-class _SmartLeadingBackButton extends StatelessWidget {
-  const _SmartLeadingBackButton();
+class _OpenDrawerButton extends StatelessWidget {
+  const _OpenDrawerButton();
 
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
 
-    return D3pIconButton(
-      iconData: Icons.switch_account_rounded,
-      iconColor: theme.customColors.appBarButton,
-      onPressed: () => Scaffold.of(context).openDrawer(),
+    return SizedBox(
+      // width: D3pAddressIcon.defaultSize,
+      height: kToolbarHeight,
+      child: Align(
+        child: D3pIconButton(
+          emptyContraints: true,
+          iconData: Icons.switch_account_rounded,
+          iconColor: theme.customColors.appBarButton,
+          onPressed: () => Scaffold.of(context).openDrawer(),
+        ),
+      ),
     );
   }
 }
@@ -113,7 +123,7 @@ class _CopyButton extends StatelessWidget {
           D3pIconButton(
             emptyContraints: true,
             iconData: Icons.copy,
-            size: 20,
+            size: 24,
             iconColor: theme.customColors.appBarButton,
             onPressed: () => copyAndNotify(
               textToCopy: accountAddress ?? '',

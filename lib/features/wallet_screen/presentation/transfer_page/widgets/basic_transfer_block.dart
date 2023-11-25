@@ -62,6 +62,7 @@ class _DismissIcon extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(width: 8),
         ],
       );
     } else {

@@ -9,14 +9,10 @@ import 'package:threedpass/core/widgets/dialog/d3p_platform_dialog.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
-import 'package:threedpass/router/router.gr.dart';
 
 @RoutePage()
 class DeleteSnapshotDialog extends StatelessWidget {
-  const DeleteSnapshotDialog({required this.popGlobal, super.key});
-
-  final Future<bool> Function()
-      popGlobal; // Dirty trick to pop from previewScreen
+  const DeleteSnapshotDialog({super.key});
 
   Future<void> deleteSnapshot(
     final BuildContext context,

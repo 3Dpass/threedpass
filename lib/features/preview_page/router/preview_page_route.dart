@@ -29,7 +29,13 @@ AutoRoute previewPageRoute = AutoRoute(
       customRouteBuilder: dialogBuilder,
     ),
     AutoRoute(
-      page: D3PRPCRoute.page,
+      page: D3PRPCRouteWrapper.page,
+      children: [
+        AutoRoute(
+          page: D3PRPCRoute.page,
+          path: '',
+        ),
+      ],
     ),
   ],
 );

@@ -33,7 +33,7 @@ class AddCardRowBasic extends StatelessWidget {
                 text: null,
                 onPressed: onPressed,
                 backgroundColor: colors.cardBackground,
-                elevation: 0,
+                // elevation: 0,
                 childAlignment: MainAxisAlignment.start,
                 textStyle: textStyle.d3pBodyMedium,
                 shape: const RoundedRectangleBorder(
@@ -46,6 +46,7 @@ class AddCardRowBasic extends StatelessWidget {
                       iconData: Icons.add_circle_outline_rounded,
                       onPressed: () => onPressed(),
                       emptyContraints: true,
+                      iconColor: colors.themeOpposite,
                     ),
                   ],
                 ),

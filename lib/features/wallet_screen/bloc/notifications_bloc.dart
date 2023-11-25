@@ -1,7 +1,9 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
+import 'package:threedpass/setup.dart';
 
 part 'notifications_bloc.g.dart';
 part 'notifications_bloc_state.dart';
@@ -28,7 +30,14 @@ class NotificationsBloc
     final Emitter<NotificationsState> emit,
   ) {
     final newList = List<NotificationDTO>.from(state.notifications);
-    newList[newList.indexOf(event.oldN)] = event.newN;
+    final index = newList.indexOf(event.oldN);
+    if (index == -1) {
+      getIt<Logger>().e(
+        'Notifications was not found in list. N=${event.oldN.amount} ${event.oldN.toAddress}, L=${newList.length}',
+      );
+      return;
+    }
+    newList[index] = event.newN;
     emit(state.copyWith(notifications: newList));
   }
 }

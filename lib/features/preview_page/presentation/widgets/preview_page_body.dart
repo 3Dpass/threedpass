@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/delete_snapshot_button.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/deprecation_warning.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/explore_hashes_button.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/file_hash_card.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/hash_properties.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/object_preview/object_preview.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/poscan_result.dart';
@@ -29,6 +31,7 @@ class PreviewPageBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const SizedBoxH16(),
+        DeprecationWarning(),
         SnapshotInfo(
           state: previewPageCubitState,
         ),
@@ -46,6 +49,8 @@ class PreviewPageBody extends StatelessWidget {
         ScanProperties(
           snapshot: previewPageCubitState.snapshot,
         ),
+        const SizedBoxH16(),
+        const FileHashBlock(),
         const SizedBoxH16(),
         const PoscanResult(),
         const SizedBoxH16(),

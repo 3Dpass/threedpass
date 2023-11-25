@@ -13,7 +13,7 @@ class PoscanResult extends StatelessWidget {
     return Padding16(
       child: D3pElevatedButton(
         text: '3d_rpc_button_label'.tr(),
-        onPressed: () => context.router.push(const D3PRPCRoute()),
+        onPressed: () => context.router.push(const D3PRPCRouteWrapper()),
       ),
     );
   }

@@ -10,8 +10,8 @@ class D3pScaffold extends StatelessWidget {
   final bool translateAppbar;
 
   const D3pScaffold({
-    required this.body,
     required this.appbarTitle,
+    required this.body,
     this.removeBackButton,
     this.translateAppbar = true,
     super.key,

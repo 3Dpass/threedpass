@@ -1,17 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/theme/d3p_colors.dart';
+import 'package:threedpass/core/polkawallet/widgets/account_choose_tile_text.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
-import 'package:threedpass/core/utils/formatters.dart';
-import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
-import 'package:threedpass/core/widgets/buttons/enum_button.dart';
+import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
-import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/wallet_screen/bloc/transfer_info_bloc.dart';
 
 class FromAddressTextField extends StatelessWidget {
@@ -21,6 +17,16 @@ class FromAddressTextField extends StatelessWidget {
   });
 
   final FromAddressData data;
+
+  void onAccountChoose(final BuildContext context, final KeyPairData? acc) {
+    if (acc == null) {
+      return;
+    }
+    final transferInfoCubit = BlocProvider.of<TransferInfoBloc>(context);
+    transferInfoCubit
+        .add(ChangeChosenAccountEvent(acc: acc, dataToChange: data));
+    // Navigator.of(context).pop();
+  }
 
   @override
   Widget build(final BuildContext context) {
@@ -37,50 +43,6 @@ class FromAddressTextField extends StatelessWidget {
     final textStyle = Theme.of(context).customTextStyles;
     final colors = Theme.of(context).customColors;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'from_address_label'.tr(),
-          style: textStyle.hintStyle,
-        ),
-        const SizedBoxH4(),
-        SizedBox(
-          height: 43,
-          child: D3pElevatedButton(
-            text: null,
-            onPressed: () => openDialog(context),
-            backgroundColor: colors.defaultInputColor,
-            elevation: 0,
-            childAlignment: MainAxisAlignment.start,
-            textStyle: textStyle.d3pBodyMedium,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _ButtonText(data: data.data),
-                Icon(
-                  Icons.keyboard_arrow_down_rounded,
-                  color: colors.themeOpposite,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-
-    // return BasicTransferTextField(
-    //   enabled: false,
-    //   labelText: 'from_address_label'.tr(),
-    //   controller: TextEditingController(
-    //     text: Fmt.shorterAddress(
-    //       appService.keyring.current.address,
-    //     ),
-    //   ),
-    // );
-  }
-
-  Future<dynamic> openDialog(final BuildContext context) {
     final allAccounts = BlocProvider.of<AppServiceLoaderCubit>(context)
         .state
         .keyring
@@ -93,104 +55,48 @@ class FromAddressTextField extends StatelessWidget {
       chosenAccounts: chosenFromAddresses,
     ).buildListToChoose();
 
-    return showPlatformModalSheet<dynamic>(
-      context: context,
-      material: MaterialModalSheetData(
-        shape: const RoundedRectangleBorder(
-          side: BorderSide.none,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(16),
-            topRight: Radius.circular(16),
-          ),
+    if (data.data != null) {
+      accounts.add(data.data!);
+    }
+
+    // final current = data.data != null
+    //     ? accounts
+    //         .firstWhere((element) => element.address == data.data!.address)
+    //     : null;
+
+    // final debug = data.data ?? accounts.first;
+    // print(debug.name);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'from_address_label'.tr(),
+          style: textStyle.hintStyle,
         ),
-      ),
-      builder: (final _) => Column(
-        children: [
-          const SizedBoxH24(),
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: accounts.length,
-            itemBuilder: (final context, final index) => EnumButton(
-              text: null,
-              isChosen: false,
-              onPressed: () => onAccountChoose(context, accounts[index]),
-              child: _AccountChooseTileText(
-                address: accounts[index].address,
-                name: accounts[index].name,
-              ),
-            ),
-          ),
-        ],
-      ),
+        const SizedBoxH4(),
+        // BlocBuilder<TransferInfoBloc, TransferInfoBlocState>(
+        //   builder: (context, state) =>
+        D3pDropdownButton<KeyPairData>(
+          context: context,
+          isExpanded: true,
+          items: accounts
+              .map<DropdownMenuItem<KeyPairData>>(
+                (final e) => DropdownMenuItem(
+                  value: e,
+                  child: AccountChooseTileText(
+                    name: e.name,
+                    address: e.address,
+                  ),
+                ),
+              )
+              .toList(),
+          onChanged: (final obj) => onAccountChoose(context, obj),
+          value: data.data,
+          hint: 'from_address_dropdown_hint'.tr(),
+        ),
+      ],
     );
-  }
-
-  void onAccountChoose(final BuildContext context, final KeyPairData acc) {
-    final transferInfoCubit = BlocProvider.of<TransferInfoBloc>(context);
-    transferInfoCubit
-        .add(ChangeChosenAccountEvent(acc: acc, dataToChange: data));
-    Navigator.of(context).pop();
-  }
-}
-
-class _ButtonText extends StatelessWidget {
-  const _ButtonText({required this.data});
-  final KeyPairData? data;
-
-  @override
-  Widget build(final BuildContext context) {
-    if (data != null) {
-      return _AccountChooseTileText(
-        address: data?.address,
-        name: data?.name,
-      );
-    } else {
-      final colors = Theme.of(context).customColors;
-      return D3pBodyMediumText(
-        'from_select_account_title',
-        color: colors.themeOpposite,
-      );
-    }
-  }
-}
-
-class _AccountChooseTileText extends StatelessWidget {
-  const _AccountChooseTileText({
-    required this.address,
-    required this.name,
-  });
-
-  final String? name;
-  final String? address;
-
-  String fixedName() {
-    if (name != null) {
-      return name! + '   ';
-    } else {
-      return '';
-    }
-  }
-
-  String shortAddress() {
-    return Fmt.shorterAddress(address);
-  }
-
-  @override
-  Widget build(final BuildContext context) {
-    final textStyles = Theme.of(context).customTextStyles;
-    return Text.rich(
-      TextSpan(
-        text: fixedName(),
-        style: textStyles.d3pBodyMedium,
-        children: [
-          TextSpan(
-            text: shortAddress(),
-            style: textStyles.d3pBodyMedium.copyWith(color: D3pColors.disabled),
-          ),
-        ],
-      ),
-    );
-    // return '${fixedName()}${shortAddress()}';
   }
 }
 

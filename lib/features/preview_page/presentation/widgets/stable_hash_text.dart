@@ -15,6 +15,7 @@ class StableHashText extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final hashesStr = <String>[];
+    // Build pattern "1. hash\n2. hash\n3. hash"
     for (int i = 0; i < hashes.length; i++) {
       String str = (i + 1).toString() + '. ' + hashes[i];
       if (i < hashes.length - 1) {

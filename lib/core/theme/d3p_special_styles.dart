@@ -108,3 +108,8 @@ extension Buttons on CustomTextStyles {
 
   TextStyle get hintStyle => d3pBodySmall.copyWith(color: D3pColors.disabled);
 }
+
+extension TextInput on CustomTextStyles {
+  TextStyle get textInputHintStyle =>
+      d3pBodyMedium.copyWith(color: D3pColors.disabled);
+}
