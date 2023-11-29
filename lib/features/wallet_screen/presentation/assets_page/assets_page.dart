@@ -8,7 +8,6 @@ import 'package:threedpass/features/wallet_screen/presentation/assets_page/widge
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/asset_page_appbar.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/buttons_panel.dart';
 import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/coins_balance.dart';
-import 'package:threedpass/features/wallet_screen/presentation/assets_page/widgets/non_native_tokens/non_native_tokens.dart';
 
 class AssetsPage extends StatelessWidget {
   const AssetsPage({final Key? key}) : super(key: key);
@@ -38,9 +37,9 @@ class AssetsPage extends StatelessWidget {
               CoinsBalance(),
               SizedBoxH8(),
               AssetPageButtonsPanel(),
-              Flexible(
-                child: NonNativeTokens(),
-              ),
+              // Flexible(
+              //   child: NonNativeTokens(),
+              // ),
             ],
           ),
         );

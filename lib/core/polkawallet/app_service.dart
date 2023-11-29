@@ -63,9 +63,9 @@ class AppService {
               chosenAccountBalance.value = data;
             }
 
-            tokensAreLoading.value = true;
-            await _setTokensData(address);
-            tokensAreLoading.value = false;
+            // tokensAreLoading.value = true;
+            // await _setTokensData(address);
+            // tokensAreLoading.value = false;
           },
         ),
       );

@@ -334,6 +334,20 @@
     "file_hash_title": "File hash",
     "x_hashes_chosen": "{} chosen",
     "n_approvals_hint": "Enter desired number of approvals",
-    "from_address_dropdown_hint": "Choose account"
+    "from_address_dropdown_hint": "Choose account",
+    "d3rpc_subtitle_choose_account": "Choose Account",
+    "d3rpc_subtitle_choose_napprovals": "Choose nApprovals",
+    "d3rpc_subtitle_choose_hashes": "Choose hashes (optional)",
+    "d3rpc_fees_warning": "This transaction takes fees",
+    "Submit": "Submit",
+    "d3rpc_subtitle_choose_properties": "Choose properties (optional)",
+    "PROPERTIES_number_plural": {
+        "zero": "0 properties chosen",
+        "one": "{} property chosen",
+        "two": "{} properties chosen",
+        "few": "{} properties chosen",
+        "many": "{} properties chosen",
+        "other": "{} properties chosen"
+    }
     
 }

@@ -11,6 +11,8 @@ abstract class _$D3PRPCCubitStateCWProxy {
 
   D3PRPCCubitState chosenHashes(List<String> chosenHashes);
 
+  D3PRPCCubitState properties(List<PoscanProperty> properties);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `D3PRPCCubitState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -20,6 +22,7 @@ abstract class _$D3PRPCCubitStateCWProxy {
   D3PRPCCubitState call({
     KeyPairData? account,
     List<String>? chosenHashes,
+    List<PoscanProperty>? properties,
   });
 }
 
@@ -37,6 +40,10 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
       this(chosenHashes: chosenHashes);
 
   @override
+  D3PRPCCubitState properties(List<PoscanProperty> properties) =>
+      this(properties: properties);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `D3PRPCCubitState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -47,6 +54,7 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
   D3PRPCCubitState call({
     Object? account = const $CopyWithPlaceholder(),
     Object? chosenHashes = const $CopyWithPlaceholder(),
+    Object? properties = const $CopyWithPlaceholder(),
   }) {
     return D3PRPCCubitState(
       account: account == const $CopyWithPlaceholder() || account == null
@@ -58,6 +66,11 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
               ? _value.chosenHashes
               // ignore: cast_nullable_to_non_nullable
               : chosenHashes as List<String>,
+      properties:
+          properties == const $CopyWithPlaceholder() || properties == null
+              ? _value.properties
+              // ignore: cast_nullable_to_non_nullable
+              : properties as List<PoscanProperty>,
     );
   }
 }
