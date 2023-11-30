@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_dropdown_theme.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
-import 'package:threedpass/core/theme/d3p_text_input_theme.dart';
 
 // ignore: prefer-single-widget-per-file
 class D3pDropdownButton<T> extends DropdownButtonFormField<T> {
@@ -14,19 +14,19 @@ class D3pDropdownButton<T> extends DropdownButtonFormField<T> {
     super.isExpanded,
     super.key,
     super.selectedItemBuilder,
+    super.validator,
     final String? hint,
   }) : super(
           dropdownColor: Theme.of(context).customColors.scaffoldBackground,
           hint: Text(
             hint ?? '',
-            style: Theme.of(context).customTextStyles.hintStyle,
+            style: Theme.of(context).customTextStyles.textInputHintStyle,
           ),
-          // style: Theme.of(context).customTextStyles.d3pBodyLarge,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(horizontal: 8),
             filled: true,
-            border: D3pTextInputTheme.border,
-            focusedBorder: D3pTextInputTheme.focusedBorder,
+            border: D3pDropdownTheme.border,
+            focusedBorder: D3pDropdownTheme.focusedBorder,
           ),
         );
 }

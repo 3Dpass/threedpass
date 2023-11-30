@@ -13,6 +13,8 @@ abstract class _$D3PRPCCubitStateCWProxy {
 
   D3PRPCCubitState properties(List<PoscanProperty> properties);
 
+  D3PRPCCubitState chosenCategory(MapPoscanCategory chosenCategory);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `D3PRPCCubitState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -23,6 +25,7 @@ abstract class _$D3PRPCCubitStateCWProxy {
     KeyPairData? account,
     List<String>? chosenHashes,
     List<PoscanProperty>? properties,
+    MapPoscanCategory? chosenCategory,
   });
 }
 
@@ -44,6 +47,10 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
       this(properties: properties);
 
   @override
+  D3PRPCCubitState chosenCategory(MapPoscanCategory chosenCategory) =>
+      this(chosenCategory: chosenCategory);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `D3PRPCCubitState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -55,6 +62,7 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
     Object? account = const $CopyWithPlaceholder(),
     Object? chosenHashes = const $CopyWithPlaceholder(),
     Object? properties = const $CopyWithPlaceholder(),
+    Object? chosenCategory = const $CopyWithPlaceholder(),
   }) {
     return D3PRPCCubitState(
       account: account == const $CopyWithPlaceholder() || account == null
@@ -71,6 +79,11 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
               ? _value.properties
               // ignore: cast_nullable_to_non_nullable
               : properties as List<PoscanProperty>,
+      chosenCategory: chosenCategory == const $CopyWithPlaceholder() ||
+              chosenCategory == null
+          ? _value.chosenCategory
+          // ignore: cast_nullable_to_non_nullable
+          : chosenCategory as MapPoscanCategory,
     );
   }
 }

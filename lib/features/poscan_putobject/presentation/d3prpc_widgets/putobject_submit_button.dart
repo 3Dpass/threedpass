@@ -4,8 +4,8 @@ import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 
-class D3pRPCSubmitButton extends StatelessWidget {
-  const D3pRPCSubmitButton({super.key});
+class PutObjectSubmitButton extends StatelessWidget {
+  const PutObjectSubmitButton({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -18,14 +18,11 @@ class D3pRPCSubmitButton extends StatelessWidget {
       children: [
         const SizedBoxH24(),
         Text(
-          'd3rpc_fees_warning'.tr(),
+          'poscan_putobject_fees_warning'.tr(),
           style: textStyle.secondaryText,
         ),
         const SizedBox(height: 2),
-        D3pElevatedButton(
-          text: 'Submit'.tr(),
-          onPressed: () {},
-        ),
+        D3pElevatedButton(text: 'Submit'.tr(), onPressed: () {}),
       ],
     );
   }

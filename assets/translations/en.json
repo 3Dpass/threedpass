@@ -325,7 +325,7 @@
     "delete_new_snapshot": "Don't save snapshot",
     "delete_extisting_snapshot": "Delete snapshot",
     "delete_snapshot_confirm_title": "Do you want to delete {}?",
-    "explore_hashes_button_title": "Explore hashes",
+    "explore_hashes_button_title": "Compare hashes",
     "upload_to_3d_rpc_title": "3DRPC-2",
     "3d_rpc_button_label": "Put object",
     "no_top_hashes_found": "No hashes found",
@@ -335,12 +335,12 @@
     "x_hashes_chosen": "{} chosen",
     "n_approvals_hint": "Enter desired number of approvals",
     "from_address_dropdown_hint": "Choose account",
-    "d3rpc_subtitle_choose_account": "Choose Account",
-    "d3rpc_subtitle_choose_napprovals": "Choose nApprovals",
-    "d3rpc_subtitle_choose_hashes": "Choose hashes (optional)",
-    "d3rpc_fees_warning": "This transaction takes fees",
+    "poscan_putobject_choose_account": "Account",
+    "poscan_putobject_choose_napprovals": "nApprovals",
+    "poscan_putobject_choose_hashes": "Hashes (optional)",
+    "poscan_putobject_fees_warning": "This transaction takes fees",
     "Submit": "Submit",
-    "d3rpc_subtitle_choose_properties": "Choose properties (optional)",
+    "poscan_putobject_choose_properties": "Properties (optional)",
     "PROPERTIES_number_plural": {
         "zero": "0 properties chosen",
         "one": "{} property chosen",
@@ -348,6 +348,7 @@
         "few": "{} properties chosen",
         "many": "{} properties chosen",
         "other": "{} properties chosen"
-    }
-    
+    },
+    "poscan_putobject_choose_category": "Category",
+    "account_never_null": "Please choose an account"
 }
