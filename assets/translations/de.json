@@ -1,0 +1,337 @@
+{
+    "appTitle": "3DPass",
+    "@compare_page":{
+    },
+    "Rank": "Rank",
+    "Hash": "Hash",
+    "compare_page_appbar": "Top-Hashes vergleichen",
+
+    "@global":{
+    },
+    "Share": "Teilen",
+    "Delete": "Löschen",
+    "Remove": "Entfernen",
+    "Save": "Speichern",
+    "Cancel": "Abbrechen",
+    "Saved": "Gespeichert",
+    "Next": "Weiter",
+    "Coming soon": "Demnächst verfügbar",
+    "Reset": "Zurücksetzen",
+    "Copied": "Kopiert",
+    "Apply": "Anwenden",
+    "Invalid": "Ungültig",
+    "Clear": "Leeren",
+    "Copy": "Kopieren",
+    "OK": "OK",
+
+    "@home_page":{
+    },
+    "calc_hashes_loader_text":"Berechnung der Hashes...",
+
+    "recognize_your_objects":"Erkenne deine Objekte",
+    "open_web_wallet_button_label": "Web-Wallet öffnen",
+    "get_from_file_button_label": "Von Datei abrufen",
+    "no_saved_objects_placeholder": "Keine gespeicherten Objekte verfügbar",
+
+    "error_hash_list_bloc": "Die Hashes-Liste ist nicht initialisiert :(",
+    "error_file_picker": "Fehler bei der Dateiauswahl",
+    "error_trans_bytes_unavaliable": "Fehler: Sowohl die Benutzereingabe, als auch der letzte Block sind nicht verfügbar. Objekt kann nicht gescannt werden.",
+
+    "@preview_page":{
+    },
+    "MATCHES_number_plural":{
+        "zero": "Keine Treffer ",
+        "one": "{} Treffer ",
+        "two": "{} Treffer ",
+        "few": "{} Treffer ",
+        "many": "{} Treffer ",
+        "other": "{} Treffer "
+    },
+    "matches_FOUND": "Gefunden",
+    "WHY_not_found": "Warum?",
+    "save_this_object_button_label":"Objekt speichern",
+    "save_this_snapshot_button_label":"Schnappschuss speichern",
+    "rename_this_snapshot_button_label":"Diesen Schnappschuss umbenennen",
+
+    "stable_hashes_list_title": "Stabile Hashes",
+    "no_stable_hash_placeholder": "Kein stabiler Hash gefunden",
+    "no_stable_hash_help": "Um einen stabilen Hashwert zu erhalten, versuchen Sie, das Objekt mehrmals mit denselben Scaneinstellungen zu scannen.",
+
+    "@rename_snap_dialog":{
+    },
+    "rename_snapshot_title" : "Schnappschuss umbenennen",
+    "rename_action": "Umbenennen",
+
+    "@save_snap_dialog":{
+    },
+    "save_snapshot_title" : "Schnappschuss speichern",
+
+    "@create_object_dialog":{
+    },
+    "create_object_title" : "Neues Objekt erstellen",
+    "create_object_input_label":"Objektname",
+    "create_object_input_hint":"Objektname eingeben",
+    "create_object_snap_input_label":"Schnappschussname",
+    "create_object_snap_input_hint":"Schnappschussname eingeben",
+    "create_action": "Erstellen",
+    
+    "@settings_page":{
+    },
+    "settings_title": "Einstellungen",
+    "choose_algorithm_label": "Algorithmus wählen",
+    "algorithm_button_label": "Scan-Algorithmus",
+    "grid_size_label": "Rastergröße",
+    "n_sections_label": "N Abschnitte",
+    "n_sections_help": "Tipp. Verwenden Sie für Grid2d die Abschnitte 66-68 und für Grid2d_v2, sowie Grid2d_v3 15-16.",
+    "trans_bytes_input_label": "Rotationsbytes",
+    "trans_bytes_empty_input": "Zufällig",
+    "error_n_sections_validator": "N Abschnitte müssen eine Zahl sein",
+    "hash_settings_title": "Scan-Einstellungen",
+    "lib_version_label": "Lib-Version:",
+    "wallet_settings_title": "Wallet Einstellungen",
+    "preview_settings_title": "Previeweinstellungen",
+    "app_settings_title": "Appeinstellungen",
+    "stable_requirement_label": "Stabiler Hash",
+    "stable_requirement_button_text": "Stabile Hash-Anforderung",
+    "stable_requirement_help": "Wie oft muss ein Hash wiederholt werden, um als stabil zu gelten?",
+    "error_stable_is_invalid": "Die Stabilitätsanforderung muss eine positive ganze Zahl sein",
+    "preview_settings_pixel_ratio_label": "Pixelratio",
+    "wallet_settings_istestnet_switch": "Ist Testnet",
+    "node_url_label": "Node URL",
+    "error_hex": "Ungültige Eingabe. Muss 8 Ziffern sein",
+
+    "pixel_ratio_help_text": "Eine Verringerung des Wertes verringert die Qualität der Vorschau, erhöht aber die Leistung.",
+    
+    "settings_text_span_title": "Eigenschaften scannen",
+    "algorithm_span": "Algorithmus",
+    "grid_span":"Raster",
+    "n_sections_span": "nAbschnitte",
+    "lib_version_span": "Hash lib Version",
+    "trans_bytes_span": "Rotationsbytes",
+
+    "node_url_button_label": "Node url",
+    "node_url_subpage_label": "Node url",
+
+    "antialias_button_label": "Antialias",
+
+    "dark_theme_switch_label": "Dunkles Theme",
+    "show_zero_assets_label": "Zeige Assets mit Nullbetrag an",
+    "set_pin_button_label": "Pincode festlegen",
+    "remove_pin_button_label": "Pincode entfernen",
+
+
+    "@wallet_base":{
+    },
+    "wallet_header_title": "Wallet",
+    "create_account_button_label": "Zufälliger Account",
+    "import_account_button_label": "Account importieren",
+
+    "init_status_sdk": "Initialisierung...",
+    "init_status_connecting_to_node": "Verbindet mit der Node...",
+    "init_status_completed": "Erfolgreich verbunden",
+    "init_status_connecting_to_node_failed": "Verbindung zur Node fehlgeschlagen",
+
+    "address_copied_to_clipboard": "Adresse kopiert",
+    "choose_account_assets_page_drawer": "Account wählen",
+
+    "@navigation":{
+    },
+    "bottom_label_scan": "Scannen",
+    "bottom_label_wallet": "Wallet",
+    "bottom_label_settings": "Einstellungen",
+
+    "@create_account_page":{
+    },
+    "create_account_title": "Account generieren",
+    "import_account_title": "Account importieren",
+
+    "create_warn1_header": "Bitte beachten",
+    "create_warn1_text": "Wir kopieren oder speichern Ihre Konto-Mnemonik niemals außerhalb Ihres Telefonspeichers. Es liegt in Ihrer Verantwortung, sie sicher aufzubewahren.",
+    "create_warn2_header": "Backup Mnemonik",
+    "create_warn2_text":
+        "Bitte notieren Sie sich Ihren mnemonischen Seed und bewahren Sie ihn an einem sicheren Ort auf.",
+    "create_warn2_text2":"Mit der Mnemonik können Sie Ihr Wallet wiederherstellen.",
+    "create_warn3_header": "Teilen Sie Ihre Mnemonik nicht",
+    "create_warn3_text": "Bewahren Sie Ihre Mnemonik sorgfältig auf, um Ihr Vermögen nicht zu verlieren.",
+    "create_warn3_text2":
+        "Jeder, der Ihre Mnemonik hat, hat vollen Zugriff auf Ihr Konto.",
+    "create_warn4_header": "Mache keine Screenshots",
+    "create_warn4_text":
+        "Machen Sie keine Screenshots, da diese von Malware von Drittanbietern gesammelt werden können, was zum Verlust von Daten führen kann.",
+
+    "create_warn5_header": "Vorsichtig sein",
+    "create_warn5_text": "Geben Sie niemals die Scan-Einstellungen des gewählten Objekts weiter. Dies kann zum Verlust von Assets führen.",
+    "create_warn6_header": "Backup Raw-Seed",
+    "create_warn6_text":
+        "Bitte notieren Sie den ausgewählten Raw-Seed und bewahren Sie ihn an einem sicheren Ort auf.",
+    "create_warn6_text2":"Es kann zur Wiederherstellung ihres Wallets verwendet werden.",
+
+    "backup_warn1_header": "Backup Mnemonik",
+    "backup_warn1_text": "Bitte notieren Sie sich Ihren mnemonischen Seed und bewahren Sie ihn an einem sicheren Ort auf.",
+
+    "backup_confirm_header": "Bestätigen Sie die Mnemonik",
+    "backup_confirm_text": "Bitte klicken Sie auf die Mnemonik in der richtigen Reihenfolge, um zu bestätigen, dass die Sicherung korrekt ist",
+
+    "create_credentials_name": "Name",
+    "create_credentials_name_error": "Name darf nicht leer sein",
+    "create_credentials_password": "Passwort",
+    "create_credentials_password_error": "6 bis 18 Ziffern und enthält Zahlen und Buchstaben",
+    "create_credentials_password2": "Passwort bestätigen",
+    "create_credentials_password2_error": "Inkonsistente Passwörter",
+
+    "error_create_account": "Fehler. Account wurde NICHT erstellt.",
+    "create_account_loading": "Account erstellen...",
+    "import_account_loading": "Account importieren...",
+    "error_import_duplicate": "Fehler: Dieser Account wurde bereits importiert",
+    "error_import_invalid": "Fehler: Dieser Account ist ungültig",
+
+    "import_account_type_title": "Account importieren aus...",
+    "create_type_mnemonic": "Mnemonik",
+    "create_type_object": "3D Objekt",
+    "create_account_from_object": "Account aus 3D-Objekt erstellen",
+
+    "create_from_object_text1": "Objekt auswählen",
+    "create_from_object_text2": "Stabilen Hash wählen",
+    "create_from_object_text2_hint": "Er wird als Raw-Seed für Ihren Account verwendet.",
+
+    "create_from_object_error_no_stable_hashes": "FEHLER. Keine Objekte mit stabilen Hashes gefunden.",
+
+    "import_type_mnemonic": "Mnemonic",
+
+    "import_mnemonic_hint": "Mnemonic eingeben",
+    "import_mnemonic_preview_placeholder": "Mnemonik eingeben, um Adresse zu sehen",
+
+    "invalid_input": "Ungültige Eingabe",
+    "error_mnemonic_not_found": "Fehler: Mnemonik nicht gefunden",
+    "error_empty_account_address": "Adresse darf nicht leer sein",
+
+    "no_stable_hash_dialog_title": "Kein stabiler Hash",
+    "no_stable_hash_dialog_text": "Sie können keinen Account aus einem 3D-Objekt erstellen, weil Sie keinen stabilen Hash haben. Um einen zu erstellen, scannen Sie das Objekt mehrmals oder ändern Sie die Hash-Anforderung.",
+
+    "@assets_page":{
+    },
+    "balance_avaliable_title": "Verfügbar",
+    "balance_locked_title": "Abgeschlossen",
+    "balance_reserved_title": "Reserviert",
+    "transfer_coins_button_label": "Senden",
+    "recieve_coins_button_label": "Empfangen",
+    "remove_account_button_label": "Account löschen",
+
+    "remove_accout_dialog_title": "Account löschen {}",
+    "remove_accout_dialog_text": "Sind Sie sicher, dass Sie diesen Account löschen möchten?",
+    "assets_title": "Assets",
+
+    "@non_native_token":{
+    },
+    "non_native_token_token": "Asset {}",
+    "no_asset_history": "Keine Extrinsics gefunden",
+    "mint_asset_history_label": "Mint {} {}",
+    "mint_asset_history_prefix": "Für:",
+    "set_metadata_asset_history_label": "Metadaten für assetID festlegen: {}",
+    "set_metadata_asset_history_name": "Name: {}",
+    "set_metadata_asset_history_symbol": "Symbol: {}",
+    "set_metadata_asset_history_decimals": "Dezimalen: {}",
+    "non_native_history_title_label": "Geschichte",
+    "create_token_widget": "Token erstellen",
+    "nnt_transfer_button_label": "Assets übertragen",
+
+    "@recieve_page":{
+    },
+    "recieve_page_title": "Empfangen",
+
+    "@transfer_page":{
+    },
+    "transfer_page_title": "Transaktion",
+    "from_address_label": "Von",
+    "to_address_label": "An Adresse",
+    "to_address_hint": "Adresse eingeben",
+    "amount_label": "Menge (Kontostand: {})",
+    "amount_hint": "Menge eingeben",
+    "enter_password_hint": "Passwort eingeben",
+    "enter_password_label": "Passwort",
+    "existential_deposit_label": "existenzielle Einlage",
+    "existential_deposit_text": "Der Mindestbetrag, den ein Account haben sollte, um als aktiv zu gelten.",
+    "estimated_transfer_fee": "Geschätzte Transaktionsgebühr",
+    "keep_alive_label": "am Leben erhalten",
+    "keep_alive_text": "Mit der Option \"Am Leben erhalten\" ist der Account vor der Löschung aufgrund eines niedrigen Kontostands geschützt.",
+    "make_transfer_label": "Transaktion vornehmen",
+    "error_wrong_amount": "Erwartet wurde eine reale Zahl, die kleiner ist als der verfügbare Kontostand.",
+    "could_not_check_address": "Adresse konnte nicht überprüft werden",
+    "wrong_address": "Ungültige Adresse angegeben",
+    "transfer_loader_text": "Übertragen...",
+    "transfer_success_text": "Mittel werden gesendet",
+
+    "error_empty": "Sollte nicht leer sein",
+
+    "@transactions_history":{
+    },
+    "transactions_to": "An",
+    "transactions_from": "Von",
+    "transactions_title": "Transaktionshistorie",
+    "show_transfers": "Transaktionen anzeigen",
+    "no_transfers": "Keine Transaktionen gefunden",
+    "first_page_error_title": "Etwas ist schief gelaufen",
+    "first_page_error_message": "Die Anwendung ist auf einen unbekannten Fehler gestoßen.\\nBitte versuchen Sie es später noch einmal.",
+    "first_page_error_button": "Erneut versuchen",
+
+    "@Screen_lock":{
+    },
+    "screen_lock_title": "PIN-Code eingeben",
+    "screen_lock_title_set": "Legen Sie Ihren PIN-Code fest",
+    "screen_lock_title_confirm": "Bestätigen Sie Ihren PIN-Code",
+
+    "@2.7.2":{
+    },
+    "choose_transfer_keep_alive": "Absender am Leben erhalten",
+    "transfer_keep_alive_help": "Bei aktivierter \"Am Leben erhalten\"-Option ist der Account vor einer Löschung aufgrund eines niedrigen Kontostands geschützt.",
+
+    "@2.8.0":{
+    },
+    "notifications_titile": "Transaktionen",
+    "transfer_status": "Status der Übertragung:",
+    "status_pending": "Ausstehend",
+    "status_success": "Erfolgreich",
+    "status_failed": "Fehlgeschlagen",
+    "status_error": "Fehler",
+    "error_wrong_amount_int": "Eine positive ganze Zahl erwartet",
+
+    "@2.9.0":{
+    },
+    "from_select_account_title": "Account auswählen",
+    "add_account_from_label": "Account hinzufügen zum Senden VON",
+    "add_account_to_label": "Account hinzufügen zum Senden AN",
+    "password_hint_1": "Drücken Sie ",
+    "password_hint_2": " um das Passwort des obigen Accounts zu kopieren",
+
+    "@3.0.0":{
+    },
+    "top_hashes_title": "Top-Hashes",
+    "copy_hash_button_text": "Kopieren",
+    "HASHES_number_plural":{
+        "zero": "0 Hashes",
+        "one": "{} Hash",
+        "two": "{} Hashes",
+        "few": "{} Hashes",
+        "many": "{} Hashes",
+        "other": "{} Hashes"
+    },
+    "stable_hashes_copied_toast": "Stabile Hashes kopiert",
+    "scan_properties_copied_toast": "Scan-Eigenschaften kopiert",
+    "top_hashes_copied_toast": "Top-Hashes kopiert",
+    "trans_bytes_copied_toast": "Rotationsbytes kopiert",
+    "file_hash_copied": "Dateihashwert kopiert",
+    "unsaved_object_appbar": "Unbenanntes Objekt",
+    "delete_new_snapshot": "Schnappschuss nicht speichern",
+    "delete_extisting_snapshot": "Schnappschuss löschen",
+    "delete_snapshot_confirm_title": "Möchten Sie {} löschen?",
+    "explore_hashes_button_title": "Hashes erforschen",
+    "upload_to_3d_rpc_title": "3DRPC-2",
+    "3d_rpc_button_label": "Objekt ablegen",
+    "no_top_hashes_found": "Keine Hashes gefunden",
+    "top_hashes_empty_text": "Das ist ein interessantes Verhalten. Vielleicht findet das Scannen mit anderen Einstellungen echte Hashes.",
+    "chosen_file_to_upload_to_3drpc": "Datei: {}",
+    "file_hash_title": "Datei Hash",
+    "x_hashes_chosen": "{} ausgewählt",
+    "n_approvals_hint": "Gewünschte Anzahl von Genehmigungen eingeben",
+    "from_address_dropdown_hint": "Konto wählen"
+}

@@ -19,6 +19,7 @@
 		<string>en</string>
 		<string>es</string>
 		<string>sr</string>
+		<string>de</string>
 	</array>
 	<key>CFBundleName</key>
 	<string>threedpass</string>
