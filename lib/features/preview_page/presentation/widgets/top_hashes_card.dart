@@ -3,19 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/hashes_list/presentation/widgets/hashes_primitive_list.dart';
-import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/copy_text_card.dart';
 
 class TopHashesCard extends StatelessWidget {
-  const TopHashesCard({required this.state, super.key});
+  const TopHashesCard({required this.hashes, super.key});
 
-  final PreviewPageCubitState state;
+  final List<String> hashes;
 
   @override
   Widget build(final BuildContext context) {
-    final hashes = state.snapshot.hashes;
-
-    if (state.snapshot.withEmptyHashes) {
+    if (hashes.isEmpty || (hashes.first.isEmpty && hashes.length == 1)) {
       return const _NoHashesPlaceHolder();
     }
 

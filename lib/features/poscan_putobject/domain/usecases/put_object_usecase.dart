@@ -1,9 +1,9 @@
 import 'package:polkawallet_sdk/p3d/prop_value.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:super_core/super_core.dart';
-import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
 import 'package:threedpass/core/utils/usecase.dart';
 import 'package:threedpass/features/poscan_putobject/data/poscan_repository.dart';
+import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
 
 class PutObject extends UseCase<void, PutObjectParams> {
   final PoScanRepository repository;
@@ -22,6 +22,7 @@ class PutObject extends UseCase<void, PutObjectParams> {
       categoryFabric: params.categoryFabric,
       hashes: params.hashes,
       propValues: params.propValues,
+      updateStatus: params.updateStatus,
     );
   }
 }
@@ -35,6 +36,7 @@ class PutObjectParams {
     required this.categoryFabric,
     required this.hashes,
     required this.propValues,
+    required this.updateStatus,
   });
 
   final KeyPairData account;
@@ -42,6 +44,7 @@ class PutObjectParams {
   final int nApprovals;
   final String pathToFile;
   final MapPoscanCategory categoryFabric;
-  final List<String>? hashes;
+  final List<String> hashes;
   final List<PropValue>? propValues;
+  final void Function() updateStatus;
 }

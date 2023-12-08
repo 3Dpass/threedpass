@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/p3d/prop_value.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/enum_button.dart';
-import 'package:threedpass/features/poscan_putobject/bloc/d3prpc_cubit.dart';
+import 'package:threedpass/features/poscan_putobject/bloc/poscan_putobject_cubit.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_property.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/d3prpc_widgets/open_bottom_sheet.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/d3prpc_widgets/property_tile_text.dart';
@@ -29,7 +29,7 @@ class ChooseProperties extends StatelessWidget {
     ];
     return OpenBottomSheet(
       unlocalizedSubtitle: 'poscan_putobject_choose_properties',
-      bottomSheetPlatform: BlocBuilder<D3PRPCCubit, D3PRPCCubitState>(
+      bottomSheetPlatform: BlocBuilder<PoscanPutObjectCubit, D3PRPCCubitState>(
         builder: (final context, final state) => ListView.builder(
           shrinkWrap: true,
           itemCount: properties.length,
@@ -38,8 +38,8 @@ class ChooseProperties extends StatelessWidget {
             return EnumButton(
               text: null,
               isChosen: state.properties.contains(prop),
-              onPressed: () =>
-                  BlocProvider.of<D3PRPCCubit>(context).toggleProp(prop),
+              onPressed: () => BlocProvider.of<PoscanPutObjectCubit>(context)
+                  .toggleProp(prop),
               child: PropertyTileText(
                 prop: prop,
                 isChosen: state.properties.contains(prop),
@@ -49,7 +49,7 @@ class ChooseProperties extends StatelessWidget {
         ),
       ),
       buttonIconData: Icons.add,
-      buttonTextChild: BlocBuilder<D3PRPCCubit, D3PRPCCubitState>(
+      buttonTextChild: BlocBuilder<PoscanPutObjectCubit, D3PRPCCubitState>(
         buildWhen: (final previous, final current) =>
             previous.properties != current.properties,
         builder: (final context, final state) => Text(

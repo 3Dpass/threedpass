@@ -8,7 +8,7 @@ import 'package:threedpass/core/utils/empty_function.dart';
 import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/poscan_putobject/bloc/d3prpc_cubit.dart';
+import 'package:threedpass/features/poscan_putobject/bloc/poscan_putobject_cubit.dart';
 import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/basic_password_text_field.dart';
 
 class ChooseAccount extends StatelessWidget {
@@ -16,7 +16,7 @@ class ChooseAccount extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final cubit = BlocProvider.of<D3PRPCCubit>(context);
+    final cubit = BlocProvider.of<PoscanPutObjectCubit>(context);
 
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     final accounts = appService.keyring.allAccounts;

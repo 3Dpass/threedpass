@@ -1,12 +1,18 @@
+import 'dart:async';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
+import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_property.dart';
 import 'package:threedpass/features/poscan_putobject/domain/usecases/put_object_usecase.dart';
+import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 
-part 'd3prpc_cubit.g.dart';
+part 'poscan_putobject_cubit.g.dart';
 
 @CopyWith()
 class D3PRPCCubitState {
@@ -23,15 +29,17 @@ class D3PRPCCubitState {
   });
 }
 
-class D3PRPCCubit extends Cubit<D3PRPCCubitState> {
-  D3PRPCCubit({
+class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
+  PoscanPutObjectCubit({
     required this.fileHash,
+    required this.filePath,
     required this.putObjectUseCase,
+    required final List<String> initialHashes,
     required final KeyPairData initialAccount,
   }) : super(
           D3PRPCCubitState(
             account: initialAccount,
-            chosenHashes: [],
+            chosenHashes: initialHashes,
             properties: [],
             chosenCategory: PoscanCategories.first,
           ),
@@ -43,6 +51,9 @@ class D3PRPCCubit extends Cubit<D3PRPCCubitState> {
       TextEditingController(text: '10');
   final TextEditingController accountPassword = TextEditingController();
   final int fileHash;
+  final String filePath;
+
+  bool fastCheckPassed = false;
 
   void toggleHash(final String hash) {
     if (state.chosenHashes.contains(hash)) {
@@ -96,5 +107,41 @@ class D3PRPCCubit extends Cubit<D3PRPCCubitState> {
     emit(state.copyWith(account: acc));
   }
 
-  void submit() {}
+  Future<void> submit(BuildContext context) async {
+    DefaultLoadingDialog.show(context);
+
+    fastCheckPassed = false;
+
+    // TODO Add notification
+
+    final params = PutObjectParams(
+      account: state.account,
+      password: accountPassword.text,
+      nApprovals: int.parse(nApprovalsController.text),
+      pathToFile: filePath,
+      categoryFabric: state.chosenCategory,
+      hashes: state.chosenHashes,
+      propValues: state.properties.map((final e) => e.propValue).toList(),
+      updateStatus: () {
+        fastCheckPassed = true;
+        DefaultLoadingDialog.hide(context);
+        BlocProvider.of<OuterContextCubit>(context).state.router.pop();
+      },
+    );
+    final res = await putObjectUseCase.call(params);
+
+    if (!fastCheckPassed) {
+      String message = '';
+      res.when(
+        left: (final f) {
+          message = f.cause ?? '';
+        },
+        right: (final _) {},
+      );
+      DefaultLoadingDialog.hide(context);
+      unawaited(Fluttertoast.showToast(msg: message));
+    }
+
+    // TODO Set notification final
+  }
 }

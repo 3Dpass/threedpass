@@ -4,14 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/poscan_putobject/bloc/d3prpc_cubit.dart';
+import 'package:threedpass/features/poscan_putobject/bloc/poscan_putobject_cubit.dart';
 
 class ChooseApprovals extends StatelessWidget {
   const ChooseApprovals({super.key});
 
   @override
   Widget build(final BuildContext context) {
-    final cubit = BlocProvider.of<D3PRPCCubit>(context);
+    final cubit = BlocProvider.of<PoscanPutObjectCubit>(context);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,

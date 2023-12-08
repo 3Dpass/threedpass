@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'd3prpc_cubit.dart';
+part of 'poscan_putobject_cubit.dart';
 
 // **************************************************************************
 // CopyWithGenerator

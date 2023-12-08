@@ -5,7 +5,7 @@ import 'package:threedpass/core/widgets/buttons/enum_button.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/poscan_putobject/bloc/d3prpc_cubit.dart';
+import 'package:threedpass/features/poscan_putobject/bloc/poscan_putobject_cubit.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/d3prpc_widgets/open_bottom_sheet.dart';
 import 'package:threedpass/features/poscan_putobject/utils/capitalize_first.dart';
@@ -20,7 +20,7 @@ class ChooseCategory extends StatelessWidget {
     return OpenBottomSheet(
       unlocalizedSubtitle: 'poscan_putobject_choose_category',
       buttonIconData: Icons.check_box_outline_blank_outlined,
-      buttonTextChild: BlocBuilder<D3PRPCCubit, D3PRPCCubitState>(
+      buttonTextChild: BlocBuilder<PoscanPutObjectCubit, D3PRPCCubitState>(
         buildWhen: (final previous, final current) =>
             previous.chosenCategory != current.chosenCategory,
         builder: (final context, final state) => D3pBodyMediumText(
@@ -28,7 +28,7 @@ class ChooseCategory extends StatelessWidget {
           translate: false,
         ),
       ),
-      bottomSheetPlatform: BlocBuilder<D3PRPCCubit, D3PRPCCubitState>(
+      bottomSheetPlatform: BlocBuilder<PoscanPutObjectCubit, D3PRPCCubitState>(
         buildWhen: (final previous, final current) =>
             previous.chosenCategory != current.chosenCategory,
         builder: (final context, final state) => ListView.builder(
@@ -54,8 +54,9 @@ class ChooseCategory extends StatelessWidget {
                         itemCount: cat.subCats.length,
                         itemBuilder: (final context, final index) => EnumButton(
                           text: cat.subCats[index].capitalizeFirst(),
-                          onPressed: () => BlocProvider.of<D3PRPCCubit>(context)
-                              .changeCategory(
+                          onPressed: () =>
+                              BlocProvider.of<PoscanPutObjectCubit>(context)
+                                  .changeCategory(
                             MapPoscanCategory(
                               cat: cat.catName,
                               subCat: cat.subCats[index],

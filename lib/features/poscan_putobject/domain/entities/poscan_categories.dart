@@ -11,10 +11,10 @@ class PoscanCategories {
 
   static List<PoscanCategories> allCats = [
     objects3d,
-    drawings2d,
-    music,
-    biometrics,
-    movements,
+    // drawings2d,
+    // music,
+    // biometrics,
+    // movements,
   ];
 
   static PoscanCategories objects3d = const PoscanCategories._(
