@@ -2,8 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/features/preview_page/bloc/d3prpc_cubit.dart';
+import 'package:threedpass/features/poscan_putobject/bloc/poscan_putobject_cubit.dart';
+import 'package:threedpass/features/poscan_putobject/domain/usecases/put_object_usecase.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
+import 'package:threedpass/setup.dart';
 
 @RoutePage()
 class D3PRPCPageWrapper extends StatelessWidget implements AutoRouteWrapper {
@@ -19,9 +21,12 @@ class D3PRPCPageWrapper extends StatelessWidget implements AutoRouteWrapper {
     final initialAccount = accounts.first;
 
     return BlocProvider(
-      create: (final context) => D3PRPCCubit(
+      create: (final context) => PoscanPutObjectCubit(
         fileHash: fileHash,
+        filePath: state.snapshot.realPath,
         initialAccount: initialAccount,
+        initialHashes: state.snapshot.hashes,
+        putObjectUseCase: getIt<PutObject>(),
       ),
       child: this,
     );

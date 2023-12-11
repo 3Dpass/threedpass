@@ -1,7 +1,7 @@
 import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 
-/// Load balances for assets
+/// Load balances for assets // TODO REMOVE ASSETS
 class NonNativeTokensApi {
   final AppService service;
   final String address;

@@ -45,9 +45,9 @@ import 'package:threedpass/features/home_page/presentation/login_page.dart'
     as _i13;
 import 'package:threedpass/features/home_page/router/empty_initial_route.dart'
     as _i15;
-import 'package:threedpass/features/preview_page/presentation/d3prpc_page.dart'
+import 'package:threedpass/features/poscan_putobject/presentation/d3prpc_page.dart'
     as _i44;
-import 'package:threedpass/features/preview_page/presentation/d3rpc_page_wrapper.dart'
+import 'package:threedpass/features/poscan_putobject/presentation/d3rpc_page_wrapper.dart'
     as _i45;
 import 'package:threedpass/features/preview_page/presentation/preview_page.dart'
     as _i5;

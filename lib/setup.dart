@@ -6,6 +6,7 @@ import 'package:threedp_graphql/features/transfers_history/data/repositories/tra
 import 'package:threedp_graphql/threedp_graphql.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/hashes_list/di/di_hashes_list.dart';
+import 'package:threedpass/features/poscan_putobject/di_preview_page.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/data/repositories/settings_store.dart';
 import 'package:threedpass/features/settings_page/domain/repositories/settings_repository.dart';
@@ -63,4 +64,6 @@ Future<void> setup() async {
   );
 
   await DINonNativeToken().setup(getIt);
+
+  await DIPreviewPage().setup(getIt);
 }

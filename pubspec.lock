@@ -895,10 +895,10 @@ packages:
     dependency: "direct main"
     description:
       name: json_annotation
-      sha256: cb314f00b2488de7bc575207e54402cd2f92363f333a7933fd1b0631af226baa
+      sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467
       url: "https://pub.dev"
     source: hosted
-    version: "4.6.0"
+    version: "4.8.1"
   json_rpc_2:
     dependency: transitive
     description:
@@ -911,10 +911,10 @@ packages:
     dependency: "direct dev"
     description:
       name: json_serializable
-      sha256: fd1bcfbf6f623e1dfcc60616f189a6ca540dba7b5917447be5dab754b3116932
+      sha256: aa1f5a8912615733e0fdc7a02af03308933c93235bdc8d50d0b0c8a8ccb0b969
       url: "https://pub.dev"
     source: hosted
-    version: "6.3.2"
+    version: "6.7.1"
   keystore_generator:
     dependency: "direct dev"
     description:
@@ -1151,8 +1151,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "3adb17ec1d707e9f38007359ddb4d27ba1e821d6"
-      resolved-ref: "3adb17ec1d707e9f38007359ddb4d27ba1e821d6"
+      ref: "6b1c0e2e712f41090f9a12cbeae3617b0daec751"
+      resolved-ref: "6b1c0e2e712f41090f9a12cbeae3617b0daec751"
       url: "https://github.com/L3odr0id/polkawallet_sdk.git"
     source: git
     version: "0.5.1"

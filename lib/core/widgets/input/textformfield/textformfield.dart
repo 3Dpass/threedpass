@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/theme/d3p_text_input_theme.dart';
-import 'package:threedpass/core/utils/empty_function.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 
@@ -91,11 +89,11 @@ class D3pTextFormField extends StatelessWidget {
             ],
           ),
         SizedBox(
-          // height: 55,
+          // height: 48,
           child: TextFormField(
             style: textStyle.d3pBodyLarge,
             decoration: InputDecoration(
-              isDense: true,
+              isDense: false,
               filled: true,
               border: D3pTextInputTheme.border,
               focusedBorder: D3pTextInputTheme.focusedBorder,

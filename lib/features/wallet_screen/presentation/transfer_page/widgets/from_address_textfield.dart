@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/widgets/account_choose_tile_text.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
@@ -41,7 +40,7 @@ class FromAddressTextField extends StatelessWidget {
     //       return const Color(0x05000000) ;
     //   }
     final textStyle = Theme.of(context).customTextStyles;
-    final colors = Theme.of(context).customColors;
+    // final colors = Theme.of(context).customColors;
 
     final allAccounts = BlocProvider.of<AppServiceLoaderCubit>(context)
         .state
@@ -94,6 +93,9 @@ class FromAddressTextField extends StatelessWidget {
           onChanged: (final obj) => onAccountChoose(context, obj),
           value: data.data,
           hint: 'from_address_dropdown_hint'.tr(),
+          validator: (final value) => value == null
+              ? 'account_never_null'.tr()
+              : null, // TODO Status does not update after choose null acc and then choose valid
         ),
       ],
     );
