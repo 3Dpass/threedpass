@@ -35,6 +35,12 @@ class SetMnemonic extends AccountStoreEvent {
   final String mnemonic;
 }
 
+class SetRawseed extends AccountStoreEvent {
+  const SetRawseed(this.rawseed);
+
+  final String rawseed;
+}
+
 class ResetAccount extends AccountStoreEvent {
   const ResetAccount();
 }

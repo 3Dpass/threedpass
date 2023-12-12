@@ -188,6 +188,7 @@
     "import_account_type_title": "Account importieren aus...",
     "create_type_mnemonic": "Mnemonik",
     "create_type_object": "3D Objekt",
+    "create_type_rawseed": "Raw Seed",
     "create_account_from_object": "Account aus 3D-Objekt erstellen",
 
     "create_from_object_text1": "Objekt auswählen",
@@ -197,12 +198,17 @@
     "create_from_object_error_no_stable_hashes": "FEHLER. Keine Objekte mit stabilen Hashes gefunden.",
 
     "import_type_mnemonic": "Mnemonic",
+    "import_type_rawseed": "Raw Seed",
 
     "import_mnemonic_hint": "Mnemonic eingeben",
     "import_mnemonic_preview_placeholder": "Mnemonik eingeben, um Adresse zu sehen",
 
+    "import_rawseed_hint": "Raw Seed eingeben",
+    "import_rawseed_preview_placeholder": "Raw Seed eingeben, um Adresse zu sehen",
+
     "invalid_input": "Ungültige Eingabe",
     "error_mnemonic_not_found": "Fehler: Mnemonik nicht gefunden",
+    "error_rawseed_not_found": "Error: Raw Seed nicht gefunden",
     "error_empty_account_address": "Adresse darf nicht leer sein",
 
     "no_stable_hash_dialog_title": "Kein stabiler Hash",

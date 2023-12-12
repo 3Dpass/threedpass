@@ -25,6 +25,22 @@ class AddressIconDataPreviewCubit extends Cubit<AddressIconData?> {
     emit(addressInfo);
   }
 
+  Future<void> updateInfoFromRawseed(
+      final String inputRawseed, {
+        final CryptoType cryptoType = defaultCryptoType,
+        final String derivePath = '',
+      }) async {
+    final addressInfo =
+    await appServiceCubit.state.plugin.sdk.api.keyring.addressFromRawSeed(
+      appServiceCubit.state.networkStateData.ss58Format!,
+      cryptoType: cryptoType,
+      derivePath: derivePath,
+      rawSeed: inputRawseed,
+    );
+
+    emit(addressInfo);
+  }
+
   void dropInfo() {
     emit(null);
   }
