@@ -288,8 +288,6 @@
 
     "@2.8.0":{
     },
-    "notifications_titile": "Transactions",
-    "transfer_status": "Transfer status:",
     "status_pending": "Pending",
     "status_success": "Success",
     "status_failed": "Failed",
@@ -350,5 +348,7 @@
         "other": "{} properties chosen"
     },
     "poscan_putobject_choose_category": "Category",
-    "account_never_null": "Please choose an account"
+    "account_never_null": "Please choose an account",
+    "notifications_title": "Transactions",
+    "extrinsic_status": "Extrinsic:"
 }

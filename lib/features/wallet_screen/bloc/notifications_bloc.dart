@@ -1,7 +1,8 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
+import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
 import 'package:threedpass/setup.dart';
 
@@ -14,6 +15,19 @@ class NotificationsBloc
   NotificationsBloc() : super(const NotificationsState.initial()) {
     on<AddNotification>(_addNotification);
     on<UpdateNotification>(_updateNotification);
+
+    final lol = getIt<AppServiceLoaderCubit>().state.keyring.current;
+    add(
+      AddNotification(
+        NotificationPutObject(
+          account: lol,
+          localSnapshotName:
+              'olNamedysa adsufyhsadfukasyjdhbfasdjbh fygjadshfasjfdsaf',
+          status: ExtrisincStatus.success,
+          message: null,
+        ),
+      ),
+    );
   }
 
   void _addNotification(
@@ -33,7 +47,7 @@ class NotificationsBloc
     final index = newList.indexOf(event.oldN);
     if (index == -1) {
       getIt<Logger>().e(
-        'Notifications was not found in list. N=${event.oldN.amount} ${event.oldN.toAddress}, L=${newList.length}',
+        'Notifications was not found in list. N=${event.oldN} ${event.oldN}, L=${newList.length}',
       );
       return;
     }

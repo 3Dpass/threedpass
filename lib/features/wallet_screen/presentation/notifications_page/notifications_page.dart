@@ -11,7 +11,7 @@ class NotificationsPage extends StatelessWidget {
   Widget build(final BuildContext context) {
     return const D3pScaffold(
       body: NotificationsList(),
-      appbarTitle: 'notifications_titile',
+      appbarTitle: 'notifications_title',
     );
   }
 }
