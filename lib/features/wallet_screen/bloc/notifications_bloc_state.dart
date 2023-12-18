@@ -1,37 +1,56 @@
 part of 'notifications_bloc.dart';
 
-enum NotificationType { transfer, vote }
+enum NotificationType { transfer, putObject }
 
-@CopyWith()
-class NotificationDTO extends Equatable {
-  final String? fromAddress;
-  final String? toAddress;
-  final String? amount;
-  final NotificationType type;
+abstract class NotificationDTO {
+  final DateTime notificationCreated = DateTime.now().toUtc();
   final ExtrisincStatus status;
   final String? message;
-  final String? symbols;
-  final DateTime? blockDateTime;
-  final DateTime notificationCreated = DateTime.now().toUtc();
 
   NotificationDTO({
-    required this.type,
     required this.status,
+    required this.message,
+  });
+
+  NotificationType get type;
+}
+
+@CopyWith()
+class NotificationTransfer extends NotificationDTO {
+  final String fromAddress;
+  final String toAddress;
+  final String amount;
+  final String symbols;
+  final DateTime? blockDateTime;
+
+  NotificationTransfer({
     required this.amount,
-    this.fromAddress,
-    this.toAddress,
-    this.message,
-    this.symbols,
-    this.blockDateTime,
+    required this.fromAddress,
+    required this.symbols,
+    required this.toAddress,
+    required super.message,
+    required super.status,
+    required this.blockDateTime,
   });
 
   @override
-  List<Object?> get props => [
-        notificationCreated,
-        fromAddress,
-        toAddress,
-        amount,
-      ];
+  final NotificationType type = NotificationType.transfer;
+}
+
+@CopyWith()
+class NotificationPutObject extends NotificationDTO {
+  final String localSnapshotName;
+  final KeyPairData account;
+
+  NotificationPutObject({
+    required this.account,
+    required this.localSnapshotName,
+    required super.status,
+    required super.message,
+  });
+
+  @override
+  final NotificationType type = NotificationType.putObject;
 }
 
 @CopyWith()

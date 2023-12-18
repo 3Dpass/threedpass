@@ -6,120 +6,112 @@ part of 'notifications_bloc.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$NotificationDTOCWProxy {
-  NotificationDTO type(NotificationType type);
+abstract class _$NotificationTransferCWProxy {
+  NotificationTransfer amount(String amount);
 
-  NotificationDTO status(ExtrisincStatus status);
+  NotificationTransfer fromAddress(String fromAddress);
 
-  NotificationDTO amount(String? amount);
+  NotificationTransfer symbols(String symbols);
 
-  NotificationDTO fromAddress(String? fromAddress);
+  NotificationTransfer toAddress(String toAddress);
 
-  NotificationDTO toAddress(String? toAddress);
+  NotificationTransfer message(String? message);
 
-  NotificationDTO message(String? message);
+  NotificationTransfer status(ExtrisincStatus status);
 
-  NotificationDTO symbols(String? symbols);
+  NotificationTransfer blockDateTime(DateTime? blockDateTime);
 
-  NotificationDTO blockDateTime(DateTime? blockDateTime);
-
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationDTO(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationTransfer(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
-  /// NotificationDTO(...).copyWith(id: 12, name: "My name")
+  /// NotificationTransfer(...).copyWith(id: 12, name: "My name")
   /// ````
-  NotificationDTO call({
-    NotificationType? type,
-    ExtrisincStatus? status,
+  NotificationTransfer call({
     String? amount,
     String? fromAddress,
+    String? symbols,
     String? toAddress,
     String? message,
-    String? symbols,
+    ExtrisincStatus? status,
     DateTime? blockDateTime,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNotificationDTO.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfNotificationDTO.copyWith.fieldName(...)`
-class _$NotificationDTOCWProxyImpl implements _$NotificationDTOCWProxy {
-  const _$NotificationDTOCWProxyImpl(this._value);
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNotificationTransfer.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfNotificationTransfer.copyWith.fieldName(...)`
+class _$NotificationTransferCWProxyImpl
+    implements _$NotificationTransferCWProxy {
+  const _$NotificationTransferCWProxyImpl(this._value);
 
-  final NotificationDTO _value;
-
-  @override
-  NotificationDTO type(NotificationType type) => this(type: type);
+  final NotificationTransfer _value;
 
   @override
-  NotificationDTO status(ExtrisincStatus status) => this(status: status);
+  NotificationTransfer amount(String amount) => this(amount: amount);
 
   @override
-  NotificationDTO amount(String? amount) => this(amount: amount);
-
-  @override
-  NotificationDTO fromAddress(String? fromAddress) =>
+  NotificationTransfer fromAddress(String fromAddress) =>
       this(fromAddress: fromAddress);
 
   @override
-  NotificationDTO toAddress(String? toAddress) => this(toAddress: toAddress);
+  NotificationTransfer symbols(String symbols) => this(symbols: symbols);
 
   @override
-  NotificationDTO message(String? message) => this(message: message);
+  NotificationTransfer toAddress(String toAddress) =>
+      this(toAddress: toAddress);
 
   @override
-  NotificationDTO symbols(String? symbols) => this(symbols: symbols);
+  NotificationTransfer message(String? message) => this(message: message);
 
   @override
-  NotificationDTO blockDateTime(DateTime? blockDateTime) =>
+  NotificationTransfer status(ExtrisincStatus status) => this(status: status);
+
+  @override
+  NotificationTransfer blockDateTime(DateTime? blockDateTime) =>
       this(blockDateTime: blockDateTime);
 
   @override
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationDTO(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationTransfer(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
-  /// NotificationDTO(...).copyWith(id: 12, name: "My name")
+  /// NotificationTransfer(...).copyWith(id: 12, name: "My name")
   /// ````
-  NotificationDTO call({
-    Object? type = const $CopyWithPlaceholder(),
-    Object? status = const $CopyWithPlaceholder(),
+  NotificationTransfer call({
     Object? amount = const $CopyWithPlaceholder(),
     Object? fromAddress = const $CopyWithPlaceholder(),
+    Object? symbols = const $CopyWithPlaceholder(),
     Object? toAddress = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
-    Object? symbols = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
     Object? blockDateTime = const $CopyWithPlaceholder(),
   }) {
-    return NotificationDTO(
-      type: type == const $CopyWithPlaceholder() || type == null
-          ? _value.type
-          // ignore: cast_nullable_to_non_nullable
-          : type as NotificationType,
-      status: status == const $CopyWithPlaceholder() || status == null
-          ? _value.status
-          // ignore: cast_nullable_to_non_nullable
-          : status as ExtrisincStatus,
-      amount: amount == const $CopyWithPlaceholder()
+    return NotificationTransfer(
+      amount: amount == const $CopyWithPlaceholder() || amount == null
           ? _value.amount
           // ignore: cast_nullable_to_non_nullable
-          : amount as String?,
-      fromAddress: fromAddress == const $CopyWithPlaceholder()
-          ? _value.fromAddress
+          : amount as String,
+      fromAddress:
+          fromAddress == const $CopyWithPlaceholder() || fromAddress == null
+              ? _value.fromAddress
+              // ignore: cast_nullable_to_non_nullable
+              : fromAddress as String,
+      symbols: symbols == const $CopyWithPlaceholder() || symbols == null
+          ? _value.symbols
           // ignore: cast_nullable_to_non_nullable
-          : fromAddress as String?,
-      toAddress: toAddress == const $CopyWithPlaceholder()
+          : symbols as String,
+      toAddress: toAddress == const $CopyWithPlaceholder() || toAddress == null
           ? _value.toAddress
           // ignore: cast_nullable_to_non_nullable
-          : toAddress as String?,
+          : toAddress as String,
       message: message == const $CopyWithPlaceholder()
           ? _value.message
           // ignore: cast_nullable_to_non_nullable
           : message as String?,
-      symbols: symbols == const $CopyWithPlaceholder()
-          ? _value.symbols
+      status: status == const $CopyWithPlaceholder() || status == null
+          ? _value.status
           // ignore: cast_nullable_to_non_nullable
-          : symbols as String?,
+          : status as ExtrisincStatus,
       blockDateTime: blockDateTime == const $CopyWithPlaceholder()
           ? _value.blockDateTime
           // ignore: cast_nullable_to_non_nullable
@@ -128,10 +120,97 @@ class _$NotificationDTOCWProxyImpl implements _$NotificationDTOCWProxy {
   }
 }
 
-extension $NotificationDTOCopyWith on NotificationDTO {
-  /// Returns a callable class that can be used as follows: `instanceOfNotificationDTO.copyWith(...)` or like so:`instanceOfNotificationDTO.copyWith.fieldName(...)`.
+extension $NotificationTransferCopyWith on NotificationTransfer {
+  /// Returns a callable class that can be used as follows: `instanceOfNotificationTransfer.copyWith(...)` or like so:`instanceOfNotificationTransfer.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
-  _$NotificationDTOCWProxy get copyWith => _$NotificationDTOCWProxyImpl(this);
+  _$NotificationTransferCWProxy get copyWith =>
+      _$NotificationTransferCWProxyImpl(this);
+}
+
+abstract class _$NotificationPutObjectCWProxy {
+  NotificationPutObject account(KeyPairData account);
+
+  NotificationPutObject localSnapshotName(String localSnapshotName);
+
+  NotificationPutObject status(ExtrisincStatus status);
+
+  NotificationPutObject message(String? message);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationPutObject(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationPutObject(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationPutObject call({
+    KeyPairData? account,
+    String? localSnapshotName,
+    ExtrisincStatus? status,
+    String? message,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNotificationPutObject.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfNotificationPutObject.copyWith.fieldName(...)`
+class _$NotificationPutObjectCWProxyImpl
+    implements _$NotificationPutObjectCWProxy {
+  const _$NotificationPutObjectCWProxyImpl(this._value);
+
+  final NotificationPutObject _value;
+
+  @override
+  NotificationPutObject account(KeyPairData account) => this(account: account);
+
+  @override
+  NotificationPutObject localSnapshotName(String localSnapshotName) =>
+      this(localSnapshotName: localSnapshotName);
+
+  @override
+  NotificationPutObject status(ExtrisincStatus status) => this(status: status);
+
+  @override
+  NotificationPutObject message(String? message) => this(message: message);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationPutObject(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationPutObject(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationPutObject call({
+    Object? account = const $CopyWithPlaceholder(),
+    Object? localSnapshotName = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+  }) {
+    return NotificationPutObject(
+      account: account == const $CopyWithPlaceholder() || account == null
+          ? _value.account
+          // ignore: cast_nullable_to_non_nullable
+          : account as KeyPairData,
+      localSnapshotName: localSnapshotName == const $CopyWithPlaceholder() ||
+              localSnapshotName == null
+          ? _value.localSnapshotName
+          // ignore: cast_nullable_to_non_nullable
+          : localSnapshotName as String,
+      status: status == const $CopyWithPlaceholder() || status == null
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as ExtrisincStatus,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+    );
+  }
+}
+
+extension $NotificationPutObjectCopyWith on NotificationPutObject {
+  /// Returns a callable class that can be used as follows: `instanceOfNotificationPutObject.copyWith(...)` or like so:`instanceOfNotificationPutObject.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$NotificationPutObjectCWProxy get copyWith =>
+      _$NotificationPutObjectCWProxyImpl(this);
 }
 
 abstract class _$NotificationsStateCWProxy {

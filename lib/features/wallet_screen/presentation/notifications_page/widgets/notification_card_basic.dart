@@ -4,21 +4,26 @@ import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/wallet_screen/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
-import 'package:threedpass/features/wallet_screen/presentation/widgets/transaction_item.dart';
 
-class NotificationTransferCard extends StatelessWidget {
-  final NotificationDTO notificationDTO;
+class NotificationCardBasic extends StatelessWidget {
+  const NotificationCardBasic({
+    required this.message,
+    required this.status,
+    required this.child,
+    super.key,
+  });
 
-  const NotificationTransferCard(this.notificationDTO, {super.key});
+  final ExtrisincStatus status;
+  final String? message;
+  final Widget child;
 
   @override
   Widget build(final BuildContext context) {
-    final cardBG = notificationDTO.status == ExtrisincStatus.failed ||
-            notificationDTO.status == ExtrisincStatus.error
-        ? Theme.of(context).customColors.errorCardBGColor
-        : null;
+    final cardBG =
+        status == ExtrisincStatus.failed || status == ExtrisincStatus.error
+            ? Theme.of(context).customColors.errorCardBGColor
+            : null;
 
     return Card(
       color: cardBG,
@@ -27,75 +32,24 @@ class NotificationTransferCard extends StatelessWidget {
         child: SizedBox(
           width: double.infinity,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  const D3pBodyMediumText('transfer_status'),
+                  const D3pBodyMediumText('extrinsic_status'),
                   const SizedBox(width: 8),
-                  _TransferStatus(notificationDTO.status),
+                  _TransferStatus(status),
                 ],
               ),
               const SizedBoxH4(),
-              _Message(notificationDTO.message, notificationDTO.status),
-              _Transaction(
-                fromAddress: notificationDTO.fromAddress,
-                toAddress: notificationDTO.toAddress,
-                amount: notificationDTO.amount,
-                symbols: notificationDTO.symbols,
-                blockDateTime: notificationDTO.blockDateTime,
-              ),
+              _Message(message, status),
+              child,
             ],
           ),
         ),
       ),
     );
-  }
-}
-
-class _Transaction extends StatelessWidget {
-  const _Transaction({
-    required this.amount,
-    required this.fromAddress,
-    required this.toAddress,
-    required this.blockDateTime,
-    required this.symbols,
-  });
-
-  final String? fromAddress;
-  final String? toAddress;
-  final String? amount;
-  final String? symbols;
-  final DateTime? blockDateTime;
-
-  @override
-  Widget build(final BuildContext context) {
-    if (fromAddress != null && toAddress != null && amount != null) {
-      // return ListView.separated(
-      //   physics: const NeverScrollableScrollPhysics(),
-      //   padding: EdgeInsets.zero,
-      //   shrinkWrap: true,
-      //   itemCount: fromAddresses!.length,
-      //   separatorBuilder: (final context, final index) => const Divider(),
-      //   itemBuilder: (final context, final int index) {
-      return TransactionItem(
-        object: TransferHistoryUI(
-          amount: amount!,
-          decimals: 1,
-          symbols: symbols ?? '',
-          direction: TransferDirection
-              .all, // Transfers are always "from", but from different accounts
-          blockDateTime: blockDateTime,
-          fromAddress: fromAddress!,
-          toAddress: toAddress!,
-          extrisincStatus: null,
-        ),
-      );
-      // },
-      // );
-    } else {
-      return const SizedBox();
-    }
   }
 }
 

@@ -119,14 +119,14 @@ class Transfer {
 
       for (int i = 0; i < metaInfos.length; i++) {
         notifications.add(
-          NotificationDTO(
-            type: NotificationType.transfer,
+          NotificationTransfer(
             status: ExtrisincStatus.loading,
             toAddress: toAddresses[i],
             fromAddress: fromAddress[i],
             amount: amounts[i],
             symbols: symbols,
             blockDateTime: null,
+            message: null,
           ),
         );
       }
@@ -143,17 +143,20 @@ class Transfer {
               required final String? message,
             }) {
               // isFinished = true;
-              // TODO Send events to notifications bloc
-              final tmp = notifications.firstWhere(
-                (final element) =>
-                    element.fromAddress == k.first &&
-                    element.toAddress == k.last,
-              );
+              final tmp = notifications.firstWhere((final element) {
+                if (element.type == NotificationType.transfer) {
+                  element as NotificationTransfer;
+                  return element.fromAddress == k.first &&
+                      element.toAddress == k.last;
+                }
+                return false;
+              });
 
-              final finishedTransaction = tmp.copyWith(
+              final finishedTransaction =
+                  (tmp as NotificationTransfer).copyWith(
                 status: status,
                 message: message,
-                blockDateTime: DateTime.now().toUtc(),
+                blockDateTime: DateTime.now(),
               );
               notificationsBloc.add(
                 UpdateNotification(newN: finishedTransaction, oldN: tmp),
