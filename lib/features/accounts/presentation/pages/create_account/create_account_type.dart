@@ -54,14 +54,7 @@ class _Item extends StatelessWidget {
         context.router.push(ImportMnemonicFormRoute());
         break;
       case CreateType.rawseed:
-        //TODO How does this generated navigator work?
-        //context.router.push(ImportRawseedFormRoute());
-        Navigator.push<void>(
-          context,
-          MaterialPageRoute(
-            builder: (final context) => ImportRawseedFormPage(),
-          ),
-        );
+        context.router.push(ImportRawseedFormRoute());
         break;
     }
   }

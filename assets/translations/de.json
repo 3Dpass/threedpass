@@ -293,7 +293,7 @@
 
     "@2.8.0":{
     },
-    "notifications_titile": "Transaktionen",
+    "notifications_title": "Transaktionen",
     "transfer_status": "Status der Übertragung:",
     "status_pending": "Ausstehend",
     "status_success": "Erfolgreich",
