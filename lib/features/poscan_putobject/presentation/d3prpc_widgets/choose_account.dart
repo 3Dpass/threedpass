@@ -9,7 +9,7 @@ import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_putobject/bloc/poscan_putobject_cubit.dart';
-import 'package:threedpass/features/wallet_screen/presentation/transfer_page/widgets/basic_password_text_field.dart';
+import 'package:threedpass/features/wallet_screen/transfer_page/widgets/basic_password_text_field.dart';
 
 class ChooseAccount extends StatelessWidget {
   const ChooseAccount({super.key});

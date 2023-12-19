@@ -16,9 +16,9 @@ import 'package:threedpass/features/accounts/domain/account_info.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
-import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transfers_from_cubit.dart';
-import 'package:threedpass/features/wallet_screen/presentation/transactions_history/bloc/transfers_to_cubit.dart';
-import 'package:threedpass/features/wallet_screen/presentation/transactions_history/domain/usecases/get_transfers.dart';
+import 'package:threedpass/features/wallet_screen/transactions_history/bloc/transfers_from_cubit.dart';
+import 'package:threedpass/features/wallet_screen/transactions_history/bloc/transfers_to_cubit.dart';
+import 'package:threedpass/features/wallet_screen/transactions_history/domain/usecases/get_transfers.dart';
 import 'package:threedpass/setup.dart';
 
 part 'init_app_service_extension.dart';
