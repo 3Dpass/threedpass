@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/utils/web_logs_handler.dart';
-import 'package:threedpass/features/wallet_screen/domain/entities/transfer_history_ui.dart';
+import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 import 'package:threedpass/setup.dart';
 
 typedef TransactionsCallback = void Function({
