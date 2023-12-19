@@ -6,6 +6,7 @@ import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/list_tile_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
+import 'package:threedpass/features/accounts/presentation/pages/create_account/import_rawseed_form.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/router/router.gr.dart';
 
@@ -30,6 +31,7 @@ class CreateAccountTypePage extends StatelessWidget {
             const SizedBoxH8(),
             const _Item(CreateType.mnemonic),
             const _D3ObjectItem(),
+            const _Item(CreateType.rawseed),
           ],
         ),
       ],
@@ -51,6 +53,9 @@ class _Item extends StatelessWidget {
       case CreateType.mnemonic:
         context.router.push(ImportMnemonicFormRoute());
         break;
+      case CreateType.rawseed:
+        context.router.push(ImportRawseedFormRoute());
+        break;
     }
   }
 
@@ -58,6 +63,8 @@ class _Item extends StatelessWidget {
     switch (createType) {
       case CreateType.mnemonic:
         return 'create_type_mnemonic'.tr();
+      case CreateType.rawseed:
+        return 'create_type_rawseed'.tr();
     }
   }
 
@@ -112,4 +119,4 @@ class _D3ObjectItem extends StatelessWidget {
   }
 }
 
-enum CreateType { mnemonic }
+enum CreateType { mnemonic, rawseed }

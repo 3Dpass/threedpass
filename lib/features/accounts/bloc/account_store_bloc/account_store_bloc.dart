@@ -20,6 +20,7 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     on<PopToRoout>(_popToRoout);
     on<ChangeAdvancedOptions>(_changeAdvancedOptions);
     on<SetMnemonic>(_setMnemonic);
+    on<SetRawseed>(_setRawseed);
   }
 
   final BuildContext outerContext;
@@ -59,6 +60,19 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
       state.copyWith(
         newAccount: state.newAccount.copyWithTyped(
           mnemonicKey: event.mnemonic,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _setRawseed(
+      final SetRawseed event,
+      final Emitter<AccountStoreState> emit,
+      ) async {
+    emit(
+      state.copyWith(
+        newAccount: state.newAccount.copyWithTyped(
+          seedKey: event.rawseed,
         ),
       ),
     );

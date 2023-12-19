@@ -40,5 +40,8 @@ AutoRoute createAccountPageRoute = AutoRoute(
     AutoRoute(
       page: ImportMnemonicFormRoute.page,
     ),
+    AutoRoute(
+      page: ImportRawseedFormRoute.page,
+    ),
   ],
 );
