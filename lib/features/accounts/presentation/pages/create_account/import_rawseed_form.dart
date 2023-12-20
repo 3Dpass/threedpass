@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/utils/show_text_snackbar.dart';
-import 'package:threedpass/core/widgets/default_loading_dialog.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
+import 'package:threedpass/features/accounts/domain/rawseed_text.dart';
 import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/import_mnemonic_form/address_icon_preview.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/import_mnemonic_form/address_icon_preview_cubit_provider.dart';
@@ -20,7 +20,6 @@ class ImportRawseedFormPage extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
   final TextEditingController controller = TextEditingController();
-  bool valid = false;
 
   Future<void> onSubmitPressed({
     required final BuildContext innerContext,
@@ -30,37 +29,18 @@ class ImportRawseedFormPage extends StatelessWidget {
   }) async {
     // Check user input
     if (_formKey.currentState != null && _formKey.currentState!.validate()) {
-      DefaultLoadingDialog.show(outerContext);
       final input = rawseedInput.trim().toLowerCase();
-      DefaultLoadingDialog.hide(outerContext);
-
-      if (valid) {
-        final accountStoreBloc =
-            BlocProvider.of<AccountStoreBloc>(innerContext);
-        accountStoreBloc.add(SetRawseed(input));
-        unawaited(
-          innerContext.router.push(
-            CreateAccountCredentialsRoute(
-              appbarText: AccountAppbarTitle.import,
-            ),
+      final accountStoreBloc = BlocProvider.of<AccountStoreBloc>(innerContext);
+      final rawseedObj = RawseedText(input);
+      accountStoreBloc.add(SetRawseed(rawseedObj));
+      unawaited(
+        innerContext.router.push(
+          CreateAccountCredentialsRoute(
+            appbarText: AccountAppbarTitle.import,
           ),
-        );
-      } else {
-        FastSnackBar(
-          textCode: 'error_rawseed_not_found',
-          context: outerContext,
-        ).show();
-      }
-    } else {
-      FastSnackBar(
-        textCode: 'invalid_input',
-        context: outerContext,
-      ).show();
+        ),
+      );
     }
-  }
-
-  void callBackAddressNull(final bool valid) {
-    this.valid = valid;
   }
 
   @override
@@ -78,11 +58,10 @@ class ImportRawseedFormPage extends StatelessWidget {
         ),
         needHorizontalPadding: false,
         children: [
-          AddressIconPreview(
-            isRawseed: true,
-            callBackAddressNull: callBackAddressNull,
+          const AddressIconPreview(
+            placeholderText: 'import_rawseed_preview_placeholder',
           ),
-          const SizedBox(height: 16),
+          const SizedBoxH16(),
           Column(
             children: [
               Padding(

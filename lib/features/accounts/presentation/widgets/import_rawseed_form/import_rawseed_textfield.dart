@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/features/accounts/bloc/address_icon_data_preview_cubit.dart';
+import 'package:threedpass/features/accounts/domain/rawseed_text.dart';
 
 class ImportRawseedTextfield extends StatelessWidget {
   const ImportRawseedTextfield({
@@ -31,10 +32,11 @@ class ImportRawseedTextfield extends StatelessWidget {
       final String rawseed = s.trim().toLowerCase();
       //if (input.isNotEmpty && (input.length <= 32 || input.length == 66)) {
       //TODO 3dPass uses Sha-256, so always 64?
-      var x = rawseed.length;
       if (rawseed.length == 64) {
+        final rawseedObj = RawseedText(rawseed);
+
         BlocProvider.of<AddressIconDataPreviewCubit>(context)
-            .updateInfoFromRawseed(rawseed);
+            .updateInfoFromRawseed(rawseedObj);
       } else {
         BlocProvider.of<AddressIconDataPreviewCubit>(context).dropInfo();
       }
