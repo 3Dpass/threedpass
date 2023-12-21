@@ -23,7 +23,7 @@ abstract class _$AssetHistoryTransferCWProxy {
 
   AssetHistoryTransfer decimals(int decimals);
 
-  AssetHistoryTransfer extrisincStatus(ExtrisincStatus extrisincStatus);
+  AssetHistoryTransfer extrisincStatus(ExtrinsicStatus extrisincStatus);
 
   AssetHistoryTransfer blockNumber(int blockNumber);
 
@@ -42,7 +42,7 @@ abstract class _$AssetHistoryTransferCWProxy {
     bool? isFrom,
     String? symbols,
     int? decimals,
-    ExtrisincStatus? extrisincStatus,
+    ExtrinsicStatus? extrisincStatus,
     int? blockNumber,
   });
 }
@@ -83,7 +83,7 @@ class _$AssetHistoryTransferCWProxyImpl
   AssetHistoryTransfer decimals(int decimals) => this(decimals: decimals);
 
   @override
-  AssetHistoryTransfer extrisincStatus(ExtrisincStatus extrisincStatus) =>
+  AssetHistoryTransfer extrisincStatus(ExtrinsicStatus extrisincStatus) =>
       this(extrisincStatus: extrisincStatus);
 
   @override
@@ -151,7 +151,7 @@ class _$AssetHistoryTransferCWProxyImpl
               extrisincStatus == null
           ? _value.extrisincStatus
           // ignore: cast_nullable_to_non_nullable
-          : extrisincStatus as ExtrisincStatus,
+          : extrisincStatus as ExtrinsicStatus,
       blockNumber:
           blockNumber == const $CopyWithPlaceholder() || blockNumber == null
               ? _value.blockNumber

@@ -4,7 +4,7 @@ enum NotificationType { transfer, putObject }
 
 abstract class NotificationDTO {
   final DateTime notificationCreated = DateTime.now().toUtc();
-  final ExtrisincStatus status;
+  final ExtrinsicStatus status;
   final String? message;
 
   NotificationDTO({

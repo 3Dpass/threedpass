@@ -15,7 +15,7 @@ abstract class _$AssetHistoryMintCWProxy {
 
   AssetHistoryMint value(String value);
 
-  AssetHistoryMint extrisincStatus(ExtrisincStatus extrisincStatus);
+  AssetHistoryMint extrisincStatus(ExtrinsicStatus extrisincStatus);
 
   AssetHistoryMint blockNumber(int blockNumber);
 
@@ -30,7 +30,7 @@ abstract class _$AssetHistoryMintCWProxy {
     int? extrinsicIdx,
     String? authorAddress,
     String? value,
-    ExtrisincStatus? extrisincStatus,
+    ExtrinsicStatus? extrisincStatus,
     int? blockNumber,
   });
 }
@@ -57,7 +57,7 @@ class _$AssetHistoryMintCWProxyImpl implements _$AssetHistoryMintCWProxy {
   AssetHistoryMint value(String value) => this(value: value);
 
   @override
-  AssetHistoryMint extrisincStatus(ExtrisincStatus extrisincStatus) =>
+  AssetHistoryMint extrisincStatus(ExtrinsicStatus extrisincStatus) =>
       this(extrisincStatus: extrisincStatus);
 
   @override
@@ -104,7 +104,7 @@ class _$AssetHistoryMintCWProxyImpl implements _$AssetHistoryMintCWProxy {
               extrisincStatus == null
           ? _value.extrisincStatus
           // ignore: cast_nullable_to_non_nullable
-          : extrisincStatus as ExtrisincStatus,
+          : extrisincStatus as ExtrinsicStatus,
       blockNumber:
           blockNumber == const $CopyWithPlaceholder() || blockNumber == null
               ? _value.blockNumber

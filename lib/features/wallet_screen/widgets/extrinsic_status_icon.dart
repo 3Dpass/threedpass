@@ -3,30 +3,30 @@ import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 import 'package:threedpass/core/widgets/progress_indicator/thin_progress_indicator.dart';
 
 class ExtrinsicStatusIcon extends StatelessWidget {
-  final ExtrisincStatus status;
+  final ExtrinsicStatus status;
 
   const ExtrinsicStatusIcon(this.status, {super.key});
 
   @override
   Widget build(final BuildContext context) {
     switch (status) {
-      case ExtrisincStatus.error:
+      case ExtrinsicStatus.error:
         return const Icon(
           Icons.error_outline,
           color: Colors.red,
         );
-      case ExtrisincStatus.loading:
+      case ExtrinsicStatus.loading:
         return const SizedBox(
           width: 24,
           height: 24,
           child: ThinProgressIndicator(),
         );
-      case ExtrisincStatus.success:
+      case ExtrinsicStatus.success:
         return const Icon(
           Icons.check,
           color: Colors.green,
         );
-      case ExtrisincStatus.failed:
+      case ExtrinsicStatus.failed:
         return const Icon(
           Icons.close,
           color: Colors.red,

@@ -37,8 +37,8 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
     if (pagingController.itemList != null) {
       for (final item in pagingController.itemList!) {
         // await Future.delayed(Duration(seconds: 2));
-        if (item.extrisincStatus == ExtrisincStatus.loading ||
-            item.extrisincStatus == ExtrisincStatus.error) {
+        if (item.extrisincStatus == ExtrinsicStatus.loading ||
+            item.extrisincStatus == ExtrinsicStatus.error) {
           final events = await getEvents(
             GetEventsParams(
               pageKey: '1',

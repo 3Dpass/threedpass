@@ -17,7 +17,7 @@ abstract class _$AssetHistoryUnkownCWProxy {
 
   AssetHistoryUnkown callModule(String callModule);
 
-  AssetHistoryUnkown extrisincStatus(ExtrisincStatus extrisincStatus);
+  AssetHistoryUnkown extrisincStatus(ExtrinsicStatus extrisincStatus);
 
   AssetHistoryUnkown blockNumber(int blockNumber);
 
@@ -33,7 +33,7 @@ abstract class _$AssetHistoryUnkownCWProxy {
     String? authorAddress,
     String? arguments,
     String? callModule,
-    ExtrisincStatus? extrisincStatus,
+    ExtrinsicStatus? extrisincStatus,
     int? blockNumber,
   });
 }
@@ -64,7 +64,7 @@ class _$AssetHistoryUnkownCWProxyImpl implements _$AssetHistoryUnkownCWProxy {
       this(callModule: callModule);
 
   @override
-  AssetHistoryUnkown extrisincStatus(ExtrisincStatus extrisincStatus) =>
+  AssetHistoryUnkown extrisincStatus(ExtrinsicStatus extrisincStatus) =>
       this(extrisincStatus: extrisincStatus);
 
   @override
@@ -117,7 +117,7 @@ class _$AssetHistoryUnkownCWProxyImpl implements _$AssetHistoryUnkownCWProxy {
               extrisincStatus == null
           ? _value.extrisincStatus
           // ignore: cast_nullable_to_non_nullable
-          : extrisincStatus as ExtrisincStatus,
+          : extrisincStatus as ExtrinsicStatus,
       blockNumber:
           blockNumber == const $CopyWithPlaceholder() || blockNumber == null
               ? _value.blockNumber

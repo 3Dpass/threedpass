@@ -14,14 +14,14 @@ class NotificationCardBasic extends StatelessWidget {
     super.key,
   });
 
-  final ExtrisincStatus status;
+  final ExtrinsicStatus status;
   final String? message;
   final Widget child;
 
   @override
   Widget build(final BuildContext context) {
     final cardBG =
-        status == ExtrisincStatus.failed || status == ExtrisincStatus.error
+        status == ExtrinsicStatus.failed || status == ExtrinsicStatus.error
             ? Theme.of(context).customColors.errorCardBGColor
             : null;
 
@@ -56,12 +56,12 @@ class NotificationCardBasic extends StatelessWidget {
 class _TransferStatus extends StatelessWidget {
   const _TransferStatus(this.status);
 
-  final ExtrisincStatus status;
+  final ExtrinsicStatus status;
 
   @override
   Widget build(final BuildContext context) {
     switch (status) {
-      case ExtrisincStatus.loading:
+      case ExtrinsicStatus.loading:
         return Shimmer.fromColors(
           baseColor: Colors.grey.shade400,
           highlightColor: Colors.grey.shade100,
@@ -77,16 +77,16 @@ class _TransferStatus extends StatelessWidget {
             ],
           ),
         );
-      case ExtrisincStatus.success:
+      case ExtrinsicStatus.success:
         return const D3pBodyMediumText(
           'status_success',
           color: Colors.green,
         );
-      case ExtrisincStatus.error:
+      case ExtrinsicStatus.error:
         return const D3pBodyMediumText(
           'status_error',
         );
-      case ExtrisincStatus.failed:
+      case ExtrinsicStatus.failed:
         return const D3pBodyMediumText(
           'status_failed',
         );
@@ -96,13 +96,13 @@ class _TransferStatus extends StatelessWidget {
 
 class _Message extends StatelessWidget {
   final String? message;
-  final ExtrisincStatus? status;
+  final ExtrinsicStatus? status;
 
   const _Message(this.message, this.status);
 
   @override
   Widget build(final BuildContext context) {
-    if (message != null && status != ExtrisincStatus.success) {
+    if (message != null && status != ExtrinsicStatus.success) {
       return Column(
         children: [
           D3pBodyLargeText(

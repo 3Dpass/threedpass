@@ -2,25 +2,25 @@ import 'package:threedp_graphql/features/events/data/query/__generated__/get_eve
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 
 class SuccessEvenType {
-  final ExtrisincStatus isSuccessful;
+  final ExtrinsicStatus isSuccessful;
 
   SuccessEvenType(final GGetEventsData event)
       : isSuccessful = _initIsSuccessful(event);
 
-  static ExtrisincStatus _initIsSuccessful(final GGetEventsData event) {
+  static ExtrinsicStatus _initIsSuccessful(final GGetEventsData event) {
     try {
       final ex = event.getEvents?.objects
           ?.firstWhere((final p0) => p0.eventModule == 'System');
       switch (ex?.eventName ?? '') {
         case 'ExtrinsicFailed':
-          return ExtrisincStatus.failed;
+          return ExtrinsicStatus.failed;
         case 'ExtrinsicSuccess':
-          return ExtrisincStatus.success;
+          return ExtrinsicStatus.success;
         default:
-          return ExtrisincStatus.error;
+          return ExtrinsicStatus.error;
       }
     } on Object catch (_) {
-      return ExtrisincStatus.error;
+      return ExtrinsicStatus.error;
     }
   }
 }

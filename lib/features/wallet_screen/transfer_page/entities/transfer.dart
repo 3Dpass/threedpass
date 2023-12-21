@@ -120,7 +120,7 @@ class Transfer {
       for (int i = 0; i < metaInfos.length; i++) {
         notifications.add(
           NotificationTransfer(
-            status: ExtrisincStatus.loading,
+            status: ExtrinsicStatus.loading,
             toAddress: toAddresses[i],
             fromAddress: fromAddress[i],
             amount: amounts[i],
@@ -139,7 +139,7 @@ class Transfer {
           appServiceCubit.addHandler(
             msgId,
             ({
-              required final ExtrisincStatus status,
+              required final ExtrinsicStatus status,
               required final String? message,
             }) {
               // isFinished = true;

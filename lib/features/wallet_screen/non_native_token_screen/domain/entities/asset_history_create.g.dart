@@ -13,7 +13,7 @@ abstract class _$AssetHistoryCreateCWProxy {
 
   AssetHistoryCreate authorAddress(String authorAddress);
 
-  AssetHistoryCreate extrisincStatus(ExtrisincStatus extrisincStatus);
+  AssetHistoryCreate extrisincStatus(ExtrinsicStatus extrisincStatus);
 
   AssetHistoryCreate blockNumber(int blockNumber);
 
@@ -27,7 +27,7 @@ abstract class _$AssetHistoryCreateCWProxy {
     DateTime? blockDatetime,
     int? extrinsicIdx,
     String? authorAddress,
-    ExtrisincStatus? extrisincStatus,
+    ExtrinsicStatus? extrisincStatus,
     int? blockNumber,
   });
 }
@@ -51,7 +51,7 @@ class _$AssetHistoryCreateCWProxyImpl implements _$AssetHistoryCreateCWProxy {
       this(authorAddress: authorAddress);
 
   @override
-  AssetHistoryCreate extrisincStatus(ExtrisincStatus extrisincStatus) =>
+  AssetHistoryCreate extrisincStatus(ExtrinsicStatus extrisincStatus) =>
       this(extrisincStatus: extrisincStatus);
 
   @override
@@ -93,7 +93,7 @@ class _$AssetHistoryCreateCWProxyImpl implements _$AssetHistoryCreateCWProxy {
               extrisincStatus == null
           ? _value.extrisincStatus
           // ignore: cast_nullable_to_non_nullable
-          : extrisincStatus as ExtrisincStatus,
+          : extrisincStatus as ExtrinsicStatus,
       blockNumber:
           blockNumber == const $CopyWithPlaceholder() || blockNumber == null
               ? _value.blockNumber

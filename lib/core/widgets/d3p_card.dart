@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_card_theme.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 
 class D3pCard extends StatelessWidget {
@@ -31,22 +32,22 @@ class MapperCardShapeToBorder {
   const MapperCardShapeToBorder(this.cardShape);
 
   ShapeBorder border() {
-    const radius = Radius.circular(4.0);
+    final radius = D3pCardTheme.radius;
 
     switch (cardShape) {
       case CardShape.top:
-        return const RoundedRectangleBorder(
+        return RoundedRectangleBorder(
           borderRadius: BorderRadius.only(topLeft: radius, topRight: radius),
         );
       case CardShape.bottom:
-        return const RoundedRectangleBorder(
+        return RoundedRectangleBorder(
           borderRadius:
               BorderRadius.only(bottomLeft: radius, bottomRight: radius),
         );
       case CardShape.middle:
         return const RoundedRectangleBorder(borderRadius: BorderRadius.zero);
       case CardShape.all:
-        return const RoundedRectangleBorder(
+        return RoundedRectangleBorder(
           borderRadius: BorderRadius.all(radius),
         );
     }

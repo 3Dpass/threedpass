@@ -17,7 +17,7 @@ abstract class _$NotificationTransferCWProxy {
 
   NotificationTransfer message(String? message);
 
-  NotificationTransfer status(ExtrisincStatus status);
+  NotificationTransfer status(ExtrinsicStatus status);
 
   NotificationTransfer blockDateTime(DateTime? blockDateTime);
 
@@ -33,7 +33,7 @@ abstract class _$NotificationTransferCWProxy {
     String? symbols,
     String? toAddress,
     String? message,
-    ExtrisincStatus? status,
+    ExtrinsicStatus? status,
     DateTime? blockDateTime,
   });
 }
@@ -63,7 +63,7 @@ class _$NotificationTransferCWProxyImpl
   NotificationTransfer message(String? message) => this(message: message);
 
   @override
-  NotificationTransfer status(ExtrisincStatus status) => this(status: status);
+  NotificationTransfer status(ExtrinsicStatus status) => this(status: status);
 
   @override
   NotificationTransfer blockDateTime(DateTime? blockDateTime) =>
@@ -111,7 +111,7 @@ class _$NotificationTransferCWProxyImpl
       status: status == const $CopyWithPlaceholder() || status == null
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
-          : status as ExtrisincStatus,
+          : status as ExtrinsicStatus,
       blockDateTime: blockDateTime == const $CopyWithPlaceholder()
           ? _value.blockDateTime
           // ignore: cast_nullable_to_non_nullable
@@ -132,7 +132,7 @@ abstract class _$NotificationPutObjectCWProxy {
 
   NotificationPutObject localSnapshotName(String localSnapshotName);
 
-  NotificationPutObject status(ExtrisincStatus status);
+  NotificationPutObject status(ExtrinsicStatus status);
 
   NotificationPutObject message(String? message);
 
@@ -145,7 +145,7 @@ abstract class _$NotificationPutObjectCWProxy {
   NotificationPutObject call({
     KeyPairData? account,
     String? localSnapshotName,
-    ExtrisincStatus? status,
+    ExtrinsicStatus? status,
     String? message,
   });
 }
@@ -165,7 +165,7 @@ class _$NotificationPutObjectCWProxyImpl
       this(localSnapshotName: localSnapshotName);
 
   @override
-  NotificationPutObject status(ExtrisincStatus status) => this(status: status);
+  NotificationPutObject status(ExtrinsicStatus status) => this(status: status);
 
   @override
   NotificationPutObject message(String? message) => this(message: message);
@@ -197,7 +197,7 @@ class _$NotificationPutObjectCWProxyImpl
       status: status == const $CopyWithPlaceholder() || status == null
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
-          : status as ExtrisincStatus,
+          : status as ExtrinsicStatus,
       message: message == const $CopyWithPlaceholder()
           ? _value.message
           // ignore: cast_nullable_to_non_nullable

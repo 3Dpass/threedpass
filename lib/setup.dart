@@ -10,6 +10,7 @@ import 'package:threedpass/features/poscan_putobject/di_preview_page.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/data/repositories/settings_store.dart';
 import 'package:threedpass/features/settings_page/domain/repositories/settings_repository.dart';
+import 'package:threedpass/features/wallet_screen/di_wallet_page.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/di/di_non_native_token.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/data/repositories/transfers_repository.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/domain/usecases/get_transfers.dart';
@@ -64,6 +65,8 @@ Future<void> setup() async {
   );
 
   await DINonNativeToken().setup(getIt);
+
+  await DIWalletPage().setup(getIt);
 
   await DIPreviewPage().setup(getIt);
 }

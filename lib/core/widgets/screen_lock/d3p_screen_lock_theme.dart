@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
+import 'package:threedpass/core/theme/d3p_card_theme.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
@@ -29,7 +30,11 @@ class D3pScreenLockTheme {
         buttonStyle: OutlinedButton.styleFrom(
           foregroundColor: colors.themeOpposite,
           backgroundColor: colors.pinButtonBGColor,
-          shape: const CircleBorder(),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              D3pCardTheme.radius,
+            ),
+          ),
           padding: const EdgeInsets.all(0),
           side: BorderSide.none,
         ),
