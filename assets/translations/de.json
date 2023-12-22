@@ -74,7 +74,7 @@
     "create_object_snap_input_label":"Schnappschussname",
     "create_object_snap_input_hint":"Schnappschussname eingeben",
     "create_action": "Erstellen",
-    
+
     "@settings_page":{
     },
     "settings_title": "Einstellungen",
@@ -101,7 +101,7 @@
     "error_hex": "Ungültige Eingabe. Muss 8 Ziffern sein",
 
     "pixel_ratio_help_text": "Eine Verringerung des Wertes verringert die Qualität der Vorschau, erhöht aber die Leistung.",
-    
+
     "settings_text_span_title": "Eigenschaften scannen",
     "algorithm_span": "Algorithmus",
     "grid_span":"Raster",
@@ -125,6 +125,17 @@
     "wallet_header_title": "Wallet",
     "create_account_button_label": "Zufälliger Account",
     "import_account_button_label": "Account importieren",
+    "contacts_button_label": "Kontakte",
+    "contacts_appbar_title": "Meine Kontakte",
+    "add_contact_appbar_title": "Kontakt hinzufügen",
+    "new_contact": "Neuer Kontakt",
+    "contact_name": "Name",
+    "contact_name_hint": "Name eingeben",
+    "contact_address": "Adresse",
+    "contact_address_hint": "Adresse eingeben",
+    "add_contact": "Hinzufügen",
+    "contact_name_exists": "Du hast bereits einen Kontakt mit diesem Namen angelegt. Bitte verwende einen anderen.",
+    "no_contacts": "Du hast noch keine Kontakte angelegt.",
 
     "init_status_sdk": "Initialisierung...",
     "init_status_connecting_to_node": "Verbindet mit der Node...",

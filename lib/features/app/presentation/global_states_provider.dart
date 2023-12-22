@@ -5,6 +5,7 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/scan_page/bloc/scan_isolate_cubit.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/wallet_screen/add_contact_page/bloc/contacts_bloc.dart';
 import 'package:threedpass/setup.dart' as di_setup;
 
 class GlobalStatesProvider extends StatelessWidget {
@@ -23,6 +24,9 @@ class GlobalStatesProvider extends StatelessWidget {
       providers: [
         BlocProvider<HashesListBloc>(
           create: (final _) => di_setup.getIt<HashesListBloc>(),
+        ),
+        BlocProvider<ContactsBloc>(
+          create: (final _) => di_setup.getIt<ContactsBloc>(),
         ),
         BlocProvider<SettingsConfigCubit>(
           create: (final _) => di_setup.getIt<SettingsConfigCubit>(),

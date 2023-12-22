@@ -9,6 +9,7 @@ import 'package:threedpass/features/settings_page/domain/entities/global_setting
 import 'package:threedpass/features/settings_page/domain/entities/preview_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
+import 'package:threedpass/features/wallet_screen/add_contact_page/domain/entities/contact.dart';
 
 Future<void> hiveSetup() async {
   Hive.registerAdapter<HashObject>(HashObjectAdapter());
@@ -19,6 +20,7 @@ Future<void> hiveSetup() async {
   Hive.registerAdapter<WalletSettings>(WalletSettingsAdapter());
   Hive.registerAdapter<PreviewSettings>(PreviewSettingsAdapter());
   Hive.registerAdapter<AppSettings>(AppSettingsAdapter());
+  Hive.registerAdapter<Contact>(ContactAdapter());
 
   final Directory defaultDirectory = await getApplicationDocumentsDirectory();
   Hive.init(defaultDirectory.path + '/storages');
