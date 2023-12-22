@@ -10,6 +10,7 @@ import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
+import 'package:threedpass/features/accounts/domain/rawseed_text.dart';
 import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/header_info.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/text_info.dart';

@@ -25,8 +25,8 @@ class NotificationsIconButton extends StatelessWidget {
         }
         bool hasErrors = false;
         for (final notification in state.notifications) {
-          if (notification.status == ExtrisincStatus.failed ||
-              notification.status == ExtrisincStatus.error) {
+          if (notification.status == ExtrinsicStatus.failed ||
+              notification.status == ExtrinsicStatus.error) {
             hasErrors = true;
           }
         }

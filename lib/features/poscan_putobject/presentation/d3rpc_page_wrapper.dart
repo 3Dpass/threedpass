@@ -26,6 +26,7 @@ class D3PRPCPageWrapper extends StatelessWidget implements AutoRouteWrapper {
         filePath: state.snapshot.realPath,
         initialAccount: initialAccount,
         initialHashes: state.snapshot.hashes,
+        localSnapshotName: state.snapshot.name,
         putObjectUseCase: getIt<PutObject>(),
       ),
       child: this,

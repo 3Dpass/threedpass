@@ -3,6 +3,7 @@ import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/poscan_putobject/data/poscan_repository.dart';
 import 'package:threedpass/features/poscan_putobject/domain/usecases/put_object_usecase.dart';
+import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 
 class DIPreviewPage extends DIModule {
   @override
@@ -16,6 +17,7 @@ class DIPreviewPage extends DIModule {
     getIt.registerLazySingleton<PutObject>(
       () => PutObject(
         repository: getIt<PoScanRepository>(),
+        notificationsBloc: getIt<NotificationsBloc>(),
       ),
     );
   }

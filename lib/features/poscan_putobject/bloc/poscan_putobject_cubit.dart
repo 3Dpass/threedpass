@@ -34,6 +34,7 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
     required this.fileHash,
     required this.filePath,
     required this.putObjectUseCase,
+    required this.localSnapshotName,
     required final List<String> initialHashes,
     required final KeyPairData initialAccount,
   }) : super(
@@ -52,6 +53,7 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
   final TextEditingController accountPassword = TextEditingController();
   final int fileHash;
   final String filePath;
+  final String localSnapshotName;
 
   bool fastCheckPassed = false;
 
@@ -112,9 +114,8 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
 
     fastCheckPassed = false;
 
-    // TODO Add notification
-
     final params = PutObjectParams(
+      localSnapshotName: localSnapshotName,
       account: state.account,
       password: accountPassword.text,
       nApprovals: int.parse(nApprovalsController.text),

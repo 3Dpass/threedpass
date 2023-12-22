@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/utils/validators.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
 
 class CreateAccountForm extends StatelessWidget {
@@ -53,20 +54,20 @@ class CreateAccountForm extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(height: 16),
+              const SizedBoxH16(),
               D3pTextFormField(
                 labelText: 'create_credentials_name'.tr(),
                 controller: _nameCtrl,
                 validator: _nameValidator,
               ),
-              const SizedBox(height: 16),
+              const SizedBoxH16(),
               D3pTextFormField(
                 labelText: 'create_credentials_password'.tr(),
                 controller: _passCtrl,
                 obscureText: true,
                 validator: _passValidator,
               ),
-              const SizedBox(height: 16),
+              const SizedBoxH16(),
               D3pTextFormField(
                 labelText: 'create_credentials_password2'.tr(),
                 controller: _pass2Ctrl,

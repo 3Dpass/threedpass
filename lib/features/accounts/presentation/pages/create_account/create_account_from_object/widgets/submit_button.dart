@@ -7,7 +7,7 @@ class _SubmitButton extends StatelessWidget {
 
   void onSubmit(final BuildContext context) {
     BlocProvider.of<AccountStoreBloc>(context).add(
-      SetAccountSeed(seed: '0x' + chosenHash.value),
+      SetRawseed(RawseedText(chosenHash.value)),
     );
 
     context.router.push(

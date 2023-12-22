@@ -19,7 +19,7 @@ abstract class _$AssetHistorySetMetadataCWProxy {
 
   AssetHistorySetMetadata symbol(String symbol);
 
-  AssetHistorySetMetadata extrisincStatus(ExtrisincStatus extrisincStatus);
+  AssetHistorySetMetadata extrisincStatus(ExtrinsicStatus extrisincStatus);
 
   AssetHistorySetMetadata blockNumber(int blockNumber);
 
@@ -36,7 +36,7 @@ abstract class _$AssetHistorySetMetadataCWProxy {
     String? decimals,
     String? name,
     String? symbol,
-    ExtrisincStatus? extrisincStatus,
+    ExtrinsicStatus? extrisincStatus,
     int? blockNumber,
   });
 }
@@ -70,7 +70,7 @@ class _$AssetHistorySetMetadataCWProxyImpl
   AssetHistorySetMetadata symbol(String symbol) => this(symbol: symbol);
 
   @override
-  AssetHistorySetMetadata extrisincStatus(ExtrisincStatus extrisincStatus) =>
+  AssetHistorySetMetadata extrisincStatus(ExtrinsicStatus extrisincStatus) =>
       this(extrisincStatus: extrisincStatus);
 
   @override
@@ -127,7 +127,7 @@ class _$AssetHistorySetMetadataCWProxyImpl
               extrisincStatus == null
           ? _value.extrisincStatus
           // ignore: cast_nullable_to_non_nullable
-          : extrisincStatus as ExtrisincStatus,
+          : extrisincStatus as ExtrinsicStatus,
       blockNumber:
           blockNumber == const $CopyWithPlaceholder() || blockNumber == null
               ? _value.blockNumber

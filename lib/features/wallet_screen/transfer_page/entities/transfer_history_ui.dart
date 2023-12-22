@@ -23,7 +23,7 @@ class TransferHistoryUI {
   final int decimals;
 
   final DateTime? blockDateTime;
-  final ExtrisincStatus? extrisincStatus;
+  final ExtrinsicStatus? extrisincStatus;
 }
 
 enum TransferDirection { from, to, all }

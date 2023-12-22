@@ -7,7 +7,7 @@ import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 import 'package:threedpass/setup.dart';
 
 typedef TransactionsCallback = void Function({
-  required ExtrisincStatus status,
+  required ExtrinsicStatus status,
   required String? message,
 });
 
@@ -53,11 +53,11 @@ class TxUpdateEventLogsHandler extends WebLogsHandler {
 
     if (title == "system.ExtrinsicSuccess") {
       getIt<Logger>().d('Found ExtrinsicSuccess for $msgId');
-      setTransactionResult(status: ExtrisincStatus.success, message: null);
+      setTransactionResult(status: ExtrinsicStatus.success, message: null);
     } else if (title == 'system.ExtrinsicFailed') {
       getIt<Logger>().d('Found ExtrinsicFailed for $msgId');
       setTransactionResult(
-        status: ExtrisincStatus.failed,
+        status: ExtrinsicStatus.failed,
         message: message,
       );
     }
@@ -65,12 +65,12 @@ class TxUpdateEventLogsHandler extends WebLogsHandler {
     if (title.contains('error')) {
       if (message.contains('password check failed')) {
         setTransactionResult(
-          status: ExtrisincStatus.error,
+          status: ExtrinsicStatus.error,
           message: message,
         );
       } else {
         setTransactionResult(
-          status: ExtrisincStatus.failed,
+          status: ExtrinsicStatus.failed,
           message: message,
         );
       }

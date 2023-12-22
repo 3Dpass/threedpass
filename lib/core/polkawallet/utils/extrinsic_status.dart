@@ -1,1 +1,1 @@
-enum ExtrisincStatus { error, loading, success, failed }
+enum ExtrinsicStatus { error, loading, success, failed }

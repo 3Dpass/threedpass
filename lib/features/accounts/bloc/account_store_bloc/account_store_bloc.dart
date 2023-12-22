@@ -6,6 +6,7 @@ import 'package:polkawallet_sdk/api/types/recoveryInfo.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/features/accounts/domain/account_advanced_options.dart';
 import 'package:threedpass/features/accounts/domain/account_info.dart';
+import 'package:threedpass/features/accounts/domain/rawseed_text.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 part 'account_store_event.dart';
@@ -15,7 +16,6 @@ part 'account_store_bloc.g.dart';
 class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
   AccountStoreBloc(this.outerContext) : super(_AccountStoreStateInitial()) {
     on<SetCredentials>(_setCredentials);
-    on<SetAccountSeed>(_setAccountSeed);
     on<GenerateMnemonicKey>(_generateMnemonicKey);
     on<PopToRoout>(_popToRoout);
     on<ChangeAdvancedOptions>(_changeAdvancedOptions);
@@ -66,13 +66,15 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
   }
 
   Future<void> _setRawseed(
-      final SetRawseed event,
-      final Emitter<AccountStoreState> emit,
-      ) async {
+    final SetRawseed event,
+    final Emitter<AccountStoreState> emit,
+  ) async {
     emit(
       state.copyWith(
-        newAccount: state.newAccount.copyWithTyped(
-          seedKey: event.rawseed,
+        newAccount: AccountCreateSeed(
+          seed: event.rawseed.fixedSeed,
+          name: '',
+          password: '',
         ),
       ),
     );
@@ -99,20 +101,5 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     } else {
       addError('Mnemonic was not generated');
     }
-  }
-
-  Future<void> _setAccountSeed(
-    final SetAccountSeed event,
-    final Emitter<AccountStoreState> emit,
-  ) async {
-    emit(
-      state.copyWith(
-        newAccount: AccountCreateSeed(
-          seed: event.seed,
-          name: '',
-          password: '',
-        ),
-      ),
-    );
   }
 }
