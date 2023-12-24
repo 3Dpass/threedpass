@@ -53,7 +53,7 @@ extension ToText on ScanSettings {
               style: medium,
             ),
             TextSpan(
-              text: i != tags.length - 1 ? '; ' : ';',
+              text: i != tags.length - 1 ? '; ' : '',
               style: medium.copyWith(color: D3pColors.disabled),
             ),
           ],

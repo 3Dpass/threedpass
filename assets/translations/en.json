@@ -356,5 +356,7 @@
     "poscan_putobject_choose_category": "Category",
     "account_never_null": "Please choose an account",
     "notifications_title": "Transactions",
-    "extrinsic_status": "Extrinsic:"
+    "extrinsic_status": "Extrinsic:",
+    "objects_list_header": "Objects list",
+    "uploaded_object_title": "Uploaded object"
 }

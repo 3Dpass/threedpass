@@ -17,8 +17,7 @@ class D3PRPCPageWrapper extends StatelessWidget implements AutoRouteWrapper {
     final fileHash = state.snapshot.fileHash;
 
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
-    final accounts = appService.keyring.allAccounts;
-    final initialAccount = accounts.first;
+    final initialAccount = appService.keyring.current;
 
     return BlocProvider(
       create: (final context) => PoscanPutObjectCubit(

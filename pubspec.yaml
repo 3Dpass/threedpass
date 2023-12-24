@@ -61,10 +61,10 @@ dependencies:
   path_provider: ^2.1.0
   hive: ^2.2.3
   polkawallet_sdk: #0.5.1
-    # path: ../polkawallet_sdk
-    git:
-        url: https://github.com/L3odr0id/polkawallet_sdk.git
-        ref: 6b1c0e2e712f41090f9a12cbeae3617b0daec751 # release/0.5.1 # branch name
+    path: ../polkawallet_sdk
+    # git:
+    #     url: https://github.com/L3odr0id/polkawallet_sdk.git
+    #     ref: 6b1c0e2e712f41090f9a12cbeae3617b0daec751 # release/0.5.1 # branch name
 
   ## Code gen
   copy_with_extension: ^5.0.3

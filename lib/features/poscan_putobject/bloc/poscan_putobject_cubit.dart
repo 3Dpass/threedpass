@@ -142,7 +142,5 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
       DefaultLoadingDialog.hide(context);
       unawaited(Fluttertoast.showToast(msg: message));
     }
-
-    // TODO Set notification final
   }
 }

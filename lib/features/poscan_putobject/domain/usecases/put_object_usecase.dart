@@ -1,27 +1,29 @@
 import 'package:polkawallet_sdk/p3d/prop_value.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 import 'package:threedpass/core/utils/usecase.dart';
 import 'package:threedpass/features/poscan_putobject/data/poscan_repository.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
+import 'package:threedpass/features/poscan_putobject/domain/entities/put_object_global_handler.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 
 class PutObject extends UseCase<void, PutObjectParams> {
   final PoScanRepository repository;
   final NotificationsBloc notificationsBloc;
+  final AppServiceLoaderCubit appServiceLoaderCubit;
 
   const PutObject({
     required this.repository,
     required this.notificationsBloc,
+    required this.appServiceLoaderCubit,
   });
 
   @override
   Future<Either<Failure, void>> call(
     final PutObjectParams params,
   ) async {
-    bool innerFastCheckPassed = false;
-
     final notificationLoading = NotificationPutObject(
       account: params.account,
       localSnapshotName: params.localSnapshotName,
@@ -34,58 +36,55 @@ class PutObject extends UseCase<void, PutObjectParams> {
     );
 
     final res = await repository.putObject(
-      account: params.account,
-      password: params.password,
-      nApprovals: params.nApprovals,
-      pathToFile: params.pathToFile,
-      categoryFabric: params.categoryFabric,
-      hashes: params.hashes,
-      propValues: params.propValues,
+      params: params,
       updateStatus: () {
-        innerFastCheckPassed = true;
         params.updateStatus();
+      },
+      msgIdCallback: (final msgId) {
+        appServiceLoaderCubit.state.plugin.sdk.api.service.webView!
+            .addGlobalHandler(
+          PutObjectGlobalHandler(
+            msgId: msgId,
+            notificationsBloc: notificationsBloc,
+            initialN: notificationLoading,
+            webViewRunner:
+                appServiceLoaderCubit.state.plugin.sdk.api.service.webView!,
+          ),
+        );
       },
     );
 
-    updateNotification(notificationLoading, res, innerFastCheckPassed);
+    // updateNotification(notificationLoading, res, innerFastCheckPassed);
 
     return res;
   }
 
   /// Set the result of extrinsic
-  void updateNotification(
-    final NotificationPutObject initialN,
-    final Either<Failure, void> res,
-    final bool innerFastCheckPassed,
-  ) {
-    res.when(
-      left: (final e) {
-        final notificationError = initialN.copyWith(
-          status: innerFastCheckPassed
-              ? ExtrinsicStatus.failed
-              : ExtrinsicStatus.error,
-          message: e.cause,
-        );
-        notificationsBloc.add(
-          UpdateNotification(
-            newN: notificationError,
-            oldN: initialN,
-          ),
-        );
-      },
-      right: (final _) {
-        final notificationSuccess = initialN.copyWith(
-          status: ExtrinsicStatus.success,
-        );
-        notificationsBloc.add(
-          UpdateNotification(
-            newN: notificationSuccess,
-            oldN: initialN,
-          ),
-        );
-      },
-    );
-  }
+  // void updateNotification(
+  //   final NotificationPutObject initialN,
+  //   final Either<Failure, void> res,
+  //   final bool innerFastCheckPassed,
+  // ) {
+  //   res.when(
+  //     left: (final e) {
+  //       final notificationError = initialN.copyWith(
+  //         status: innerFastCheckPassed
+  //             ? ExtrinsicStatus.failed
+  //             : ExtrinsicStatus.error,
+  //         message: e.cause,
+  //       );
+  //       notificationsBloc.add(
+  //         UpdateNotification(
+  //           newN: notificationError,
+  //           oldN: initialN,
+  //         ),
+  //       );
+  //     },
+  //     right: (final res) {
+  //       // Just close loading dialog and exit from putobject screnn
+  //     },
+  //   );
+  // }
 }
 
 class PutObjectParams {

@@ -18,6 +18,7 @@ class DIPreviewPage extends DIModule {
       () => PutObject(
         repository: getIt<PoScanRepository>(),
         notificationsBloc: getIt<NotificationsBloc>(),
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
       ),
     );
   }
