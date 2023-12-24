@@ -82,7 +82,7 @@
     "algorithm_button_label": "Scan algorithm",
     "grid_size_label": "Grid size",
     "n_sections_label": "N Sections",
-    "n_sections_help": "Tip. Use 66-68 sections for Grid2d and 15-16 for Grid2d_v2, Grid2d_v3.",
+    "n_sections_help": "Tip. Use 66-68 sections for Grid2d and 12-16 for Grid2d_v2, Grid2d_v3.",
     "trans_bytes_input_label": "Rotation bytes",
     "trans_bytes_empty_input": "Random",
     "error_n_sections_validator": "N Sections must be a number",
@@ -335,7 +335,7 @@
     "no_top_hashes_found": "No hashes found",
     "top_hashes_empty_text": "This is interesting behavior. Perhaps scanning with other settings will find real hashes.",
     "chosen_file_to_upload_to_3drpc": "File: {}",
-    "file_hash_title": "File hash",
+    "file_hash_title": "Local file hash",
     "x_hashes_chosen": "{} chosen",
     "n_approvals_hint": "Enter desired number of approvals",
     "from_address_dropdown_hint": "Choose account",
@@ -358,5 +358,7 @@
     "notifications_title": "Transactions",
     "extrinsic_status": "Extrinsic:",
     "objects_list_header": "Objects list",
-    "uploaded_object_title": "Uploaded object"
+    "uploaded_object_title": "Uploaded object",
+    "local_snapshots_with_same_hashes": "Local snapshots with same hashes",
+    "file_hash_subtitle_scan_list": "Local file hash: "
 }

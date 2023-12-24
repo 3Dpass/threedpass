@@ -29,7 +29,7 @@ class UploadedObjectFabric {
 
   List<String> hashes() {
     return (raw['hashes'] as List<dynamic>)
-        .map((final dynamic e) => e.toString())
+        .map((final dynamic e) => e.toString().substring(2))
         .toList();
   }
 

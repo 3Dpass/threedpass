@@ -7,7 +7,7 @@ import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_putobject/bloc/poscan_putobject_cubit.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
-import 'package:threedpass/features/poscan_putobject/presentation/d3prpc_widgets/open_bottom_sheet.dart';
+import 'package:threedpass/features/poscan_putobject/presentation/widgets/open_bottom_sheet.dart';
 import 'package:threedpass/features/poscan_putobject/utils/capitalize_first.dart';
 
 class ChooseCategory extends StatelessWidget {

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -51,13 +52,19 @@ class SnapshotConnectedToUploaded extends StatelessWidget {
         SizedBox(
           height: topPadding,
         ),
-        D3pBodyMediumText('Local snapshots with same hashes'),
+        const D3pBodyMediumText(
+          'local_snapshots_with_same_hashes',
+          color: D3pColors.disabled,
+        ),
         ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: similarSnapshots.length,
           itemBuilder: (final context, final index) {
-            return D3pBodyMediumText(similarSnapshots[index].name);
+            return D3pBodyMediumText(
+              similarSnapshots[index].name,
+              translate: false,
+            );
           },
         ),
       ],

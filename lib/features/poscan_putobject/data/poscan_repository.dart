@@ -23,6 +23,12 @@ class PoScanRepository {
     try {
       final file = File(params.pathToFile);
       final bytes = file.readAsBytesSync();
+      // print(params.pathToFile);
+      // print(file.readAsBytesSync());
+      // print(file.readAsBytesSync().length);
+      // print('0x${bytes.toList().map((e) => e.toRadixString(16)).join('')}');
+
+      // return const Either.left(NoDataFailure('res is not a Map'));
 
       bool flag = true;
 

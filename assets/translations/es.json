@@ -73,7 +73,7 @@
     "algorithm_button_label": "Algoritmo de escaneo",
     "grid_size_label": "Tamaño de la cuadrícula",
     "n_sections_label": "Secciones N",
-    "n_sections_help": "Consejo. Usa 66-68 secciones para Grid2d y 15-16 para Grid2d_v2, Grid2d_v3.",
+    "n_sections_help": "Consejo. Usa 66-68 secciones para Grid2d y 12-16 para Grid2d_v2, Grid2d_v3.",
     "trans_bytes_input_label": "Bytes de rotación",
     "trans_bytes_empty_input": "Aleatorio",
     "error_n_sections_validator": "Las secciones N deben ser un número",

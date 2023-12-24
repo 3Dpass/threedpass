@@ -26,6 +26,7 @@ class CalcBindings {
     int par2,
     ffi.Pointer<ffi.UnsignedChar> trans,
     ffi.Pointer<ffi.UnsignedChar> version,
+    int version_len,
   ) {
     return _calc(
       input,
@@ -34,6 +35,7 @@ class CalcBindings {
       par2,
       trans,
       version,
+      version_len,
     );
   }
 
@@ -45,10 +47,17 @@ class CalcBindings {
               ffi.Short,
               ffi.Short,
               ffi.Pointer<ffi.UnsignedChar>,
-              ffi.Pointer<ffi.UnsignedChar>)>>('calc');
+              ffi.Pointer<ffi.UnsignedChar>,
+              ffi.Int)>>('calc');
   late final _calc = _calcPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.UnsignedChar>, int, int,
-          int, ffi.Pointer<ffi.UnsignedChar>, ffi.Pointer<ffi.UnsignedChar>)>();
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.UnsignedChar>,
+          int,
+          int,
+          int,
+          ffi.Pointer<ffi.UnsignedChar>,
+          ffi.Pointer<ffi.UnsignedChar>,
+          int)>();
 
   ffi.Pointer<ffi.Char> versionInterface() {
     return _versionInterface();
