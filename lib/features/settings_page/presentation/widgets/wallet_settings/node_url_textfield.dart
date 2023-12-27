@@ -26,8 +26,8 @@ class NodeUrlTextfield extends StatelessWidget {
     return D3pTextFormField(
       controller: textEditingController,
       labelText: 'node_url_label'.tr(),
-      labelButton: Text('Reset'.tr()),
-      onLabelButtonPressed: () => onResetButtonPressed(context),
+      suffixButton: Icons.restore_outlined,
+      onSuffixButtonPressed: () => onResetButtonPressed(context),
       autofocus: true,
     );
   }

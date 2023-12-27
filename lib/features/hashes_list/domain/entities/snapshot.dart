@@ -72,6 +72,7 @@ class Snapshot {
     for (final snap in hashObject.snapshots) {
       setOfHashes.addAll(snap.hashes);
     }
+    setOfHashes.remove('');
 
     // find at least one common hash
     bool hasCommonHash = false;
@@ -82,5 +83,9 @@ class Snapshot {
     }
 
     return hasCommonHash;
+  }
+
+  bool get withEmptyHashes {
+    return hashes.isEmpty || (hashes.first.isEmpty && hashes.length == 1);
   }
 }

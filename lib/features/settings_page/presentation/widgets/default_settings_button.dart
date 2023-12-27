@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/utils/empty_function.dart';
+import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/core/widgets/other/right_chevron.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 
@@ -17,6 +19,8 @@ class DefaultSettingsButton extends StatelessWidget {
     required this.onPressedBool,
     required this.textValue,
     required this.initialValue,
+    required this.cardShape,
+    required this.isChevronGrey,
   });
 
   const DefaultSettingsButton.openButton({
@@ -24,7 +28,9 @@ class DefaultSettingsButton extends StatelessWidget {
     required this.iconData,
     required this.text,
     required this.onPressed,
+    required this.cardShape,
     this.textValue,
+    this.isChevronGrey = true,
     super.key,
   })  : isBoolean = false,
         initialValue = null,
@@ -36,6 +42,8 @@ class DefaultSettingsButton extends StatelessWidget {
     required this.text,
     required this.initialValue,
     required this.onPressedBool,
+    required this.cardShape,
+    this.isChevronGrey = true,
     super.key,
   })  : isBoolean = true,
         onPressed = emptyFunction,
@@ -49,6 +57,8 @@ class DefaultSettingsButton extends StatelessWidget {
   final bool isBoolean;
   final bool? initialValue;
   final void Function(bool) onPressedBool;
+  final CardShape cardShape;
+  final bool isChevronGrey;
 
   @override
   Widget build(final BuildContext context) {
@@ -62,6 +72,8 @@ class DefaultSettingsButton extends StatelessWidget {
         textValue: textValue,
         initialValue: initialValue,
         onPressed: onPressed,
+        cardShape: cardShape,
+        isChevronGrey: isChevronGrey,
       ),
     );
   }
@@ -77,6 +89,8 @@ class _ArgumentsDTO {
     required this.textValue,
     required this.initialValue,
     required this.onPressed,
+    required this.cardShape,
+    required this.isChevronGrey,
   });
 
   final IconData iconData;
@@ -87,6 +101,8 @@ class _ArgumentsDTO {
   final bool? initialValue;
   final void Function(bool) onPressedBool;
   final void Function()? onPressed;
+  final CardShape cardShape;
+  final bool isChevronGrey;
 }
 
 class _WrapCard extends StatelessWidget {
@@ -124,12 +140,18 @@ class _WrappedInkWellBase extends StatelessWidget {
   Widget build(final BuildContext context) {
     final child = _ButtonBase(args);
 
-    return args.isBoolean
-        ? child
-        : InkWell(
-            onTap: args.onPressed != null ? () => args.onPressed!() : null,
-            child: child,
-          );
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: D3pCard(
+        cardShape: args.cardShape,
+        child: args.isBoolean
+            ? child
+            : InkWell(
+                onTap: args.onPressed != null ? () => args.onPressed!() : null,
+                child: child,
+              ),
+      ),
+    );
   }
 }
 
@@ -140,6 +162,8 @@ class _ButtonBase extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final colors = Theme.of(context).customColors;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       child: _SettingsButtonContent(
@@ -150,6 +174,7 @@ class _ButtonBase extends StatelessWidget {
         boolValue: args.initialValue,
         isBoolean: args.isBoolean,
         onPressedBool: args.onPressedBool,
+        chevronColor: args.isChevronGrey ? colors.moreFadedGrey : null,
       ),
     );
   }
@@ -165,6 +190,7 @@ class _SettingsButtonContent extends StatelessWidget {
     required this.boolValue,
     required this.isBoolean,
     required this.onPressedBool,
+    required this.chevronColor,
   });
 
   final IconData iconData;
@@ -174,6 +200,7 @@ class _SettingsButtonContent extends StatelessWidget {
   final bool isBoolean;
   final bool? boolValue;
   final void Function(bool) onPressedBool;
+  final Color? chevronColor;
   // final void Function() onPressed;
 
   @override
@@ -194,7 +221,10 @@ class _SettingsButtonContent extends StatelessWidget {
           isBoolean
               ? _BoolSwitch(value: boolValue!, onChanged: onPressedBool)
               : Flexible(
-                  child: _Value(value: value),
+                  child: _Value(
+                    value: value,
+                    chevronColor: chevronColor,
+                  ),
                 ),
         ],
       ),
@@ -236,8 +266,10 @@ class _BoolSwitch extends StatelessWidget {
 class _Value extends StatelessWidget {
   const _Value({
     required this.value,
+    required this.chevronColor,
   });
   final String? value;
+  final Color? chevronColor;
 
   @override
   Widget build(final BuildContext context) {
@@ -249,7 +281,7 @@ class _Value extends StatelessWidget {
           Flexible(
             child: _ValueText(value: value),
           ),
-        const RightChevron(),
+        RightChevron(color: chevronColor),
       ],
     );
   }

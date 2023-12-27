@@ -81,6 +81,7 @@ extension TitleCustomText on CustomTextStyles {
 }
 
 extension BodyCustomText on CustomTextStyles {
+  TextStyle get d3pReallyLarge => d3pBodyLarge.copyWith(fontSize: 18);
   TextStyle get d3pBodyLarge =>
       themeData.textTheme.bodyLarge!.copyWith(color: _themeOpposite);
   TextStyle get d3pBodyMedium =>
@@ -106,4 +107,9 @@ extension Buttons on CustomTextStyles {
       );
 
   TextStyle get hintStyle => d3pBodySmall.copyWith(color: D3pColors.disabled);
+}
+
+extension TextInput on CustomTextStyles {
+  TextStyle get textInputHintStyle =>
+      d3pBodyMedium.copyWith(color: D3pColors.disabled);
 }

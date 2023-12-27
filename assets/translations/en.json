@@ -27,11 +27,6 @@
     "@home_page":{
     },
     "calc_hashes_loader_text":"Calculating hashes...",
-    "snap_card_name": "Name: ",
-    "snap_card_stamp": "Stamp: ",
-    "saved_objects_header": "Saved objects",
-    "object_title_prefix": "Object -",
-    "snapshots_subtitle": "snapshots:",
 
     "recognize_your_objects":"Recognize your objects",
     "open_web_wallet_button_label": "Open web wallet",
@@ -54,16 +49,12 @@
     },
     "matches_FOUND": "found",
     "WHY_not_found": "Why?",
-    "save_this_object_button_label":"Save this object",
-    "save_this_snapshot_button_label":"Save this snapshot",
+    "save_this_object_button_label":"Save object",
+    "save_this_snapshot_button_label":"Save snapshot",
     "rename_this_snapshot_button_label":"Rename this snapshot",
-    "top_10_hashes": "Hash ID",
-    "get_new_object_appbar": "Get a new one",
-    "show_and_share_dialog_button": "Show and share",
-    "delete_snapshot_button": "Remove & clear the cache",
 
-    "stable_hashes_list_title": "Stable hashes:",
-    "no_stable_hash_placeholder": "No stable hash found.",
+    "stable_hashes_list_title": "Stable hashes",
+    "no_stable_hash_placeholder": "No stable hash found",
     "no_stable_hash_help": "To get a stable hash, try to scan the object several times with the same scan settings.",
 
     "@rename_snap_dialog":{
@@ -91,7 +82,7 @@
     "algorithm_button_label": "Scan algorithm",
     "grid_size_label": "Grid size",
     "n_sections_label": "N Sections",
-    "n_sections_help": "Tip. Use 66-68 sections for Grid2d and 15-16 for Grid2d_v2, Grid2d_v3.",
+    "n_sections_help": "Tip. Use 66-68 sections for Grid2d and 12-16 for Grid2d_v2, Grid2d_v3.",
     "trans_bytes_input_label": "Rotation bytes",
     "trans_bytes_empty_input": "Random",
     "error_n_sections_validator": "N Sections must be a number",
@@ -111,7 +102,7 @@
 
     "pixel_ratio_help_text": "Decreasing the value reduces preview quality, but increases performance.",
     
-    "settings_text_span_title": "Scan properties:",
+    "settings_text_span_title": "Scan properties",
     "algorithm_span": "Algorithm",
     "grid_span":"Grid",
     "n_sections_span": "nSections",
@@ -197,6 +188,7 @@
 
     "import_account_type_title": "Import account from...",
     "create_type_mnemonic": "Mnemonic",
+    "create_type_rawseed": "Raw Seed",
     "create_type_object": "3D Object",
     "create_account_from_object": "Create account from 3D Object",
 
@@ -207,12 +199,17 @@
     "create_from_object_error_no_stable_hashes": "ERROR. No objects with stable hashes found.",
 
     "import_type_mnemonic": "Mnemonic",
+    "import_type_rawseed": "Raw Seed",
 
     "import_mnemonic_hint": "Enter mnemonic",
     "import_mnemonic_preview_placeholder": "Enter mnemonic to see address",
 
+    "import_rawseed_hint": "Enter raw seed",
+    "import_rawseed_preview_placeholder": "Enter raw seed to see address",
+
     "invalid_input": "Invalid input",
     "error_mnemonic_not_found": "Error: mnemonic not found",
+    "error_rawseed_not_found": "Error: raw seed not found",
     "error_empty_account_address": "Address can't be empty",
 
     "no_stable_hash_dialog_title": "No stable hash",
@@ -223,7 +220,7 @@
     "balance_avaliable_title": "Available",
     "balance_locked_title": "Locked",
     "balance_reserved_title": "Reserved",
-    "transfer_coins_button_label": "Transfer",
+    "transfer_coins_button_label": "Send",
     "recieve_coins_button_label": "Recieve",
     "remove_account_button_label": "Delete account",
 
@@ -297,8 +294,6 @@
 
     "@2.8.0":{
     },
-    "notifications_titile": "Transactions",
-    "transfer_status": "Transfer status:",
     "status_pending": "Pending",
     "status_success": "Success",
     "status_failed": "Failed",
@@ -311,5 +306,59 @@
     "add_account_from_label": "Add accout to send FROM",
     "add_account_to_label": "Add accout to send TO",
     "password_hint_1": "Press ",
-    "password_hint_2": " to copy the password of the account above"
+    "password_hint_2": " to copy the password of the account above",
+
+    "@3.0.0":{
+    },
+    "top_hashes_title": "Top hashes",
+    "copy_hash_button_text": "Copy",
+    "HASHES_number_plural":{
+        "zero": "0 hashes",
+        "one": "{} hash",
+        "two": "{} hashes",
+        "few": "{} hashes",
+        "many": "{} hashes",
+        "other": "{} hashes"
+    },
+    "stable_hashes_copied_toast": "Stable hashes copied",
+    "scan_properties_copied_toast": "Scan properties copied",
+    "top_hashes_copied_toast": "Top hashes copied",
+    "trans_bytes_copied_toast": "Rotation bytes copied",
+    "file_hash_copied": "File hash copied",
+    "unsaved_object_appbar": "Unnamed object",
+    "delete_new_snapshot": "Don't save snapshot",
+    "delete_extisting_snapshot": "Delete snapshot",
+    "delete_snapshot_confirm_title": "Do you want to delete {}?",
+    "explore_hashes_button_title": "Compare hashes",
+    "upload_to_3d_rpc_title": "Put object",
+    "3d_rpc_button_label": "Put object",
+    "no_top_hashes_found": "No hashes found",
+    "top_hashes_empty_text": "This is interesting behavior. Perhaps scanning with other settings will find real hashes.",
+    "chosen_file_to_upload_to_3drpc": "File: {}",
+    "file_hash_title": "Local file hash",
+    "x_hashes_chosen": "{} chosen",
+    "n_approvals_hint": "Enter desired number of approvals",
+    "from_address_dropdown_hint": "Choose account",
+    "poscan_putobject_choose_account": "Account",
+    "poscan_putobject_choose_napprovals": "nApprovals",
+    "poscan_putobject_choose_hashes": "Hashes",
+    "poscan_putobject_fees_warning": "This transaction takes fees",
+    "Submit": "Submit",
+    "poscan_putobject_choose_properties": "Properties (optional)",
+    "PROPERTIES_number_plural": {
+        "zero": "0 properties chosen",
+        "one": "{} property chosen",
+        "two": "{} properties chosen",
+        "few": "{} properties chosen",
+        "many": "{} properties chosen",
+        "other": "{} properties chosen"
+    },
+    "poscan_putobject_choose_category": "Category",
+    "account_never_null": "Please choose an account",
+    "notifications_title": "Transactions",
+    "extrinsic_status": "Extrinsic:",
+    "objects_list_header": "Objects list",
+    "uploaded_object_title": "Uploaded object",
+    "local_snapshots_with_same_hashes": "Local snapshots with same hashes",
+    "file_hash_subtitle_scan_list": "Local file hash: "
 }

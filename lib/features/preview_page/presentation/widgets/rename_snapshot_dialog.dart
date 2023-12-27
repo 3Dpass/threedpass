@@ -38,7 +38,7 @@ class RenameSnapshotDialog extends StatelessWidget {
 
     final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
     // TODO When rename object do bloc_builder instead of re-push
-    outerContext.router.popUntilRouteWithName(InitialWrapperRoute.name);
+    await outerContext.router.pop();
 
     unawaited(
       outerContext.router.push(

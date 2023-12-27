@@ -54,6 +54,9 @@ class D3pElevatedButton extends StatelessWidget {
           material: (final context, final platform) =>
               MaterialElevatedButtonData(
             style: ButtonStyle(
+              foregroundColor: foregroundColor != null
+                  ? MaterialStateProperty.all(foregroundColor)
+                  : null,
               backgroundColor: backgroundColor != null
                   ? MaterialStateProperty.all(backgroundColor)
                   : null,
@@ -97,12 +100,12 @@ class _ElevatedButtonChild extends StatelessWidget {
     return Row(
       mainAxisAlignment: childAlignment ?? MainAxisAlignment.center,
       children: [
-        (icon != null || iconData != null)
-            ? _Icon(
-                icon: icon,
-                iconData: iconData,
-              )
-            : const SizedBox(),
+        if (icon != null || iconData != null)
+          _Icon(
+            icon: icon,
+            iconData: iconData,
+            isTextEmpty: text.isEmpty,
+          ),
         Text(
           text,
         ),
@@ -115,11 +118,15 @@ class _Icon extends StatelessWidget {
   const _Icon({
     required this.iconData,
     required this.icon,
+    required this.isTextEmpty,
     final Key? key,
   }) : super(key: key);
 
   final IconData? iconData;
   final Widget? icon;
+  final bool isTextEmpty;
+
+  double get padding => isTextEmpty ? 0 : 8;
 
   @override
   Widget build(final BuildContext context) {
@@ -130,12 +137,12 @@ class _Icon extends StatelessWidget {
 
     if (iconData != null) {
       return Padding(
-        padding: const EdgeInsets.only(right: 8),
+        padding: EdgeInsets.only(right: padding),
         child: Icon(iconData),
       );
     } else if (icon != null) {
       return Padding(
-        padding: const EdgeInsets.only(right: 8),
+        padding: EdgeInsets.only(right: padding),
         child: icon,
       );
     } else {

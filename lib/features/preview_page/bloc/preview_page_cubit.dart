@@ -13,8 +13,13 @@ abstract class PreviewPageCubitState {
   });
 
   HashObject? get hashObject;
+  PreviewSnapshotType get psType;
 
   final Snapshot snapshot;
+
+  bool get isNew =>
+      psType == PreviewSnapshotType.newObject ||
+      psType == PreviewSnapshotType.newSnapshot;
 }
 
 class PreviewNewObject extends PreviewPageCubitState {
@@ -24,6 +29,9 @@ class PreviewNewObject extends PreviewPageCubitState {
 
   @override
   HashObject? get hashObject => null;
+
+  @override
+  PreviewSnapshotType get psType => PreviewSnapshotType.newObject;
 }
 
 class PreviewNewSnapshot extends PreviewPageCubitState {
@@ -34,6 +42,9 @@ class PreviewNewSnapshot extends PreviewPageCubitState {
 
   @override
   final HashObject hashObject;
+
+  @override
+  PreviewSnapshotType get psType => PreviewSnapshotType.newSnapshot;
 }
 
 class PreviewExistingSnapshot extends PreviewPageCubitState {
@@ -44,4 +55,9 @@ class PreviewExistingSnapshot extends PreviewPageCubitState {
 
   @override
   final HashObject hashObject;
+
+  @override
+  PreviewSnapshotType get psType => PreviewSnapshotType.existingSnapshot;
 }
+
+enum PreviewSnapshotType { newObject, newSnapshot, existingSnapshot }

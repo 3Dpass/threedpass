@@ -30,6 +30,7 @@ class CreateAccountTypePage extends StatelessWidget {
             const SizedBoxH8(),
             const _Item(CreateType.mnemonic),
             const _D3ObjectItem(),
+            const _Item(CreateType.rawseed),
           ],
         ),
       ],
@@ -51,6 +52,9 @@ class _Item extends StatelessWidget {
       case CreateType.mnemonic:
         context.router.push(ImportMnemonicFormRoute());
         break;
+      case CreateType.rawseed:
+        context.router.push(ImportRawseedFormRoute());
+        break;
     }
   }
 
@@ -58,6 +62,8 @@ class _Item extends StatelessWidget {
     switch (createType) {
       case CreateType.mnemonic:
         return 'create_type_mnemonic'.tr();
+      case CreateType.rawseed:
+        return 'create_type_rawseed'.tr();
     }
   }
 
@@ -112,4 +118,4 @@ class _D3ObjectItem extends StatelessWidget {
   }
 }
 
-enum CreateType { mnemonic }
+enum CreateType { mnemonic, rawseed }

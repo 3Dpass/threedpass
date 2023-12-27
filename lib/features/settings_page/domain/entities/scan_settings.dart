@@ -30,7 +30,7 @@ class ScanSettings extends Equatable {
   const ScanSettings.defaultValues()
       : gridSize = 8,
         algorithm = AlgorithmMaster.defaultAlgo,
-        nSections = 15,
+        nSections = 12,
         libVersion = 'unknown',
         transBytes = '';
 
@@ -46,7 +46,7 @@ class ScanSettings extends Equatable {
     String algorithm = this.algorithm;
     if (!AlgorithmMaster.list.contains(algorithm)) {
       // If algo is deprecated, migrate slowly
-      algorithm = AlgorithmMaster.grid2d_0_3_3_v1;
+      algorithm = AlgorithmMaster.defaultAlgo;
     }
 
     return this.copyWith(

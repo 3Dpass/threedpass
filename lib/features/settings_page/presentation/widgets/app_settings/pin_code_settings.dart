@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
+import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/core/widgets/screen_lock/d3p_screen_lock_create_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
@@ -52,6 +53,7 @@ class _NoPasswordSet extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return DefaultSettingsButton.openButton(
+      cardShape: CardShape.bottom,
       iconData: Icons.key,
       iconColor: Colors.amber,
       textValue: '',
@@ -93,6 +95,7 @@ class _PasswordWasSet extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return DefaultSettingsButton.openButton(
+      cardShape: CardShape.bottom,
       iconData: Icons.key_off,
       iconColor: Colors.amber,
       textValue: '',

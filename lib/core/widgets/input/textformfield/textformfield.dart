@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:threedpass/core/theme/d3p_colors.dart';
+import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
-import 'package:threedpass/core/utils/empty_function.dart';
+import 'package:threedpass/core/theme/d3p_text_input_theme.dart';
+import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 
 part 'suffix_button.dart';
@@ -34,8 +33,8 @@ class D3pTextFormField extends StatelessWidget {
     this.makeLabelOutside = false,
     this.contentPadding =
         const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-    this.focusedBorder,
-    this.border,
+    // this.focusedBorder,
+    // this.border,
     this.bottomWidget,
     super.key,
   }) : controller = controller ?? TextEditingController();
@@ -54,29 +53,23 @@ class D3pTextFormField extends StatelessWidget {
   final String? hintText;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
-  final Widget? labelButton;
+  final IconData? labelButton;
   final String? labelText;
   final int? maxLen;
   final int? maxLines;
-  final Widget? suffixButton;
+  final IconData? suffixButton;
   final bool obscureText;
   final bool isCollapsed;
   final bool autofocus;
   final EdgeInsetsGeometry contentPadding;
-  final InputBorder? border;
-  final InputBorder? focusedBorder;
 
   final bool makeLabelOutside;
 
-  TextStyle hintStyle(final CustomTextStyles textStyles) {
-    return textStyles.d3pBodyMedium.copyWith(color: D3pColors.disabled);
-  }
-
   int? get mMaxLines => obscureText ? 1 : maxLines ?? 1;
   // double? get mHeight => labelText == null ? 44 : null;
-  InputBorder get defaultFocusedBorder => UnderlineInputBorder(
-        borderSide: BorderSide(color: D3pThemeData.mainColor),
-      );
+  // InputBorder get defaultFocusedBorder => OutlineInputBorder(
+  //       borderSide: BorderSide(color: D3pThemeData.mainColor, width: 1),
+  //     );
 
   @override
   Widget build(final BuildContext context) {
@@ -96,14 +89,14 @@ class D3pTextFormField extends StatelessWidget {
             ],
           ),
         SizedBox(
-          // height: 55,
+          // height: 48,
           child: TextFormField(
             style: textStyle.d3pBodyLarge,
             decoration: InputDecoration(
-              isDense: true,
+              isDense: false,
               filled: true,
-              border: border,
-              focusedBorder: focusedBorder ?? defaultFocusedBorder,
+              border: D3pTextInputTheme.border,
+              focusedBorder: D3pTextInputTheme.focusedBorder,
               contentPadding: contentPadding,
               label: makeLabelOutside ? null : _Label(labelText).build(context),
               suffixIcon: _SuffixButton(
@@ -113,7 +106,7 @@ class D3pTextFormField extends StatelessWidget {
                 onSuffixButtonPressed: onSuffixButtonPressed,
               ).build(context),
               hintText: hintText,
-              hintStyle: hintStyle(textStyle),
+              hintStyle: textStyle.textInputHintStyle,
               isCollapsed: isCollapsed,
             ),
             autofocus: autofocus,

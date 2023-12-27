@@ -19,7 +19,7 @@ class ScanPage extends StatelessWidget {
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.all(24),
               child: GetObjectFromFileFloatingButton(),
             ),
           ),

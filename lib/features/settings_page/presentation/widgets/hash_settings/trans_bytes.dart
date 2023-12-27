@@ -32,7 +32,7 @@ class _State extends State<TransBytesInputField> {
     return D3pTextFormField(
       controller: widget.controller,
       labelText: 'trans_bytes_input_label'.tr(),
-      suffixButton: Text('Clear'.tr()),
+      suffixButton: Icons.clear,
       onSuffixButtonPressed: () => onClearPressed(context),
       // onChanged: (final value) => changeSettings(value ?? '', context),
       validator: (final input) => TransBytesInput(input ?? '').isValid,

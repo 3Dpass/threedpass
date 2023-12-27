@@ -13,10 +13,6 @@ AutoRoute previewPageRoute = AutoRoute(
       page: CompareRouteWrapper.page,
     ),
     CustomRoute(
-      page: SaveTopHashesRoute.page,
-      customRouteBuilder: dialogBuilder,
-    ),
-    CustomRoute(
       page: SaveObjectRoute.page,
       customRouteBuilder: dialogBuilder,
     ),
@@ -27,6 +23,19 @@ AutoRoute previewPageRoute = AutoRoute(
     CustomRoute(
       page: RenameSnapshotRoute.page,
       customRouteBuilder: dialogBuilder,
+    ),
+    CustomRoute(
+      page: DeleteSnapshotRoute.page,
+      customRouteBuilder: dialogBuilder,
+    ),
+    AutoRoute(
+      page: D3PRPCRouteWrapper.page,
+      children: [
+        AutoRoute(
+          page: D3PRPCRoute.page,
+          path: '',
+        ),
+      ],
     ),
   ],
 );

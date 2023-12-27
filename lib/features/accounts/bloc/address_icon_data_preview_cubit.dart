@@ -3,6 +3,7 @@ import 'package:polkawallet_sdk/api/apiKeyring.dart';
 import 'package:polkawallet_sdk/api/types/addressIconData.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
+import 'package:threedpass/features/accounts/domain/rawseed_text.dart';
 
 class AddressIconDataPreviewCubit extends Cubit<AddressIconData?> {
   AddressIconDataPreviewCubit(this.appServiceCubit) : super(null);
@@ -20,6 +21,22 @@ class AddressIconDataPreviewCubit extends Cubit<AddressIconData?> {
       cryptoType: cryptoType,
       derivePath: derivePath,
       mnemonic: inputMnemonic,
+    );
+
+    emit(addressInfo);
+  }
+
+  Future<void> updateInfoFromRawseed(
+    final RawseedText inputRawseed, {
+    final CryptoType cryptoType = defaultCryptoType,
+    final String derivePath = '',
+  }) async {
+    final addressInfo =
+        await appServiceCubit.state.plugin.sdk.api.keyring.addressFromRawSeed(
+      appServiceCubit.state.networkStateData.ss58Format!,
+      cryptoType: cryptoType,
+      derivePath: derivePath,
+      rawSeed: inputRawseed.fixedSeed,
     );
 
     emit(addressInfo);

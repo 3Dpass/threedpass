@@ -14,18 +14,18 @@ class ComparePage extends StatelessWidget {
       appbarTitle: 'compare_page_appbar',
       body: Column(
         children: [
-          Flexible(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: CompareRow(),
-            ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: CompareRow(),
           ),
           Divider(
-            height: 15,
-            thickness: 3,
-            color: Colors.black,
+            height: 16,
+            thickness: 2,
+            // color: Colors.black,
           ),
-          CompareTable(),
+          Flexible(
+            child: CompareTable(),
+          ),
         ],
       ),
     );

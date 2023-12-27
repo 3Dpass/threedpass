@@ -89,7 +89,7 @@ class _State extends State<ObjectPreview> {
 
   double get height => 250;
 
-  double get width => screenSize.width - 16 * 2;
+  double get width => screenSize.width;
 
   SnackBar errorSnackBar() => SnackBar(
         content: Text(

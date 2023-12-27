@@ -37,6 +37,7 @@ class CompareTable extends StatelessWidget {
             const SizedBoxH16(),
             Flexible(
               child: ListView.separated(
+                padding: const EdgeInsets.only(bottom: 24),
                 shrinkWrap: true,
                 itemBuilder: (final context, final index) =>
                     AppTableRow(rowData: rowsData[index]),
@@ -67,17 +68,52 @@ class RowsData {
 
   List<RowData> build() {
     final rowsData = <RowData>[];
-    for (final mainHash in mainObject.hashes) {
-      if (objectToCompare.hashes.contains(mainHash)) {
-        rowsData.add(
-          RowData(
-            rank1: (mainObject.hashes.indexOf(mainHash) + 1).toString(),
-            hash: mainHash,
-            rank2: (objectToCompare.hashes.indexOf(mainHash) + 1).toString(),
-            isStableHash: stableHashes.contains(mainHash),
-          ),
-        );
+    final setOfAdded = <String>{};
+
+    final allMainHashes = mainObject.hashes;
+
+    int j = 0; // second object counter
+
+    for (int i = 0; i < allMainHashes.length; i++) {
+      final hash = allMainHashes[i];
+      if (hash.isEmpty) continue;
+
+      setOfAdded.add(hash);
+
+      final sndObjHasHash = objectToCompare.hashes.contains(hash);
+
+      if (sndObjHasHash) {
+        j++;
       }
+
+      rowsData.add(
+        RowData(
+          rank1: (i + 1).toString(),
+          hash: hash,
+          rank2: sndObjHasHash ? '$j' : '',
+          isStableHash: stableHashes.contains(hash),
+        ),
+      );
+    }
+
+    final sndHashes = objectToCompare.hashes;
+
+    for (int i = 0; i < sndHashes.length; i++) {
+      final hash = sndHashes[i];
+      if (hash.isEmpty) continue;
+
+      if (setOfAdded.contains(hash)) continue;
+
+      j++;
+
+      rowsData.add(
+        RowData(
+          rank1: '',
+          hash: hash,
+          rank2: '$j',
+          isStableHash: stableHashes.contains(hash),
+        ),
+      );
     }
 
     return rowsData;

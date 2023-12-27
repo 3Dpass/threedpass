@@ -77,7 +77,9 @@ class ImportMnemonicFormPage extends StatelessWidget {
         ),
         needHorizontalPadding: false,
         children: [
-          const AddressIconPreview(),
+          const AddressIconPreview(
+            placeholderText: 'import_mnemonic_preview_placeholder',
+          ),
           const SizedBox(height: 16),
           Column(
             children: [

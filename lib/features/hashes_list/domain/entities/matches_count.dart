@@ -3,6 +3,7 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 /// Calc how many snapshots include same hashes as the given snapshot
 class MatchesCount {
+  // TODO Use it somewhere
   final HashObject? object;
   final Snapshot snapshot;
 

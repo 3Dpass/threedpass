@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/presentation/widgets/hash_primitive_item.dart';
 
 class HashesPrimitiveList extends StatelessWidget {
   const HashesPrimitiveList({
-    required this.hashesModel,
+    required this.hashes,
     final Key? key,
   }) : super(key: key);
 
-  final Snapshot hashesModel;
+  final List<String> hashes;
 
   @override
   Widget build(final BuildContext context) {
-    final int len = hashesModel.hashes.length;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: List<Widget>.generate(
-        len,
-        (final int index) => Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: HashPrimitiveItem(
-            hash: hashesModel.hashes[index],
-          ),
-        ),
+    return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      // padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      itemCount: hashes.length,
+      itemBuilder: (final context, final index) => HashPrimitiveItem(
+        hash: '${index + 1}. ${hashes[index]}',
       ),
     );
   }

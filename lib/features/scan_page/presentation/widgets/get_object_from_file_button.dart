@@ -1,12 +1,10 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logger/logger.dart';
-import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/file_copy.dart';
@@ -58,7 +56,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       scanIsolateCubit: BlocProvider.of<ScanIsolateCubit>(context),
       // recievePort: recievePort,
     );
-
+    // TODO Do return with enum of possible situations instead of random try-catches
     try {
       final objectsDirectory = getIt<ObjectsDirectory>();
       final pickedFilePath = await FilePickerShortCut().pickFile();
@@ -101,19 +99,16 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Row(
-      children: [
-        const Spacer(),
-        Flexible(
-          child: D3pElevatedButton(
-            iconData: Icons.folder_open,
-            text: 'get_from_file_button_label'.tr(),
-            onPressed: () => createHashFromFile(
-              context,
-            ),
-          ),
-        ),
-      ],
+    return FloatingActionButton(
+      // shape: const RoundedRectangleBorder(
+      //   borderRadius: BorderRadius.all(
+      //     Radius.circular(4),
+      //   ),
+      // ),
+      child: const Icon(Icons.folder_open_rounded),
+      onPressed: () => createHashFromFile(
+        context,
+      ),
     );
   }
 }
