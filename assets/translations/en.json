@@ -308,7 +308,7 @@
     "password_hint_1": "Press ",
     "password_hint_2": " to copy the password of the account above",
 
-    "@3.0.0":{
+    "@2.10.0":{
     },
     "top_hashes_title": "Top hashes",
     "copy_hash_button_text": "Copy",

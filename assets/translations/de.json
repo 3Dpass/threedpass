@@ -309,7 +309,7 @@
     "password_hint_1": "Drücken Sie ",
     "password_hint_2": " um das Passwort des obigen Accounts zu kopieren",
 
-    "@3.0.0":{
+    "@2.10.0":{
     },
     "top_hashes_title": "Top-Hashes",
     "copy_hash_button_text": "Kopieren",
