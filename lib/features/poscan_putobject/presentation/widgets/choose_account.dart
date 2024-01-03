@@ -45,7 +45,9 @@ class ChooseAccount extends StatelessWidget {
               .toList(),
           onChanged: (final obj) =>
               obj != null ? cubit.setAcc(obj) : emptyFunction(),
-          value: accounts.first,
+          value: accounts.firstWhere(
+            (final element) => cubit.state.account.pubKey == element.pubKey,
+          ),
           validator: (final value) =>
               value == null ? 'account_never_null'.tr() : null,
         ),

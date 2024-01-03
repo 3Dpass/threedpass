@@ -20,13 +20,16 @@ class ExploreHashesButton extends StatelessWidget {
     final fgColorBright = colors.themeOpposite;
     const fgColorDim = D3pColors.disabled;
 
+    final isActive =
+        state.hashObject != null && state.hashObject!.snapshots.length > 1;
+
     return Padding16(
       child: D3pElevatedButton(
         backgroundColor: bgColor,
         text: 'explore_hashes_button_title'.tr(),
-        foregroundColor: state.hashObject != null ? fgColorBright : fgColorDim,
+        foregroundColor: isActive ? fgColorBright : fgColorDim,
         iconData: Icons.compare_arrows_rounded,
-        onPressed: state.hashObject != null
+        onPressed: isActive
             ? () => context.router.push(
                   CompareRouteWrapper(
                     origObj: state.snapshot,

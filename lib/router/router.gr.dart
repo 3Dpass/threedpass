@@ -8,9 +8,9 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i49;
-import 'package:flutter/material.dart' as _i50;
-import 'package:flutter/widgets.dart' as _i55;
+import 'package:auto_route/auto_route.dart' as _i51;
+import 'package:flutter/material.dart' as _i52;
+import 'package:flutter/widgets.dart' as _i58;
 import 'package:threedpass/core/widgets/default_loading_dialog.dart' as _i1;
 import 'package:threedpass/core/widgets/error_page.dart' as _i2;
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_credentials.dart'
@@ -38,15 +38,17 @@ import 'package:threedpass/features/accounts/presentation/pages/no_stable_hash_d
 import 'package:threedpass/features/compare_page/presentation/pages/compare_page_wrapper.dart'
     as _i14;
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart'
-    as _i52;
+    as _i54;
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart'
-    as _i51;
+    as _i53;
 import 'package:threedpass/features/home_page/presentation/home_page.dart'
     as _i15;
 import 'package:threedpass/features/home_page/presentation/login_page.dart'
     as _i16;
 import 'package:threedpass/features/home_page/router/empty_initial_route.dart'
     as _i17;
+import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart'
+    as _i60;
 import 'package:threedpass/features/poscan_putobject/presentation/d3prpc_page.dart'
     as _i18;
 import 'package:threedpass/features/poscan_putobject/presentation/d3rpc_page_wrapper.dart'
@@ -70,7 +72,7 @@ import 'package:threedpass/features/scan_page/presentation/pages/scan_page_wrapp
 import 'package:threedpass/features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart'
     as _i28;
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart'
-    as _i53;
+    as _i55;
 import 'package:threedpass/features/settings_page/presentation/settings_page.dart'
     as _i29;
 import 'package:threedpass/features/settings_page/presentation/settings_sub_page/choose_algorithm_subpage.dart'
@@ -90,41 +92,47 @@ import 'package:threedpass/features/settings_page/presentation/settings_sub_page
 import 'package:threedpass/features/settings_page/router/empty_settings_route.dart'
     as _i37;
 import 'package:threedpass/features/wallet_screen/add_contact_page/add_contact_page.dart'
-    as _i48;
-import 'package:threedpass/features/wallet_screen/assets_page/remove_account_dialog.dart'
     as _i38;
-import 'package:threedpass/features/wallet_screen/contacts_page/contacts_page.dart'
-    as _i39;
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/get_extrinsics_usecase_params.dart'
-    as _i54;
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/non_native_token_wrapper.dart'
-    as _i40;
-import 'package:threedpass/features/wallet_screen/notifications_page/presentation/notifications_page.dart'
-    as _i41;
-import 'package:threedpass/features/wallet_screen/recieve_page/recieve_page.dart'
-    as _i42;
-import 'package:threedpass/features/wallet_screen/transactions_history/presentation/transactions_history_wrapper.dart'
-    as _i43;
-import 'package:threedpass/features/wallet_screen/transfer_page/entities/transfer_meta_dto.dart'
+import 'package:threedpass/features/wallet_screen/add_contact_page/domain/entities/contact.dart'
     as _i56;
-import 'package:threedpass/features/wallet_screen/transfer_page/transfer_page.dart'
+import 'package:threedpass/features/wallet_screen/assets_page/remove_account_dialog.dart'
+    as _i39;
+import 'package:threedpass/features/wallet_screen/contacts_page/contacts_page.dart'
+    as _i40;
+import 'package:threedpass/features/wallet_screen/contacts_page/widgets/delete_contact_dialog.dart'
+    as _i41;
+import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/get_extrinsics_usecase_params.dart'
+    as _i57;
+import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/non_native_token_wrapper.dart'
+    as _i42;
+import 'package:threedpass/features/wallet_screen/notifications_page/presentation/notifications_page.dart'
+    as _i43;
+import 'package:threedpass/features/wallet_screen/recieve_page/recieve_page.dart'
     as _i44;
-import 'package:threedpass/features/wallet_screen/transfer_page/transfer_page_wrapper.dart'
+import 'package:threedpass/features/wallet_screen/transactions_history/presentation/transactions_history_wrapper.dart'
     as _i45;
-import 'package:threedpass/features/wallet_screen/wallet_page/wallet_page.dart'
+import 'package:threedpass/features/wallet_screen/transfer_page/entities/transfer_meta_dto.dart'
+    as _i59;
+import 'package:threedpass/features/wallet_screen/transfer_page/transfer_page.dart'
     as _i46;
-import 'package:threedpass/features/wallet_screen/wallet_page/wallet_page_wrapper.dart'
+import 'package:threedpass/features/wallet_screen/transfer_page/transfer_page_wrapper.dart'
     as _i47;
+import 'package:threedpass/features/wallet_screen/uploaded_object_page/uploaded_object_page.dart'
+    as _i48;
+import 'package:threedpass/features/wallet_screen/wallet_page/wallet_page.dart'
+    as _i49;
+import 'package:threedpass/features/wallet_screen/wallet_page/wallet_page_wrapper.dart'
+    as _i50;
 
-abstract class $RootRouter extends _i49.RootStackRouter {
+abstract class $RootRouter extends _i51.RootStackRouter {
   $RootRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i49.PageFactory> pagesMap = {
+  final Map<String, _i51.PageFactory> pagesMap = {
     DefaultLoadingRoute.name: (routeData) {
       final args = routeData.argsAs<DefaultLoadingRouteArgs>(
           orElse: () => const DefaultLoadingRouteArgs());
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i1.DefaultLoadingDialog(
           key: args.key,
@@ -134,7 +142,7 @@ abstract class $RootRouter extends _i49.RootStackRouter {
     },
     ErrorRoute.name: (routeData) {
       final args = routeData.argsAs<ErrorRouteArgs>();
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i2.ErrorPage(
           error: args.error,
@@ -144,7 +152,7 @@ abstract class $RootRouter extends _i49.RootStackRouter {
     },
     CreateAccountCredentialsRoute.name: (routeData) {
       final args = routeData.argsAs<CreateAccountCredentialsRouteArgs>();
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i3.CreateAccountCredentialsPage(
           appbarText: args.appbarText,
@@ -153,51 +161,51 @@ abstract class $RootRouter extends _i49.RootStackRouter {
       );
     },
     CreateAccountFromObjectRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i4.CreateAccountFromObjectPage(),
       );
     },
     CreateAccountInfoRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i5.CreateAccountInfoPage(),
       );
     },
     CreateAccountLoaderRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i6.CreateAccountLoaderPage(),
       );
     },
     CreateAccountMnemonicBackupRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i7.CreateAccountMnemonicBackupPage(),
       );
     },
     CreateAccountMnemonicConfirmRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i8.CreateAccountMnemonicConfirmPage(),
       );
     },
     CreateAccountTypeRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i9.CreateAccountTypePage(),
       );
     },
     CreateAccountRouteWrapper.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i49.WrappedRoute(child: const _i10.CreateAccountPageWrapper()),
+        child: _i51.WrappedRoute(child: const _i10.CreateAccountPageWrapper()),
       );
     },
     ImportMnemonicFormRoute.name: (routeData) {
       final args = routeData.argsAs<ImportMnemonicFormRouteArgs>(
           orElse: () => const ImportMnemonicFormRouteArgs());
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i11.ImportMnemonicFormPage(key: args.key),
       );
@@ -205,20 +213,20 @@ abstract class $RootRouter extends _i49.RootStackRouter {
     ImportRawseedFormRoute.name: (routeData) {
       final args = routeData.argsAs<ImportRawseedFormRouteArgs>(
           orElse: () => const ImportRawseedFormRouteArgs());
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i12.ImportRawseedFormPage(key: args.key),
       );
     },
     NoStableHashRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i13.NoStableHashDialog(),
       );
     },
     CompareRouteWrapper.name: (routeData) {
       final args = routeData.argsAs<CompareRouteWrapperArgs>();
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i14.ComparePageWrapper(
           origObj: args.origObj,
@@ -228,7 +236,7 @@ abstract class $RootRouter extends _i49.RootStackRouter {
       );
     },
     HomeRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i15.HomePage(),
       );
@@ -236,7 +244,7 @@ abstract class $RootRouter extends _i49.RootStackRouter {
     LoginRoute.name: (routeData) {
       final args = routeData.argsAs<LoginRouteArgs>(
           orElse: () => const LoginRouteArgs());
-      return _i49.AutoRoutePage<bool>(
+      return _i51.AutoRoutePage<bool>(
         routeData: routeData,
         child: _i16.LoginPage(
           key: args.key,
@@ -245,34 +253,34 @@ abstract class $RootRouter extends _i49.RootStackRouter {
       );
     },
     InitialWrapperRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i17.EmptyInitialRoute(),
       );
     },
     D3PRPCRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i18.D3PRPCPage(),
       );
     },
     D3PRPCRouteWrapper.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i49.WrappedRoute(child: const _i19.D3PRPCPageWrapper()),
+        child: _i51.WrappedRoute(child: const _i19.D3PRPCPageWrapper()),
       );
     },
     PreviewRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i20.PreviewPage(),
       );
     },
     PreviewRouteWrapper.name: (routeData) {
       final args = routeData.argsAs<PreviewRouteWrapperArgs>();
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i49.WrappedRoute(
+        child: _i51.WrappedRoute(
             child: _i21.PreviewPageWrapper(
           hashObject: args.hashObject,
           snapshot: args.snapshot,
@@ -282,14 +290,14 @@ abstract class $RootRouter extends _i49.RootStackRouter {
       );
     },
     DeleteSnapshotRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i22.DeleteSnapshotDialog(),
       );
     },
     RenameSnapshotRoute.name: (routeData) {
       final args = routeData.argsAs<RenameSnapshotRouteArgs>();
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i23.RenameSnapshotDialog(
           snapshot: args.snapshot,
@@ -300,7 +308,7 @@ abstract class $RootRouter extends _i49.RootStackRouter {
     },
     SaveHashRoute.name: (routeData) {
       final args = routeData.argsAs<SaveHashRouteArgs>();
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i24.SaveHashDialog(
           snapshot: args.snapshot,
@@ -311,7 +319,7 @@ abstract class $RootRouter extends _i49.RootStackRouter {
     },
     SaveObjectRoute.name: (routeData) {
       final args = routeData.argsAs<SaveObjectRouteArgs>();
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i25.SaveObjectDialog(
           snapshot: args.snapshot,
@@ -320,50 +328,50 @@ abstract class $RootRouter extends _i49.RootStackRouter {
       );
     },
     ScanRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i26.ScanPage(),
       );
     },
     ScanRouteWrapper.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i49.WrappedRoute(child: const _i27.ScanPageWrapper()),
+        child: _i51.WrappedRoute(child: const _i27.ScanPageWrapper()),
       );
     },
     CalcHashLoadingRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i28.CalcHashLoadingDialog(),
       );
     },
     SettingsRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i29.SettingsPage(),
       );
     },
     ChooseAlgorithmSubRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i30.ChooseAlgorithmSubPage(),
       );
     },
     GridSizeSubRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i31.GridSizeSubPage(),
       );
     },
     PixelRatioSubRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i32.PixelRatioSubPage(),
       );
     },
     SectionsSubRoute.name: (routeData) {
       final args = routeData.argsAs<SectionsSubRouteArgs>();
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i33.SectionsSubPage(
           initialState: args.initialState,
@@ -373,7 +381,7 @@ abstract class $RootRouter extends _i49.RootStackRouter {
     },
     StableHashSubRoute.name: (routeData) {
       final args = routeData.argsAs<StableHashSubRouteArgs>();
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i34.StableHashSubPage(
           initialState: args.initialState,
@@ -383,7 +391,7 @@ abstract class $RootRouter extends _i49.RootStackRouter {
     },
     TransBytesSubRoute.name: (routeData) {
       final args = routeData.argsAs<TransBytesSubRouteArgs>();
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i35.TransBytesSubPage(
           initialState: args.initialState,
@@ -393,7 +401,7 @@ abstract class $RootRouter extends _i49.RootStackRouter {
     },
     WalletNodeSubRoute.name: (routeData) {
       final args = routeData.argsAs<WalletNodeSubRouteArgs>();
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i36.WalletNodeSubPage(
           initialState: args.initialState,
@@ -402,88 +410,108 @@ abstract class $RootRouter extends _i49.RootStackRouter {
       );
     },
     SettingsWrapperRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i37.EmptySettingsRoute(),
       );
     },
-    RemoveAccountRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+    AddContactRoute.name: (routeData) {
+      final args = routeData.argsAs<AddContactRouteArgs>(
+          orElse: () => const AddContactRouteArgs());
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i38.RemoveAccountDialog(),
+        child: _i38.AddContactPage(key: args.key),
+      );
+    },
+    RemoveAccountRoute.name: (routeData) {
+      return _i51.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i39.RemoveAccountDialog(),
       );
     },
     ContactsRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i39.ContactsPage(),
+        child: const _i40.ContactsPage(),
+      );
+    },
+    DeleteContactRoute.name: (routeData) {
+      final args = routeData.argsAs<DeleteContactRouteArgs>();
+      return _i51.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i41.DeleteContactDialog(
+          contact: args.contact,
+          key: args.key,
+        ),
       );
     },
     NonNativeTokenRouteWrapper.name: (routeData) {
       final args = routeData.argsAs<NonNativeTokenRouteWrapperArgs>();
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i40.NonNativeTokenPageWrapper(
+        child: _i42.NonNativeTokenPageWrapper(
           args.params,
           key: args.key,
         ),
       );
     },
     NotificationsRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i41.NotificationsPage(),
+        child: const _i43.NotificationsPage(),
       );
     },
     RecieveRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i42.RecievePage(),
+        child: const _i44.RecievePage(),
       );
     },
     TransactionsHistoryRouteWrapper.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i43.TransactionsHistoryPageWrapper(),
+        child: const _i45.TransactionsHistoryPageWrapper(),
       );
     },
     TransferRoute.name: (routeData) {
       final args = routeData.argsAs<TransferRouteArgs>(
           orElse: () => const TransferRouteArgs());
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i44.TransferPage(key: args.key),
+        child: _i46.TransferPage(key: args.key),
       );
     },
     TransferRouteWrapper.name: (routeData) {
       final args = routeData.argsAs<TransferRouteWrapperArgs>();
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i49.WrappedRoute(
-            child: _i45.TransferPageWrapper(
+        child: _i51.WrappedRoute(
+            child: _i47.TransferPageWrapper(
           metadata: args.metadata,
           key: args.key,
         )),
       );
     },
-    WalletRoute.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+    UploadedObjectRoute.name: (routeData) {
+      final args = routeData.argsAs<UploadedObjectRouteArgs>();
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i46.WalletPage(),
+        child: _i48.UploadedObjectPage(
+          uploadedObject: args.uploadedObject,
+          key: args.key,
+        ),
+      );
+    },
+    WalletRoute.name: (routeData) {
+      return _i51.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i49.WalletPage(),
       );
     },
     WalletRouteWrapper.name: (routeData) {
-      return _i49.AutoRoutePage<dynamic>(
+      return _i51.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i49.WrappedRoute(child: const _i47.WalletPageWrapper()),
-      );
-    },
-    AddContactRoute.name: (routeData) {
-      final args = routeData.argsAs<AddContactRouteArgs>(
-          orElse: () => const AddContactRouteArgs());
-      return _i49.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i48.AddContactPage(key: args.key),
+        child: _i51.WrappedRoute(child: const _i50.WalletPageWrapper()),
       );
     },
   };
@@ -491,11 +519,11 @@ abstract class $RootRouter extends _i49.RootStackRouter {
 
 /// generated route for
 /// [_i1.DefaultLoadingDialog]
-class DefaultLoadingRoute extends _i49.PageRouteInfo<DefaultLoadingRouteArgs> {
+class DefaultLoadingRoute extends _i51.PageRouteInfo<DefaultLoadingRouteArgs> {
   DefaultLoadingRoute({
-    _i50.Key? key,
+    _i52.Key? key,
     String? text,
-    List<_i49.PageRouteInfo>? children,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           DefaultLoadingRoute.name,
           args: DefaultLoadingRouteArgs(
@@ -507,8 +535,8 @@ class DefaultLoadingRoute extends _i49.PageRouteInfo<DefaultLoadingRouteArgs> {
 
   static const String name = 'DefaultLoadingRoute';
 
-  static const _i49.PageInfo<DefaultLoadingRouteArgs> page =
-      _i49.PageInfo<DefaultLoadingRouteArgs>(name);
+  static const _i51.PageInfo<DefaultLoadingRouteArgs> page =
+      _i51.PageInfo<DefaultLoadingRouteArgs>(name);
 }
 
 class DefaultLoadingRouteArgs {
@@ -517,7 +545,7 @@ class DefaultLoadingRouteArgs {
     this.text,
   });
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   final String? text;
 
@@ -529,11 +557,11 @@ class DefaultLoadingRouteArgs {
 
 /// generated route for
 /// [_i2.ErrorPage]
-class ErrorRoute extends _i49.PageRouteInfo<ErrorRouteArgs> {
+class ErrorRoute extends _i51.PageRouteInfo<ErrorRouteArgs> {
   ErrorRoute({
     required Object error,
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           ErrorRoute.name,
           args: ErrorRouteArgs(
@@ -545,8 +573,8 @@ class ErrorRoute extends _i49.PageRouteInfo<ErrorRouteArgs> {
 
   static const String name = 'ErrorRoute';
 
-  static const _i49.PageInfo<ErrorRouteArgs> page =
-      _i49.PageInfo<ErrorRouteArgs>(name);
+  static const _i51.PageInfo<ErrorRouteArgs> page =
+      _i51.PageInfo<ErrorRouteArgs>(name);
 }
 
 class ErrorRouteArgs {
@@ -557,7 +585,7 @@ class ErrorRouteArgs {
 
   final Object error;
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -568,11 +596,11 @@ class ErrorRouteArgs {
 /// generated route for
 /// [_i3.CreateAccountCredentialsPage]
 class CreateAccountCredentialsRoute
-    extends _i49.PageRouteInfo<CreateAccountCredentialsRouteArgs> {
+    extends _i51.PageRouteInfo<CreateAccountCredentialsRouteArgs> {
   CreateAccountCredentialsRoute({
     required String appbarText,
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           CreateAccountCredentialsRoute.name,
           args: CreateAccountCredentialsRouteArgs(
@@ -584,8 +612,8 @@ class CreateAccountCredentialsRoute
 
   static const String name = 'CreateAccountCredentialsRoute';
 
-  static const _i49.PageInfo<CreateAccountCredentialsRouteArgs> page =
-      _i49.PageInfo<CreateAccountCredentialsRouteArgs>(name);
+  static const _i51.PageInfo<CreateAccountCredentialsRouteArgs> page =
+      _i51.PageInfo<CreateAccountCredentialsRouteArgs>(name);
 }
 
 class CreateAccountCredentialsRouteArgs {
@@ -596,7 +624,7 @@ class CreateAccountCredentialsRouteArgs {
 
   final String appbarText;
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -606,8 +634,8 @@ class CreateAccountCredentialsRouteArgs {
 
 /// generated route for
 /// [_i4.CreateAccountFromObjectPage]
-class CreateAccountFromObjectRoute extends _i49.PageRouteInfo<void> {
-  const CreateAccountFromObjectRoute({List<_i49.PageRouteInfo>? children})
+class CreateAccountFromObjectRoute extends _i51.PageRouteInfo<void> {
+  const CreateAccountFromObjectRoute({List<_i51.PageRouteInfo>? children})
       : super(
           CreateAccountFromObjectRoute.name,
           initialChildren: children,
@@ -615,13 +643,13 @@ class CreateAccountFromObjectRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'CreateAccountFromObjectRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i5.CreateAccountInfoPage]
-class CreateAccountInfoRoute extends _i49.PageRouteInfo<void> {
-  const CreateAccountInfoRoute({List<_i49.PageRouteInfo>? children})
+class CreateAccountInfoRoute extends _i51.PageRouteInfo<void> {
+  const CreateAccountInfoRoute({List<_i51.PageRouteInfo>? children})
       : super(
           CreateAccountInfoRoute.name,
           initialChildren: children,
@@ -629,13 +657,13 @@ class CreateAccountInfoRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'CreateAccountInfoRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i6.CreateAccountLoaderPage]
-class CreateAccountLoaderRoute extends _i49.PageRouteInfo<void> {
-  const CreateAccountLoaderRoute({List<_i49.PageRouteInfo>? children})
+class CreateAccountLoaderRoute extends _i51.PageRouteInfo<void> {
+  const CreateAccountLoaderRoute({List<_i51.PageRouteInfo>? children})
       : super(
           CreateAccountLoaderRoute.name,
           initialChildren: children,
@@ -643,13 +671,13 @@ class CreateAccountLoaderRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'CreateAccountLoaderRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i7.CreateAccountMnemonicBackupPage]
-class CreateAccountMnemonicBackupRoute extends _i49.PageRouteInfo<void> {
-  const CreateAccountMnemonicBackupRoute({List<_i49.PageRouteInfo>? children})
+class CreateAccountMnemonicBackupRoute extends _i51.PageRouteInfo<void> {
+  const CreateAccountMnemonicBackupRoute({List<_i51.PageRouteInfo>? children})
       : super(
           CreateAccountMnemonicBackupRoute.name,
           initialChildren: children,
@@ -657,13 +685,13 @@ class CreateAccountMnemonicBackupRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'CreateAccountMnemonicBackupRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i8.CreateAccountMnemonicConfirmPage]
-class CreateAccountMnemonicConfirmRoute extends _i49.PageRouteInfo<void> {
-  const CreateAccountMnemonicConfirmRoute({List<_i49.PageRouteInfo>? children})
+class CreateAccountMnemonicConfirmRoute extends _i51.PageRouteInfo<void> {
+  const CreateAccountMnemonicConfirmRoute({List<_i51.PageRouteInfo>? children})
       : super(
           CreateAccountMnemonicConfirmRoute.name,
           initialChildren: children,
@@ -671,13 +699,13 @@ class CreateAccountMnemonicConfirmRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'CreateAccountMnemonicConfirmRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i9.CreateAccountTypePage]
-class CreateAccountTypeRoute extends _i49.PageRouteInfo<void> {
-  const CreateAccountTypeRoute({List<_i49.PageRouteInfo>? children})
+class CreateAccountTypeRoute extends _i51.PageRouteInfo<void> {
+  const CreateAccountTypeRoute({List<_i51.PageRouteInfo>? children})
       : super(
           CreateAccountTypeRoute.name,
           initialChildren: children,
@@ -685,13 +713,13 @@ class CreateAccountTypeRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'CreateAccountTypeRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i10.CreateAccountPageWrapper]
-class CreateAccountRouteWrapper extends _i49.PageRouteInfo<void> {
-  const CreateAccountRouteWrapper({List<_i49.PageRouteInfo>? children})
+class CreateAccountRouteWrapper extends _i51.PageRouteInfo<void> {
+  const CreateAccountRouteWrapper({List<_i51.PageRouteInfo>? children})
       : super(
           CreateAccountRouteWrapper.name,
           initialChildren: children,
@@ -699,16 +727,16 @@ class CreateAccountRouteWrapper extends _i49.PageRouteInfo<void> {
 
   static const String name = 'CreateAccountRouteWrapper';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i11.ImportMnemonicFormPage]
 class ImportMnemonicFormRoute
-    extends _i49.PageRouteInfo<ImportMnemonicFormRouteArgs> {
+    extends _i51.PageRouteInfo<ImportMnemonicFormRouteArgs> {
   ImportMnemonicFormRoute({
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           ImportMnemonicFormRoute.name,
           args: ImportMnemonicFormRouteArgs(key: key),
@@ -717,14 +745,14 @@ class ImportMnemonicFormRoute
 
   static const String name = 'ImportMnemonicFormRoute';
 
-  static const _i49.PageInfo<ImportMnemonicFormRouteArgs> page =
-      _i49.PageInfo<ImportMnemonicFormRouteArgs>(name);
+  static const _i51.PageInfo<ImportMnemonicFormRouteArgs> page =
+      _i51.PageInfo<ImportMnemonicFormRouteArgs>(name);
 }
 
 class ImportMnemonicFormRouteArgs {
   const ImportMnemonicFormRouteArgs({this.key});
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -735,10 +763,10 @@ class ImportMnemonicFormRouteArgs {
 /// generated route for
 /// [_i12.ImportRawseedFormPage]
 class ImportRawseedFormRoute
-    extends _i49.PageRouteInfo<ImportRawseedFormRouteArgs> {
+    extends _i51.PageRouteInfo<ImportRawseedFormRouteArgs> {
   ImportRawseedFormRoute({
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           ImportRawseedFormRoute.name,
           args: ImportRawseedFormRouteArgs(key: key),
@@ -747,14 +775,14 @@ class ImportRawseedFormRoute
 
   static const String name = 'ImportRawseedFormRoute';
 
-  static const _i49.PageInfo<ImportRawseedFormRouteArgs> page =
-      _i49.PageInfo<ImportRawseedFormRouteArgs>(name);
+  static const _i51.PageInfo<ImportRawseedFormRouteArgs> page =
+      _i51.PageInfo<ImportRawseedFormRouteArgs>(name);
 }
 
 class ImportRawseedFormRouteArgs {
   const ImportRawseedFormRouteArgs({this.key});
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -764,8 +792,8 @@ class ImportRawseedFormRouteArgs {
 
 /// generated route for
 /// [_i13.NoStableHashDialog]
-class NoStableHashRoute extends _i49.PageRouteInfo<void> {
-  const NoStableHashRoute({List<_i49.PageRouteInfo>? children})
+class NoStableHashRoute extends _i51.PageRouteInfo<void> {
+  const NoStableHashRoute({List<_i51.PageRouteInfo>? children})
       : super(
           NoStableHashRoute.name,
           initialChildren: children,
@@ -773,17 +801,17 @@ class NoStableHashRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'NoStableHashRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i14.ComparePageWrapper]
-class CompareRouteWrapper extends _i49.PageRouteInfo<CompareRouteWrapperArgs> {
+class CompareRouteWrapper extends _i51.PageRouteInfo<CompareRouteWrapperArgs> {
   CompareRouteWrapper({
-    required _i51.Snapshot origObj,
-    required _i52.HashObject hashObject,
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    required _i53.Snapshot origObj,
+    required _i54.HashObject hashObject,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           CompareRouteWrapper.name,
           args: CompareRouteWrapperArgs(
@@ -796,8 +824,8 @@ class CompareRouteWrapper extends _i49.PageRouteInfo<CompareRouteWrapperArgs> {
 
   static const String name = 'CompareRouteWrapper';
 
-  static const _i49.PageInfo<CompareRouteWrapperArgs> page =
-      _i49.PageInfo<CompareRouteWrapperArgs>(name);
+  static const _i51.PageInfo<CompareRouteWrapperArgs> page =
+      _i51.PageInfo<CompareRouteWrapperArgs>(name);
 }
 
 class CompareRouteWrapperArgs {
@@ -807,11 +835,11 @@ class CompareRouteWrapperArgs {
     this.key,
   });
 
-  final _i51.Snapshot origObj;
+  final _i53.Snapshot origObj;
 
-  final _i52.HashObject hashObject;
+  final _i54.HashObject hashObject;
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -821,8 +849,8 @@ class CompareRouteWrapperArgs {
 
 /// generated route for
 /// [_i15.HomePage]
-class HomeRoute extends _i49.PageRouteInfo<void> {
-  const HomeRoute({List<_i49.PageRouteInfo>? children})
+class HomeRoute extends _i51.PageRouteInfo<void> {
+  const HomeRoute({List<_i51.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -830,16 +858,16 @@ class HomeRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i16.LoginPage]
-class LoginRoute extends _i49.PageRouteInfo<LoginRouteArgs> {
+class LoginRoute extends _i51.PageRouteInfo<LoginRouteArgs> {
   LoginRoute({
-    _i50.Key? key,
+    _i52.Key? key,
     void Function(bool)? onLoginResult,
-    List<_i49.PageRouteInfo>? children,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           LoginRoute.name,
           args: LoginRouteArgs(
@@ -851,8 +879,8 @@ class LoginRoute extends _i49.PageRouteInfo<LoginRouteArgs> {
 
   static const String name = 'LoginRoute';
 
-  static const _i49.PageInfo<LoginRouteArgs> page =
-      _i49.PageInfo<LoginRouteArgs>(name);
+  static const _i51.PageInfo<LoginRouteArgs> page =
+      _i51.PageInfo<LoginRouteArgs>(name);
 }
 
 class LoginRouteArgs {
@@ -861,7 +889,7 @@ class LoginRouteArgs {
     this.onLoginResult,
   });
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   final void Function(bool)? onLoginResult;
 
@@ -873,8 +901,8 @@ class LoginRouteArgs {
 
 /// generated route for
 /// [_i17.EmptyInitialRoute]
-class InitialWrapperRoute extends _i49.PageRouteInfo<void> {
-  const InitialWrapperRoute({List<_i49.PageRouteInfo>? children})
+class InitialWrapperRoute extends _i51.PageRouteInfo<void> {
+  const InitialWrapperRoute({List<_i51.PageRouteInfo>? children})
       : super(
           InitialWrapperRoute.name,
           initialChildren: children,
@@ -882,13 +910,13 @@ class InitialWrapperRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'InitialWrapperRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i18.D3PRPCPage]
-class D3PRPCRoute extends _i49.PageRouteInfo<void> {
-  const D3PRPCRoute({List<_i49.PageRouteInfo>? children})
+class D3PRPCRoute extends _i51.PageRouteInfo<void> {
+  const D3PRPCRoute({List<_i51.PageRouteInfo>? children})
       : super(
           D3PRPCRoute.name,
           initialChildren: children,
@@ -896,13 +924,13 @@ class D3PRPCRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'D3PRPCRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i19.D3PRPCPageWrapper]
-class D3PRPCRouteWrapper extends _i49.PageRouteInfo<void> {
-  const D3PRPCRouteWrapper({List<_i49.PageRouteInfo>? children})
+class D3PRPCRouteWrapper extends _i51.PageRouteInfo<void> {
+  const D3PRPCRouteWrapper({List<_i51.PageRouteInfo>? children})
       : super(
           D3PRPCRouteWrapper.name,
           initialChildren: children,
@@ -910,13 +938,13 @@ class D3PRPCRouteWrapper extends _i49.PageRouteInfo<void> {
 
   static const String name = 'D3PRPCRouteWrapper';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i20.PreviewPage]
-class PreviewRoute extends _i49.PageRouteInfo<void> {
-  const PreviewRoute({List<_i49.PageRouteInfo>? children})
+class PreviewRoute extends _i51.PageRouteInfo<void> {
+  const PreviewRoute({List<_i51.PageRouteInfo>? children})
       : super(
           PreviewRoute.name,
           initialChildren: children,
@@ -924,18 +952,18 @@ class PreviewRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'PreviewRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i21.PreviewPageWrapper]
-class PreviewRouteWrapper extends _i49.PageRouteInfo<PreviewRouteWrapperArgs> {
+class PreviewRouteWrapper extends _i51.PageRouteInfo<PreviewRouteWrapperArgs> {
   PreviewRouteWrapper({
-    required _i52.HashObject? hashObject,
-    required _i51.Snapshot snapshot,
-    _i50.Key? key,
+    required _i54.HashObject? hashObject,
+    required _i53.Snapshot snapshot,
+    _i52.Key? key,
     bool createNewAnyway = false,
-    List<_i49.PageRouteInfo>? children,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           PreviewRouteWrapper.name,
           args: PreviewRouteWrapperArgs(
@@ -949,8 +977,8 @@ class PreviewRouteWrapper extends _i49.PageRouteInfo<PreviewRouteWrapperArgs> {
 
   static const String name = 'PreviewRouteWrapper';
 
-  static const _i49.PageInfo<PreviewRouteWrapperArgs> page =
-      _i49.PageInfo<PreviewRouteWrapperArgs>(name);
+  static const _i51.PageInfo<PreviewRouteWrapperArgs> page =
+      _i51.PageInfo<PreviewRouteWrapperArgs>(name);
 }
 
 class PreviewRouteWrapperArgs {
@@ -961,11 +989,11 @@ class PreviewRouteWrapperArgs {
     this.createNewAnyway = false,
   });
 
-  final _i52.HashObject? hashObject;
+  final _i54.HashObject? hashObject;
 
-  final _i51.Snapshot snapshot;
+  final _i53.Snapshot snapshot;
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   final bool createNewAnyway;
 
@@ -977,8 +1005,8 @@ class PreviewRouteWrapperArgs {
 
 /// generated route for
 /// [_i22.DeleteSnapshotDialog]
-class DeleteSnapshotRoute extends _i49.PageRouteInfo<void> {
-  const DeleteSnapshotRoute({List<_i49.PageRouteInfo>? children})
+class DeleteSnapshotRoute extends _i51.PageRouteInfo<void> {
+  const DeleteSnapshotRoute({List<_i51.PageRouteInfo>? children})
       : super(
           DeleteSnapshotRoute.name,
           initialChildren: children,
@@ -986,17 +1014,17 @@ class DeleteSnapshotRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'DeleteSnapshotRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i23.RenameSnapshotDialog]
-class RenameSnapshotRoute extends _i49.PageRouteInfo<RenameSnapshotRouteArgs> {
+class RenameSnapshotRoute extends _i51.PageRouteInfo<RenameSnapshotRouteArgs> {
   RenameSnapshotRoute({
-    required _i51.Snapshot snapshot,
-    required _i52.HashObject hashObject,
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    required _i53.Snapshot snapshot,
+    required _i54.HashObject hashObject,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           RenameSnapshotRoute.name,
           args: RenameSnapshotRouteArgs(
@@ -1009,8 +1037,8 @@ class RenameSnapshotRoute extends _i49.PageRouteInfo<RenameSnapshotRouteArgs> {
 
   static const String name = 'RenameSnapshotRoute';
 
-  static const _i49.PageInfo<RenameSnapshotRouteArgs> page =
-      _i49.PageInfo<RenameSnapshotRouteArgs>(name);
+  static const _i51.PageInfo<RenameSnapshotRouteArgs> page =
+      _i51.PageInfo<RenameSnapshotRouteArgs>(name);
 }
 
 class RenameSnapshotRouteArgs {
@@ -1020,11 +1048,11 @@ class RenameSnapshotRouteArgs {
     this.key,
   });
 
-  final _i51.Snapshot snapshot;
+  final _i53.Snapshot snapshot;
 
-  final _i52.HashObject hashObject;
+  final _i54.HashObject hashObject;
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -1034,12 +1062,12 @@ class RenameSnapshotRouteArgs {
 
 /// generated route for
 /// [_i24.SaveHashDialog]
-class SaveHashRoute extends _i49.PageRouteInfo<SaveHashRouteArgs> {
+class SaveHashRoute extends _i51.PageRouteInfo<SaveHashRouteArgs> {
   SaveHashRoute({
-    required _i51.Snapshot snapshot,
-    required _i52.HashObject hashObject,
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    required _i53.Snapshot snapshot,
+    required _i54.HashObject hashObject,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           SaveHashRoute.name,
           args: SaveHashRouteArgs(
@@ -1052,8 +1080,8 @@ class SaveHashRoute extends _i49.PageRouteInfo<SaveHashRouteArgs> {
 
   static const String name = 'SaveHashRoute';
 
-  static const _i49.PageInfo<SaveHashRouteArgs> page =
-      _i49.PageInfo<SaveHashRouteArgs>(name);
+  static const _i51.PageInfo<SaveHashRouteArgs> page =
+      _i51.PageInfo<SaveHashRouteArgs>(name);
 }
 
 class SaveHashRouteArgs {
@@ -1063,11 +1091,11 @@ class SaveHashRouteArgs {
     this.key,
   });
 
-  final _i51.Snapshot snapshot;
+  final _i53.Snapshot snapshot;
 
-  final _i52.HashObject hashObject;
+  final _i54.HashObject hashObject;
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -1077,11 +1105,11 @@ class SaveHashRouteArgs {
 
 /// generated route for
 /// [_i25.SaveObjectDialog]
-class SaveObjectRoute extends _i49.PageRouteInfo<SaveObjectRouteArgs> {
+class SaveObjectRoute extends _i51.PageRouteInfo<SaveObjectRouteArgs> {
   SaveObjectRoute({
-    required _i51.Snapshot snapshot,
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    required _i53.Snapshot snapshot,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           SaveObjectRoute.name,
           args: SaveObjectRouteArgs(
@@ -1093,8 +1121,8 @@ class SaveObjectRoute extends _i49.PageRouteInfo<SaveObjectRouteArgs> {
 
   static const String name = 'SaveObjectRoute';
 
-  static const _i49.PageInfo<SaveObjectRouteArgs> page =
-      _i49.PageInfo<SaveObjectRouteArgs>(name);
+  static const _i51.PageInfo<SaveObjectRouteArgs> page =
+      _i51.PageInfo<SaveObjectRouteArgs>(name);
 }
 
 class SaveObjectRouteArgs {
@@ -1103,9 +1131,9 @@ class SaveObjectRouteArgs {
     this.key,
   });
 
-  final _i51.Snapshot snapshot;
+  final _i53.Snapshot snapshot;
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -1115,8 +1143,8 @@ class SaveObjectRouteArgs {
 
 /// generated route for
 /// [_i26.ScanPage]
-class ScanRoute extends _i49.PageRouteInfo<void> {
-  const ScanRoute({List<_i49.PageRouteInfo>? children})
+class ScanRoute extends _i51.PageRouteInfo<void> {
+  const ScanRoute({List<_i51.PageRouteInfo>? children})
       : super(
           ScanRoute.name,
           initialChildren: children,
@@ -1124,13 +1152,13 @@ class ScanRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'ScanRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i27.ScanPageWrapper]
-class ScanRouteWrapper extends _i49.PageRouteInfo<void> {
-  const ScanRouteWrapper({List<_i49.PageRouteInfo>? children})
+class ScanRouteWrapper extends _i51.PageRouteInfo<void> {
+  const ScanRouteWrapper({List<_i51.PageRouteInfo>? children})
       : super(
           ScanRouteWrapper.name,
           initialChildren: children,
@@ -1138,13 +1166,13 @@ class ScanRouteWrapper extends _i49.PageRouteInfo<void> {
 
   static const String name = 'ScanRouteWrapper';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i28.CalcHashLoadingDialog]
-class CalcHashLoadingRoute extends _i49.PageRouteInfo<void> {
-  const CalcHashLoadingRoute({List<_i49.PageRouteInfo>? children})
+class CalcHashLoadingRoute extends _i51.PageRouteInfo<void> {
+  const CalcHashLoadingRoute({List<_i51.PageRouteInfo>? children})
       : super(
           CalcHashLoadingRoute.name,
           initialChildren: children,
@@ -1152,13 +1180,13 @@ class CalcHashLoadingRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'CalcHashLoadingRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i29.SettingsPage]
-class SettingsRoute extends _i49.PageRouteInfo<void> {
-  const SettingsRoute({List<_i49.PageRouteInfo>? children})
+class SettingsRoute extends _i51.PageRouteInfo<void> {
+  const SettingsRoute({List<_i51.PageRouteInfo>? children})
       : super(
           SettingsRoute.name,
           initialChildren: children,
@@ -1166,13 +1194,13 @@ class SettingsRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'SettingsRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i30.ChooseAlgorithmSubPage]
-class ChooseAlgorithmSubRoute extends _i49.PageRouteInfo<void> {
-  const ChooseAlgorithmSubRoute({List<_i49.PageRouteInfo>? children})
+class ChooseAlgorithmSubRoute extends _i51.PageRouteInfo<void> {
+  const ChooseAlgorithmSubRoute({List<_i51.PageRouteInfo>? children})
       : super(
           ChooseAlgorithmSubRoute.name,
           initialChildren: children,
@@ -1180,13 +1208,13 @@ class ChooseAlgorithmSubRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'ChooseAlgorithmSubRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i31.GridSizeSubPage]
-class GridSizeSubRoute extends _i49.PageRouteInfo<void> {
-  const GridSizeSubRoute({List<_i49.PageRouteInfo>? children})
+class GridSizeSubRoute extends _i51.PageRouteInfo<void> {
+  const GridSizeSubRoute({List<_i51.PageRouteInfo>? children})
       : super(
           GridSizeSubRoute.name,
           initialChildren: children,
@@ -1194,13 +1222,13 @@ class GridSizeSubRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'GridSizeSubRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i32.PixelRatioSubPage]
-class PixelRatioSubRoute extends _i49.PageRouteInfo<void> {
-  const PixelRatioSubRoute({List<_i49.PageRouteInfo>? children})
+class PixelRatioSubRoute extends _i51.PageRouteInfo<void> {
+  const PixelRatioSubRoute({List<_i51.PageRouteInfo>? children})
       : super(
           PixelRatioSubRoute.name,
           initialChildren: children,
@@ -1208,16 +1236,16 @@ class PixelRatioSubRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'PixelRatioSubRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i33.SectionsSubPage]
-class SectionsSubRoute extends _i49.PageRouteInfo<SectionsSubRouteArgs> {
+class SectionsSubRoute extends _i51.PageRouteInfo<SectionsSubRouteArgs> {
   SectionsSubRoute({
-    required _i53.GlobalSettings initialState,
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    required _i55.GlobalSettings initialState,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           SectionsSubRoute.name,
           args: SectionsSubRouteArgs(
@@ -1229,8 +1257,8 @@ class SectionsSubRoute extends _i49.PageRouteInfo<SectionsSubRouteArgs> {
 
   static const String name = 'SectionsSubRoute';
 
-  static const _i49.PageInfo<SectionsSubRouteArgs> page =
-      _i49.PageInfo<SectionsSubRouteArgs>(name);
+  static const _i51.PageInfo<SectionsSubRouteArgs> page =
+      _i51.PageInfo<SectionsSubRouteArgs>(name);
 }
 
 class SectionsSubRouteArgs {
@@ -1239,9 +1267,9 @@ class SectionsSubRouteArgs {
     this.key,
   });
 
-  final _i53.GlobalSettings initialState;
+  final _i55.GlobalSettings initialState;
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -1251,11 +1279,11 @@ class SectionsSubRouteArgs {
 
 /// generated route for
 /// [_i34.StableHashSubPage]
-class StableHashSubRoute extends _i49.PageRouteInfo<StableHashSubRouteArgs> {
+class StableHashSubRoute extends _i51.PageRouteInfo<StableHashSubRouteArgs> {
   StableHashSubRoute({
-    required _i53.GlobalSettings initialState,
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    required _i55.GlobalSettings initialState,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           StableHashSubRoute.name,
           args: StableHashSubRouteArgs(
@@ -1267,8 +1295,8 @@ class StableHashSubRoute extends _i49.PageRouteInfo<StableHashSubRouteArgs> {
 
   static const String name = 'StableHashSubRoute';
 
-  static const _i49.PageInfo<StableHashSubRouteArgs> page =
-      _i49.PageInfo<StableHashSubRouteArgs>(name);
+  static const _i51.PageInfo<StableHashSubRouteArgs> page =
+      _i51.PageInfo<StableHashSubRouteArgs>(name);
 }
 
 class StableHashSubRouteArgs {
@@ -1277,9 +1305,9 @@ class StableHashSubRouteArgs {
     this.key,
   });
 
-  final _i53.GlobalSettings initialState;
+  final _i55.GlobalSettings initialState;
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -1289,11 +1317,11 @@ class StableHashSubRouteArgs {
 
 /// generated route for
 /// [_i35.TransBytesSubPage]
-class TransBytesSubRoute extends _i49.PageRouteInfo<TransBytesSubRouteArgs> {
+class TransBytesSubRoute extends _i51.PageRouteInfo<TransBytesSubRouteArgs> {
   TransBytesSubRoute({
-    required _i53.GlobalSettings initialState,
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    required _i55.GlobalSettings initialState,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           TransBytesSubRoute.name,
           args: TransBytesSubRouteArgs(
@@ -1305,8 +1333,8 @@ class TransBytesSubRoute extends _i49.PageRouteInfo<TransBytesSubRouteArgs> {
 
   static const String name = 'TransBytesSubRoute';
 
-  static const _i49.PageInfo<TransBytesSubRouteArgs> page =
-      _i49.PageInfo<TransBytesSubRouteArgs>(name);
+  static const _i51.PageInfo<TransBytesSubRouteArgs> page =
+      _i51.PageInfo<TransBytesSubRouteArgs>(name);
 }
 
 class TransBytesSubRouteArgs {
@@ -1315,9 +1343,9 @@ class TransBytesSubRouteArgs {
     this.key,
   });
 
-  final _i53.GlobalSettings initialState;
+  final _i55.GlobalSettings initialState;
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -1327,11 +1355,11 @@ class TransBytesSubRouteArgs {
 
 /// generated route for
 /// [_i36.WalletNodeSubPage]
-class WalletNodeSubRoute extends _i49.PageRouteInfo<WalletNodeSubRouteArgs> {
+class WalletNodeSubRoute extends _i51.PageRouteInfo<WalletNodeSubRouteArgs> {
   WalletNodeSubRoute({
-    required _i53.GlobalSettings initialState,
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    required _i55.GlobalSettings initialState,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           WalletNodeSubRoute.name,
           args: WalletNodeSubRouteArgs(
@@ -1343,8 +1371,8 @@ class WalletNodeSubRoute extends _i49.PageRouteInfo<WalletNodeSubRouteArgs> {
 
   static const String name = 'WalletNodeSubRoute';
 
-  static const _i49.PageInfo<WalletNodeSubRouteArgs> page =
-      _i49.PageInfo<WalletNodeSubRouteArgs>(name);
+  static const _i51.PageInfo<WalletNodeSubRouteArgs> page =
+      _i51.PageInfo<WalletNodeSubRouteArgs>(name);
 }
 
 class WalletNodeSubRouteArgs {
@@ -1353,9 +1381,9 @@ class WalletNodeSubRouteArgs {
     this.key,
   });
 
-  final _i53.GlobalSettings initialState;
+  final _i55.GlobalSettings initialState;
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -1365,8 +1393,8 @@ class WalletNodeSubRouteArgs {
 
 /// generated route for
 /// [_i37.EmptySettingsRoute]
-class SettingsWrapperRoute extends _i49.PageRouteInfo<void> {
-  const SettingsWrapperRoute({List<_i49.PageRouteInfo>? children})
+class SettingsWrapperRoute extends _i51.PageRouteInfo<void> {
+  const SettingsWrapperRoute({List<_i51.PageRouteInfo>? children})
       : super(
           SettingsWrapperRoute.name,
           initialChildren: children,
@@ -1374,13 +1402,42 @@ class SettingsWrapperRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'SettingsWrapperRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i38.RemoveAccountDialog]
-class RemoveAccountRoute extends _i49.PageRouteInfo<void> {
-  const RemoveAccountRoute({List<_i49.PageRouteInfo>? children})
+/// [_i38.AddContactPage]
+class AddContactRoute extends _i51.PageRouteInfo<AddContactRouteArgs> {
+  AddContactRoute({
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
+  }) : super(
+          AddContactRoute.name,
+          args: AddContactRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'AddContactRoute';
+
+  static const _i51.PageInfo<AddContactRouteArgs> page =
+      _i51.PageInfo<AddContactRouteArgs>(name);
+}
+
+class AddContactRouteArgs {
+  const AddContactRouteArgs({this.key});
+
+  final _i52.Key? key;
+
+  @override
+  String toString() {
+    return 'AddContactRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i39.RemoveAccountDialog]
+class RemoveAccountRoute extends _i51.PageRouteInfo<void> {
+  const RemoveAccountRoute({List<_i51.PageRouteInfo>? children})
       : super(
           RemoveAccountRoute.name,
           initialChildren: children,
@@ -1388,13 +1445,13 @@ class RemoveAccountRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'RemoveAccountRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i39.ContactsPage]
-class ContactsRoute extends _i49.PageRouteInfo<void> {
-  const ContactsRoute({List<_i49.PageRouteInfo>? children})
+/// [_i40.ContactsPage]
+class ContactsRoute extends _i51.PageRouteInfo<void> {
+  const ContactsRoute({List<_i51.PageRouteInfo>? children})
       : super(
           ContactsRoute.name,
           initialChildren: children,
@@ -1402,17 +1459,55 @@ class ContactsRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'ContactsRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i40.NonNativeTokenPageWrapper]
+/// [_i41.DeleteContactDialog]
+class DeleteContactRoute extends _i51.PageRouteInfo<DeleteContactRouteArgs> {
+  DeleteContactRoute({
+    required _i56.Contact contact,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
+  }) : super(
+          DeleteContactRoute.name,
+          args: DeleteContactRouteArgs(
+            contact: contact,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'DeleteContactRoute';
+
+  static const _i51.PageInfo<DeleteContactRouteArgs> page =
+      _i51.PageInfo<DeleteContactRouteArgs>(name);
+}
+
+class DeleteContactRouteArgs {
+  const DeleteContactRouteArgs({
+    required this.contact,
+    this.key,
+  });
+
+  final _i56.Contact contact;
+
+  final _i52.Key? key;
+
+  @override
+  String toString() {
+    return 'DeleteContactRouteArgs{contact: $contact, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i42.NonNativeTokenPageWrapper]
 class NonNativeTokenRouteWrapper
-    extends _i49.PageRouteInfo<NonNativeTokenRouteWrapperArgs> {
+    extends _i51.PageRouteInfo<NonNativeTokenRouteWrapperArgs> {
   NonNativeTokenRouteWrapper({
-    required _i54.GetExtrinsicsUseCaseParams params,
-    _i55.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    required _i57.GetExtrinsicsUseCaseParams params,
+    _i58.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           NonNativeTokenRouteWrapper.name,
           args: NonNativeTokenRouteWrapperArgs(
@@ -1424,8 +1519,8 @@ class NonNativeTokenRouteWrapper
 
   static const String name = 'NonNativeTokenRouteWrapper';
 
-  static const _i49.PageInfo<NonNativeTokenRouteWrapperArgs> page =
-      _i49.PageInfo<NonNativeTokenRouteWrapperArgs>(name);
+  static const _i51.PageInfo<NonNativeTokenRouteWrapperArgs> page =
+      _i51.PageInfo<NonNativeTokenRouteWrapperArgs>(name);
 }
 
 class NonNativeTokenRouteWrapperArgs {
@@ -1434,9 +1529,9 @@ class NonNativeTokenRouteWrapperArgs {
     this.key,
   });
 
-  final _i54.GetExtrinsicsUseCaseParams params;
+  final _i57.GetExtrinsicsUseCaseParams params;
 
-  final _i55.Key? key;
+  final _i58.Key? key;
 
   @override
   String toString() {
@@ -1445,9 +1540,9 @@ class NonNativeTokenRouteWrapperArgs {
 }
 
 /// generated route for
-/// [_i41.NotificationsPage]
-class NotificationsRoute extends _i49.PageRouteInfo<void> {
-  const NotificationsRoute({List<_i49.PageRouteInfo>? children})
+/// [_i43.NotificationsPage]
+class NotificationsRoute extends _i51.PageRouteInfo<void> {
+  const NotificationsRoute({List<_i51.PageRouteInfo>? children})
       : super(
           NotificationsRoute.name,
           initialChildren: children,
@@ -1455,13 +1550,13 @@ class NotificationsRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'NotificationsRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i42.RecievePage]
-class RecieveRoute extends _i49.PageRouteInfo<void> {
-  const RecieveRoute({List<_i49.PageRouteInfo>? children})
+/// [_i44.RecievePage]
+class RecieveRoute extends _i51.PageRouteInfo<void> {
+  const RecieveRoute({List<_i51.PageRouteInfo>? children})
       : super(
           RecieveRoute.name,
           initialChildren: children,
@@ -1469,13 +1564,13 @@ class RecieveRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'RecieveRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i43.TransactionsHistoryPageWrapper]
-class TransactionsHistoryRouteWrapper extends _i49.PageRouteInfo<void> {
-  const TransactionsHistoryRouteWrapper({List<_i49.PageRouteInfo>? children})
+/// [_i45.TransactionsHistoryPageWrapper]
+class TransactionsHistoryRouteWrapper extends _i51.PageRouteInfo<void> {
+  const TransactionsHistoryRouteWrapper({List<_i51.PageRouteInfo>? children})
       : super(
           TransactionsHistoryRouteWrapper.name,
           initialChildren: children,
@@ -1483,15 +1578,15 @@ class TransactionsHistoryRouteWrapper extends _i49.PageRouteInfo<void> {
 
   static const String name = 'TransactionsHistoryRouteWrapper';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i44.TransferPage]
-class TransferRoute extends _i49.PageRouteInfo<TransferRouteArgs> {
+/// [_i46.TransferPage]
+class TransferRoute extends _i51.PageRouteInfo<TransferRouteArgs> {
   TransferRoute({
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           TransferRoute.name,
           args: TransferRouteArgs(key: key),
@@ -1500,14 +1595,14 @@ class TransferRoute extends _i49.PageRouteInfo<TransferRouteArgs> {
 
   static const String name = 'TransferRoute';
 
-  static const _i49.PageInfo<TransferRouteArgs> page =
-      _i49.PageInfo<TransferRouteArgs>(name);
+  static const _i51.PageInfo<TransferRouteArgs> page =
+      _i51.PageInfo<TransferRouteArgs>(name);
 }
 
 class TransferRouteArgs {
   const TransferRouteArgs({this.key});
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -1516,13 +1611,13 @@ class TransferRouteArgs {
 }
 
 /// generated route for
-/// [_i45.TransferPageWrapper]
+/// [_i47.TransferPageWrapper]
 class TransferRouteWrapper
-    extends _i49.PageRouteInfo<TransferRouteWrapperArgs> {
+    extends _i51.PageRouteInfo<TransferRouteWrapperArgs> {
   TransferRouteWrapper({
-    required _i56.TransferMetaDTO metadata,
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
+    required _i59.TransferMetaDTO metadata,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
   }) : super(
           TransferRouteWrapper.name,
           args: TransferRouteWrapperArgs(
@@ -1534,8 +1629,8 @@ class TransferRouteWrapper
 
   static const String name = 'TransferRouteWrapper';
 
-  static const _i49.PageInfo<TransferRouteWrapperArgs> page =
-      _i49.PageInfo<TransferRouteWrapperArgs>(name);
+  static const _i51.PageInfo<TransferRouteWrapperArgs> page =
+      _i51.PageInfo<TransferRouteWrapperArgs>(name);
 }
 
 class TransferRouteWrapperArgs {
@@ -1544,9 +1639,9 @@ class TransferRouteWrapperArgs {
     this.key,
   });
 
-  final _i56.TransferMetaDTO metadata;
+  final _i59.TransferMetaDTO metadata;
 
-  final _i50.Key? key;
+  final _i52.Key? key;
 
   @override
   String toString() {
@@ -1555,9 +1650,47 @@ class TransferRouteWrapperArgs {
 }
 
 /// generated route for
-/// [_i46.WalletPage]
-class WalletRoute extends _i49.PageRouteInfo<void> {
-  const WalletRoute({List<_i49.PageRouteInfo>? children})
+/// [_i48.UploadedObjectPage]
+class UploadedObjectRoute extends _i51.PageRouteInfo<UploadedObjectRouteArgs> {
+  UploadedObjectRoute({
+    required _i60.UploadedObject uploadedObject,
+    _i52.Key? key,
+    List<_i51.PageRouteInfo>? children,
+  }) : super(
+          UploadedObjectRoute.name,
+          args: UploadedObjectRouteArgs(
+            uploadedObject: uploadedObject,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'UploadedObjectRoute';
+
+  static const _i51.PageInfo<UploadedObjectRouteArgs> page =
+      _i51.PageInfo<UploadedObjectRouteArgs>(name);
+}
+
+class UploadedObjectRouteArgs {
+  const UploadedObjectRouteArgs({
+    required this.uploadedObject,
+    this.key,
+  });
+
+  final _i60.UploadedObject uploadedObject;
+
+  final _i52.Key? key;
+
+  @override
+  String toString() {
+    return 'UploadedObjectRouteArgs{uploadedObject: $uploadedObject, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i49.WalletPage]
+class WalletRoute extends _i51.PageRouteInfo<void> {
+  const WalletRoute({List<_i51.PageRouteInfo>? children})
       : super(
           WalletRoute.name,
           initialChildren: children,
@@ -1565,13 +1698,13 @@ class WalletRoute extends _i49.PageRouteInfo<void> {
 
   static const String name = 'WalletRoute';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i47.WalletPageWrapper]
-class WalletRouteWrapper extends _i49.PageRouteInfo<void> {
-  const WalletRouteWrapper({List<_i49.PageRouteInfo>? children})
+/// [_i50.WalletPageWrapper]
+class WalletRouteWrapper extends _i51.PageRouteInfo<void> {
+  const WalletRouteWrapper({List<_i51.PageRouteInfo>? children})
       : super(
           WalletRouteWrapper.name,
           initialChildren: children,
@@ -1579,34 +1712,5 @@ class WalletRouteWrapper extends _i49.PageRouteInfo<void> {
 
   static const String name = 'WalletRouteWrapper';
 
-  static const _i49.PageInfo<void> page = _i49.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i48.AddContactPage]
-class AddContactRoute extends _i49.PageRouteInfo<AddContactRouteArgs> {
-  AddContactRoute({
-    _i50.Key? key,
-    List<_i49.PageRouteInfo>? children,
-  }) : super(
-          AddContactRoute.name,
-          args: AddContactRouteArgs(key: key),
-          initialChildren: children,
-        );
-
-  static const String name = 'AddContactRoute';
-
-  static const _i49.PageInfo<AddContactRouteArgs> page =
-      _i49.PageInfo<AddContactRouteArgs>(name);
-}
-
-class AddContactRouteArgs {
-  const AddContactRouteArgs({this.key});
-
-  final _i50.Key? key;
-
-  @override
-  String toString() {
-    return 'AddContactRouteArgs{key: $key}';
-  }
+  static const _i51.PageInfo<void> page = _i51.PageInfo<void>(name);
 }

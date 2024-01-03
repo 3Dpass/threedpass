@@ -4,6 +4,7 @@ import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
@@ -12,6 +13,19 @@ import 'package:threedpass/router/router.gr.dart';
 
 class NotificationsIconButton extends StatelessWidget {
   const NotificationsIconButton({super.key});
+
+  Color lastNTypeToBadgeColor(final ExtrinsicStatus status) {
+    switch (status) {
+      case ExtrinsicStatus.failed:
+        return Colors.red;
+      case ExtrinsicStatus.error:
+        return Colors.red;
+      case ExtrinsicStatus.success:
+        return D3pThemeData.mainColor;
+      case ExtrinsicStatus.loading:
+        return D3pColors.disabled;
+    }
+  }
 
   @override
   Widget build(final BuildContext context) {
@@ -23,16 +37,11 @@ class NotificationsIconButton extends StatelessWidget {
         if (state.notifications.isEmpty) {
           return const _NotificationIcon();
         }
-        bool hasErrors = false;
-        for (final notification in state.notifications) {
-          if (notification.status == ExtrinsicStatus.failed ||
-              notification.status == ExtrinsicStatus.error) {
-            hasErrors = true;
-          }
-        }
 
         final String badgeText = state.notifications.length.toString();
-        final badgeColor = hasErrors ? Colors.red : D3pThemeData.mainColor;
+        final badgeColor = state.notifications.isNotEmpty
+            ? lastNTypeToBadgeColor(state.notifications.reversed.last.status)
+            : Colors.green;
 
         return badges.Badge(
           badgeContent: Text(

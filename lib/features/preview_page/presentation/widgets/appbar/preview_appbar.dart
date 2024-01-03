@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
@@ -16,7 +15,6 @@ class PreviewAppBar extends PlatformAppBar {
     // required final Snapshot snapshot,
     required final ThemeData themeData,
     required final BuildContext context,
-    required final PreviewSnapshotType psType,
     final Key? key,
     final HashObject? hashObject,
   }) : super(

@@ -82,7 +82,7 @@
     "algorithm_button_label": "Scan algorithm",
     "grid_size_label": "Grid size",
     "n_sections_label": "N Sections",
-    "n_sections_help": "Tip. Use 66-68 sections for Grid2d and 15-16 for Grid2d_v2, Grid2d_v3.",
+    "n_sections_help": "Tip. Use 66-68 sections for Grid2d and 12-16 for Grid2d_v2, Grid2d_v3.",
     "trans_bytes_input_label": "Rotation bytes",
     "trans_bytes_empty_input": "Random",
     "error_n_sections_validator": "N Sections must be a number",
@@ -308,7 +308,7 @@
     "password_hint_1": "Press ",
     "password_hint_2": " to copy the password of the account above",
 
-    "@3.0.0":{
+    "@2.10.0":{
     },
     "top_hashes_title": "Top hashes",
     "copy_hash_button_text": "Copy",
@@ -335,7 +335,7 @@
     "no_top_hashes_found": "No hashes found",
     "top_hashes_empty_text": "This is interesting behavior. Perhaps scanning with other settings will find real hashes.",
     "chosen_file_to_upload_to_3drpc": "File: {}",
-    "file_hash_title": "File hash",
+    "file_hash_title": "Local file hash",
     "x_hashes_chosen": "{} chosen",
     "n_approvals_hint": "Enter desired number of approvals",
     "from_address_dropdown_hint": "Choose account",
@@ -371,5 +371,10 @@
     "no_contacts": "You dont have any contacts yet.",
     "delete_contact_confirm_title": "Do you want to delete contact {}?",
     "delete_contact_confirm_title": "Delete contact {}?",
-    "delete_contact_confirm_text": "Are you sure you want to delete contact {} with the address {}?"
+    "delete_contact_confirm_text": "Are you sure you want to delete contact {} with the address {}?",
+
+    "objects_list_header": "Objects list",
+    "uploaded_object_title": "Uploaded object",
+    "local_snapshots_with_same_hashes": "Local snapshots with same hashes",
+    "file_hash_subtitle_scan_list": "Local file hash: "
 }

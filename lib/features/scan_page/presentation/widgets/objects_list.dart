@@ -33,7 +33,7 @@ class ObjectsList extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               _ObjectTitle(currentObject.name),
-              SizedBoxH4(),
+              const SizedBoxH4(),
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

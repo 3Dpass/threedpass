@@ -13,6 +13,7 @@ import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_test_net_plugin.dart';
 import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
 import 'package:threedpass/features/accounts/domain/account_info.dart';
+import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
@@ -22,6 +23,7 @@ import 'package:threedpass/features/wallet_screen/transactions_history/domain/us
 import 'package:threedpass/setup.dart';
 
 part 'init_app_service_extension.dart';
+part 'dirty_after_init.dart';
 
 ///
 /// BE CAREFUL when you write [buildWhen] for this cubit.
@@ -203,7 +205,11 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
   ) {
     // TODO Remove handler after get result
     state.plugin.sdk.webView!.addGlobalHandler(
-      TxUpdateEventLogsHandler(msgId, setTransactionResult),
+      TxUpdateEventLogsHandler(
+        msgId: msgId,
+        setTransactionResult: setTransactionResult,
+        webViewRunner: state.plugin.sdk.webView!,
+      ),
     );
   }
 

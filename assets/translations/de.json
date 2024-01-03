@@ -82,7 +82,7 @@
     "algorithm_button_label": "Scan-Algorithmus",
     "grid_size_label": "Rastergröße",
     "n_sections_label": "N Abschnitte",
-    "n_sections_help": "Tipp. Verwenden Sie für Grid2d die Abschnitte 66-68 und für Grid2d_v2, sowie Grid2d_v3 15-16.",
+    "n_sections_help": "Tipp. Verwenden Sie für Grid2d die Abschnitte 66-68 und für Grid2d_v2, sowie Grid2d_v3 12-16.",
     "trans_bytes_input_label": "Rotationsbytes",
     "trans_bytes_empty_input": "Zufällig",
     "error_n_sections_validator": "N Abschnitte müssen eine Zahl sein",
@@ -309,7 +309,7 @@
     "password_hint_1": "Drücken Sie ",
     "password_hint_2": " um das Passwort des obigen Accounts zu kopieren",
 
-    "@3.0.0":{
+    "@2.10.0":{
     },
     "top_hashes_title": "Top-Hashes",
     "copy_hash_button_text": "Kopieren",

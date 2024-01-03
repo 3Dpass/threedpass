@@ -19,7 +19,7 @@ class AppSettingsBlock extends StatelessWidget {
         // const _RequirementsTextField(),
         RequirementsButton(),
         DarkThemeSwitch(),
-        ShowZeroAssets(),
+        // ShowZeroAssets(), // TODO Adapt to new types of assets or delete
         PinCodeSettings(),
       ],
     );

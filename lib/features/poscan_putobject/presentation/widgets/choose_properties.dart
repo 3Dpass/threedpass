@@ -6,8 +6,8 @@ import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/enum_button.dart';
 import 'package:threedpass/features/poscan_putobject/bloc/poscan_putobject_cubit.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_property.dart';
-import 'package:threedpass/features/poscan_putobject/presentation/d3prpc_widgets/open_bottom_sheet.dart';
-import 'package:threedpass/features/poscan_putobject/presentation/d3prpc_widgets/property_tile_text.dart';
+import 'package:threedpass/features/poscan_putobject/presentation/widgets/open_bottom_sheet.dart';
+import 'package:threedpass/features/poscan_putobject/presentation/widgets/property_tile_text.dart';
 
 class ChooseProperties extends StatelessWidget {
   const ChooseProperties({super.key});

@@ -20,7 +20,9 @@ extension _ on AppServiceLoaderCubit {
     );
 
     emit(appService);
-    unawaited(_startPlugin(appService));
+    await _startPlugin(appService);
+
+    unawaited(_afterInit());
   }
 
   static D3pCorePlugin _buildPlugin(final WalletSettings walletSettings) {

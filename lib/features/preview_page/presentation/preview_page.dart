@@ -20,7 +20,6 @@ class PreviewPage extends StatelessWidget {
     return PlatformScaffold(
       appBar: PreviewAppBar(
         hashObject: previewPageCubitState.hashObject,
-        psType: previewPageCubitState.psType,
         themeData: Theme.of(context),
         context: context,
       ),

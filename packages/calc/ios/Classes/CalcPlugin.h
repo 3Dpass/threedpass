@@ -11,6 +11,7 @@ char *calc(const unsigned char *input,
            short par1,
            short par2,
            const unsigned char *trans,
-           const unsigned char *version);
+           const unsigned char *version,
+           int version_len);
 
 char *versionInterface();

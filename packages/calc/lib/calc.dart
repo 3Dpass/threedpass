@@ -79,6 +79,7 @@ class Calc2 {
       nSections,
       trans,
       _stringToPointer(algorithm),
+      algorithm.length,
     );
 
     final result = rawData.cast<Utf8>().toDartString();
