@@ -16,44 +16,58 @@ class ContactsPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return BlocBuilder<ContactsBloc, ContactsState>(
-      builder: (final context, final state) {
-        return D3pScaffold(
-          appbarTitle: 'contacts_appbar_title',
-          body: (state is ContactsLoaded)
-              ? SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        (state.contacts.isEmpty)
-                            ? Center(
-                                child: Text(
-                                  'no_contacts'.tr(),
-                                ),
-                              )
-                            : Flexible(
-                                child: ContactsList(
-                                  state: state,
-                                ),
-                              ),
-                        const SizedBoxH16(),
-                        D3pCardElevatedButton(
-                          text: 'new_contact'.tr(),
-                          onPressed: () => onTapAddContact(context),
-                          iconData: Icons.add,
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              : Center(
-                  child: PlatformCircularProgressIndicator(),
-                ),
-        );
-      },
+    return D3pScaffold(
+      appbarTitle: 'contacts_appbar_title',
+      body: BlocBuilder<ContactsBloc, ContactsState>(
+        builder: (final context, final state) {
+          if (state is ContactsCurrentState) {
+            return _buildContactsCurrentState(context, state);
+          } else {
+            return Center(
+              child: PlatformCircularProgressIndicator(),
+            );
+          }
+        },
+      ),
+    );
+  }
+
+  Widget _buildContactsCurrentState(
+    final BuildContext context,
+    final ContactsCurrentState state,
+  ) {
+    Widget contactsWidget;
+    if (state.contacts.isEmpty) {
+      contactsWidget = Center(
+        child: Text(
+          'no_contacts'.tr(),
+        ),
+      );
+    } else {
+      contactsWidget = Flexible(
+        child: ContactsList(
+          state: state,
+        ),
+      );
+    }
+
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            contactsWidget,
+            const SizedBoxH16(),
+            D3pCardElevatedButton(
+              text: 'new_contact'.tr(),
+              onPressed: () => onTapAddContact(context),
+              iconData: Icons.add,
+            ),
+          ],
+        ),
+      ),
     );
   }
 

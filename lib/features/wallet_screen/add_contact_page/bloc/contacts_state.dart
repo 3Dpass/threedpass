@@ -4,12 +4,18 @@ abstract class ContactsState {
   const ContactsState();
 }
 
-class ContactsInitial extends ContactsState {}
-
-class ContactsLoaded extends ContactsState {
-  const ContactsLoaded({
-    required this.contacts,
-  });
-
+class ContactsCurrentState extends ContactsState {
   final List<Contact> contacts;
+
+  const ContactsCurrentState({required this.contacts});
+}
+
+class IsContactExistingLoaded extends ContactsState {
+  final bool isContactExisting;
+  final Contact newContact;
+
+  const IsContactExistingLoaded({
+    required this.isContactExisting,
+    required this.newContact,
+  });
 }

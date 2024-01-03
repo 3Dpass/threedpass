@@ -1,3 +1,4 @@
+import 'package:hive/hive.dart';
 import 'package:threedpass/features/wallet_screen/add_contact_page/data/repositories/contacts_store.dart';
 import 'package:threedpass/features/wallet_screen/add_contact_page/domain/entities/contact.dart';
 
@@ -7,6 +8,8 @@ abstract class ContactsRepository {
   Future<void> addContact(final Contact contact);
 
   Future<void> deleteContact(final Contact contact);
+
+  bool isContactExisting(final Contact contact);
 }
 
 class ContactsRepositoryImpl implements ContactsRepository {
@@ -29,5 +32,11 @@ class ContactsRepositoryImpl implements ContactsRepository {
   @override
   Future<void> addContact(final Contact contact) async {
     await contactsStore.addObject(contact);
+  }
+
+  @override
+  bool isContactExisting(final Contact newContact) {
+    final contactsBox = Hive.box<Contact>('contacts');
+    return contactsBox.values.any((final contact) => contact == newContact);
   }
 }

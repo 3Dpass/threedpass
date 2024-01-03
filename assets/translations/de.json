@@ -125,17 +125,6 @@
     "wallet_header_title": "Wallet",
     "create_account_button_label": "Zufälliger Account",
     "import_account_button_label": "Account importieren",
-    "contacts_button_label": "Kontakte",
-    "contacts_appbar_title": "Meine Kontakte",
-    "add_contact_appbar_title": "Kontakt hinzufügen",
-    "new_contact": "Neuer Kontakt",
-    "contact_name": "Name",
-    "contact_name_hint": "Name eingeben",
-    "contact_address": "Adresse",
-    "contact_address_hint": "Adresse eingeben",
-    "add_contact": "Hinzufügen",
-    "contact_name_exists": "Du hast bereits einen Kontakt mit diesem Namen angelegt. Bitte verwende einen anderen.",
-    "no_contacts": "Du hast noch keine Kontakte angelegt.",
 
     "init_status_sdk": "Initialisierung...",
     "init_status_connecting_to_node": "Verbindet mit der Node...",
@@ -350,5 +339,19 @@
     "file_hash_title": "Datei Hash",
     "x_hashes_chosen": "{} ausgewählt",
     "n_approvals_hint": "Gewünschte Anzahl von Genehmigungen eingeben",
-    "from_address_dropdown_hint": "Konto wählen"
+    "from_address_dropdown_hint": "Konto wählen",
+
+    "contacts_button_label": "Kontakte",
+    "contacts_appbar_title": "Meine Kontakte",
+    "add_contact_appbar_title": "Kontakt hinzufügen",
+    "new_contact": "Neuer Kontakt",
+    "contact_name": "Name",
+    "contact_name_hint": "Name eingeben",
+    "contact_address": "Adresse",
+    "contact_address_hint": "Adresse eingeben",
+    "add_contact": "Hinzufügen",
+    "contact_name_exists": "Du hast bereits einen Kontakt mit diesem Namen angelegt. Bitte verwende einen anderen.",
+    "no_contacts": "Du hast noch keine Kontakte angelegt.",
+    "delete_contact_confirm_title": "Kontakt {} löschen?",
+    "delete_contact_confirm_text": "Sind Sie sich sicher, dass sie den Kontakt {} mit der Adresse {} löschen möchten?"
 }

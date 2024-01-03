@@ -13,8 +13,7 @@ import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/remove_account_dialog.dart';
 import 'package:threedpass/router/route_paths.dart';
-
-import '../../../../router/router.gr.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 part './accounts_drawer/account_text_button.dart';
 

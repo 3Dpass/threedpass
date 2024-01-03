@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/features/wallet_screen/add_contact_page/bloc/contacts_bloc.dart';
+import 'package:threedpass/features/wallet_screen/add_contact_page/domain/entities/contact.dart';
 import 'package:threedpass/features/wallet_screen/contacts_page/widgets/contact_address_text.dart';
 import 'package:threedpass/features/wallet_screen/contacts_page/widgets/contact_name_text.dart';
+import 'package:threedpass/features/wallet_screen/contacts_page/widgets/delete_contact_dialog.dart';
 
 class ContactsList extends StatelessWidget {
   const ContactsList({
@@ -14,8 +16,8 @@ class ContactsList extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    if (state is ContactsLoaded) {
-      final realState = state as ContactsLoaded;
+    if (state is ContactsCurrentState) {
+      final realState = state as ContactsCurrentState;
       final contacts = realState.contacts;
 
       return ListView.builder(
@@ -35,7 +37,7 @@ class ContactsList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: IconButton(
-                  onPressed: () => _deleteContact(objIndex, realState, context),
+                  onPressed: () => _openConfirmDialog(currentContact, context),
                   icon: const Icon(Icons.delete),
                 ),
               ),
@@ -47,16 +49,15 @@ class ContactsList extends StatelessWidget {
     return const SizedBox();
   }
 
-  void _deleteContact(
-    final int index,
-    final ContactsLoaded state,
+  void _openConfirmDialog(
+    final Contact currentContact,
     final BuildContext context,
   ) {
-    BlocProvider.of<ContactsBloc>(context).add(
-      DeleteContact(
-        contact: state.contacts[index],
-      ),
+    showPlatformDialog<void>(
+      context: context,
+      builder: (final BuildContext context) {
+        return DeleteContactDialog(contact: currentContact);
+      },
     );
-    state.contacts.removeAt(index);
   }
 }

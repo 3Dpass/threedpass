@@ -23,7 +23,7 @@ class ToAddressTextField extends StatelessWidget {
       controller: toAddressController,
       maxLines: 1,
       hintText: 'to_address_hint'.tr(),
-      suffixButton: Icons.arrow_drop_down,
+      suffixButton: Icons.person,
       onSuffixButtonPressed: () => _onSuffixButtonPressed(context),
     );
   }
