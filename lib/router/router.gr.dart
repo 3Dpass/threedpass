@@ -48,7 +48,7 @@ import 'package:threedpass/features/home_page/presentation/login_page.dart'
 import 'package:threedpass/features/home_page/router/empty_initial_route.dart'
     as _i15;
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart'
-    as _i56;
+    as _i55;
 import 'package:threedpass/features/poscan_putobject/presentation/d3prpc_page.dart'
     as _i16;
 import 'package:threedpass/features/poscan_putobject/presentation/d3rpc_page_wrapper.dart'
@@ -72,25 +72,27 @@ import 'package:threedpass/features/scan_page/presentation/pages/scan_page_wrapp
 import 'package:threedpass/features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart'
     as _i12;
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart'
-    as _i55;
+    as _i56;
 import 'package:threedpass/features/settings_page/presentation/settings_page.dart'
-    as _i38;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/choose_algorithm_subpage.dart'
-    as _i44;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/grid_size_subpage.dart'
-    as _i41;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/pixel_ratio_subpage.dart'
-    as _i42;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/sections_subpage.dart'
     as _i39;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/stable_hash_subpage.dart'
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/choose_algorithm_subpage.dart'
     as _i45;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/trans_bytes_subpage.dart'
-    as _i40;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/wallet_node_subpage.dart'
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/grid_size_subpage.dart'
+    as _i42;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/pixel_ratio_subpage.dart'
     as _i43;
-import 'package:threedpass/features/settings_page/router/empty_settings_route.dart'
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/sections_subpage.dart'
+    as _i40;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/stable_hash_subpage.dart'
     as _i46;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/trans_bytes_subpage.dart'
+    as _i41;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/wallet_node_subpage.dart'
+    as _i44;
+import 'package:threedpass/features/settings_page/router/empty_settings_route.dart'
+    as _i47;
+import 'package:threedpass/features/uploaded_object_page/uploaded_object_page.dart'
+    as _i38;
 import 'package:threedpass/features/wallet_screen/assets_page/remove_account_dialog.dart'
     as _i18;
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/get_extrinsics_usecase_params.dart'
@@ -109,8 +111,6 @@ import 'package:threedpass/features/wallet_screen/transfer_page/transfer_page.da
     as _i24;
 import 'package:threedpass/features/wallet_screen/transfer_page/transfer_page_wrapper.dart'
     as _i23;
-import 'package:threedpass/features/wallet_screen/uploaded_object_page/uploaded_object_page.dart'
-    as _i47;
 import 'package:threedpass/features/wallet_screen/wallet_page/wallet_page.dart'
     as _i21;
 import 'package:threedpass/features/wallet_screen/wallet_page/wallet_page_wrapper.dart'
@@ -402,17 +402,27 @@ abstract class $RootRouter extends _i48.RootStackRouter {
         child: const _i37.NoStableHashDialog(),
       );
     },
+    UploadedObjectRoute.name: (routeData) {
+      final args = routeData.argsAs<UploadedObjectRouteArgs>();
+      return _i48.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i38.UploadedObjectPage(
+          uploadedObject: args.uploadedObject,
+          key: args.key,
+        ),
+      );
+    },
     SettingsRoute.name: (routeData) {
       return _i48.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i38.SettingsPage(),
+        child: const _i39.SettingsPage(),
       );
     },
     SectionsSubRoute.name: (routeData) {
       final args = routeData.argsAs<SectionsSubRouteArgs>();
       return _i48.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i39.SectionsSubPage(
+        child: _i40.SectionsSubPage(
           initialState: args.initialState,
           key: args.key,
         ),
@@ -422,7 +432,7 @@ abstract class $RootRouter extends _i48.RootStackRouter {
       final args = routeData.argsAs<TransBytesSubRouteArgs>();
       return _i48.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i40.TransBytesSubPage(
+        child: _i41.TransBytesSubPage(
           initialState: args.initialState,
           key: args.key,
         ),
@@ -431,20 +441,20 @@ abstract class $RootRouter extends _i48.RootStackRouter {
     GridSizeSubRoute.name: (routeData) {
       return _i48.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i41.GridSizeSubPage(),
+        child: const _i42.GridSizeSubPage(),
       );
     },
     PixelRatioSubRoute.name: (routeData) {
       return _i48.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i42.PixelRatioSubPage(),
+        child: const _i43.PixelRatioSubPage(),
       );
     },
     WalletNodeSubRoute.name: (routeData) {
       final args = routeData.argsAs<WalletNodeSubRouteArgs>();
       return _i48.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i43.WalletNodeSubPage(
+        child: _i44.WalletNodeSubPage(
           initialState: args.initialState,
           key: args.key,
         ),
@@ -453,14 +463,14 @@ abstract class $RootRouter extends _i48.RootStackRouter {
     ChooseAlgorithmSubRoute.name: (routeData) {
       return _i48.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i44.ChooseAlgorithmSubPage(),
+        child: const _i45.ChooseAlgorithmSubPage(),
       );
     },
     StableHashSubRoute.name: (routeData) {
       final args = routeData.argsAs<StableHashSubRouteArgs>();
       return _i48.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i45.StableHashSubPage(
+        child: _i46.StableHashSubPage(
           initialState: args.initialState,
           key: args.key,
         ),
@@ -469,17 +479,7 @@ abstract class $RootRouter extends _i48.RootStackRouter {
     SettingsWrapperRoute.name: (routeData) {
       return _i48.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i46.EmptySettingsRoute(),
-      );
-    },
-    UploadedObjectRoute.name: (routeData) {
-      final args = routeData.argsAs<UploadedObjectRouteArgs>();
-      return _i48.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i47.UploadedObjectPage(
-          uploadedObject: args.uploadedObject,
-          key: args.key,
-        ),
+        child: const _i47.EmptySettingsRoute(),
       );
     },
   };
@@ -1343,232 +1343,10 @@ class NoStableHashRoute extends _i48.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i38.SettingsPage]
-class SettingsRoute extends _i48.PageRouteInfo<void> {
-  const SettingsRoute({List<_i48.PageRouteInfo>? children})
-      : super(
-          SettingsRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SettingsRoute';
-
-  static const _i48.PageInfo<void> page = _i48.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i39.SectionsSubPage]
-class SectionsSubRoute extends _i48.PageRouteInfo<SectionsSubRouteArgs> {
-  SectionsSubRoute({
-    required _i55.GlobalSettings initialState,
-    _i49.Key? key,
-    List<_i48.PageRouteInfo>? children,
-  }) : super(
-          SectionsSubRoute.name,
-          args: SectionsSubRouteArgs(
-            initialState: initialState,
-            key: key,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'SectionsSubRoute';
-
-  static const _i48.PageInfo<SectionsSubRouteArgs> page =
-      _i48.PageInfo<SectionsSubRouteArgs>(name);
-}
-
-class SectionsSubRouteArgs {
-  const SectionsSubRouteArgs({
-    required this.initialState,
-    this.key,
-  });
-
-  final _i55.GlobalSettings initialState;
-
-  final _i49.Key? key;
-
-  @override
-  String toString() {
-    return 'SectionsSubRouteArgs{initialState: $initialState, key: $key}';
-  }
-}
-
-/// generated route for
-/// [_i40.TransBytesSubPage]
-class TransBytesSubRoute extends _i48.PageRouteInfo<TransBytesSubRouteArgs> {
-  TransBytesSubRoute({
-    required _i55.GlobalSettings initialState,
-    _i49.Key? key,
-    List<_i48.PageRouteInfo>? children,
-  }) : super(
-          TransBytesSubRoute.name,
-          args: TransBytesSubRouteArgs(
-            initialState: initialState,
-            key: key,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'TransBytesSubRoute';
-
-  static const _i48.PageInfo<TransBytesSubRouteArgs> page =
-      _i48.PageInfo<TransBytesSubRouteArgs>(name);
-}
-
-class TransBytesSubRouteArgs {
-  const TransBytesSubRouteArgs({
-    required this.initialState,
-    this.key,
-  });
-
-  final _i55.GlobalSettings initialState;
-
-  final _i49.Key? key;
-
-  @override
-  String toString() {
-    return 'TransBytesSubRouteArgs{initialState: $initialState, key: $key}';
-  }
-}
-
-/// generated route for
-/// [_i41.GridSizeSubPage]
-class GridSizeSubRoute extends _i48.PageRouteInfo<void> {
-  const GridSizeSubRoute({List<_i48.PageRouteInfo>? children})
-      : super(
-          GridSizeSubRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'GridSizeSubRoute';
-
-  static const _i48.PageInfo<void> page = _i48.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i42.PixelRatioSubPage]
-class PixelRatioSubRoute extends _i48.PageRouteInfo<void> {
-  const PixelRatioSubRoute({List<_i48.PageRouteInfo>? children})
-      : super(
-          PixelRatioSubRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'PixelRatioSubRoute';
-
-  static const _i48.PageInfo<void> page = _i48.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i43.WalletNodeSubPage]
-class WalletNodeSubRoute extends _i48.PageRouteInfo<WalletNodeSubRouteArgs> {
-  WalletNodeSubRoute({
-    required _i55.GlobalSettings initialState,
-    _i49.Key? key,
-    List<_i48.PageRouteInfo>? children,
-  }) : super(
-          WalletNodeSubRoute.name,
-          args: WalletNodeSubRouteArgs(
-            initialState: initialState,
-            key: key,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'WalletNodeSubRoute';
-
-  static const _i48.PageInfo<WalletNodeSubRouteArgs> page =
-      _i48.PageInfo<WalletNodeSubRouteArgs>(name);
-}
-
-class WalletNodeSubRouteArgs {
-  const WalletNodeSubRouteArgs({
-    required this.initialState,
-    this.key,
-  });
-
-  final _i55.GlobalSettings initialState;
-
-  final _i49.Key? key;
-
-  @override
-  String toString() {
-    return 'WalletNodeSubRouteArgs{initialState: $initialState, key: $key}';
-  }
-}
-
-/// generated route for
-/// [_i44.ChooseAlgorithmSubPage]
-class ChooseAlgorithmSubRoute extends _i48.PageRouteInfo<void> {
-  const ChooseAlgorithmSubRoute({List<_i48.PageRouteInfo>? children})
-      : super(
-          ChooseAlgorithmSubRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ChooseAlgorithmSubRoute';
-
-  static const _i48.PageInfo<void> page = _i48.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i45.StableHashSubPage]
-class StableHashSubRoute extends _i48.PageRouteInfo<StableHashSubRouteArgs> {
-  StableHashSubRoute({
-    required _i55.GlobalSettings initialState,
-    _i49.Key? key,
-    List<_i48.PageRouteInfo>? children,
-  }) : super(
-          StableHashSubRoute.name,
-          args: StableHashSubRouteArgs(
-            initialState: initialState,
-            key: key,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'StableHashSubRoute';
-
-  static const _i48.PageInfo<StableHashSubRouteArgs> page =
-      _i48.PageInfo<StableHashSubRouteArgs>(name);
-}
-
-class StableHashSubRouteArgs {
-  const StableHashSubRouteArgs({
-    required this.initialState,
-    this.key,
-  });
-
-  final _i55.GlobalSettings initialState;
-
-  final _i49.Key? key;
-
-  @override
-  String toString() {
-    return 'StableHashSubRouteArgs{initialState: $initialState, key: $key}';
-  }
-}
-
-/// generated route for
-/// [_i46.EmptySettingsRoute]
-class SettingsWrapperRoute extends _i48.PageRouteInfo<void> {
-  const SettingsWrapperRoute({List<_i48.PageRouteInfo>? children})
-      : super(
-          SettingsWrapperRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SettingsWrapperRoute';
-
-  static const _i48.PageInfo<void> page = _i48.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i47.UploadedObjectPage]
+/// [_i38.UploadedObjectPage]
 class UploadedObjectRoute extends _i48.PageRouteInfo<UploadedObjectRouteArgs> {
   UploadedObjectRoute({
-    required _i56.UploadedObject uploadedObject,
+    required _i55.UploadedObject uploadedObject,
     _i49.Key? key,
     List<_i48.PageRouteInfo>? children,
   }) : super(
@@ -1592,7 +1370,7 @@ class UploadedObjectRouteArgs {
     this.key,
   });
 
-  final _i56.UploadedObject uploadedObject;
+  final _i55.UploadedObject uploadedObject;
 
   final _i49.Key? key;
 
@@ -1600,4 +1378,226 @@ class UploadedObjectRouteArgs {
   String toString() {
     return 'UploadedObjectRouteArgs{uploadedObject: $uploadedObject, key: $key}';
   }
+}
+
+/// generated route for
+/// [_i39.SettingsPage]
+class SettingsRoute extends _i48.PageRouteInfo<void> {
+  const SettingsRoute({List<_i48.PageRouteInfo>? children})
+      : super(
+          SettingsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SettingsRoute';
+
+  static const _i48.PageInfo<void> page = _i48.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i40.SectionsSubPage]
+class SectionsSubRoute extends _i48.PageRouteInfo<SectionsSubRouteArgs> {
+  SectionsSubRoute({
+    required _i56.GlobalSettings initialState,
+    _i49.Key? key,
+    List<_i48.PageRouteInfo>? children,
+  }) : super(
+          SectionsSubRoute.name,
+          args: SectionsSubRouteArgs(
+            initialState: initialState,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'SectionsSubRoute';
+
+  static const _i48.PageInfo<SectionsSubRouteArgs> page =
+      _i48.PageInfo<SectionsSubRouteArgs>(name);
+}
+
+class SectionsSubRouteArgs {
+  const SectionsSubRouteArgs({
+    required this.initialState,
+    this.key,
+  });
+
+  final _i56.GlobalSettings initialState;
+
+  final _i49.Key? key;
+
+  @override
+  String toString() {
+    return 'SectionsSubRouteArgs{initialState: $initialState, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i41.TransBytesSubPage]
+class TransBytesSubRoute extends _i48.PageRouteInfo<TransBytesSubRouteArgs> {
+  TransBytesSubRoute({
+    required _i56.GlobalSettings initialState,
+    _i49.Key? key,
+    List<_i48.PageRouteInfo>? children,
+  }) : super(
+          TransBytesSubRoute.name,
+          args: TransBytesSubRouteArgs(
+            initialState: initialState,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TransBytesSubRoute';
+
+  static const _i48.PageInfo<TransBytesSubRouteArgs> page =
+      _i48.PageInfo<TransBytesSubRouteArgs>(name);
+}
+
+class TransBytesSubRouteArgs {
+  const TransBytesSubRouteArgs({
+    required this.initialState,
+    this.key,
+  });
+
+  final _i56.GlobalSettings initialState;
+
+  final _i49.Key? key;
+
+  @override
+  String toString() {
+    return 'TransBytesSubRouteArgs{initialState: $initialState, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i42.GridSizeSubPage]
+class GridSizeSubRoute extends _i48.PageRouteInfo<void> {
+  const GridSizeSubRoute({List<_i48.PageRouteInfo>? children})
+      : super(
+          GridSizeSubRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'GridSizeSubRoute';
+
+  static const _i48.PageInfo<void> page = _i48.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i43.PixelRatioSubPage]
+class PixelRatioSubRoute extends _i48.PageRouteInfo<void> {
+  const PixelRatioSubRoute({List<_i48.PageRouteInfo>? children})
+      : super(
+          PixelRatioSubRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PixelRatioSubRoute';
+
+  static const _i48.PageInfo<void> page = _i48.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i44.WalletNodeSubPage]
+class WalletNodeSubRoute extends _i48.PageRouteInfo<WalletNodeSubRouteArgs> {
+  WalletNodeSubRoute({
+    required _i56.GlobalSettings initialState,
+    _i49.Key? key,
+    List<_i48.PageRouteInfo>? children,
+  }) : super(
+          WalletNodeSubRoute.name,
+          args: WalletNodeSubRouteArgs(
+            initialState: initialState,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'WalletNodeSubRoute';
+
+  static const _i48.PageInfo<WalletNodeSubRouteArgs> page =
+      _i48.PageInfo<WalletNodeSubRouteArgs>(name);
+}
+
+class WalletNodeSubRouteArgs {
+  const WalletNodeSubRouteArgs({
+    required this.initialState,
+    this.key,
+  });
+
+  final _i56.GlobalSettings initialState;
+
+  final _i49.Key? key;
+
+  @override
+  String toString() {
+    return 'WalletNodeSubRouteArgs{initialState: $initialState, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i45.ChooseAlgorithmSubPage]
+class ChooseAlgorithmSubRoute extends _i48.PageRouteInfo<void> {
+  const ChooseAlgorithmSubRoute({List<_i48.PageRouteInfo>? children})
+      : super(
+          ChooseAlgorithmSubRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ChooseAlgorithmSubRoute';
+
+  static const _i48.PageInfo<void> page = _i48.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i46.StableHashSubPage]
+class StableHashSubRoute extends _i48.PageRouteInfo<StableHashSubRouteArgs> {
+  StableHashSubRoute({
+    required _i56.GlobalSettings initialState,
+    _i49.Key? key,
+    List<_i48.PageRouteInfo>? children,
+  }) : super(
+          StableHashSubRoute.name,
+          args: StableHashSubRouteArgs(
+            initialState: initialState,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'StableHashSubRoute';
+
+  static const _i48.PageInfo<StableHashSubRouteArgs> page =
+      _i48.PageInfo<StableHashSubRouteArgs>(name);
+}
+
+class StableHashSubRouteArgs {
+  const StableHashSubRouteArgs({
+    required this.initialState,
+    this.key,
+  });
+
+  final _i56.GlobalSettings initialState;
+
+  final _i49.Key? key;
+
+  @override
+  String toString() {
+    return 'StableHashSubRouteArgs{initialState: $initialState, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i47.EmptySettingsRoute]
+class SettingsWrapperRoute extends _i48.PageRouteInfo<void> {
+  const SettingsWrapperRoute({List<_i48.PageRouteInfo>? children})
+      : super(
+          SettingsWrapperRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SettingsWrapperRoute';
+
+  static const _i48.PageInfo<void> page = _i48.PageInfo<void>(name);
 }

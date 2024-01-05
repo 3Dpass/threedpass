@@ -4,10 +4,10 @@ import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
-import 'package:threedpass/features/wallet_screen/uploaded_object_page/widgets/raw_uploaded_object_content.dart';
-import 'package:threedpass/features/wallet_screen/uploaded_object_page/widgets/snapshot_connected_to_uploaded.dart';
-import 'package:threedpass/features/wallet_screen/uploaded_object_page/widgets/uploaded_object_id_text.dart';
-import 'package:threedpass/features/wallet_screen/uploaded_object_page/widgets/uploaded_object_status_text.dart';
+import 'package:threedpass/features/uploaded_object_page/widgets/raw_uploaded_object_content.dart';
+import 'package:threedpass/features/uploaded_object_page/widgets/snapshot_connected_to_uploaded.dart';
+import 'package:threedpass/features/uploaded_object_page/widgets/uploaded_object_id_text.dart';
+import 'package:threedpass/features/uploaded_object_page/widgets/uploaded_object_status_text.dart';
 
 @RoutePage()
 class UploadedObjectPage extends StatelessWidget {
@@ -34,7 +34,7 @@ class UploadedObjectPage extends StatelessWidget {
                 topPadding: 16,
               ),
               const SizedBoxH24(),
-              const D3pBodyMediumText('Raw:'),
+              const D3pBodyMediumText('Raw:'), // TODO LOCALIZE
               RawUploadedObjectContent(uploadedObject: uploadedObject),
             ],
           ),

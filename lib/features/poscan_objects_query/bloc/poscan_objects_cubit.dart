@@ -1,4 +1,5 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
@@ -66,6 +67,15 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
     );
 
     emit(state.copyWith(status: PoscanObjectStateStatus.loaded));
+  }
+
+  UploadedObject? findObjectByHashes(final List<String> hashes) {
+    for (final obj in state.objects) {
+      if (listEquals(obj.hashes, hashes)) {
+        return obj;
+      }
+    }
+    return null;
   }
 
   void clear() {
