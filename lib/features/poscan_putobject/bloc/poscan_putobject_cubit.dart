@@ -109,7 +109,7 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
     emit(state.copyWith(account: acc));
   }
 
-  Future<void> submit(BuildContext context) async {
+  Future<void> submit(final BuildContext context) async {
     DefaultLoadingDialog.show(context);
 
     fastCheckPassed = false;

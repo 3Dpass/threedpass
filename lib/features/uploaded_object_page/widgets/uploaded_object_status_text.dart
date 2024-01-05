@@ -11,7 +11,7 @@ class UploadedObjectStatusText extends StatelessWidget {
   Widget build(BuildContext context) {
     return FastRichText(
       mainText: uploadedObject.status,
-      secondaryText: 'status: ',
+      secondaryText: 'status: ', // TODO LOCALIZE
     );
   }
 }

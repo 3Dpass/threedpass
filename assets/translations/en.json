@@ -375,6 +375,6 @@
 
     "objects_list_header": "Objects list",
     "uploaded_object_title": "Uploaded object",
-    "local_snapshots_with_same_hashes": "Local snapshots with same hashes",
+    "local_snapshots_with_same_hashes": "Local snapshots with same hashes:",
     "file_hash_subtitle_scan_list": "Local file hash: "
 }

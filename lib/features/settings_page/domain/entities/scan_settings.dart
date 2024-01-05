@@ -43,10 +43,10 @@ class ScanSettings extends Equatable {
       ];
 
   ScanSettings selfValidate() {
-    String algorithm = this.algorithm;
+    final String algorithm = this.algorithm;
     if (!AlgorithmMaster.list.contains(algorithm)) {
       // If algo is deprecated, migrate slowly
-      algorithm = AlgorithmMaster.defaultAlgo;
+      return const ScanSettings.defaultValues();
     }
 
     return this.copyWith(
