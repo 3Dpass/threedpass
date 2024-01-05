@@ -7,11 +7,8 @@ class ContactNameText extends StatelessWidget {
   const ContactNameText({required this.name, super.key});
 
   @override
-  Widget build(final BuildContext context) => Padding(
-        padding: const EdgeInsets.only(top: 16, right: 16),
-        child: Text(
-          name,
-          style: Theme.of(context).customTextStyles.d3ptitleLarge,
-        ),
+  Widget build(final BuildContext context) => Text(
+        name,
+        style: Theme.of(context).customTextStyles.d3pBodyLarge,
       );
 }

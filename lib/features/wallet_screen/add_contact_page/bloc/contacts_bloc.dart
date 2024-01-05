@@ -9,7 +9,7 @@ part 'contacts_state.dart';
 class ContactsBloc extends Bloc<ContactsEvent, ContactsState> {
   ContactsBloc({
     required this.contactsRepository,
-  }) : super(const ContactsCurrentState(contacts: [])) {
+  }) : super(const ContactsState([])) {
     on<DeleteContact>(_deleteContact);
     on<AddContact>(_addContact);
     on<_LoadContacts>(_loadList);
@@ -26,7 +26,7 @@ class ContactsBloc extends Bloc<ContactsEvent, ContactsState> {
     final _LoadContacts event,
     final Emitter<ContactsState> emit,
   ) async {
-    emit(ContactsCurrentState(contacts: event.contacts));
+    emit(ContactsState(event.contacts));
   }
 
   Future<void> _deleteContact(
@@ -35,13 +35,11 @@ class ContactsBloc extends Bloc<ContactsEvent, ContactsState> {
   ) async {
     await contactsRepository.deleteContact(event.contact);
 
-    if (state is ContactsCurrentState) {
-      final list = (state as ContactsCurrentState).contacts;
-      list.removeWhere(
-        (final element) => element == event.contact,
-      );
-      emit(ContactsCurrentState(contacts: list));
-    }
+    final list = state.contacts;
+    list.removeWhere(
+      (final element) => element == event.contact,
+    );
+    emit(ContactsState(list));
   }
 
   Future<void> _addContact(
@@ -50,7 +48,7 @@ class ContactsBloc extends Bloc<ContactsEvent, ContactsState> {
   ) async {
     await contactsRepository.addContact(event.contact);
     final list = contactsRepository.getAll();
-    emit(ContactsCurrentState(contacts: list));
+    emit(ContactsState(list));
   }
 
   bool isContactExisting(final Contact contact) {

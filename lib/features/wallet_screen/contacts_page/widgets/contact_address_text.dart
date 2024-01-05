@@ -8,11 +8,8 @@ class ContactAddressText extends StatelessWidget {
   const ContactAddressText({required this.address, super.key});
 
   @override
-  Widget build(final BuildContext context) => Padding(
-        padding: const EdgeInsets.only(top: 16, right: 16),
-        child: Text(
-          Fmt.shorterAddress(address),
-          style: Theme.of(context).customTextStyles.d3pBodyLarge,
-        ),
+  Widget build(final BuildContext context) => Text(
+        Fmt.shorterAddress(address),
+        style: Theme.of(context).customTextStyles.d3pBodyMedium,
       );
 }
