@@ -212,4 +212,18 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       ),
     );
   }
+
+  Future<bool> checkAddressAndNotify(final String toAddress) async {
+    final addressCorrect =
+    await state.plugin.sdk.api.account.checkAddressFormat(
+      toAddress,
+      state.networkStateData.ss58Format!,
+    );
+
+    if (addressCorrect == null || !addressCorrect) {
+      return false;
+    }
+
+    return true;
+  }
 }

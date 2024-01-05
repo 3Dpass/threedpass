@@ -16,6 +16,8 @@ import 'package:threedpass/features/wallet_screen/non_native_token_screen/di/di_
 import 'package:threedpass/features/wallet_screen/transactions_history/data/repositories/transfers_repository.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/domain/usecases/get_transfers.dart';
 
+import 'features/wallet_screen/add_contact_page/di/di_contacts.dart';
+
 final getIt = GetIt.instance;
 
 Future<void> setup() async {
@@ -70,6 +72,8 @@ Future<void> setup() async {
   await DIWalletPage().setup(getIt);
 
   await DIPreviewPage().setup(getIt);
+
+  await DIContacts().setup(getIt);
 
   await DIPoscanQuery().setup(getIt);
 }
