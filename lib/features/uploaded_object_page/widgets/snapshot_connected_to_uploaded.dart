@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
@@ -31,14 +30,11 @@ class SnapshotConnectedToUploaded extends StatelessWidget {
 
     final similarSnapshots = <Snapshot>[];
     localSnapshots.forEach((final snapshot) {
-      // final a = List<String>.from(snapshot.hashes);
-      // a.sort();
-
-      // final b = List<String>.from(uploadedObject.hashes);
-      // b.sort();
-
-      if (listEquals(snapshot.hashes, uploadedObject.hashes)) {
-        similarSnapshots.add(snapshot);
+      for (final snapHash in snapshot.hashes) {
+        if (uploadedObject.hashes.contains(snapHash)) {
+          similarSnapshots.add(snapshot);
+          break;
+        }
       }
     });
 

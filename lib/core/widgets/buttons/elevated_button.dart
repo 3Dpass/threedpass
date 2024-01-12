@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/theme/d3p_theme.dart';
 
 class D3pElevatedButton extends StatelessWidget {
   const D3pElevatedButton({
@@ -12,6 +13,23 @@ class D3pElevatedButton extends StatelessWidget {
     this.padding,
     this.icon,
     this.backgroundColor,
+    this.foregroundColor,
+    this.elevation,
+    this.childAlignment,
+    this.textStyle,
+    this.child,
+    this.shape,
+  }) : super(key: key);
+
+  const D3pElevatedButton.secondary({
+    required this.text,
+    final Key? key,
+    this.onPressed,
+    this.iconData,
+    this.minimumSize,
+    this.padding,
+    this.icon,
+    this.backgroundColor = D3pThemeData.secondaryButtonBG,
     this.foregroundColor,
     this.elevation,
     this.childAlignment,
@@ -57,7 +75,7 @@ class D3pElevatedButton extends StatelessWidget {
               foregroundColor: foregroundColor != null
                   ? MaterialStateProperty.all(foregroundColor)
                   : null,
-              backgroundColor: backgroundColor != null
+              backgroundColor: backgroundColor != null && onPressed != null
                   ? MaterialStateProperty.all(backgroundColor)
                   : null,
               elevation: elevation != null

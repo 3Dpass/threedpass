@@ -31,7 +31,7 @@ class PreviewPageBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const SizedBoxH16(),
-        DeprecationWarning(),
+        const DeprecationWarning(),
         SnapshotInfo(
           state: previewPageCubitState,
         ),
@@ -52,6 +52,7 @@ class PreviewPageBody extends StatelessWidget {
         const SizedBoxH16(),
         const FileHashBlock(),
         const SizedBoxH16(),
+        const SectionTitle(titleUnlocalized: 'poscan_object_title'),
         const PoscanResult(),
         const SizedBoxH16(),
         const TopHashesTitle(),

@@ -2,8 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/theme/d3p_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
@@ -15,19 +13,19 @@ class ExploreHashesButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final state = BlocProvider.of<PreviewPageCubit>(context).state;
-    final colors = Theme.of(context).customColors;
-    final bgColor = colors.cardBackground;
-    final fgColorBright = colors.themeOpposite;
-    const fgColorDim = D3pColors.disabled;
+    // final colors = Theme.of(context).customColors;
+    // final bgColor = colors.cardBackground;
+    // final fgColorBright = colors.themeOpposite;
+    // const fgColorDim = D3pColors.disabled;
 
     final isActive =
         state.hashObject != null && state.hashObject!.snapshots.length > 1;
 
     return Padding16(
       child: D3pElevatedButton(
-        backgroundColor: bgColor,
+        // backgroundColor: bgColor,
         text: 'explore_hashes_button_title'.tr(),
-        foregroundColor: isActive ? fgColorBright : fgColorDim,
+        // foregroundColor: isActive ? fgColorBright : fgColorDim,
         iconData: Icons.compare_arrows_rounded,
         onPressed: isActive
             ? () => context.router.push(

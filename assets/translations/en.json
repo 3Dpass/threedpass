@@ -371,9 +371,12 @@
     "no_contacts": "You dont have any contacts yet.",
     "delete_contact_confirm_title": "Delete contact {}?",
     "delete_contact_confirm_text": "Are you sure you want to delete contact {} with the address {}?",
-
     "objects_list_header": "Objects list",
     "uploaded_object_title": "Uploaded object",
+    
+    "@3.0.0":{
+    },
     "local_snapshots_with_same_hashes": "Local snapshots with same hashes:",
-    "file_hash_subtitle_scan_list": "Local file hash: "
+    "file_hash_subtitle_scan_list": "Local file hash: ",
+    "poscan_object_title": "PoScan object"
 }

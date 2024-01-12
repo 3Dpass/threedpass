@@ -68,11 +68,6 @@ abstract class BasicEventLogsHandler extends WebLogsHandler {
         if (title?.contains('error') ?? false) {
           onError(message);
           dispose();
-        } else {
-          if (message != null) {
-            onError(message);
-            dispose();
-          }
         }
         break;
     }

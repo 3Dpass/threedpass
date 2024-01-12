@@ -18,7 +18,6 @@ import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
-import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_meta_dto.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_type_enum.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/usecases/transfer_usecase.dart';
@@ -174,11 +173,12 @@ class TransferInfoBloc
         symbols: metaDTO.name,
         decimals: metaDTO.decimals,
         transferType: state.transferType,
-        onStatusChange: (final p0) {
+        onStatusChange: (final p0) async {
+          // print('onStatusChange: $p0, extrinsicAccepted = $extrinsicAccepted');
           if (!extrinsicAccepted) {
             extrinsicAccepted = true;
             DefaultLoadingDialog.hide(globalContext);
-            globalContext.router.pop();
+            await context.router.pop();
           }
         },
       );
