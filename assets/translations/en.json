@@ -342,7 +342,7 @@
     "poscan_putobject_choose_account": "Account",
     "poscan_putobject_choose_napprovals": "nApprovals",
     "poscan_putobject_choose_hashes": "Hashes",
-    "poscan_putobject_fees_warning": "This transaction takes fees",
+    "poscan_putobject_fees_warning": "This transaction takes 100+ P3D",
     "Submit": "Submit",
     "poscan_putobject_choose_properties": "Properties (optional)",
     "PROPERTIES_number_plural": {
@@ -369,7 +369,6 @@
     "add_contact": "Add",
     "contact_name_exists": "You have already a contact with this name, please choose another one.",
     "no_contacts": "You dont have any contacts yet.",
-    "delete_contact_confirm_title": "Do you want to delete contact {}?",
     "delete_contact_confirm_title": "Delete contact {}?",
     "delete_contact_confirm_text": "Are you sure you want to delete contact {} with the address {}?",
 

@@ -31,7 +31,7 @@ class ToAddressTextField extends StatelessWidget {
   void _onSuffixButtonPressed(final BuildContext context) {
     final RenderBox renderBox =
         textFieldKey.currentContext!.findRenderObject()! as RenderBox;
-    final Offset offset = renderBox!.localToGlobal(Offset.zero);
+    final Offset offset = renderBox.localToGlobal(Offset.zero);
     final ContactsRepository contactsRepository = getIt<ContactsRepository>();
     final List<Contact> contacts = contactsRepository.getAll();
 

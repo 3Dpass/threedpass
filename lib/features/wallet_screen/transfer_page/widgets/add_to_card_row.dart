@@ -10,15 +10,13 @@ class AddToCardRow extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return const SizedBox();
-    // TODO Turn on when utility palett will be added
-    // final transferInfoBloc = BlocProvider.of<TransferInfoBloc>(context);
-    // return AddCardRowBasic(
-    //   onPressed: () => transferInfoBloc.add(const AddToAddressEvent()),
-    //   unlocalizedText: 'add_account_to_label',
-    //   condition: (final state) =>
-    //       state.screenType == TransferScreenType.one_to_many ||
-    //       state.fromAddresses.length == 1,
-    // );
+    final transferInfoBloc = BlocProvider.of<TransferInfoBloc>(context);
+    return AddCardRowBasic(
+      onPressed: () => transferInfoBloc.add(const AddToAddressEvent()),
+      unlocalizedText: 'add_account_to_label',
+      condition: (final state) =>
+          state.screenType == TransferScreenType.one_to_many ||
+          state.fromAddresses.length == 1,
+    );
   }
 }

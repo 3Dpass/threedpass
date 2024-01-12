@@ -16,3 +16,7 @@ class NetworkFailure extends Failure {
 class NoDataFailure extends Failure {
   const NoDataFailure([final String? cause]) : super(cause);
 }
+
+class BadDataFailure extends Failure {
+  const BadDataFailure([final String? cause]) : super(cause);
+}

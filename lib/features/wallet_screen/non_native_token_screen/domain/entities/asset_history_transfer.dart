@@ -1,7 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
-import 'package:threedpass/features/wallet_screen/transfer_page/entities/transfer_history_ui.dart';
+import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_history_ui.dart';
 
 part 'asset_history_transfer.g.dart';
 

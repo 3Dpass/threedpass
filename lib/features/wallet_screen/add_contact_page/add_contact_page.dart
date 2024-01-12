@@ -65,13 +65,14 @@ class AddContactPage extends StatelessWidget {
   Future<void> onTapAddContact(final BuildContext context) async {
     // Check user input
     if (_formKey.currentState != null && _formKey.currentState!.validate()) {
+      final address = addressTextController.text.trim();
       final bool isCorrect =
           await BlocProvider.of<AppServiceLoaderCubit>(context)
-              .checkAddressAndNotify(addressTextController.text);
+              .checkAddressAndNotify(address);
       if (isCorrect) {
         final newContact = Contact(
           name: nameTextController.text,
-          address: addressTextController.text,
+          address: address,
         );
         final bool isContactExisting = BlocProvider.of<ContactsBloc>(context)
             .isContactExisting(newContact);

@@ -72,7 +72,7 @@ class TxUpdateEventLogsHandler extends BasicEventLogsHandler {
   // }
 
   @override
-  void onError(final String msg) {
+  void onError(final String? msg) {
     setTransactionResult(
       status: ExtrinsicStatus.error,
       message: msg,
@@ -80,7 +80,7 @@ class TxUpdateEventLogsHandler extends BasicEventLogsHandler {
   }
 
   @override
-  void onExtrinsicFailed(final String msg) {
+  void onExtrinsicFailed(final String? msg) {
     setTransactionResult(
       status: ExtrinsicStatus.failed,
       message: msg,

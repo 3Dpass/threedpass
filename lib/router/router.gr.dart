@@ -113,7 +113,7 @@ import 'package:threedpass/features/wallet_screen/recieve_page/recieve_page.dart
     as _i21;
 import 'package:threedpass/features/wallet_screen/transactions_history/presentation/transactions_history_wrapper.dart'
     as _i29;
-import 'package:threedpass/features/wallet_screen/transfer_page/entities/transfer_meta_dto.dart'
+import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_meta_dto.dart'
     as _i56;
 import 'package:threedpass/features/wallet_screen/transfer_page/transfer_page.dart'
     as _i27;

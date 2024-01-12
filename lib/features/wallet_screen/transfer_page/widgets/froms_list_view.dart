@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/bloc/transfer_info_bloc.dart';
-import 'package:threedpass/features/wallet_screen/transfer_page/entities/transfer_meta_dto.dart';
+import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_meta_dto.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/widgets/from_card_many_to_one.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/widgets/from_card_one_to_many.dart';
 

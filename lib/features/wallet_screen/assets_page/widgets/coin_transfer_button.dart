@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
-import 'package:threedpass/features/wallet_screen/transfer_page/entities/transfer_meta_dto.dart';
+import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_meta_dto.dart';
 import 'package:threedpass/features/wallet_screen/widgets/is_account_ready_builder.dart';
 import 'package:threedpass/router/router.gr.dart';
 
