@@ -1,9 +1,21 @@
+import 'package:hive/hive.dart';
+
+part 'uploaded_object.g.dart';
+
+@HiveType(typeId: 9)
 class UploadedObject {
+  @HiveField(0)
   final Map<dynamic, dynamic> raw;
+  @HiveField(1)
   final int id;
+  @HiveField(2)
   final String owner;
+  @HiveField(3)
   final List<String> hashes;
+  @HiveField(4)
   final String status;
+  @HiveField(5)
+  final DateTime cacheDate;
 
   const UploadedObject({
     required this.id,
@@ -11,39 +23,6 @@ class UploadedObject {
     required this.owner,
     required this.hashes,
     required this.status,
+    required this.cacheDate,
   });
-}
-
-class UploadedObjectFabric {
-  final int id;
-  final Map<dynamic, dynamic> raw;
-
-  const UploadedObjectFabric({
-    required this.id,
-    required this.raw,
-  });
-
-  String owner() {
-    return raw['owner'] as String;
-  }
-
-  List<String> hashes() {
-    return (raw['hashes'] as List<dynamic>)
-        .map((final dynamic e) => e.toString().substring(2))
-        .toList();
-  }
-
-  String status() {
-    return (raw['state'] as Map).keys.first.toString();
-  }
-
-  UploadedObject object() {
-    return UploadedObject(
-      id: id,
-      raw: raw,
-      owner: owner(),
-      hashes: hashes(),
-      status: status(),
-    );
-  }
 }

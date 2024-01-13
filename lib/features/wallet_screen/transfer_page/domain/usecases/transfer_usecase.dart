@@ -14,11 +14,11 @@ import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifi
 import 'package:threedpass/features/wallet_screen/transfer_page/data/repositories/transaction.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_type_enum.dart';
 
-class TransferUseCase extends UseCase<void, TransferUseCaseParams> {
+class Transfer extends UseCase<void, TransferUseCaseParams> {
   final NotificationsBloc notificationsBloc;
   final AppService appService;
 
-  const TransferUseCase({
+  const Transfer({
     required this.appService,
     required this.notificationsBloc,
   });

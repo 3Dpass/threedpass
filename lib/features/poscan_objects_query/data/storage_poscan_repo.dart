@@ -6,6 +6,8 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/failures.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 
+part 'uploaded_object_fabric.dart';
+
 class StoragePoscanRepository {
   final AppServiceLoaderCubit appServiceLoaderCubit;
 
@@ -50,7 +52,7 @@ class StoragePoscanRepository {
     if (res is Map) {
       try {
         return Either.right(
-          UploadedObjectFabric(id: id, raw: res).object(),
+          _UploadedObjectFabric(id: id, raw: res).object(),
         );
       } on Object catch (e) {
         return Either.left(

@@ -26,7 +26,7 @@ class TransferPageWrapper extends StatelessWidget implements AutoRouteWrapper {
         BlocProvider<TransferInfoBloc>(
           // We are not calculating fees now
           create: (final _) => TransferInfoBloc(
-            transferUseCase: getIt<TransferUseCase>(),
+            transfer: getIt<Transfer>(),
             metaDTO: metadata, // TODO Make parametrized DI
             appService: appService,
           )..init(),

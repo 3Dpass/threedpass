@@ -15,6 +15,7 @@ import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/non_native_tokens_api.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
+import 'package:threedpass/core/polkawallet/utils/log.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
@@ -34,7 +35,7 @@ class TransferInfoBloc
   TransferInfoBloc({
     required this.metaDTO,
     required this.appService,
-    required this.transferUseCase,
+    required this.transfer,
   }) : super(
           TransferInfoBlocState(
             fromAddresses: [initialFrom(appService)],
@@ -105,7 +106,7 @@ class TransferInfoBloc
 
   final TransferMetaDTO metaDTO;
   final AppService appService;
-  final TransferUseCase transferUseCase;
+  final Transfer transfer;
 
   final ValueNotifier<Map<String, double>> balanceCacheNotifier =
       ValueNotifier(<String, double>{});
@@ -183,7 +184,7 @@ class TransferInfoBloc
         },
       );
 
-      final res = await transferUseCase.call(params);
+      final res = await transfer.call(params);
 
       if (!extrinsicAccepted) {
         String message = '';
@@ -272,7 +273,7 @@ class TransferInfoBloc
                     BalanceUtils.balanceToDouble(t.amount!, t.decimals!);
                 balanceCacheNotifier.value[address] = balance;
               } on Object catch (e) {
-                print(e);
+                logE(e.toString());
                 unawaited(
                   Fluttertoast.showToast(
                     msg: "Couldn't parse balance of token ${t.id} ${t.name}",

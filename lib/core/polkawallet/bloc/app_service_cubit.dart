@@ -14,6 +14,7 @@ import 'package:threedpass/core/polkawallet/plugins/d3p_test_net_plugin.dart';
 import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
 import 'package:threedpass/features/accounts/domain/account_info.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
+import 'package:threedpass/features/poscan_objects_query/data/objects_storage.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
@@ -203,7 +204,6 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     final String msgId,
     final TransactionsCallback setTransactionResult,
   ) {
-    // TODO Remove handler after get result
     state.plugin.sdk.webView!.addGlobalHandler(
       TxUpdateEventLogsHandler(
         msgId: msgId,
@@ -215,7 +215,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
 
   Future<bool> checkAddressAndNotify(final String toAddress) async {
     final addressCorrect =
-    await state.plugin.sdk.api.account.checkAddressFormat(
+        await state.plugin.sdk.api.account.checkAddressFormat(
       toAddress,
       state.networkStateData.ss58Format!,
     );

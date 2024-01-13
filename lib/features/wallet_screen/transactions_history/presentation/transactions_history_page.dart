@@ -47,7 +47,6 @@ class TransactionsHistoryPage extends StatelessWidget {
         ),
         body: const TabBarView(
           children: [
-            // TODO CHECK BATCH TRANSACTIONS
             TransactionsListTo(),
             TransactionsListFrom(),
           ],

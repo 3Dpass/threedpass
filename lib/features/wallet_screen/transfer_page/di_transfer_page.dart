@@ -7,8 +7,8 @@ import 'package:threedpass/features/wallet_screen/transfer_page/domain/usecases/
 class DITransferPage extends DIModule {
   @override
   Future<void> setup(final GetIt getIt) async {
-    getIt.registerFactory<TransferUseCase>(
-      () => TransferUseCase(
+    getIt.registerFactory<Transfer>(
+      () => Transfer(
         appService: getIt<AppServiceLoaderCubit>().state,
         notificationsBloc: getIt<NotificationsBloc>(),
       ),

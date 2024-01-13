@@ -19,6 +19,7 @@ class UploadedObjectsList extends StatelessWidget {
         return BlocBuilder<PoscanObjectsCubit, PoscanObjectsState>(
           builder: (final context, final state) {
             final relatedObjects = <UploadedObject>[];
+
             state.objects.forEach((final obj) {
               if (obj.owner == appService.keyring.current.address) {
                 relatedObjects.add(obj);
@@ -40,7 +41,7 @@ class UploadedObjectsList extends StatelessWidget {
                   child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                     shrinkWrap: true,
                     itemCount: relatedObjects.length,
                     itemBuilder: (final context, final index) => Padding(

@@ -11,6 +11,8 @@ abstract class _$PoscanObjectsStateCWProxy {
 
   PoscanObjectsState status(PoscanObjectStateStatus status);
 
+  PoscanObjectsState message(String? message);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PoscanObjectsState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -20,6 +22,7 @@ abstract class _$PoscanObjectsStateCWProxy {
   PoscanObjectsState call({
     List<UploadedObject>? objects,
     PoscanObjectStateStatus? status,
+    String? message,
   });
 }
 
@@ -38,6 +41,9 @@ class _$PoscanObjectsStateCWProxyImpl implements _$PoscanObjectsStateCWProxy {
       this(status: status);
 
   @override
+  PoscanObjectsState message(String? message) => this(message: message);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PoscanObjectsState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -48,6 +54,7 @@ class _$PoscanObjectsStateCWProxyImpl implements _$PoscanObjectsStateCWProxy {
   PoscanObjectsState call({
     Object? objects = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
   }) {
     return PoscanObjectsState(
       objects: objects == const $CopyWithPlaceholder() || objects == null
@@ -58,6 +65,10 @@ class _$PoscanObjectsStateCWProxyImpl implements _$PoscanObjectsStateCWProxy {
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as PoscanObjectStateStatus,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
     );
   }
 }

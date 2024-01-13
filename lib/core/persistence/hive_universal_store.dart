@@ -67,8 +67,8 @@ class HiveUniversalStore<T> {
     return _box.length > 0 ? _box.getAt(index) : null;
   }
 
-  Future<void> putAt(final int index, final T value) async {
-    await _box.putAt(index, value);
+  Future<void> put(final int index, final T value) async {
+    await _box.put(index, value);
     return _box.flush();
   }
 
