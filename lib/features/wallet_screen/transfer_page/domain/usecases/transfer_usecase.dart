@@ -8,6 +8,7 @@ import 'package:super_core/either.dart';
 import 'package:super_core/failure.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/core/polkawallet/utils/log.dart';
 import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
 import 'package:threedpass/core/utils/usecase.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
@@ -178,7 +179,7 @@ class Transfer extends UseCase<void, TransferUseCaseParams> {
         ),
       );
     }
-
+    logV('Created ${notifications.length} notifications');
     for (final n in notifications) {
       notificationsBloc.add(AddNotification(n));
     }
@@ -194,7 +195,9 @@ class Transfer extends UseCase<void, TransferUseCaseParams> {
     if (!addressCorrect) {
       return const Either.left(BadDataFailure('Wrong address'));
     }
-
+    logV(
+      'TransferUseCase: metas=${params.metaInfos.length}, type: ${params.transferType}',
+    );
     late final Map<dynamic, dynamic> res;
     switch (params.transferType) {
       case TransferType.oneToOne:

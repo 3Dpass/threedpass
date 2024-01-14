@@ -85,5 +85,10 @@ class HiveUniversalStore<T> {
     return _box.values;
   }
 
+  Future<void> clear() async {
+    await _box.clear();
+    await _box.flush();
+  }
+
   int get length => _box.values.length;
 }

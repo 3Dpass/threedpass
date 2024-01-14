@@ -10,30 +10,32 @@ import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 
 class DefaultSettingsButton extends StatelessWidget {
   // ignore: unused_element
-  const DefaultSettingsButton._({
+  const DefaultSettingsButton({
     required this.iconColor,
     required this.iconData,
     required this.text,
-    required this.onPressed,
     required this.isBoolean,
     required this.onPressedBool,
     required this.textValue,
     required this.initialValue,
     required this.cardShape,
     required this.isChevronGrey,
+    this.customSuffixButton,
+    this.onPressed,
   });
 
   const DefaultSettingsButton.openButton({
     required this.iconColor,
     required this.iconData,
     required this.text,
-    required this.onPressed,
     required this.cardShape,
+    this.onPressed,
     this.textValue,
     this.isChevronGrey = true,
     super.key,
   })  : isBoolean = false,
         initialValue = null,
+        customSuffixButton = null,
         onPressedBool = emptyBoolFunction;
 
   const DefaultSettingsButton.boolean({
@@ -47,6 +49,7 @@ class DefaultSettingsButton extends StatelessWidget {
     super.key,
   })  : isBoolean = true,
         onPressed = emptyFunction,
+        customSuffixButton = null,
         textValue = null;
 
   final IconData iconData;
@@ -59,6 +62,7 @@ class DefaultSettingsButton extends StatelessWidget {
   final void Function(bool) onPressedBool;
   final CardShape cardShape;
   final bool isChevronGrey;
+  final Widget? customSuffixButton;
 
   @override
   Widget build(final BuildContext context) {
@@ -74,6 +78,7 @@ class DefaultSettingsButton extends StatelessWidget {
         onPressed: onPressed,
         cardShape: cardShape,
         isChevronGrey: isChevronGrey,
+        customSuffixButton: customSuffixButton,
       ),
     );
   }
@@ -91,6 +96,7 @@ class _ArgumentsDTO {
     required this.onPressed,
     required this.cardShape,
     required this.isChevronGrey,
+    required this.customSuffixButton,
   });
 
   final IconData iconData;
@@ -103,6 +109,7 @@ class _ArgumentsDTO {
   final void Function()? onPressed;
   final CardShape cardShape;
   final bool isChevronGrey;
+  final Widget? customSuffixButton;
 }
 
 class _WrapCard extends StatelessWidget {
@@ -162,19 +169,10 @@ class _ButtonBase extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final colors = Theme.of(context).customColors;
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       child: _SettingsButtonContent(
-        iconColor: args.iconColor,
-        iconData: args.iconData,
-        text: args.text,
-        value: args.textValue,
-        boolValue: args.initialValue,
-        isBoolean: args.isBoolean,
-        onPressedBool: args.onPressedBool,
-        chevronColor: args.isChevronGrey ? colors.moreFadedGrey : null,
+        args: args,
       ),
     );
   }
@@ -182,26 +180,10 @@ class _ButtonBase extends StatelessWidget {
 
 class _SettingsButtonContent extends StatelessWidget {
   const _SettingsButtonContent({
-    required this.iconColor,
-    required this.iconData,
-    required this.text,
-    // required this.onPressed,
-    required this.value,
-    required this.boolValue,
-    required this.isBoolean,
-    required this.onPressedBool,
-    required this.chevronColor,
+    required this.args,
   });
 
-  final IconData iconData;
-  final Color iconColor;
-  final String text;
-  final String? value;
-  final bool isBoolean;
-  final bool? boolValue;
-  final void Function(bool) onPressedBool;
-  final Color? chevronColor;
-  // final void Function() onPressed;
+  final _ArgumentsDTO args;
 
   @override
   Widget build(final BuildContext context) {
@@ -213,20 +195,53 @@ class _SettingsButtonContent extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              _SettingsIcon(iconColor: iconColor, iconData: iconData),
+              _SettingsIcon(iconColor: args.iconColor, iconData: args.iconData),
               const SizedBox(width: 16),
-              D3pBodyMediumText(text),
+              D3pBodyMediumText(args.text),
             ],
           ),
-          isBoolean
-              ? _BoolSwitch(value: boolValue!, onChanged: onPressedBool)
-              : Flexible(
-                  child: _Value(
-                    value: value,
-                    chevronColor: chevronColor,
-                  ),
-                ),
+          _SuffixWidget(
+            args: args,
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class _SuffixWidget extends StatelessWidget {
+  const _SuffixWidget({
+    required this.args,
+  });
+  final _ArgumentsDTO args;
+
+  @override
+  Widget build(final BuildContext context) {
+    if (args.customSuffixButton != null) {
+      return Flexible(
+        child: Row(
+          children: [
+            _ValueText(
+              value: args.textValue,
+            ),
+            args.customSuffixButton!,
+          ],
+        ),
+      );
+    }
+    if (args.isBoolean) {
+      return _BoolSwitch(
+        value: args.initialValue!,
+        onChanged: args.onPressedBool,
+      );
+    }
+
+    final colors = Theme.of(context).customColors;
+    final chevronColor = args.isChevronGrey ? colors.moreFadedGrey : null;
+    return Flexible(
+      child: _Value(
+        value: args.textValue,
+        chevronColor: chevronColor,
       ),
     );
   }

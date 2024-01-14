@@ -1,7 +1,7 @@
 import 'package:logger/logger.dart';
 import 'package:threedpass/setup.dart';
 
-void logv(final String msg) {
+void logV(final String msg) {
   getIt<Logger>().v(msg);
 }
 

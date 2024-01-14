@@ -378,5 +378,13 @@
     },
     "local_snapshots_with_same_hashes": "Local snapshots with same hashes:",
     "file_hash_subtitle_scan_list": "Local file hash: ",
-    "poscan_object_title": "PoScan object"
+    "poscan_object_title": "PoScan object",
+    "reset_objects_cache_plural": {
+        "zero": "No objects cached",
+        "one": "{} object cached",
+        "two": "{} objects cached",
+        "few": "{} objects cached",
+        "many": "{} objects cached",
+        "other": "{} objects cached"
+    }
 }

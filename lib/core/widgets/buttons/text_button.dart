@@ -45,13 +45,15 @@ class D3pTextButton extends StatelessWidget {
             children: [
               if (icon != null)
                 Padding(
-                  padding: EdgeInsets.only(right: 8),
+                  padding: const EdgeInsets.only(right: 8),
                   child: Icon(icon),
                 ),
-              Text(
-                text,
-                style: TextStyle(
-                  color: textColor ?? D3pThemeData.mainColor,
+              Flexible(
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    color: textColor ?? D3pThemeData.mainColor,
+                  ),
                 ),
               ),
             ],

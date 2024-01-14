@@ -40,7 +40,7 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
   Future<void> init(final ObjectsStore store) async {
     emit(state.copyWith(status: PoscanObjectStateStatus.loading));
 
-    logv('Initializing poScan objects cache');
+    logV('Initializing poScan objects cache');
 
     objectsStore = store;
     await objectsStore!.init();
@@ -50,7 +50,7 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
     final realCount = await getObjCount.call(null);
     realCount.when(
       left: (final failure) {
-        logv(
+        logV(
           'Loaded ${objects.length} poScan objects from cache. But failed to get realCount',
         );
         emit(
@@ -63,7 +63,7 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
       },
       right: (final realValue) {
         if (realValue == objects.length) {
-          logv('Loaded $realValue poScan objects from cache');
+          logV('Loaded $realValue poScan objects from cache');
           emit(
             state.copyWith(
               status: PoscanObjectStateStatus.loaded,
@@ -71,7 +71,7 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
             ),
           );
         } else {
-          logv(
+          logV(
             'Loaded ${objects.length} poScan objects from cache. Need $realValue',
           );
           load(from: objects.length, till: realValue);
@@ -131,7 +131,8 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
     return null;
   }
 
-  void clear() {
+  Future<void> clear() async {
+    await objectsStore?.clear();
     emit(const PoscanObjectsState.initial());
   }
 }
