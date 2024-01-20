@@ -27,11 +27,11 @@ class PutObjectGlobalHandler extends BasicEventLogsHandler {
   }
 
   @override
-  void onError(final String msg) =>
+  void onError(final String? msg) =>
       updateNotification(ExtrinsicStatus.error, msg);
 
   @override
-  void onExtrinsicFailed(final String msg) =>
+  void onExtrinsicFailed(final String? msg) =>
       updateNotification(ExtrinsicStatus.failed, msg);
 
   @override

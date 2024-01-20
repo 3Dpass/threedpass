@@ -22,6 +22,30 @@ class TransferInfoBlocState {
       fromAddresses.length >= toAddresses.length
           ? TransferScreenType.many_to_one
           : TransferScreenType.one_to_many;
+
+  TransferType get transferType {
+    if (screenType == TransferScreenType.many_to_one) {
+      final fromAddressStrings =
+          fromAddresses.map((final e) => e.data!.address).toList();
+      final uniqueFromAddresses = Set<String>.from(fromAddressStrings).toList();
+
+      if (uniqueFromAddresses.length == 1) {
+        return TransferType.oneToOne;
+      } else {
+        return TransferType.manyToOne;
+      }
+    } else {
+      final toAddressStrings =
+          toAddresses.map((final e) => e.toAddressController.text).toList();
+      final uniqueToAddresses = Set<String>.from(toAddressStrings).toList();
+
+      if (uniqueToAddresses.length == 1) {
+        return TransferType.oneToOne;
+      } else {
+        return TransferType.oneToMany;
+      }
+    }
+  }
 }
 
 enum TransferScreenType { many_to_one, one_to_many }

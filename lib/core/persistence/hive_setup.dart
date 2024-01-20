@@ -4,13 +4,16 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 import 'package:threedpass/features/settings_page/domain/entities/app_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/preview_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
+import 'package:threedpass/features/wallet_screen/add_contact_page/domain/entities/contact.dart';
 
 Future<void> hiveSetup() async {
+  // local snapshots
   Hive.registerAdapter<HashObject>(HashObjectAdapter());
   Hive.registerAdapter<Snapshot>(SnapshotAdapter());
   // settings
@@ -19,6 +22,9 @@ Future<void> hiveSetup() async {
   Hive.registerAdapter<WalletSettings>(WalletSettingsAdapter());
   Hive.registerAdapter<PreviewSettings>(PreviewSettingsAdapter());
   Hive.registerAdapter<AppSettings>(AppSettingsAdapter());
+  Hive.registerAdapter<Contact>(ContactAdapter());
+  // poScan objects
+  Hive.registerAdapter<UploadedObject>(UploadedObjectAdapter());
 
   final Directory defaultDirectory = await getApplicationDocumentsDirectory();
   Hive.init(defaultDirectory.path + '/storages');

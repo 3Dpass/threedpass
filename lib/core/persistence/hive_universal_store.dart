@@ -67,8 +67,8 @@ class HiveUniversalStore<T> {
     return _box.length > 0 ? _box.getAt(index) : null;
   }
 
-  Future<void> putAt(final int index, final T value) async {
-    await _box.putAt(index, value);
+  Future<void> put(final int index, final T value) async {
+    await _box.put(index, value);
     return _box.flush();
   }
 
@@ -83,6 +83,11 @@ class HiveUniversalStore<T> {
 
   Iterable<T> getAll() {
     return _box.values;
+  }
+
+  Future<void> clear() async {
+    await _box.clear();
+    await _box.flush();
   }
 
   int get length => _box.values.length;

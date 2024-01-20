@@ -142,28 +142,15 @@ class _MetaTxInfosFabric {
   }
 
   List<TransferTxInfoI> buildList(final TokenBalanceData? tbd) {
-    final res = <TransferTxInfoI>[];
-    caseSplit(
-      txInfos: state.fromAddresses,
-      params: state.toAddresses,
-      passwords: state.fromAddresses,
-      onFirst: () {
-        final tmp = oneToOne(tbd);
-        res.addAll(tmp);
-      },
-      onSecond: () {
-        final tmp = oneToMany(tbd);
-        res.addAll(tmp);
-      },
-      onThird: () {
-        final tmp = manyToOne(tbd);
-        res.addAll(tmp);
-      },
-      onError: () {
-        throw Exception('Something went wrong');
-      },
-    );
-    return res;
+    // final res = <TransferTxInfoI>[];
+    switch (state.transferType) {
+      case TransferType.manyToOne:
+        return manyToOne(tbd);
+      case TransferType.oneToOne:
+        return oneToOne(tbd);
+      case TransferType.oneToMany:
+        return oneToMany(tbd);
+    }
   }
 
   List<TransferTxInfoI> build() {

@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/bloc/transfer_info_bloc.dart';
-import 'package:threedpass/features/wallet_screen/transfer_page/entities/transfer_meta_dto.dart';
+import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_meta_dto.dart';
+import 'package:threedpass/features/wallet_screen/transfer_page/domain/usecases/transfer_usecase.dart';
+import 'package:threedpass/setup.dart';
 
 @RoutePage()
 class TransferPageWrapper extends StatelessWidget implements AutoRouteWrapper {
@@ -24,12 +26,13 @@ class TransferPageWrapper extends StatelessWidget implements AutoRouteWrapper {
         BlocProvider<TransferInfoBloc>(
           // We are not calculating fees now
           create: (final _) => TransferInfoBloc(
-            metaDTO: metadata,
+            transfer: getIt<Transfer>(),
+            metaDTO: metadata, // TODO Make parametrized DI
             appService: appService,
           )..init(),
           lazy: false,
         ),
-        BlocProvider(
+        BlocProvider<OuterContextCubit>(
           create: (final _) => OuterContextCubit(context),
           lazy: false,
         ),

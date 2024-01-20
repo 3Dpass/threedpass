@@ -13,6 +13,7 @@ import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/remove_account_dialog.dart';
 import 'package:threedpass/router/route_paths.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 part './accounts_drawer/account_text_button.dart';
 
@@ -58,6 +59,13 @@ class AccountsDrawer extends Drawer {
                 path: RoutePaths.createAccountMain +
                     RoutePaths.createAccountChooseType,
               ),
+              D3pTextButton(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                mainAxisAlignment: MainAxisAlignment.start,
+                icon: Icons.book,
+                text: 'contacts_button_label'.tr(),
+                onPressed: () => openContacts(context),
+              ),
               const Divider(),
               Flexible(
                 child: ListView.builder(
@@ -88,6 +96,11 @@ class AccountsDrawer extends Drawer {
             ],
           ),
         );
+
+  static void openContacts(final BuildContext context) {
+    Navigator.of(context).pop();
+    context.router.push(const ContactsRoute());
+  }
 
   static Future<void> deleteAccount(final BuildContext context) async {
     final outerContext = BlocProvider.of<OuterContextCubit>(context).state;

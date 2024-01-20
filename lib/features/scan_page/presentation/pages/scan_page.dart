@@ -13,18 +13,8 @@ class ScanPage extends StatelessWidget {
     return const D3pScaffold(
       removeBackButton: true,
       appbarTitle: 'recognize_your_objects',
-      body: Stack(
-        children: [
-          ScanPageContent(),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: EdgeInsets.all(24),
-              child: GetObjectFromFileFloatingButton(),
-            ),
-          ),
-        ],
-      ),
+      body: ScanPageContent(),
+      floatingActionButton: GetObjectFromFileFloatingButton(),
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/bloc/transfer_info_bloc.dart';
-import 'package:threedpass/features/wallet_screen/transfer_page/entities/transfer_meta_dto.dart';
+import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_meta_dto.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/widgets/basic_transfer_textfield.dart';
 
 class AmountTextFieldBuilder extends StatelessWidget {

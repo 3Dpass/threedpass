@@ -17,9 +17,9 @@ abstract class BasicEventLogsHandler extends WebLogsHandler {
   static const String extrinsicSuccess = 'ok';
 
   void onExtrinsicSuccess();
-  void onExtrinsicFailed(final String msg);
+  void onExtrinsicFailed(final String? msg);
 
-  void onError(final String msg);
+  void onError(final String? msg);
 
   void dispose() {
     webViewRunner.removeGlobalHandler(this);
@@ -44,13 +44,13 @@ abstract class BasicEventLogsHandler extends WebLogsHandler {
     final dynamic dataSection = rawData['data'];
 
     if (!(dataSection is Map &&
-        dataSection.keys.contains('title') &&
-        dataSection.keys.contains('message'))) {
+        (dataSection.keys.contains('title') ||
+            dataSection.keys.contains('message')))) {
       return;
     }
 
-    final String title = dataSection['title'] as String;
-    final String message = dataSection['message'] as String;
+    final String? title = dataSection['title'] as String?;
+    final String? message = dataSection['message'] as String?;
     getIt<Logger>().v('Found log $title $message');
 
     switch (title) {
@@ -65,7 +65,7 @@ abstract class BasicEventLogsHandler extends WebLogsHandler {
         dispose();
         break;
       default:
-        if (title.contains('error')) {
+        if (title?.contains('error') ?? false) {
           onError(message);
           dispose();
         }

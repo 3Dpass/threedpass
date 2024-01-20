@@ -1,6 +1,6 @@
 part of 'notifications_bloc.dart';
 
-enum NotificationType { transfer, putObject }
+enum NotificationType { transfer, transferBatch, putObject }
 
 abstract class NotificationDTO {
   final DateTime notificationCreated = DateTime.now().toUtc();
@@ -35,6 +35,28 @@ class NotificationTransfer extends NotificationDTO {
 
   @override
   final NotificationType type = NotificationType.transfer;
+}
+
+@CopyWith()
+class NotificationTransferBatch extends NotificationDTO {
+  final String fromAddress;
+  final List<String> toAddress;
+  final List<String> amount;
+  final String symbols;
+  final DateTime? blockDateTime;
+
+  NotificationTransferBatch({
+    required this.amount,
+    required this.fromAddress,
+    required this.symbols,
+    required this.toAddress,
+    required super.message,
+    required super.status,
+    required this.blockDateTime,
+  });
+
+  @override
+  final NotificationType type = NotificationType.transferBatch;
 }
 
 @CopyWith()

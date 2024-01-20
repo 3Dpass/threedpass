@@ -11,7 +11,7 @@ class UploadedObjectIdText extends StatelessWidget {
   Widget build(final BuildContext context) {
     return FastRichText(
       mainText: uploadedObject.id.toString(),
-      secondaryText: 'id: ',
+      secondaryText: 'id: ', // TODO LOCALIZE
     );
   }
 }

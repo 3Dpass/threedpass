@@ -308,7 +308,7 @@
     "password_hint_1": "Press ",
     "password_hint_2": " to copy the password of the account above",
 
-    "@3.0.0":{
+    "@2.10.0":{
     },
     "top_hashes_title": "Top hashes",
     "copy_hash_button_text": "Copy",
@@ -342,7 +342,7 @@
     "poscan_putobject_choose_account": "Account",
     "poscan_putobject_choose_napprovals": "nApprovals",
     "poscan_putobject_choose_hashes": "Hashes",
-    "poscan_putobject_fees_warning": "This transaction takes fees",
+    "poscan_putobject_fees_warning": "This transaction takes 100+ P3D",
     "Submit": "Submit",
     "poscan_putobject_choose_properties": "Properties (optional)",
     "PROPERTIES_number_plural": {
@@ -357,8 +357,35 @@
     "account_never_null": "Please choose an account",
     "notifications_title": "Transactions",
     "extrinsic_status": "Extrinsic:",
+
+    "contacts_button_label": "Contacts",
+    "contacts_appbar_title": "My Contacts",
+    "add_contact_appbar_title": "Add Contact",
+    "new_contact": "New contact",
+    "contact_name": "Name",
+    "contact_name_hint": "Enter name",
+    "contact_address": "Address",
+    "contact_address_hint": "Enter address",
+    "add_contact": "Add",
+    "contact_name_exists": "You have already a contact with this name, please choose another one.",
+    "no_contacts": "You dont have any contacts yet.",
+    "delete_contact_confirm_title": "Delete contact {}?",
+    "delete_contact_confirm_text": "Are you sure you want to delete contact {} with the address {}?",
     "objects_list_header": "Objects list",
     "uploaded_object_title": "Uploaded object",
-    "local_snapshots_with_same_hashes": "Local snapshots with same hashes",
-    "file_hash_subtitle_scan_list": "Local file hash: "
+    
+    "@2.11.0":{
+    },
+    "local_snapshots_with_same_hashes": "Local snapshots with same hashes:",
+    "file_hash_subtitle_scan_list": "Local file hash: ",
+    "poscan_object_title": "PoScan object",
+    "reset_objects_cache_plural": {
+        "zero": "No objects cached",
+        "one": "{} object cached",
+        "two": "{} objects cached",
+        "few": "{} objects cached",
+        "many": "{} objects cached",
+        "other": "{} objects cached"
+    },
+    "no_owned_objects_found": "No objects owned by this account found"
 }

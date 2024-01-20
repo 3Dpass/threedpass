@@ -8,10 +8,12 @@ class D3pScaffold extends StatelessWidget {
   final String appbarTitle;
   final bool? removeBackButton;
   final bool translateAppbar;
+  final Widget? floatingActionButton;
 
   const D3pScaffold({
     required this.appbarTitle,
     required this.body,
+    this.floatingActionButton,
     this.removeBackButton,
     this.translateAppbar = true,
     super.key,
@@ -25,7 +27,20 @@ class D3pScaffold extends StatelessWidget {
         leading: removeBackButton ?? false ? null : const CustomBackButton(),
         translateAppbar: translateAppbar,
       ),
-      body: body,
+      body: floatingActionButton != null
+          ? Stack(
+              children: [
+                body,
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: floatingActionButton,
+                  ),
+                ),
+              ],
+            )
+          : body,
     );
   }
 }

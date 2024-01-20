@@ -53,7 +53,7 @@ class _NoPasswordSet extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return DefaultSettingsButton.openButton(
-      cardShape: CardShape.bottom,
+      cardShape: CardShape.middle,
       iconData: Icons.key,
       iconColor: Colors.amber,
       textValue: '',
@@ -95,7 +95,7 @@ class _PasswordWasSet extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return DefaultSettingsButton.openButton(
-      cardShape: CardShape.bottom,
+      cardShape: CardShape.middle,
       iconData: Icons.key_off,
       iconColor: Colors.amber,
       textValue: '',

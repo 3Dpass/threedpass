@@ -127,6 +127,128 @@ extension $NotificationTransferCopyWith on NotificationTransfer {
       _$NotificationTransferCWProxyImpl(this);
 }
 
+abstract class _$NotificationTransferBatchCWProxy {
+  NotificationTransferBatch amount(List<String> amount);
+
+  NotificationTransferBatch fromAddress(String fromAddress);
+
+  NotificationTransferBatch symbols(String symbols);
+
+  NotificationTransferBatch toAddress(List<String> toAddress);
+
+  NotificationTransferBatch message(String? message);
+
+  NotificationTransferBatch status(ExtrinsicStatus status);
+
+  NotificationTransferBatch blockDateTime(DateTime? blockDateTime);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationTransferBatch(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationTransferBatch(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationTransferBatch call({
+    List<String>? amount,
+    String? fromAddress,
+    String? symbols,
+    List<String>? toAddress,
+    String? message,
+    ExtrinsicStatus? status,
+    DateTime? blockDateTime,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNotificationTransferBatch.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfNotificationTransferBatch.copyWith.fieldName(...)`
+class _$NotificationTransferBatchCWProxyImpl
+    implements _$NotificationTransferBatchCWProxy {
+  const _$NotificationTransferBatchCWProxyImpl(this._value);
+
+  final NotificationTransferBatch _value;
+
+  @override
+  NotificationTransferBatch amount(List<String> amount) => this(amount: amount);
+
+  @override
+  NotificationTransferBatch fromAddress(String fromAddress) =>
+      this(fromAddress: fromAddress);
+
+  @override
+  NotificationTransferBatch symbols(String symbols) => this(symbols: symbols);
+
+  @override
+  NotificationTransferBatch toAddress(List<String> toAddress) =>
+      this(toAddress: toAddress);
+
+  @override
+  NotificationTransferBatch message(String? message) => this(message: message);
+
+  @override
+  NotificationTransferBatch status(ExtrinsicStatus status) =>
+      this(status: status);
+
+  @override
+  NotificationTransferBatch blockDateTime(DateTime? blockDateTime) =>
+      this(blockDateTime: blockDateTime);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationTransferBatch(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationTransferBatch(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationTransferBatch call({
+    Object? amount = const $CopyWithPlaceholder(),
+    Object? fromAddress = const $CopyWithPlaceholder(),
+    Object? symbols = const $CopyWithPlaceholder(),
+    Object? toAddress = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? blockDateTime = const $CopyWithPlaceholder(),
+  }) {
+    return NotificationTransferBatch(
+      amount: amount == const $CopyWithPlaceholder() || amount == null
+          ? _value.amount
+          // ignore: cast_nullable_to_non_nullable
+          : amount as List<String>,
+      fromAddress:
+          fromAddress == const $CopyWithPlaceholder() || fromAddress == null
+              ? _value.fromAddress
+              // ignore: cast_nullable_to_non_nullable
+              : fromAddress as String,
+      symbols: symbols == const $CopyWithPlaceholder() || symbols == null
+          ? _value.symbols
+          // ignore: cast_nullable_to_non_nullable
+          : symbols as String,
+      toAddress: toAddress == const $CopyWithPlaceholder() || toAddress == null
+          ? _value.toAddress
+          // ignore: cast_nullable_to_non_nullable
+          : toAddress as List<String>,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+      status: status == const $CopyWithPlaceholder() || status == null
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as ExtrinsicStatus,
+      blockDateTime: blockDateTime == const $CopyWithPlaceholder()
+          ? _value.blockDateTime
+          // ignore: cast_nullable_to_non_nullable
+          : blockDateTime as DateTime?,
+    );
+  }
+}
+
+extension $NotificationTransferBatchCopyWith on NotificationTransferBatch {
+  /// Returns a callable class that can be used as follows: `instanceOfNotificationTransferBatch.copyWith(...)` or like so:`instanceOfNotificationTransferBatch.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$NotificationTransferBatchCWProxy get copyWith =>
+      _$NotificationTransferBatchCWProxyImpl(this);
+}
+
 abstract class _$NotificationPutObjectCWProxy {
   NotificationPutObject account(KeyPairData account);
 

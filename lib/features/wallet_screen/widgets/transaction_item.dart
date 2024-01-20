@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
-import 'package:threedpass/features/wallet_screen/transfer_page/entities/transfer_history_ui.dart';
+import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_history_ui.dart';
 import 'package:threedpass/features/wallet_screen/widgets/block_datetime_w.dart';
 import 'package:threedpass/features/wallet_screen/widgets/extrinsic_status_icon.dart';
 import 'package:threedpass/features/wallet_screen/widgets/short_address.dart';

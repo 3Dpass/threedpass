@@ -100,11 +100,6 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return FloatingActionButton(
-      // shape: const RoundedRectangleBorder(
-      //   borderRadius: BorderRadius.all(
-      //     Radius.circular(4),
-      //   ),
-      // ),
       child: const Icon(Icons.folder_open_rounded),
       onPressed: () => createHashFromFile(
         context,
