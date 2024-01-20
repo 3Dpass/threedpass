@@ -374,7 +374,7 @@
     "objects_list_header": "Objects list",
     "uploaded_object_title": "Uploaded object",
     
-    "@3.0.0":{
+    "@2.11.0":{
     },
     "local_snapshots_with_same_hashes": "Local snapshots with same hashes:",
     "file_hash_subtitle_scan_list": "Local file hash: ",
@@ -386,5 +386,6 @@
         "few": "{} objects cached",
         "many": "{} objects cached",
         "other": "{} objects cached"
-    }
+    },
+    "no_owned_objects_found": "No objects owned by this account found"
 }
