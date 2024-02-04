@@ -379,13 +379,21 @@
     "local_snapshots_with_same_hashes": "Local snapshots with same hashes:",
     "file_hash_subtitle_scan_list": "Local file hash: ",
     "poscan_object_title": "PoScan object",
-    "reset_objects_cache_plural": {
-        "zero": "No objects cached",
-        "one": "{} object cached",
-        "two": "{} objects cached",
-        "few": "{} objects cached",
-        "many": "{} objects cached",
-        "other": "{} objects cached"
+
+    "no_owned_objects_found": "No objects owned by this account found",
+
+    "@2.12.0":{
     },
-    "no_owned_objects_found": "No objects owned by this account found"
+    "bottom_label_explorer": "Explorer",
+    "objects_plural": {
+        "zero": "No objects",
+        "one": "{} object",
+        "two": "{} objects",
+        "few": "{} objects",
+        "many": "{} objects",
+        "other": "{} objects"
+    },
+    "reset_objects_cache_plural": "{} cached",
+    "objects_list_appbar_title": "{} in storage",
+    "no_objects": "No cached objects"
 }

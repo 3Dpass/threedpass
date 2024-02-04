@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
         routes: const [
           ScanRouteWrapper(),
           WalletRouteWrapper(),
+          ExplorerRouteWrapper(),
           SettingsRoute(),
         ],
         builder: HomeNavBar().build,

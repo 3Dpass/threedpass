@@ -13,6 +13,8 @@ abstract class _$PoscanObjectsStateCWProxy {
 
   PoscanObjectsState message(String? message);
 
+  PoscanObjectsState storageCount(int? storageCount);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PoscanObjectsState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -23,6 +25,7 @@ abstract class _$PoscanObjectsStateCWProxy {
     List<UploadedObject>? objects,
     PoscanObjectStateStatus? status,
     String? message,
+    int? storageCount,
   });
 }
 
@@ -44,6 +47,10 @@ class _$PoscanObjectsStateCWProxyImpl implements _$PoscanObjectsStateCWProxy {
   PoscanObjectsState message(String? message) => this(message: message);
 
   @override
+  PoscanObjectsState storageCount(int? storageCount) =>
+      this(storageCount: storageCount);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PoscanObjectsState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -55,6 +62,7 @@ class _$PoscanObjectsStateCWProxyImpl implements _$PoscanObjectsStateCWProxy {
     Object? objects = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
+    Object? storageCount = const $CopyWithPlaceholder(),
   }) {
     return PoscanObjectsState(
       objects: objects == const $CopyWithPlaceholder() || objects == null
@@ -69,6 +77,10 @@ class _$PoscanObjectsStateCWProxyImpl implements _$PoscanObjectsStateCWProxy {
           ? _value.message
           // ignore: cast_nullable_to_non_nullable
           : message as String?,
+      storageCount: storageCount == const $CopyWithPlaceholder()
+          ? _value.storageCount
+          // ignore: cast_nullable_to_non_nullable
+          : storageCount as int?,
     );
   }
 }
