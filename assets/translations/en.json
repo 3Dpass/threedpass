@@ -395,5 +395,6 @@
     },
     "reset_objects_cache_plural": "{} cached",
     "objects_list_appbar_title": "{} in storage",
-    "no_objects": "No cached objects"
+    "no_objects": "No cached objects",
+    "bad_address": "Wrong address format"
 }
