@@ -28,6 +28,10 @@ class RootRouter extends $RootRouter {
     createAccountPageRoute,
     // Loader for scan page
     calcHashLoadingWidgetRoute,
+    // Uploaded objecy page
+    AutoRoute(
+      page: UploadedObjectRoute.page,
+    ),
     // Default loader
     defaultLoadingDialog,
   ];

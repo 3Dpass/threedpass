@@ -44,8 +44,5 @@ AutoRoute walletPageRoute = AutoRoute(
       page: RemoveAccountRoute.page,
       customRouteBuilder: dialogBuilder,
     ),
-    AutoRoute(
-      page: UploadedObjectRoute.page,
-    ),
   ],
 );
