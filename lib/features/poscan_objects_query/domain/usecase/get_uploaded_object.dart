@@ -1,5 +1,4 @@
 import 'package:super_core/super_core.dart';
-import 'package:threedpass/core/utils/usecase.dart';
 import 'package:threedpass/features/poscan_objects_query/data/storage_poscan_repo.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 

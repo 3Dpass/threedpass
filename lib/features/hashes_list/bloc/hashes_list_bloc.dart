@@ -46,12 +46,15 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     if (state is HashesListLoaded) {
       final list = (state as HashesListLoaded).objects;
       bool f = false;
+      HashObject? hashObject;
       for (final obj in list) {
-        if (obj == event.object) {
+        if (obj.snapshots.contains(event.hash)) {
+          hashObject = obj;
           // get snapshot to remove
-          final snapshotToRemove = obj.snapshots.firstWhere(
-            (final snap) => snap == event.hash,
-          );
+          final snapshotToRemove = event.hash;
+          // final snapshotToRemove = obj.snapshots.firstWhere(
+          //   (final snap) => snap == event.hash,
+          // );
 
           final shouldDeleteFile =
               obj.isObjectFileCanBeDeletedWithSnapshot(snapshotToRemove);
@@ -75,10 +78,10 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
 
       if (!f) {
         getIt<Logger>().e(
-          'Not found an object with id=${event.object} name=${event.object.name}',
+          'Could not found snapshot ${event.hash.name}',
         );
       } else {
-        await hashesRepository.replaceObject(event.object);
+        await hashesRepository.replaceObject(hashObject!);
       }
       emit(HashesListLoaded(objects: list));
     }

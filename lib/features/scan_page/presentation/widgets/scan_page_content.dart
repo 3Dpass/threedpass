@@ -16,18 +16,8 @@ class ScanPageContent extends StatelessWidget {
           if (state.objects.isEmpty) {
             return const NoSavedObjectsPlaceholder();
           } else {
-            return SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flexible(
-                    child: ObjectsList(
-                      state: state,
-                    ),
-                  ),
-                ],
-              ),
+            return ObjectsList(
+              state: state,
             );
           }
         } else {

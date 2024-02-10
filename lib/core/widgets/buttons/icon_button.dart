@@ -4,6 +4,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 class D3pIconButton extends StatelessWidget {
   const D3pIconButton({
     required this.iconData,
+    this.padding,
     this.onPressed,
     this.iconColor,
     this.size,
@@ -21,6 +22,7 @@ class D3pIconButton extends StatelessWidget {
         iconColor = Colors.transparent,
         emptyContraints = false,
         splashRadius = null,
+        padding = EdgeInsets.zero,
         onPressed = null;
 
   final IconData iconData;
@@ -30,6 +32,7 @@ class D3pIconButton extends StatelessWidget {
   final bool emptyContraints;
   final double? splashRadius;
   final String? text;
+  final EdgeInsets? padding;
 
   @override
   Widget build(final BuildContext context) {
@@ -44,10 +47,13 @@ class D3pIconButton extends StatelessWidget {
           ),
           onPressed: onPressed,
           material: (final _, final __) => MaterialIconButtonData(
-            padding: EdgeInsets.zero,
+            padding: padding ?? EdgeInsets.zero,
             constraints: emptyContraints ? const BoxConstraints() : null,
             splashRadius: splashRadius,
             iconSize: size,
+          ),
+          cupertino: (context, platform) => CupertinoIconButtonData(
+            padding: padding ?? EdgeInsets.zero,
           ),
         ),
         if (text != null) Text(text!),

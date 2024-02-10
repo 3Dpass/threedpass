@@ -21,7 +21,7 @@ class ObjectsList extends StatelessWidget {
 
       return ListView.builder(
         padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-        physics: const NeverScrollableScrollPhysics(),
+        // physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: objects.length,
         itemBuilder: (final context, final objIndex) {
@@ -35,6 +35,7 @@ class ObjectsList extends StatelessWidget {
               _ObjectTitle(currentObject.name),
               const SizedBoxH4(),
               ListView.builder(
+                primary: false,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.zero,

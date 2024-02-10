@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 
 class BasicTransferBlock extends StatelessWidget {
   const BasicTransferBlock({
@@ -46,23 +47,11 @@ class _DismissIcon extends StatelessWidget {
       return Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          SizedBox(
-            height: 24,
-            child: InkWell(
-              onTap: dismiss,
-              customBorder: const CircleBorder(),
-              child: Ink(
-                decoration: const BoxDecoration(shape: BoxShape.circle),
-                height: 24,
-                width: 24,
-                child: const Icon(
-                  Icons.horizontal_rule_outlined,
-                  size: 18,
-                ),
-              ),
-            ),
+          D3pIconButton(
+            onPressed: dismiss,
+            iconData: Icons.horizontal_rule_outlined,
+            emptyContraints: true,
           ),
-          const SizedBox(width: 8),
         ],
       );
     } else {

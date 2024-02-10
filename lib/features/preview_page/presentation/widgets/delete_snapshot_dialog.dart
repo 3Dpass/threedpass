@@ -22,7 +22,7 @@ class DeleteSnapshotDialog extends StatelessWidget {
       BlocProvider.of<HashesListBloc>(context).add(
         DeleteHash(
           hash: state.snapshot,
-          object: state.hashObject!,
+          // object: state.hashObject!,
         ),
       );
     }

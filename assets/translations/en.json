@@ -396,5 +396,15 @@
     "reset_objects_cache_plural": "{} cached",
     "objects_list_appbar_title": "{} in storage",
     "no_objects": "No cached objects",
-    "bad_address": "Wrong address format"
+    "bad_address": "Wrong address format",
+    "delete_snapshots_dialog_title": "Delete snapshots",
+    "delete_snapshots_dialog_content": "Do you want to delete {}?",
+    "snapshots_plural": {
+        "zero": "0 snapshots",
+        "one": "{} snapshot",
+        "two": "{} snapshots",
+        "few": "{} snapshots",
+        "many": "{} snapshots",
+        "other": "{} snapshots"
+    }
 }

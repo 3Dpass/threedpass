@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:threedpass/core/widgets/appbars/d3p_platfrom_appbar.dart';
+import 'package:threedpass/core/widgets/appbars/title_n_button_appbar.dart';
 import 'package:threedpass/features/explorer_page/presentation/objects_list_page/reload_objects_icon_button.dart';
 
-class ObjectsListAppbar extends D3pPlatformAppBar {
+class ObjectsListAppbar extends TitleNButtonAppBar {
   ObjectsListAppbar({
     required final int objectsCount,
     super.key,
@@ -15,9 +15,7 @@ class ObjectsListAppbar extends D3pPlatformAppBar {
                     'objects_plural'.plural(objectsCount),
                   ],
                 ),
-          leading: null,
-          trailingActions: [
-            const ReloadObjectsIconButton(),
-          ],
+          // leading: null,
+          trailingAction: const ReloadObjectsIconButton(),
         );
 }
