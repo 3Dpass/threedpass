@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
@@ -11,7 +12,7 @@ class UploadedObjectIdText extends StatelessWidget {
   Widget build(final BuildContext context) {
     return FastRichText(
       mainText: uploadedObject.id.toString(),
-      secondaryText: 'id: ', // TODO LOCALIZE
+      secondaryText: 'uploaded_object_id'.tr(),
     );
   }
 }

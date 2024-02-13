@@ -7,6 +7,7 @@ import 'package:threedpass/features/poscan_objects_query/domain/entities/uploade
 import 'package:threedpass/features/uploaded_object_page/widgets/raw_uploaded_object_content.dart';
 import 'package:threedpass/features/uploaded_object_page/widgets/snapshot_connected_to_uploaded.dart';
 import 'package:threedpass/features/uploaded_object_page/widgets/uploaded_object_id_text.dart';
+import 'package:threedpass/features/uploaded_object_page/widgets/uploaded_object_owner_text.dart';
 import 'package:threedpass/features/uploaded_object_page/widgets/uploaded_object_status_text.dart';
 
 @RoutePage()
@@ -27,8 +28,8 @@ class UploadedObjectPage extends StatelessWidget {
             children: [
               const SizedBoxH16(),
               UploadedObjectIdText(uploadedObject: uploadedObject),
-              const SizedBoxH16(),
               UploadedObjectStatusText(uploadedObject: uploadedObject),
+              UploadedObjectOwnerText(uploadedObject: uploadedObject),
               SnapshotConnectedToUploaded(
                 uploadedObject: uploadedObject,
                 topPadding: 16,

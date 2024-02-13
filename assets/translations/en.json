@@ -406,5 +406,8 @@
         "few": "{} snapshots",
         "many": "{} snapshots",
         "other": "{} snapshots"
-    }
+    },
+    "uploaded_object_id": "id: ",
+    "uploaded_object_status": "status: ",
+    "uploaded_object_owner": "owner: "
 }
