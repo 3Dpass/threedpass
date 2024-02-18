@@ -29,7 +29,8 @@ abstract class SettingSubPage extends StatelessWidget {
         textAlign: TextAlign.center,
         titleText: appbarTitle,
         leading: D3pIconButton(
-          iconData: Icons.close,
+          iconData: Icons.arrow_back,
+          cupertinoIcon: Icons.arrow_back_ios_new,
           onPressed: () => Navigator.of(context).pop(),
         ),
         trailingActions: [

@@ -23,7 +23,7 @@ class SelectManyIconButton extends StatelessWidget {
           return D3pIconButton(
             padding: const EdgeInsets.symmetric(horizontal: 14),
             // emptyContraints: true,
-            iconData: Icons.check_box_outlined,
+            iconData: Icons.check_box_outline_blank,
             onPressed: () =>
                 BlocProvider.of<SelectSnapshotsCubit>(context).makeSelectable(),
           );

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
-import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/progress_indicator/thin_progress_indicator.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
@@ -56,6 +55,7 @@ class UploadedObjectsList extends StatelessWidget {
           }
 
           return Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               // const SizedBoxH16(),
               if (showHeader)

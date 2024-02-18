@@ -10,8 +10,9 @@ class D3pIconButton extends StatelessWidget {
     this.size,
     this.splashRadius,
     this.emptyContraints = false,
-    super.key,
     this.text,
+    this.cupertinoIcon,
+    super.key,
   });
 
   const D3pIconButton.fake({
@@ -23,6 +24,7 @@ class D3pIconButton extends StatelessWidget {
         emptyContraints = false,
         splashRadius = null,
         padding = EdgeInsets.zero,
+        cupertinoIcon = null,
         onPressed = null;
 
   final IconData iconData;
@@ -33,6 +35,7 @@ class D3pIconButton extends StatelessWidget {
   final double? splashRadius;
   final String? text;
   final EdgeInsets? padding;
+  final IconData? cupertinoIcon;
 
   @override
   Widget build(final BuildContext context) {
@@ -45,6 +48,13 @@ class D3pIconButton extends StatelessWidget {
             size: size,
             color: iconColor,
           ),
+          cupertinoIcon: cupertinoIcon != null
+              ? Icon(
+                  cupertinoIcon,
+                  size: size,
+                  color: iconColor,
+                )
+              : null,
           onPressed: onPressed,
           material: (final _, final __) => MaterialIconButtonData(
             padding: padding ?? EdgeInsets.zero,

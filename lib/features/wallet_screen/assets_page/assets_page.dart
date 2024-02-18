@@ -30,9 +30,10 @@ class AssetsPage extends StatelessWidget {
             context: context,
             theme: theme,
           ),
-          body: const Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+          body: ListView(
+            shrinkWrap: true,
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
               // SizedBoxH24(),
               SizedBoxH8(),
               CoinsBalance(),
@@ -41,9 +42,9 @@ class AssetsPage extends StatelessWidget {
               // Flexible(
               //   child: NonNativeTokens(),
               // ),
-              Flexible(
-                child: ObjectsListAssets(),
-              ),
+
+              ObjectsListAssets(),
+              SizedBoxH16(),
             ],
           ),
         );
