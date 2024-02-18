@@ -10,8 +10,8 @@ class ObjectsListPure extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+      // physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       shrinkWrap: true,
       itemCount: objects.length,
       itemBuilder: (final context, final index) => Padding(

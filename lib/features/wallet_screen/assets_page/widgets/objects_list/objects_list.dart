@@ -57,7 +57,7 @@ class UploadedObjectsList extends StatelessWidget {
 
           return Column(
             children: [
-              const SizedBoxH16(),
+              // const SizedBoxH16(),
               if (showHeader)
                 const Padding16(
                   child: ObjectsListHeaderFull(),

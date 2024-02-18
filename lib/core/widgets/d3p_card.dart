@@ -49,13 +49,13 @@ class MapperCardShapeToBorder {
     switch (cardShape) {
       case CardShape.top:
         return RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(topLeft: radius!, topRight: radius!),
+          borderRadius: BorderRadius.only(topLeft: radius, topRight: radius),
           side: side ?? BorderSide.none,
         );
       case CardShape.bottom:
         return RoundedRectangleBorder(
           borderRadius:
-              BorderRadius.only(bottomLeft: radius!, bottomRight: radius!),
+              BorderRadius.only(bottomLeft: radius, bottomRight: radius),
           side: side ?? BorderSide.none,
         );
       case CardShape.middle:
@@ -65,7 +65,7 @@ class MapperCardShapeToBorder {
         );
       case CardShape.all:
         return RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(radius!),
+          borderRadius: BorderRadius.all(radius),
           side: side ?? BorderSide.none,
         );
     }

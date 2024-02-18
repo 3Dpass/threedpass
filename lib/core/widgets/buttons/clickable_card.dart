@@ -19,7 +19,7 @@ class ClickableCard extends StatelessWidget {
   Widget build(final BuildContext context) {
     return D3pCard(
       side: side,
-      radius: radius,
+      // radius: radius,
       child: InkWell(
         onTap: onTap,
         child: Padding(
