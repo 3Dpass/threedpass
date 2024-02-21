@@ -408,6 +408,7 @@
         "other": "{} snapshots"
     },
     "uploaded_object_id": "id: ",
-    "uploaded_object_status": "status: ",
-    "uploaded_object_owner": "owner: "
+    "uploaded_object_status": "Status: ",
+    "uploaded_object_owner": "Owner: ",
+    "uploaded_object_hashes": "Object's hashes: "
 }
