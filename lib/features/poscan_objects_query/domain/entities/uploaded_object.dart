@@ -8,12 +8,12 @@ class UploadedObject {
   final Map<dynamic, dynamic> raw;
   @HiveField(1)
   final int id;
-  @HiveField(2)
-  final String owner;
-  @HiveField(3)
-  final List<String> hashes;
-  @HiveField(4)
-  final String status;
+  // @HiveField(2)
+  // final String owner;
+  // @HiveField(3)
+  // final List<String> hashes;
+  // @HiveField(4)
+  // final String status;
   @HiveField(5)
   final DateTime cacheDate;
   // @HiveField(6)
@@ -22,9 +22,9 @@ class UploadedObject {
   const UploadedObject({
     required this.id,
     required this.raw,
-    required this.owner,
-    required this.hashes,
-    required this.status,
+    // required this.owner,
+    // required this.hashes,
+    // required this.status,
     required this.cacheDate,
     // required this.statusDateUTC,
   });
@@ -38,4 +38,12 @@ class UploadedObject {
 
     return realStatus;
   }
+
+  String get owner => raw['owner'] as String;
+
+  List<String> get hashes => (raw['hashes'] as List<dynamic>)
+      .map((final dynamic e) => e.toString().substring(2))
+      .toList();
+
+  String get status => (raw['state'] as Map).keys.first.toString();
 }

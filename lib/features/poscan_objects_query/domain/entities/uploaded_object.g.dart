@@ -19,9 +19,6 @@ class UploadedObjectAdapter extends TypeAdapter<UploadedObject> {
     return UploadedObject(
       id: fields[1] as int,
       raw: (fields[0] as Map).cast<dynamic, dynamic>(),
-      owner: fields[2] as String,
-      hashes: (fields[3] as List).cast<String>(),
-      status: fields[4] as String,
       cacheDate: fields[5] as DateTime,
     );
   }
@@ -29,17 +26,11 @@ class UploadedObjectAdapter extends TypeAdapter<UploadedObject> {
   @override
   void write(BinaryWriter writer, UploadedObject obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.raw)
       ..writeByte(1)
       ..write(obj.id)
-      ..writeByte(2)
-      ..write(obj.owner)
-      ..writeByte(3)
-      ..write(obj.hashes)
-      ..writeByte(4)
-      ..write(obj.status)
       ..writeByte(5)
       ..write(obj.cacheDate);
   }
