@@ -17,7 +17,7 @@ part './trans_bytes.dart';
 class SnapshotFileFactory {
   final ScanSettings scanSettings;
   final HashesListBloc hashesListBloc;
-  final void Function() showLoader;
+  // final void Function() showLoader;
   // final ObjectsDirectory objectsDirectory;
   final ScanIsolateCubit scanIsolateCubit;
   // final void Function() hideLoader;
@@ -25,7 +25,7 @@ class SnapshotFileFactory {
   SnapshotFileFactory({
     required this.scanSettings,
     required this.hashesListBloc,
-    required this.showLoader,
+    // required this.showLoader,
     // required this.objectsDirectory,
     required this.scanIsolateCubit,
     // required this.hideLoader,
@@ -138,8 +138,11 @@ class SnapshotFileFactory {
       filePath: filePath,
       transBytes: transBytes,
       algorithm: algo,
+      // updateIsolateListener: scanIsolateCubit.setData,
     );
 
-    return calculator.calcHashes(scanIsolateCubit.setData);
+    return calculator.calcHashes(
+      scanIsolateCubit.setData,
+    );
   }
 }

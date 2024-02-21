@@ -10,9 +10,7 @@ import 'package:threedpass/features/hashes_list/domain/entities/objects_director
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/file_copy.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/file_picker.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/snapshot_create_from_file.dart';
-import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/scan_page/bloc/scan_isolate_cubit.dart';
-import 'package:threedpass/features/scan_page/presentation/widgets/calc_hash_loading_dialog.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart';
@@ -24,31 +22,31 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
     Fluttertoast.showToast(msg: text);
   }
 
-  void showLoader(final BuildContext context) {
-    final homeContext = BlocProvider.of<HomeContextCubit>(context);
+  // void showLoader(final BuildContext context) {
+  //   final homeContext = BlocProvider.of<HomeContextCubit>(context);
 
-    // homeContext.router.push(
-    //   const CalcHashLoadingDialogRoute(),
-    // );
-    unawaited(
-      homeContext.showDialogC(
-        (final __) => const CalcHashLoadingDialog(),
-      ),
-    );
-  }
+  //   // homeContext.router.push(
+  //   //   const CalcHashLoadingDialogRoute(),
+  //   // );
+  //   unawaited(
+  //     homeContext.showDialogC(
+  //       (final __) => const CalcHashLoadingDialog(),
+  //     ),
+  //   );
+  // }
 
-  void hideLoader(final BuildContext context) {
-    final homeContext = BlocProvider.of<HomeContextCubit>(context);
-    // homeContext.state.context.router.pop();
-    homeContext.hideDialogC();
-  }
+  // void hideLoader(final BuildContext context) {
+  //   final homeContext = BlocProvider.of<HomeContextCubit>(context);
+  //   // homeContext.state.context.router.pop();
+  //   homeContext.hideDialogC();
+  // }
 
   /// Calc object
   Future<void> createHashFromFile(
     final BuildContext context,
   ) async {
     final snapFactory = SnapshotFileFactory(
-      showLoader: () => showLoader(context),
+      // showLoader: () => showLoader(context),
       hashesListBloc: BlocProvider.of<HashesListBloc>(context),
       scanSettings:
           BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings,
@@ -61,7 +59,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       final objectsDirectory = getIt<ObjectsDirectory>();
       final pickedFilePath = await FilePickerShortCut().pickFile();
 
-      showLoader(context);
+      // showLoader(context);
 
       final relativePath =
           await FileCopy(objectsDirectory).write(pickedFilePath);
@@ -71,8 +69,8 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
         pickedFilePath: pickedFilePath,
       );
 
-      hideLoader(context);
-
+      // hideLoader(context);
+      BlocProvider.of<ScanIsolateCubit>(context).setNull();
       unawaited(
         context.router.push(
           PreviewRouteWrapper(
@@ -90,7 +88,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
 
       if (e.toString().contains(ScanIsolateCubit.cancelMsg)) {
         showToast('Scanning canceled by user.', context);
-        hideLoader(context);
+        // hideLoader(context);
       } else {
         showToast('Error during file pick. $e', context);
       }

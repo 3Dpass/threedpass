@@ -23,8 +23,7 @@ class UploadedObjectPage extends StatelessWidget {
     return D3pScaffold(
       appbarTitle: 'uploaded_object_title',
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        // crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [
           const SizedBoxH16(),
           UploadedObjectIdText(uploadedObject: uploadedObject),
@@ -50,10 +49,6 @@ class UploadedObjectPage extends StatelessWidget {
             mainText: '\n' + uploadedObject.hashes.join('\n'),
             secondaryText: 'uploaded_object_hashes'.tr(),
           ),
-
-          // const SizedBoxH24(),
-          // const D3pBodyMediumText('Raw:'), // TODO LOCALIZE
-          // RawUploadedObjectContent(uploadedObject: uploadedObject),
         ],
       ),
     );
