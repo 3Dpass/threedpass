@@ -1,18 +1,17 @@
 import 'dart:async';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logger/logger.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
+import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/file_copy.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/file_picker.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/snapshot_create_from_file.dart';
 import 'package:threedpass/features/scan_page/bloc/scan_isolate_cubit.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
-import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart';
 
 class GetObjectFromFileFloatingButton extends StatelessWidget {
@@ -45,6 +44,8 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
   Future<void> createHashFromFile(
     final BuildContext context,
   ) async {
+    final isolateCubit = BlocProvider.of<ScanIsolateCubit>(context);
+    final hashesListBloc = BlocProvider.of<HashesListBloc>(context);
     final snapFactory = SnapshotFileFactory(
       // showLoader: () => showLoader(context),
       hashesListBloc: BlocProvider.of<HashesListBloc>(context),
@@ -70,16 +71,39 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       );
 
       // hideLoader(context);
-      BlocProvider.of<ScanIsolateCubit>(context).setNull();
-      unawaited(
-        context.router.push(
-          PreviewRouteWrapper(
-            hashObject: pair.left,
-            snapshot: pair.right,
-            createNewAnyway: true,
-          ),
-        ),
-      );
+      isolateCubit.setNull();
+
+      if (pair.left == null) {
+        // Create new object
+        final newObj = HashObject(
+          name: 'Object ${pair.right.fileHash}',
+          snapshots: [
+            pair.right,
+          ],
+        );
+        hashesListBloc.add(AddObject(object: newObj));
+      } else {
+        // Add snapshot
+        hashesListBloc.add(SaveSnapshot(hash: pair.right, object: pair.left!));
+      }
+
+      // BlocProvider.of<HashesListBloc>(context).add(
+      //   AddObject(HashObject.fromSnapshot(pair.right)),
+      //   // SaveSnapshot(
+      //   //   object: pair.left,
+      //   //   hash: pair.right,
+      //   // ),
+      // );
+
+      // unawaited(
+      //   context.router.push(
+      //     PreviewRouteWrapper(
+      //       hashObject: pair.left,
+      //       snapshot: pair.right,
+      //       createNewAnyway: true,
+      //     ),
+      //   ),
+      // );
     } on FilePickerException catch (e) {
       showToast(e.message, context);
       getIt<Logger>().e('Caught FilePickerException: $e');

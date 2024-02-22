@@ -112,6 +112,7 @@ class SnapshotFileFactory {
           transBytes: transBytes,
         ),
         fileHash: hashFile(filePath),
+        isNew: true,
       );
 
       final hashObject = insertSnapIntoHashObject(hashListState, newSnapshot);

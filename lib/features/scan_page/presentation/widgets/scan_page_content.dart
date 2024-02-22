@@ -21,6 +21,7 @@ class ScanPageContent extends StatelessWidget {
                 if (state.objects.isEmpty) {
                   return const NoSavedObjectsPlaceholder();
                 } else {
+                  // Map keys
                   return ObjectsList(
                     state: state,
                   );

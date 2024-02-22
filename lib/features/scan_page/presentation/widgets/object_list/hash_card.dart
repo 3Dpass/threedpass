@@ -48,9 +48,22 @@ class SnapshotCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              snapshot.name,
-              style: theme.d3pBodyLarge,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                  child: Text(
+                    snapshot.name,
+                    style: theme.d3pBodyLarge,
+                  ),
+                ),
+                if (snapshot.isNew)
+                  Icon(
+                    Icons.fiber_new_outlined,
+                    color: D3pThemeData.mainColor,
+                  ),
+              ],
             ),
             const SizedBoxH8(),
             Text.rich(
