@@ -10,9 +10,8 @@ class ObjectsListAssets extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
-      builder: (final context, final appService) => UploadedObjectsList(
-        showHeader: true,
-        filter: (final obj) => obj.owner == appService.keyring.current.address,
+      builder: (final context, final appService) => AssetsUploadedObjectsList(
+        appService: appService,
       ),
     );
   }

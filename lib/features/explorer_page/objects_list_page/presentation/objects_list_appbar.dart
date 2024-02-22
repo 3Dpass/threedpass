@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/features/explorer_page/presentation/objects_list_page/reload_objects_icon_button.dart';
+import 'package:threedpass/features/explorer_page/objects_list_page/presentation/reload_objects_icon_button.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
 
 class ObjectsListAppbar extends StatelessWidget {

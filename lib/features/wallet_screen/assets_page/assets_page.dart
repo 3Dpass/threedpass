@@ -42,7 +42,7 @@ class AssetsPage extends StatelessWidget {
               // Flexible(
               //   child: NonNativeTokens(),
               // ),
-
+              SizedBoxH16(),
               ObjectsListAssets(),
               SizedBoxH16(),
             ],
