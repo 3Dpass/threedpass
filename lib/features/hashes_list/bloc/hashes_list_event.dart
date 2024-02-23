@@ -59,3 +59,13 @@ class _LoadHashesList extends HashesListEvent {
 
   final List<HashObject> objects;
 }
+
+class UnmarkNewSnap extends HashesListEvent {
+  const UnmarkNewSnap({
+    required this.object,
+    required this.snap,
+  });
+
+  final Snapshot snap;
+  final HashObject object;
+}

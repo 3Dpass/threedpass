@@ -103,8 +103,8 @@ class SnapshotFileFactory {
     final snapName = snapshotName(rawObjName);
 
     if (hashListState is HashesListLoaded) {
-      final newSnapshot = Snapshot(
-        name: snapName,
+      Snapshot newSnapshot = Snapshot(
+        name: '1 $snapName',
         hashes: hashes.split('\n'),
         stamp: DateTime.now(),
         relativePath: relativePath,
@@ -116,6 +116,11 @@ class SnapshotFileFactory {
       );
 
       final hashObject = insertSnapIntoHashObject(hashListState, newSnapshot);
+
+      if (hashObject != null) {
+        final i = hashObject.snapshots.length;
+        newSnapshot = newSnapshot.copyWith(name: '${i + 1} $snapName');
+      }
 
       return Pair<HashObject?, Snapshot>(hashObject, newSnapshot);
     } else {

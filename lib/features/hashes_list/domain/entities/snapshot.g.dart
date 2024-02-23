@@ -21,6 +21,8 @@ abstract class _$SnapshotCWProxy {
 
   Snapshot externalPathToObj(String? externalPathToObj);
 
+  Snapshot isNew(bool isNew);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Snapshot(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -35,6 +37,7 @@ abstract class _$SnapshotCWProxy {
     int? fileHash,
     String? relativePath,
     String? externalPathToObj,
+    bool? isNew,
   });
 }
 
@@ -69,6 +72,9 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
       this(externalPathToObj: externalPathToObj);
 
   @override
+  Snapshot isNew(bool isNew) => this(isNew: isNew);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Snapshot(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -84,6 +90,7 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
     Object? fileHash = const $CopyWithPlaceholder(),
     Object? relativePath = const $CopyWithPlaceholder(),
     Object? externalPathToObj = const $CopyWithPlaceholder(),
+    Object? isNew = const $CopyWithPlaceholder(),
   }) {
     return Snapshot(
       name: name == const $CopyWithPlaceholder() || name == null
@@ -115,6 +122,10 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
           ? _value.externalPathToObj
           // ignore: cast_nullable_to_non_nullable
           : externalPathToObj as String?,
+      isNew: isNew == const $CopyWithPlaceholder() || isNew == null
+          ? _value.isNew
+          // ignore: cast_nullable_to_non_nullable
+          : isNew as bool,
     );
   }
 }

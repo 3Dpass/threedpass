@@ -30,8 +30,8 @@ class SnapshotCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context).customTextStyles;
-    final hashesListState =
-        BlocProvider.of<HashesListBloc>(context).state as HashesListLoaded;
+    final hashesListBloc = BlocProvider.of<HashesListBloc>(context);
+    final hashesListState = hashesListBloc.state as HashesListLoaded;
 
     return BlocBuilder<SelectSnapshotsCubit, SelectSnapshotsState>(
       buildWhen: (final previous, final current) =>
@@ -42,12 +42,22 @@ class SnapshotCard extends StatelessWidget {
         onTap: state.areSelectable
             ? () =>
                 BlocProvider.of<SelectSnapshotsCubit>(context).toggle(snapshot)
-            : () => context.router.push(
+            : () async {
+                await context.router.push(
                   PreviewRouteWrapper(
                     hashObject: hashObject,
                     snapshot: snapshot,
                   ),
-                ),
+                );
+                if (snapshot.isNew) {
+                  hashesListBloc.add(
+                    UnmarkNewSnap(
+                      object: hashObject,
+                      snap: snapshot,
+                    ),
+                  );
+                }
+              },
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,

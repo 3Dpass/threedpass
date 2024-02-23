@@ -23,6 +23,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     on<SaveSnapshot>(_saveSnapshot);
     on<ReplaceSnapshot>(_replaceSnapshot);
     on<_LoadHashesList>(_loadList);
+    on<UnmarkNewSnap>(_unmarkNewSnap);
   }
 
   final HashesRepository hashesRepository;
@@ -144,6 +145,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
         HashesListLoaded(
           objects: list,
           globalKeyMap: gmap,
+          requiresScroll: true,
         ),
       );
     }
@@ -174,6 +176,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
         HashesListLoaded(
           objects: list,
           globalKeyMap: buildMap(list),
+          requiresScroll: true,
         ),
       );
     }
@@ -209,6 +212,33 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
         );
       } else {
         await hashesRepository.replaceObject(event.object);
+      }
+      emit(
+        HashesListLoaded(
+          objects: list,
+          globalKeyMap: buildMap(list),
+        ),
+      );
+    }
+  }
+
+  Future<void> _unmarkNewSnap(
+    final UnmarkNewSnap event,
+    final Emitter<HashesListState> emit,
+  ) async {
+    if (state is HashesListLoaded) {
+      final list = (state as HashesListLoaded).objects;
+      final obj = event.object;
+
+      // find old snapshot place
+      final oldSnapIndex = obj.snapshots.indexOf(event.snap);
+      // replace it with new one
+      if (oldSnapIndex != -1) {
+        obj.snapshots[oldSnapIndex] = event.snap.copyWith(isNew: false);
+      } else {
+        getIt<Logger>().e(
+          'Not found a snapshot in object ${obj.name}. Snapshot name=${event.snap.name}',
+        );
       }
       emit(
         HashesListLoaded(

@@ -22,37 +22,36 @@ class ScanPageContent extends StatelessWidget {
                 if (state.objects.isEmpty) {
                   return const NoSavedObjectsPlaceholder();
                 } else {
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    print('try scroll to new obj');
-                    try {
-                      // await Future<dynamic>.delayed(Duration(seconds: 5));
-                      // state.objects.forEach((element) {element.snapshots.forEach((element) {element.isNew });});
-                      if (state.hasNew) {
-                        final snap = state.firstNew;
-                        final gKey = state.globalKeyMap[snap];
-                        print(gKey);
-                        // final snap = event.object.snapshots.first;
-                        Scrollable.ensureVisible(gKey!.currentContext!);
-                        print('SCROLL SCROLL');
-                      } else {
-                        print('No new snapshots');
+                  if (state.requiresScroll) {
+                    // TODO. IF PERFOMANCE IS POOR. REWRITE THIS USING LISTVIEW.BUILDER AND MANUAL OFFSET SCROLL
+                    WidgetsBinding.instance.addPostFrameCallback((final _) {
+                      debugPrint('try scroll to new obj');
+                      try {
+                        // await Future<dynamic>.delayed(Duration(seconds: 5));
+                        // state.objects.forEach((element) {element.snapshots.forEach((element) {element.isNew });});
+                        if (state.hasNew) {
+                          final snap = state.firstNew;
+                          final gKey = state.globalKeyMap[snap];
+                          // final snap = event.object.snapshots.first;
+                          Scrollable.ensureVisible(
+                            gKey!.currentContext!,
+                            duration: Duration(seconds: 1),
+                          );
+                          debugPrint('SCROLL SCROLL');
+                        } else {
+                          debugPrint('No new snapshots');
+                        }
+                      } on Object catch (e) {
+                        debugPrint('SCROLL ERROR: $e');
                       }
-                    } catch (e) {
-                      print('SCROLL ERROR: $e');
-                    }
-                  });
-                  // try {
-                  //   await Future<dynamic>.delayed(Duration(seconds: 5));
-                  //   final snap = event.object.snapshots.first;
-                  //   Scrollable.ensureVisible(gmap[snap]!.currentContext!);
-                  //   print('SCROLL SCROLL');
-                  // } catch (e) {
-                  //   print('SCROLL ERROR: $e');
-                  // }
+                    });
+                  }
 
                   // Map keys
-                  return ObjectsList(
-                    state: state,
+                  return SingleChildScrollView(
+                    child: ObjectsList(
+                      state: state,
+                    ),
                   );
                 }
               } else {

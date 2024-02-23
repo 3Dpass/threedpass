@@ -17,48 +17,56 @@ class ObjectsList extends StatelessWidget {
   Widget build(final BuildContext context) {
     final objects = state.objects;
 
-    return ListView.builder(
+    return ListView(
       padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-      // physics: const NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: objects.length,
-      itemBuilder: (final context, final objIndex) {
-        final currentObject = objects[objIndex];
-        final fileHashes = currentObject.fileHashes.toList();
+      // itemCount: objects.length,
+      // itemBuilder: (final context, final objIndex) {
+      children: List.generate(
+        objects.length,
+        (objIndex) {
+          final currentObject = objects[objIndex];
+          final fileHashes = currentObject.fileHashes.toList();
 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _ObjectTitle(currentObject.name),
-            const SizedBoxH4(),
-            ListView.builder(
-              primary: false,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.zero,
-              itemCount: fileHashes.length,
-              itemBuilder: (final _, final index) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    FileHashHeader(
-                      fileHash: fileHashes[index],
-                    ),
-                    Flexible(
-                      child: SnapshotsList(
-                        currentObject: currentObject,
-                        allowedFileHash: fileHashes[index],
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
-          ],
-        );
-      },
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _ObjectTitle(currentObject.name),
+              const SizedBoxH4(),
+              ListView(
+                primary: false,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.zero,
+                // itemCount: fileHashes.length,
+                // itemBuilder: (final _, final index) {
+                children: List.generate(
+                  fileHashes.length,
+                  (index) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        FileHashHeader(
+                          fileHash: fileHashes[index],
+                        ),
+                        Flexible(
+                          child: SnapshotsList(
+                            currentObject: currentObject,
+                            allowedFileHash: fileHashes[index],
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

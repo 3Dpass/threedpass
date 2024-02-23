@@ -11,8 +11,8 @@ class ScanIndicator extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<ScanIsolateCubit, ScanIsolateData?>(
-      builder: (final context, final state) => AnimatedContainer(
-        duration: const Duration(milliseconds: 500),
+      builder: (final context, final state) => AnimatedSize(
+        duration: const Duration(milliseconds: 1000),
         child: state != null
             ? Column(
                 children: [
