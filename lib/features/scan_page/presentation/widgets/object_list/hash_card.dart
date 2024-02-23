@@ -8,6 +8,7 @@ import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
+import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/scan_page/bloc/select_snapshots_cubit.dart';
@@ -29,12 +30,15 @@ class SnapshotCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context).customTextStyles;
+    final hashesListState =
+        BlocProvider.of<HashesListBloc>(context).state as HashesListLoaded;
 
     return BlocBuilder<SelectSnapshotsCubit, SelectSnapshotsState>(
       buildWhen: (final previous, final current) =>
           previous.areSelectable != current.areSelectable ||
           previous.snaps.contains(snapshot) != current.snaps.contains(snapshot),
       builder: (final _, final state) => ClickableCard(
+        key: hashesListState.globalKeyMap[snapshot],
         onTap: state.areSelectable
             ? () =>
                 BlocProvider.of<SelectSnapshotsCubit>(context).toggle(snapshot)

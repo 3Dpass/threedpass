@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
@@ -32,11 +33,27 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     add(_LoadHashesList(objects: objects));
   }
 
+  Map<Snapshot, GlobalKey> buildMap(
+    final List<HashObject> objects,
+  ) {
+    final Map<Snapshot, GlobalKey> res = {};
+    objects.forEach(
+      (final obj) =>
+          obj.snapshots.forEach((final snap) => res[snap] = GlobalKey()),
+    );
+    return res;
+  }
+
   Future<void> _loadList(
     final _LoadHashesList event,
     final Emitter<HashesListState> emit,
   ) async {
-    emit(HashesListLoaded(objects: event.objects));
+    emit(
+      HashesListLoaded(
+        objects: event.objects,
+        globalKeyMap: buildMap(event.objects),
+      ),
+    );
   }
 
   Future<void> _deleteHash(
@@ -83,7 +100,12 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       } else {
         await hashesRepository.replaceObject(hashObject!);
       }
-      emit(HashesListLoaded(objects: list));
+      emit(
+        HashesListLoaded(
+          objects: list,
+          globalKeyMap: buildMap(list),
+        ),
+      );
     }
   }
 
@@ -98,7 +120,12 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       list.removeWhere(
         (final element) => element == event.object,
       );
-      emit(HashesListLoaded(objects: list));
+      emit(
+        HashesListLoaded(
+          objects: list,
+          globalKeyMap: buildMap(list),
+        ),
+      );
     }
   }
 
@@ -111,7 +138,14 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     if (state is HashesListLoaded) {
       final list = (state as HashesListLoaded).objects;
       list.add(event.object);
-      emit(HashesListLoaded(objects: list));
+
+      final gmap = buildMap(list);
+      emit(
+        HashesListLoaded(
+          objects: list,
+          globalKeyMap: gmap,
+        ),
+      );
     }
   }
 
@@ -136,7 +170,12 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       } else {
         await hashesRepository.replaceObject(event.object);
       }
-      emit(HashesListLoaded(objects: list));
+      emit(
+        HashesListLoaded(
+          objects: list,
+          globalKeyMap: buildMap(list),
+        ),
+      );
     }
   }
 
@@ -171,7 +210,12 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       } else {
         await hashesRepository.replaceObject(event.object);
       }
-      emit(HashesListLoaded(objects: list));
+      emit(
+        HashesListLoaded(
+          objects: list,
+          globalKeyMap: buildMap(list),
+        ),
+      );
     }
   }
 }

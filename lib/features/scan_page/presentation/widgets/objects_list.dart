@@ -11,59 +11,55 @@ class ObjectsList extends StatelessWidget {
     final Key? key,
   }) : super(key: key);
 
-  final HashesListState state;
+  final HashesListLoaded state;
 
   @override
   Widget build(final BuildContext context) {
-    if (state is HashesListLoaded) {
-      final realState = state as HashesListLoaded;
-      final objects = realState.objects;
+    final objects = state.objects;
 
-      return ListView.builder(
-        padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-        // physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: objects.length,
-        itemBuilder: (final context, final objIndex) {
-          final currentObject = objects[objIndex];
-          final fileHashes = currentObject.fileHashes.toList();
+    return ListView.builder(
+      padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+      // physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: objects.length,
+      itemBuilder: (final context, final objIndex) {
+        final currentObject = objects[objIndex];
+        final fileHashes = currentObject.fileHashes.toList();
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _ObjectTitle(currentObject.name),
-              const SizedBoxH4(),
-              ListView.builder(
-                primary: false,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.zero,
-                itemCount: fileHashes.length,
-                itemBuilder: (final _, final index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      FileHashHeader(
-                        fileHash: fileHashes[index],
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _ObjectTitle(currentObject.name),
+            const SizedBoxH4(),
+            ListView.builder(
+              primary: false,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.zero,
+              itemCount: fileHashes.length,
+              itemBuilder: (final _, final index) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    FileHashHeader(
+                      fileHash: fileHashes[index],
+                    ),
+                    Flexible(
+                      child: SnapshotsList(
+                        currentObject: currentObject,
+                        allowedFileHash: fileHashes[index],
                       ),
-                      Flexible(
-                        child: SnapshotsList(
-                          currentObject: currentObject,
-                          allowedFileHash: fileHashes[index],
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
-    return const SizedBox();
+                    ),
+                  ],
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
 
