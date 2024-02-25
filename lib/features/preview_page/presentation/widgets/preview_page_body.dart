@@ -56,6 +56,7 @@ class PreviewPageBody extends StatelessWidget {
         const PoscanResult(),
         const SizedBoxH16(),
         const TopHashesTitle(),
+        const SizedBox(height: 2),
         TopHashesCard(hashes: previewPageCubitState.snapshot.hashes),
         const SizedBoxH16(),
         RenameSnapshotButton(state: previewPageCubitState),

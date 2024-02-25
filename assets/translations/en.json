@@ -379,13 +379,36 @@
     "local_snapshots_with_same_hashes": "Local snapshots with same hashes:",
     "file_hash_subtitle_scan_list": "Local file hash: ",
     "poscan_object_title": "PoScan object",
-    "reset_objects_cache_plural": {
-        "zero": "No objects cached",
-        "one": "{} object cached",
-        "two": "{} objects cached",
-        "few": "{} objects cached",
-        "many": "{} objects cached",
-        "other": "{} objects cached"
+
+    "no_owned_objects_found": "No objects owned by this account found",
+
+    "@2.12.0":{
     },
-    "no_owned_objects_found": "No objects owned by this account found"
+    "bottom_label_explorer": "Explorer",
+    "objects_plural": {
+        "zero": "No objects",
+        "one": "{} object",
+        "two": "{} objects",
+        "few": "{} objects",
+        "many": "{} objects",
+        "other": "{} objects"
+    },
+    "reset_objects_cache_plural": "{} cached",
+    "objects_list_appbar_title": "{} in storage",
+    "no_objects": "No cached objects",
+    "bad_address": "Wrong address format",
+    "delete_snapshots_dialog_title": "Delete snapshots",
+    "delete_snapshots_dialog_content": "Do you want to delete {}?",
+    "snapshots_plural": {
+        "zero": "0 snapshots",
+        "one": "{} snapshot",
+        "two": "{} snapshots",
+        "few": "{} snapshots",
+        "many": "{} snapshots",
+        "other": "{} snapshots"
+    },
+    "uploaded_object_id": "id: ",
+    "uploaded_object_status": "Status: ",
+    "uploaded_object_owner": "Owner: ",
+    "uploaded_object_hashes": "Object's hashes: "
 }

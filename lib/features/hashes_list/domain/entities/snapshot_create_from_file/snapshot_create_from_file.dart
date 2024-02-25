@@ -17,7 +17,7 @@ part './trans_bytes.dart';
 class SnapshotFileFactory {
   final ScanSettings scanSettings;
   final HashesListBloc hashesListBloc;
-  final void Function() showLoader;
+  // final void Function() showLoader;
   // final ObjectsDirectory objectsDirectory;
   final ScanIsolateCubit scanIsolateCubit;
   // final void Function() hideLoader;
@@ -25,7 +25,7 @@ class SnapshotFileFactory {
   SnapshotFileFactory({
     required this.scanSettings,
     required this.hashesListBloc,
-    required this.showLoader,
+    // required this.showLoader,
     // required this.objectsDirectory,
     required this.scanIsolateCubit,
     // required this.hideLoader,
@@ -103,8 +103,8 @@ class SnapshotFileFactory {
     final snapName = snapshotName(rawObjName);
 
     if (hashListState is HashesListLoaded) {
-      final newSnapshot = Snapshot(
-        name: snapName,
+      Snapshot newSnapshot = Snapshot(
+        name: '1 $snapName',
         hashes: hashes.split('\n'),
         stamp: DateTime.now(),
         relativePath: relativePath,
@@ -112,9 +112,15 @@ class SnapshotFileFactory {
           transBytes: transBytes,
         ),
         fileHash: hashFile(filePath),
+        isNew: true,
       );
 
       final hashObject = insertSnapIntoHashObject(hashListState, newSnapshot);
+
+      if (hashObject != null) {
+        final i = hashObject.snapshots.length;
+        newSnapshot = newSnapshot.copyWith(name: '${i + 1} $snapName');
+      }
 
       return Pair<HashObject?, Snapshot>(hashObject, newSnapshot);
     } else {
@@ -138,8 +144,11 @@ class SnapshotFileFactory {
       filePath: filePath,
       transBytes: transBytes,
       algorithm: algo,
+      // updateIsolateListener: scanIsolateCubit.setData,
     );
 
-    return calculator.calcHashes(scanIsolateCubit.setData);
+    return calculator.calcHashes(
+      scanIsolateCubit.setData,
+    );
   }
 }

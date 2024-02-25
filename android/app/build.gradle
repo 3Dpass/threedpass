@@ -56,38 +56,38 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
-        if (System.getenv("KEYSTORE_PATH")) {
+       if (System.getenv("KEYSTORE_PATH")) {
             resValue "string", "app_name", "3DPass"
 
             println "Release properties"
-        } else {
-            applicationIdSuffix '.debug'
-            versionNameSuffix '-DEBUG'
-            resValue "string", "app_name", "3DPass debug"
+       } else {
+           applicationIdSuffix '.debug'
+           versionNameSuffix '-DEBUG'
+           resValue "string", "app_name", "3DPass debug"
 
-            println "Debug properties"
-        }
+           println "Debug properties"
+       }
     }
 
 
     signingConfigs {
         release {
-//            storeFile file('aaaaa')
-//            keyPassword 'aaa'
-//            storePassword 'aaa'
-//            keyAlias 'aaaa'
+            // keyAlias keystoreProperties['keyAlias']
+            // keyPassword keystoreProperties['keyPassword']
+            // storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            // storePassword keystoreProperties['storePassword']
 
-            if (System.getenv("KEYSTORE_PATH")){
-                println("signingConfigs release")
-                // If you are reading these lines check the link:
-                // https://proandroiddev.com/how-to-securely-build-and-sign-your-android-app-with-github-actions-ad5323452ce
-                storeFile = file(System.getenv("KEYSTORE_PATH"))
-                storePassword System.getenv("SIGNING_STORE_PASSWORD")
-                keyAlias System.getenv("SIGNING_KEY_ALIAS")
-                keyPassword System.getenv("SIGNING_KEY_PASSWORD")
-            } else{
-                println("signingConfigs debug")
-            }
+//            if (System.getenv("KEYSTORE_PATH")){
+//                println("signingConfigs release")
+//                // If you are reading these lines check the link:
+//                // https://proandroiddev.com/how-to-securely-build-and-sign-your-android-app-with-github-actions-ad5323452ce
+//                storeFile = file(System.getenv("KEYSTORE_PATH"))
+//                storePassword System.getenv("SIGNING_STORE_PASSWORD")
+//                keyAlias System.getenv("SIGNING_KEY_ALIAS")
+//                keyPassword System.getenv("SIGNING_KEY_PASSWORD")
+//            } else{
+//                println("signingConfigs debug")
+//            }
         }
     }
 }

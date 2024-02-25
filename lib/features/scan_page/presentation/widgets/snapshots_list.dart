@@ -23,16 +23,25 @@ class SnapshotsList extends StatelessWidget {
       }
     }
 
-    return ListView.builder(
+    return ListView(
       physics: const NeverScrollableScrollPhysics(),
+      primary: false,
       shrinkWrap: true,
-      itemCount: listToShow.length,
-      itemBuilder: (final context, final index) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4),
-        child: SnapshotCard(
-          snapshot: listToShow[index],
-          hashObject: currentObject,
-        ),
+      // itemCount: listToShow.length,
+      // itemBuilder: (final context, final index) {
+      children: List.generate(
+        listToShow.length,
+        (index) {
+          // final areSelectable =
+          //     BlocProvider.of<SelectSnapshotsCubit>(context).state.areSelectable;
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4),
+            child: SnapshotCard(
+              snapshot: listToShow[index],
+              hashObject: currentObject,
+            ),
+          );
+        },
       ),
     );
   }

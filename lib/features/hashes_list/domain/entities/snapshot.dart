@@ -36,6 +36,8 @@ class Snapshot {
   @HiveField(5)
   final int fileHash;
 
+  final bool isNew;
+
   const Snapshot({
     required this.name,
     required this.stamp,
@@ -44,6 +46,7 @@ class Snapshot {
     required this.fileHash,
     this.relativePath,
     this.externalPathToObj,
+    this.isNew = false,
   });
 
   String get shareText => hashes.join('\n');

@@ -11,7 +11,7 @@ class ObjectsListHeaderFull extends StatelessWidget {
 
   Future<void> refreshObjectsList(final BuildContext context) async {
     final objectsCubit = BlocProvider.of<PoscanObjectsCubit>(context);
-    objectsCubit.clear();
+    await objectsCubit.clear();
     return objectsCubit.loadAll();
   }
 

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:unicons/unicons.dart';
 
 class HomeNavBar {
   Widget build(
@@ -20,6 +21,7 @@ class HomeNavBar {
           type: BottomNavigationBarType.fixed,
           itemChanged: tabsRouter.setActiveIndex,
           elevation: 3,
+          height: kBottomNavigationBarHeight,
         ),
         cupertino: (final _, final __) => CupertinoTabBarData(
           itemChanged: tabsRouter.setActiveIndex,
@@ -38,6 +40,12 @@ class HomeNavBar {
             label: 'bottom_label_wallet'.tr(),
             icon: const Icon(
               Icons.account_balance_wallet,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: 'bottom_label_explorer'.tr(),
+            icon: const Icon(
+              UniconsLine.object_group,
             ),
           ),
           BottomNavigationBarItem(

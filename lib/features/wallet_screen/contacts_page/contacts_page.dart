@@ -20,6 +20,7 @@ class ContactsPage extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'add_contact',
         child: const Icon(Icons.add),
         onPressed: () => onTapAddContact(context),
       ),

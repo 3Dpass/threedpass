@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
+import 'package:threedpass/features/scan_page/bloc/select_snapshots_cubit.dart';
 
 @RoutePage()
 class ScanPageWrapper extends StatelessWidget implements AutoRouteWrapper {
@@ -17,6 +18,9 @@ class ScanPageWrapper extends StatelessWidget implements AutoRouteWrapper {
         BlocProvider<OuterContextCubit>(
           create: (final _) => OuterContextCubit(context),
           lazy: false,
+        ),
+        BlocProvider<SelectSnapshotsCubit>(
+          create: (final _) => SelectSnapshotsCubit(),
         ),
       ],
       child: this,

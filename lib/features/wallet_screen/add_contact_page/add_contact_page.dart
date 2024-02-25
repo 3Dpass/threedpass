@@ -91,7 +91,7 @@ class AddContactPage extends StatelessWidget {
         }
       } else {
         FastSnackBar(
-          textCode: 'invalid_input',
+          textCode: 'bad_address',
           context: context,
         ).show();
       }

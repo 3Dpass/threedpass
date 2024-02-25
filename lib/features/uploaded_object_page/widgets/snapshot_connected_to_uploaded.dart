@@ -53,6 +53,7 @@ class SnapshotConnectedToUploaded extends StatelessWidget {
           color: D3pColors.disabled,
         ),
         ListView.builder(
+          padding: EdgeInsets.zero,
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: similarSnapshots.length,

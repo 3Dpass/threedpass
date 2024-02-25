@@ -8,7 +8,7 @@ import 'package:threedpass/features/wallet_screen/assets_page/widgets/accounts_d
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/asset_page_appbar.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/buttons_panel.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/coins_balance.dart';
-import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/objects_list.dart';
+import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/objects_list_assets.dart';
 
 class AssetsPage extends StatelessWidget {
   const AssetsPage({final Key? key}) : super(key: key);
@@ -30,9 +30,10 @@ class AssetsPage extends StatelessWidget {
             context: context,
             theme: theme,
           ),
-          body: const Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+          body: ListView(
+            shrinkWrap: true,
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
               // SizedBoxH24(),
               SizedBoxH8(),
               CoinsBalance(),
@@ -41,9 +42,9 @@ class AssetsPage extends StatelessWidget {
               // Flexible(
               //   child: NonNativeTokens(),
               // ),
-              Flexible(
-                child: UploadedObjectsList(),
-              ),
+              SizedBoxH16(),
+              ObjectsListAssets(),
+              SizedBoxH16(),
             ],
           ),
         );

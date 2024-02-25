@@ -11,20 +11,21 @@ class ObjectsList extends StatelessWidget {
     final Key? key,
   }) : super(key: key);
 
-  final HashesListState state;
+  final HashesListLoaded state;
 
   @override
   Widget build(final BuildContext context) {
-    if (state is HashesListLoaded) {
-      final realState = state as HashesListLoaded;
-      final objects = realState.objects;
+    final objects = state.objects;
 
-      return ListView.builder(
-        padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: objects.length,
-        itemBuilder: (final context, final objIndex) {
+    return ListView(
+      padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      // itemCount: objects.length,
+      // itemBuilder: (final context, final objIndex) {
+      children: List.generate(
+        objects.length,
+        (objIndex) {
           final currentObject = objects[objIndex];
           final fileHashes = currentObject.fileHashes.toList();
 
@@ -34,35 +35,39 @@ class ObjectsList extends StatelessWidget {
             children: [
               _ObjectTitle(currentObject.name),
               const SizedBoxH4(),
-              ListView.builder(
+              ListView(
+                primary: false,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.zero,
-                itemCount: fileHashes.length,
-                itemBuilder: (final _, final index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      FileHashHeader(
-                        fileHash: fileHashes[index],
-                      ),
-                      Flexible(
-                        child: SnapshotsList(
-                          currentObject: currentObject,
-                          allowedFileHash: fileHashes[index],
+                // itemCount: fileHashes.length,
+                // itemBuilder: (final _, final index) {
+                children: List.generate(
+                  fileHashes.length,
+                  (index) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        FileHashHeader(
+                          fileHash: fileHashes[index],
                         ),
-                      ),
-                    ],
-                  );
-                },
+                        Flexible(
+                          child: SnapshotsList(
+                            currentObject: currentObject,
+                            allowedFileHash: fileHashes[index],
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
             ],
           );
         },
-      );
-    }
-    return const SizedBox();
+      ),
+    );
   }
 }
 

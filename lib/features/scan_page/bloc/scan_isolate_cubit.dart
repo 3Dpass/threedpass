@@ -1,6 +1,8 @@
 import 'dart:isolate';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
+import 'package:threedpass/setup.dart';
 
 class ScanIsolateData {
   const ScanIsolateData({
@@ -28,6 +30,11 @@ class ScanIsolateCubit extends Cubit<ScanIsolateData?> {
   }
 
   void setNull() {
+    if (state != null) {
+      getIt<Logger>().i('Stop scan');
+      state?.isolate.removeOnExitListener(state!.port.sendPort);
+      state?.isolate.kill();
+    }
     emit(null);
   }
 }

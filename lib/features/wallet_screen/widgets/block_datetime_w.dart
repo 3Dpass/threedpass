@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
+import 'package:threedpass/core/utils/formatters.dart';
+import 'package:threedpass/core/widgets/utc_time.dart';
 
 class BlockDateTimeW extends StatelessWidget {
   const BlockDateTimeW(this.dateTime, {super.key});
@@ -10,10 +10,9 @@ class BlockDateTimeW extends StatelessWidget {
   Widget build(final BuildContext context) {
     // final dt = DateTime.parse(dateTime.value);
     if (dateTime != null) {
-      final fmt = DateFormat('kk:mm – dd-MM-yyyy').format(dateTime!);
-      return D3pBodyMediumText(
-        fmt,
-        translate: false,
+      return UTCTime(
+        dateTime: dateTime!,
+        formatter: Fmt.transferDateFormat,
       );
     } else {
       return const SizedBox();

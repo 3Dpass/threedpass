@@ -13,16 +13,19 @@ class PoscanObjectsState {
   final List<UploadedObject> objects;
   final PoscanObjectStateStatus status;
   final String? message;
+  final int? storageCount; // Objects in storage
 
   const PoscanObjectsState({
     required this.objects,
     required this.status,
     this.message,
+    this.storageCount,
   });
 
   const PoscanObjectsState.initial()
       : objects = const [],
         message = null,
+        storageCount = null,
         status = PoscanObjectStateStatus.loaded;
 }
 
@@ -68,9 +71,17 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
             state.copyWith(
               status: PoscanObjectStateStatus.loaded,
               objects: objects.toList(),
+              storageCount: realValue,
             ),
           );
         } else {
+          emit(
+            state.copyWith(
+              status: PoscanObjectStateStatus.loading,
+              objects: objects.toList(),
+              storageCount: realValue,
+            ),
+          );
           logV(
             'Loaded ${objects.length} poScan objects from cache. Need $realValue',
           );
@@ -133,6 +144,12 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
 
   Future<void> clear() async {
     await objectsStore?.clear();
-    emit(const PoscanObjectsState.initial());
+    emit(
+      state.copyWith(
+        message: null,
+        objects: [],
+        status: PoscanObjectStateStatus.loaded,
+      ),
+    );
   }
 }

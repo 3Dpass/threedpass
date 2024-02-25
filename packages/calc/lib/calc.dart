@@ -17,6 +17,7 @@ class Calc2 {
     required this.filePath,
     required this.transBytes,
     required this.algorithm,
+    // required this.updateIsolateListener,
   });
 
   final int gridSize;
@@ -26,10 +27,11 @@ class Calc2 {
   final String algorithm;
 
   Future<String> calcHashes(
-    void updateIsolateListener(final Isolate i, final ReceivePort p),
-  ) async {
+      void updateIsolateListener(Isolate i, ReceivePort p)) async {
     final p = ReceivePort();
+    // print('a1');
     final i = await Isolate.spawn(_callLib, p.sendPort);
+    // print('a2');
     updateIsolateListener(i, p);
     return await p.first as String;
   }

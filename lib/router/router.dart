@@ -6,7 +6,6 @@ import 'package:threedpass/core/widgets/error_page.dart';
 import 'package:threedpass/features/accounts/router/create_account_page_route.dart';
 import 'package:threedpass/features/home_page/router/home_page_route.dart';
 import 'package:threedpass/features/preview_page/router/preview_page_route.dart';
-import 'package:threedpass/features/scan_page/router/calc_hash_loading_widget_route.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 // part 'router.gr.dart';
@@ -26,8 +25,10 @@ class RootRouter extends $RootRouter {
     errorPageRoute,
     // Create account route
     createAccountPageRoute,
-    // Loader for scan page
-    calcHashLoadingWidgetRoute,
+    // Uploaded objecy page
+    AutoRoute(
+      page: UploadedObjectRoute.page,
+    ),
     // Default loader
     defaultLoadingDialog,
   ];

@@ -10,11 +10,11 @@ import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cub
 class ResetObjectsCacheButton extends StatelessWidget {
   const ResetObjectsCacheButton({super.key});
 
-  Future<void> reloadCache(final BuildContext context) async {
+  Future<void> clearCache(final BuildContext context) async {
     final bloc = BlocProvider.of<PoscanObjectsCubit>(context);
 
     await bloc.clear();
-    await bloc.loadAll();
+    // await bloc.loadAll();
   }
 
   @override
@@ -35,7 +35,11 @@ class ResetObjectsCacheButton extends StatelessWidget {
                 ),
                 const SizedBox(width: 16),
                 D3pBodyMediumText(
-                  'reset_objects_cache_plural'.plural(state.objects.length),
+                  'reset_objects_cache_plural'.tr(
+                    args: [
+                      'objects_plural'.plural(state.objects.length),
+                    ],
+                  ),
                   translate: false,
                 ),
                 // This structure of insided rows may seem dirty, but they are required to make things work =)
@@ -54,9 +58,9 @@ class ResetObjectsCacheButton extends StatelessWidget {
                               child: D3pTextButton(
                                 // width: 105,
                                 mainAxisAlignment: MainAxisAlignment.end,
-                                icon: Icons.refresh,
-                                text: 'Reset'.tr(),
-                                onPressed: () => reloadCache(context),
+                                icon: Icons.clear,
+                                text: 'Clear'.tr(),
+                                onPressed: () => clearCache(context),
                               ),
                             ),
                       const SizedBox(width: 16),

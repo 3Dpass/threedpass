@@ -7,11 +7,11 @@ abstract class HashesListEvent {
 class DeleteHash extends HashesListEvent {
   const DeleteHash({
     required this.hash,
-    required this.object,
+    // required this.object,
   });
 
   final Snapshot hash;
-  final HashObject object;
+  // final HashObject object;
 }
 
 class DeleteObject extends HashesListEvent {
@@ -58,4 +58,14 @@ class _LoadHashesList extends HashesListEvent {
   });
 
   final List<HashObject> objects;
+}
+
+class UnmarkNewSnap extends HashesListEvent {
+  const UnmarkNewSnap({
+    required this.object,
+    required this.snap,
+  });
+
+  final Snapshot snap;
+  final HashObject object;
 }

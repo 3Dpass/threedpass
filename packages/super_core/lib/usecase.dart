@@ -1,4 +1,5 @@
-import 'package:super_core/super_core.dart';
+import 'package:super_core/either.dart';
+import 'package:super_core/failure.dart';
 
 abstract class UseCase<Type, Params> {
   const UseCase();
