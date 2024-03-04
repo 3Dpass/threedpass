@@ -30,18 +30,21 @@ class CommonDialog extends StatelessWidget {
   Widget build(final BuildContext context) {
     return D3pPlatformDialog(
       title: title,
-      content: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            D3pTextFormField(
-              // decoration: const InputDecoration(
-              //   isCollapsed: false,
-              // ),
-              controller: controller,
-            ),
-          ],
-        ),
+      content: D3pTextFormField(
+        controller: controller,
       ),
+      // SingleChildScrollView(
+      //   child: Column(
+      //     children: <Widget>[
+      //       D3pTextFormField(
+      //         // decoration: const InputDecoration(
+      //         //   isCollapsed: false,
+      //         // ),
+      //         controller: controller,
+      //       ),
+      //     ],
+      //   ),
+      // ),
       actions: [
         D3pTextButton(
           text: 'Cancel'.tr(),

@@ -44,6 +44,16 @@ class ReplaceSnapshot extends HashesListEvent {
   final HashObject object;
 }
 
+class ReplaceObject extends HashesListEvent {
+  const ReplaceObject({
+    required this.oldObj,
+    required this.newObj,
+  });
+
+  final HashObject newObj;
+  final HashObject oldObj;
+}
+
 class AddObject extends HashesListEvent {
   const AddObject({
     required this.object,

@@ -394,7 +394,7 @@
         "other": "{} objects"
     },
     "reset_objects_cache_plural": "{} cached",
-    "objects_list_appbar_title": "{} in storage",
+    "objects_list_appbar_title": "{} on the storage",
     "no_objects": "No cached objects",
     "bad_address": "Wrong address format",
     "delete_snapshots_dialog_title": "Delete snapshots",
@@ -410,5 +410,12 @@
     "uploaded_object_id": "id: ",
     "uploaded_object_status": "Status: ",
     "uploaded_object_owner": "Owner: ",
-    "uploaded_object_hashes": "Object's hashes: "
+    "uploaded_object_hashes": "Object's hashes: ",
+
+    "@2.13.0":{
+    },
+    "rename_object_button_label": "Rename object",
+    "rename_object_dialog_title": "Rename object",
+    "rename_object_dialog_action": "Apply",
+    "scan_one_more_time_button_label": "Scan one more time"
 }

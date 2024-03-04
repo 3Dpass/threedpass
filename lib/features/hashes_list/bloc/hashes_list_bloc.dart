@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/polkawallet/utils/log.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -24,6 +26,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     on<ReplaceSnapshot>(_replaceSnapshot);
     on<_LoadHashesList>(_loadList);
     on<UnmarkNewSnap>(_unmarkNewSnap);
+    on<ReplaceObject>(_replaceObject);
   }
 
   final HashesRepository hashesRepository;
@@ -246,6 +249,26 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
           globalKeyMap: buildMap(list),
         ),
       );
+    }
+  }
+
+  Future<void> _replaceObject(
+    final ReplaceObject event,
+    final Emitter<HashesListState> emit,
+  ) async {
+    if (state is HashesListLoaded) {
+      final stateLL = state as HashesListLoaded;
+      final list = stateLL.objects;
+      list.replace(event.oldObj, event.newObj);
+      emit(
+        HashesListLoaded(
+          objects: list,
+          globalKeyMap: stateLL.globalKeyMap,
+        ),
+      );
+    } else {
+      logE('Replace object is called, but state is not HashesListLoaded');
+      return;
     }
   }
 }
