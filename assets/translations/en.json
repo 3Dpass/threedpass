@@ -412,7 +412,7 @@
     "uploaded_object_owner": "Owner: ",
     "uploaded_object_hashes": "Object's hashes: ",
 
-    "@2.13.0":{
+    "@2.12.1":{
     },
     "rename_object_button_label": "Rename object",
     "rename_object_dialog_title": "Rename object",

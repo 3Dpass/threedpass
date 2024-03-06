@@ -66,7 +66,7 @@ class PreviewPageBody extends StatelessWidget {
         const SizedBoxH16(),
         const Divider(),
         const RenameObjectButton(),
-        const ScanOneMoreTimeButton(),
+        // const ScanOneMoreTimeButton(),
       ],
     );
   }
