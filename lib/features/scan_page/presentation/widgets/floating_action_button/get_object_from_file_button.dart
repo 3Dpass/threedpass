@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logger/logger.dart';
+import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
@@ -82,28 +83,18 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
           ],
         );
         hashesListBloc.add(AddObject(object: newObj));
+        unawaited(Fluttertoast.showToast(
+          msg: 'Unique object found',
+          backgroundColor: D3pThemeData.mainColor,
+        ));
       } else {
         // Add snapshot
         hashesListBloc.add(SaveSnapshot(hash: pair.right, object: pair.left!));
+        unawaited(Fluttertoast.showToast(
+          msg: 'Object recognized',
+          backgroundColor: D3pThemeData.mainColor,
+        ));
       }
-
-      // BlocProvider.of<HashesListBloc>(context).add(
-      //   AddObject(HashObject.fromSnapshot(pair.right)),
-      //   // SaveSnapshot(
-      //   //   object: pair.left,
-      //   //   hash: pair.right,
-      //   // ),
-      // );
-
-      // unawaited(
-      //   context.router.push(
-      //     PreviewRouteWrapper(
-      //       hashObject: pair.left,
-      //       snapshot: pair.right,
-      //       createNewAnyway: true,
-      //     ),
-      //   ),
-      // );
     } on FilePickerException catch (e) {
       showToast(e.message, context);
       getIt<Logger>().e('Caught FilePickerException: $e');

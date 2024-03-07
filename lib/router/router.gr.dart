@@ -14,33 +14,33 @@ import 'package:flutter/widgets.dart' as _i60;
 import 'package:threedpass/core/widgets/default_loading_dialog.dart' as _i2;
 import 'package:threedpass/core/widgets/error_page.dart' as _i1;
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_credentials.dart'
-    as _i36;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_from_object/create_account_from_object.dart'
-    as _i31;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_info_page.dart'
-    as _i33;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_loader.dart'
     as _i38;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_mnemonic_backup.dart'
-    as _i34;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_mnemonic_confirm.dart'
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_from_object/create_account_from_object.dart'
+    as _i33;
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_info_page.dart'
     as _i35;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_type.dart'
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_loader.dart'
+    as _i40;
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_mnemonic_backup.dart'
+    as _i36;
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_mnemonic_confirm.dart'
     as _i37;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart'
-    as _i30;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/import_mnemonic_form.dart'
-    as _i32;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/import_rawseed_form.dart'
-    as _i29;
-import 'package:threedpass/features/accounts/presentation/pages/no_stable_hash_dialog.dart'
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_type.dart'
     as _i39;
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart'
+    as _i32;
+import 'package:threedpass/features/accounts/presentation/pages/create_account/import_mnemonic_form.dart'
+    as _i34;
+import 'package:threedpass/features/accounts/presentation/pages/create_account/import_rawseed_form.dart'
+    as _i31;
+import 'package:threedpass/features/accounts/presentation/pages/no_stable_hash_dialog.dart'
+    as _i41;
 import 'package:threedpass/features/compare_page/presentation/pages/compare_page_wrapper.dart'
     as _i3;
 import 'package:threedpass/features/explorer_page/explorer_page_wrapper.dart'
-    as _i51;
+    as _i18;
 import 'package:threedpass/features/explorer_page/objects_list_page/objects_list_page.dart'
-    as _i50;
+    as _i17;
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart'
     as _i56;
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart'
@@ -71,62 +71,62 @@ import 'package:threedpass/features/preview_page/presentation/widgets/save_hash_
     as _i7;
 import 'package:threedpass/features/preview_page/presentation/widgets/save_object_dialog/save_object_dialog.dart'
     as _i9;
-import 'package:threedpass/features/scan_page/presentation/pages/scan_page.dart'
+import 'package:threedpass/features/scan_page/presentation/scan_page.dart'
     as _i11;
-import 'package:threedpass/features/scan_page/presentation/pages/scan_page_wrapper.dart'
+import 'package:threedpass/features/scan_page/presentation/scan_page_wrapper.dart'
     as _i10;
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart'
     as _i62;
 import 'package:threedpass/features/settings_page/presentation/settings_page.dart'
-    as _i41;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/choose_algorithm_subpage.dart'
-    as _i47;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/grid_size_subpage.dart'
-    as _i44;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/pixel_ratio_subpage.dart'
-    as _i45;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/sections_subpage.dart'
-    as _i42;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/stable_hash_subpage.dart'
-    as _i48;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/trans_bytes_subpage.dart'
     as _i43;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/wallet_node_subpage.dart'
-    as _i46;
-import 'package:threedpass/features/settings_page/router/empty_settings_route.dart'
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/choose_algorithm_subpage.dart'
     as _i49;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/grid_size_subpage.dart'
+    as _i46;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/pixel_ratio_subpage.dart'
+    as _i47;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/sections_subpage.dart'
+    as _i44;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/stable_hash_subpage.dart'
+    as _i50;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/trans_bytes_subpage.dart'
+    as _i45;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/wallet_node_subpage.dart'
+    as _i48;
+import 'package:threedpass/features/settings_page/router/empty_settings_route.dart'
+    as _i51;
 import 'package:threedpass/features/uploaded_object_page/uploaded_object_page.dart'
-    as _i40;
+    as _i42;
 import 'package:threedpass/features/wallet_screen/add_contact_page/add_contact_page.dart'
-    as _i22;
+    as _i24;
 import 'package:threedpass/features/wallet_screen/add_contact_page/domain/entities/contact.dart'
     as _i57;
 import 'package:threedpass/features/wallet_screen/assets_page/remove_account_dialog.dart'
-    as _i19;
+    as _i21;
 import 'package:threedpass/features/wallet_screen/contacts_page/contacts_page.dart'
-    as _i17;
+    as _i19;
 import 'package:threedpass/features/wallet_screen/contacts_page/widgets/delete_contact_dialog.dart'
-    as _i18;
+    as _i20;
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/get_extrinsics_usecase_params.dart'
     as _i59;
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/non_native_token_wrapper.dart'
-    as _i27;
+    as _i29;
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/notifications_page.dart'
-    as _i21;
+    as _i23;
 import 'package:threedpass/features/wallet_screen/recieve_page/recieve_page.dart'
-    as _i20;
+    as _i22;
 import 'package:threedpass/features/wallet_screen/transactions_history/presentation/transactions_history_wrapper.dart'
-    as _i28;
+    as _i30;
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_meta_dto.dart'
     as _i58;
 import 'package:threedpass/features/wallet_screen/transfer_page/transfer_page.dart'
-    as _i26;
+    as _i28;
 import 'package:threedpass/features/wallet_screen/transfer_page/transfer_page_wrapper.dart'
-    as _i25;
+    as _i27;
 import 'package:threedpass/features/wallet_screen/wallet_page/wallet_page.dart'
-    as _i23;
+    as _i25;
 import 'package:threedpass/features/wallet_screen/wallet_page/wallet_page_wrapper.dart'
-    as _i24;
+    as _i26;
 
 abstract class $RootRouter extends _i53.RootStackRouter {
   $RootRouter({super.navigatorKey});
@@ -269,17 +269,29 @@ abstract class $RootRouter extends _i53.RootStackRouter {
         child: _i53.WrappedRoute(child: const _i16.D3PRPCPageWrapper()),
       );
     },
+    ObjectsListRoute.name: (routeData) {
+      return _i53.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i17.ObjectsListPage(),
+      );
+    },
+    ExplorerRouteWrapper.name: (routeData) {
+      return _i53.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i53.WrappedRoute(child: const _i18.ExplorerPageWrapper()),
+      );
+    },
     ContactsRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i17.ContactsPage(),
+        child: const _i19.ContactsPage(),
       );
     },
     DeleteContactRoute.name: (routeData) {
       final args = routeData.argsAs<DeleteContactRouteArgs>();
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i18.DeleteContactDialog(
+        child: _i20.DeleteContactDialog(
           contact: args.contact,
           key: args.key,
         ),
@@ -288,19 +300,19 @@ abstract class $RootRouter extends _i53.RootStackRouter {
     RemoveAccountRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i19.RemoveAccountDialog(),
+        child: const _i21.RemoveAccountDialog(),
       );
     },
     RecieveRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i20.RecievePage(),
+        child: const _i22.RecievePage(),
       );
     },
     NotificationsRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i21.NotificationsPage(),
+        child: const _i23.NotificationsPage(),
       );
     },
     AddContactRoute.name: (routeData) {
@@ -308,19 +320,19 @@ abstract class $RootRouter extends _i53.RootStackRouter {
           orElse: () => const AddContactRouteArgs());
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i22.AddContactPage(key: args.key),
+        child: _i24.AddContactPage(key: args.key),
       );
     },
     WalletRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i23.WalletPage(),
+        child: const _i25.WalletPage(),
       );
     },
     WalletRouteWrapper.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i53.WrappedRoute(child: const _i24.WalletPageWrapper()),
+        child: _i53.WrappedRoute(child: const _i26.WalletPageWrapper()),
       );
     },
     TransferRouteWrapper.name: (routeData) {
@@ -328,7 +340,7 @@ abstract class $RootRouter extends _i53.RootStackRouter {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i53.WrappedRoute(
-            child: _i25.TransferPageWrapper(
+            child: _i27.TransferPageWrapper(
           metadata: args.metadata,
           key: args.key,
         )),
@@ -339,14 +351,14 @@ abstract class $RootRouter extends _i53.RootStackRouter {
           orElse: () => const TransferRouteArgs());
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i26.TransferPage(key: args.key),
+        child: _i28.TransferPage(key: args.key),
       );
     },
     NonNativeTokenRouteWrapper.name: (routeData) {
       final args = routeData.argsAs<NonNativeTokenRouteWrapperArgs>();
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i27.NonNativeTokenPageWrapper(
+        child: _i29.NonNativeTokenPageWrapper(
           args.params,
           key: args.key,
         ),
@@ -355,7 +367,7 @@ abstract class $RootRouter extends _i53.RootStackRouter {
     TransactionsHistoryRouteWrapper.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i28.TransactionsHistoryPageWrapper(),
+        child: const _i30.TransactionsHistoryPageWrapper(),
       );
     },
     ImportRawseedFormRoute.name: (routeData) {
@@ -363,19 +375,19 @@ abstract class $RootRouter extends _i53.RootStackRouter {
           orElse: () => const ImportRawseedFormRouteArgs());
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i29.ImportRawseedFormPage(key: args.key),
+        child: _i31.ImportRawseedFormPage(key: args.key),
       );
     },
     CreateAccountRouteWrapper.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i53.WrappedRoute(child: const _i30.CreateAccountPageWrapper()),
+        child: _i53.WrappedRoute(child: const _i32.CreateAccountPageWrapper()),
       );
     },
     CreateAccountFromObjectRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i31.CreateAccountFromObjectPage(),
+        child: const _i33.CreateAccountFromObjectPage(),
       );
     },
     ImportMnemonicFormRoute.name: (routeData) {
@@ -383,32 +395,32 @@ abstract class $RootRouter extends _i53.RootStackRouter {
           orElse: () => const ImportMnemonicFormRouteArgs());
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i32.ImportMnemonicFormPage(key: args.key),
+        child: _i34.ImportMnemonicFormPage(key: args.key),
       );
     },
     CreateAccountInfoRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i33.CreateAccountInfoPage(),
+        child: const _i35.CreateAccountInfoPage(),
       );
     },
     CreateAccountMnemonicBackupRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i34.CreateAccountMnemonicBackupPage(),
+        child: const _i36.CreateAccountMnemonicBackupPage(),
       );
     },
     CreateAccountMnemonicConfirmRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i35.CreateAccountMnemonicConfirmPage(),
+        child: const _i37.CreateAccountMnemonicConfirmPage(),
       );
     },
     CreateAccountCredentialsRoute.name: (routeData) {
       final args = routeData.argsAs<CreateAccountCredentialsRouteArgs>();
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i36.CreateAccountCredentialsPage(
+        child: _i38.CreateAccountCredentialsPage(
           appbarText: args.appbarText,
           key: args.key,
         ),
@@ -417,26 +429,26 @@ abstract class $RootRouter extends _i53.RootStackRouter {
     CreateAccountTypeRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i37.CreateAccountTypePage(),
+        child: const _i39.CreateAccountTypePage(),
       );
     },
     CreateAccountLoaderRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i38.CreateAccountLoaderPage(),
+        child: const _i40.CreateAccountLoaderPage(),
       );
     },
     NoStableHashRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i39.NoStableHashDialog(),
+        child: const _i41.NoStableHashDialog(),
       );
     },
     UploadedObjectRoute.name: (routeData) {
       final args = routeData.argsAs<UploadedObjectRouteArgs>();
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i40.UploadedObjectPage(
+        child: _i42.UploadedObjectPage(
           uploadedObject: args.uploadedObject,
           key: args.key,
         ),
@@ -445,14 +457,14 @@ abstract class $RootRouter extends _i53.RootStackRouter {
     SettingsRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i41.SettingsPage(),
+        child: const _i43.SettingsPage(),
       );
     },
     SectionsSubRoute.name: (routeData) {
       final args = routeData.argsAs<SectionsSubRouteArgs>();
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i42.SectionsSubPage(
+        child: _i44.SectionsSubPage(
           initialState: args.initialState,
           key: args.key,
         ),
@@ -462,7 +474,7 @@ abstract class $RootRouter extends _i53.RootStackRouter {
       final args = routeData.argsAs<TransBytesSubRouteArgs>();
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i43.TransBytesSubPage(
+        child: _i45.TransBytesSubPage(
           initialState: args.initialState,
           key: args.key,
         ),
@@ -471,20 +483,20 @@ abstract class $RootRouter extends _i53.RootStackRouter {
     GridSizeSubRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i44.GridSizeSubPage(),
+        child: const _i46.GridSizeSubPage(),
       );
     },
     PixelRatioSubRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i45.PixelRatioSubPage(),
+        child: const _i47.PixelRatioSubPage(),
       );
     },
     WalletNodeSubRoute.name: (routeData) {
       final args = routeData.argsAs<WalletNodeSubRouteArgs>();
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i46.WalletNodeSubPage(
+        child: _i48.WalletNodeSubPage(
           initialState: args.initialState,
           key: args.key,
         ),
@@ -493,14 +505,14 @@ abstract class $RootRouter extends _i53.RootStackRouter {
     ChooseAlgorithmSubRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i47.ChooseAlgorithmSubPage(),
+        child: const _i49.ChooseAlgorithmSubPage(),
       );
     },
     StableHashSubRoute.name: (routeData) {
       final args = routeData.argsAs<StableHashSubRouteArgs>();
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i48.StableHashSubPage(
+        child: _i50.StableHashSubPage(
           initialState: args.initialState,
           key: args.key,
         ),
@@ -509,19 +521,7 @@ abstract class $RootRouter extends _i53.RootStackRouter {
     SettingsWrapperRoute.name: (routeData) {
       return _i53.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i49.EmptySettingsRoute(),
-      );
-    },
-    ObjectsListRoute.name: (routeData) {
-      return _i53.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i50.ObjectsListPage(),
-      );
-    },
-    ExplorerRouteWrapper.name: (routeData) {
-      return _i53.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i53.WrappedRoute(child: const _i51.ExplorerPageWrapper()),
+        child: const _i51.EmptySettingsRoute(),
       );
     },
     RenameObjectRoute.name: (routeData) {
@@ -980,7 +980,35 @@ class D3PRPCRouteWrapper extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i17.ContactsPage]
+/// [_i17.ObjectsListPage]
+class ObjectsListRoute extends _i53.PageRouteInfo<void> {
+  const ObjectsListRoute({List<_i53.PageRouteInfo>? children})
+      : super(
+          ObjectsListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ObjectsListRoute';
+
+  static const _i53.PageInfo<void> page = _i53.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i18.ExplorerPageWrapper]
+class ExplorerRouteWrapper extends _i53.PageRouteInfo<void> {
+  const ExplorerRouteWrapper({List<_i53.PageRouteInfo>? children})
+      : super(
+          ExplorerRouteWrapper.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ExplorerRouteWrapper';
+
+  static const _i53.PageInfo<void> page = _i53.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i19.ContactsPage]
 class ContactsRoute extends _i53.PageRouteInfo<void> {
   const ContactsRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -994,7 +1022,7 @@ class ContactsRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i18.DeleteContactDialog]
+/// [_i20.DeleteContactDialog]
 class DeleteContactRoute extends _i53.PageRouteInfo<DeleteContactRouteArgs> {
   DeleteContactRoute({
     required _i57.Contact contact,
@@ -1032,7 +1060,7 @@ class DeleteContactRouteArgs {
 }
 
 /// generated route for
-/// [_i19.RemoveAccountDialog]
+/// [_i21.RemoveAccountDialog]
 class RemoveAccountRoute extends _i53.PageRouteInfo<void> {
   const RemoveAccountRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1046,7 +1074,7 @@ class RemoveAccountRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i20.RecievePage]
+/// [_i22.RecievePage]
 class RecieveRoute extends _i53.PageRouteInfo<void> {
   const RecieveRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1060,7 +1088,7 @@ class RecieveRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i21.NotificationsPage]
+/// [_i23.NotificationsPage]
 class NotificationsRoute extends _i53.PageRouteInfo<void> {
   const NotificationsRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1074,7 +1102,7 @@ class NotificationsRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i22.AddContactPage]
+/// [_i24.AddContactPage]
 class AddContactRoute extends _i53.PageRouteInfo<AddContactRouteArgs> {
   AddContactRoute({
     _i54.Key? key,
@@ -1103,7 +1131,7 @@ class AddContactRouteArgs {
 }
 
 /// generated route for
-/// [_i23.WalletPage]
+/// [_i25.WalletPage]
 class WalletRoute extends _i53.PageRouteInfo<void> {
   const WalletRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1117,7 +1145,7 @@ class WalletRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i24.WalletPageWrapper]
+/// [_i26.WalletPageWrapper]
 class WalletRouteWrapper extends _i53.PageRouteInfo<void> {
   const WalletRouteWrapper({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1131,7 +1159,7 @@ class WalletRouteWrapper extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i25.TransferPageWrapper]
+/// [_i27.TransferPageWrapper]
 class TransferRouteWrapper
     extends _i53.PageRouteInfo<TransferRouteWrapperArgs> {
   TransferRouteWrapper({
@@ -1170,7 +1198,7 @@ class TransferRouteWrapperArgs {
 }
 
 /// generated route for
-/// [_i26.TransferPage]
+/// [_i28.TransferPage]
 class TransferRoute extends _i53.PageRouteInfo<TransferRouteArgs> {
   TransferRoute({
     _i54.Key? key,
@@ -1199,7 +1227,7 @@ class TransferRouteArgs {
 }
 
 /// generated route for
-/// [_i27.NonNativeTokenPageWrapper]
+/// [_i29.NonNativeTokenPageWrapper]
 class NonNativeTokenRouteWrapper
     extends _i53.PageRouteInfo<NonNativeTokenRouteWrapperArgs> {
   NonNativeTokenRouteWrapper({
@@ -1238,7 +1266,7 @@ class NonNativeTokenRouteWrapperArgs {
 }
 
 /// generated route for
-/// [_i28.TransactionsHistoryPageWrapper]
+/// [_i30.TransactionsHistoryPageWrapper]
 class TransactionsHistoryRouteWrapper extends _i53.PageRouteInfo<void> {
   const TransactionsHistoryRouteWrapper({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1252,7 +1280,7 @@ class TransactionsHistoryRouteWrapper extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i29.ImportRawseedFormPage]
+/// [_i31.ImportRawseedFormPage]
 class ImportRawseedFormRoute
     extends _i53.PageRouteInfo<ImportRawseedFormRouteArgs> {
   ImportRawseedFormRoute({
@@ -1282,7 +1310,7 @@ class ImportRawseedFormRouteArgs {
 }
 
 /// generated route for
-/// [_i30.CreateAccountPageWrapper]
+/// [_i32.CreateAccountPageWrapper]
 class CreateAccountRouteWrapper extends _i53.PageRouteInfo<void> {
   const CreateAccountRouteWrapper({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1296,7 +1324,7 @@ class CreateAccountRouteWrapper extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i31.CreateAccountFromObjectPage]
+/// [_i33.CreateAccountFromObjectPage]
 class CreateAccountFromObjectRoute extends _i53.PageRouteInfo<void> {
   const CreateAccountFromObjectRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1310,7 +1338,7 @@ class CreateAccountFromObjectRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i32.ImportMnemonicFormPage]
+/// [_i34.ImportMnemonicFormPage]
 class ImportMnemonicFormRoute
     extends _i53.PageRouteInfo<ImportMnemonicFormRouteArgs> {
   ImportMnemonicFormRoute({
@@ -1340,7 +1368,7 @@ class ImportMnemonicFormRouteArgs {
 }
 
 /// generated route for
-/// [_i33.CreateAccountInfoPage]
+/// [_i35.CreateAccountInfoPage]
 class CreateAccountInfoRoute extends _i53.PageRouteInfo<void> {
   const CreateAccountInfoRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1354,7 +1382,7 @@ class CreateAccountInfoRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i34.CreateAccountMnemonicBackupPage]
+/// [_i36.CreateAccountMnemonicBackupPage]
 class CreateAccountMnemonicBackupRoute extends _i53.PageRouteInfo<void> {
   const CreateAccountMnemonicBackupRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1368,7 +1396,7 @@ class CreateAccountMnemonicBackupRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i35.CreateAccountMnemonicConfirmPage]
+/// [_i37.CreateAccountMnemonicConfirmPage]
 class CreateAccountMnemonicConfirmRoute extends _i53.PageRouteInfo<void> {
   const CreateAccountMnemonicConfirmRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1382,7 +1410,7 @@ class CreateAccountMnemonicConfirmRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i36.CreateAccountCredentialsPage]
+/// [_i38.CreateAccountCredentialsPage]
 class CreateAccountCredentialsRoute
     extends _i53.PageRouteInfo<CreateAccountCredentialsRouteArgs> {
   CreateAccountCredentialsRoute({
@@ -1421,7 +1449,7 @@ class CreateAccountCredentialsRouteArgs {
 }
 
 /// generated route for
-/// [_i37.CreateAccountTypePage]
+/// [_i39.CreateAccountTypePage]
 class CreateAccountTypeRoute extends _i53.PageRouteInfo<void> {
   const CreateAccountTypeRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1435,7 +1463,7 @@ class CreateAccountTypeRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i38.CreateAccountLoaderPage]
+/// [_i40.CreateAccountLoaderPage]
 class CreateAccountLoaderRoute extends _i53.PageRouteInfo<void> {
   const CreateAccountLoaderRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1449,7 +1477,7 @@ class CreateAccountLoaderRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i39.NoStableHashDialog]
+/// [_i41.NoStableHashDialog]
 class NoStableHashRoute extends _i53.PageRouteInfo<void> {
   const NoStableHashRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1463,7 +1491,7 @@ class NoStableHashRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i40.UploadedObjectPage]
+/// [_i42.UploadedObjectPage]
 class UploadedObjectRoute extends _i53.PageRouteInfo<UploadedObjectRouteArgs> {
   UploadedObjectRoute({
     required _i61.UploadedObject uploadedObject,
@@ -1501,7 +1529,7 @@ class UploadedObjectRouteArgs {
 }
 
 /// generated route for
-/// [_i41.SettingsPage]
+/// [_i43.SettingsPage]
 class SettingsRoute extends _i53.PageRouteInfo<void> {
   const SettingsRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1515,7 +1543,7 @@ class SettingsRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i42.SectionsSubPage]
+/// [_i44.SectionsSubPage]
 class SectionsSubRoute extends _i53.PageRouteInfo<SectionsSubRouteArgs> {
   SectionsSubRoute({
     required _i62.GlobalSettings initialState,
@@ -1553,7 +1581,7 @@ class SectionsSubRouteArgs {
 }
 
 /// generated route for
-/// [_i43.TransBytesSubPage]
+/// [_i45.TransBytesSubPage]
 class TransBytesSubRoute extends _i53.PageRouteInfo<TransBytesSubRouteArgs> {
   TransBytesSubRoute({
     required _i62.GlobalSettings initialState,
@@ -1591,7 +1619,7 @@ class TransBytesSubRouteArgs {
 }
 
 /// generated route for
-/// [_i44.GridSizeSubPage]
+/// [_i46.GridSizeSubPage]
 class GridSizeSubRoute extends _i53.PageRouteInfo<void> {
   const GridSizeSubRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1605,7 +1633,7 @@ class GridSizeSubRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i45.PixelRatioSubPage]
+/// [_i47.PixelRatioSubPage]
 class PixelRatioSubRoute extends _i53.PageRouteInfo<void> {
   const PixelRatioSubRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1619,7 +1647,7 @@ class PixelRatioSubRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i46.WalletNodeSubPage]
+/// [_i48.WalletNodeSubPage]
 class WalletNodeSubRoute extends _i53.PageRouteInfo<WalletNodeSubRouteArgs> {
   WalletNodeSubRoute({
     required _i62.GlobalSettings initialState,
@@ -1657,7 +1685,7 @@ class WalletNodeSubRouteArgs {
 }
 
 /// generated route for
-/// [_i47.ChooseAlgorithmSubPage]
+/// [_i49.ChooseAlgorithmSubPage]
 class ChooseAlgorithmSubRoute extends _i53.PageRouteInfo<void> {
   const ChooseAlgorithmSubRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1671,7 +1699,7 @@ class ChooseAlgorithmSubRoute extends _i53.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i48.StableHashSubPage]
+/// [_i50.StableHashSubPage]
 class StableHashSubRoute extends _i53.PageRouteInfo<StableHashSubRouteArgs> {
   StableHashSubRoute({
     required _i62.GlobalSettings initialState,
@@ -1709,7 +1737,7 @@ class StableHashSubRouteArgs {
 }
 
 /// generated route for
-/// [_i49.EmptySettingsRoute]
+/// [_i51.EmptySettingsRoute]
 class SettingsWrapperRoute extends _i53.PageRouteInfo<void> {
   const SettingsWrapperRoute({List<_i53.PageRouteInfo>? children})
       : super(
@@ -1718,34 +1746,6 @@ class SettingsWrapperRoute extends _i53.PageRouteInfo<void> {
         );
 
   static const String name = 'SettingsWrapperRoute';
-
-  static const _i53.PageInfo<void> page = _i53.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i50.ObjectsListPage]
-class ObjectsListRoute extends _i53.PageRouteInfo<void> {
-  const ObjectsListRoute({List<_i53.PageRouteInfo>? children})
-      : super(
-          ObjectsListRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ObjectsListRoute';
-
-  static const _i53.PageInfo<void> page = _i53.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i51.ExplorerPageWrapper]
-class ExplorerRouteWrapper extends _i53.PageRouteInfo<void> {
-  const ExplorerRouteWrapper({List<_i53.PageRouteInfo>? children})
-      : super(
-          ExplorerRouteWrapper.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ExplorerRouteWrapper';
 
   static const _i53.PageInfo<void> page = _i53.PageInfo<void>(name);
 }
