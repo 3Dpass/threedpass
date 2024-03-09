@@ -5,15 +5,18 @@ import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/appbars/d3p_platfrom_appbar.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 
-abstract class SettingSubPage extends StatelessWidget {
+class SettingSubPage extends StatelessWidget {
   const SettingSubPage({
+    required this.appbarTitle,
+    required this.child,
+    required this.onSavePressed,
     super.key,
   });
 
-  String get appbarTitle;
+  final String appbarTitle;
+  final Widget child;
 
-  Widget bodyBuilder(final BuildContext context);
-  void onSavePressed(final BuildContext context);
+  final void Function(BuildContext context) onSavePressed;
 
   void saveAndExit(final BuildContext context) {
     onSavePressed(context);
@@ -40,8 +43,7 @@ abstract class SettingSubPage extends StatelessWidget {
           ),
         ],
       ),
-      // ignore: avoid-returning-widgets
-      body: bodyBuilder(context),
+      body: child,
     );
   }
 }

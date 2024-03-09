@@ -63,7 +63,7 @@ class Calc2 {
           ) // Load the dynamic library on Android
         : DynamicLibrary.process(); // Load the static library on iOS
 
-    final bytesIntList = hex.decode(transBytes);
+    final bytesIntList = hex.decode(transBytes); // TODO Check if correct
     final bytesUint8List = Uint8List.fromList(bytesIntList);
 
     final trans = _byteDataToPointer(bytesUint8List);

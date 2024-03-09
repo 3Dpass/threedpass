@@ -417,5 +417,8 @@
     "rename_object_button_label": "Rename object",
     "rename_object_dialog_title": "Rename object",
     "rename_object_dialog_action": "Apply",
-    "scan_one_more_time_button_label": "Scan one more time"
+    "scan_one_more_time_button_label": "Scan one more time",
+    "trans_bytes_none": "None",
+    "trans_bytes_random": "Random",
+    "trans_bytes_specific": "Specific"
 }
