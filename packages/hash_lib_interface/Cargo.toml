@@ -15,7 +15,9 @@ crate-type = ["staticlib", "cdylib"]
 
 
 [dependencies]
-p3d = { version="0.3.4", git="https://github.com/3Dpass/p3d", rev="914cf44" }
+p3d = { version="0.7.0", git="https://github.com/3Dpass/p3d", rev="5eed819" }
+# regex-syntax = "=0.8.0"
+# p3d_0_3_4 = { version="0.3.4", git="https://github.com/3Dpass/p3d", rev="914cf44" }
 # p3d_0_3_2 = { package = "p3d", rev = "22d9efb4dd6f2cb523b3a24037b866e3369f33cb", git = "https://github.com/3Dpass/p3d" }
 # p3d_0_3_1 = { package = "p3d", rev = "4a98da181478ac9ba5e27e96a31a8c695d200c61", git = "https://github.com/3Dpass/p3d" }
 # p3d_0_3_0 = { package = "p3d", rev = "91c72dfe7f7bacf5de088009133c64ca2197aef7", git = "https://github.com/3Dpass/p3d" }

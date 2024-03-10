@@ -144,7 +144,7 @@ class SnapshotFileFactory {
       filePath: filePath,
       transBytes: transBytes,
       algorithm: algo,
-      // updateIsolateListener: scanIsolateCubit.setData,
+      sendNone: settings.transBytesMode == TransBytesMode.none,
     );
 
     return calculator.calcHashes(

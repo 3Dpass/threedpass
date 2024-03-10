@@ -14,6 +14,7 @@ To compile 0.3.1 version:
     - You might also need LLVM from the SDK manager
   - Ensure that the env variable `$ANDROID_NDK_HOME` points to the NDK base folder
     - It may look like `/Users/brickpop/Library/Android/sdk/ndk-bundle` on MacOS
+    - Or in modern Android Studio versions `/Users/user_name/Library/Android/sdk/ndk/22.0.7026061`
     - And look like `/home/brickpop/dev/android/ndk-bundle` on Linux
   - On the `rust` folder:
     - Run `rustup override set nightly` to allow unstable features

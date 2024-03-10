@@ -19,7 +19,7 @@ public class SwiftCalcPlugin: NSObject, FlutterPlugin {
   public static func dummyMethodToEnforceBundling() {
     print("iOS Call")
     // dummy calls to prevent tree shaking
-    calc("", 0, 1, 1, "", "", 0);
+    calc("", 0, 1, 1, "", "", 0, false, false);
     print("iOS calc")
     versionInterface();
     print("iOS version")

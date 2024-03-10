@@ -21,6 +21,8 @@ class ScanSettings extends Equatable {
   @HiveField(5, defaultValue: TransBytesMode.random)
   final TransBytesMode transBytesMode;
 
+  static const String noneTransBytesKey = 'None';
+
   const ScanSettings({
     required this.gridSize,
     required this.nSections,

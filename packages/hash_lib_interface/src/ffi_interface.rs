@@ -8,8 +8,17 @@ use p3d::AlgoType;
 
 
 // Interface for the C binding
+// @param input - .obj file,
+// @param input_len - lenght of bytes array,
+// @param par1 - gridSize (for example 8x8),
+// @param par2 - nSections (for example 12),
+// @param trans - rotation bytes (always 4 bytes hex),
+// @param version - algorithm (for example Grid2dV3a),
+// @param version_len - length of version string,
+// @param send_none - flag to send none as trans bytes
+// @param is_debug - return debug string
 #[no_mangle]
-pub extern fn calc(input: *const c_uchar, input_len: c_int,  par1: c_short, par2: c_short, trans: *const c_uchar, version: *const c_uchar, version_len: c_int,) -> *mut c_char 
+pub extern fn calc(input: *const c_uchar, input_len: c_int,  par1: c_short, par2: c_short, trans: *const c_uchar, version: *const c_uchar, version_len: c_int, send_none: c_int, is_debug: c_int) -> *mut c_char 
 {
     // Some memory leaks are possible 
     // let c_str_path = unsafe { CStr::from_ptr(path) };
@@ -32,11 +41,11 @@ pub extern fn calc(input: *const c_uchar, input_len: c_int,  par1: c_short, par2
         version2 = make_slice(version, version_len as usize); // Length of version string
     }
 
-    println!("Trans: {:?}", trans2);
-    println!("Version: {:?}", version2);
+    // println!("Trans: {:?}", trans2);
+    // println!("Version: {:?}", version2);
 
     let u8str = std::str::from_utf8(version2).expect("Invalid UTF-8");
-    let algo = match u8str { 
+    let algo = match u8str {
         "Grid2d" => AlgoType::Grid2d,
         "Grid2dV2" => AlgoType::Grid2dV2,
         "Grid2dV3" => AlgoType::Grid2dV3,
@@ -44,9 +53,26 @@ pub extern fn calc(input: *const c_uchar, input_len: c_int,  par1: c_short, par2
         _=>AlgoType::Grid2d,
     };
 
-    let r: Vec<String> = match p3d_process(input2, algo, par1, par2, trans2) {
+    let trans = if send_none != 0 { None } else { trans2 };
+
+    if is_debug != 0 {
+        let input_let = input_len.to_string();
+        let par1_str = par1.to_string();
+        let par2_str = par2.to_string();
+        let trans_str = match std::str::from_utf8(trans2.unwrap_or_default().as_ref()) {
+            Ok(v) => v,
+            Err(e) => panic!("Invalid UTF-8 sequence: {}", e),
+        }.to_string();
+        let version_str = u8str.to_string();
+        let version_len_str = version_len.to_string();
+        let send_none_str = send_none.to_string();
+        let arr = [input_let, par1_str, par2_str, trans_str, version_str, version_len_str, send_none_str];
+        return CString::new(arr.join("\n")).unwrap().into_raw();
+    }
+
+    let r: Vec<String> = match p3d_process(input2, algo, par1, par2, trans) {
         Ok(h) => h,
-        Err(_e) => vec!["Error".to_string()],    
+        Err(_e) => vec!["Error".to_string()],
     };
 
     // Maybe we should free the CString. This can be a potential memory leak
