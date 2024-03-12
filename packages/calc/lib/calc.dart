@@ -17,6 +17,7 @@ class Calc2 {
     required this.filePath,
     required this.transBytes,
     required this.algorithm,
+    required this.sendNone,
     // required this.updateIsolateListener,
   });
 
@@ -25,6 +26,7 @@ class Calc2 {
   final String filePath;
   final String transBytes;
   final String algorithm;
+  final bool sendNone;
 
   Future<String> calcHashes(
       void updateIsolateListener(Isolate i, ReceivePort p)) async {
@@ -56,6 +58,26 @@ class Calc2 {
     Isolate.exit(p, result);
   }
 
+  int sendNoneRaw() {
+    if (sendNone) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
+  Pointer<UnsignedChar> transBytesRaw() {
+    if (sendNone) {
+      return _byteDataToPointer(Uint8List.fromList([]));
+    } else {
+      final bytesIntList = hex.decode(transBytes); // TODO Check if correct
+      final bytesUint8List = Uint8List.fromList(bytesIntList);
+
+      final trans = _byteDataToPointer(bytesUint8List);
+      return trans;
+    }
+  }
+
   Future<void> _callLib(SendPort p) async {
     final DynamicLibrary nativeLib = Platform.isAndroid
         ? DynamicLibrary.open(
@@ -63,25 +85,23 @@ class Calc2 {
           ) // Load the dynamic library on Android
         : DynamicLibrary.process(); // Load the static library on iOS
 
-    final bytesIntList = hex.decode(transBytes);
-    final bytesUint8List = Uint8List.fromList(bytesIntList);
-
-    final trans = _byteDataToPointer(bytesUint8List);
-
     final File f = File(filePath);
     final content = f.readAsBytesSync();
 
     final input = _byteDataToPointer(content);
 
     final bindings = CalcBindings(nativeLib);
+
     final rawData = bindings.calc(
       input,
       content.lengthInBytes,
       gridSize,
       nSections,
-      trans,
+      transBytesRaw(),
       _stringToPointer(algorithm),
       algorithm.length,
+      sendNoneRaw(),
+      0,
     );
 
     final result = rawData.cast<Utf8>().toDartString();

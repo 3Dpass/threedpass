@@ -412,7 +412,7 @@
     "uploaded_object_owner": "Owner: ",
     "uploaded_object_hashes": "Object's hashes: ",
 
-    "@2.13.0":{
+    "@2.12.1":{
     },
     "rename_object_button_label": "Rename object",
     "rename_object_dialog_title": "Rename object",
@@ -424,5 +424,9 @@
     "textfield_not_empty": "The text field must not be empty.",
     "max_value_multiplier": "Max Value must be a multiplier of 10.",
     "input_exceeds_limit": "Max Value must be less than 10^8.",
-    "input_not_a_number": "Max Value must be a number."
+    "input_not_a_number": "Max Value must be a number.",
+
+    "trans_bytes_none": "None",
+    "trans_bytes_random": "Random",
+    "trans_bytes_specific": "Specific"
 }

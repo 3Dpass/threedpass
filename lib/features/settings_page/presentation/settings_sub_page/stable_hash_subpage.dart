@@ -8,7 +8,7 @@ import 'package:threedpass/features/settings_page/presentation/settings_sub_page
 import 'package:threedpass/features/settings_page/presentation/widgets/app_settings/requirements_textfield.dart';
 
 @RoutePage()
-class StableHashSubPage extends SettingSubPage {
+class StableHashSubPage extends StatelessWidget {
   StableHashSubPage({
     required final GlobalSettings initialState,
     super.key,
@@ -20,22 +20,8 @@ class StableHashSubPage extends SettingSubPage {
 
   late final TextEditingController controller;
 
-  @override
-  final String appbarTitle = 'stable_requirement_label';
-
-  @override
   void onSavePressed(final BuildContext context) {
     _onFieldChanged(context, controller.text);
-  }
-
-  @override
-  Widget bodyBuilder(final BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-      child: RequirementsTextField(
-        controller: controller,
-      ),
-    );
   }
 
   static Future<void> _onFieldChanged(
@@ -60,5 +46,19 @@ class StableHashSubPage extends SettingSubPage {
         cubit.state.appSettings.copyWith(stableRequirement: actualValue);
     final newState = cubit.state.copyWith(appSettings: newAppConfig);
     cubit.updateSettings(newState);
+  }
+
+  @override
+  Widget build(final BuildContext context) {
+    return SettingSubPage(
+      appbarTitle: 'stable_requirement_label',
+      onSavePressed: onSavePressed,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        child: RequirementsTextField(
+          controller: controller,
+        ),
+      ),
+    );
   }
 }

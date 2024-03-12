@@ -9,13 +9,21 @@ import 'package:threedpass/features/settings_page/domain/entities/scan_settings.
 const int $nbsp = 0x00A0; // Non-breaking space
 
 extension ToText on ScanSettings {
+  String get prettyTransBytes {
+    if (transBytesMode == TransBytesMode.none) {
+      return ScanSettings.noneTransBytesKey;
+    } else {
+      return '0x' + transBytes.toLowerCase();
+    }
+  }
+
   List<String> propertiesList() {
     final res = <String>[
       '- ' + 'algorithm_span'.tr() + ': ' + algorithm + '\n',
       '- ' + 'grid_span'.tr() + ': ${gridSize}x$gridSize\n',
       '- ' + 'n_sections_span'.tr() + ': $nSections\n',
       '- ' + 'lib_version_span'.tr() + ': $libVersion\n',
-      '- ' + 'trans_bytes_span'.tr() + ': ${transBytes.toLowerCase()}',
+      '- ' + 'trans_bytes_span'.tr() + ': $prettyTransBytes',
     ];
     return res;
   }
@@ -24,39 +32,68 @@ extension ToText on ScanSettings {
     return 'settings_text_span_title'.tr() + '\n' + propertiesList().join();
   }
 
+  TextSpan smartTextSpan(
+    final BuildContext context,
+    final String tag,
+    final String text,
+    final String end,
+  ) {
+    final medium = Theme.of(context).customTextStyles.d3pBodyMedium;
+    return TextSpan(
+      text: tag,
+      style: medium.copyWith(color: D3pColors.disabled),
+      children: [
+        TextSpan(
+          text: text,
+          style: medium,
+        ),
+        TextSpan(
+          text: end,
+          style: medium.copyWith(color: D3pColors.disabled),
+        ),
+      ],
+    );
+  }
+
   TextSpan toShort(
     final BuildContext context,
   ) {
-    final medium = Theme.of(context).customTextStyles.d3pBodyMedium;
     final tags = [
-      'A: ',
-      'G: ',
-      'N: ',
-      'R:' + String.fromCharCode($nbsp) + '0x',
+      'A:' + String.fromCharCode($nbsp),
+      'G:' + String.fromCharCode($nbsp),
+      'N:' + String.fromCharCode($nbsp),
     ];
     final props = [
       algorithm,
       '${gridSize}x$gridSize',
       nSections.toString(),
       // libVersion,
-      transBytes.toLowerCase(),
+      prettyTransBytes,
     ];
+    // Add some props
     final children = <TextSpan>[];
     for (var i = 0; i < tags.length; i++) {
       children.add(
-        TextSpan(
-          text: tags[i],
-          style: medium.copyWith(color: D3pColors.disabled),
-          children: [
-            TextSpan(
-              text: props[i],
-              style: medium,
-            ),
-            TextSpan(
-              text: i != tags.length - 1 ? '; ' : '',
-              style: medium.copyWith(color: D3pColors.disabled),
-            ),
-          ],
+        smartTextSpan(context, tags[i], props[i], '; '),
+      );
+    }
+    // Add transBytes
+    if (transBytesMode == TransBytesMode.none) {
+      children.add(
+        smartTextSpan(
+          context,
+          'R:' + String.fromCharCode($nbsp),
+          ScanSettings.noneTransBytesKey,
+          '',
+        ),
+      );
+    } else {
+      children.add(
+        smartTextSpan(
+          context,
+          'R:' + String.fromCharCode($nbsp) + '0x',
+          prettyTransBytes,
+          '',
         ),
       );
     }

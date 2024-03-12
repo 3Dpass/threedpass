@@ -5,8 +5,12 @@ import 'package:threedpass/setup.dart' as di_setup;
 
 Future<void> config() async {
   setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+
     await hive_setup.hiveSetup();
     await di_setup.setup();
     await EasyLocalization.ensureInitialized();
+
+    print('setUpAll');
   });
 }

@@ -8,6 +8,10 @@ class _TransBytes {
   });
 
   Future<String> calc() async {
+    if (scanSettings.transBytesMode == TransBytesMode.none) {
+      return '';
+    }
+
     final String userTransBytes = scanSettings.transBytes;
 
     if (userTransBytes.isNotEmpty) {

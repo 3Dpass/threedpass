@@ -8,7 +8,7 @@ import 'package:threedpass/features/settings_page/presentation/settings_sub_page
 import 'package:threedpass/features/settings_page/presentation/widgets/hash_settings/sections_textfield.dart';
 
 @RoutePage()
-class SectionsSubPage extends SettingSubPage {
+class SectionsSubPage extends StatelessWidget {
   SectionsSubPage({
     required final GlobalSettings initialState,
     super.key,
@@ -20,22 +20,8 @@ class SectionsSubPage extends SettingSubPage {
 
   late final TextEditingController controller;
 
-  @override
-  final String appbarTitle = 'n_sections_label';
-
-  @override
   void onSavePressed(final BuildContext context) {
     _onFieldChanged(context, controller.text);
-  }
-
-  @override
-  Widget bodyBuilder(final BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-      child: SectionsTextField(
-        controller: controller,
-      ),
-    );
   }
 
   static Future<void> _onFieldChanged(
@@ -49,5 +35,19 @@ class SectionsSubPage extends SettingSubPage {
       final newState = cubit.state.copyWith(scanSettings: newScanConfig);
       cubit.updateSettings(newState);
     }
+  }
+
+  @override
+  Widget build(final BuildContext context) {
+    return SettingSubPage(
+      appbarTitle: 'n_sections_label',
+      onSavePressed: onSavePressed,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        child: SectionsTextField(
+          controller: controller,
+        ),
+      ),
+    );
   }
 }

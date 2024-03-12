@@ -30,7 +30,7 @@ class D3pScreenLockTheme {
         buttonStyle: OutlinedButton.styleFrom(
           foregroundColor: colors.themeOpposite,
           backgroundColor: colors.pinButtonBGColor,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               D3pCardTheme.radius,
             ),

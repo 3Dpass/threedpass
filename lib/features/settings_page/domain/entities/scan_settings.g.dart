@@ -17,6 +17,8 @@ abstract class _$ScanSettingsCWProxy {
 
   ScanSettings transBytes(String transBytes);
 
+  ScanSettings transBytesMode(TransBytesMode transBytesMode);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ScanSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -29,6 +31,7 @@ abstract class _$ScanSettingsCWProxy {
     String? algorithm,
     String? libVersion,
     String? transBytes,
+    TransBytesMode? transBytesMode,
   });
 }
 
@@ -54,6 +57,10 @@ class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
   ScanSettings transBytes(String transBytes) => this(transBytes: transBytes);
 
   @override
+  ScanSettings transBytesMode(TransBytesMode transBytesMode) =>
+      this(transBytesMode: transBytesMode);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ScanSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -67,6 +74,7 @@ class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
     Object? algorithm = const $CopyWithPlaceholder(),
     Object? libVersion = const $CopyWithPlaceholder(),
     Object? transBytes = const $CopyWithPlaceholder(),
+    Object? transBytesMode = const $CopyWithPlaceholder(),
   }) {
     return ScanSettings(
       gridSize: gridSize == const $CopyWithPlaceholder() || gridSize == null
@@ -91,6 +99,11 @@ class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
               ? _value.transBytes
               // ignore: cast_nullable_to_non_nullable
               : transBytes as String,
+      transBytesMode: transBytesMode == const $CopyWithPlaceholder() ||
+              transBytesMode == null
+          ? _value.transBytesMode
+          // ignore: cast_nullable_to_non_nullable
+          : transBytesMode as TransBytesMode,
     );
   }
 }
@@ -121,13 +134,16 @@ class ScanSettingsAdapter extends TypeAdapter<ScanSettings> {
       algorithm: fields[1] as String,
       libVersion: fields[3] as String,
       transBytes: fields[4] as String,
+      transBytesMode: fields[5] == null
+          ? TransBytesMode.random
+          : fields[5] as TransBytesMode,
     );
   }
 
   @override
   void write(BinaryWriter writer, ScanSettings obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.gridSize)
       ..writeByte(1)
@@ -137,7 +153,9 @@ class ScanSettingsAdapter extends TypeAdapter<ScanSettings> {
       ..writeByte(3)
       ..write(obj.libVersion)
       ..writeByte(4)
-      ..write(obj.transBytes);
+      ..write(obj.transBytes)
+      ..writeByte(5)
+      ..write(obj.transBytesMode);
   }
 
   @override
@@ -147,6 +165,50 @@ class ScanSettingsAdapter extends TypeAdapter<ScanSettings> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is ScanSettingsAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class TransBytesModeAdapter extends TypeAdapter<TransBytesMode> {
+  @override
+  final int typeId = 10;
+
+  @override
+  TransBytesMode read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 0:
+        return TransBytesMode.none;
+      case 1:
+        return TransBytesMode.random;
+      case 2:
+        return TransBytesMode.specific;
+      default:
+        return TransBytesMode.none;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, TransBytesMode obj) {
+    switch (obj) {
+      case TransBytesMode.none:
+        writer.writeByte(0);
+        break;
+      case TransBytesMode.random:
+        writer.writeByte(1);
+        break;
+      case TransBytesMode.specific:
+        writer.writeByte(2);
+        break;
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TransBytesModeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

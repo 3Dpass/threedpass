@@ -12,7 +12,7 @@ import 'package:threedpass/features/settings_page/presentation/settings_sub_page
 import 'package:threedpass/features/settings_page/presentation/widgets/wallet_settings/node_url_textfield.dart';
 
 @RoutePage()
-class WalletNodeSubPage extends SettingSubPage {
+class WalletNodeSubPage extends StatelessWidget {
   WalletNodeSubPage({
     required final GlobalSettings initialState,
     super.key,
@@ -24,10 +24,6 @@ class WalletNodeSubPage extends SettingSubPage {
 
   late final TextEditingController controller;
 
-  @override
-  final String appbarTitle = 'node_url_subpage_label';
-
-  @override
   void onSavePressed(final BuildContext context) {
     apply(controller.text, context);
   }
@@ -51,13 +47,18 @@ class WalletNodeSubPage extends SettingSubPage {
   }
 
   @override
-  Widget bodyBuilder(final BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-      child: NodeUrlTextfield(
-        textEditingController: controller,
-        settingsConfigCubit: BlocProvider.of<SettingsConfigCubit>(context),
-        appServiceLoaderCubit: BlocProvider.of<AppServiceLoaderCubit>(context),
+  Widget build(final BuildContext context) {
+    return SettingSubPage(
+      appbarTitle: 'node_url_subpage_label',
+      onSavePressed: onSavePressed,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        child: NodeUrlTextfield(
+          textEditingController: controller,
+          settingsConfigCubit: BlocProvider.of<SettingsConfigCubit>(context),
+          appServiceLoaderCubit:
+              BlocProvider.of<AppServiceLoaderCubit>(context),
+        ),
       ),
     );
   }
