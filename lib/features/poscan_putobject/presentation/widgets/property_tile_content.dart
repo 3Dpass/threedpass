@@ -6,16 +6,19 @@ import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_property.dart';
+import 'package:threedpass/features/poscan_putobject/presentation/widgets/edit_property_button.dart';
 
-class PropertyTileText extends StatelessWidget {
-  const PropertyTileText({
-    required this.prop,
-    required this.isChosen,
-    super.key,
-  });
-
+class PropertyTileContent extends StatelessWidget {
   final PoscanProperty prop;
   final bool isChosen;
+  Function(BuildContext, PoscanProperty) onPressedEditCallback;
+
+  PropertyTileContent({
+    required this.prop,
+    required this.isChosen,
+    required this.onPressedEditCallback,
+    super.key,
+  });
 
   TextSpan formattedMaxValue(
     final BigInt maxValue,
@@ -71,18 +74,26 @@ class PropertyTileText extends StatelessWidget {
     );
     final disabledStyle =
         textStyles.d3pBodyMedium.copyWith(color: D3pColors.disabled);
+
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: [
         Expanded(
-          flex: 4,
+          flex: 1,
+          child: Checkbox(
+            value: isChosen,
+            onChanged: null,
+          ),
+        ),
+        Expanded(
+          flex: 3,
           child: Text(
             prop.name,
             style: enabledStyle,
           ),
         ),
         Expanded(
-          flex: 1,
+          flex: 2,
           child: Text.rich(
             TextSpan(
               text: ' id: ',
@@ -100,7 +111,7 @@ class PropertyTileText extends StatelessWidget {
           flex: 4,
           child: Text.rich(
             TextSpan(
-              text: ' max_value: ',
+              text: ' max value: ',
               style: disabledStyle,
               children: [
                 formattedMaxValue(prop.propValue.maxValue, enabledStyle),
@@ -108,8 +119,14 @@ class PropertyTileText extends StatelessWidget {
             ),
           ),
         ),
+        Expanded(
+          flex: 1,
+          child: EditPropertyButton(
+            prop: prop,
+            onPressedEditCallback: onPressedEditCallback,
+          ),
+        ),
       ],
     );
-    // return '${fixedName()}${shortAddress()}';
   }
 }
