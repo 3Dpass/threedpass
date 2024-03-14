@@ -238,17 +238,17 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       // replace it with new one
       if (oldSnapIndex != -1) {
         obj.snapshots[oldSnapIndex] = event.snap.copyWith(isNew: false);
+        emit(
+          HashesListLoaded(
+            objects: list,
+            globalKeyMap: buildMap(list),
+          ),
+        );
       } else {
         getIt<Logger>().e(
           'Not found a snapshot in object ${obj.name}. Snapshot name=${event.snap.name}',
         );
       }
-      emit(
-        HashesListLoaded(
-          objects: list,
-          globalKeyMap: buildMap(list),
-        ),
-      );
     }
   }
 

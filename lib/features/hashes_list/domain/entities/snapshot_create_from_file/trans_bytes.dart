@@ -8,17 +8,13 @@ class _TransBytes {
   });
 
   Future<String> calc() async {
-    if (scanSettings.transBytesMode == TransBytesMode.none) {
-      return '';
+    switch (scanSettings.transBytesMode) {
+      case TransBytesMode.none:
+        return '';
+      case TransBytesMode.random:
+        return RandomHex.generate(8);
+      case TransBytesMode.specific:
+        return scanSettings.transBytes;
     }
-
-    final String userTransBytes = scanSettings.transBytes;
-
-    if (userTransBytes.isNotEmpty) {
-      return userTransBytes;
-    }
-
-    final randomTransBytes = RandomHex.generate(8);
-    return randomTransBytes;
   }
 }

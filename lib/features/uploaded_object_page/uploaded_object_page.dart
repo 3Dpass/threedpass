@@ -43,6 +43,7 @@ class UploadedObjectPage extends StatelessWidget {
           SnapshotConnectedToUploaded(
             uploadedObject: uploadedObject,
             topPadding: 16,
+            isOnlyText: false,
           ),
           const SizedBoxH16(),
           FastRichText(

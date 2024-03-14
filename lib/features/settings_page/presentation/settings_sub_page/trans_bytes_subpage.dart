@@ -53,7 +53,7 @@ class _TransBytesSubPageState extends State<TransBytesSubPage> {
     final cubit = BlocProvider.of<SettingsConfigCubit>(context);
 
     // Set transBytes
-    String newTransBytes = '';
+    String newTransBytes = cubit.state.scanSettings.transBytes;
     if (chosennTBM == TransBytesMode.specific) {
       final smartInput = TransBytesInput(rawInput);
       final realInput = smartInput.unmasked.toLowerCase();
