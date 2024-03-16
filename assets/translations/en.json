@@ -412,14 +412,15 @@
     "uploaded_object_owner": "Owner: ",
     "uploaded_object_hashes": "Object's hashes: ",
 
-    "@2.12.1":{
+    "@2.13.0":{
     },
     "rename_object_button_label": "Rename object",
     "rename_object_dialog_title": "Rename object",
     "rename_object_dialog_action": "Apply",
     "scan_one_more_time_button_label": "Scan one more time",
 
-    "edit_action": "Edit",
+    "edit_action": "Edit {} (id: {})",
+    "edit_action_submit": "Edit",
     "max_value": "Max Value",
     "textfield_not_empty": "The text field must not be empty.",
     "max_value_multiplier": "Max Value must be a multiplier of 10.",
@@ -428,5 +429,7 @@
 
     "trans_bytes_none": "None",
     "trans_bytes_random": "Random",
-    "trans_bytes_specific": "Specific"
+    "trans_bytes_specific": "Specific",
+
+    "trans_bytes_mode_help": "Set rotation bytes mode to None to upload an object"
 }

@@ -55,18 +55,8 @@ class ScanSettings extends Equatable {
       algorithm = AlgorithmMaster.defaultAlgo;
     }
 
-    // Migrate default value
-    TransBytesMode transBytesMode = this.transBytesMode;
-    if (this.transBytes.isNotEmpty && transBytesMode == TransBytesMode.random) {
-      transBytesMode = TransBytesMode.specific;
-    }
-    if (this.transBytes.isEmpty && transBytesMode == TransBytesMode.specific) {
-      transBytesMode = TransBytesMode.random;
-    }
-
     return this.copyWith(
       algorithm: algorithm,
-      transBytesMode: transBytesMode,
     );
   }
 }
