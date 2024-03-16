@@ -12,4 +12,19 @@ extension HasNew on HashesListLoaded {
           element.snapshots.any((final element) => element.isNew))
       .snapshots
       .firstWhere((final element) => element.isNew);
+
+  List<Snapshot> get allSnaps {
+    final res = <Snapshot>[];
+    objects.forEach((final element) {
+      res.addAll(element.snapshots);
+    });
+    return res;
+  }
+
+  Snapshot get latest {
+    final all = allSnaps;
+    final times = allSnaps.map((final e) => e.stamp).toList();
+    times.sort();
+    return all.firstWhere((final element) => element.stamp == times.last);
+  }
 }

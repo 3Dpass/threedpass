@@ -1,9 +1,9 @@
 class AlgorithmMaster {
   // Algo names
-  static const grid2d_0_3_4_v1 = 'Grid2d. P3D 0.3.4';
-  static const grid2d_0_3_4_v2 = 'Grid2d_v2. P3D 0.3.4';
-  static const grid2d_0_3_4_v3 = 'Grid2d_v3. P3D 0.3.4';
-  static const grid2d_0_3_4_v3a = 'Grid2d_v3a. P3D 0.3.4';
+  static const grid2d_0_3_4_v1 = 'Grid2d';
+  static const grid2d_0_3_4_v2 = 'Grid2dV2';
+  static const grid2d_0_3_4_v3 = 'Grid2dV3';
+  static const grid2d_0_3_4_v3a = 'Grid2dV3a';
 
   /// Update this list when a new algorithm is added
   static const list = [

@@ -9,7 +9,9 @@ import 'package:threedpass/features/preview_page/presentation/widgets/hash_prope
 import 'package:threedpass/features/preview_page/presentation/widgets/object_preview/object_preview.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/poscan_result.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/preview_save_button.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/rename_object_button.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/rename_snapshot_button.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/scan_one_more_time_button.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/section_title.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/snapshot_info.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/stable_hashes_section.dart';
@@ -61,6 +63,10 @@ class PreviewPageBody extends StatelessWidget {
         const SizedBoxH16(),
         RenameSnapshotButton(state: previewPageCubitState),
         DeleteSnapshotButton(state: previewPageCubitState),
+        const SizedBoxH16(),
+        const Divider(),
+        const RenameObjectButton(),
+        // const ScanOneMoreTimeButton(),
         const SizedBoxH16(),
       ],
     );

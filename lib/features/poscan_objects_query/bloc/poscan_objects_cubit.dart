@@ -126,6 +126,9 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
         logE("Could not load objects count from poscan. $e");
       },
       right: (final objLen) async {
+        if (objLen != state.objects.length) {
+          emit(state.copyWith(storageCount: objLen));
+        }
         await load(from: 0, till: objLen);
       },
     );

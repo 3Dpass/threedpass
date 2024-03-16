@@ -23,6 +23,7 @@ Future<void> hiveSetup() async {
   Hive.registerAdapter<PreviewSettings>(PreviewSettingsAdapter());
   Hive.registerAdapter<AppSettings>(AppSettingsAdapter());
   Hive.registerAdapter<Contact>(ContactAdapter());
+  Hive.registerAdapter<TransBytesMode>(TransBytesModeAdapter());
   // poScan objects
   Hive.registerAdapter<UploadedObject>(UploadedObjectAdapter());
 

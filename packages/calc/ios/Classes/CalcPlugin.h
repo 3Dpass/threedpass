@@ -12,6 +12,8 @@ char *calc(const unsigned char *input,
            short par2,
            const unsigned char *trans,
            const unsigned char *version,
-           int version_len);
+           int version_len,
+           bool send_none,
+           bool is_debug);
 
-char *versionInterface();
+char *versionInterface(void);

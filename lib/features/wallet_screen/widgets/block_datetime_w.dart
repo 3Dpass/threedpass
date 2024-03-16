@@ -11,7 +11,7 @@ class BlockDateTimeW extends StatelessWidget {
     // final dt = DateTime.parse(dateTime.value);
     if (dateTime != null) {
       return UTCTime(
-        dateTime: dateTime!,
+        dateTime: dateTime,
         formatter: Fmt.transferDateFormat,
       );
     } else {

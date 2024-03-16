@@ -18,6 +18,10 @@ class ScanSettings extends Equatable {
   final String libVersion;
   @HiveField(4)
   final String transBytes;
+  @HiveField(5, defaultValue: TransBytesMode.random)
+  final TransBytesMode transBytesMode;
+
+  static const String noneTransBytesKey = 'None';
 
   const ScanSettings({
     required this.gridSize,
@@ -25,6 +29,7 @@ class ScanSettings extends Equatable {
     required this.algorithm,
     required this.libVersion,
     required this.transBytes,
+    required this.transBytesMode,
   });
 
   const ScanSettings.defaultValues()
@@ -32,6 +37,7 @@ class ScanSettings extends Equatable {
         algorithm = AlgorithmMaster.defaultAlgo,
         nSections = 12,
         libVersion = 'unknown',
+        transBytesMode = TransBytesMode.random,
         transBytes = '';
 
   @override
@@ -43,14 +49,26 @@ class ScanSettings extends Equatable {
       ];
 
   ScanSettings selfValidate() {
-    final String algorithm = this.algorithm;
+    String algorithm = this.algorithm;
     if (!AlgorithmMaster.list.contains(algorithm)) {
       // If algo is deprecated, migrate slowly
-      return const ScanSettings.defaultValues();
+      algorithm = AlgorithmMaster.defaultAlgo;
     }
 
     return this.copyWith(
       algorithm: algorithm,
     );
   }
+}
+
+@HiveType(typeId: 10)
+enum TransBytesMode {
+  @HiveField(0)
+  none,
+
+  @HiveField(1)
+  random,
+
+  @HiveField(2)
+  specific,
 }

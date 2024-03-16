@@ -1,5 +1,3 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-
 part of 'poscan_putobject_cubit.dart';
 
 // **************************************************************************
@@ -11,7 +9,10 @@ abstract class _$D3PRPCCubitStateCWProxy {
 
   D3PRPCCubitState chosenHashes(List<String> chosenHashes);
 
-  D3PRPCCubitState properties(List<PoscanProperty> properties);
+  D3PRPCCubitState chosenProperties(List<PoscanProperty> chosenProperties);
+
+  D3PRPCCubitState defaultProperties(
+      List<PoscanProperty> defaultProperties);
 
   D3PRPCCubitState chosenCategory(MapPoscanCategory chosenCategory);
 
@@ -24,12 +25,12 @@ abstract class _$D3PRPCCubitStateCWProxy {
   D3PRPCCubitState call({
     KeyPairData? account,
     List<String>? chosenHashes,
-    List<PoscanProperty>? properties,
+    List<PoscanProperty>? chosenProperties,
+    List<PoscanProperty>? defaultProperties,
     MapPoscanCategory? chosenCategory,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfD3PRPCCubitState.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfD3PRPCCubitState.copyWith.fieldName(...)`
 class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
   const _$D3PRPCCubitStateCWProxyImpl(this._value);
 
@@ -43,46 +44,46 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
       this(chosenHashes: chosenHashes);
 
   @override
-  D3PRPCCubitState properties(List<PoscanProperty> properties) =>
-      this(properties: properties);
+  D3PRPCCubitState chosenProperties(List<PoscanProperty> chosenProperties) =>
+      this(chosenProperties: chosenProperties);
+
+  @override
+  D3PRPCCubitState defaultProperties(List<PoscanProperty> defaultProperties) =>
+      this(defaultProperties: defaultProperties);
 
   @override
   D3PRPCCubitState chosenCategory(MapPoscanCategory chosenCategory) =>
       this(chosenCategory: chosenCategory);
 
   @override
-
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `D3PRPCCubitState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
-  ///
-  /// Usage
-  /// ```dart
-  /// D3PRPCCubitState(...).copyWith(id: 12, name: "My name")
-  /// ````
   D3PRPCCubitState call({
     Object? account = const $CopyWithPlaceholder(),
     Object? chosenHashes = const $CopyWithPlaceholder(),
-    Object? properties = const $CopyWithPlaceholder(),
+    Object? chosenProperties = const $CopyWithPlaceholder(),
+    Object? defaultProperties =
+    const $CopyWithPlaceholder(),
     Object? chosenCategory = const $CopyWithPlaceholder(),
   }) {
     return D3PRPCCubitState(
       account: account == const $CopyWithPlaceholder() || account == null
           ? _value.account
-          // ignore: cast_nullable_to_non_nullable
           : account as KeyPairData,
       chosenHashes:
-          chosenHashes == const $CopyWithPlaceholder() || chosenHashes == null
-              ? _value.chosenHashes
-              // ignore: cast_nullable_to_non_nullable
-              : chosenHashes as List<String>,
-      properties:
-          properties == const $CopyWithPlaceholder() || properties == null
-              ? _value.properties
-              // ignore: cast_nullable_to_non_nullable
-              : properties as List<PoscanProperty>,
+      chosenHashes == const $CopyWithPlaceholder() || chosenHashes == null
+          ? _value.chosenHashes
+          : chosenHashes as List<String>,
+      chosenProperties:
+      chosenProperties == const $CopyWithPlaceholder() || chosenProperties == null
+          ? _value.chosenProperties
+          : chosenProperties as List<PoscanProperty>,
+      defaultProperties:
+      defaultProperties == const $CopyWithPlaceholder() ||
+          defaultProperties == null
+          ? _value.defaultProperties
+          : defaultProperties as List<PoscanProperty>,
       chosenCategory: chosenCategory == const $CopyWithPlaceholder() ||
-              chosenCategory == null
+          chosenCategory == null
           ? _value.chosenCategory
-          // ignore: cast_nullable_to_non_nullable
           : chosenCategory as MapPoscanCategory,
     );
   }

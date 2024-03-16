@@ -85,17 +85,17 @@ class _PreviewAppbarTitle extends StatelessWidget {
   }
 }
 
-class _PseudoButtonSavedIndicator extends StatelessWidget {
-  final PreviewSnapshotType psType;
+// class _PseudoButtonSavedIndicator extends StatelessWidget {
+//   final PreviewSnapshotType psType;
 
-  const _PseudoButtonSavedIndicator(this.psType);
+//   const _PseudoButtonSavedIndicator(this.psType);
 
-  @override
-  Widget build(final BuildContext context) {
-    return D3pIconButton(
-      iconData: psType == PreviewSnapshotType.existingSnapshot
-          ? UniconsLine.file_check
-          : UniconsLine.file_exclamation,
-    );
-  }
-}
+//   @override
+//   Widget build(final BuildContext context) {
+//     return D3pIconButton(
+//       iconData: psType == PreviewSnapshotType.existingSnapshot
+//           ? UniconsLine.file_check
+//           : UniconsLine.file_exclamation,
+//     );
+//   }
+// }

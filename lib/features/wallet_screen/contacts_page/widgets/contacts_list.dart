@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
+import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/features/wallet_screen/add_contact_page/domain/entities/contact.dart';
 import 'package:threedpass/features/wallet_screen/contacts_page/widgets/contact_address_text.dart';
 import 'package:threedpass/features/wallet_screen/contacts_page/widgets/contact_name_text.dart';
@@ -29,19 +30,25 @@ class ContactsList extends StatelessWidget {
         final currentContact = contacts[objIndex];
         return Padding(
           padding: const EdgeInsets.only(bottom: 16),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ContactNameText(name: currentContact.name),
-              const Spacer(),
-              ContactAddressText(address: currentContact.address),
-              const SizedBox(width: 8),
-              D3pIconButton(
-                onPressed: () => _openConfirmDialog(currentContact, context),
-                iconData: Icons.delete,
-                emptyContraints: true,
+          child: D3pCard(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ContactNameText(name: currentContact.name),
+                  const Spacer(),
+                  ContactAddressText(address: currentContact.address),
+                  const SizedBox(width: 8),
+                  D3pIconButton(
+                    onPressed: () =>
+                        _openConfirmDialog(currentContact, context),
+                    iconData: Icons.delete,
+                    emptyContraints: true,
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         );
       },

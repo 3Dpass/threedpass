@@ -45,7 +45,7 @@ class GlobalStatesProvider extends StatelessWidget {
           lazy: false,
         ),
         BlocProvider<NotificationsBloc>(
-          create: (_) => di_setup.getIt<NotificationsBloc>(),
+          create: (final _) => di_setup.getIt<NotificationsBloc>(),
         ),
       ],
       child: PlatformProvider(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/scan_page/presentation/widgets/object_list/hash_card.dart';
+import 'package:threedpass/features/scan_page/presentation/widgets/selectable_snapshot_card.dart';
 
 class SnapshotsList extends StatelessWidget {
   const SnapshotsList({
@@ -36,7 +36,7 @@ class SnapshotsList extends StatelessWidget {
           //     BlocProvider.of<SelectSnapshotsCubit>(context).state.areSelectable;
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 4),
-            child: SnapshotCard(
+            child: SelectableSnapshotCard(
               snapshot: listToShow[index],
               hashObject: currentObject,
             ),

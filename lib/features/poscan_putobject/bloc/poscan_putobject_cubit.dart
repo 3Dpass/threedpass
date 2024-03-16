@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
+import 'package:threedpass/features/poscan_putobject/data/default_poscan_properties.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_property.dart';
 import 'package:threedpass/features/poscan_putobject/domain/usecases/put_object_usecase.dart';
@@ -18,13 +19,15 @@ part 'poscan_putobject_cubit.g.dart';
 class D3PRPCCubitState {
   final KeyPairData account;
   final List<String> chosenHashes;
-  final List<PoscanProperty> properties;
+  final List<PoscanProperty> defaultProperties;
+  final List<PoscanProperty> chosenProperties;
   final MapPoscanCategory chosenCategory;
 
   const D3PRPCCubitState({
     required this.account,
     required this.chosenHashes,
-    required this.properties,
+    required this.defaultProperties,
+    required this.chosenProperties,
     required this.chosenCategory,
   });
 }
@@ -41,7 +44,8 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
           D3PRPCCubitState(
             account: initialAccount,
             chosenHashes: initialHashes,
-            properties: [],
+            defaultProperties: defaultProperties,
+            chosenProperties: [],
             chosenCategory: PoscanCategories.first,
           ),
         );
@@ -80,7 +84,7 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
   }
 
   void toggleProp(final PoscanProperty prop) {
-    if (state.properties.contains(prop)) {
+    if (state.chosenProperties.contains(prop)) {
       removeProp(prop);
     } else {
       addProp(prop);
@@ -88,17 +92,34 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
   }
 
   void addProp(final PoscanProperty prop) {
-    final newList = List<PoscanProperty>.from(state.properties);
+    final newList = List<PoscanProperty>.from(state.chosenProperties);
     newList.add(prop);
 
-    emit(state.copyWith(properties: newList));
+    emit(state.copyWith(chosenProperties: newList));
   }
 
   void removeProp(final PoscanProperty prop) {
-    final newList = List<PoscanProperty>.from(state.properties);
+    final newList = List<PoscanProperty>.from(state.chosenProperties);
     newList.remove(prop);
 
-    emit(state.copyWith(properties: newList));
+    emit(state.copyWith(chosenProperties: newList));
+  }
+
+  void editProp(final PoscanProperty prop) {
+    final newList = List<PoscanProperty>.from(state.defaultProperties);
+    final chosenList = List<PoscanProperty>.from(state.chosenProperties);
+    final index =
+        newList.indexWhere((final existingProp) => existingProp == prop);
+    newList[index] = prop;
+
+    if (state.chosenProperties.contains(prop)) {
+      final index =
+          chosenList.indexWhere((final existingProp) => existingProp == prop);
+      chosenList[index] = prop;
+    }
+
+    emit(state.copyWith(
+        defaultProperties: newList, chosenProperties: chosenList,),);
   }
 
   void changeCategory(final MapPoscanCategory cat) {
@@ -122,7 +143,7 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
       pathToFile: filePath,
       categoryFabric: state.chosenCategory,
       hashes: state.chosenHashes,
-      propValues: state.properties.map((final e) => e.propValue).toList(),
+      propValues: state.chosenProperties.map((final e) => e.propValue).toList(),
       updateStatus: () {
         fastCheckPassed = true;
         DefaultLoadingDialog.hide(context);

@@ -30,12 +30,12 @@ class ScanPageContent extends StatelessWidget {
                         // await Future<dynamic>.delayed(Duration(seconds: 5));
                         // state.objects.forEach((element) {element.snapshots.forEach((element) {element.isNew });});
                         if (state.hasNew) {
-                          final snap = state.firstNew;
+                          final snap = state.latest;
                           final gKey = state.globalKeyMap[snap];
                           // final snap = event.object.snapshots.first;
                           Scrollable.ensureVisible(
                             gKey!.currentContext!,
-                            duration: Duration(seconds: 1),
+                            duration: const Duration(seconds: 1),
                           );
                           debugPrint('SCROLL SCROLL');
                         } else {

@@ -44,6 +44,7 @@ class ObjectsListItem extends StatelessWidget {
           SnapshotConnectedToUploaded(
             uploadedObject: uploadedObject,
             topPadding: 8,
+            isOnlyText: true,
           ),
         ],
       ),

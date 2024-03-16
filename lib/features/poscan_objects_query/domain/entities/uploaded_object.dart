@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:threedpass/core/polkawallet/utils/log.dart';
 
 part 'uploaded_object.g.dart';
 
@@ -22,21 +23,29 @@ class UploadedObject {
   const UploadedObject({
     required this.id,
     required this.raw,
-    // required this.owner,
-    // required this.hashes,
-    // required this.status,
     required this.cacheDate,
-    // required this.statusDateUTC,
   });
 
-  DateTime get statusDateUTC {
-    final d1 =
-        (raw['state'] as Map).values.first.toString().replaceAll(',', '');
-    final d2 = int.parse(d1);
-    final initialDate = DateTime(2022, DateTime.august, 30, 21, 36);
-    final realStatus = initialDate.add(Duration(minutes: d2));
+  DateTime? get statusDateUTC {
+    try {
+      final dynamic values =
+          (raw['state'] as Map).values.first; // Can be 685,523 or [793,188, 0]
+      String rawDate = '';
+      if (values is String) {
+        rawDate = values;
+      } else if (values is List<dynamic>) {
+        rawDate = values.first.toString();
+      }
+      final d1 = rawDate.replaceAll(',', '');
+      final d2 = int.parse(d1);
+      final initialDate = DateTime(2022, DateTime.august, 30, 21, 36);
+      final realStatus = initialDate.add(Duration(minutes: d2));
 
-    return realStatus;
+      return realStatus;
+    } on Object catch (e) {
+      logE('UploadedObject statusDateUTC ' + e.toString() + ' $raw');
+      return null;
+    }
   }
 
   String get owner => raw['owner'] as String;

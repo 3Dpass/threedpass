@@ -353,5 +353,13 @@
     "contact_name_exists": "Du hast bereits einen Kontakt mit diesem Namen angelegt. Bitte verwende einen anderen.",
     "no_contacts": "Du hast noch keine Kontakte angelegt.",
     "delete_contact_confirm_title": "Kontakt {} löschen?",
-    "delete_contact_confirm_text": "Sind Sie sich sicher, dass sie den Kontakt {} mit der Adresse {} löschen möchten?"
+    "delete_contact_confirm_text": "Sind Sie sich sicher, dass sie den Kontakt {} mit der Adresse {} löschen möchten?",
+
+    "edit_action": "Bearbeiten {} (id: {})",
+    "edit_action_submit": "Bearbeiten",
+    "max_value": "Max Value",
+    "textfield_not_empty": "Das Textfeld {} darf nicht leer sein.",
+    "max_value_multiplier": "Max Value muss ein Multiplikator von 10 sein.",
+    "input_exceeds_limit": "Max Value muss weniger als 10^8 sein.",
+    "input_not_a_number": "Max Value muss eine Zahl sein."
 }

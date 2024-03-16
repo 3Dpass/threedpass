@@ -7,37 +7,37 @@ import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 
 /// Empty input means, that trans bytes should be taken from chain.
 /// Else user's 8 len input will be used by calc library
-class TransBytesInputField extends StatefulWidget {
+class TransBytesInputField extends StatelessWidget {
   const TransBytesInputField({
     required this.controller,
+    required this.enabled,
+    required this.validator,
     final Key? key,
   }) : super(key: key);
 
   final TextEditingController controller;
+  final bool? enabled;
+  final String? Function(String?) validator;
 
-  @override
-  State<StatefulWidget> createState() => _State();
-}
-
-class _State extends State<TransBytesInputField> {
   static final hexInputFormatter = TransBytesMaskTextInputFormatter();
 
   void onClearPressed(final BuildContext context) {
-    widget.controller.clear();
+    controller.clear();
     // changeSettings('', context);
   }
 
   @override
   Widget build(final BuildContext context) {
     return D3pTextFormField(
-      controller: widget.controller,
+      controller: controller,
       labelText: 'trans_bytes_input_label'.tr(),
       suffixButton: Icons.clear,
       onSuffixButtonPressed: () => onClearPressed(context),
       // onChanged: (final value) => changeSettings(value ?? '', context),
-      validator: (final input) => TransBytesInput(input ?? '').isValid,
+      validator: validator,
       inputFormatters: [hexInputFormatter],
-      autofocus: true,
+      // autofocus: true,
+      enabled: enabled,
       // bottomHelpText: 'trans_help_text'.tr(),
     );
   }
@@ -59,12 +59,8 @@ class TransBytesInput {
 
   TransBytesInput(this.rawInput);
 
-  /// Does field should show an error?
   String? get isValid {
     final realInput = hexInputFormatter.unmaskText(rawInput);
-    if (realInput.isEmpty) {
-      return null;
-    }
 
     if (int.tryParse(realInput, radix: 16) != null && realInput.length == 8) {
       print('Valid $realInput');
