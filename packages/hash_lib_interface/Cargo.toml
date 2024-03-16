@@ -1,6 +1,6 @@
 [package]
 name = "p3d_interface"
-version = "0.3.4"
+version = "0.7.0"
 authors = ["l3odr0id"]
 edition = "2018"
 

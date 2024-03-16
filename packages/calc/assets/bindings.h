@@ -7,7 +7,7 @@ char *calc(const unsigned char *input,
            const unsigned char *trans,
            const unsigned char *version,
            int version_len,
-           bool send_none,
-           bool is_debug);
+           int send_none,
+           int is_debug);
 
 char *versionInterface(void);
