@@ -11,9 +11,9 @@ import 'package:threedpass/features/poscan_putobject/presentation/widgets/edit_p
 class PropertyTileContent extends StatelessWidget {
   final PoscanProperty prop;
   final bool isChosen;
-  Function(BuildContext, PoscanProperty) onPressedEditCallback;
+  final void Function(BuildContext, PoscanProperty) onPressedEditCallback;
 
-  PropertyTileContent({
+  const PropertyTileContent({
     required this.prop,
     required this.isChosen,
     required this.onPressedEditCallback,
@@ -82,6 +82,7 @@ class PropertyTileContent extends StatelessWidget {
           flex: 1,
           child: Checkbox(
             value: isChosen,
+            fillColor: MaterialStatePropertyAll(D3pThemeData.mainColor),
             onChanged: null,
           ),
         ),

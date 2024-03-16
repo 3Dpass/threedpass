@@ -4,10 +4,13 @@ import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_prop
 
 class EditPropertyButton extends StatelessWidget {
   final PoscanProperty prop;
-  Function(BuildContext, PoscanProperty) onPressedEditCallback;
+  final void Function(BuildContext, PoscanProperty) onPressedEditCallback;
 
-  EditPropertyButton(
-      {required this.prop, required this.onPressedEditCallback, super.key});
+  const EditPropertyButton({
+    required this.prop,
+    required this.onPressedEditCallback,
+    super.key,
+  });
 
   @override
   Widget build(final BuildContext context) {

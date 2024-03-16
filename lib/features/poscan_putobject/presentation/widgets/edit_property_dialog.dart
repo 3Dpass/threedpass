@@ -11,7 +11,7 @@ import 'package:threedpass/features/poscan_putobject/utils/multiple_of_ten_prope
 class EditPropertyDialog extends StatelessWidget {
   final TextEditingController _maxValueController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  PoscanProperty prop;
+  final PoscanProperty prop;
 
   EditPropertyDialog({required this.prop, final Key? key}) : super(key: key);
 
@@ -19,12 +19,8 @@ class EditPropertyDialog extends StatelessWidget {
   Widget build(final BuildContext context) {
     _maxValueController.text = prop.propValue.maxValue.toString();
     return D3pPlatformDialog(
-      title: 'edit_action'.tr() +
-          " " +
-          prop.name +
-          " (id: " +
-          prop.propValue.propIdx.toString() +
-          ")",
+      title: 'edit_action'
+          .tr(args: [prop.name, prop.propValue.propIdx.toString()]),
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
@@ -49,7 +45,7 @@ class EditPropertyDialog extends StatelessWidget {
         ),
         D3pTextButton(
           onPressed: () => _editProperty(context),
-          text: 'edit_action'.tr(),
+          text: 'edit_action_submit'.tr(),
         ),
       ],
     );
