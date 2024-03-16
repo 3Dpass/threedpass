@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 
@@ -74,7 +75,16 @@ class D3pElevatedButton extends StatelessWidget {
             style: ButtonStyle(
               foregroundColor: foregroundColor != null
                   ? MaterialStateProperty.all(foregroundColor)
-                  : null,
+                  : MaterialStateProperty.resolveWith(
+                      (final states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return D3pColors
+                              .disabled; // Theme.of(context).colorScheme.onSurface;
+                        } else {
+                          return Colors.white;
+                        }
+                      },
+                    ),
               backgroundColor: backgroundColor != null && onPressed != null
                   ? MaterialStateProperty.all(backgroundColor)
                   : null,
