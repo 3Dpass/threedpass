@@ -2,12 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
-import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_account.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_approvals.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_category.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_file.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_hashes.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_properties.dart';
+import 'package:threedpass/features/poscan_putobject/presentation/widgets/putobject_choose_account.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/putobject_submit_button.dart';
 
 @RoutePage()
@@ -25,7 +25,7 @@ class D3PRPCPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ChooseFile(),
-              ChooseAccount(),
+              PutObjectChooseAccount(),
               ChooseCategory(),
               ChooseApprovals(),
               ChooseHashes(),

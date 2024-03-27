@@ -11,32 +11,33 @@ class NonNativeTokensApi {
   Future<List<TokenBalanceData>> process() async {
     final result = <TokenBalanceData>[];
 
-    final tokensCommonData = await service.plugin.sdk.api.assets.getAssetsAll();
-    final ids = tokensCommonData.map((final e) => e.id ?? '').toList();
-    ids.removeWhere((final element) => element.isEmpty);
+    // final tokensCommonData = await service.plugin.sdk.api.assets.getAssetsAll();
+    // final ids = tokensCommonData.map((final e) => e.id ?? '').toList();
+    // ids.removeWhere((final element) => element.isEmpty);
 
-    final balances =
-        await service.plugin.sdk.api.assets.queryAssetsBalances(ids, address);
+    // final balances =
+    //     await service.plugin.sdk.api.assets.queryAssetsBalances(ids, address);
 
-    for (int i = 0; i < tokensCommonData.length; i++) {
-      final tcd = tokensCommonData[i];
-      final balanceData = TokenBalanceData(
-        id: tcd.id,
-        fullName: tcd.fullName,
-        name: tcd.name,
-        symbol: tcd.symbol,
-        type: tcd.type,
-        amount: balances[i].balance ?? '0',
-        decimals: tcd.decimals,
-      );
-      result.add(balanceData);
-    }
+    // for (int i = 0; i < tokensCommonData.length; i++) {
+    //   final tcd = tokensCommonData[i];
+    //   final balanceData = TokenBalanceData(
+    //     id: tcd.id,
+    //     fullName: tcd.fullName,
+    //     name: tcd.name,
+    //     symbol: tcd.symbol,
+    //     type: tcd.type,
+    //     amount: balances[i].balance ?? '0',
+    //     decimals: tcd.decimals,
+    //   );
+    //   result.add(balanceData);
+    // }
 
-    return result;
+    // return result;
+    return [];
   }
 
-  Future<void> setTokens() async {
-    final tokens = await process();
-    service.plugin.balances.setTokens(tokens);
-  }
+  // Future<void> setTokens() async {
+  //   final tokens = await process();
+  //   // service.plugin.balances.setTokens(tokens);
+  // }
 }

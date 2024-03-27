@@ -1,15 +1,14 @@
-part of './non_native_tokens.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-class _AssetsLoadingPlaceholder extends StatelessWidget {
-  const _AssetsLoadingPlaceholder();
+class AssetsLoadingPlaceholder extends StatelessWidget {
+  const AssetsLoadingPlaceholder({super.key});
 
   @override
   Widget build(final BuildContext context) {
-    return Column(
-      children: [
-        const SizedBoxH36(),
-        PlatformCircularProgressIndicator(),
-      ],
+    return Padding(
+      padding: EdgeInsets.only(top: 36),
+      child: PlatformCircularProgressIndicator(),
     );
   }
 }

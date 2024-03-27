@@ -339,7 +339,6 @@
     "x_hashes_chosen": "{} chosen",
     "n_approvals_hint": "Enter desired number of approvals",
     "from_address_dropdown_hint": "Choose account",
-    "poscan_putobject_choose_account": "Account",
     "poscan_putobject_choose_napprovals": "nApprovals",
     "poscan_putobject_choose_hashes": "Hashes",
     "poscan_putobject_fees_warning": "This transaction takes 100+ P3D",
@@ -431,5 +430,9 @@
     "trans_bytes_random": "Random",
     "trans_bytes_specific": "Specific",
 
-    "trans_bytes_mode_help": "Set rotation bytes mode to None to upload an object"
+    "trans_bytes_mode_help": "Set rotation bytes mode to None to upload an object",
+
+    "@2.14.0":{
+    },
+    "choose_account_subtitle": "Account"
 }

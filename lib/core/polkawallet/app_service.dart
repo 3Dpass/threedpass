@@ -40,7 +40,6 @@ class AppService {
     if (keyring.current.address != null) {
       // Get tokens only if there is an account
       final nnta = NonNativeTokensApi(this, address);
-      await nnta.setTokens();
     }
   }
 
@@ -63,9 +62,9 @@ class AppService {
               chosenAccountBalance.value = data;
             }
 
-            // tokensAreLoading.value = true;
-            // await _setTokensData(address);
-            // tokensAreLoading.value = false;
+            tokensAreLoading.value = true;
+            await _setTokensData(address);
+            tokensAreLoading.value = false;
           },
         ),
       );

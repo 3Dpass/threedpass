@@ -1,9 +1,15 @@
-part of './non_native_tokens.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/widgets/d3p_card.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
+import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/poscan_token_data.dart';
 
-class _AssetsCard extends StatelessWidget {
-  const _AssetsCard(this.data);
+class AssetsCard extends StatelessWidget {
+  const AssetsCard(this.data, {super.key});
 
-  final TokenBalanceData data;
+  final PoscanTokenData data;
 
   void onCardClick(final BuildContext context) {
     final address = BlocProvider.of<AppServiceLoaderCubit>(context)
@@ -11,14 +17,15 @@ class _AssetsCard extends StatelessWidget {
         .keyring
         .current
         .address!;
-    context.router.push(
-      NonNativeTokenRouteWrapper(
-        params: GetExtrinsicsUseCaseParams(
-          address: address,
-          tokenBalanceData: data,
-        ),
-      ),
-    );
+    // TODO Push to token page
+    // context.router.push(
+    //   NonNativeTokenRouteWrapper(
+    //     params: GetExtrinsicsUseCaseParams(
+    //       address: address,
+    //       tokenBalanceData: data,
+    //     ),
+    //   ),
+    // );
   }
 
   @override
@@ -44,7 +51,7 @@ class _AssetsCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     D3pBodyMediumText(
-                      data.amount ?? '0',
+                      data.amount.toString(),
                       translate: false,
                     ),
                     const SizedBox(width: 8),

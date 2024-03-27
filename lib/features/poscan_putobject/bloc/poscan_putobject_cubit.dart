@@ -118,8 +118,12 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
       chosenList[index] = prop;
     }
 
-    emit(state.copyWith(
-        defaultProperties: newList, chosenProperties: chosenList,),);
+    emit(
+      state.copyWith(
+        defaultProperties: newList,
+        chosenProperties: chosenList,
+      ),
+    );
   }
 
   void changeCategory(final MapPoscanCategory cat) {

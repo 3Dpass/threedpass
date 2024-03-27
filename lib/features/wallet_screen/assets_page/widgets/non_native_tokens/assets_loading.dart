@@ -1,7 +1,7 @@
-part of './non_native_tokens.dart';
+import 'package:flutter/material.dart';
 
-class _AssetsLoading extends StatelessWidget {
-  const _AssetsLoading();
+class AssetsLoading extends StatelessWidget {
+  const AssetsLoading({super.key});
 
   @override
   Widget build(final BuildContext context) {

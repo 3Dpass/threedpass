@@ -12,7 +12,7 @@ class SnapshotConnectedToUploaded extends StatelessWidget {
   const SnapshotConnectedToUploaded({
     required this.uploadedObject,
     required this.topPadding,
-    required this.isOnlyText,
+    required this.isOnlyText, // TODO Remove isOnlyText and make 2 independent widgets
     super.key,
   });
 
