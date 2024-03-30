@@ -40,6 +40,7 @@ class AppService {
     if (keyring.current.address != null) {
       // Get tokens only if there is an account
       final nnta = NonNativeTokensApi(this, address);
+      await nnta.process();
     }
   }
 

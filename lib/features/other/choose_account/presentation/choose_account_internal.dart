@@ -1,7 +1,11 @@
 part of 'choose_account.dart';
 
 class _ChooseAccountInternal extends StatelessWidget {
-  const _ChooseAccountInternal();
+  const _ChooseAccountInternal({
+    required this.title,
+  });
+
+  final String? title;
 
   @override
   Widget build(final BuildContext context) {
@@ -13,7 +17,7 @@ class _ChooseAccountInternal extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBoxH16(),
-        const D3pBodyMediumText('choose_account_subtitle'),
+        D3pBodyMediumText(title ?? 'choose_account_subtitle'),
         const SizedBoxH4(),
         D3pDropdownButton<KeyPairData>(
           context: context,

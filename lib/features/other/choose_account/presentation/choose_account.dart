@@ -18,12 +18,14 @@ class ChooseAccount extends StatelessWidget {
     required this.onAccountSelected,
     required this.passwordController,
     required this.initial,
+    this.title,
     super.key,
   });
 
   final void Function(KeyPairData) onAccountSelected;
   final TextEditingController passwordController;
   final KeyPairData? initial;
+  final String? title;
 
   @override
   Widget build(final BuildContext context) {
@@ -36,7 +38,9 @@ class ChooseAccount extends StatelessWidget {
         passwordController: passwordController,
         initial: initial,
       ),
-      child: const _ChooseAccountInternal(),
+      child: _ChooseAccountInternal(
+        title: title,
+      ),
     );
   }
 }

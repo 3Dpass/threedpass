@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:threedpass/core/polkawallet/utils/log.dart';
+import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
 
 part 'uploaded_object.g.dart';
 
@@ -55,4 +56,19 @@ class UploadedObject {
       .toList();
 
   String get status => (raw['state'] as Map).keys.first.toString();
+
+  List<PropValue> get props {
+    try {
+      final list = raw['prop'] as List<dynamic>;
+      final res = list
+          .map(
+            (final dynamic e) => PropValue.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
+      return res;
+    } on Object catch (e) {
+      logE(e.toString());
+      return [];
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import 'package:polkawallet_sdk/p3d/prop_value.dart';
+import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
 
 class PoscanProperty {
   final String name;

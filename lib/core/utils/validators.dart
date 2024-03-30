@@ -12,4 +12,18 @@ class Validators {
     }
     return null;
   }
+
+  static String? onlyInt(final String? p0) {
+    final res = int.tryParse(p0 ?? '');
+
+    return res != null && res > 0 ? null : 'error_wrong_amount_int'.tr();
+  }
+
+  static String? onlyBigInt(final String? p0) {
+    final res = BigInt.tryParse(p0 ?? '');
+
+    return res != null && res > BigInt.zero
+        ? null
+        : 'error_wrong_amount_int'.tr();
+  }
 }

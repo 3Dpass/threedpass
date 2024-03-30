@@ -12,8 +12,20 @@ class NonNativeTokensApi {
     final result = <TokenBalanceData>[];
 
     // final tokensCommonData = await service.plugin.sdk.api.assets.getAssetsAll();
+    // final dynamic allTokens = await service.plugin.sdk.api.universal
+    //     .callNoSign(second: 'assets', third: 'metadata', args: null);
+
+    final dynamic lol = await service.plugin.sdk.api.universal.callNoSign(
+      calls: ['query', 'poscanAssets', 'metadata', 'entries'],
+      args: null,
+    );
+
+    final d = 1 + 1;
     // final ids = tokensCommonData.map((final e) => e.id ?? '').toList();
     // ids.removeWhere((final element) => element.isEmpty);
+
+    // final balances = await service.plugin.sdk.api.universal
+    //     .callNoSign(second: second, third: third, args: args);
 
     // final balances =
     //     await service.plugin.sdk.api.assets.queryAssetsBalances(ids, address);

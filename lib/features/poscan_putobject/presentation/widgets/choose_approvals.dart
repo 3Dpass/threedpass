@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/utils/validators.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
@@ -24,16 +25,10 @@ class ChooseApprovals extends StatelessWidget {
         D3pTextFormField(
           controller: cubit.nApprovalsController,
           hintText: 'n_approvals_hint'.tr(),
-          validator: validate,
+          validator: Validators.onlyInt,
           keyboardType: TextInputType.number,
         ),
       ],
     );
-  }
-
-  String? validate(final String? p0) {
-    final res = int.tryParse(p0 ?? '');
-
-    return res != null && res > 0 ? null : 'error_wrong_amount_int'.tr();
   }
 }
