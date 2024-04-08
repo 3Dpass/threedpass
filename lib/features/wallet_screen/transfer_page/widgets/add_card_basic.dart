@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/bloc/transfer_info_bloc.dart';
@@ -20,7 +19,6 @@ class AddCardRowBasic extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final textStyle = Theme.of(context).customTextStyles;
     final colors = Theme.of(context).customColors;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -33,12 +31,6 @@ class AddCardRowBasic extends StatelessWidget {
                 text: null,
                 onPressed: onPressed,
                 backgroundColor: colors.cardBackground,
-                // elevation: 0,
-                childAlignment: MainAxisAlignment.start,
-                textStyle: textStyle.d3pBodyMedium,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

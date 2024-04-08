@@ -12,14 +12,13 @@ class UploadedObjectDropdownItem extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    // final medium = Theme.of(context).customTextStyles.d3pBodyMedium;
-
     return Row(
       children: [
         FastRichText(
           mainText: object.id.toString(),
           secondaryText: 'uploaded_object_id'.tr(),
         ),
+        const SizedBox(width: 16),
         UTCTime(
           dateTime: object.statusDateUTC,
           formatter: Fmt.shortDateFormat,

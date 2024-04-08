@@ -7,8 +7,6 @@ import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
-import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
-import 'package:unicons/unicons.dart';
 
 class PreviewAppBar extends PlatformAppBar {
   PreviewAppBar({
@@ -84,18 +82,3 @@ class _PreviewAppbarTitle extends StatelessWidget {
           );
   }
 }
-
-// class _PseudoButtonSavedIndicator extends StatelessWidget {
-//   final PreviewSnapshotType psType;
-
-//   const _PseudoButtonSavedIndicator(this.psType);
-
-//   @override
-//   Widget build(final BuildContext context) {
-//     return D3pIconButton(
-//       iconData: psType == PreviewSnapshotType.existingSnapshot
-//           ? UniconsLine.file_check
-//           : UniconsLine.file_exclamation,
-//     );
-//   }
-// }

@@ -40,8 +40,7 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
     required this.localSnapshotName,
     required final List<String> initialHashes,
     required final KeyPairData initialAccount,
-  })  : initialAcc = initialAccount,
-        super(
+  }) : super(
           D3PRPCCubitState(
             account: initialAccount,
             chosenHashes: initialHashes,
@@ -50,8 +49,6 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
             chosenCategory: PoscanCategories.first,
           ),
         );
-
-  final KeyPairData initialAcc;
 
   final PutObject putObjectUseCase;
 

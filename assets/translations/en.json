@@ -434,5 +434,18 @@
 
     "@2.14.0":{
     },
-    "choose_account_subtitle": "Account"
+    "choose_account_subtitle": "Account",
+    "create_asset_label_choose_account": "Admin",
+    "create_account_label_asset_id": "Asset ID",
+    "create_account_label_max_supply": "Max supply",
+    "create_account_label_min_balance": "Min balance",
+    "create_asset_button_label": "Create new asset",
+    "property_max_value_label": "max value: ",
+    "property_id_label": "id: ",
+    "create_asset_submit_label": "Submit",
+    "create_asset_page_title": "Create asset",
+    "create_asset_choose_object": "Object from storage",
+    "create_asset_choose_prop": "Property for tokenization",
+    "create_asset_max_supply_property_not_chosen_error": "No property is chosen",
+    "put_object_properties_subtitle": "Properties"
 }

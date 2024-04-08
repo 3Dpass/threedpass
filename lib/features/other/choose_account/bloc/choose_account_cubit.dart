@@ -6,11 +6,10 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 class ChooseAccountCubit extends Cubit<KeyPairData?> {
   ChooseAccountCubit({
     required final AppServiceLoaderCubit appServiceLoaderCubit,
-    required final KeyPairData? initial,
     required this.onAccountSelected,
     required this.passwordController,
   })  : accounts = appServiceLoaderCubit.state.keyring.allAccounts,
-        super(initial);
+        super(appServiceLoaderCubit.state.keyring.current);
 
   final List<KeyPairData> accounts;
   final void Function(KeyPairData acc) onAccountSelected;

@@ -11,11 +11,14 @@ class CreateAssetPageWrapper extends StatelessWidget
 
   @override
   Widget wrappedRoute(final BuildContext context) {
-    final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
+    final appServiceLoaderCubit =
+        BlocProvider.of<AppServiceLoaderCubit>(context);
+    final appService = appServiceLoaderCubit.state;
     final initialAcc = appService.keyring.current;
     return BlocProvider(
       create: (final _) => CreatePoscanAssetCubit(
         initialAccount: initialAcc,
+        appServiceLoaderCubit: appServiceLoaderCubit,
       ),
       child: this,
     );

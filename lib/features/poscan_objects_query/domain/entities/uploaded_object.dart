@@ -55,20 +55,46 @@ class UploadedObject {
       .map((final dynamic e) => e.toString().substring(2))
       .toList();
 
-  String get status => (raw['state'] as Map).keys.first.toString();
+  String get statusRaw => (raw['state'] as Map).keys.first.toString();
+  UploadedObjectStatus get status {
+    final comparable = statusRaw.toLowerCase();
+    switch (comparable) {
+      case 'approved':
+        return UploadedObjectStatus.approved;
+      case 'estimating':
+        return UploadedObjectStatus.estimating;
+      case 'notapproved':
+        return UploadedObjectStatus.notApproved;
+      default:
+        return UploadedObjectStatus.unknown;
+    }
+  }
 
   List<PropValue> get props {
     try {
       final list = raw['prop'] as List<dynamic>;
-      final res = list
-          .map(
-            (final dynamic e) => PropValue.fromJson(e as Map<String, dynamic>),
-          )
-          .toList();
+
+      final res = list.map(
+        (final dynamic e) {
+          e as Map<dynamic, dynamic>;
+          final typed = e.map<String, dynamic>(
+            (final dynamic key, final dynamic value) =>
+                MapEntry<String, dynamic>(key.toString(), value),
+          );
+          return PropValue.fromJson(typed);
+        },
+      ).toList();
       return res;
     } on Object catch (e) {
-      logE(e.toString());
+      logE(e.toString() + ' ' + raw['prop'].toString());
       return [];
     }
   }
+}
+
+enum UploadedObjectStatus {
+  approved,
+  estimating,
+  notApproved,
+  unknown,
 }

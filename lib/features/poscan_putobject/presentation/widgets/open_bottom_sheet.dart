@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_bottom_sheet_theme.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
-import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
+import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 
@@ -40,7 +39,6 @@ class OpenBottomSheet extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final textStyle = Theme.of(context).customTextStyles;
     final colors = Theme.of(context).customColors;
 
     return Column(
@@ -51,13 +49,8 @@ class OpenBottomSheet extends StatelessWidget {
         const SizedBoxH16(),
         D3pBodyMediumText(unlocalizedSubtitle),
         const SizedBoxH4(),
-        D3pElevatedButton(
-          text: null,
-          onPressed: () => openDialog(context),
-          backgroundColor: colors.cardBackground,
-          elevation: 1,
-          childAlignment: MainAxisAlignment.start,
-          textStyle: textStyle.d3pBodyMedium,
+        ClickableCard(
+          padding: ClickableCard.buttonPaddingPreset,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -68,6 +61,7 @@ class OpenBottomSheet extends StatelessWidget {
               ),
             ],
           ),
+          onTap: () => openDialog(context),
         ),
       ],
     );

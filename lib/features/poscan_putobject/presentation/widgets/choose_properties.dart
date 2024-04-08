@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
+import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_putobject/bloc/poscan_putobject_cubit.dart';
@@ -14,7 +13,6 @@ class ChooseProperties extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final colors = Theme.of(context).customColors;
     return BlocBuilder<PoscanPutObjectCubit, D3PRPCCubitState>(
       builder: (final context, final state) {
         return Column(
@@ -22,29 +20,30 @@ class ChooseProperties extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBoxH16(),
-            const D3pBodyMediumText("Properties"),
+            const D3pBodyMediumText("put_object_properties_subtitle"),
             const SizedBoxH4(),
             state.defaultProperties.isEmpty
                 ? const SizedBoxH16()
-                : ListView.builder(
+                : ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: state.defaultProperties.length,
+                    separatorBuilder: (final context, final index) =>
+                        const SizedBox(height: 2),
                     itemBuilder: (final context, final index) {
                       final prop = state.defaultProperties.elementAt(index);
-                      return D3pElevatedButton(
-                        padding: const EdgeInsets.only(top: 2),
-                        onPressed: () =>
-                            BlocProvider.of<PoscanPutObjectCubit>(context)
-                                .toggleProp(prop),
-                        backgroundColor: colors.cardBackground,
-                        elevation: 1,
-                        childAlignment: MainAxisAlignment.start,
-                        text: null,
-                        child: PropertyTileContent(
-                          prop: prop,
-                          isChosen: state.chosenProperties.contains(prop),
-                          onPressedEditCallback: onPressedEditCallback,
+                      return SizedBox(
+                        height: 50,
+                        child: ClickableCard(
+                          padding: ClickableCard.buttonPaddingPreset,
+                          onTap: () =>
+                              BlocProvider.of<PoscanPutObjectCubit>(context)
+                                  .toggleProp(prop),
+                          child: PropertyTileContent(
+                            prop: prop,
+                            isChosen: state.chosenProperties.contains(prop),
+                            onPressedEditCallback: onPressedEditCallback,
+                          ),
                         ),
                       );
                     },

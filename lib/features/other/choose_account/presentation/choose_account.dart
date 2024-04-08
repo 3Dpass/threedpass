@@ -17,14 +17,12 @@ class ChooseAccount extends StatelessWidget {
   const ChooseAccount({
     required this.onAccountSelected,
     required this.passwordController,
-    required this.initial,
     this.title,
     super.key,
   });
 
   final void Function(KeyPairData) onAccountSelected;
   final TextEditingController passwordController;
-  final KeyPairData? initial;
   final String? title;
 
   @override
@@ -36,7 +34,6 @@ class ChooseAccount extends StatelessWidget {
         appServiceLoaderCubit: appServiceCubit,
         onAccountSelected: onAccountSelected,
         passwordController: passwordController,
-        initial: initial,
       ),
       child: _ChooseAccountInternal(
         title: title,

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_approvals.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_category.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_file.dart';
@@ -25,6 +26,7 @@ class D3PRPCPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ChooseFile(),
+              SizedBoxH16(),
               PutObjectChooseAccount(),
               ChooseCategory(),
               ChooseApprovals(),

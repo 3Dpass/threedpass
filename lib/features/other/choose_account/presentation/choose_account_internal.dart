@@ -16,28 +16,35 @@ class _ChooseAccountInternal extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBoxH16(),
         D3pBodyMediumText(title ?? 'choose_account_subtitle'),
         const SizedBoxH4(),
-        D3pDropdownButton<KeyPairData>(
-          context: context,
-          isExpanded: true,
-          items: cac.accounts
-              .map<DropdownMenuItem<KeyPairData>>(
-                (final e) => DropdownMenuItem(
-                  value: e,
-                  child: AccountChooseTileText(
-                    name: e.name,
-                    address: e.address,
-                  ),
-                ),
-              )
-              .toList(),
-          onChanged: (final obj) =>
-              obj != null ? cac.setAcc(obj) : emptyFunction(),
-          value: null,
-          validator: (final value) =>
-              value == null ? 'account_never_null'.tr() : null,
+        BlocBuilder<ChooseAccountCubit, KeyPairData?>(
+          builder: (final context, final state) {
+            final chosen = state != null
+                ? cac.accounts
+                    .firstWhere((element) => element.address == state.address)
+                : null;
+            return D3pDropdownButton<KeyPairData>(
+              context: context,
+              isExpanded: true,
+              items: cac.accounts
+                  .map<DropdownMenuItem<KeyPairData>>(
+                    (final e) => DropdownMenuItem(
+                      value: e,
+                      child: AccountChooseTileText(
+                        name: e.name,
+                        address: e.address,
+                      ),
+                    ),
+                  )
+                  .toList(),
+              onChanged: (final obj) =>
+                  obj != null ? cac.setAcc(obj) : emptyFunction(),
+              value: chosen,
+              validator: (final value) =>
+                  value == null ? 'account_never_null'.tr() : null,
+            );
+          },
         ),
         const SizedBoxH4(),
         BasicPasswordTextField(

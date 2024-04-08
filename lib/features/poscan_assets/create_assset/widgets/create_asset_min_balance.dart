@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/utils/validators.dart';
@@ -11,7 +12,7 @@ class CreateAssetMinBalance extends StatelessWidget {
   Widget build(final BuildContext context) {
     final cpac = BlocProvider.of<CreatePoscanAssetCubit>(context);
     return D3pTextFormField(
-      labelText: 'Min balance',
+      labelText: 'create_account_label_min_balance'.tr(),
       validator: Validators.onlyBigInt,
       controller: cpac.minBalance,
     );
