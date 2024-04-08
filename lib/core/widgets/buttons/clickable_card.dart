@@ -7,6 +7,7 @@ class ClickableCard extends StatelessWidget {
     required this.onTap,
     this.side,
     this.radius,
+    this.padding = const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
     super.key,
   });
 
@@ -14,6 +15,10 @@ class ClickableCard extends StatelessWidget {
   final Widget child;
   final BorderSide? side;
   final Radius? radius;
+  final EdgeInsetsGeometry padding;
+
+  static const buttonPaddingPreset =
+      EdgeInsets.symmetric(vertical: 12, horizontal: 8);
 
   @override
   Widget build(final BuildContext context) {
@@ -23,7 +28,7 @@ class ClickableCard extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+          padding: padding,
           child: SizedBox(
             width: double.infinity,
             child: child,
