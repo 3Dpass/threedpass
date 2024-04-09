@@ -51,9 +51,9 @@ import 'package:threedpass/features/home_page/presentation/login_page.dart'
     as _i12;
 import 'package:threedpass/features/home_page/router/empty_initial_route.dart'
     as _i14;
-import 'package:threedpass/features/poscan_assets/create_assset/create_asset_page.dart'
+import 'package:threedpass/features/poscan_assets/ui/create_assset/create_asset_page.dart'
     as _i53;
-import 'package:threedpass/features/poscan_assets/create_assset/create_asset_page_wrapper.dart'
+import 'package:threedpass/features/poscan_assets/ui/create_assset/create_asset_page_wrapper.dart'
     as _i54;
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart'
     as _i63;

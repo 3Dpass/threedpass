@@ -1,10 +1,10 @@
 class PoscanTokenData {
+  final int assetId;
   final String fullName;
   final String symbol;
-  final double amount;
 
   const PoscanTokenData({
-    required this.amount,
+    required this.assetId,
     required this.fullName,
     required this.symbol,
   });

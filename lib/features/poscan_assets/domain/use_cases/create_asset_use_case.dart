@@ -2,18 +2,18 @@ import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
-import 'package:threedpass/features/poscan_putobject/data/poscan_repository.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/put_object_global_handler.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 
-class PutObject extends UseCase<void, PutObjectParams> {
-  final PoScanRepository repository;
+class CreateAssetUseCase extends UseCase<void, CreateAssetParams> {
+  final PoscanAssetsRepository repository;
   final NotificationsBloc notificationsBloc;
   final AppServiceLoaderCubit appServiceLoaderCubit;
 
-  const PutObject({
+  const CreateAssetUseCase({
     required this.repository,
     required this.notificationsBloc,
     required this.appServiceLoaderCubit,
@@ -21,7 +21,7 @@ class PutObject extends UseCase<void, PutObjectParams> {
 
   @override
   Future<Either<Failure, void>> call(
-    final PutObjectParams params,
+    final CreateAssetParams params,
   ) async {
     final notificationLoading = NotificationPutObject(
       account: params.account,
@@ -30,34 +30,17 @@ class PutObject extends UseCase<void, PutObjectParams> {
       message: null,
     );
 
-    notificationsBloc.add(
-      AddNotification(notificationLoading),
-    );
+    // notificationsBloc.add(
+    //   AddNotification(notificationLoading),
+    // );
 
-    final res = await repository.putObject(
-      params: params,
-      updateStatus: () {
-        params.updateStatus();
-      },
-      msgIdCallback: (final msgId) {
-        appServiceLoaderCubit.state.plugin.sdk.api.service.webView!
-            .addGlobalHandler(
-          PutObjectGlobalHandler(
-            msgId: msgId,
-            notificationsBloc: notificationsBloc,
-            initialN: notificationLoading,
-            webViewRunner:
-                appServiceLoaderCubit.state.plugin.sdk.api.service.webView!,
-          ),
-        );
-      },
-    );
+    final res = await repository.create();
     return res;
   }
 }
 
-class PutObjectParams {
-  const PutObjectParams({
+class CreateAssetParams {
+  const CreateAssetParams({
     required this.account,
     required this.password,
     required this.nApprovals,

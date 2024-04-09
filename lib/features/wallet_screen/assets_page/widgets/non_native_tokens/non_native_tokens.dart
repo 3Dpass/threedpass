@@ -12,7 +12,6 @@ import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/assets_loading.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/assets_loading_placeholder.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/assets_placeholder.dart';
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/poscan_token_data.dart';
 
 class NonNativeTokens extends StatelessWidget {
   const NonNativeTokens({super.key});
@@ -63,13 +62,7 @@ class NonNativeTokens extends StatelessWidget {
                       return const AssetsPlaceholder();
                     } else {
                       return PoscanAssetsColumn(
-                        [
-                          PoscanTokenData(
-                            amount: 10.2,
-                            symbol: 'USD',
-                            fullName: 'Dollar',
-                          )
-                        ],
+                        [],
                       );
                     }
                   },

@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/poscan_token_data.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_balance.dart';
 
 class AssetsCard extends StatelessWidget {
   const AssetsCard(this.data, {super.key});
 
-  final PoscanTokenData data;
+  final PoscanTokenBalance data;
 
   void onCardClick(final BuildContext context) {
     final address = BlocProvider.of<AppServiceLoaderCubit>(context)
@@ -41,7 +41,7 @@ class AssetsCard extends StatelessWidget {
               Flexible(
                 flex: 4,
                 child: D3pBodyMediumText(
-                  data.fullName ?? '',
+                  data.tokenData.fullName ?? '',
                   translate: false,
                 ),
               ),
@@ -50,12 +50,12 @@ class AssetsCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     D3pBodyMediumText(
-                      data.amount.toString(),
+                      data.balance.toString(),
                       translate: false,
                     ),
                     const SizedBox(width: 8),
                     D3pBodyMediumText(
-                      data.symbol ?? '',
+                      data.tokenData.symbol ?? '',
                       translate: false,
                     ),
                   ],

@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/poscan_assets/create_assset/bloc/create_poscan_asset_cubit.dart';
-import 'package:threedpass/features/poscan_assets/create_assset/widgets/prop_value_dropdown_item.dart';
+import 'package:threedpass/features/poscan_assets/ui/create_assset/bloc/create_poscan_asset_cubit.dart';
+import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/prop_value_dropdown_item.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
 
 class CreateAssetChoosePropValue extends StatelessWidget {

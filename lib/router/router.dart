@@ -5,7 +5,7 @@ import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/core/widgets/error_page.dart';
 import 'package:threedpass/features/accounts/router/create_account_page_route.dart';
 import 'package:threedpass/features/home_page/router/home_page_route.dart';
-import 'package:threedpass/features/poscan_assets/create_assset/create_asset_page_route.dart';
+import 'package:threedpass/features/poscan_assets/ui/create_assset/router/create_asset_page_route.dart';
 import 'package:threedpass/features/preview_page/router/preview_page_route.dart';
 import 'package:threedpass/router/router.gr.dart';
 
