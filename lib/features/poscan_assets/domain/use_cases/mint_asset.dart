@@ -5,15 +5,14 @@ import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
-import 'package:threedpass/features/poscan_putobject/domain/entities/put_object_global_handler.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 
-class CreateAssetUseCase extends UseCase<void, CreateAssetParams> {
+class MintAsset extends UseCase<void, MintAssetParams> {
   final PoscanAssetsRepository repository;
   final NotificationsBloc notificationsBloc;
   final AppServiceLoaderCubit appServiceLoaderCubit;
 
-  const CreateAssetUseCase({
+  const MintAsset({
     required this.repository,
     required this.notificationsBloc,
     required this.appServiceLoaderCubit,
@@ -21,7 +20,7 @@ class CreateAssetUseCase extends UseCase<void, CreateAssetParams> {
 
   @override
   Future<Either<Failure, void>> call(
-    final CreateAssetParams params,
+    final MintAssetParams params,
   ) async {
     final notificationLoading = NotificationPutObject(
       account: params.account,
@@ -34,13 +33,13 @@ class CreateAssetUseCase extends UseCase<void, CreateAssetParams> {
     //   AddNotification(notificationLoading),
     // );
 
-    final res = await repository.create();
+    final res = await repository.setMetadata();
     return res;
   }
 }
 
-class CreateAssetParams {
-  const CreateAssetParams({
+class MintAssetParams {
+  const MintAssetParams({
     required this.account,
     required this.password,
     required this.nApprovals,

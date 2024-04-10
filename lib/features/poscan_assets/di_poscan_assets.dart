@@ -1,0 +1,65 @@
+import 'package:get_it/get_it.dart';
+import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
+import 'package:threedpass/features/poscan_assets/domain/use_cases/create_asset.dart';
+import 'package:threedpass/features/poscan_assets/domain/use_cases/mint_asset.dart';
+import 'package:threedpass/features/poscan_assets/domain/use_cases/set_metadata.dart';
+import 'package:threedpass/features/poscan_assets/ui/create_assset/bloc/create_poscan_asset_cubit.dart';
+import 'package:threedpass/features/poscan_assets/ui/mint_asset/bloc/mint_asset_cubit.dart';
+import 'package:threedpass/features/poscan_assets/ui/set_metadata/bloc/set_metadata_asset_cubit.dart';
+import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
+
+class DIPoscanAssets extends DIModule {
+  @override
+  Future<void> setup(final GetIt getIt) async {
+    getIt.registerLazySingleton<PoscanAssetsRepository>(
+      () => const PoscanAssetsRepositoryImpl(),
+    );
+
+    // Create asset
+    getIt.registerLazySingleton<CreateAsset>(
+      () => CreateAsset(
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        notificationsBloc: getIt<NotificationsBloc>(),
+        repository: getIt<PoscanAssetsRepository>(),
+      ),
+    );
+    getIt.registerFactory<CreatePoscanAssetCubit>(
+      () => CreatePoscanAssetCubit(
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        createAssetUseCase: getIt<CreateAsset>(),
+      ),
+    );
+
+    // Set metadata
+    getIt.registerLazySingleton<SetMetadata>(
+      () => SetMetadata(
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        notificationsBloc: getIt<NotificationsBloc>(),
+        repository: getIt<PoscanAssetsRepository>(),
+      ),
+    );
+    getIt.registerFactory<SetMetadataAssetCubit>(
+      () => SetMetadataAssetCubit(
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        setMetadata: getIt<SetMetadata>(),
+      ),
+    );
+
+    // Mint
+    getIt.registerLazySingleton<MintAsset>(
+      () => MintAsset(
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        notificationsBloc: getIt<NotificationsBloc>(),
+        repository: getIt<PoscanAssetsRepository>(),
+      ),
+    );
+    getIt.registerFactory<MintAssetCubit>(
+      () => MintAssetCubit(
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        mintAsset: getIt<MintAsset>(),
+      ),
+    );
+  }
+}

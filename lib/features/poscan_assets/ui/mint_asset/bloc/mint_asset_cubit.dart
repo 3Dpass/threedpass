@@ -2,27 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/features/poscan_assets/domain/use_cases/set_metadata.dart';
-
-// part 'set_metadata_asset_cubit.g.dart';
+import 'package:threedpass/features/poscan_assets/domain/use_cases/mint_asset.dart';
 
 // Fields:
-// asset id u32 - statful
-// name ascii
-// symbol ascii
-// decimals u8 0 <= u8 <= 255
-class SetMetadataAssetCubit extends Cubit<void> {
-  SetMetadataAssetCubit({
+// id id u32 - statful
+// amount u128
+class MintAssetCubit extends Cubit<void> {
+  MintAssetCubit({
     required this.appServiceLoaderCubit,
-    required this.setMetadata,
+    required this.mintAsset,
   })  : admin = appServiceLoaderCubit.state.keyring.current,
         super(null);
 
-  final SetMetadata setMetadata;
+  final MintAsset mintAsset;
 
-  final TextEditingController name = TextEditingController();
-  final TextEditingController symbol = TextEditingController();
-  final TextEditingController decimals = TextEditingController();
+  final TextEditingController amount = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 

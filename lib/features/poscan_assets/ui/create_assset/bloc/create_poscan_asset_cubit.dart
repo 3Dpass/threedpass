@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/features/poscan_assets/domain/use_cases/create_asset.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 
@@ -25,11 +26,12 @@ class CreatePoscanAssetState {
 
 class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState> {
   CreatePoscanAssetCubit({
-    required final KeyPairData initialAccount,
     required this.appServiceLoaderCubit,
-  })  : initialAcc = initialAccount,
-        keyPairData = initialAccount,
+    required this.createAssetUseCase,
+  })  : keyPairData = appServiceLoaderCubit.state.keyring.current,
         super(CreatePoscanAssetState.initial());
+
+  final CreateAsset createAssetUseCase;
 
   final TextEditingController accountPassword = TextEditingController();
   final TextEditingController id = TextEditingController();
@@ -40,7 +42,7 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState> {
 
   final AppServiceLoaderCubit appServiceLoaderCubit;
 
-  final KeyPairData initialAcc;
+  // final KeyPairData initialAcc;
   KeyPairData keyPairData;
 
   void setAcc(final KeyPairData acc) {
