@@ -55,8 +55,9 @@ class DIPoscanAssets extends DIModule {
         repository: getIt<PoscanAssetsRepository>(),
       ),
     );
-    getIt.registerFactory<MintAssetCubit>(
-      () => MintAssetCubit(
+    getIt.registerFactoryParam<MintAssetCubit, int, void>(
+      (final initialAssetId, final _) => MintAssetCubit(
+        initialAsset: initialAssetId,
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         mintAsset: getIt<MintAsset>(),
       ),

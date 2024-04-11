@@ -6,12 +6,14 @@ import 'package:threedpass/setup.dart';
 
 @RoutePage()
 class MintAssetPageWrapper extends StatelessWidget implements AutoRouteWrapper {
-  const MintAssetPageWrapper({super.key});
+  const MintAssetPageWrapper({required this.initialAssetId, super.key});
+
+  final int initialAssetId;
 
   @override
   Widget wrappedRoute(final BuildContext context) {
     return BlocProvider<MintAssetCubit>(
-      create: (final _) => getIt<MintAssetCubit>(),
+      create: (final _) => getIt<MintAssetCubit>(param1: initialAssetId),
       child: this,
     );
   }

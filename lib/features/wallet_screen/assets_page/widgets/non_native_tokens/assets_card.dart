@@ -55,7 +55,7 @@ class AssetsCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     D3pBodyMediumText(
-                      data.tokenData.symbol ?? '',
+                      data.tokenData.symbols ?? '',
                       translate: false,
                     ),
                   ],

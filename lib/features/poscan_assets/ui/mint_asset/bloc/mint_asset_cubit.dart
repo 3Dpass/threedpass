@@ -11,18 +11,18 @@ class MintAssetCubit extends Cubit<void> {
   MintAssetCubit({
     required this.appServiceLoaderCubit,
     required this.mintAsset,
+    required this.initialAsset,
   })  : admin = appServiceLoaderCubit.state.keyring.current,
         super(null);
 
   final MintAsset mintAsset;
-
-  final TextEditingController amount = TextEditingController();
-
-  final formKey = GlobalKey<FormState>();
-
   final AppServiceLoaderCubit appServiceLoaderCubit;
+  final int initialAsset;
 
   KeyPairData admin;
+
+  final TextEditingController amount = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   void setAcc(final KeyPairData acc) {
     admin = acc;
