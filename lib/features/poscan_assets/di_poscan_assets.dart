@@ -14,7 +14,9 @@ class DIPoscanAssets extends DIModule {
   @override
   Future<void> setup(final GetIt getIt) async {
     getIt.registerLazySingleton<PoscanAssetsRepository>(
-      () => const PoscanAssetsRepositoryImpl(),
+      () => PoscanAssetsRepositoryImpl(
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+      ),
     );
 
     // Create asset
@@ -40,10 +42,11 @@ class DIPoscanAssets extends DIModule {
         repository: getIt<PoscanAssetsRepository>(),
       ),
     );
-    getIt.registerFactory<SetMetadataAssetCubit>(
-      () => SetMetadataAssetCubit(
+    getIt.registerFactoryParam<SetMetadataAssetCubit, int, void>(
+      (final p0, final _) => SetMetadataAssetCubit(
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         setMetadata: getIt<SetMetadata>(),
+        initialAssetId: p0,
       ),
     );
 

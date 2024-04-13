@@ -335,6 +335,91 @@ extension $NotificationPutObjectCopyWith on NotificationPutObject {
       _$NotificationPutObjectCWProxyImpl(this);
 }
 
+abstract class _$NotificationCreateAssetCWProxy {
+  NotificationCreateAsset admin(KeyPairData admin);
+
+  NotificationCreateAsset assetId(String assetId);
+
+  NotificationCreateAsset status(ExtrinsicStatus status);
+
+  NotificationCreateAsset message(String? message);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationCreateAsset(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationCreateAsset(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationCreateAsset call({
+    KeyPairData? admin,
+    String? assetId,
+    ExtrinsicStatus? status,
+    String? message,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNotificationCreateAsset.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfNotificationCreateAsset.copyWith.fieldName(...)`
+class _$NotificationCreateAssetCWProxyImpl
+    implements _$NotificationCreateAssetCWProxy {
+  const _$NotificationCreateAssetCWProxyImpl(this._value);
+
+  final NotificationCreateAsset _value;
+
+  @override
+  NotificationCreateAsset admin(KeyPairData admin) => this(admin: admin);
+
+  @override
+  NotificationCreateAsset assetId(String assetId) => this(assetId: assetId);
+
+  @override
+  NotificationCreateAsset status(ExtrinsicStatus status) =>
+      this(status: status);
+
+  @override
+  NotificationCreateAsset message(String? message) => this(message: message);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationCreateAsset(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationCreateAsset(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationCreateAsset call({
+    Object? admin = const $CopyWithPlaceholder(),
+    Object? assetId = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+  }) {
+    return NotificationCreateAsset(
+      admin: admin == const $CopyWithPlaceholder() || admin == null
+          ? _value.admin
+          // ignore: cast_nullable_to_non_nullable
+          : admin as KeyPairData,
+      assetId: assetId == const $CopyWithPlaceholder() || assetId == null
+          ? _value.assetId
+          // ignore: cast_nullable_to_non_nullable
+          : assetId as String,
+      status: status == const $CopyWithPlaceholder() || status == null
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as ExtrinsicStatus,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+    );
+  }
+}
+
+extension $NotificationCreateAssetCopyWith on NotificationCreateAsset {
+  /// Returns a callable class that can be used as follows: `instanceOfNotificationCreateAsset.copyWith(...)` or like so:`instanceOfNotificationCreateAsset.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$NotificationCreateAssetCWProxy get copyWith =>
+      _$NotificationCreateAssetCWProxyImpl(this);
+}
+
 abstract class _$NotificationsStateCWProxy {
   NotificationsState notifications(List<NotificationDTO> notifications);
 

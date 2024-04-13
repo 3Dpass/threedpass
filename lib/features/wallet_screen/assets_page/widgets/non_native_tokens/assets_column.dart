@@ -45,7 +45,8 @@ class PoscanAssetsColumn extends StatelessWidget {
           D3pSecondaryButton(
             localizedTextKey: 'create_asset_button_label',
             iconData: Icons.generating_tokens,
-            onPressed: () => context.router.push(CreateAssetRouteWrapper()),
+            onPressed: () =>
+                context.router.push(const CreateAssetRouteWrapper()),
           ),
         ],
       ),

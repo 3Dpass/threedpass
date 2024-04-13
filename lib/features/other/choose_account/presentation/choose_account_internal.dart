@@ -38,8 +38,10 @@ class _ChooseAccountInternal extends StatelessWidget {
                     ),
                   )
                   .toList(),
-              onChanged: (final obj) =>
-                  obj != null ? cac.setAcc(obj) : emptyFunction(),
+              onChanged: cac.onAccountSelected == null
+                  ? null
+                  : (final obj) =>
+                      obj != null ? cac.setAcc(obj) : emptyFunction(),
               value: chosen,
               validator: (final value) =>
                   value == null ? 'account_never_null'.tr() : null,

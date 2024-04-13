@@ -6,27 +6,27 @@ import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifi
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/fast_notification_tile.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_card_basic.dart';
 
-class NotificationPutObjectCard extends StatelessWidget {
-  final NotificationPutObject notificationDTO;
+class NotificationCreateAssetCard extends StatelessWidget {
+  final NotificationCreateAsset notificationDTO;
 
-  const NotificationPutObjectCard(this.notificationDTO, {super.key});
+  const NotificationCreateAssetCard(this.notificationDTO, {super.key});
 
   @override
   Widget build(final BuildContext context) {
     return NotificationCardBasic(
       message: notificationDTO.message,
       status: notificationDTO.status,
-      child: _PutObjectBody(
+      child: _CreateAssetBody(
         notificationDTO: notificationDTO,
       ),
     );
   }
 }
 
-class _PutObjectBody extends StatelessWidget {
-  final NotificationPutObject notificationDTO;
+class _CreateAssetBody extends StatelessWidget {
+  final NotificationCreateAsset notificationDTO;
 
-  const _PutObjectBody({required this.notificationDTO});
+  const _CreateAssetBody({required this.notificationDTO});
 
   @override
   Widget build(final BuildContext context) {
@@ -38,7 +38,7 @@ class _PutObjectBody extends StatelessWidget {
         const FastNotificationTile(
           iconData: Icons.keyboard_double_arrow_right,
           child: D3pBodyMediumText(
-            'poScan.putObject',
+            'poscanAsset.create',
             translate: false,
           ),
         ),
@@ -46,16 +46,16 @@ class _PutObjectBody extends StatelessWidget {
         FastNotificationTile(
           iconData: Icons.person,
           child: AccountChooseTileText(
-            address: notificationDTO.account.address,
-            name: notificationDTO.account.name,
+            address: notificationDTO.admin.address,
+            name: notificationDTO.admin.name,
           ),
         ),
-        const SizedBoxH8(),
+        SizedBoxH8(),
         FastNotificationTile(
           iconData: Icons.file_copy,
           child: Flexible(
             child: D3pBodyMediumText(
-              notificationDTO.localSnapshotName,
+              notificationDTO.assetId,
               translate: false,
             ),
           ),

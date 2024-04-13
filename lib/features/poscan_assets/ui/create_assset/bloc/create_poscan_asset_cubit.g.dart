@@ -11,6 +11,8 @@ abstract class _$CreatePoscanAssetStateCWProxy {
 
   CreatePoscanAssetState uploadedObject(UploadedObject? uploadedObject);
 
+  CreatePoscanAssetState keyPairData(KeyPairData keyPairData);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreatePoscanAssetState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -20,6 +22,7 @@ abstract class _$CreatePoscanAssetStateCWProxy {
   CreatePoscanAssetState call({
     PropValue? propValue,
     UploadedObject? uploadedObject,
+    KeyPairData? keyPairData,
   });
 }
 
@@ -39,6 +42,10 @@ class _$CreatePoscanAssetStateCWProxyImpl
       this(uploadedObject: uploadedObject);
 
   @override
+  CreatePoscanAssetState keyPairData(KeyPairData keyPairData) =>
+      this(keyPairData: keyPairData);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreatePoscanAssetState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -49,6 +56,7 @@ class _$CreatePoscanAssetStateCWProxyImpl
   CreatePoscanAssetState call({
     Object? propValue = const $CopyWithPlaceholder(),
     Object? uploadedObject = const $CopyWithPlaceholder(),
+    Object? keyPairData = const $CopyWithPlaceholder(),
   }) {
     return CreatePoscanAssetState(
       propValue: propValue == const $CopyWithPlaceholder()
@@ -59,6 +67,11 @@ class _$CreatePoscanAssetStateCWProxyImpl
           ? _value.uploadedObject
           // ignore: cast_nullable_to_non_nullable
           : uploadedObject as UploadedObject?,
+      keyPairData:
+          keyPairData == const $CopyWithPlaceholder() || keyPairData == null
+              ? _value.keyPairData
+              // ignore: cast_nullable_to_non_nullable
+              : keyPairData as KeyPairData,
     );
   }
 }

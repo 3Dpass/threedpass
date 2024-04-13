@@ -12,7 +12,7 @@ class CreateAssetChooseAccount extends StatelessWidget {
 
     return ChooseAccount(
       onAccountSelected: cubit.setAcc,
-      passwordController: cubit.accountPassword,
+      passwordController: cubit.passwordController,
       title: 'create_asset_label_choose_account',
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/other/choose_asset_id/poscan_token_data_dropdown_menu_item.dart';
@@ -15,7 +14,7 @@ class ChooseAssetId extends StatefulWidget {
   });
 
   final int initialAsset;
-  final void Function(PoscanTokenData) onChoose;
+  final void Function(PoscanTokenData)? onChoose;
 
   @override
   State<StatefulWidget> createState() => ChooseAssetIdState();
@@ -63,7 +62,7 @@ class ChooseAssetIdState extends State<ChooseAssetId> {
     if (newData != null) {
       setState(() {
         chosenAsset = newData;
-        widget.onChoose(newData);
+        widget.onChoose!(newData);
       });
     }
   }
@@ -92,7 +91,7 @@ class ChooseAssetIdState extends State<ChooseAssetId> {
     return D3pDropdownButton<PoscanTokenData>(
       context: context,
       items: items,
-      onChanged: onChanged,
+      onChanged: widget.onChoose == null ? null : onChanged,
       value: chosenAsset,
     );
   }

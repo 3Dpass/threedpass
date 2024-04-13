@@ -21,7 +21,7 @@ class ChooseAccount extends StatelessWidget {
     super.key,
   });
 
-  final void Function(KeyPairData) onAccountSelected;
+  final void Function(KeyPairData)? onAccountSelected;
   final TextEditingController passwordController;
   final String? title;
 

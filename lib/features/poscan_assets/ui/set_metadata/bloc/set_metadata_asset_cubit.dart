@@ -15,24 +15,22 @@ class SetMetadataAssetCubit extends Cubit<void> {
   SetMetadataAssetCubit({
     required this.appServiceLoaderCubit,
     required this.setMetadata,
+    required this.initialAssetId,
   })  : admin = appServiceLoaderCubit.state.keyring.current,
         super(null);
 
   final SetMetadata setMetadata;
+  final KeyPairData admin;
+  final int initialAssetId;
 
   final TextEditingController name = TextEditingController();
   final TextEditingController symbol = TextEditingController();
   final TextEditingController decimals = TextEditingController();
+  final TextEditingController password = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
   final AppServiceLoaderCubit appServiceLoaderCubit;
-
-  KeyPairData admin;
-
-  void setAcc(final KeyPairData acc) {
-    admin = acc;
-  }
 
   Future<void> submitExtrinsic() async {
     if (formKey.currentState!.validate()) {}

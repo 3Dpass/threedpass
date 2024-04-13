@@ -2,15 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/other/some_form/some_form.dart';
-import 'package:threedpass/features/poscan_assets/ui/create_assset/bloc/create_poscan_asset_cubit.dart';
-import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_choose_account.dart';
-import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_choose_object.dart';
-import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_choose_prop_value.dart';
-import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_input_id.dart';
-import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_max_supply.dart';
-import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_min_balance.dart';
-import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_submit.dart';
 import 'package:threedpass/features/poscan_assets/ui/set_metadata/bloc/set_metadata_asset_cubit.dart';
+import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/widget/set_metadata_choose_account.dart';
+import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/widget/set_metadata_choose_asset_id.dart';
+import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/widget/set_metadata_decimals_textfields.dart';
+import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/widget/set_metadata_name_textfield.dart';
+import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/widget/set_metadata_submit_button.dart';
+import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/widget/set_metadata_symbol_textfield.dart';
 
 @RoutePage()
 class SetMetadataPage extends StatelessWidget {
@@ -20,17 +18,16 @@ class SetMetadataPage extends StatelessWidget {
   Widget build(final BuildContext context) {
     return SomeForm(
       formKey: BlocProvider.of<SetMetadataAssetCubit>(context).formKey,
-      appbarTitle: 'create_asset_page_title',
+      appbarTitle: 'LOCALIZE_APPBAR',
       children: const [
-        CreateAssetInputId(),
-        CreateAssetChooseAccount(),
-        CreateAssetMinBalance(),
-        CreateAssetChooseObject(),
-        CreateAssetChoosePropValue(),
-        CreateAssetMaxSupply(),
+        SetMetadataChooseAsset(),
+        SetMetadataChooseAccount(),
+        SetMetadataNameTextfield(),
+        SetMetadataSymbolTextfield(),
+        SetMetadataDecimalslTextfield(),
         Padding(
           padding: EdgeInsets.only(top: 20),
-          child: CreateAssetSubmit(),
+          child: SetMetadataSubmitButton(),
         ),
       ],
     );

@@ -566,9 +566,14 @@ abstract class $RootRouter extends _i59.RootStackRouter {
       );
     },
     SetMetadataRouteWrapper.name: (routeData) {
+      final args = routeData.argsAs<SetMetadataRouteWrapperArgs>();
       return _i59.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i59.WrappedRoute(child: const _i56.SetMetadataPageWrapper()),
+        child: _i59.WrappedRoute(
+            child: _i56.SetMetadataPageWrapper(
+          initialAssetId: args.initialAssetId,
+          key: args.key,
+        )),
       );
     },
     MintAssetRoute.name: (routeData) {
@@ -578,9 +583,14 @@ abstract class $RootRouter extends _i59.RootStackRouter {
       );
     },
     MintAssetRouteWrapper.name: (routeData) {
+      final args = routeData.argsAs<MintAssetRouteWrapperArgs>();
       return _i59.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i59.WrappedRoute(child: const _i58.MintAssetPageWrapper()),
+        child: _i59.WrappedRoute(
+            child: _i58.MintAssetPageWrapper(
+          initialAssetId: args.initialAssetId,
+          key: args.key,
+        )),
       );
     },
   };
@@ -1885,16 +1895,41 @@ class SetMetadataRoute extends _i59.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i56.SetMetadataPageWrapper]
-class SetMetadataRouteWrapper extends _i59.PageRouteInfo<void> {
-  const SetMetadataRouteWrapper({List<_i59.PageRouteInfo>? children})
-      : super(
+class SetMetadataRouteWrapper
+    extends _i59.PageRouteInfo<SetMetadataRouteWrapperArgs> {
+  SetMetadataRouteWrapper({
+    required int initialAssetId,
+    _i60.Key? key,
+    List<_i59.PageRouteInfo>? children,
+  }) : super(
           SetMetadataRouteWrapper.name,
+          args: SetMetadataRouteWrapperArgs(
+            initialAssetId: initialAssetId,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'SetMetadataRouteWrapper';
 
-  static const _i59.PageInfo<void> page = _i59.PageInfo<void>(name);
+  static const _i59.PageInfo<SetMetadataRouteWrapperArgs> page =
+      _i59.PageInfo<SetMetadataRouteWrapperArgs>(name);
+}
+
+class SetMetadataRouteWrapperArgs {
+  const SetMetadataRouteWrapperArgs({
+    required this.initialAssetId,
+    this.key,
+  });
+
+  final int initialAssetId;
+
+  final _i60.Key? key;
+
+  @override
+  String toString() {
+    return 'SetMetadataRouteWrapperArgs{initialAssetId: $initialAssetId, key: $key}';
+  }
 }
 
 /// generated route for
@@ -1913,14 +1948,39 @@ class MintAssetRoute extends _i59.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i58.MintAssetPageWrapper]
-class MintAssetRouteWrapper extends _i59.PageRouteInfo<void> {
-  const MintAssetRouteWrapper({List<_i59.PageRouteInfo>? children})
-      : super(
+class MintAssetRouteWrapper
+    extends _i59.PageRouteInfo<MintAssetRouteWrapperArgs> {
+  MintAssetRouteWrapper({
+    required int initialAssetId,
+    _i60.Key? key,
+    List<_i59.PageRouteInfo>? children,
+  }) : super(
           MintAssetRouteWrapper.name,
+          args: MintAssetRouteWrapperArgs(
+            initialAssetId: initialAssetId,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'MintAssetRouteWrapper';
 
-  static const _i59.PageInfo<void> page = _i59.PageInfo<void>(name);
+  static const _i59.PageInfo<MintAssetRouteWrapperArgs> page =
+      _i59.PageInfo<MintAssetRouteWrapperArgs>(name);
+}
+
+class MintAssetRouteWrapperArgs {
+  const MintAssetRouteWrapperArgs({
+    required this.initialAssetId,
+    this.key,
+  });
+
+  final int initialAssetId;
+
+  final _i60.Key? key;
+
+  @override
+  String toString() {
+    return 'MintAssetRouteWrapperArgs{initialAssetId: $initialAssetId, key: $key}';
+  }
 }

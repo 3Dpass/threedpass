@@ -12,11 +12,11 @@ class ChooseAccountCubit extends Cubit<KeyPairData?> {
         super(appServiceLoaderCubit.state.keyring.current);
 
   final List<KeyPairData> accounts;
-  final void Function(KeyPairData acc) onAccountSelected;
+  final void Function(KeyPairData acc)? onAccountSelected;
   final TextEditingController passwordController;
 
   void setAcc(final KeyPairData acc) {
     emit(acc);
-    onAccountSelected(acc);
+    onAccountSelected!(acc);
   }
 }

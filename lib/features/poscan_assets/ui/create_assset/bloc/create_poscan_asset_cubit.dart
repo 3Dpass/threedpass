@@ -13,13 +13,15 @@ part 'create_poscan_asset_cubit.g.dart';
 class CreatePoscanAssetState {
   final UploadedObject? uploadedObject;
   final PropValue? propValue;
+  final KeyPairData keyPairData;
 
   CreatePoscanAssetState({
     required this.propValue,
     required this.uploadedObject,
+    required this.keyPairData,
   });
 
-  CreatePoscanAssetState.initial()
+  CreatePoscanAssetState.initial(this.keyPairData)
       : propValue = null,
         uploadedObject = null;
 }
@@ -28,12 +30,15 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState> {
   CreatePoscanAssetCubit({
     required this.appServiceLoaderCubit,
     required this.createAssetUseCase,
-  })  : keyPairData = appServiceLoaderCubit.state.keyring.current,
-        super(CreatePoscanAssetState.initial());
+  }) : super(
+          CreatePoscanAssetState.initial(
+            appServiceLoaderCubit.state.keyring.current,
+          ),
+        );
 
   final CreateAsset createAssetUseCase;
 
-  final TextEditingController accountPassword = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final TextEditingController id = TextEditingController();
   final TextEditingController minBalance = TextEditingController();
   final TextEditingController maxSupply = TextEditingController();
@@ -43,10 +48,9 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState> {
   final AppServiceLoaderCubit appServiceLoaderCubit;
 
   // final KeyPairData initialAcc;
-  KeyPairData keyPairData;
 
   void setAcc(final KeyPairData acc) {
-    keyPairData = acc;
+    emit(state.copyWith(keyPairData: acc));
   }
 
   void setObject(final UploadedObject? p0) {
@@ -63,7 +67,19 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState> {
   }
 
   Future<void> createAsset() async {
-    if (formKey.currentState!.validate()) {}
+    if (formKey.currentState!.validate()) {
+      final params = CreateAssetParams(
+        admin: state.keyPairData,
+        assetId: state.propValue!.propIdx,
+        password: passwordController.text,
+        minBalance: int.parse(minBalance.text),
+        maxSupply: BigInt.parse(maxSupply.text),
+        objIdx: state.uploadedObject!.id,
+        propIdx: state.propValue!.propIdx,
+        updateStatus: () {},
+      );
+      createAssetUseCase.call(params);
+    }
     // appServiceLoaderCubit.state;
   }
 }

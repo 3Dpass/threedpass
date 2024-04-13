@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
+import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/poscan_putobject/data/default_poscan_properties.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
@@ -32,7 +34,8 @@ class D3PRPCCubitState {
   });
 }
 
-class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
+class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
+    with ExtrinsicShowLoadingMixin {
   PoscanPutObjectCubit({
     required this.fileHash,
     required this.filePath,
@@ -134,11 +137,9 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
     emit(state.copyWith(account: acc));
   }
 
-  Future<void> submit(final BuildContext context) async {
-    DefaultLoadingDialog.show(context);
-
-    fastCheckPassed = false;
-
+  Future<Either<Failure, void>> callExtrinsic(
+    final BuildContext context,
+  ) async {
     final params = PutObjectParams(
       localSnapshotName: localSnapshotName,
       account: state.account,
@@ -148,24 +149,16 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
       categoryFabric: state.chosenCategory,
       hashes: state.chosenHashes,
       propValues: state.chosenProperties.map((final e) => e.propValue).toList(),
-      updateStatus: () {
-        fastCheckPassed = true;
-        DefaultLoadingDialog.hide(context);
-        BlocProvider.of<OuterContextCubit>(context).state.router.pop();
-      },
+      updateStatus: () => updateStatus(context),
     );
     final res = await putObjectUseCase.call(params);
+    return res;
+  }
 
-    if (!fastCheckPassed) {
-      String message = '';
-      res.when(
-        left: (final f) {
-          message = f.cause ?? '';
-        },
-        right: (final _) {},
-      );
-      DefaultLoadingDialog.hide(context);
-      unawaited(Fluttertoast.showToast(msg: message));
-    }
+  Future<void> submit(final BuildContext context) async {
+    await showLoader(
+      context: context,
+      call: () => callExtrinsic(context),
+    );
   }
 }
