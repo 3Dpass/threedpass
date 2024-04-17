@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:get_it/get_it.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
@@ -27,10 +28,11 @@ class DIPoscanAssets extends DIModule {
         repository: getIt<PoscanAssetsRepository>(),
       ),
     );
-    getIt.registerFactory<CreatePoscanAssetCubit>(
-      () => CreatePoscanAssetCubit(
+    getIt.registerFactoryParam<CreatePoscanAssetCubit, StackRouter, void>(
+      (final router, final _) => CreatePoscanAssetCubit(
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         createAssetUseCase: getIt<CreateAsset>(),
+        outerRouter: router,
       ),
     );
 

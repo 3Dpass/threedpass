@@ -1,8 +1,8 @@
-import 'dart:convert';
-
+import 'package:json_bigint/json_bigint.dart';
 import 'package:logger/logger.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/utils/encode_args.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/create_asset.dart';
 import 'package:threedpass/setup.dart';
@@ -38,53 +38,42 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
     required final void Function(String) msgIdCallback,
   }) async {
     final args = [
-      params.assetId.toString(),
+      params.assetId,
       params.admin.pubKey!,
-      params.password,
-      params.minBalance.toString(),
+      params.minBalance,
+      // keys https://github.com/3Dpass/3DP/blob/3134dad0ed1502462620ba84a4dee4e1b109996b/pallets/poscan-assets/src/types.rs#L41
       {
-        'objIdx': params.objIdx,
-        'propIdx': params.propIdx,
-        'maxSupply': params.maxSupply,
-      }.toString(),
+        'obj_idx': params.objIdx,
+        'prop_idx': params.propIdx,
+        'max_supply': params.maxSupply,
+      },
     ];
-    final argsEncoded = jsonEncode(args);
-    print(argsEncoded);
-
-    return Either.right(null);
+    final argsEncoded = encodeArgs(args);
 
     try {
       // final file = File(params.pathToFile);
       // final bytes = file.readAsStringSync();
       // final jbytes = jsonEncode(bytes);
+      print('pubKey ${params.admin.pubKey!}');
 
       bool flag = true;
-
-      // final dynamic res = await poscanApi.putObject(
-      //   pubKey: params.account.pubKey!,
-      //   password: params.password,
-      //   category: params.categoryFabric.build(),
-      //   file: jbytes,
-      //   nApprovals: params.nApprovals,
-      //   hashes: params.hashes,
-      //   propValue: params.propValues,
-      //   onStatusChange: (final p0) {
-      //     // print('$p0');
-      //     if (flag) {
-      //       updateStatus();
-      //       flag = false;
-      //     }
-      //   },
-      //   msgIdCallback: msgIdCallback,
-      // );
 
       final dynamic res =
           await appServiceLoaderCubit.state.plugin.sdk.api.universal.callSign(
         pubKey: params.admin.pubKey!,
         password: params.password,
         calls: ['tx', 'poscanAssets', 'create'],
-        args: args,
+        args: argsEncoded,
+        onStatusChange: (final p0) {
+          // print('$p0');
+          if (flag) {
+            updateStatus();
+            flag = false;
+          }
+        },
+        msgIdCallback: msgIdCallback,
       );
+
       getIt<Logger>().d(res);
       if (res is Map) {
         final String key = res.keys.first as String;

@@ -12,7 +12,7 @@ class CreateAssetSubmit extends StatelessWidget {
     return D3pElevatedButton(
       text: 'create_asset_submit_label'.tr(),
       onPressed: () =>
-          BlocProvider.of<CreatePoscanAssetCubit>(context).createAsset(),
+          BlocProvider.of<CreatePoscanAssetCubit>(context).createAsset(context),
     );
   }
 }

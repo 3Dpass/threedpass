@@ -4,16 +4,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
-import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/poscan_putobject/data/default_poscan_properties.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_property.dart';
 import 'package:threedpass/features/poscan_putobject/domain/usecases/put_object_usecase.dart';
-import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 
 part 'poscan_putobject_cubit.g.dart';
 
@@ -41,6 +38,7 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
     required this.filePath,
     required this.putObjectUseCase,
     required this.localSnapshotName,
+    required this.outerRouter,
     required final List<String> initialHashes,
     required final KeyPairData initialAccount,
   }) : super(
@@ -53,6 +51,9 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
           ),
         );
 
+  @override
+  final StackRouter outerRouter;
+
   final PutObject putObjectUseCase;
 
   final TextEditingController nApprovalsController =
@@ -61,8 +62,6 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
   final int fileHash;
   final String filePath;
   final String localSnapshotName;
-
-  bool fastCheckPassed = false;
 
   void toggleHash(final String hash) {
     if (state.chosenHashes.contains(hash)) {

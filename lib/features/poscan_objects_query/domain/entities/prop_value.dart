@@ -1,11 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:polkawallet_sdk/p3d/serializable.dart';
 
 part 'prop_value.g.dart';
 
 @JsonSerializable(createFactory: false)
-class PropValue extends Equatable implements Serializable {
+class PropValue extends Equatable {
   final int propIdx;
   final BigInt maxValue;
 
@@ -14,7 +13,6 @@ class PropValue extends Equatable implements Serializable {
     required this.propIdx,
   });
 
-  @override
   Map<String, dynamic> toJson() => _$PropValueToJson(this);
 
   factory PropValue.fromJson(final Map<String, dynamic> json) {

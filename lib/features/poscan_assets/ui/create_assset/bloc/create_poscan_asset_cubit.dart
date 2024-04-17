@@ -1,8 +1,11 @@
+import 'package:auto_route/src/router/controller/routing_controller.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
+import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/create_asset.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
@@ -26,15 +29,20 @@ class CreatePoscanAssetState {
         uploadedObject = null;
 }
 
-class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState> {
+class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState>
+    with ExtrinsicShowLoadingMixin {
   CreatePoscanAssetCubit({
     required this.appServiceLoaderCubit,
     required this.createAssetUseCase,
+    required this.outerRouter,
   }) : super(
           CreatePoscanAssetState.initial(
             appServiceLoaderCubit.state.keyring.current,
           ),
         );
+
+  @override
+  final StackRouter outerRouter;
 
   final CreateAsset createAssetUseCase;
 
@@ -62,24 +70,33 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState> {
     emit(state.copyWith(uploadedObject: p0, propValue: newProp));
   }
 
-  void setProperty(PropValue? p0) {
+  void setProperty(final PropValue? p0) {
     emit(state.copyWith(propValue: p0));
   }
 
-  Future<void> createAsset() async {
+  Future<Either<Failure, void>> callExtrinsic(
+    final BuildContext context,
+  ) async {
+    final params = CreateAssetParams(
+      admin: state.keyPairData,
+      assetId: state.propValue!.propIdx,
+      password: passwordController.text,
+      minBalance: int.parse(minBalance.text),
+      maxSupply: BigInt.parse(maxSupply.text),
+      objIdx: state.uploadedObject!.id,
+      propIdx: state.propValue!.propIdx,
+      updateStatus: () => updateStatus(context),
+    );
+    final res = createAssetUseCase.call(params);
+    return res;
+  }
+
+  Future<void> createAsset(final BuildContext context) async {
     if (formKey.currentState!.validate()) {
-      final params = CreateAssetParams(
-        admin: state.keyPairData,
-        assetId: state.propValue!.propIdx,
-        password: passwordController.text,
-        minBalance: int.parse(minBalance.text),
-        maxSupply: BigInt.parse(maxSupply.text),
-        objIdx: state.uploadedObject!.id,
-        propIdx: state.propValue!.propIdx,
-        updateStatus: () {},
+      await showLoader(
+        context: context,
+        call: () => callExtrinsic(context),
       );
-      createAssetUseCase.call(params);
     }
-    // appServiceLoaderCubit.state;
   }
 }

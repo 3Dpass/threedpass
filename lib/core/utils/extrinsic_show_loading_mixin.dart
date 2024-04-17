@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
-import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 
 mixin ExtrinsicShowLoadingMixin {
   bool fastCheckPassed = false;
@@ -14,8 +12,10 @@ mixin ExtrinsicShowLoadingMixin {
   void updateStatus(final BuildContext context) {
     fastCheckPassed = true;
     DefaultLoadingDialog.hide(context);
-    BlocProvider.of<OuterContextCubit>(context).state.router.pop();
+    outerRouter.pop();
   }
+
+  StackRouter get outerRouter;
 
   Future<void> showLoader({
     required final BuildContext context,
