@@ -14,15 +14,15 @@ class ChooseAssetId extends StatefulWidget {
   });
 
   final int initialAsset;
-  final void Function(PoscanTokenData)? onChoose;
+  final void Function(PoscanAssetData)? onChoose;
 
   @override
   State<StatefulWidget> createState() => ChooseAssetIdState();
 }
 
 class ChooseAssetIdState extends State<ChooseAssetId> {
-  final List<PoscanTokenData> assets = [];
-  late PoscanTokenData chosenAsset;
+  final List<PoscanAssetData> assets = [];
+  late PoscanAssetData chosenAsset;
   bool isLoading = true;
 
   String error = "";
@@ -46,19 +46,17 @@ class ChooseAssetIdState extends State<ChooseAssetId> {
         setState(() {
           assets.clear();
           assets.addAll(tokens);
-          for (final asset in assets) {
-            if (asset.assetId == widget.initialAsset) {
-              chosenAsset = asset;
-              break;
-            }
-          }
+
+          chosenAsset = assets
+              .firstWhere((final element) => element.id == widget.initialAsset);
+
           isLoading = false;
         });
       },
     );
   }
 
-  void onChanged(final PoscanTokenData? newData) {
+  void onChanged(final PoscanAssetData? newData) {
     if (newData != null) {
       setState(() {
         chosenAsset = newData;
@@ -82,13 +80,13 @@ class ChooseAssetIdState extends State<ChooseAssetId> {
     }
     final items = assets
         .map(
-          (final e) => DropdownMenuItem<PoscanTokenData>(
+          (final e) => DropdownMenuItem<PoscanAssetData>(
             value: e,
             child: PoscanTokenDataDropdownMenuItem(e),
           ),
         )
         .toList();
-    return D3pDropdownButton<PoscanTokenData>(
+    return D3pDropdownButton<PoscanAssetData>(
       context: context,
       items: items,
       onChanged: widget.onChoose == null ? null : onChanged,

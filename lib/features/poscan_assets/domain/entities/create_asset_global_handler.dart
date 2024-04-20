@@ -14,16 +14,16 @@ class CreateAssetGlobalHandler extends BasicEventLogsHandler {
   });
 
   void updateNotification(final ExtrinsicStatus status, final String? message) {
-    // final notificationNew = initialN.copyWith(
-    //   status: status,
-    //   message: message,
-    // );
-    // notificationsBloc.add(
-    //   UpdateNotification(
-    //     newN: notificationNew,
-    //     oldN: initialN,
-    //   ),
-    // );
+    final notificationNew = initialN.copyWith(
+      status: status,
+      message: message,
+    );
+    notificationsBloc.add(
+      UpdateNotification(
+        newN: notificationNew,
+        oldN: initialN,
+      ),
+    );
   }
 
   @override

@@ -1,5 +1,8 @@
 import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/setup.dart';
+
+import '../../features/poscan_assets/data/poscan_assets_repository.dart';
 
 /// Load balances for assets // TODO REMOVE ASSETS
 class NonNativeTokensApi {
@@ -15,10 +18,7 @@ class NonNativeTokensApi {
     // final dynamic allTokens = await service.plugin.sdk.api.universal
     //     .callNoSign(second: 'assets', third: 'metadata', args: null);
 
-    final dynamic lol = await service.plugin.sdk.api.universal.callNoSign(
-      calls: ['query', 'poscanAssets', 'metadata', 'entries'],
-      args: null,
-    );
+    getIt<PoscanAssetsRepository>().allTokens();
 
     final d = 1 + 1;
     // final ids = tokensCommonData.map((final e) => e.id ?? '').toList();

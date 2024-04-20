@@ -14,7 +14,7 @@ class CreateAssetInputId extends StatelessWidget {
     return D3pTextFormField(
       labelText: 'create_account_label_asset_id'.tr(),
       validator: Validators.onlyInt,
-      controller: cpac.id,
+      controller: cpac.assetId,
     );
   }
 }

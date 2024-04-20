@@ -6,7 +6,7 @@ import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_d
 class PoscanTokenDataDropdownMenuItem extends StatelessWidget {
   const PoscanTokenDataDropdownMenuItem(this.data, {super.key});
 
-  final PoscanTokenData data;
+  final PoscanAssetData data;
 
   @override
   Widget build(final BuildContext context) {
@@ -19,25 +19,25 @@ class PoscanTokenDataDropdownMenuItem extends StatelessWidget {
         style: grey,
         children: [
           TextSpan(
-            text: data.assetId.toString(),
+            text: data.id.toString(),
             style: medium,
           ),
           TextSpan(
             text: ' ' + 'name:' + ' ',
             style: grey,
           ),
-          TextSpan(
-            text: data.fullName,
-            style: medium,
-          ),
+          // TextSpan(
+          //   text: data.,
+          //   style: medium,
+          // ),
           TextSpan(
             text: ' ' + 'symbols:' + ' ',
             style: grey,
           ),
-          TextSpan(
-            text: data.symbols,
-            style: medium,
-          ),
+          // TextSpan(
+          //   text: data.symbols,
+          //   style: medium,
+          // ),
         ],
       ),
     );

@@ -338,7 +338,11 @@ extension $NotificationPutObjectCopyWith on NotificationPutObject {
 abstract class _$NotificationCreateAssetCWProxy {
   NotificationCreateAsset admin(KeyPairData admin);
 
-  NotificationCreateAsset assetId(String assetId);
+  NotificationCreateAsset newAssetId(String newAssetId);
+
+  NotificationCreateAsset objectId(String objectId);
+
+  NotificationCreateAsset propetyId(String propetyId);
 
   NotificationCreateAsset status(ExtrinsicStatus status);
 
@@ -352,7 +356,9 @@ abstract class _$NotificationCreateAssetCWProxy {
   /// ````
   NotificationCreateAsset call({
     KeyPairData? admin,
-    String? assetId,
+    String? newAssetId,
+    String? objectId,
+    String? propetyId,
     ExtrinsicStatus? status,
     String? message,
   });
@@ -369,7 +375,15 @@ class _$NotificationCreateAssetCWProxyImpl
   NotificationCreateAsset admin(KeyPairData admin) => this(admin: admin);
 
   @override
-  NotificationCreateAsset assetId(String assetId) => this(assetId: assetId);
+  NotificationCreateAsset newAssetId(String newAssetId) =>
+      this(newAssetId: newAssetId);
+
+  @override
+  NotificationCreateAsset objectId(String objectId) => this(objectId: objectId);
+
+  @override
+  NotificationCreateAsset propetyId(String propetyId) =>
+      this(propetyId: propetyId);
 
   @override
   NotificationCreateAsset status(ExtrinsicStatus status) =>
@@ -388,7 +402,9 @@ class _$NotificationCreateAssetCWProxyImpl
   /// ````
   NotificationCreateAsset call({
     Object? admin = const $CopyWithPlaceholder(),
-    Object? assetId = const $CopyWithPlaceholder(),
+    Object? newAssetId = const $CopyWithPlaceholder(),
+    Object? objectId = const $CopyWithPlaceholder(),
+    Object? propetyId = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
   }) {
@@ -397,10 +413,19 @@ class _$NotificationCreateAssetCWProxyImpl
           ? _value.admin
           // ignore: cast_nullable_to_non_nullable
           : admin as KeyPairData,
-      assetId: assetId == const $CopyWithPlaceholder() || assetId == null
-          ? _value.assetId
+      newAssetId:
+          newAssetId == const $CopyWithPlaceholder() || newAssetId == null
+              ? _value.newAssetId
+              // ignore: cast_nullable_to_non_nullable
+              : newAssetId as String,
+      objectId: objectId == const $CopyWithPlaceholder() || objectId == null
+          ? _value.objectId
           // ignore: cast_nullable_to_non_nullable
-          : assetId as String,
+          : objectId as String,
+      propetyId: propetyId == const $CopyWithPlaceholder() || propetyId == null
+          ? _value.propetyId
+          // ignore: cast_nullable_to_non_nullable
+          : propetyId as String,
       status: status == const $CopyWithPlaceholder() || status == null
           ? _value.status
           // ignore: cast_nullable_to_non_nullable

@@ -1,4 +1,5 @@
-import 'package:json_bigint/json_bigint.dart';
+import 'dart:convert';
+
 import 'package:logger/logger.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
@@ -22,7 +23,7 @@ abstract class PoscanAssetsRepository {
   Future<Either<Failure, void>> setMetadata();
   Future<Either<Failure, void>> mint();
   Future<Either<Failure, void>> transfer();
-  Future<Either<Failure, List<PoscanTokenData>>> allTokens();
+  Future<Either<Failure, List<PoscanAssetData>>> allTokens();
 }
 
 class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
@@ -49,13 +50,12 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
       },
     ];
     final argsEncoded = encodeArgs(args);
+    print(argsEncoded);
 
     try {
       // final file = File(params.pathToFile);
       // final bytes = file.readAsStringSync();
       // final jbytes = jsonEncode(bytes);
-      print('pubKey ${params.admin.pubKey!}');
-
       bool flag = true;
 
       final dynamic res =
@@ -80,7 +80,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
         if (key == 'error') {
           return Either.left(NoDataFailure(res[key].toString()));
         } else {
-          return Either.right(res.values.join(''));
+          return const Either.right(null);
         }
       } else {
         return const Either.left(NoDataFailure('res is not a Map'));
@@ -107,29 +107,34 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
   }
 
   @override
-  Future<Either<Failure, List<PoscanTokenData>>> allTokens() async {
-    //   final dynamic lol = await service.plugin.sdk.api.universal.callNoSign(
-    //   calls: ['query', 'poscanAssets', 'metadata', 'entries'],
-    //   args: null,
-    // );
-    return const Either.right(
-      [
-        PoscanTokenData(
-          assetId: 1,
-          fullName: 'Some long long long long long long long long long name',
-          symbols: 'SML',
-        ),
-        PoscanTokenData(
-          assetId: 42,
-          fullName: 'Some',
-          symbols: 'SM',
-        ),
-        PoscanTokenData(
-          assetId: 228,
-          fullName: 'Yeah boy',
-          symbols: 'LOL',
-        ),
-      ],
+  Future<Either<Failure, List<PoscanAssetData>>> allTokens() async {
+    const String getTokensFunc = """
+var p = async () => {
+  const call = await api.query.poscanAssets.asset.entries();
+  const res = call.map(([{ args: [assetId] }, data]) => ({id: assetId.toNumber(), ...data.toHuman(),})).sort((a, b) => a.id - b.id);
+  return res;
+};
+var res = await p();
+return res;
+""";
+
+    final dynamic res = await appServiceLoaderCubit.state.plugin.sdk.api
+        .universal.service.serviceRoot.webView!.webInstance!.webViewController
+        .callAsyncJavaScript(
+      functionBody: getTokensFunc,
     );
+    print(res);
+
+    try {
+      final dynamic json = jsonEncode(res);
+      final List<dynamic> tokensRaw = json['value'] as List<dynamic>;
+      final List<PoscanAssetData> tokens = tokensRaw
+          .map((final dynamic e) =>
+              PoscanAssetData.fromJson(e as Map<String, dynamic>))
+          .toList();
+      return Either.right(tokens);
+    } on Object catch (e) {
+      return Either.left(NoDataFailure('Get token error: $e'));
+    }
   }
 }

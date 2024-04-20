@@ -6,11 +6,13 @@ class FastRichText extends StatelessWidget {
   const FastRichText({
     required this.mainText,
     required this.secondaryText,
+    this.needSpace = false,
     super.key,
   });
 
   final String secondaryText;
   final String mainText;
+  final bool needSpace;
 
   @override
   Widget build(final BuildContext context) {
@@ -18,7 +20,7 @@ class FastRichText extends StatelessWidget {
 
     return Text.rich(
       TextSpan(
-        text: secondaryText,
+        text: needSpace ? secondaryText + ' ' : secondaryText,
         style: medium.copyWith(color: D3pColors.disabled),
         children: [
           TextSpan(

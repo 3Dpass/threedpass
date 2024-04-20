@@ -41,7 +41,7 @@ class AssetsCard extends StatelessWidget {
               Flexible(
                 flex: 4,
                 child: D3pBodyMediumText(
-                  data.tokenData.fullName ?? '',
+                  'METADATA', // data.tokenData.fullName ?? '',
                   translate: false,
                 ),
               ),
@@ -55,7 +55,7 @@ class AssetsCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     D3pBodyMediumText(
-                      data.tokenData.symbols ?? '',
+                      'METADATA SYMBOLS', // data.tokenData.symbols ?? '',
                       translate: false,
                     ),
                   ],

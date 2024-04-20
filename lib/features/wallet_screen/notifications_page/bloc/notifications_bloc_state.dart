@@ -84,12 +84,17 @@ class NotificationPutObject extends NotificationDTO {
 
 @CopyWith()
 class NotificationCreateAsset extends NotificationDTO {
-  final String assetId;
+  final String newAssetId;
+  final String
+      objectId; // TODO Make nullable if creating assets without props is legit
+  final String propetyId;
   final KeyPairData admin;
 
   NotificationCreateAsset({
     required this.admin,
-    required this.assetId,
+    required this.newAssetId,
+    required this.objectId,
+    required this.propetyId,
     required super.status,
     required super.message,
   });

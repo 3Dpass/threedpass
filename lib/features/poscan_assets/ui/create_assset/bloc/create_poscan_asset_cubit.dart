@@ -47,7 +47,7 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState>
   final CreateAsset createAssetUseCase;
 
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController id = TextEditingController();
+  final TextEditingController assetId = TextEditingController();
   final TextEditingController minBalance = TextEditingController();
   final TextEditingController maxSupply = TextEditingController();
 
@@ -79,7 +79,7 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState>
   ) async {
     final params = CreateAssetParams(
       admin: state.keyPairData,
-      assetId: state.propValue!.propIdx,
+      assetId: int.parse(assetId.text),
       password: passwordController.text,
       minBalance: int.parse(minBalance.text),
       maxSupply: BigInt.parse(maxSupply.text),

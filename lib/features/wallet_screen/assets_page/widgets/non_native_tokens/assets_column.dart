@@ -22,6 +22,11 @@ class PoscanAssetsColumn extends StatelessWidget {
     final resolvedList =
         <PoscanTokenBalance>[]; // _TokensToShowList(tokens, showZeroAssets).resolve();
 
+    double listVPadding = 0.0;
+    if (resolvedList.isNotEmpty) {
+      listVPadding = 8.0;
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -30,23 +35,24 @@ class PoscanAssetsColumn extends StatelessWidget {
         children: [
           const SizedBoxH16(),
           const D3pTitleLargeText('assets_title'),
+          const SizedBoxH8(),
+          D3pSecondaryButton(
+            localizedTextKey: 'create_asset_button_label',
+            iconData: Icons.generating_tokens,
+            onPressed: () =>
+                context.router.push(const CreateAssetRouteWrapper()),
+          ),
           Flexible(
             child: ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: EdgeInsets.symmetric(vertical: listVPadding),
               itemCount: resolvedList.length,
               itemBuilder: (final context, final index) => Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 child: AssetsCard(resolvedList[index]),
               ),
             ),
-          ),
-          D3pSecondaryButton(
-            localizedTextKey: 'create_asset_button_label',
-            iconData: Icons.generating_tokens,
-            onPressed: () =>
-                context.router.push(const CreateAssetRouteWrapper()),
           ),
         ],
       ),

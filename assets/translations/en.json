@@ -447,5 +447,9 @@
     "create_asset_choose_object": "Object from storage",
     "create_asset_choose_prop": "Property for tokenization",
     "create_asset_max_supply_property_not_chosen_error": "No property is chosen",
-    "put_object_properties_subtitle": "Properties"
+    "put_object_properties_subtitle": "Properties",
+    "max_supply_too_big_error": "Max supply has to be less than propery max value",
+    "create_asset_notification_new_asset_id": "New asset id:",
+    "create_asset_notification_object_id": "Object id:",
+    "create_asset_notification_property_id": "Property id:"
 }

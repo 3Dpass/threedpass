@@ -23,7 +23,9 @@ class CreateAsset extends UseCase<void, CreateAssetParams> {
   ) async {
     final notificationLoading = NotificationCreateAsset(
       admin: params.admin,
-      assetId: params.assetId.toString(),
+      objectId: params.objIdx.toString(),
+      propetyId: params.propIdx.toString(),
+      newAssetId: params.assetId.toString(),
       status: ExtrinsicStatus.loading,
       message: null,
     );

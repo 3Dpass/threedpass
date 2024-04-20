@@ -24,6 +24,7 @@ class StoragePoscanRepository {
         await appServiceLoaderCubit.state.plugin.sdk.api.universal.callNoSign(
       calls: ['query', 'poScan', 'objCount'],
       args: null,
+      sendNullAsArg: false,
     );
 
     final resStr = res.toString();
@@ -45,7 +46,8 @@ class StoragePoscanRepository {
     final dynamic res =
         await appServiceLoaderCubit.state.plugin.sdk.api.universal.callNoSign(
       calls: ['query', 'poScan', 'objects'],
-      args: ['$id'],
+      args: '["$id"]',
+      sendNullAsArg: false,
     );
     if (res is Map) {
       try {

@@ -14,9 +14,15 @@ class CreateAssetMaxSupply extends StatelessWidget {
 
     final res = BigInt.tryParse(p0 ?? '');
 
-    return res != null && res > BigInt.zero && res <= maxValue
-        ? null
-        : 'error_wrong_amount_int'.tr();
+    if (res == null || res <= BigInt.zero) {
+      return 'error_wrong_amount_int'.tr();
+    }
+
+    if (res > maxValue) {
+      return 'max_supply_too_big_error'.tr();
+    }
+
+    return null;
   }
 
   @override
