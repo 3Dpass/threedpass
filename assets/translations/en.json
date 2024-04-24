@@ -451,5 +451,7 @@
     "max_supply_too_big_error": "Max supply has to be less than propery max value",
     "create_asset_notification_new_asset_id": "New asset id:",
     "create_asset_notification_object_id": "Object id:",
-    "create_asset_notification_property_id": "Property id:"
+    "create_asset_notification_property_id": "Property id:",
+    "poscan_asset_page_metadata_button_label": "Set metadata",
+    "poscan_asset_page_assets_load_error": "Failed to load assets. Reason: {}"
 }

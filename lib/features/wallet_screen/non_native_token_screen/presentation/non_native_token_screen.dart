@@ -9,6 +9,8 @@ import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/core/widgets/text/d3p_title_large_text.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/bloc/assets_get_extrisincs_cubit.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_create.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_mint.dart';
@@ -17,6 +19,7 @@ import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_unknown.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/asset_transfer_button.dart';
+import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_metadata_section.dart';
 import 'package:threedpass/features/wallet_screen/widgets/asset_balance_text.dart';
 import 'package:threedpass/features/wallet_screen/widgets/block_datetime_w.dart';
 import 'package:threedpass/features/wallet_screen/widgets/extrinsic_status_icon.dart';
@@ -32,34 +35,44 @@ part './widgets/asset_history_unknown_widget.dart';
 part './widgets/asset_history_list_item.dart';
 
 class NonNativeTokenScreen extends StatelessWidget {
-  const NonNativeTokenScreen({super.key});
+  const NonNativeTokenScreen({
+    required this.poscanAssetData,
+    required this.metadata,
+    super.key,
+  });
+
+  final PoscanAssetData poscanAssetData;
+  final PoscanAssetMetadata? metadata;
 
   @override
   Widget build(final BuildContext context) {
-    final tkb = BlocProvider.of<AssetsGetExtrinsicsCubit>(context)
-        .getExtrinsics
-        .paramsUseCase
-        .tokenBalanceData;
-    final symbol = tkb.symbol ?? '';
+    // final tkb = BlocProvider.of<AssetsGetExtrinsicsCubit>(context)
+    //     .getExtrinsics
+    //     .paramsUseCase
+    //     .tokenBalanceData;
+    final symbol = metadata?.symbols ?? '';
     return D3pScaffold(
       appbarTitle: 'non_native_token_token'.tr(args: [symbol]),
       translateAppbar: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBoxH24(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AssetBalanceText(
-                balance: BalanceUtils.balance(
-                  tkb.amount,
-                  tkb.decimals ?? 12,
-                ),
-                tokenSymbol: symbol,
-              ),
-            ],
+          const SizedBoxH16(),
+          PoscanAssetMetadataSection(
+            poscanAssetData: poscanAssetData,
+            metadata: metadata,
           ),
+          // MetadataSection create or display
+          // AssetBalanceText(
+          //   balance: BalanceUtils.balance(
+          //     tkb.amount,
+          //     tkb.decimals ?? 12,
+          //   ),
+          //   tokenSymbol: symbol,
+          // ),
+          // Mint section
+          // Transfer section
+          // History section
           const SizedBoxH24(),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),

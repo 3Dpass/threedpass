@@ -4,6 +4,7 @@ import 'package:logger/logger.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/encode_args.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_balance.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/create_asset.dart';
 import 'package:threedpass/setup.dart';
@@ -24,6 +25,8 @@ abstract class PoscanAssetsRepository {
   Future<Either<Failure, void>> mint();
   Future<Either<Failure, void>> transfer();
   Future<Either<Failure, List<PoscanAssetData>>> allTokens();
+  Future<Either<Failure, List<PoscanAssetBalance>>>
+      tokensBalancesForCurrentAccount(List<PoscanAssetData> tokens);
 }
 
 class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
@@ -118,23 +121,35 @@ var res = await p();
 return res;
 """;
 
+    // TODO Typecast to CallAsyncJavaScriptResult from inappwebview
     final dynamic res = await appServiceLoaderCubit.state.plugin.sdk.api
         .universal.service.serviceRoot.webView!.webInstance!.webViewController
         .callAsyncJavaScript(
       functionBody: getTokensFunc,
     );
-    print(res);
+
+    final dynamic json = jsonEncode(res);
+    print(json);
 
     try {
-      final dynamic json = jsonEncode(res);
-      final List<dynamic> tokensRaw = json['value'] as List<dynamic>;
+      final List<dynamic> tokensRaw = res.value as List<dynamic>;
       final List<PoscanAssetData> tokens = tokensRaw
           .map((final dynamic e) =>
               PoscanAssetData.fromJson(e as Map<String, dynamic>))
           .toList();
       return Either.right(tokens);
     } on Object catch (e) {
-      return Either.left(NoDataFailure('Get token error: $e'));
+      getIt<Logger>().e(e);
+      return Either.left(NoDataFailure('allTokens() error: $e'));
     }
+  }
+
+  @override
+  Future<Either<Failure, List<PoscanAssetBalance>>>
+      tokensBalancesForCurrentAccount(List<PoscanAssetData> tokens) {
+    // api.query.assets.account()
+    //  appServiceLoaderCubit.state.plugin.sdk.api.assets.queryAssetsBalances(ids, address)
+    // TODO: implement tokensBalancesForCurrentAccount
+    throw UnimplementedError();
   }
 }

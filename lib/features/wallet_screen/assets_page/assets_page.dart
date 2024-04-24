@@ -9,6 +9,7 @@ import 'package:threedpass/features/wallet_screen/assets_page/widgets/asset_page
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/buttons_panel.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/coins_balance.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/non_native_tokens.dart';
+import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/poscan_assets_column.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/objects_list_assets.dart';
 
 class AssetsPage extends StatelessWidget {
@@ -40,11 +41,8 @@ class AssetsPage extends StatelessWidget {
               CoinsBalance(),
               SizedBoxH8(),
               AssetPageButtonsPanel(),
-              // Flexible(
-              //   child: NonNativeTokens(),
-              // ),
               SizedBoxH16(),
-              NonNativeTokens(),
+              PoscanAssetsColumn(),
               SizedBoxH16(),
               ObjectsListAssets(),
               SizedBoxH16(),

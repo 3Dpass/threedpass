@@ -10,7 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i59;
 import 'package:flutter/material.dart' as _i60;
-import 'package:flutter/widgets.dart' as _i66;
+import 'package:flutter/widgets.dart' as _i68;
 import 'package:threedpass/core/widgets/default_loading_dialog.dart' as _i2;
 import 'package:threedpass/core/widgets/error_page.dart' as _i1;
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_credentials.dart'
@@ -51,6 +51,10 @@ import 'package:threedpass/features/home_page/presentation/login_page.dart'
     as _i13;
 import 'package:threedpass/features/home_page/router/empty_initial_route.dart'
     as _i15;
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart'
+    as _i67;
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart'
+    as _i66;
 import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/create_asset_page.dart'
     as _i34;
 import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/create_asset_page_wrapper.dart'
@@ -64,7 +68,7 @@ import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/s
 import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/set_metadata_page_wrapper.dart'
     as _i37;
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart'
-    as _i67;
+    as _i69;
 import 'package:threedpass/features/poscan_putobject/presentation/d3prpc_page.dart'
     as _i16;
 import 'package:threedpass/features/poscan_putobject/presentation/d3rpc_page_wrapper.dart'
@@ -88,7 +92,7 @@ import 'package:threedpass/features/scan_page/presentation/scan_page.dart'
 import 'package:threedpass/features/scan_page/presentation/scan_page_wrapper.dart'
     as _i11;
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart'
-    as _i68;
+    as _i70;
 import 'package:threedpass/features/settings_page/presentation/settings_page.dart'
     as _i50;
 import 'package:threedpass/features/settings_page/presentation/settings_sub_page/choose_algorithm_subpage.dart'
@@ -383,6 +387,8 @@ abstract class $RootRouter extends _i59.RootStackRouter {
         routeData: routeData,
         child: _i30.NonNativeTokenPageWrapper(
           args.params,
+          poscanAssetData: args.poscanAssetData,
+          metadata: args.metadata,
           key: args.key,
         ),
       );
@@ -1333,12 +1339,16 @@ class NonNativeTokenRouteWrapper
     extends _i59.PageRouteInfo<NonNativeTokenRouteWrapperArgs> {
   NonNativeTokenRouteWrapper({
     required _i65.GetExtrinsicsUseCaseParams params,
-    _i66.Key? key,
+    required _i66.PoscanAssetData poscanAssetData,
+    required _i67.PoscanAssetMetadata? metadata,
+    _i68.Key? key,
     List<_i59.PageRouteInfo>? children,
   }) : super(
           NonNativeTokenRouteWrapper.name,
           args: NonNativeTokenRouteWrapperArgs(
             params: params,
+            poscanAssetData: poscanAssetData,
+            metadata: metadata,
             key: key,
           ),
           initialChildren: children,
@@ -1353,16 +1363,22 @@ class NonNativeTokenRouteWrapper
 class NonNativeTokenRouteWrapperArgs {
   const NonNativeTokenRouteWrapperArgs({
     required this.params,
+    required this.poscanAssetData,
+    required this.metadata,
     this.key,
   });
 
   final _i65.GetExtrinsicsUseCaseParams params;
 
-  final _i66.Key? key;
+  final _i66.PoscanAssetData poscanAssetData;
+
+  final _i67.PoscanAssetMetadata? metadata;
+
+  final _i68.Key? key;
 
   @override
   String toString() {
-    return 'NonNativeTokenRouteWrapperArgs{params: $params, key: $key}';
+    return 'NonNativeTokenRouteWrapperArgs{params: $params, poscanAssetData: $poscanAssetData, metadata: $metadata, key: $key}';
   }
 }
 
@@ -1729,7 +1745,7 @@ class NoStableHashRoute extends _i59.PageRouteInfo<void> {
 /// [_i49.UploadedObjectPage]
 class UploadedObjectRoute extends _i59.PageRouteInfo<UploadedObjectRouteArgs> {
   UploadedObjectRoute({
-    required _i67.UploadedObject uploadedObject,
+    required _i69.UploadedObject uploadedObject,
     _i60.Key? key,
     List<_i59.PageRouteInfo>? children,
   }) : super(
@@ -1753,7 +1769,7 @@ class UploadedObjectRouteArgs {
     this.key,
   });
 
-  final _i67.UploadedObject uploadedObject;
+  final _i69.UploadedObject uploadedObject;
 
   final _i60.Key? key;
 
@@ -1781,7 +1797,7 @@ class SettingsRoute extends _i59.PageRouteInfo<void> {
 /// [_i51.SectionsSubPage]
 class SectionsSubRoute extends _i59.PageRouteInfo<SectionsSubRouteArgs> {
   SectionsSubRoute({
-    required _i68.GlobalSettings initialState,
+    required _i70.GlobalSettings initialState,
     _i60.Key? key,
     List<_i59.PageRouteInfo>? children,
   }) : super(
@@ -1805,7 +1821,7 @@ class SectionsSubRouteArgs {
     this.key,
   });
 
-  final _i68.GlobalSettings initialState;
+  final _i70.GlobalSettings initialState;
 
   final _i60.Key? key;
 
@@ -1819,7 +1835,7 @@ class SectionsSubRouteArgs {
 /// [_i52.TransBytesSubPage]
 class TransBytesSubRoute extends _i59.PageRouteInfo<TransBytesSubRouteArgs> {
   TransBytesSubRoute({
-    required _i68.GlobalSettings initialState,
+    required _i70.GlobalSettings initialState,
     _i60.Key? key,
     List<_i59.PageRouteInfo>? children,
   }) : super(
@@ -1843,7 +1859,7 @@ class TransBytesSubRouteArgs {
     this.key,
   });
 
-  final _i68.GlobalSettings initialState;
+  final _i70.GlobalSettings initialState;
 
   final _i60.Key? key;
 
@@ -1885,7 +1901,7 @@ class PixelRatioSubRoute extends _i59.PageRouteInfo<void> {
 /// [_i55.WalletNodeSubPage]
 class WalletNodeSubRoute extends _i59.PageRouteInfo<WalletNodeSubRouteArgs> {
   WalletNodeSubRoute({
-    required _i68.GlobalSettings initialState,
+    required _i70.GlobalSettings initialState,
     _i60.Key? key,
     List<_i59.PageRouteInfo>? children,
   }) : super(
@@ -1909,7 +1925,7 @@ class WalletNodeSubRouteArgs {
     this.key,
   });
 
-  final _i68.GlobalSettings initialState;
+  final _i70.GlobalSettings initialState;
 
   final _i60.Key? key;
 
@@ -1937,7 +1953,7 @@ class ChooseAlgorithmSubRoute extends _i59.PageRouteInfo<void> {
 /// [_i57.StableHashSubPage]
 class StableHashSubRoute extends _i59.PageRouteInfo<StableHashSubRouteArgs> {
   StableHashSubRoute({
-    required _i68.GlobalSettings initialState,
+    required _i70.GlobalSettings initialState,
     _i60.Key? key,
     List<_i59.PageRouteInfo>? children,
   }) : super(
@@ -1961,7 +1977,7 @@ class StableHashSubRouteArgs {
     this.key,
   });
 
-  final _i68.GlobalSettings initialState;
+  final _i70.GlobalSettings initialState;
 
   final _i60.Key? key;
 
