@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
 import 'package:threedpass/router/router.gr.dart';
@@ -25,9 +27,16 @@ class PoscanAssetMetadataSection extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     if (metadata == null) {
-      return D3pElevatedButton(
-        text: 'poscan_asset_page_metadata_button_label'.tr(),
-        onPressed: () => onPressed(context),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const D3pBodyMediumText('poscan_asset_page_metadata_help'),
+          const SizedBoxH8(),
+          D3pElevatedButton(
+            text: 'poscan_asset_page_metadata_button_label'.tr(),
+            onPressed: () => onPressed(context),
+          ),
+        ],
       );
     } else {
       return Text('Metadata section ${metadata!.symbols}');

@@ -8,6 +8,7 @@ import 'package:super_core/super_core.dart';
 import 'package:threedp_graphql/features/events/domain/events_request_params.dart';
 import 'package:threedp_graphql/features/extrinsics/domain/extrisincs_request_params.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/transfer_non_native_tokens_dto.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/usecases/assets_get_extrinsics.dart';
@@ -30,8 +31,8 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
   final AssetsGetExtrinsics getExtrinsics;
   final GetEventsUseCase getEvents;
 
-  TokenBalanceData get tokenBalanceData =>
-      getExtrinsics.paramsUseCase.tokenBalanceData;
+  PoscanAssetCombined get poscanAssetCombined =>
+      getExtrinsics.paramsUseCase.poscanAssetCombined;
 
   Future<void> update() async {
     if (pagingController.itemList != null) {

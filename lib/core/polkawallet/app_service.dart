@@ -7,7 +7,6 @@ import 'package:polkawallet_sdk/api/types/balanceData.dart';
 import 'package:polkawallet_sdk/api/types/networkStateData.dart';
 import 'package:polkawallet_sdk/plugin/index.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
-import 'package:threedpass/core/polkawallet/non_native_tokens_api.dart';
 import 'package:threedpass/setup.dart';
 
 part 'app_service.g.dart';
@@ -36,11 +35,12 @@ class AppService {
   /// 1. Start app. Init account.
   /// 2. Change account. Calculate new balances
   /// 3. Transfer sent
+  /// TODO Move to AppServiceLoaderCubit
   Future<void> _setTokensData(final String address) async {
     if (keyring.current.address != null) {
       // Get tokens only if there is an account
-      final nnta = NonNativeTokensApi(this, address);
-      await nnta.process();
+      // final nnta = NonNativeTokensApi(this, address);
+      // await nnta.process();
     }
   }
 

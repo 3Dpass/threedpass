@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
-import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/other/choose_asset_id/poscan_token_data_dropdown_menu_item.dart';
+import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
 import 'package:threedpass/setup.dart';
@@ -25,35 +26,41 @@ class ChooseAssetIdState extends State<ChooseAssetId> {
   late PoscanAssetData chosenAsset;
   bool isLoading = true;
 
-  String error = "";
   final PoscanAssetsRepository repository = getIt<PoscanAssetsRepository>();
 
   @override
   void initState() {
     super.initState();
+    init();
   }
 
   Future<void> init() async {
-    final tokensResp = await repository.allTokens();
-    tokensResp.when(
-      left: (final e) {
-        setState(() {
-          error = e.cause.toString();
-          isLoading = false;
-        });
-      },
-      right: (final tokens) {
-        setState(() {
-          assets.clear();
-          assets.addAll(tokens);
+    final loadedAssets =
+        BlocProvider.of<PoscanAssetsCubit>(context).state.combined;
+    final filtered = loadedAssets
+        .where((final element) => element.poscanAssetMetadata == null)
+        .map((final e) => e.poscanAssetData)
+        .toList();
+    // final tokensResp = await repository.allTokens();
+    // tokensResp.when(
+    //   left: (final e) {
+    //     setState(() {
+    //       error = e.cause.toString();
+    //       isLoading = false;
+    //     });
+    //   },
+    //   right: (final tokens) {
+    setState(() {
+      assets.clear();
+      assets.addAll(filtered);
 
-          chosenAsset = assets
-              .firstWhere((final element) => element.id == widget.initialAsset);
+      chosenAsset = assets
+          .firstWhere((final element) => element.id == widget.initialAsset);
 
-          isLoading = false;
-        });
-      },
-    );
+      isLoading = false;
+    });
+    //   },
+    // );
   }
 
   void onChanged(final PoscanAssetData? newData) {
@@ -68,16 +75,11 @@ class ChooseAssetIdState extends State<ChooseAssetId> {
   @override
   Widget build(final BuildContext context) {
     if (isLoading) {
-      return const CircularProgressIndicator();
-    }
-
-    if (error.isNotEmpty) {
-      // TODO Check this
-      return D3pBodyMediumText(
-        error,
-        translate: false,
+      return const Center(
+        child: CircularProgressIndicator(),
       );
     }
+
     final items = assets
         .map(
           (final e) => DropdownMenuItem<PoscanAssetData>(

@@ -13,7 +13,6 @@ import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
-import 'package:threedpass/core/polkawallet/non_native_tokens_api.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/log.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
@@ -263,25 +262,26 @@ class TransferInfoBloc
     } else {
       switch (metaDTO.type) {
         case MetaInfoType.asset:
-          // appService.tokensAreLoading
-          final nnta = NonNativeTokensApi(appService, address);
-          final tbd = await nnta.process();
-          for (final t in tbd) {
-            if (t.id == (metaDTO as AssetTransferMetaDTO).tokenBalanceData.id) {
-              try {
-                final balance =
-                    BalanceUtils.balanceToDouble(t.amount!, t.decimals!);
-                balanceCacheNotifier.value[address] = balance;
-              } on Object catch (e) {
-                logE(e.toString());
-                unawaited(
-                  Fluttertoast.showToast(
-                    msg: "Couldn't parse balance of token ${t.id} ${t.name}",
-                  ),
-                );
-              }
-            }
-          }
+        // appService.tokensAreLoading
+        // TODO
+        // final nnta = NonNativeTokensApi(appService, address);
+        // final tbd = await nnta.process();
+        // for (final t in tbd) {
+        //   if (t.id == (metaDTO as AssetTransferMetaDTO).tokenBalanceData.id) {
+        //     try {
+        //       final balance =
+        //           BalanceUtils.balanceToDouble(t.amount!, t.decimals!);
+        //       balanceCacheNotifier.value[address] = balance;
+        //     } on Object catch (e) {
+        //       logE(e.toString());
+        //       unawaited(
+        //         Fluttertoast.showToast(
+        //           msg: "Couldn't parse balance of token ${t.id} ${t.name}",
+        //         ),
+        //       );
+        //     }
+        //   }
+        // }
         case MetaInfoType.coin:
           final balanceData =
               await appService.plugin.sdk.api.account.queryBalance(address);

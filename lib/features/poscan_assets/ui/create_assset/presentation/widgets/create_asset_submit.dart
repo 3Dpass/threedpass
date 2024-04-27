@@ -10,7 +10,7 @@ class CreateAssetSubmit extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return D3pElevatedButton(
-      text: 'create_asset_submit_label'.tr(),
+      text: 'sign_extrinsic'.tr(),
       onPressed: () =>
           BlocProvider.of<CreatePoscanAssetCubit>(context).createAsset(context),
     );

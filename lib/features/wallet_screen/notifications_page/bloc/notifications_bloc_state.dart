@@ -5,7 +5,7 @@ enum NotificationType {
   transferBatch,
   putObject,
   createAsset,
-  // setMetadata,
+  setMetadata,
   // mintAsset,
 }
 
@@ -103,21 +103,21 @@ class NotificationCreateAsset extends NotificationDTO {
   final NotificationType type = NotificationType.createAsset;
 }
 
-// @CopyWith()
-// class NotificationSetMetadata extends NotificationDTO {
-//   final String assetId;
-//   final KeyPairData admin;
+@CopyWith()
+class NotificationSetMetadata extends NotificationDTO {
+  final String assetId;
+  final KeyPairData admin;
 
-//   NotificationSetMetadata({
-//     required this.admin,
-//     required this.assetId,
-//     required super.status,
-//     required super.message,
-//   });
+  NotificationSetMetadata({
+    required this.admin,
+    required this.assetId,
+    required super.status,
+    required super.message,
+  });
 
-//   @override
-//   final NotificationType type = NotificationType.setMetadata;
-// }
+  @override
+  final NotificationType type = NotificationType.setMetadata;
+}
 
 // @CopyWith()
 // class NotificationMintAsset extends NotificationDTO {

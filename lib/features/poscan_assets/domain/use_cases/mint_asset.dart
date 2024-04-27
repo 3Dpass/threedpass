@@ -22,18 +22,18 @@ class MintAsset extends UseCase<void, MintAssetParams> {
   Future<Either<Failure, void>> call(
     final MintAssetParams params,
   ) async {
-    final notificationLoading = NotificationPutObject(
-      account: params.account,
-      localSnapshotName: params.localSnapshotName,
-      status: ExtrinsicStatus.loading,
-      message: null,
-    );
+    // final notificationLoading = NotificationSetMetadata(
+    //   admin: params.account,
+    //   assetId: params.,
+    //   status: ExtrinsicStatus.loading,
+    //   message: null,
+    // );
 
     // notificationsBloc.add(
     //   AddNotification(notificationLoading),
     // );
 
-    final res = await repository.setMetadata();
+    final res = await repository.mint();
     return res;
   }
 }

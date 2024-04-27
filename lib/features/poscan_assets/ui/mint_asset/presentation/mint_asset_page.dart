@@ -13,6 +13,7 @@ class MintAssetPage extends StatelessWidget {
     return SomeForm(
       formKey: BlocProvider.of<MintAssetCubit>(context).formKey,
       appbarTitle: 'create_asset_page_title',
+      submitButton: SizedBox(),
       children: const [],
     );
   }

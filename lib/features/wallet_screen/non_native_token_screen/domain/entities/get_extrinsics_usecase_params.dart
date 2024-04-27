@@ -1,11 +1,11 @@
-import 'package:polkawallet_sdk/plugin/store/balances.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
 
 class GetExtrinsicsUseCaseParams {
   final String address;
-  final TokenBalanceData tokenBalanceData;
+  final PoscanAssetCombined poscanAssetCombined;
 
   const GetExtrinsicsUseCaseParams({
     required this.address,
-    required this.tokenBalanceData,
+    required this.poscanAssetCombined,
   });
 }

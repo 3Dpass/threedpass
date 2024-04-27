@@ -20,6 +20,7 @@ class CreateAssetPage extends StatelessWidget {
     return SomeForm(
       formKey: BlocProvider.of<CreatePoscanAssetCubit>(context).formKey,
       appbarTitle: 'create_asset_page_title',
+      submitButton: const CreateAssetSubmit(),
       children: const [
         CreateAssetInputId(),
         CreateAssetChooseAccount(),
@@ -27,10 +28,6 @@ class CreateAssetPage extends StatelessWidget {
         CreateAssetChooseObject(),
         CreateAssetChoosePropValue(),
         CreateAssetMaxSupply(),
-        Padding(
-          padding: EdgeInsets.only(top: 20),
-          child: CreateAssetSubmit(),
-        ),
       ],
     );
   }

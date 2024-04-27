@@ -18,17 +18,14 @@ class SetMetadataPage extends StatelessWidget {
   Widget build(final BuildContext context) {
     return SomeForm(
       formKey: BlocProvider.of<SetMetadataAssetCubit>(context).formKey,
-      appbarTitle: 'LOCALIZE_APPBAR',
+      appbarTitle: 'set_metadata_appbar_title',
+      submitButton: const SetMetadataSubmitButton(),
       children: const [
         SetMetadataChooseAsset(),
         SetMetadataChooseAccount(),
         SetMetadataNameTextfield(),
         SetMetadataSymbolTextfield(),
         SetMetadataDecimalslTextfield(),
-        Padding(
-          padding: EdgeInsets.only(top: 20),
-          child: SetMetadataSubmitButton(),
-        ),
       ],
     );
   }

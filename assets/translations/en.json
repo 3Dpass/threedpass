@@ -342,7 +342,6 @@
     "poscan_putobject_choose_napprovals": "nApprovals",
     "poscan_putobject_choose_hashes": "Hashes",
     "poscan_putobject_fees_warning": "This transaction takes 100+ P3D",
-    "Submit": "Submit",
     "poscan_putobject_choose_properties": "Properties (optional)",
     "PROPERTIES_number_plural": {
         "zero": "0 properties chosen",
@@ -442,8 +441,9 @@
     "create_asset_button_label": "Create new asset",
     "property_max_value_label": "max value: ",
     "property_id_label": "id: ",
-    "create_asset_submit_label": "Submit",
     "create_asset_page_title": "Create asset",
+    "poscan_asset_page_metadata_help": "Please set the metadata to use this asset",
+    "poscan_asset_page_admin_secondary": "Admin:",
     "create_asset_choose_object": "Object from storage",
     "create_asset_choose_prop": "Property for tokenization",
     "create_asset_max_supply_property_not_chosen_error": "No property is chosen",
@@ -453,5 +453,15 @@
     "create_asset_notification_object_id": "Object id:",
     "create_asset_notification_property_id": "Property id:",
     "poscan_asset_page_metadata_button_label": "Set metadata",
-    "poscan_asset_page_assets_load_error": "Failed to load assets. Reason: {}"
+    "poscan_asset_page_assets_load_error": "Failed to load assets. Reason: {}",
+    "poscan_asset_card_asset_id": "id:",
+    "poscan_asset_card_no_metadata": "No metadata",
+    "sign_extrinsic": "Sign extrinsic",
+    "set_metadata_appbar_title": "Set metadata",
+    "set_metadata_label_name": "Name",
+    "set_metadata_label_symbols": "Symbols",
+    "set_metadata_label_decimals": "Decimals",
+    "error_u8": "Expected 0 < value < 255",
+    "set_metadata_notification_asset_id": "Asset id:"
+
 }

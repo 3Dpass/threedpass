@@ -16,6 +16,7 @@ class SetMetadataPageWrapper extends StatelessWidget
     return BlocProvider<SetMetadataAssetCubit>(
       create: (final _) => getIt<SetMetadataAssetCubit>(
         param1: initialAssetId,
+        param2: context.router,
       ),
       child: this,
     );

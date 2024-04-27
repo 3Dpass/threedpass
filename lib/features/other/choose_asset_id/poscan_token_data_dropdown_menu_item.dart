@@ -31,7 +31,7 @@ class PoscanTokenDataDropdownMenuItem extends StatelessWidget {
           //   style: medium,
           // ),
           TextSpan(
-            text: ' ' + 'symbols:' + ' ',
+            text: ' ' + 'symbol:' + ' ',
             style: grey,
           ),
           // TextSpan(

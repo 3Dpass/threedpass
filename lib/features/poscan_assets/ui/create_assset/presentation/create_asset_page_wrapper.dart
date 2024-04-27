@@ -12,8 +12,9 @@ class CreateAssetPageWrapper extends StatelessWidget
   @override
   Widget wrappedRoute(final BuildContext context) {
     return BlocProvider<CreatePoscanAssetCubit>(
-      create: (final _) =>
-          getIt<CreatePoscanAssetCubit>(param1: context.router),
+      create: (final _) => getIt<CreatePoscanAssetCubit>(
+        param1: context.router,
+      ),
       child: this,
     );
   }

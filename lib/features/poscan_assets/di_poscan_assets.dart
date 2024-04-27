@@ -45,11 +45,12 @@ class DIPoscanAssets extends DIModule {
         repository: getIt<PoscanAssetsRepository>(),
       ),
     );
-    getIt.registerFactoryParam<SetMetadataAssetCubit, int, void>(
-      (final p0, final _) => SetMetadataAssetCubit(
+    getIt.registerFactoryParam<SetMetadataAssetCubit, int, StackRouter>(
+      (final p0, final router) => SetMetadataAssetCubit(
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         setMetadata: getIt<SetMetadata>(),
         initialAssetId: p0,
+        outerRouter: router,
       ),
     );
 

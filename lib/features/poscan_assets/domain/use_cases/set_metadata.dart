@@ -3,8 +3,7 @@ import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
-import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
-import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/set_metadata_global_handler.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 
 class SetMetadata extends UseCase<void, SetMetadataParams> {
@@ -22,42 +21,55 @@ class SetMetadata extends UseCase<void, SetMetadataParams> {
   Future<Either<Failure, void>> call(
     final SetMetadataParams params,
   ) async {
-    final notificationLoading = NotificationPutObject(
-      account: params.account,
-      localSnapshotName: params.localSnapshotName,
+    final notificationLoading = NotificationSetMetadata(
+      admin: params.admin,
+      assetId: params.assetId.toString(),
       status: ExtrinsicStatus.loading,
       message: null,
     );
 
-    // notificationsBloc.add(
-    //   AddNotification(notificationLoading),
-    // );
+    notificationsBloc.add(
+      AddNotification(notificationLoading),
+    );
 
-    final res = await repository.setMetadata();
+    final res = await repository.setMetadata(
+      params: params,
+      updateStatus: () {
+        params.updateStatus();
+      },
+      msgIdCallback: (final msgId) {
+        appServiceLoaderCubit.state.plugin.sdk.api.service.webView!
+            .addGlobalHandler(
+          SetMetadataGlobalHandler(
+            msgId: msgId,
+            notificationsBloc: notificationsBloc,
+            initialN: notificationLoading,
+            webViewRunner:
+                appServiceLoaderCubit.state.plugin.sdk.api.service.webView!,
+          ),
+        );
+      },
+    );
     return res;
   }
 }
 
 class SetMetadataParams {
   const SetMetadataParams({
-    required this.account,
+    required this.admin,
+    required this.assetId,
     required this.password,
-    required this.nApprovals,
-    required this.pathToFile,
-    required this.categoryFabric,
-    required this.hashes,
-    required this.propValues,
+    required this.name,
+    required this.symbol,
+    required this.decimals,
     required this.updateStatus,
-    required this.localSnapshotName,
   });
 
-  final KeyPairData account;
+  final int assetId;
+  final KeyPairData admin;
   final String password;
-  final int nApprovals;
-  final String pathToFile;
-  final MapPoscanCategory categoryFabric;
-  final List<String> hashes;
-  final List<PropValue>? propValues;
+  final String name;
+  final String symbol;
+  final int decimals;
   final void Function() updateStatus;
-  final String localSnapshotName;
 }
