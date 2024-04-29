@@ -20,7 +20,7 @@ class AssetsGetExtrinsics
   ) async {
     return repository.fetchExtrinsincs(
       params,
-      int.tryParse(paramsUseCase.tokenBalanceData.id ?? '') ?? -1,
+      paramsUseCase.poscanAssetCombined.poscanAssetData.id,
     );
   }
 }

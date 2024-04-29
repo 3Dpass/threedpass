@@ -8,6 +8,7 @@ import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
+import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/objects_list_item.dart';
@@ -39,7 +40,7 @@ class PoscanResult extends StatelessWidget {
             final isNodeConnected =
                 state.status == AppServiceInitStatus.connected;
             final isObjectAlreadyApproved = loadedObject != null &&
-                loadedObject.status.toLowerCase() == 'approved';
+                loadedObject.status == UploadedObjectStatus.approved;
 
             final allConditions = isNodeConnected &&
                 !isObjectAlreadyApproved &&

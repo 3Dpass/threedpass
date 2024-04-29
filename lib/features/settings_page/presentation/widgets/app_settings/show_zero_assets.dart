@@ -25,7 +25,7 @@ class ShowZeroAssets extends StatelessWidget {
               current.appSettings.showZeroAssets ||
           previous.appSettings.darkTheme != current.appSettings.darkTheme,
       builder: (final context, final state) => DefaultSettingsButton.boolean(
-        text: 'show_zero_assets_label',
+        text: 'show_all_assets_label',
         iconData: Icons.exposure_zero_outlined,
         iconColor: Colors.green,
         initialValue: state.appSettings.showZeroAssets,

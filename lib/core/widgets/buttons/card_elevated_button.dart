@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 
+// TODO REMOVE
+@Deprecated('Never use this. Use D3pElevatedButton instead')
 class D3pCardElevatedButton extends StatelessWidget {
   const D3pCardElevatedButton({
     required this.iconData,

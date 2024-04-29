@@ -97,6 +97,13 @@ class BalanceUtils {
     return doubleFormat(bigIntToDouble(balanceTotal(balanceData), decimals));
   }
 
+  static String formattedBigInt(
+    final BigInt balance,
+    final int decimals,
+  ) {
+    return doubleFormat(bigIntToDouble(balance, decimals));
+  }
+
   /// Just to use it as double
   static double balanceToDouble(final String raw, final int decimals) {
     return bigIntToDouble(balanceInt(raw), decimals);

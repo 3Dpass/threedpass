@@ -17,16 +17,13 @@ class PropertyMaxValueInputField extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return SizedBox(
-      width: 100,
-      child: D3pTextFormField(
-        labelText: 'max_value'.tr(),
-        hintText: 'max_value'.tr(),
-        keyboardType: const TextInputType.numberWithOptions(decimal: true),
-        controller: controller,
-        validator: (final input) => validationStrategy.isValid(input ?? ''),
-        inputFormatters: [numericInputFormatter],
-      ),
+    return D3pTextFormField(
+      labelText: 'max_value'.tr(),
+      hintText: 'max_value'.tr(),
+      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+      controller: controller,
+      validator: (final input) => validationStrategy.isValid(input ?? ''),
+      inputFormatters: [numericInputFormatter],
     );
   }
 }

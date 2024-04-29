@@ -5,10 +5,12 @@ import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/core/widgets/error_page.dart';
 import 'package:threedpass/features/accounts/router/create_account_page_route.dart';
 import 'package:threedpass/features/home_page/router/home_page_route.dart';
+import 'package:threedpass/features/poscan_assets/ui/create_assset/router/create_asset_page_route.dart';
+import 'package:threedpass/features/poscan_assets/ui/mint_asset/router/mint_asset_page_route.dart';
+import 'package:threedpass/features/poscan_assets/ui/set_metadata/router/set_metadata_page_route.dart';
 import 'package:threedpass/features/preview_page/router/preview_page_route.dart';
+import 'package:threedpass/features/uploaded_object_page/uploaded_object_route.dart';
 import 'package:threedpass/router/router.gr.dart';
-
-// part 'router.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Page|Screen|Dialog,Route')
 class RootRouter extends $RootRouter {
@@ -25,10 +27,14 @@ class RootRouter extends $RootRouter {
     errorPageRoute,
     // Create account route
     createAccountPageRoute,
-    // Uploaded objecy page
-    AutoRoute(
-      page: UploadedObjectRoute.page,
-    ),
+    // Uploaded objecy route
+    uploadedObjectRoute,
+    // Poscan Asset routes
+    createAssetPageRoute,
+    setMetadataPageRoute,
+    mintAssetPageRoute,
+    // Set asset metadata
+    setMetadataPageRoute,
     // Default loader
     defaultLoadingDialog,
   ];

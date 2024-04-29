@@ -1,6 +1,13 @@
 part of 'notifications_bloc.dart';
 
-enum NotificationType { transfer, transferBatch, putObject }
+enum NotificationType {
+  transfer,
+  transferBatch,
+  putObject,
+  createAsset,
+  setMetadata,
+  // mintAsset,
+}
 
 abstract class NotificationDTO {
   final DateTime notificationCreated = DateTime.now().toUtc();
@@ -74,6 +81,59 @@ class NotificationPutObject extends NotificationDTO {
   @override
   final NotificationType type = NotificationType.putObject;
 }
+
+@CopyWith()
+class NotificationCreateAsset extends NotificationDTO {
+  final String newAssetId;
+  final String
+      objectId; // TODO Make nullable if creating assets without props is legit
+  final String propetyId;
+  final KeyPairData admin;
+
+  NotificationCreateAsset({
+    required this.admin,
+    required this.newAssetId,
+    required this.objectId,
+    required this.propetyId,
+    required super.status,
+    required super.message,
+  });
+
+  @override
+  final NotificationType type = NotificationType.createAsset;
+}
+
+@CopyWith()
+class NotificationSetMetadata extends NotificationDTO {
+  final String assetId;
+  final KeyPairData admin;
+
+  NotificationSetMetadata({
+    required this.admin,
+    required this.assetId,
+    required super.status,
+    required super.message,
+  });
+
+  @override
+  final NotificationType type = NotificationType.setMetadata;
+}
+
+// @CopyWith()
+// class NotificationMintAsset extends NotificationDTO {
+//   final String assetId;
+//   final KeyPairData admin;
+
+//   NotificationMintAsset({
+//     required this.admin,
+//     required this.assetId,
+//     required super.status,
+//     required super.message,
+//   });
+
+//   @override
+//   final NotificationType type = NotificationType.mintAsset;
+// }
 
 @CopyWith()
 class NotificationsState {

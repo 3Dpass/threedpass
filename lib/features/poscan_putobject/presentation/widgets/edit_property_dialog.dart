@@ -5,7 +5,7 @@ import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/core/widgets/dialog/d3p_platform_dialog.dart';
 import 'package:threedpass/features/poscan_putobject/bloc/poscan_putobject_cubit.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_property.dart';
-import 'package:threedpass/features/poscan_putobject/presentation/widgets/property_max_value.dart';
+import 'package:threedpass/features/poscan_putobject/presentation/widgets/property_max_value_input.dart';
 import 'package:threedpass/features/poscan_putobject/utils/multiple_of_ten_property_validator.dart';
 
 class EditPropertyDialog extends StatelessWidget {

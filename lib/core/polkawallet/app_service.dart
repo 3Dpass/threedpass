@@ -7,7 +7,7 @@ import 'package:polkawallet_sdk/api/types/balanceData.dart';
 import 'package:polkawallet_sdk/api/types/networkStateData.dart';
 import 'package:polkawallet_sdk/plugin/index.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
-import 'package:threedpass/core/polkawallet/non_native_tokens_api.dart';
+import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/setup.dart';
 
 part 'app_service.g.dart';
@@ -20,29 +20,14 @@ class AppService {
     required this.status,
     final NetworkStateData? networkStateData,
   })  : networkStateData = networkStateData ?? NetworkStateData(),
-        chosenAccountBalance = ValueNotifier<BalanceData>(BalanceData()),
-        tokensAreLoading = ValueNotifier<bool>(false);
+        chosenAccountBalance = ValueNotifier<BalanceData>(BalanceData());
 
   final ValueNotifier<BalanceData> chosenAccountBalance;
-  final ValueNotifier<bool> tokensAreLoading;
   // final ValueNotifier<String> bestNumber = ValueNotifier<String>('');
   final Keyring keyring;
   final NetworkStateData networkStateData;
   final PolkawalletPlugin plugin;
   final AppServiceInitStatus status;
-
-  /// Sets balances and data for assets
-  /// Should be called in 3 cases:
-  /// 1. Start app. Init account.
-  /// 2. Change account. Calculate new balances
-  /// 3. Transfer sent
-  Future<void> _setTokensData(final String address) async {
-    if (keyring.current.address != null) {
-      // Get tokens only if there is an account
-      final nnta = NonNativeTokensApi(this, address);
-      await nnta.setTokens();
-    }
-  }
 
   Future<void> subscribeToBalance() async {
     final address = keyring.current.address;
@@ -63,9 +48,7 @@ class AppService {
               chosenAccountBalance.value = data;
             }
 
-            // tokensAreLoading.value = true;
-            // await _setTokensData(address);
-            // tokensAreLoading.value = false;
+            unawaited(getIt<PoscanAssetsCubit>().updateBalances());
           },
         ),
       );

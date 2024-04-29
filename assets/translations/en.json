@@ -115,7 +115,6 @@
     "antialias_button_label": "Antialias",
 
     "dark_theme_switch_label": "Dark theme",
-    "show_zero_assets_label": "Show zero amount assets",
     "set_pin_button_label": "Set pin code",
     "remove_pin_button_label": "Remove pin code",
 
@@ -339,11 +338,9 @@
     "x_hashes_chosen": "{} chosen",
     "n_approvals_hint": "Enter desired number of approvals",
     "from_address_dropdown_hint": "Choose account",
-    "poscan_putobject_choose_account": "Account",
     "poscan_putobject_choose_napprovals": "nApprovals",
     "poscan_putobject_choose_hashes": "Hashes",
     "poscan_putobject_fees_warning": "This transaction takes 100+ P3D",
-    "Submit": "Submit",
     "poscan_putobject_choose_properties": "Properties (optional)",
     "PROPERTIES_number_plural": {
         "zero": "0 properties chosen",
@@ -371,7 +368,7 @@
     "no_contacts": "You dont have any contacts yet.",
     "delete_contact_confirm_title": "Delete contact {}?",
     "delete_contact_confirm_text": "Are you sure you want to delete contact {} with the address {}?",
-    "objects_list_header": "Objects list",
+    "objects_list_header": "Objects",
     "uploaded_object_title": "Uploaded object",
     
     "@2.11.0":{
@@ -431,5 +428,46 @@
     "trans_bytes_random": "Random",
     "trans_bytes_specific": "Specific",
 
-    "trans_bytes_mode_help": "Set rotation bytes mode to None to upload an object"
+    "trans_bytes_mode_help": "Set rotation bytes mode to None to upload an object",
+
+    "@2.14.0":{
+    },
+    "choose_account_subtitle": "Account",
+    "create_asset_label_choose_account": "Admin",
+    "create_account_label_asset_id": "Asset ID",
+    "create_account_label_max_supply": "Max supply",
+    "create_account_label_min_balance": "Min balance",
+    "create_asset_button_label": "Create new asset",
+    "property_max_value_label": "max value: ",
+    "property_id_label": "id: ",
+    "create_asset_page_title": "Create asset",
+    "poscan_asset_page_metadata_help": "Please set the metadata to use this asset",
+    "poscan_asset_page_id_secondary": "Id:",
+    "poscan_asset_page_owner_secondary": "Owner:",
+    "poscan_asset_page_min_balance_secondary": "Min balance:",
+    "poscan_asset_page_supply_secondary": "Supply:",
+    "poscan_asset_page_accounts_secondary": "Accounts:",
+    "poscan_asset_page_name_secondary": "Name:",
+    "poscan_asset_page_symbol_secondary": "Symbol:",
+    "create_asset_choose_object": "Object from storage",
+    "create_asset_choose_prop": "Property for tokenization",
+    "create_asset_max_supply_property_not_chosen_error": "No property is chosen",
+    "put_object_properties_subtitle": "Properties",
+    "max_supply_too_big_error": "Max supply has to be less than propery max value",
+    "create_asset_notification_new_asset_id": "New asset id:",
+    "create_asset_notification_object_id": "Object id:",
+    "create_asset_notification_property_id": "Property id:",
+    "poscan_asset_page_metadata_button_label": "Set metadata",
+    "poscan_asset_page_assets_load_error": "Failed to load assets. Reason: {}",
+    "poscan_asset_card_asset_id": "id:",
+    "poscan_asset_card_no_metadata": "No metadata",
+    "sign_extrinsic": "Sign extrinsic",
+    "set_metadata_appbar_title": "Set metadata",
+    "set_metadata_label_name": "Name",
+    "set_metadata_label_symbols": "Symbols",
+    "set_metadata_label_decimals": "Decimals",
+    "error_u8": "Expected 0 < value < 255",
+    "set_metadata_notification_asset_id": "Asset id:",
+    "show_all_assets_label": "Show all assets"
+
 }

@@ -1,9 +1,18 @@
-part of './non_native_tokens.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
+import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/asset_card_body.dart';
+import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/asset_card_no_metadata.dart';
+import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/get_extrinsics_usecase_params.dart';
+import 'package:threedpass/router/router.gr.dart';
 
-class _AssetsCard extends StatelessWidget {
-  const _AssetsCard(this.data);
+class AssetsCard extends StatelessWidget {
+  const AssetsCard(this.data, {super.key});
 
-  final TokenBalanceData data;
+  final PoscanAssetCombined data;
 
   void onCardClick(final BuildContext context) {
     final address = BlocProvider.of<AppServiceLoaderCubit>(context)
@@ -15,50 +24,25 @@ class _AssetsCard extends StatelessWidget {
       NonNativeTokenRouteWrapper(
         params: GetExtrinsicsUseCaseParams(
           address: address,
-          tokenBalanceData: data,
+          poscanAssetCombined: data,
         ),
+        poscanAssetCombined: data,
       ),
     );
   }
 
   @override
   Widget build(final BuildContext context) {
-    return D3pCard(
-      child: InkWell(
-        onTap: () => onCardClick(context),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                flex: 4,
-                child: D3pBodyMediumText(
-                  data.fullName ?? '',
-                  translate: false,
-                ),
-              ),
-              Flexible(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    D3pBodyMediumText(
-                      data.amount ?? '0',
-                      translate: false,
-                    ),
-                    const SizedBox(width: 8),
-                    D3pBodyMediumText(
-                      data.symbol ?? '',
-                      translate: false,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+    return ClickableCard(
+      onTap: () => onCardClick(context),
+      child: data.poscanAssetMetadata != null
+          ? AssetCardBody(
+              metadata: data.poscanAssetMetadata!,
+              balance: data.poscanAssetBalance,
+            )
+          : AssetCardNoMetadata(
+              poscanAssetData: data.poscanAssetData,
+            ),
     );
   }
 }

@@ -1,28 +1,15 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:polkawallet_sdk/api/types/balanceData.dart';
-import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
-import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
-import 'package:threedpass/core/polkawallet/utils/token_balance_data_amount_check.dart';
-import 'package:threedpass/core/widgets/d3p_card.dart';
-import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/core/widgets/text/d3p_title_large_text.dart';
+import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/get_extrinsics_usecase_params.dart';
-import 'package:threedpass/router/router.gr.dart';
-
-part 'assets_loading.dart';
-part 'assets_placeholder.dart';
-part 'assets_column.dart';
-part 'assets_card.dart';
-part 'assets_loading_placeholder.dart';
+import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/assets_card.dart';
 
 class NonNativeTokens extends StatelessWidget {
   const NonNativeTokens({super.key});
@@ -36,45 +23,58 @@ class NonNativeTokens extends StatelessWidget {
       builder: (final context, final settings) {
         return BlocBuilder<AppServiceLoaderCubit, AppService>(
           builder: (final context, final appService) {
-            if (appService.networkStateData.isNull) {
-              return const _AssetsLoading();
-            }
-
-            // This builder checks if new account just immported and hides the assets
-            // until balance loads
-            return ValueListenableBuilder(
-              valueListenable: appService.chosenAccountBalance,
-              builder: (final context, final BalanceData balance, final child) {
-                if (balance.isNull) {
-                  return const SizedBox();
+            return BlocBuilder<PoscanAssetsCubit, PoscanAssetsState>(
+              builder: (final context, final poscanAssetsState) {
+                if (poscanAssetsState.isLoading) {
+                  return Padding(
+                    padding: EdgeInsets.only(top: 16),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: PlatformCircularProgressIndicator(),
+                    ),
+                  );
                 }
 
-                /// Subscribe to balance to update widget after transfer
-                return ValueListenableBuilder(
-                  valueListenable: appService.tokensAreLoading,
-                  builder: (final context, final bool isLoading, final child) {
-                    if (isLoading) {
-                      return const _AssetsLoadingPlaceholder();
-                    }
+                if (poscanAssetsState.errorMessage.isNotEmpty) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: D3pBodyMediumText(
+                        'poscan_asset_page_assets_load_error'.tr(
+                          args: [
+                            poscanAssetsState.errorMessage,
+                          ],
+                        ),
+                        translate: false,
+                        color: Colors.red,
+                      ),
+                    ),
+                  );
+                }
 
-                    bool allTokensEmpty = true;
-                    final tokensData = appService.plugin.balances.tokens;
-                    for (final token in tokensData) {
-                      if (token.isAmountPositive) {
-                        allTokensEmpty = false;
-                      }
-                    }
+                final showZeroAssets = settings.appSettings.showZeroAssets;
+                final resolvedList = _ResolvedTokens(
+                  poscanAssetsState.combined,
+                  showZeroAssets,
+                  appService.keyring.current
+                      .address!, // TODO change to some state for read-only view
+                ).resolved;
 
-                    final settings =
-                        BlocProvider.of<SettingsConfigCubit>(context).state;
-                    final showZeroAssets = settings.appSettings.showZeroAssets;
+                double listVPadding = 0.0;
+                if (resolvedList.isNotEmpty) {
+                  listVPadding = 8.0;
+                }
 
-                    if (allTokensEmpty && !showZeroAssets) {
-                      return const _AssetsPlaceholder();
-                    } else {
-                      return _AssetsColumn(tokensData);
-                    }
-                  },
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.only(top: listVPadding),
+                  itemCount: resolvedList.length,
+                  itemBuilder: (final context, final index) => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: AssetsCard(resolvedList[index]),
+                  ),
                 );
               },
             );
@@ -82,5 +82,42 @@ class NonNativeTokens extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+class _ResolvedTokens {
+  final List<PoscanAssetCombined> initialItems;
+  final bool showZeroAssets;
+  final String currentAccountAddress;
+
+  _ResolvedTokens(
+    this.initialItems,
+    this.showZeroAssets,
+    this.currentAccountAddress,
+  );
+
+  List<PoscanAssetCombined> get resolved {
+    if (showZeroAssets) {
+      return initialItems;
+    }
+
+    final res = <PoscanAssetCombined>[];
+    for (final token in initialItems) {
+      if (token.hasPositiveBalance ||
+          token.poscanAssetData.admin == currentAccountAddress) {
+        res.add(token);
+      }
+    }
+    return res;
+  }
+}
+
+extension _ on PoscanAssetCombined {
+  bool get hasPositiveBalance {
+    if (poscanAssetBalance == null) {
+      return false;
+    }
+
+    return poscanAssetBalance!.decodedRawBalance > BigInt.zero;
   }
 }

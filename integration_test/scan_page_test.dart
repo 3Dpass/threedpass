@@ -2,15 +2,12 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
-import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/snapshot_create_from_file.dart';
 import 'package:threedpass/features/scan_page/bloc/scan_isolate_cubit.dart';
-import 'package:threedpass/features/scan_page/presentation/widgets/get_object_from_file_button.dart';
+// import 'package:threedpass/features/scan_page/presentation/widgets/get_object_from_file_button.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 
@@ -21,7 +18,7 @@ void main() {
   final app = TestApp.instance;
 
   group('Example test', () {
-    testWidgets('MyWidget has a title and message', (tester) async {
+    testWidgets('MyWidget has a title and message', (final tester) async {
       print('aaaaaaa1');
       // Initial pump
       await tester.pumpWidget(app);
@@ -38,7 +35,7 @@ void main() {
       var dir = Directory.current;
       while (!await dir
           .list()
-          .any((entity) => entity.path.endsWith('pubspec.yaml'))) {
+          .any((final entity) => entity.path.endsWith('pubspec.yaml'))) {
         dir = dir.parent;
       }
 
@@ -52,7 +49,7 @@ void main() {
       final BuildContext context = tester.element(find.byType(SizedBox));
 
       final snapFactory = SnapshotFileFactory(
-        showLoader: () {},
+        // showLoader: () {},
         hashesListBloc: BlocProvider.of<HashesListBloc>(context),
         scanSettings:
             BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings,

@@ -2,7 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:polkawallet_sdk/api/types/balanceData.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
-import 'package:threedpass/core/widgets/d3p_card.dart';
+import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
+import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/balance_card/avaliable_balance_card.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/balance_card/locked_balance_card.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/balance_card/reserved_balance_card.dart';
@@ -29,22 +30,13 @@ class BalanceCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: D3pCard(
-        child: InkWell(
-          onTap: () => onCardClick(context),
-          child: SizedBox(
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-              child: _MainBalanceContent(
-                balance: balance,
-                tokenDecimals: tokenDecimals,
-                tokenSymbol: tokenSymbol,
-              ),
-            ),
-          ),
+    return Padding16(
+      child: ClickableCard(
+        onTap: () => onCardClick(context),
+        child: _MainBalanceContent(
+          balance: balance,
+          tokenDecimals: tokenDecimals,
+          tokenSymbol: tokenSymbol,
         ),
       ),
     );

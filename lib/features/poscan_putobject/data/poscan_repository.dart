@@ -28,6 +28,8 @@ class PoScanRepository {
 
       bool flag = true;
 
+       final argPropValue = jsonEncode( params.propValues);
+
       final dynamic res = await poscanApi.putObject(
         pubKey: params.account.pubKey!,
         password: params.password,
@@ -35,7 +37,7 @@ class PoScanRepository {
         file: jbytes,
         nApprovals: params.nApprovals,
         hashes: params.hashes,
-        propValue: params.propValues,
+        propValue:argPropValue,
         onStatusChange: (final p0) {
           // print('$p0');
           if (flag) {

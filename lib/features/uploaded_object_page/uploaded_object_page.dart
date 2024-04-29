@@ -50,6 +50,7 @@ class UploadedObjectPage extends StatelessWidget {
             mainText: '\n' + uploadedObject.hashes.join('\n'),
             secondaryText: 'uploaded_object_hashes'.tr(),
           ),
+          const SizedBoxH16(),
         ],
       ),
     );

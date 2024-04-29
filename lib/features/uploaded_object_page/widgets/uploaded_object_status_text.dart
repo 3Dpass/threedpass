@@ -11,7 +11,7 @@ class UploadedObjectStatusText extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return FastRichText(
-      mainText: uploadedObject.status,
+      mainText: uploadedObject.statusRaw,
       secondaryText: 'uploaded_object_status'.tr(),
     );
   }

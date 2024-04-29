@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
 
 class D3pElevatedButton extends StatelessWidget {
   const D3pElevatedButton({
@@ -10,48 +9,21 @@ class D3pElevatedButton extends StatelessWidget {
     final Key? key,
     this.onPressed,
     this.iconData,
-    this.minimumSize,
     this.padding,
     this.icon,
     this.backgroundColor,
     this.foregroundColor,
-    this.elevation,
-    this.childAlignment,
-    this.textStyle,
     this.child,
-    this.shape,
-  }) : super(key: key);
-
-  const D3pElevatedButton.secondary({
-    required this.text,
-    final Key? key,
-    this.onPressed,
-    this.iconData,
-    this.minimumSize,
-    this.padding,
-    this.icon,
-    this.backgroundColor = D3pThemeData.secondaryButtonBG,
-    this.foregroundColor,
-    this.elevation,
-    this.childAlignment,
-    this.textStyle,
-    this.child,
-    this.shape,
   }) : super(key: key);
 
   final void Function()? onPressed;
   final String? text;
   final IconData? iconData;
-  final Size? minimumSize;
   final EdgeInsets? padding;
   final Widget? icon;
   final Color? foregroundColor;
   final Color? backgroundColor;
-  final double? elevation;
-  final MainAxisAlignment? childAlignment;
-  final TextStyle? textStyle;
   final Widget? child;
-  final OutlinedBorder? shape;
 
   @override
   Widget build(final BuildContext context) {
@@ -67,7 +39,6 @@ class D3pElevatedButton extends StatelessWidget {
                 icon: icon,
                 iconData: iconData,
                 text: text ?? '',
-                childAlignment: childAlignment,
               ),
           // TODO CHECK CUPERTINO
           material: (final context, final platform) =>
@@ -88,20 +59,10 @@ class D3pElevatedButton extends StatelessWidget {
               backgroundColor: backgroundColor != null && onPressed != null
                   ? MaterialStateProperty.all(backgroundColor)
                   : null,
-              elevation: elevation != null
-                  ? MaterialStateProperty.all(elevation)
-                  : null,
               padding: MaterialStateProperty.all(
                 const EdgeInsets.symmetric(horizontal: 8),
               ),
-              shape: shape != null ? MaterialStateProperty.all(shape) : null,
-              textStyle: textStyle != null
-                  ? MaterialStateProperty.all(
-                      textStyle,
-                    )
-                  : MaterialStateProperty.all(
-                      style,
-                    ),
+              textStyle: MaterialStateProperty.all(style),
             ),
           ),
         ),
@@ -115,18 +76,16 @@ class _ElevatedButtonChild extends StatelessWidget {
     required this.icon,
     required this.iconData,
     required this.text,
-    this.childAlignment,
   });
 
   final String text;
   final IconData? iconData;
   final Widget? icon;
-  final MainAxisAlignment? childAlignment;
 
   @override
   Widget build(final BuildContext context) {
     return Row(
-      mainAxisAlignment: childAlignment ?? MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         if (icon != null || iconData != null)
           _Icon(

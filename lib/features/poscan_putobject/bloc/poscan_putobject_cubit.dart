@@ -4,14 +4,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:threedpass/core/widgets/default_loading_dialog.dart';
+import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/features/poscan_putobject/data/default_poscan_properties.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_property.dart';
 import 'package:threedpass/features/poscan_putobject/domain/usecases/put_object_usecase.dart';
-import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 
 part 'poscan_putobject_cubit.g.dart';
 
@@ -32,12 +31,14 @@ class D3PRPCCubitState {
   });
 }
 
-class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
+class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
+    with ExtrinsicShowLoadingMixin {
   PoscanPutObjectCubit({
     required this.fileHash,
     required this.filePath,
     required this.putObjectUseCase,
     required this.localSnapshotName,
+    required this.outerRouter,
     required final List<String> initialHashes,
     required final KeyPairData initialAccount,
   }) : super(
@@ -50,7 +51,12 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
           ),
         );
 
+  @override
+  final StackRouter outerRouter;
+
   final PutObject putObjectUseCase;
+
+  final formKey = GlobalKey<FormState>();
 
   final TextEditingController nApprovalsController =
       TextEditingController(text: '10');
@@ -58,8 +64,6 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
   final int fileHash;
   final String filePath;
   final String localSnapshotName;
-
-  bool fastCheckPassed = false;
 
   void toggleHash(final String hash) {
     if (state.chosenHashes.contains(hash)) {
@@ -118,8 +122,12 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
       chosenList[index] = prop;
     }
 
-    emit(state.copyWith(
-        defaultProperties: newList, chosenProperties: chosenList,),);
+    emit(
+      state.copyWith(
+        defaultProperties: newList,
+        chosenProperties: chosenList,
+      ),
+    );
   }
 
   void changeCategory(final MapPoscanCategory cat) {
@@ -130,11 +138,9 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
     emit(state.copyWith(account: acc));
   }
 
-  Future<void> submit(final BuildContext context) async {
-    DefaultLoadingDialog.show(context);
-
-    fastCheckPassed = false;
-
+  Future<Either<Failure, void>> callExtrinsic(
+    final BuildContext context,
+  ) async {
     final params = PutObjectParams(
       localSnapshotName: localSnapshotName,
       account: state.account,
@@ -144,24 +150,16 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState> {
       categoryFabric: state.chosenCategory,
       hashes: state.chosenHashes,
       propValues: state.chosenProperties.map((final e) => e.propValue).toList(),
-      updateStatus: () {
-        fastCheckPassed = true;
-        DefaultLoadingDialog.hide(context);
-        BlocProvider.of<OuterContextCubit>(context).state.router.pop();
-      },
+      updateStatus: () => updateStatus(context),
     );
     final res = await putObjectUseCase.call(params);
+    return res;
+  }
 
-    if (!fastCheckPassed) {
-      String message = '';
-      res.when(
-        left: (final f) {
-          message = f.cause ?? '';
-        },
-        right: (final _) {},
-      );
-      DefaultLoadingDialog.hide(context);
-      unawaited(Fluttertoast.showToast(msg: message));
-    }
+  Future<void> submit(final BuildContext context) async {
+    await showLoader(
+      context: context,
+      call: () => callExtrinsic(context),
+    );
   }
 }

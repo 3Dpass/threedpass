@@ -15,7 +15,6 @@ class ChooseHashes extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBoxH16(),
         const D3pBodyMediumText('poscan_putobject_choose_hashes'),
         const SizedBoxH4(),
         D3pBodyMediumText(

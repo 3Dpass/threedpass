@@ -907,6 +907,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.8.1"
+  json_bigint:
+    dependency: "direct main"
+    description:
+      name: json_bigint
+      sha256: "160fb22934b7341e218dbe9ab3e024463d15d16f30026554dfa9ce6e49703a44"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   json_rpc_2:
     dependency: transitive
     description:
@@ -1159,8 +1167,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "266c5b7e04f897cae1fdec9ad5211c41e27ef02f"
-      resolved-ref: "266c5b7e04f897cae1fdec9ad5211c41e27ef02f"
+      ref: "3f34b82e9f720537cf8a4f72c1feec147b21e921"
+      resolved-ref: "3f34b82e9f720537cf8a4f72c1feec147b21e921"
       url: "https://github.com/L3odr0id/polkawallet_sdk.git"
     source: git
     version: "0.5.1"

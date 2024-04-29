@@ -3,6 +3,7 @@ import 'package:threedpass/core/polkawallet/widgets/account_choose_tile_text.dar
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
+import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/fast_notification_tile.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_card_basic.dart';
 
 class NotificationPutObjectCard extends StatelessWidget {
@@ -34,7 +35,7 @@ class _PutObjectBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBoxH8(),
-        const _FastTile(
+        const FastNotificationTile(
           iconData: Icons.keyboard_double_arrow_right,
           child: D3pBodyMediumText(
             'poScan.putObject',
@@ -42,15 +43,15 @@ class _PutObjectBody extends StatelessWidget {
           ),
         ),
         const SizedBoxH8(),
-        _FastTile(
+        FastNotificationTile(
           iconData: Icons.person,
           child: AccountChooseTileText(
             address: notificationDTO.account.address,
             name: notificationDTO.account.name,
           ),
         ),
-        SizedBoxH8(),
-        _FastTile(
+        const SizedBoxH8(),
+        FastNotificationTile(
           iconData: Icons.file_copy,
           child: Flexible(
             child: D3pBodyMediumText(
@@ -59,27 +60,6 @@ class _PutObjectBody extends StatelessWidget {
             ),
           ),
         ),
-      ],
-    );
-  }
-}
-
-class _FastTile extends StatelessWidget {
-  final IconData iconData;
-  final Widget child;
-
-  const _FastTile({
-    required this.iconData,
-    required this.child,
-  });
-
-  @override
-  Widget build(final BuildContext context) {
-    return Row(
-      children: [
-        Icon(iconData),
-        const SizedBox(width: 16),
-        child,
       ],
     );
   }

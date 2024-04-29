@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/poscan_putobject/bloc/poscan_putobject_cubit.dart';
 import 'package:threedpass/features/poscan_putobject/domain/usecases/put_object_usecase.dart';
+import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/setup.dart';
 
@@ -27,6 +28,7 @@ class D3PRPCPageWrapper extends StatelessWidget implements AutoRouteWrapper {
         initialHashes: state.snapshot.hashes,
         localSnapshotName: state.snapshot.name,
         putObjectUseCase: getIt<PutObject>(),
+        outerRouter: BlocProvider.of<OuterContextCubit>(context).state.router,
       ),
       child: this,
     );

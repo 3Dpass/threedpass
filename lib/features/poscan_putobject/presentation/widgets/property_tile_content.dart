@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
@@ -7,6 +6,7 @@ import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_property.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/edit_property_button.dart';
+import 'package:threedpass/features/poscan_putobject/presentation/widgets/property_max_value_text.dart';
 
 class PropertyTileContent extends StatelessWidget {
   final PoscanProperty prop;
@@ -19,50 +19,6 @@ class PropertyTileContent extends StatelessWidget {
     required this.onPressedEditCallback,
     super.key,
   });
-
-  TextSpan formattedMaxValue(
-    final BigInt maxValue,
-    final TextStyle enabledStyle,
-  ) {
-    if (maxValue == BigInt.from(1) || maxValue == BigInt.from(10)) {
-      return TextSpan(
-        text: maxValue.toString(),
-        style: enabledStyle,
-      );
-    }
-    final str = maxValue.toString();
-    final correctNumPattern = RegExp(r'^1[0]*');
-    final matches = correctNumPattern.allMatches(str);
-
-    if (matches.length == 1 && matches.first.group(0) == str) {
-      int res = 1;
-      final big10 = BigInt.from(10);
-      BigInt tmp = maxValue;
-      while (tmp > big10) {
-        tmp = tmp ~/ big10;
-        res++;
-      }
-      return TextSpan(
-        text: '10^',
-        style: enabledStyle,
-        children: [
-          TextSpan(
-            text: res.toString(),
-            style: enabledStyle.copyWith(
-              fontFeatures: <FontFeature>[
-                const FontFeature.superscripts(),
-              ],
-            ),
-          ),
-        ],
-      );
-    } else {
-      return TextSpan(
-        text: maxValue.toString(),
-        style: enabledStyle,
-      );
-    }
-  }
 
   @override
   Widget build(final BuildContext context) {
@@ -93,11 +49,12 @@ class PropertyTileContent extends StatelessWidget {
             style: enabledStyle,
           ),
         ),
+        SizedBox(width: 8),
         Expanded(
           flex: 2,
           child: Text.rich(
             TextSpan(
-              text: ' id: ',
+              text: 'property_id_label'.tr(),
               style: disabledStyle,
               children: [
                 TextSpan(
@@ -108,17 +65,10 @@ class PropertyTileContent extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(width: 8),
         Expanded(
           flex: 4,
-          child: Text.rich(
-            TextSpan(
-              text: ' max value: ',
-              style: disabledStyle,
-              children: [
-                formattedMaxValue(prop.propValue.maxValue, enabledStyle),
-              ],
-            ),
-          ),
+          child: PropertyMaxValueText(prop.propValue),
         ),
         Expanded(
           flex: 1,
