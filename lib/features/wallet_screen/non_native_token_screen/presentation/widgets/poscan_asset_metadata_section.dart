@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
@@ -28,18 +30,26 @@ class PoscanAssetMetadataSection extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     if (metadata == null) {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const D3pBodyMediumText('poscan_asset_page_metadata_help'),
-          const SizedBoxH8(),
-          D3pElevatedButton(
-            text: 'poscan_asset_page_metadata_button_label'.tr(),
-            onPressed: () => onPressed(context),
-          ),
-        ],
-      );
+      final account = BlocProvider.of<AppServiceLoaderCubit>(context)
+          .state
+          .keyring
+          .current; // TODO Change this for read-only mode
+      if (poscanAssetData.owner == account.address) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const D3pBodyMediumText('poscan_asset_page_metadata_help'),
+            const SizedBoxH8(),
+            D3pElevatedButton(
+              text: 'poscan_asset_page_metadata_button_label'.tr(),
+              onPressed: () => onPressed(context),
+            ),
+          ],
+        );
+      } else {
+        return D3pBodyMediumText('No metadata set for this asset');
+      }
     } else {
       final children = [
         FastRichText(
