@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 
@@ -19,7 +18,7 @@ class SomeForm extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final textStyle = Theme.of(context).customTextStyles;
+    // final textStyle = Theme.of(context).customTextStyles;
 
     final widgets = <Widget>[
       ...children,
@@ -30,6 +29,10 @@ class SomeForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Some warning about fees
+            // Text(
+            //   'Transaction takes fees',
+            //   style: textStyle.secondaryText,
+            // ),
             submitButton,
           ],
         ),

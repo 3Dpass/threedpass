@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/core/utils/copy_and_notify.dart';
 import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 
+// TODO make something to indicate copy action
 class CopyTextCard extends StatelessWidget {
   final Widget child;
   final String textToCopy;
@@ -18,7 +19,6 @@ class CopyTextCard extends StatelessWidget {
   Widget build(final BuildContext context) {
     return ClickableCard(
       // side: BorderSide(color: Colors.grey),
-      radius: const Radius.circular(16),
       onTap: () => copyAndNotify(
         textToCopy: textToCopy,
         textToShow: textToShow,

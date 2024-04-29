@@ -20,7 +20,6 @@ class AssetsCard extends StatelessWidget {
         .keyring
         .current
         .address!;
-    // TODO Push to token page
     context.router.push(
       NonNativeTokenRouteWrapper(
         params: GetExtrinsicsUseCaseParams(
@@ -38,7 +37,8 @@ class AssetsCard extends StatelessWidget {
       onTap: () => onCardClick(context),
       child: data.poscanAssetMetadata != null
           ? AssetCardBody(
-              poscanAssetCombined: data,
+              metadata: data.poscanAssetMetadata!,
+              balance: data.poscanAssetBalance,
             )
           : AssetCardNoMetadata(
               poscanAssetData: data.poscanAssetData,

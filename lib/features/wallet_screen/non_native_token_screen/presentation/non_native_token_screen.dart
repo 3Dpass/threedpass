@@ -5,6 +5,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
+import 'package:threedpass/core/widgets/other/copy_span_widget.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
@@ -14,6 +15,7 @@ import 'package:threedpass/core/widgets/text/d3p_title_large_text.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
+import 'package:threedpass/features/preview_page/presentation/widgets/copy_text_card.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/bloc/assets_get_extrisincs_cubit.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_create.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_mint.dart';
@@ -22,6 +24,7 @@ import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_unknown.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/asset_transfer_button.dart';
+import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_data_section.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_metadata_section.dart';
 import 'package:threedpass/features/wallet_screen/widgets/asset_balance_text.dart';
 import 'package:threedpass/features/wallet_screen/widgets/block_datetime_w.dart';
@@ -47,11 +50,13 @@ class NonNativeTokenScreen extends StatelessWidget {
 
   String appbarTitle() {
     if (poscanAssetCombined.poscanAssetMetadata == null) {
-      return 'non_native_token_token'
-          .tr(args: [poscanAssetCombined.poscanAssetData.id.toString()]);
+      return poscanAssetCombined.poscanAssetData.id.toString();
+      // return 'non_native_token_token'
+      //     .tr(args: [poscanAssetCombined.poscanAssetData.id.toString()]);
     } else {
-      return 'non_native_token_token'
-          .tr(args: [poscanAssetCombined.poscanAssetMetadata!.symbols]);
+      return poscanAssetCombined.poscanAssetMetadata!.symbol;
+      // return 'non_native_token_token'
+      //     .tr(args: []);
     }
   }
 
@@ -62,36 +67,27 @@ class NonNativeTokenScreen extends StatelessWidget {
     //     .paramsUseCase
     //     .tokenBalanceData;
     final metadata = poscanAssetCombined.poscanAssetMetadata;
-    final symbol = metadata?.symbols ?? '';
+    // final symbol = metadata?.symbol ?? '';
+
     return D3pScaffold(
       appbarTitle: appbarTitle(),
       translateAppbar: false,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [
           const SizedBoxH16(),
-          Padding16(
-            child: FastRichText(
-              mainText: poscanAssetCombined.poscanAssetData.admin,
-              secondaryText: 'poscan_asset_page_admin_secondary'.tr(),
-              needSpace: true,
-            ),
+
+          PoscanAssetDataSection(
+            poscanAssetData: poscanAssetCombined.poscanAssetData,
           ),
+
           const Divider(),
-          Padding16(
-            child: PoscanAssetMetadataSection(
-              poscanAssetData: poscanAssetCombined.poscanAssetData,
-              metadata: metadata,
-            ),
+
+          PoscanAssetMetadataSection(
+            poscanAssetData: poscanAssetCombined.poscanAssetData,
+            metadata: metadata,
           ),
-          // MetadataSection create or display
-          // AssetBalanceText(
-          //   balance: BalanceUtils.balance(
-          //     tkb.amount,
-          //     tkb.decimals ?? 12,
-          //   ),
-          //   tokenSymbol: symbol,
-          // ),
+
           // Mint section
           // Transfer section
           // History section

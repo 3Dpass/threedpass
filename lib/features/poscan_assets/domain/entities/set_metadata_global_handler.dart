@@ -17,10 +17,6 @@ class SetMetadataGlobalHandler
     final ExtrinsicStatus status,
     final String? message,
   ) {
-    // {
-    return (initialN as dynamic).copyWith(status: status, message: message)
-        as NotificationSetMetadata;
-    // }
-    // return initialN.copyWith(status: status, message: message);
+    return initialN.copyWith(status: status, message: message);
   }
 }

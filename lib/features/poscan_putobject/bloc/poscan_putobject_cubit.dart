@@ -56,6 +56,8 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
 
   final PutObject putObjectUseCase;
 
+  final formKey = GlobalKey<FormState>();
+
   final TextEditingController nApprovalsController =
       TextEditingController(text: '10');
   final TextEditingController accountPassword = TextEditingController();

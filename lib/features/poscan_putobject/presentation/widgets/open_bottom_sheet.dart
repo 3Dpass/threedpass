@@ -46,7 +46,6 @@ class OpenBottomSheet extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBoxH16(),
         D3pBodyMediumText(unlocalizedSubtitle),
         const SizedBoxH4(),
         ClickableCard(

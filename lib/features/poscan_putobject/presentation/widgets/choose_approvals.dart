@@ -19,7 +19,6 @@ class ChooseApprovals extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBoxH16(),
         const D3pBodyMediumText('poscan_putobject_choose_napprovals'),
         const SizedBoxH4(),
         D3pTextFormField(

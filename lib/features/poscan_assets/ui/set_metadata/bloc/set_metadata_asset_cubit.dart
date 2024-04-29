@@ -5,6 +5,7 @@ import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
+import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/set_metadata.dart';
 
 // part 'set_metadata_asset_cubit.g.dart';

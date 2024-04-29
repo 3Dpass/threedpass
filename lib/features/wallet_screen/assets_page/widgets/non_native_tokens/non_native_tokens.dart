@@ -26,7 +26,13 @@ class NonNativeTokens extends StatelessWidget {
             return BlocBuilder<PoscanAssetsCubit, PoscanAssetsState>(
               builder: (final context, final poscanAssetsState) {
                 if (poscanAssetsState.isLoading) {
-                  return PlatformCircularProgressIndicator();
+                  return Padding(
+                    padding: EdgeInsets.only(top: 16),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: PlatformCircularProgressIndicator(),
+                    ),
+                  );
                 }
 
                 if (poscanAssetsState.errorMessage.isNotEmpty) {
@@ -44,13 +50,16 @@ class NonNativeTokens extends StatelessWidget {
                         color: Colors.red,
                       ),
                     ),
-                  ); // TODO Red color
+                  );
                 }
-                // TODO show tokens where user is admin
+
                 final showZeroAssets = settings.appSettings.showZeroAssets;
-                final resolvedList =
-                    _ResolvedTokens(poscanAssetsState.combined, showZeroAssets)
-                        .resolved;
+                final resolvedList = _ResolvedTokens(
+                  poscanAssetsState.combined,
+                  showZeroAssets,
+                  appService.keyring.current
+                      .address!, // TODO change to some state for read-only view
+                ).resolved;
 
                 double listVPadding = 0.0;
                 if (resolvedList.isNotEmpty) {
@@ -60,7 +69,7 @@ class NonNativeTokens extends StatelessWidget {
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(vertical: listVPadding),
+                  padding: EdgeInsets.only(top: listVPadding),
                   itemCount: resolvedList.length,
                   itemBuilder: (final context, final index) => Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
@@ -79,10 +88,12 @@ class NonNativeTokens extends StatelessWidget {
 class _ResolvedTokens {
   final List<PoscanAssetCombined> initialItems;
   final bool showZeroAssets;
+  final String currentAccountAddress;
 
   _ResolvedTokens(
     this.initialItems,
     this.showZeroAssets,
+    this.currentAccountAddress,
   );
 
   List<PoscanAssetCombined> get resolved {
@@ -90,12 +101,23 @@ class _ResolvedTokens {
       return initialItems;
     }
 
-    // final res = <PoscanAssetCombined>[];
-    // for (final token in initialTokens) {
-    //   if (token.isAmountPositive) {
-    //     res.add(token);
-    //   }
-    // }
-    return initialItems;
+    final res = <PoscanAssetCombined>[];
+    for (final token in initialItems) {
+      if (token.hasPositiveBalance ||
+          token.poscanAssetData.admin == currentAccountAddress) {
+        res.add(token);
+      }
+    }
+    return res;
+  }
+}
+
+extension _ on PoscanAssetCombined {
+  bool get hasPositiveBalance {
+    if (poscanAssetBalance == null) {
+      return false;
+    }
+
+    return poscanAssetBalance!.decodedRawBalance > BigInt.zero;
   }
 }

@@ -19,7 +19,6 @@ class ChooseProperties extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBoxH16(),
             const D3pBodyMediumText("put_object_properties_subtitle"),
             const SizedBoxH4(),
             state.defaultProperties.isEmpty

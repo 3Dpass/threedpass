@@ -6,6 +6,8 @@ extension DirtyArchitectureTrick on AppServiceLoaderCubit {
       param1: this.state.networkStateData.ss58Format ?? ss58formatLive,
     );
     unawaited(getIt<PoscanObjectsCubit>().init(objectsStore));
-    unawaited(getIt<PoscanAssetsCubit>().loadTokens());
+
+    getIt<PoscanAssetsCubit>().switchAccount(state.keyring.current);
+    unawaited(getIt<PoscanAssetsCubit>().init());
   }
 }

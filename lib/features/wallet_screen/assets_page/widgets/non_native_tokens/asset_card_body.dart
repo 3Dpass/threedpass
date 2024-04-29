@@ -1,11 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_balance.dart';
 
 class AssetCardBody extends StatelessWidget {
-  const AssetCardBody({required this.poscanAssetCombined, super.key});
+  const AssetCardBody({
+    required this.metadata,
+    required this.balance,
+    super.key,
+  });
 
-  final PoscanAssetCombined poscanAssetCombined;
+  final PoscanAssetMetadata metadata;
+  final PoscanAssetBalance? balance;
+
+  String balanceText() {
+    if (balance != null) {
+      return BalanceUtils.formattedBigInt(
+        balance!.decodedRawBalance,
+        metadata.idecimals,
+      );
+    } else {
+      return '0';
+    }
+  }
 
   @override
   Widget build(final BuildContext context) {
@@ -13,26 +31,23 @@ class AssetCardBody extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        // METADATA OR NO METADATA
-        D3pBodyMediumText(
-          'METADATA', // data.tokenData.fullName ?? '',
-          translate: false,
+        Flexible(
+          child: D3pBodyMediumText(
+            metadata.name,
+            translate: false,
+          ),
         ),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            D3pBodyMediumText(
-              '10.0',
-              // data.balance.toString(),
-              translate: false,
+        const SizedBox(width: 8),
+        Flexible(
+          child: RichText(
+            text: TextSpan(
+              text: balanceText(),
+              children: [
+                const TextSpan(text: ' '),
+                TextSpan(text: metadata.symbol),
+              ],
             ),
-            const SizedBox(width: 8),
-            D3pBodyMediumText(
-              'TUI', // data.tokenData.symbols ?? '',
-              translate: false,
-            ),
-          ],
+          ),
         ),
       ],
     );

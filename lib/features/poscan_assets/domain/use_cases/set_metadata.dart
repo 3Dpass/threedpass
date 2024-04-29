@@ -38,14 +38,15 @@ class SetMetadata extends UseCase<void, SetMetadataParams> {
         params.updateStatus();
       },
       msgIdCallback: (final msgId) {
-        appServiceLoaderCubit.state.plugin.sdk.api.service.webView!
-            .addGlobalHandler(
+        final webviewRunner =
+            appServiceLoaderCubit.state.plugin.sdk.api.service.webView!;
+
+        webviewRunner.addGlobalHandler(
           SetMetadataGlobalHandler(
             msgId: msgId,
             notificationsBloc: notificationsBloc,
             initialN: notificationLoading,
-            webViewRunner:
-                appServiceLoaderCubit.state.plugin.sdk.api.service.webView!,
+            webViewRunner: webviewRunner,
           ),
         );
       },

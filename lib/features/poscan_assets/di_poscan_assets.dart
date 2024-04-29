@@ -72,6 +72,7 @@ class DIPoscanAssets extends DIModule {
 
     getIt.registerLazySingleton<PoscanAssetsCubit>(
       () => PoscanAssetsCubit(
+        currentAccount: getIt<AppServiceLoaderCubit>().state.keyring.current,
         repository: getIt<PoscanAssetsRepository>(),
       ),
     );

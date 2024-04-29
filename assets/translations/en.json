@@ -115,7 +115,6 @@
     "antialias_button_label": "Antialias",
 
     "dark_theme_switch_label": "Dark theme",
-    "show_zero_assets_label": "Show zero amount assets",
     "set_pin_button_label": "Set pin code",
     "remove_pin_button_label": "Remove pin code",
 
@@ -369,7 +368,7 @@
     "no_contacts": "You dont have any contacts yet.",
     "delete_contact_confirm_title": "Delete contact {}?",
     "delete_contact_confirm_text": "Are you sure you want to delete contact {} with the address {}?",
-    "objects_list_header": "Objects list",
+    "objects_list_header": "Objects",
     "uploaded_object_title": "Uploaded object",
     
     "@2.11.0":{
@@ -443,7 +442,13 @@
     "property_id_label": "id: ",
     "create_asset_page_title": "Create asset",
     "poscan_asset_page_metadata_help": "Please set the metadata to use this asset",
-    "poscan_asset_page_admin_secondary": "Admin:",
+    "poscan_asset_page_id_secondary": "Id:",
+    "poscan_asset_page_owner_secondary": "Owner:",
+    "poscan_asset_page_min_balance_secondary": "Min balance:",
+    "poscan_asset_page_supply_secondary": "Supply:",
+    "poscan_asset_page_accounts_secondary": "Accounts:",
+    "poscan_asset_page_name_secondary": "Name:",
+    "poscan_asset_page_symbol_secondary": "Symbol:",
     "create_asset_choose_object": "Object from storage",
     "create_asset_choose_prop": "Property for tokenization",
     "create_asset_max_supply_property_not_chosen_error": "No property is chosen",
@@ -462,6 +467,7 @@
     "set_metadata_label_symbols": "Symbols",
     "set_metadata_label_decimals": "Decimals",
     "error_u8": "Expected 0 < value < 255",
-    "set_metadata_notification_asset_id": "Asset id:"
+    "set_metadata_notification_asset_id": "Asset id:",
+    "show_all_assets_label": "Show all assets"
 
 }
