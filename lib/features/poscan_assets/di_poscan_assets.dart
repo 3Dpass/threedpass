@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:get_it/get_it.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/create_asset.dart';
@@ -15,9 +16,16 @@ import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifi
 class DIPoscanAssets extends DIModule {
   @override
   Future<void> setup(final GetIt getIt) async {
+    getIt.registerLazySingleton<CallSignExtrinsicUtil>(
+      () => CallSignExtrinsicUtil(
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+      ),
+    );
+
     getIt.registerLazySingleton<PoscanAssetsRepository>(
       () => PoscanAssetsRepositoryImpl(
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        callSignExtrinsicUtil: getIt<CallSignExtrinsicUtil>(),
       ),
     );
 

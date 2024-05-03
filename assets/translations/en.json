@@ -352,7 +352,6 @@
     },
     "poscan_putobject_choose_category": "Category",
     "account_never_null": "Please choose an account",
-    "notifications_title": "Transactions",
     "extrinsic_status": "Extrinsic:",
 
     "contacts_button_label": "Contacts",
@@ -468,6 +467,10 @@
     "set_metadata_label_decimals": "Decimals",
     "error_u8": "Expected 0 < value < 255",
     "set_metadata_notification_asset_id": "Asset id:",
-    "show_all_assets_label": "Show all assets"
+    "show_all_assets_label": "Show all assets",
+
+    "@2.15.0": {},
+    "select_account_appbar_title": "Select account",
+    "notifications_appbar_title": "Extrinsics"
 
 }

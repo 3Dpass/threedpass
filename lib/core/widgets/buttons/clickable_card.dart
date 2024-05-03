@@ -7,12 +7,14 @@ class ClickableCard extends StatelessWidget {
     required this.child,
     required this.onTap,
     this.padding = const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+    this.side,
     super.key,
   });
 
   final void Function()? onTap;
   final Widget child;
   final EdgeInsetsGeometry padding;
+  final BorderSide? side;
 
   static const buttonPaddingPreset =
       EdgeInsets.symmetric(vertical: 12, horizontal: 8);
@@ -20,6 +22,7 @@ class ClickableCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return D3pCard(
+      side: side,
       // radius: radius,
       child: InkWell(
         onTap: onTap,

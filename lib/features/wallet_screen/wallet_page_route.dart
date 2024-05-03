@@ -35,6 +35,9 @@ AutoRoute walletPageRoute = AutoRoute(
       page: NonNativeTokenRouteWrapper.page,
     ),
     AutoRoute(
+      page: SelectAccountRoute.page,
+    ),
+    AutoRoute(
       page: ContactsRoute.page,
     ),
     AutoRoute(

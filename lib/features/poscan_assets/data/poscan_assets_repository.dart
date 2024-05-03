@@ -1,6 +1,7 @@
 import 'package:logger/logger.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/utils/encode_args.dart';
 import 'package:threedpass/features/poscan_assets/data/get_tokens_info_utility.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
@@ -34,54 +35,13 @@ abstract class PoscanAssetsRepository {
 }
 
 class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
-  const PoscanAssetsRepositoryImpl({required this.appServiceLoaderCubit});
-
-  // TODO Move to another deeper repo layer
-  Future<Either<Failure, void>> abstractExtrinsicCall({
-    required final String argsEncoded,
-    required final String pubKey,
-    required final String password,
-    required final List<String> calls,
-    required final void Function() updateStatus,
-    required final void Function(String) msgIdCallback,
-  }) async {
-    try {
-      bool flag = true;
-
-      final dynamic res =
-          await appServiceLoaderCubit.state.plugin.sdk.api.universal.callSign(
-        pubKey: pubKey,
-        password: password,
-        calls: calls,
-        args: argsEncoded,
-        onStatusChange: (final p0) {
-          if (flag) {
-            // Update status once to detec if extrinsic is accepted
-            updateStatus();
-            flag = false;
-          }
-        },
-        msgIdCallback: msgIdCallback,
-      );
-
-      getIt<Logger>().d(res);
-      if (res is Map) {
-        final String key = res.keys.first as String;
-        if (key == 'error') {
-          return Either.left(NoDataFailure(res[key].toString()));
-        } else {
-          return const Either.right(null);
-        }
-      } else {
-        return const Either.left(NoDataFailure('res is not a Map'));
-      }
-    } on Object catch (e) {
-      getIt<Logger>().e(e);
-      return Either.left(NoDataFailure(e.toString()));
-    }
-  }
+  const PoscanAssetsRepositoryImpl({
+    required this.appServiceLoaderCubit,
+    required this.callSignExtrinsicUtil,
+  });
 
   final AppServiceLoaderCubit appServiceLoaderCubit;
+  final CallSignExtrinsicUtil callSignExtrinsicUtil;
 
   @override
   Future<Either<Failure, void>> create({
@@ -103,7 +63,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
     final argsEncoded = encodeArgs(args);
     print(argsEncoded);
 
-    return abstractExtrinsicCall(
+    return callSignExtrinsicUtil.abstractExtrinsicCall(
       argsEncoded: argsEncoded,
       calls: ['tx', 'poscanAssets', 'create'],
       pubKey: params.admin.pubKey!,
@@ -128,7 +88,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
     final argsEncoded = encodeArgs(args);
     print(argsEncoded);
 
-    return abstractExtrinsicCall(
+    return callSignExtrinsicUtil.abstractExtrinsicCall(
       argsEncoded: argsEncoded,
       calls: ['tx', 'poscanAssets', 'setMetadata'],
       pubKey: params.admin.pubKey!,

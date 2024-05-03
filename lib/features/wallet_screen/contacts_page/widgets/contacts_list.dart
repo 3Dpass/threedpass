@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/features/wallet_screen/add_contact_page/domain/entities/contact.dart';
@@ -29,10 +30,10 @@ class ContactsList extends StatelessWidget {
       itemBuilder: (final context, final objIndex) {
         final currentContact = contacts[objIndex];
         return Padding(
-          padding: const EdgeInsets.only(bottom: 16),
+          padding: const EdgeInsets.only(bottom: 8),
           child: D3pCard(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              padding: ClickableCard.buttonPaddingPreset,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
