@@ -4,6 +4,7 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/create_asset_global_handler.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/obj_details.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 
 class CreateAsset extends UseCase<void, CreateAssetParams> {
@@ -23,8 +24,7 @@ class CreateAsset extends UseCase<void, CreateAssetParams> {
   ) async {
     final notificationLoading = NotificationCreateAsset(
       admin: params.admin,
-      objectId: params.objIdx.toString(),
-      propetyId: params.propIdx.toString(),
+      objDetails: params.objDetails,
       newAssetId: params.assetId.toString(),
       status: ExtrinsicStatus.loading,
       message: null,
@@ -62,30 +62,14 @@ class CreateAssetParams {
     required this.assetId,
     required this.password,
     required this.minBalance,
-    required this.objIdx,
-    required this.propIdx,
-    required this.maxSupply,
-    // required this.nApprovals,
-    // required this.pathToFile,
-    // required this.categoryFabric,
-    // required this.hashes,
-    // required this.propValues,
+    required this.objDetails,
     required this.updateStatus,
-    // required this.localSnapshotName,
   });
 
   final int assetId;
   final KeyPairData admin;
   final String password;
   final int minBalance;
-  final int objIdx;
-  final int propIdx;
-  final BigInt maxSupply;
-  // final int nApprovals;
-  // final String pathToFile;
-  // final MapPoscanCategory categoryFabric;
-  // final List<String> hashes;
-  // final List<PropValue>? propValues;
+  final ObjDetailsPoscanAsset? objDetails;
   final void Function() updateStatus;
-  // final String localSnapshotName;
 }

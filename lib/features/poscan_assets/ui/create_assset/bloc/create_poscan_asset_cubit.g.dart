@@ -13,6 +13,8 @@ abstract class _$CreatePoscanAssetStateCWProxy {
 
   CreatePoscanAssetState keyPairData(KeyPairData keyPairData);
 
+  CreatePoscanAssetState includeObject(bool includeObject);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreatePoscanAssetState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -23,6 +25,7 @@ abstract class _$CreatePoscanAssetStateCWProxy {
     PropValue? propValue,
     UploadedObject? uploadedObject,
     KeyPairData? keyPairData,
+    bool? includeObject,
   });
 }
 
@@ -46,6 +49,10 @@ class _$CreatePoscanAssetStateCWProxyImpl
       this(keyPairData: keyPairData);
 
   @override
+  CreatePoscanAssetState includeObject(bool includeObject) =>
+      this(includeObject: includeObject);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreatePoscanAssetState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -57,6 +64,7 @@ class _$CreatePoscanAssetStateCWProxyImpl
     Object? propValue = const $CopyWithPlaceholder(),
     Object? uploadedObject = const $CopyWithPlaceholder(),
     Object? keyPairData = const $CopyWithPlaceholder(),
+    Object? includeObject = const $CopyWithPlaceholder(),
   }) {
     return CreatePoscanAssetState(
       propValue: propValue == const $CopyWithPlaceholder()
@@ -72,6 +80,11 @@ class _$CreatePoscanAssetStateCWProxyImpl
               ? _value.keyPairData
               // ignore: cast_nullable_to_non_nullable
               : keyPairData as KeyPairData,
+      includeObject:
+          includeObject == const $CopyWithPlaceholder() || includeObject == null
+              ? _value.includeObject
+              // ignore: cast_nullable_to_non_nullable
+              : includeObject as bool,
     );
   }
 }

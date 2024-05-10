@@ -82,6 +82,8 @@ dependencies:
   flutter_phoenix: ^1.1.0
   app_install_date: ^0.1.3
   json_bigint: ^2.0.0
+  # timelines: ^0.1.0
+  # jsontool: ^2.1.0
 
   # Child packages
   super_core:

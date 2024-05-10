@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/theme/d3p_card_theme.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
@@ -22,6 +23,7 @@ class DefaultSettingsButton extends StatelessWidget {
     required this.isChevronGrey,
     this.customSuffixButton,
     this.onPressed,
+    super.key,
   });
 
   const DefaultSettingsButton.openButton({
@@ -147,6 +149,16 @@ class _WrappedInkWellBase extends StatelessWidget {
   Widget build(final BuildContext context) {
     final child = _ButtonBase(args);
 
+    final bottomRadius =
+        args.cardShape == CardShape.bottom || args.cardShape == CardShape.all
+            ? D3pCardTheme.radius
+            : Radius.zero;
+
+    final topRadius =
+        args.cardShape == CardShape.top || args.cardShape == CardShape.all
+            ? D3pCardTheme.radius
+            : Radius.zero;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: D3pCard(
@@ -155,6 +167,12 @@ class _WrappedInkWellBase extends StatelessWidget {
             ? child
             : InkWell(
                 onTap: args.onPressed != null ? () => args.onPressed!() : null,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: bottomRadius,
+                  bottomRight: bottomRadius,
+                  topLeft: topRadius,
+                  topRight: topRadius,
+                ),
                 child: child,
               ),
       ),

@@ -471,6 +471,6 @@
 
     "@2.15.0": {},
     "select_account_appbar_title": "Select account",
-    "notifications_appbar_title": "Extrinsics"
-
+    "notifications_appbar_title": "Extrinsics",
+    "create_asset_options_label": "Set object details"
 }

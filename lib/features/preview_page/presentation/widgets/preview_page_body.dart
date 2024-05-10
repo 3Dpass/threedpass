@@ -11,7 +11,6 @@ import 'package:threedpass/features/preview_page/presentation/widgets/poscan_res
 import 'package:threedpass/features/preview_page/presentation/widgets/preview_save_button.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/rename_object_button.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/rename_snapshot_button.dart';
-import 'package:threedpass/features/preview_page/presentation/widgets/scan_one_more_time_button.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/section_title.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/snapshot_info.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/stable_hashes_section.dart';

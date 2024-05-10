@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
@@ -27,7 +28,7 @@ class NonNativeTokens extends StatelessWidget {
               builder: (final context, final poscanAssetsState) {
                 if (poscanAssetsState.isLoading) {
                   return Padding(
-                    padding: EdgeInsets.only(top: 16),
+                    padding: const EdgeInsets.only(top: 16),
                     child: Align(
                       alignment: Alignment.center,
                       child: PlatformCircularProgressIndicator(),
@@ -37,7 +38,7 @@ class NonNativeTokens extends StatelessWidget {
 
                 if (poscanAssetsState.errorMessage.isNotEmpty) {
                   return Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: D3pBodyMediumText(
@@ -66,15 +67,15 @@ class NonNativeTokens extends StatelessWidget {
                   listVPadding = 8.0;
                 }
 
-                return ListView.builder(
+                return ListView.separated(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.only(top: listVPadding),
                   itemCount: resolvedList.length,
-                  itemBuilder: (final context, final index) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    child: AssetsCard(resolvedList[index]),
-                  ),
+                  separatorBuilder: (final context, final index) =>
+                      const SizedBoxH8(),
+                  itemBuilder: (final context, final index) =>
+                      AssetsCard(resolvedList[index]),
                 );
               },
             );

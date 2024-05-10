@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:logger/logger.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
-import 'package:threedpass/core/utils/encode_args.dart';
+import 'package:threedpass/core/polkawallet/utils/none_mock.dart';
+import 'package:threedpass/core/utils/big_int_json_helper.dart';
 import 'package:threedpass/features/poscan_assets/data/get_tokens_info_utility.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_balance.dart';
@@ -54,13 +57,24 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
       params.admin.pubKey!,
       params.minBalance,
       // keys https://github.com/3Dpass/3DP/blob/3134dad0ed1502462620ba84a4dee4e1b109996b/pallets/poscan-assets/src/types.rs#L41
-      {
-        'obj_idx': params.objIdx,
-        'prop_idx': params.propIdx,
-        'max_supply': params.maxSupply,
-      },
     ];
-    final argsEncoded = encodeArgs(args);
+
+    if (params.objDetails != null) {
+      final maxSupply = BigInt.parse(params.objDetails!.maxSupply);
+      final objDataRaw = {
+        'obj_idx': int.parse(params.objDetails!.objIdx),
+        'prop_idx': int.parse(params.objDetails!.propIdx),
+        'max_supply': BigIntJsonHelper.encode(maxSupply),
+      };
+      args.add(objDataRaw);
+    } else {
+      args.add(NoneMock());
+    }
+
+    String argsEncoded = '';
+    argsEncoded = const JsonEncoder().convert(args);
+    argsEncoded = BigIntJsonHelper.replace(argsEncoded);
+
     print(argsEncoded);
 
     return callSignExtrinsicUtil.abstractExtrinsicCall(
@@ -85,7 +99,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
       params.symbol,
       params.decimals,
     ];
-    final argsEncoded = encodeArgs(args);
+    final argsEncoded = const JsonEncoder().convert(args);
     print(argsEncoded);
 
     return callSignExtrinsicUtil.abstractExtrinsicCall(

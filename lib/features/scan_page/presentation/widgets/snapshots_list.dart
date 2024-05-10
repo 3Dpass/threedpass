@@ -29,20 +29,17 @@ class SnapshotsList extends StatelessWidget {
       shrinkWrap: true,
       // itemCount: listToShow.length,
       // itemBuilder: (final context, final index) {
-      children: List.generate(
-        listToShow.length,
-        (index) {
-          // final areSelectable =
-          //     BlocProvider.of<SelectSnapshotsCubit>(context).state.areSelectable;
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: SelectableSnapshotCard(
-              snapshot: listToShow[index],
-              hashObject: currentObject,
+      children: listToShow
+          .map(
+            (final e) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: SelectableSnapshotCard(
+                snapshot: e,
+                hashObject: currentObject,
+              ),
             ),
-          );
-        },
-      ),
+          )
+          .toList(),
     );
   }
 }
