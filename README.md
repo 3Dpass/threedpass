@@ -11,10 +11,8 @@ This embedded option allows to recognize the same shaped 3D objects by means of 
 
 ## P3D Transfers
 Tha wallet connects to the Node via RPC/API endpoints. These are the mainnet public endpoints:
-- wss://rpc.3dpass.org 
+- wss://rpc.3dpscan.io 
 - wss://rpc2.3dpass.org
-- wss://rpc.3dpscan.io
-- wss://rpc.caldera.network
 
 [![accounts](https://github.com/3Dpass/threedpass/assets/107915078/4e58f82c-e61e-4780-b89b-dfe0b4ae2a64)](https://3dpass.org/mobile-wallet#light)
 
