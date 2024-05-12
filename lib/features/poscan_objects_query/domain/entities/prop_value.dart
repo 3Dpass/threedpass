@@ -1,9 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'prop_value.g.dart';
+// part 'prop_value.g.dart';
 
-@JsonSerializable(createFactory: false)
+// @JsonSerializable(createFactory: false)
 class PropValue extends Equatable {
   final int propIdx;
   final BigInt maxValue;
@@ -13,7 +12,7 @@ class PropValue extends Equatable {
     required this.propIdx,
   });
 
-  Map<String, dynamic> toJson() => _$PropValueToJson(this);
+  // Map<String, dynamic> toJson() => _$PropValueToJson(this);
 
   factory PropValue.fromJson(final Map<String, dynamic> json) {
     final id = int.parse(json['propIdx'].toString());
