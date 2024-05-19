@@ -2,6 +2,7 @@ import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/set_metadata_global_handler.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
@@ -10,11 +11,13 @@ class SetMetadata extends UseCase<void, SetMetadataParams> {
   final PoscanAssetsRepository repository;
   final NotificationsBloc notificationsBloc;
   final AppServiceLoaderCubit appServiceLoaderCubit;
+  final PoscanAssetsCubit poscanAssetCubit;
 
   const SetMetadata({
     required this.repository,
     required this.notificationsBloc,
     required this.appServiceLoaderCubit,
+    required this.poscanAssetCubit,
   });
 
   @override
@@ -47,6 +50,7 @@ class SetMetadata extends UseCase<void, SetMetadataParams> {
             notificationsBloc: notificationsBloc,
             initialN: notificationLoading,
             webViewRunner: webviewRunner,
+            poscanAssetsCubit: poscanAssetCubit,
           ),
         );
       },

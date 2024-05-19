@@ -6,7 +6,7 @@ enum NotificationType {
   putObject,
   createAsset,
   setMetadata,
-  // mintAsset,
+  mintAsset,
 }
 
 abstract class NotificationDTO {
@@ -133,21 +133,21 @@ class NotificationSetMetadata extends NotificationDTO {
   final NotificationType type = NotificationType.setMetadata;
 }
 
-// @CopyWith()
-// class NotificationMintAsset extends NotificationDTO {
-//   final String assetId;
-//   final KeyPairData admin;
+@CopyWith()
+class NotificationMintAsset extends NotificationDTO {
+  final String assetId;
+  final KeyPairData admin;
 
-//   NotificationMintAsset({
-//     required this.admin,
-//     required this.assetId,
-//     required super.status,
-//     required super.message,
-//   });
+  NotificationMintAsset({
+    required this.admin,
+    required this.assetId,
+    required super.status,
+    required super.message,
+  });
 
-//   @override
-//   final NotificationType type = NotificationType.mintAsset;
-// }
+  @override
+  final NotificationType type = NotificationType.mintAsset;
+}
 
 @CopyWith()
 class NotificationsState {

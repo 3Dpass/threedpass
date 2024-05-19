@@ -472,5 +472,10 @@
     "@2.15.0": {},
     "select_account_appbar_title": "Select account",
     "notifications_appbar_title": "Extrinsics",
-    "create_asset_options_label": "Set object details"
+    "create_asset_options_label": "Set object details",
+    "mint_asset_button_label": "Mint",
+    "poscan_asset_page_decimals_secondary": "Decimals:",
+    "mint_asset_page_title": "Mint asset",
+    "mint_amount_label": "Amount",
+    "asset_id_dropdown_label": "Asset ID"
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
+import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/other/choose_asset_id/poscan_token_data_dropdown_menu_item.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
@@ -78,11 +79,19 @@ class ChooseAssetIdState extends State<ChooseAssetId> {
           ),
         )
         .toList();
-    return D3pDropdownButton<PoscanAssetCombined>(
-      context: context,
-      items: items,
-      onChanged: widget.onChoose == null ? null : onChanged,
-      value: chosenAsset,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const D3pBodyMediumText('asset_id_dropdown_label'),
+        const SizedBox(height: 4),
+        D3pDropdownButton<PoscanAssetCombined>(
+          context: context,
+          items: items,
+          onChanged: widget.onChoose == null ? null : onChanged,
+          value: chosenAsset,
+        ),
+      ],
     );
   }
 }

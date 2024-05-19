@@ -11,6 +11,7 @@ import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_m
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_balance.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/create_asset.dart';
+import 'package:threedpass/features/poscan_assets/domain/use_cases/mint_asset.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/set_metadata.dart';
 import 'package:threedpass/setup.dart';
 
@@ -27,7 +28,12 @@ abstract class PoscanAssetsRepository {
     required final void Function() updateStatus,
     required final void Function(String) msgIdCallback,
   });
-  Future<Either<Failure, void>> mint();
+  Future<Either<Failure, void>> mint({
+    required final MintAssetParams params,
+    required final void Function() updateStatus,
+    required final void Function(String) msgIdCallback,
+  });
+
   Future<Either<Failure, void>> transfer();
   Future<Either<Failure, List<PoscanAssetData>>> allTokens();
   Future<Either<Failure, Map<int, PoscanAssetMetadata>>> tokensMetadata();
@@ -113,8 +119,27 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
   }
 
   @override
-  Future<Either<Failure, void>> mint() async {
-    return const Either.right(null);
+  Future<Either<Failure, void>> mint({
+    required final MintAssetParams params,
+    required final void Function() updateStatus,
+    required final void Function(String) msgIdCallback,
+  }) async {
+    final args = [
+      params.assetId,
+      BigIntJsonHelper.encode(params.amount),
+    ];
+    final argsPreEncoded = const JsonEncoder().convert(args);
+    final argsEncoded = BigIntJsonHelper.replace(argsPreEncoded);
+    print(argsEncoded);
+
+    return callSignExtrinsicUtil.abstractExtrinsicCall(
+      argsEncoded: argsEncoded,
+      calls: ['tx', 'poscanAssets', 'mint'],
+      pubKey: params.account.pubKey!,
+      password: params.password,
+      updateStatus: updateStatus,
+      msgIdCallback: msgIdCallback,
+    );
   }
 
   @override

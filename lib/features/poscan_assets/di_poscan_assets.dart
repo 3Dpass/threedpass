@@ -29,12 +29,20 @@ class DIPoscanAssets extends DIModule {
       ),
     );
 
+    getIt.registerLazySingleton<PoscanAssetsCubit>(
+      () => PoscanAssetsCubit(
+        currentAccount: getIt<AppServiceLoaderCubit>().state.keyring.current,
+        repository: getIt<PoscanAssetsRepository>(),
+      ),
+    );
+
     // Create asset
     getIt.registerLazySingleton<CreateAsset>(
       () => CreateAsset(
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         notificationsBloc: getIt<NotificationsBloc>(),
         repository: getIt<PoscanAssetsRepository>(),
+        poscanAssetCubit: getIt<PoscanAssetsCubit>(),
       ),
     );
     getIt.registerFactoryParam<CreatePoscanAssetCubit, StackRouter, void>(
@@ -51,6 +59,7 @@ class DIPoscanAssets extends DIModule {
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         notificationsBloc: getIt<NotificationsBloc>(),
         repository: getIt<PoscanAssetsRepository>(),
+        poscanAssetCubit: getIt<PoscanAssetsCubit>(),
       ),
     );
     getIt.registerFactoryParam<SetMetadataAssetCubit, int, StackRouter>(
@@ -68,20 +77,16 @@ class DIPoscanAssets extends DIModule {
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         notificationsBloc: getIt<NotificationsBloc>(),
         repository: getIt<PoscanAssetsRepository>(),
-      ),
-    );
-    getIt.registerFactoryParam<MintAssetCubit, int, void>(
-      (final initialAssetId, final _) => MintAssetCubit(
-        initialAsset: initialAssetId,
-        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
-        mintAsset: getIt<MintAsset>(),
+        poscanAssetCubit: getIt<PoscanAssetsCubit>(),
       ),
     );
 
-    getIt.registerLazySingleton<PoscanAssetsCubit>(
-      () => PoscanAssetsCubit(
-        currentAccount: getIt<AppServiceLoaderCubit>().state.keyring.current,
-        repository: getIt<PoscanAssetsRepository>(),
+    getIt.registerFactoryParam<MintAssetCubit, int, StackRouter>(
+      (final initialAssetId, final router) => MintAssetCubit(
+        initialAsset: initialAssetId,
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        mintAsset: getIt<MintAsset>(),
+        outerRouter: router,
       ),
     );
   }

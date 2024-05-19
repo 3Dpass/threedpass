@@ -18,6 +18,18 @@ class AssetsPage extends StatelessWidget {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
       builder: (final context, final state) {
         final theme = Theme.of(context);
+        const children = [
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CoinsBalance(),
+              SizedBoxH8(),
+              AssetPageButtonsPanel(),
+            ],
+          ),
+          PoscanAssetsColumn(),
+          ObjectsListAssets(),
+        ];
         return Scaffold(
           backgroundColor: theme.customColors.scaffoldBackground,
           appBar: AssetPageAppbar(
@@ -30,21 +42,13 @@ class AssetsPage extends StatelessWidget {
           //   context: context,
           //   theme: theme,
           // ),
-          body: ListView(
+          body: ListView.separated(
             shrinkWrap: true,
-            // crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              // SizedBoxH24(),
-              SizedBoxH16(),
-              CoinsBalance(),
-              SizedBoxH8(),
-              AssetPageButtonsPanel(),
-              SizedBoxH16(),
-              PoscanAssetsColumn(),
-              SizedBoxH16(),
-              ObjectsListAssets(),
-              SizedBoxH16(),
-            ],
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            itemCount: children.length,
+            separatorBuilder: (final context, final index) =>
+                const SizedBoxH16(),
+            itemBuilder: (final context, final index) => children[index],
           ),
         );
       },

@@ -13,7 +13,10 @@ class MintAssetPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(final BuildContext context) {
     return BlocProvider<MintAssetCubit>(
-      create: (final _) => getIt<MintAssetCubit>(param1: initialAssetId),
+      create: (final _) => getIt<MintAssetCubit>(
+        param1: initialAssetId,
+        param2: context.router,
+      ),
       child: this,
     );
   }

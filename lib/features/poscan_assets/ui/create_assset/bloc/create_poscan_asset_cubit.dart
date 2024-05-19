@@ -55,8 +55,6 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState>
   final TextEditingController minBalance = TextEditingController();
   final TextEditingController maxSupply = TextEditingController();
 
-  final formKey = GlobalKey<FormState>();
-
   final AppServiceLoaderCubit appServiceLoaderCubit;
 
   // final KeyPairData initialAcc;
@@ -82,6 +80,7 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState>
     emit(state.copyWith(includeObject: !state.includeObject));
   }
 
+  @override
   Future<Either<Failure, void>> callExtrinsic(
     final BuildContext context,
   ) async {
@@ -104,14 +103,5 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState>
     );
     final res = createAssetUseCase.call(params);
     return res;
-  }
-
-  Future<void> createAsset(final BuildContext context) async {
-    if (formKey.currentState!.validate()) {
-      await showLoader(
-        context: context,
-        call: () => callExtrinsic(context),
-      );
-    }
   }
 }

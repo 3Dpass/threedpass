@@ -5,9 +5,9 @@ import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart'
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/utils/primitive_event_logs_handler.dart';
 
-class SetMetadataGlobalHandler
-    extends PrimitiveEventLogsHandler<NotificationSetMetadata> {
-  const SetMetadataGlobalHandler({
+class MintGlobalHandler
+    extends PrimitiveEventLogsHandler<NotificationMintAsset> {
+  const MintGlobalHandler({
     required super.msgId,
     required super.notificationsBloc,
     required super.initialN,
@@ -18,8 +18,8 @@ class SetMetadataGlobalHandler
   final PoscanAssetsCubit poscanAssetsCubit;
 
   @override
-  NotificationSetMetadata customCopyWith(
-    final NotificationSetMetadata initialN,
+  NotificationMintAsset customCopyWith(
+    final NotificationMintAsset initialN,
     final ExtrinsicStatus status,
     final String? message,
   ) {

@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -56,10 +57,11 @@ class SnapshotConnectedToUploaded extends StatelessWidget {
           'local_snapshots_with_same_hashes',
           color: D3pColors.disabled,
         ),
-        ListView.builder(
+        ListView.separated(
           padding: EdgeInsets.zero,
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
+          separatorBuilder: (final context, final index) => const SizedBoxH4(),
           itemCount: similarSnapshots.length,
           itemBuilder: (final context, final index) {
             if (isOnlyText) {
@@ -70,12 +72,9 @@ class SnapshotConnectedToUploaded extends StatelessWidget {
             } else {
               final snap = similarSnapshots[index];
               final hashObject = localObjectsBloc.findBySnapshot(snap)!;
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                child: SnapshotCard(
-                  snapshot: snap,
-                  hashObject: hashObject,
-                ),
+              return SnapshotCard(
+                snapshot: snap,
+                hashObject: hashObject,
               );
             }
           },
