@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -35,15 +36,23 @@ class SelectAccountPage extends StatelessWidget {
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          FloatingActionButton(
+          FloatingActionButton.extended(
+            icon: const Icon(Icons.add),
+            label: SizedBox(
+              width: 70,
+              child: Text('new_random_account_floating_button_label'.tr()),
+            ),
             heroTag: 'push_to_generate_account',
-            child: const Icon(Icons.add),
             onPressed: () => pushToGenerateAccount(context),
           ),
-          SizedBoxH16(),
-          FloatingActionButton(
+          const SizedBoxH16(),
+          FloatingActionButton.extended(
+            icon: const Icon(Icons.import_export),
+            label: SizedBox(
+              width: 70,
+              child: Text('import_existing_account_floating_button_label'.tr()),
+            ),
             heroTag: 'push_to_import_account',
-            child: const Icon(Icons.import_export),
             onPressed: () => pushToImportAccount(context),
           ),
         ],

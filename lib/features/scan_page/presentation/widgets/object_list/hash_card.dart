@@ -61,16 +61,17 @@ class SnapshotCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Wrap(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Flexible(
-                child: Text(
-                  snapshot.name,
-                  style: theme.d3pBodyLarge,
-                ),
+              // Flexible(
+              //   child:
+              Text(
+                snapshot.name,
+                style: theme.d3pBodyLarge,
               ),
+              // ),
               if (snapshot.isNew)
                 Icon(
                   Icons.fiber_new_outlined,
@@ -83,6 +84,8 @@ class SnapshotCard extends StatelessWidget {
             snapshot.settingsConfig.toShort(context),
           ),
           const SizedBoxH8(),
+          // Text('Chain status: Uploaded'),
+          // const SizedBoxH8(),
           SizedBox(
             height: 24,
             child: Row(

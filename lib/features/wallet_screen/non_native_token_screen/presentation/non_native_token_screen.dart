@@ -28,6 +28,7 @@ import 'package:threedpass/features/wallet_screen/non_native_token_screen/presen
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_data_section.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_metadata_section.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_mint_section.dart';
+import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_transfer_floating_button.dart';
 import 'package:threedpass/features/wallet_screen/widgets/asset_balance_text.dart';
 import 'package:threedpass/features/wallet_screen/widgets/block_datetime_w.dart';
 import 'package:threedpass/features/wallet_screen/widgets/extrinsic_status_icon.dart';
@@ -102,6 +103,9 @@ class NonNativeTokenScreen extends StatelessWidget {
     return D3pScaffold(
       appbarTitle: appbarTitle(),
       translateAppbar: false,
+      floatingActionButton: PoscanAssetTransferFloatingButton(
+        enabled: poscanAssetCombined.poscanAssetBalance != null,
+      ),
       body: ListView.separated(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         itemCount: children.length,
