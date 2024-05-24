@@ -9,12 +9,11 @@ import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:polkawallet_sdk/p3d/balance_transaction_type.dart';
 import 'package:polkawallet_sdk/p3d/tx_info.dart';
-import 'package:polkawallet_sdk/plugin/store/balances.dart';
+import 'package:polkawallet_sdk/p3d/tx_params.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
-import 'package:threedpass/core/polkawallet/utils/log.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
@@ -76,11 +75,11 @@ class TransferInfoBloc
     switch (metaDTO.type) {
       case MetaInfoType.asset:
         // appService.tokensAreLoading
-        final tbd = (metaDTO as AssetTransferMetaDTO).tokenBalanceData;
-        final amount = tbd.amount;
+        final tbd = metaDTO as AssetTransferMetaDTO;
+        final amount = tbd.rawInitialAmount;
         final decimals = tbd.decimals;
 
-        return BalanceUtils.balanceToDouble(amount!, decimals!);
+        return BalanceUtils.balanceToDouble(amount, decimals);
 
       case MetaInfoType.coin:
         final rawAvaliable =

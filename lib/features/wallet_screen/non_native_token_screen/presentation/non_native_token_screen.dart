@@ -104,7 +104,8 @@ class NonNativeTokenScreen extends StatelessWidget {
       appbarTitle: appbarTitle(),
       translateAppbar: false,
       floatingActionButton: PoscanAssetTransferFloatingButton(
-        enabled: poscanAssetCombined.poscanAssetBalance != null,
+        poscanAssetMetadata: poscanAssetCombined.poscanAssetMetadata,
+        poscanAssetBalance: poscanAssetCombined.poscanAssetBalance,
       ),
       body: ListView.separated(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),

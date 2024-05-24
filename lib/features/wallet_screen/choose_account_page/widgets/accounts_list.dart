@@ -1,10 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/widgets/address_icon.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
+import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 class SelectableAccountsList extends StatelessWidget {
   final List<KeyPairData> accounts;
@@ -33,6 +36,9 @@ class SelectableAccountsList extends StatelessWidget {
       return () => selectAccount(acc);
     }
   }
+
+  static void deleteAccount(final BuildContext context) =>
+      context.router.push(const RemoveAccountRoute());
 
   @override
   Widget build(final BuildContext context) {
@@ -71,6 +77,13 @@ class SelectableAccountsList extends StatelessWidget {
                 D3pBodyMediumText(
                   Fmt.shorterAddress(acc.address),
                   translate: false,
+                ),
+                D3pIconButton(
+                  iconData: Icons.delete,
+                  iconColor: Colors.red,
+                  onPressed: () => deleteAccount(context),
+                  emptyContraints: true,
+                  splashRadius: 22,
                 ),
               ],
             ),

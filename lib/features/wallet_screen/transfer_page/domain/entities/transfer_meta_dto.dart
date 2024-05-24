@@ -1,5 +1,3 @@
-import 'package:polkawallet_sdk/plugin/store/balances.dart';
-
 abstract class TransferMetaDTO {
   const TransferMetaDTO({
     required this.decimals,
@@ -26,10 +24,15 @@ class AssetTransferMetaDTO extends TransferMetaDTO {
   const AssetTransferMetaDTO({
     required super.name,
     required super.decimals,
-    required this.tokenBalanceData,
+    required this.rawInitialAmount,
+    required this.assetId,
+    // required this.tokenBalanceData,
   });
 
-  final TokenBalanceData tokenBalanceData;
+  final String rawInitialAmount;
+  final int assetId;
+
+  // final TokenBalanceData tokenBalanceData;
 
   @override
   final MetaInfoType type = MetaInfoType.asset;

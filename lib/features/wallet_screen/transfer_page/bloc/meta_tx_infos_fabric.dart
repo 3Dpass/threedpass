@@ -15,7 +15,7 @@ class _MetaTxInfosFabric {
     required final double amount,
     required final String toAddress,
     required final BalanceTransactionType transferType,
-    required final TokenBalanceData? tbd,
+    required final AssetTransferMetaDTO? tbd,
   }) {
     if (tbd == null) {
       return CoinsTransferTx(
@@ -26,18 +26,19 @@ class _MetaTxInfosFabric {
         transferType: state.transactionOption,
       );
     } else {
-      return AssetsTransferTx(
+      return PoscanAssetsTransferTx(
         decimals: metaDTO.decimals,
         senderData: senderData,
         amount: amount,
         toAddress: toAddress,
         transferType: state.transactionOption,
-        tokenBalanceData: tbd,
+        assetTransferMetaDTO: tbd,
+        // tokenBalanceData: TokenBalanceData(),
       );
     }
   }
 
-  List<TransferTxInfoI> oneToOne(final TokenBalanceData? tbd) {
+  List<TransferTxInfoI> oneToOne(final AssetTransferMetaDTO? tbd) {
     final res = <TransferTxInfoI>[];
     final from = state.fromAddresses.first;
     final amount = state.amounts.first;
@@ -65,7 +66,7 @@ class _MetaTxInfosFabric {
     return res;
   }
 
-  List<TransferTxInfoI> oneToMany(final TokenBalanceData? tbd) {
+  List<TransferTxInfoI> oneToMany(final AssetTransferMetaDTO? tbd) {
     final res = <TransferTxInfoI>[];
 
     if (state.toAddresses.length != state.amounts.length) {
@@ -103,7 +104,7 @@ class _MetaTxInfosFabric {
     return res;
   }
 
-  List<TransferTxInfoI> manyToOne(final TokenBalanceData? tbd) {
+  List<TransferTxInfoI> manyToOne(final AssetTransferMetaDTO? tbd) {
     final res = <TransferTxInfoI>[];
 
     if (state.fromAddresses.length != state.amounts.length) {
@@ -141,7 +142,7 @@ class _MetaTxInfosFabric {
     return res;
   }
 
-  List<TransferTxInfoI> buildList(final TokenBalanceData? tbd) {
+  List<TransferTxInfoI> buildList(final AssetTransferMetaDTO? tbd) {
     // final res = <TransferTxInfoI>[];
     switch (state.transferType) {
       case TransferType.manyToOne:
@@ -159,7 +160,75 @@ class _MetaTxInfosFabric {
         return buildList(null);
       case MetaInfoType.asset:
         final amDTO = metaDTO as AssetTransferMetaDTO;
-        return buildList(amDTO.tokenBalanceData);
+        return buildList(amDTO);
     }
   }
+}
+
+// VERY BAD CODE. But there is no easy workaround
+// Delete this when possible
+class PoscanAssetsTransferTx extends TransferTxInfoI {
+  PoscanAssetsTransferTx({
+    required super.decimals,
+    required super.senderData,
+    required super.amount,
+    required super.toAddress,
+    required super.transferType,
+    // required super.legacyTokenBalanceData,
+    required this.assetTransferMetaDTO,
+  });
+
+  final AssetTransferMetaDTO assetTransferMetaDTO;
+
+  @override
+  TxInfoData txInfo() => TxInfoData(
+        'poscanAssets',
+        BalanceTransactionTypeValue(transferType).toString(),
+        TxSenderData(senderData.address, senderData.pubKey),
+      );
+
+  @override
+  TxParams params() {
+    return PoscanAssetsTxParams(
+      amount: amount,
+      toAddress: toAddress,
+      assetData: assetTransferMetaDTO,
+      // tokenBalanceData: tokenBalanceData,
+    );
+  }
+}
+
+class PoscanAssetsTxParams extends TxParams {
+  const PoscanAssetsTxParams({
+    required this.amount,
+    required this.toAddress,
+    required this.assetData,
+    // required this.tokenBalanceData,
+  });
+
+  final AssetTransferMetaDTO assetData;
+  @override
+  final double amount;
+  @override
+  final String toAddress;
+
+  @override
+  List<String> paramsToSend() {
+    // https://polkadot.js.org/docs/substrate/extrinsics/#transferid-compactu32-target-multiaddress-amount-compactu128
+    final realAmount = BalanceUtils.tokenInt(
+      amount.toString(),
+      assetData.decimals,
+    );
+
+    return [
+      assetData.assetId.toString(),
+      // params.to
+      toAddress,
+      // params.amount
+      realAmount.toString(),
+    ];
+  }
+
+  @override
+  TxParamsType get type => TxParamsType.assets;
 }

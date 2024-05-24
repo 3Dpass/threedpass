@@ -33,12 +33,6 @@ class FromAddressTextField extends StatelessWidget {
     // final theme = Theme.of(context);
     // Colors from https://github.com/flutter/flutter/blob/936763f58963ef3dd103986fc232310c43360344/packages/flutter/lib/src/material/input_decorator.dart#L4561
 
-    // switch (Theme.of(context).brightness) {
-    //     case Brightness.dark:
-    //       return const Color(0x0DFFFFFF);
-    //     case Brightness.light:
-    //       return const Color(0x05000000) ;
-    //   }
     final textStyle = Theme.of(context).customTextStyles;
     // final colors = Theme.of(context).customColors;
 
@@ -68,6 +62,7 @@ class FromAddressTextField extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           'from_address_label'.tr(),

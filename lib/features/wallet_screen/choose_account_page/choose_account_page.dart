@@ -35,23 +35,18 @@ class SelectAccountPage extends StatelessWidget {
       ),
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           FloatingActionButton.extended(
             icon: const Icon(Icons.add),
-            label: SizedBox(
-              width: 70,
-              child: Text('new_random_account_floating_button_label'.tr()),
-            ),
+            label: Text('new_random_account_floating_button_label'.tr()),
             heroTag: 'push_to_generate_account',
             onPressed: () => pushToGenerateAccount(context),
           ),
           const SizedBoxH16(),
           FloatingActionButton.extended(
             icon: const Icon(Icons.import_export),
-            label: SizedBox(
-              width: 70,
-              child: Text('import_existing_account_floating_button_label'.tr()),
-            ),
+            label: Text('import_existing_account_floating_button_label'.tr()),
             heroTag: 'push_to_import_account',
             onPressed: () => pushToImportAccount(context),
           ),
