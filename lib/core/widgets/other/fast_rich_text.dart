@@ -7,12 +7,14 @@ class FastRichText extends StatelessWidget {
     required this.mainText,
     required this.secondaryText,
     this.needSpace = false,
+    this.mainTextStyle,
     super.key,
   });
 
   final String secondaryText;
   final String mainText;
   final bool needSpace;
+  final TextStyle? mainTextStyle;
 
   @override
   Widget build(final BuildContext context) {
@@ -25,7 +27,7 @@ class FastRichText extends StatelessWidget {
         children: [
           TextSpan(
             text: mainText,
-            style: medium,
+            style: mainTextStyle ?? medium,
           ),
         ],
       ),

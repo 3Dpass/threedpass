@@ -483,5 +483,7 @@
     "obj_details_prop_max_supply": "Property max supply:",
     "new_random_account_floating_button_label": "Random",
     "import_existing_account_floating_button_label": "Import",
-    "transfers_history_title": "Transfers History"
+    "transfers_history_title": "Transfers History",
+    "snapshot_chain_status": "Chain status:",
+    "chain_status_recognized": "Recognized"
 }

@@ -52,7 +52,6 @@ mixin ExtrinsicShowLoadingMixin {
     final BuildContext context,
   );
 
-  // TODO Move this to mixin
   Future<void> submitExtrinsic(final BuildContext context) async {
     if (formKey.currentState!.validate()) {
       await showLoader(

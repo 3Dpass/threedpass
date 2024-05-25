@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/utils/log.dart';
@@ -37,17 +36,6 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     add(_LoadHashesList(objects: objects));
   }
 
-  Map<Snapshot, GlobalKey> buildMap(
-    final List<HashObject> objects,
-  ) {
-    final Map<Snapshot, GlobalKey> res = {};
-    objects.forEach(
-      (final obj) =>
-          obj.snapshots.forEach((final snap) => res[snap] = GlobalKey()),
-    );
-    return res;
-  }
-
   Future<void> _loadList(
     final _LoadHashesList event,
     final Emitter<HashesListState> emit,
@@ -55,7 +43,6 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     emit(
       HashesListLoaded(
         objects: event.objects,
-        globalKeyMap: buildMap(event.objects),
       ),
     );
   }
@@ -107,7 +94,6 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       emit(
         HashesListLoaded(
           objects: list,
-          globalKeyMap: buildMap(list),
         ),
       );
     }
@@ -127,7 +113,6 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       emit(
         HashesListLoaded(
           objects: list,
-          globalKeyMap: buildMap(list),
         ),
       );
     }
@@ -143,11 +128,9 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       final list = (state as HashesListLoaded).objects;
       list.add(event.object);
 
-      final gmap = buildMap(list);
       emit(
         HashesListLoaded(
           objects: list,
-          globalKeyMap: gmap,
           requiresScroll: true,
         ),
       );
@@ -178,7 +161,6 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       emit(
         HashesListLoaded(
           objects: list,
-          globalKeyMap: buildMap(list),
           requiresScroll: true,
         ),
       );
@@ -219,7 +201,6 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       emit(
         HashesListLoaded(
           objects: list,
-          globalKeyMap: buildMap(list),
         ),
       );
     }
@@ -239,10 +220,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       if (oldSnapIndex != -1) {
         obj.snapshots[oldSnapIndex] = event.snap.copyWith(isNew: false);
         emit(
-          HashesListLoaded(
-            objects: list,
-            globalKeyMap: buildMap(list),
-          ),
+          HashesListLoaded(objects: list),
         );
       } else {
         getIt<Logger>().e(
@@ -261,10 +239,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       final list = stateLL.objects;
       list.replace(event.oldObj, event.newObj);
       emit(
-        HashesListLoaded(
-          objects: list,
-          globalKeyMap: stateLL.globalKeyMap,
-        ),
+        HashesListLoaded(objects: list),
       );
     } else {
       logE('Replace object is called, but state is not HashesListLoaded');
