@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
@@ -14,6 +15,11 @@ import 'package:threedpass/router/route_paths.dart';
 class SelectAccountPage extends StatelessWidget {
   const SelectAccountPage({super.key});
 
+  void onSelectAccount(final BuildContext context, final KeyPairData p0) {
+    BlocProvider.of<AppServiceLoaderCubit>(context).changeAccount(p0);
+    context.router.pop();
+  }
+
   @override
   Widget build(final BuildContext context) {
     return D3pScaffold(
@@ -24,9 +30,7 @@ class SelectAccountPage extends StatelessWidget {
             return SelectableAccountsList(
               accounts: state.keyring.allAccounts,
               selectedAccount: state.keyring.current,
-              selectAccount: (final p0) =>
-                  BlocProvider.of<AppServiceLoaderCubit>(context)
-                      .changeAccount(p0),
+              selectAccount: (final p0) => onSelectAccount(context, p0),
             );
           } else {
             return Center(child: PlatformCircularProgressIndicator());

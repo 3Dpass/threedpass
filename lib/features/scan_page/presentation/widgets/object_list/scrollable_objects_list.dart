@@ -67,11 +67,14 @@ class _ScrollableObjectsListState extends State<ScrollableObjectsList> {
                       element.snapshots.any((final element) => element.isNew));
                   final index = state.objects.indexOf(obj);
 
+                  // TODO Scroll with padding to snapshot. Fix for miltiple local file hashes
+                  // Make file hashes scroll instead of objects. Set object headers as separators and scroll to the end of the file item
                   observerController.animateTo(
                     index: index,
-                    duration: const Duration(
-                        milliseconds:
-                            1000), // TODO Scroll with padding to snapshot. Make snap height const
+                    // padding: EdgeInsets.only(bottom: 300),
+                    // alignment: 200,
+                    alignment: 1,
+                    duration: const Duration(milliseconds: 1000),
                     curve: Curves.linear,
                   );
                   debugPrint('SCROLL SCROLL');
