@@ -24,8 +24,11 @@ import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_unknown.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/asset_transfer_button.dart';
+import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_balance_section.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_data_section.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_metadata_section.dart';
+import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_mint_section.dart';
+import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_transfer_floating_button.dart';
 import 'package:threedpass/features/wallet_screen/widgets/asset_balance_text.dart';
 import 'package:threedpass/features/wallet_screen/widgets/block_datetime_w.dart';
 import 'package:threedpass/features/wallet_screen/widgets/extrinsic_status_icon.dart';
@@ -54,7 +57,7 @@ class NonNativeTokenScreen extends StatelessWidget {
       // return 'non_native_token_token'
       //     .tr(args: [poscanAssetCombined.poscanAssetData.id.toString()]);
     } else {
-      return poscanAssetCombined.poscanAssetMetadata!.symbol;
+      return poscanAssetCombined.poscanAssetMetadata!.name;
       // return 'non_native_token_token'
       //     .tr(args: []);
     }
@@ -69,43 +72,65 @@ class NonNativeTokenScreen extends StatelessWidget {
     final metadata = poscanAssetCombined.poscanAssetMetadata;
     // final symbol = metadata?.symbol ?? '';
 
+    final children = [
+      PoscanAssetDataSection(
+        poscanAssetData: poscanAssetCombined.poscanAssetData,
+      ),
+      PoscanAssetMetadataSection(
+        poscanAssetData: poscanAssetCombined.poscanAssetData,
+        metadata: metadata,
+      ),
+    ];
+
+    if (metadata != null) {
+      children.add(
+        PoscanAssetMintSection(
+          poscanAssetData: poscanAssetCombined.poscanAssetData,
+        ),
+      );
+    }
+
+    if (metadata != null) {
+      children.insert(
+        0,
+        PoscanAssetBalanceSection(
+          poscanAssetBalance: poscanAssetCombined.poscanAssetBalance,
+          metadata: metadata,
+        ),
+      );
+    }
+
     return D3pScaffold(
       appbarTitle: appbarTitle(),
       translateAppbar: false,
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        children: [
-          const SizedBoxH16(),
-
-          PoscanAssetDataSection(
-            poscanAssetData: poscanAssetCombined.poscanAssetData,
-          ),
-
-          const Divider(),
-
-          PoscanAssetMetadataSection(
-            poscanAssetData: poscanAssetCombined.poscanAssetData,
-            metadata: metadata,
-          ),
-
-          // Mint section
-          // Transfer section
-          // History section
-          // const SizedBoxH24(),
-          // const Padding(
-          //   padding: EdgeInsets.symmetric(horizontal: 16),
-          //   child: AssetTransferButton(),
-          // ),
-          // const SizedBoxH36(),
-          // const Padding(
-          //   padding: EdgeInsets.symmetric(horizontal: 16),
-          //   child: D3pTitleLargeText('non_native_history_title_label'),
-          // ),
-          // const SizedBoxH8(),
-          // Flexible(
-          //   child: _AssetsHistoryPagetList(),
-          // ),
-        ],
+      floatingActionButton: PoscanAssetTransferFloatingButton(
+        poscanAssetMetadata: poscanAssetCombined.poscanAssetMetadata,
+        poscanAssetBalance: poscanAssetCombined.poscanAssetBalance,
+      ),
+      body: ListView.separated(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        itemCount: children.length,
+        itemBuilder: (final context, final index) => children[index],
+        separatorBuilder: (final context, final index) => const Divider(),
+        // children: [
+        //   // Mint section
+        //   // Transfer section
+        //   // History section
+        //   // const SizedBoxH24(),
+        //   // const Padding(
+        //   //   padding: EdgeInsets.symmetric(horizontal: 16),
+        //   //   child: AssetTransferButton(),
+        //   // ),
+        //   // const SizedBoxH36(),
+        //   // const Padding(
+        //   //   padding: EdgeInsets.symmetric(horizontal: 16),
+        //   //   child: D3pTitleLargeText('non_native_history_title_label'),
+        //   // ),
+        //   // const SizedBoxH8(),
+        //   // Flexible(
+        //   //   child: _AssetsHistoryPagetList(),
+        //   // ),
+        // ],
       ),
     );
   }

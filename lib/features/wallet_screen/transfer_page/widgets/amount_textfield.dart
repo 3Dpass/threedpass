@@ -63,7 +63,7 @@ class _AmountTextField extends StatelessWidget {
       case MetaInfoType.coin:
         return _DoubleValidator(balance).amountValidator;
       case MetaInfoType.asset:
-        return _IntValidator(balance).amountValidator;
+        return _DoubleValidator(balance).amountValidator;
     }
   }
 
@@ -115,28 +115,28 @@ class _DoubleValidator extends _Validator {
   }
 }
 
-class _IntValidator extends _Validator {
-  const _IntValidator(this.balance);
+// class _IntValidator extends _Validator {
+//   const _IntValidator(this.balance);
 
-  final double balance;
+//   final double balance;
 
-  @override
-  String? amountValidator(final String? v) {
-    if (v != null) {
-      try {
-        final inputD = int.parse(v);
+//   @override
+//   String? amountValidator(final String? v) {
+//     if (v != null) {
+//       try {
+//         final inputD = int.parse(v);
 
-        if (inputD <= balance && inputD >= 0) {
-          // if (true) {
-          return null;
-        } else {
-          return 'error_wrong_amount_int'.tr();
-        }
-      } on Exception catch (_) {
-        return 'error_wrong_amount_int'.tr();
-      }
-    } else {
-      return 'error_wrong_amount_int'.tr();
-    }
-  }
-}
+//         if (inputD <= balance && inputD >= 0) {
+//           // if (true) {
+//           return null;
+//         } else {
+//           return 'error_wrong_amount_int'.tr();
+//         }
+//       } on Exception catch (_) {
+//         return 'error_wrong_amount_int'.tr();
+//       }
+//     } else {
+//       return 'error_wrong_amount_int'.tr();
+//     }
+//   }
+// }

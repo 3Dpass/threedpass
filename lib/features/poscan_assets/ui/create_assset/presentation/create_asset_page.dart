@@ -4,11 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/other/some_form/some_form.dart';
 import 'package:threedpass/features/poscan_assets/ui/create_assset/bloc/create_poscan_asset_cubit.dart';
 import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_choose_account.dart';
-import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_choose_object.dart';
-import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_choose_prop_value.dart';
 import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_input_id.dart';
-import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_max_supply.dart';
 import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_min_balance.dart';
+import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_object_option.dart';
 import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_submit.dart';
 
 @RoutePage()
@@ -25,9 +23,7 @@ class CreateAssetPage extends StatelessWidget {
         CreateAssetInputId(),
         CreateAssetChooseAccount(),
         CreateAssetMinBalance(),
-        CreateAssetChooseObject(),
-        CreateAssetChoosePropValue(),
-        CreateAssetMaxSupply(),
+        CreateAssetObjectOption(),
       ],
     );
   }

@@ -335,116 +335,6 @@ extension $NotificationPutObjectCopyWith on NotificationPutObject {
       _$NotificationPutObjectCWProxyImpl(this);
 }
 
-abstract class _$NotificationCreateAssetCWProxy {
-  NotificationCreateAsset admin(KeyPairData admin);
-
-  NotificationCreateAsset newAssetId(String newAssetId);
-
-  NotificationCreateAsset objectId(String objectId);
-
-  NotificationCreateAsset propetyId(String propetyId);
-
-  NotificationCreateAsset status(ExtrinsicStatus status);
-
-  NotificationCreateAsset message(String? message);
-
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationCreateAsset(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
-  ///
-  /// Usage
-  /// ```dart
-  /// NotificationCreateAsset(...).copyWith(id: 12, name: "My name")
-  /// ````
-  NotificationCreateAsset call({
-    KeyPairData? admin,
-    String? newAssetId,
-    String? objectId,
-    String? propetyId,
-    ExtrinsicStatus? status,
-    String? message,
-  });
-}
-
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNotificationCreateAsset.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfNotificationCreateAsset.copyWith.fieldName(...)`
-class _$NotificationCreateAssetCWProxyImpl
-    implements _$NotificationCreateAssetCWProxy {
-  const _$NotificationCreateAssetCWProxyImpl(this._value);
-
-  final NotificationCreateAsset _value;
-
-  @override
-  NotificationCreateAsset admin(KeyPairData admin) => this(admin: admin);
-
-  @override
-  NotificationCreateAsset newAssetId(String newAssetId) =>
-      this(newAssetId: newAssetId);
-
-  @override
-  NotificationCreateAsset objectId(String objectId) => this(objectId: objectId);
-
-  @override
-  NotificationCreateAsset propetyId(String propetyId) =>
-      this(propetyId: propetyId);
-
-  @override
-  NotificationCreateAsset status(ExtrinsicStatus status) =>
-      this(status: status);
-
-  @override
-  NotificationCreateAsset message(String? message) => this(message: message);
-
-  @override
-
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationCreateAsset(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
-  ///
-  /// Usage
-  /// ```dart
-  /// NotificationCreateAsset(...).copyWith(id: 12, name: "My name")
-  /// ````
-  NotificationCreateAsset call({
-    Object? admin = const $CopyWithPlaceholder(),
-    Object? newAssetId = const $CopyWithPlaceholder(),
-    Object? objectId = const $CopyWithPlaceholder(),
-    Object? propetyId = const $CopyWithPlaceholder(),
-    Object? status = const $CopyWithPlaceholder(),
-    Object? message = const $CopyWithPlaceholder(),
-  }) {
-    return NotificationCreateAsset(
-      admin: admin == const $CopyWithPlaceholder() || admin == null
-          ? _value.admin
-          // ignore: cast_nullable_to_non_nullable
-          : admin as KeyPairData,
-      newAssetId:
-          newAssetId == const $CopyWithPlaceholder() || newAssetId == null
-              ? _value.newAssetId
-              // ignore: cast_nullable_to_non_nullable
-              : newAssetId as String,
-      objectId: objectId == const $CopyWithPlaceholder() || objectId == null
-          ? _value.objectId
-          // ignore: cast_nullable_to_non_nullable
-          : objectId as String,
-      propetyId: propetyId == const $CopyWithPlaceholder() || propetyId == null
-          ? _value.propetyId
-          // ignore: cast_nullable_to_non_nullable
-          : propetyId as String,
-      status: status == const $CopyWithPlaceholder() || status == null
-          ? _value.status
-          // ignore: cast_nullable_to_non_nullable
-          : status as ExtrinsicStatus,
-      message: message == const $CopyWithPlaceholder()
-          ? _value.message
-          // ignore: cast_nullable_to_non_nullable
-          : message as String?,
-    );
-  }
-}
-
-extension $NotificationCreateAssetCopyWith on NotificationCreateAsset {
-  /// Returns a callable class that can be used as follows: `instanceOfNotificationCreateAsset.copyWith(...)` or like so:`instanceOfNotificationCreateAsset.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$NotificationCreateAssetCWProxy get copyWith =>
-      _$NotificationCreateAssetCWProxyImpl(this);
-}
-
 abstract class _$NotificationSetMetadataCWProxy {
   NotificationSetMetadata admin(KeyPairData admin);
 
@@ -528,6 +418,90 @@ extension $NotificationSetMetadataCopyWith on NotificationSetMetadata {
   // ignore: library_private_types_in_public_api
   _$NotificationSetMetadataCWProxy get copyWith =>
       _$NotificationSetMetadataCWProxyImpl(this);
+}
+
+abstract class _$NotificationMintAssetCWProxy {
+  NotificationMintAsset admin(KeyPairData admin);
+
+  NotificationMintAsset assetId(String assetId);
+
+  NotificationMintAsset status(ExtrinsicStatus status);
+
+  NotificationMintAsset message(String? message);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationMintAsset(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationMintAsset(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationMintAsset call({
+    KeyPairData? admin,
+    String? assetId,
+    ExtrinsicStatus? status,
+    String? message,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNotificationMintAsset.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfNotificationMintAsset.copyWith.fieldName(...)`
+class _$NotificationMintAssetCWProxyImpl
+    implements _$NotificationMintAssetCWProxy {
+  const _$NotificationMintAssetCWProxyImpl(this._value);
+
+  final NotificationMintAsset _value;
+
+  @override
+  NotificationMintAsset admin(KeyPairData admin) => this(admin: admin);
+
+  @override
+  NotificationMintAsset assetId(String assetId) => this(assetId: assetId);
+
+  @override
+  NotificationMintAsset status(ExtrinsicStatus status) => this(status: status);
+
+  @override
+  NotificationMintAsset message(String? message) => this(message: message);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationMintAsset(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationMintAsset(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationMintAsset call({
+    Object? admin = const $CopyWithPlaceholder(),
+    Object? assetId = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+  }) {
+    return NotificationMintAsset(
+      admin: admin == const $CopyWithPlaceholder() || admin == null
+          ? _value.admin
+          // ignore: cast_nullable_to_non_nullable
+          : admin as KeyPairData,
+      assetId: assetId == const $CopyWithPlaceholder() || assetId == null
+          ? _value.assetId
+          // ignore: cast_nullable_to_non_nullable
+          : assetId as String,
+      status: status == const $CopyWithPlaceholder() || status == null
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as ExtrinsicStatus,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+    );
+  }
+}
+
+extension $NotificationMintAssetCopyWith on NotificationMintAsset {
+  /// Returns a callable class that can be used as follows: `instanceOfNotificationMintAsset.copyWith(...)` or like so:`instanceOfNotificationMintAsset.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$NotificationMintAssetCWProxy get copyWith =>
+      _$NotificationMintAssetCWProxyImpl(this);
 }
 
 abstract class _$NotificationsStateCWProxy {

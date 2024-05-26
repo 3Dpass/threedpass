@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/selectable_snapshot_card.dart';
@@ -23,25 +24,15 @@ class SnapshotsList extends StatelessWidget {
       }
     }
 
-    return ListView(
+    return ListView.separated(
       physics: const NeverScrollableScrollPhysics(),
-      primary: false,
+      // primary: false,
       shrinkWrap: true,
-      // itemCount: listToShow.length,
-      // itemBuilder: (final context, final index) {
-      children: List.generate(
-        listToShow.length,
-        (index) {
-          // final areSelectable =
-          //     BlocProvider.of<SelectSnapshotsCubit>(context).state.areSelectable;
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: SelectableSnapshotCard(
-              snapshot: listToShow[index],
-              hashObject: currentObject,
-            ),
-          );
-        },
+      itemCount: listToShow.length,
+      separatorBuilder: (final context, final index) => const SizedBoxH4(),
+      itemBuilder: (final context, final index) => SelectableSnapshotCard(
+        snapshot: listToShow[index],
+        hashObject: currentObject,
       ),
     );
   }

@@ -58,26 +58,17 @@ class _CreateAssetBody extends StatelessWidget {
             ),
           ),
         ),
-        FastNotificationTile(
-          iconData: Icons.data_object,
-          child: Flexible(
-            child: FastRichText(
-              mainText: notificationDTO.objectId,
-              secondaryText: 'create_asset_notification_object_id'.tr(),
-              needSpace: true,
+        if (notificationDTO.objDetails != null)
+          FastNotificationTile(
+            iconData: Icons.data_object,
+            child: Flexible(
+              child: FastRichText(
+                mainText: notificationDTO.objDetails!.objIdx,
+                secondaryText: 'create_asset_notification_object_id'.tr(),
+                needSpace: true,
+              ),
             ),
           ),
-        ),
-        FastNotificationTile(
-          iconData: Icons.interests_outlined,
-          child: Flexible(
-            child: FastRichText(
-              mainText: notificationDTO.propetyId,
-              secondaryText: 'create_asset_notification_property_id'.tr(),
-              needSpace: true,
-            ),
-          ),
-        ),
       ],
     );
   }

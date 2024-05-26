@@ -11,6 +11,7 @@ import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
+import 'package:threedpass/features/scan_page/presentation/widgets/object_list/chain_status.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/settings_text.dart';
 import 'package:threedpass/router/router.gr.dart';
 
@@ -36,10 +37,10 @@ class SnapshotCard extends StatelessWidget {
   Widget build(final BuildContext context) {
     final theme = Theme.of(context).customTextStyles;
     final hashesListBloc = BlocProvider.of<HashesListBloc>(context);
-    final hashesListState = hashesListBloc.state as HashesListLoaded;
+    // final hashesListState = hashesListBloc.state as HashesListLoaded;
 
     return ClickableCard(
-      key: setGlobalKey ? hashesListState.globalKeyMap[snapshot] : null,
+      // key: setGlobalKey ? hashesListState.globalKeyMap[snapshot] : null,
       onTap: onTap ??
           () async {
             await context.router.push(
@@ -61,16 +62,17 @@ class SnapshotCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Wrap(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Flexible(
-                child: Text(
-                  snapshot.name,
-                  style: theme.d3pBodyLarge,
-                ),
+              // Flexible(
+              //   child:
+              Text(
+                snapshot.name,
+                style: theme.d3pBodyLarge,
               ),
+              // ),
               if (snapshot.isNew)
                 Icon(
                   Icons.fiber_new_outlined,
@@ -83,6 +85,11 @@ class SnapshotCard extends StatelessWidget {
             snapshot.settingsConfig.toShort(context),
           ),
           const SizedBoxH8(),
+          ChainStatus(
+            snap: snapshot,
+          ),
+          // Text('Chain status: Uploaded'),
+          // const SizedBoxH8(),
           SizedBox(
             height: 24,
             child: Row(

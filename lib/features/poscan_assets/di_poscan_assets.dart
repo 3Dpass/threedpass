@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:get_it/get_it.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/create_asset.dart';
@@ -15,9 +16,23 @@ import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifi
 class DIPoscanAssets extends DIModule {
   @override
   Future<void> setup(final GetIt getIt) async {
+    getIt.registerLazySingleton<CallSignExtrinsicUtil>(
+      () => CallSignExtrinsicUtil(
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+      ),
+    );
+
     getIt.registerLazySingleton<PoscanAssetsRepository>(
       () => PoscanAssetsRepositoryImpl(
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        callSignExtrinsicUtil: getIt<CallSignExtrinsicUtil>(),
+      ),
+    );
+
+    getIt.registerLazySingleton<PoscanAssetsCubit>(
+      () => PoscanAssetsCubit(
+        currentAccount: getIt<AppServiceLoaderCubit>().state.keyring.current,
+        repository: getIt<PoscanAssetsRepository>(),
       ),
     );
 
@@ -27,6 +42,7 @@ class DIPoscanAssets extends DIModule {
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         notificationsBloc: getIt<NotificationsBloc>(),
         repository: getIt<PoscanAssetsRepository>(),
+        poscanAssetCubit: getIt<PoscanAssetsCubit>(),
       ),
     );
     getIt.registerFactoryParam<CreatePoscanAssetCubit, StackRouter, void>(
@@ -43,6 +59,7 @@ class DIPoscanAssets extends DIModule {
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         notificationsBloc: getIt<NotificationsBloc>(),
         repository: getIt<PoscanAssetsRepository>(),
+        poscanAssetCubit: getIt<PoscanAssetsCubit>(),
       ),
     );
     getIt.registerFactoryParam<SetMetadataAssetCubit, int, StackRouter>(
@@ -60,20 +77,16 @@ class DIPoscanAssets extends DIModule {
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         notificationsBloc: getIt<NotificationsBloc>(),
         repository: getIt<PoscanAssetsRepository>(),
-      ),
-    );
-    getIt.registerFactoryParam<MintAssetCubit, int, void>(
-      (final initialAssetId, final _) => MintAssetCubit(
-        initialAsset: initialAssetId,
-        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
-        mintAsset: getIt<MintAsset>(),
+        poscanAssetCubit: getIt<PoscanAssetsCubit>(),
       ),
     );
 
-    getIt.registerLazySingleton<PoscanAssetsCubit>(
-      () => PoscanAssetsCubit(
-        currentAccount: getIt<AppServiceLoaderCubit>().state.keyring.current,
-        repository: getIt<PoscanAssetsRepository>(),
+    getIt.registerFactoryParam<MintAssetCubit, int, StackRouter>(
+      (final initialAssetId, final router) => MintAssetCubit(
+        initialAsset: initialAssetId,
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        mintAsset: getIt<MintAsset>(),
+        outerRouter: router,
       ),
     );
   }

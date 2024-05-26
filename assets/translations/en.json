@@ -273,7 +273,6 @@
     },
     "transactions_to": "To",
     "transactions_from": "From",
-    "transactions_title": "Transactions History",
     "show_transfers": "Show transfers",
     "no_transfers": "No transfers found",
     "first_page_error_title": "Something went wrong",
@@ -352,7 +351,6 @@
     },
     "poscan_putobject_choose_category": "Category",
     "account_never_null": "Please choose an account",
-    "notifications_title": "Transactions",
     "extrinsic_status": "Extrinsic:",
 
     "contacts_button_label": "Contacts",
@@ -468,6 +466,24 @@
     "set_metadata_label_decimals": "Decimals",
     "error_u8": "Expected 0 < value < 255",
     "set_metadata_notification_asset_id": "Asset id:",
-    "show_all_assets_label": "Show all assets"
+    "show_all_assets_label": "Show all assets",
 
+    "@2.15.0": {},
+    "select_account_appbar_title": "Select account",
+    "notifications_appbar_title": "Extrinsics",
+    "create_asset_options_label": "Set object details",
+    "mint_asset_button_label": "Mint",
+    "poscan_asset_page_decimals_secondary": "Decimals:",
+    "mint_asset_page_title": "Mint asset",
+    "mint_amount_label": "Amount",
+    "asset_id_dropdown_label": "Asset ID",
+    "object_details_secondary": "Object details:",
+    "obj_details_id": "Object id:",
+    "obj_details_prop_id": "Property id:",
+    "obj_details_prop_max_supply": "Property max supply:",
+    "new_random_account_floating_button_label": "Random",
+    "import_existing_account_floating_button_label": "Import",
+    "transfers_history_title": "Transfers History",
+    "snapshot_chain_status": "Chain status:",
+    "chain_status_recognized": "Recognized"
 }

@@ -14,6 +14,14 @@ class ObjDetailsPoscanAsset {
     required this.propIdx,
   });
 
+  ObjDetailsPoscanAsset.fromSuperTypes({
+    required final int objIdx,
+    required final int propIdx,
+    required final BigInt maxSupply,
+  })  : objIdx = objIdx.toString(),
+        propIdx = propIdx.toString(),
+        maxSupply = maxSupply.toString();
+
   factory ObjDetailsPoscanAsset.fromJson(final Map<String, dynamic> json) =>
       _$ObjDetailsPoscanAssetFromJson(json);
 

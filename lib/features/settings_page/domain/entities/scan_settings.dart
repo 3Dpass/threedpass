@@ -23,6 +23,11 @@ class ScanSettings extends Equatable {
 
   static const String noneTransBytesKey = 'None';
 
+  // Settings for object scan to upload
+  static const String scanAlgorithm = AlgorithmMaster.defaultAlgo;
+  static const int scanNsections = 12;
+  static const int scanGridSize = 8;
+
   const ScanSettings({
     required this.gridSize,
     required this.nSections,

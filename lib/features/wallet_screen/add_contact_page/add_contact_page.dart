@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/show_text_snackbar.dart';
-import 'package:threedpass/core/widgets/buttons/card_elevated_button.dart';
+import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
@@ -51,7 +51,7 @@ class AddContactPage extends StatelessWidget {
               ),
             ),
             const SizedBoxH16(),
-            D3pCardElevatedButton(
+            D3pElevatedButton(
               text: 'add_contact'.tr(),
               onPressed: () => onTapAddContact(context),
               iconData: Icons.add,

@@ -14,8 +14,13 @@ class CreateAssetChooseObject extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final uploadedObjectsCubit = BlocProvider.of<PoscanObjectsCubit>(context);
+    final currentAcc =
+        BlocProvider.of<CreatePoscanAssetCubit>(context).state.keyPairData;
+
     final objects = uploadedObjectsCubit.state.objects.where(
-      (final obj) => obj.status == UploadedObjectStatus.approved,
+      (final obj) =>
+          obj.status == UploadedObjectStatus.approved &&
+          obj.owner == currentAcc.address,
     );
     final items = objects
         .map(

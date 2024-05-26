@@ -1,12 +1,17 @@
+import 'dart:convert';
+
 import 'package:logger/logger.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/utils/encode_args.dart';
+import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
+import 'package:threedpass/core/polkawallet/utils/none_mock.dart';
+import 'package:threedpass/core/utils/big_int_json_helper.dart';
 import 'package:threedpass/features/poscan_assets/data/get_tokens_info_utility.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_balance.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/create_asset.dart';
+import 'package:threedpass/features/poscan_assets/domain/use_cases/mint_asset.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/set_metadata.dart';
 import 'package:threedpass/setup.dart';
 
@@ -23,7 +28,12 @@ abstract class PoscanAssetsRepository {
     required final void Function() updateStatus,
     required final void Function(String) msgIdCallback,
   });
-  Future<Either<Failure, void>> mint();
+  Future<Either<Failure, void>> mint({
+    required final MintAssetParams params,
+    required final void Function() updateStatus,
+    required final void Function(String) msgIdCallback,
+  });
+
   Future<Either<Failure, void>> transfer();
   Future<Either<Failure, List<PoscanAssetData>>> allTokens();
   Future<Either<Failure, Map<int, PoscanAssetMetadata>>> tokensMetadata();
@@ -34,54 +44,13 @@ abstract class PoscanAssetsRepository {
 }
 
 class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
-  const PoscanAssetsRepositoryImpl({required this.appServiceLoaderCubit});
-
-  // TODO Move to another deeper repo layer
-  Future<Either<Failure, void>> abstractExtrinsicCall({
-    required final String argsEncoded,
-    required final String pubKey,
-    required final String password,
-    required final List<String> calls,
-    required final void Function() updateStatus,
-    required final void Function(String) msgIdCallback,
-  }) async {
-    try {
-      bool flag = true;
-
-      final dynamic res =
-          await appServiceLoaderCubit.state.plugin.sdk.api.universal.callSign(
-        pubKey: pubKey,
-        password: password,
-        calls: calls,
-        args: argsEncoded,
-        onStatusChange: (final p0) {
-          if (flag) {
-            // Update status once to detec if extrinsic is accepted
-            updateStatus();
-            flag = false;
-          }
-        },
-        msgIdCallback: msgIdCallback,
-      );
-
-      getIt<Logger>().d(res);
-      if (res is Map) {
-        final String key = res.keys.first as String;
-        if (key == 'error') {
-          return Either.left(NoDataFailure(res[key].toString()));
-        } else {
-          return const Either.right(null);
-        }
-      } else {
-        return const Either.left(NoDataFailure('res is not a Map'));
-      }
-    } on Object catch (e) {
-      getIt<Logger>().e(e);
-      return Either.left(NoDataFailure(e.toString()));
-    }
-  }
+  const PoscanAssetsRepositoryImpl({
+    required this.appServiceLoaderCubit,
+    required this.callSignExtrinsicUtil,
+  });
 
   final AppServiceLoaderCubit appServiceLoaderCubit;
+  final CallSignExtrinsicUtil callSignExtrinsicUtil;
 
   @override
   Future<Either<Failure, void>> create({
@@ -94,16 +63,27 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
       params.admin.pubKey!,
       params.minBalance,
       // keys https://github.com/3Dpass/3DP/blob/3134dad0ed1502462620ba84a4dee4e1b109996b/pallets/poscan-assets/src/types.rs#L41
-      {
-        'obj_idx': params.objIdx,
-        'prop_idx': params.propIdx,
-        'max_supply': params.maxSupply,
-      },
     ];
-    final argsEncoded = encodeArgs(args);
+
+    if (params.objDetails != null) {
+      final maxSupply = BigInt.parse(params.objDetails!.maxSupply);
+      final objDataRaw = {
+        'obj_idx': int.parse(params.objDetails!.objIdx),
+        'prop_idx': int.parse(params.objDetails!.propIdx),
+        'max_supply': BigIntJsonHelper.encode(maxSupply),
+      };
+      args.add(objDataRaw);
+    } else {
+      args.add(NoneMock());
+    }
+
+    String argsEncoded = '';
+    argsEncoded = const JsonEncoder().convert(args);
+    argsEncoded = BigIntJsonHelper.replace(argsEncoded);
+
     print(argsEncoded);
 
-    return abstractExtrinsicCall(
+    return callSignExtrinsicUtil.abstractExtrinsicCall(
       argsEncoded: argsEncoded,
       calls: ['tx', 'poscanAssets', 'create'],
       pubKey: params.admin.pubKey!,
@@ -125,10 +105,10 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
       params.symbol,
       params.decimals,
     ];
-    final argsEncoded = encodeArgs(args);
+    final argsEncoded = const JsonEncoder().convert(args);
     print(argsEncoded);
 
-    return abstractExtrinsicCall(
+    return callSignExtrinsicUtil.abstractExtrinsicCall(
       argsEncoded: argsEncoded,
       calls: ['tx', 'poscanAssets', 'setMetadata'],
       pubKey: params.admin.pubKey!,
@@ -139,8 +119,27 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
   }
 
   @override
-  Future<Either<Failure, void>> mint() async {
-    return const Either.right(null);
+  Future<Either<Failure, void>> mint({
+    required final MintAssetParams params,
+    required final void Function() updateStatus,
+    required final void Function(String) msgIdCallback,
+  }) async {
+    final args = [
+      params.assetId,
+      BigIntJsonHelper.encode(params.amount),
+    ];
+    final argsPreEncoded = const JsonEncoder().convert(args);
+    final argsEncoded = BigIntJsonHelper.replace(argsPreEncoded);
+    print(argsEncoded);
+
+    return callSignExtrinsicUtil.abstractExtrinsicCall(
+      argsEncoded: argsEncoded,
+      calls: ['tx', 'poscanAssets', 'mint'],
+      pubKey: params.account.pubKey!,
+      password: params.password,
+      updateStatus: updateStatus,
+      msgIdCallback: msgIdCallback,
+    );
   }
 
   @override

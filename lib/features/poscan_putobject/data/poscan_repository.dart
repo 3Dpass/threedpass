@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:logger/logger.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/utils/big_int_json_helper.dart';
+import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
 import 'package:threedpass/features/poscan_putobject/domain/usecases/put_object_usecase.dart';
 import 'package:threedpass/setup.dart';
 
@@ -13,6 +15,26 @@ class PoScanRepository {
   });
 
   final AppServiceLoaderCubit appServiceLoaderCubit;
+
+  String encodePropValues(final List<PropValue>? propValues) {
+    if (propValues == null) return 'null';
+    if (propValues.isEmpty) return 'null';
+
+    final crutchEncodedStruct = propValues
+        .map(
+          (final e) => {
+            'propIdx': e.propIdx,
+            'maxValue': BigIntJsonHelper.encode(e.maxValue),
+          },
+        )
+        .toList();
+
+    final argsPreEncoded = const JsonEncoder().convert(crutchEncodedStruct);
+    final argsEncoded = BigIntJsonHelper.replace(argsPreEncoded);
+
+    print(argsEncoded);
+    return argsEncoded;
+  }
 
   Future<Either<Failure, String>> putObject({
     required final PutObjectParams params,
@@ -28,7 +50,12 @@ class PoScanRepository {
 
       bool flag = true;
 
-       final argPropValue = jsonEncode( params.propValues);
+      // final basicEncoding = const JsonEncoder().convert(params.propValues);
+
+      final argPropValue = encodePropValues(params.propValues);
+
+      print(params.categoryFabric.build());
+      print(argPropValue);
 
       final dynamic res = await poscanApi.putObject(
         pubKey: params.account.pubKey!,
@@ -37,7 +64,7 @@ class PoScanRepository {
         file: jbytes,
         nApprovals: params.nApprovals,
         hashes: params.hashes,
-        propValue:argPropValue,
+        propValue: argPropValue,
         onStatusChange: (final p0) {
           // print('$p0');
           if (flag) {

@@ -4,7 +4,6 @@ import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
-import 'package:threedpass/features/wallet_screen/assets_page/widgets/accounts_drawer.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/asset_page_appbar.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/buttons_panel.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/coins_balance.dart';
@@ -19,33 +18,37 @@ class AssetsPage extends StatelessWidget {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
       builder: (final context, final state) {
         final theme = Theme.of(context);
+        const children = [
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CoinsBalance(),
+              SizedBoxH8(),
+              AssetPageButtonsPanel(),
+            ],
+          ),
+          PoscanAssetsColumn(),
+          ObjectsListAssets(),
+        ];
         return Scaffold(
           backgroundColor: theme.customColors.scaffoldBackground,
           appBar: AssetPageAppbar(
             account: state.keyring.current,
           ),
-          drawer: AccountsDrawer(
-            appServiceCubit: BlocProvider.of<AppServiceLoaderCubit>(context),
-            accounts: state.keyring.allAccounts,
-            current: state.keyring.current,
-            context: context,
-            theme: theme,
-          ),
-          body: ListView(
+          // drawer: AccountsDrawer(
+          //   appServiceCubit: BlocProvider.of<AppServiceLoaderCubit>(context),
+          //   accounts: state.keyring.allAccounts,
+          //   current: state.keyring.current,
+          //   context: context,
+          //   theme: theme,
+          // ),
+          body: ListView.separated(
             shrinkWrap: true,
-            // crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              // SizedBoxH24(),
-              SizedBoxH8(),
-              CoinsBalance(),
-              SizedBoxH8(),
-              AssetPageButtonsPanel(),
-              SizedBoxH16(),
-              PoscanAssetsColumn(),
-              SizedBoxH16(),
-              ObjectsListAssets(),
-              SizedBoxH16(),
-            ],
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            itemCount: children.length,
+            separatorBuilder: (final context, final index) =>
+                const SizedBoxH16(),
+            itemBuilder: (final context, final index) => children[index],
           ),
         );
       },

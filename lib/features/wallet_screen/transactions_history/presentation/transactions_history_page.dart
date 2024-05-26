@@ -30,7 +30,7 @@ class TransactionsHistoryPage extends StatelessWidget {
         backgroundColor: Theme.of(context).customColors.scaffoldBackground,
         appBar: AppBar(
           backgroundColor: const D3pAppBarTheme().backgroundColor,
-          title: Text('transactions_title'.tr()),
+          title: Text('transfers_history_title'.tr()),
           bottom: TabBar(
             tabs: [
               Tab(

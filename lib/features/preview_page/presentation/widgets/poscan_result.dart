@@ -25,6 +25,11 @@ class PoscanResult extends StatelessWidget {
 
     final isSnapNoneTransBytes =
         snap.settingsConfig.transBytesMode == TransBytesMode.none;
+    final isCorrectSettings =
+        snap.settingsConfig.algorithm == ScanSettings.scanAlgorithm &&
+            snap.settingsConfig.gridSize == ScanSettings.scanGridSize &&
+            snap.settingsConfig.nSections == ScanSettings.scanNsections &&
+            isSnapNoneTransBytes;
     return Column(
       children: [
         const SizedBox(height: 2),
@@ -44,7 +49,7 @@ class PoscanResult extends StatelessWidget {
 
             final allConditions = isNodeConnected &&
                 !isObjectAlreadyApproved &&
-                isSnapNoneTransBytes;
+                isCorrectSettings;
             return Padding16(
               child: D3pElevatedButton(
                 iconData: Icons.upload,

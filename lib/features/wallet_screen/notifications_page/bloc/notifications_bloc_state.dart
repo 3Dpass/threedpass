@@ -6,7 +6,7 @@ enum NotificationType {
   putObject,
   createAsset,
   setMetadata,
-  // mintAsset,
+  mintAsset,
 }
 
 abstract class NotificationDTO {
@@ -82,22 +82,36 @@ class NotificationPutObject extends NotificationDTO {
   final NotificationType type = NotificationType.putObject;
 }
 
-@CopyWith()
+// @CopyWith()
 class NotificationCreateAsset extends NotificationDTO {
   final String newAssetId;
-  final String
-      objectId; // TODO Make nullable if creating assets without props is legit
-  final String propetyId;
+  final ObjDetailsPoscanAsset? objDetails;
   final KeyPairData admin;
 
   NotificationCreateAsset({
     required this.admin,
     required this.newAssetId,
-    required this.objectId,
-    required this.propetyId,
+    required this.objDetails,
     required super.status,
     required super.message,
   });
+
+  // There is a bug. CopyWith is not generated for [ObjDetailsPoscanAsset?]
+  NotificationCreateAsset copyWith({
+    final String? newAssetId,
+    final ObjDetailsPoscanAsset? objDetails,
+    final KeyPairData? admin,
+    final ExtrinsicStatus? status,
+    final String? message,
+  }) {
+    return NotificationCreateAsset(
+      admin: admin ?? this.admin,
+      newAssetId: newAssetId ?? this.newAssetId,
+      objDetails: objDetails ?? this.objDetails,
+      status: status ?? this.status,
+      message: message ?? this.message,
+    );
+  }
 
   @override
   final NotificationType type = NotificationType.createAsset;
@@ -119,21 +133,21 @@ class NotificationSetMetadata extends NotificationDTO {
   final NotificationType type = NotificationType.setMetadata;
 }
 
-// @CopyWith()
-// class NotificationMintAsset extends NotificationDTO {
-//   final String assetId;
-//   final KeyPairData admin;
+@CopyWith()
+class NotificationMintAsset extends NotificationDTO {
+  final String assetId;
+  final KeyPairData admin;
 
-//   NotificationMintAsset({
-//     required this.admin,
-//     required this.assetId,
-//     required super.status,
-//     required super.message,
-//   });
+  NotificationMintAsset({
+    required this.admin,
+    required this.assetId,
+    required super.status,
+    required super.message,
+  });
 
-//   @override
-//   final NotificationType type = NotificationType.mintAsset;
-// }
+  @override
+  final NotificationType type = NotificationType.mintAsset;
+}
 
 @CopyWith()
 class NotificationsState {

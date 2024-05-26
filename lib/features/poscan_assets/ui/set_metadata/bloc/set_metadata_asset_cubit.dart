@@ -5,7 +5,6 @@ import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
-import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/set_metadata.dart';
 
 // part 'set_metadata_asset_cubit.g.dart';
@@ -33,10 +32,9 @@ class SetMetadataAssetCubit extends Cubit<void> with ExtrinsicShowLoadingMixin {
   final TextEditingController decimals = TextEditingController();
   final TextEditingController password = TextEditingController();
 
-  final formKey = GlobalKey<FormState>();
-
   final AppServiceLoaderCubit appServiceLoaderCubit;
 
+  @override
   Future<Either<Failure, void>> callExtrinsic(
     final BuildContext context,
   ) async {
@@ -51,16 +49,6 @@ class SetMetadataAssetCubit extends Cubit<void> with ExtrinsicShowLoadingMixin {
     );
     final res = setMetadata.call(params);
     return res;
-  }
-
-  // TODO Move this to mixin
-  Future<void> submitExtrinsic(final BuildContext context) async {
-    if (formKey.currentState!.validate()) {
-      await showLoader(
-        context: context,
-        call: () => callExtrinsic(context),
-      );
-    }
   }
 
   @override
