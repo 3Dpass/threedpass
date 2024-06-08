@@ -35,13 +35,6 @@ class AssetsPage extends StatelessWidget {
           appBar: AssetPageAppbar(
             account: state.keyring.current,
           ),
-          // drawer: AccountsDrawer(
-          //   appServiceCubit: BlocProvider.of<AppServiceLoaderCubit>(context),
-          //   accounts: state.keyring.allAccounts,
-          //   current: state.keyring.current,
-          //   context: context,
-          //   theme: theme,
-          // ),
           body: ListView.separated(
             shrinkWrap: true,
             padding: const EdgeInsets.symmetric(vertical: 16),

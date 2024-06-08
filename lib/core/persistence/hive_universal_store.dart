@@ -55,14 +55,6 @@ class HiveUniversalStore<T> {
     }
   }
 
-  // T getValue(String key, T defaultValue) {
-  //   var value = _box.get(key);
-  //   if (value != null) {
-  //     return value;
-  //   }
-  //   return defaultValue;
-  // }
-
   T? getAt(final int index) {
     return _box.length > 0 ? _box.getAt(index) : null;
   }

@@ -76,28 +76,6 @@ class _OpenSelectAccountButton extends StatelessWidget {
   }
 }
 
-// class _OpenDrawerButton extends StatelessWidget {
-//   const _OpenDrawerButton();
-
-//   @override
-//   Widget build(final BuildContext context) {
-//     final theme = Theme.of(context);
-
-//     return SizedBox(
-//       // width: D3pAddressIcon.defaultSize,
-//       height: kToolbarHeight,
-//       child: Align(
-//         child: D3pIconButton(
-//           emptyContraints: true,
-//           iconData: Icons.switch_account_rounded,
-//           iconColor: theme.customColors.appBarButton,
-//           onPressed: () => Scaffold.of(context).openDrawer(),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 class _AccountName extends StatelessWidget {
   const _AccountName({
     required this.accountAddress,

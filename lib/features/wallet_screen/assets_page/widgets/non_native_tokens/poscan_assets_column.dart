@@ -32,7 +32,6 @@ class PoscanAssetsColumn extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBoxH8(),
           D3pSecondaryButton(
             localizedTextKey: 'create_asset_button_label',
             iconData: Icons.generating_tokens,

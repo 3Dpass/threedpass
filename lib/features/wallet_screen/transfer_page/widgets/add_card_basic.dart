@@ -35,22 +35,6 @@ class AddCardRowBasic extends StatelessWidget {
                   ),
                 ),
               ),
-              //  D3pElevatedButton(
-              //   text: null,
-              //   onPressed: onPressed,
-              //   backgroundColor: colors.cardBackground,
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: [
-              //       D3pIconButton(
-              //         iconData: Icons.add_circle_outline_rounded,
-              //         onPressed: () => onPressed(),
-              //         emptyContraints: true,
-              //         iconColor: colors.themeOpposite,
-              //       ),
-              //     ],
-              //   ),
-              // ),
             );
           } else {
             return const SizedBox();

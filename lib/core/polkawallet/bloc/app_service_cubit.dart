@@ -111,7 +111,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     if (account.name.isEmpty) {
       throw Exception('Accont name or password is empty');
     }
-    // try {
+
     final addressInfo = await _getAddressForAccount(
       state: state,
       account: account,
@@ -137,11 +137,6 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     emit(state.copyWith());
 
     return res;
-    // } catch (e) {
-    //   rethrow;
-    //   // final a = state.plugin.sdk.api.account.queryIndexInfo();
-    //   // return KeyPairData();
-    // }
   }
 
   Future<void> changeAccount(final KeyPairData keyPairData) async {
