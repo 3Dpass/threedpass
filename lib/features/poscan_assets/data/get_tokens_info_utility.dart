@@ -1,17 +1,16 @@
-import 'dart:convert';
-
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:logger/logger.dart';
 import 'package:super_core/super_core.dart';
-import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/core/polkawallet/utils/basic_polkadot_js_call.dart';
 import 'package:threedpass/setup.dart';
 
 class GetTokensInfoUtility<T> {
-  final AppService appService;
+  final InAppWebViewController webviewController;
   final T Function(dynamic) toElement;
   final String call;
 
   const GetTokensInfoUtility({
-    required this.appService,
+    required this.webviewController,
     required this.call,
     required this.toElement,
   });
@@ -26,25 +25,17 @@ var p = async () => {
 var res = await p();
 return res;
 """;
-
-    // TODO Typecast to CallAsyncJavaScriptResult from inappwebview
-    final dynamic res = await appService.plugin.sdk.api.universal.service
-        .serviceRoot.webView!.webInstance!.webViewController
-        .callAsyncJavaScript(
-      functionBody: getTokensFunc,
-    );
-
-    final dynamic json = jsonEncode(res);
-    print(json);
-
     try {
-      final List<dynamic> tokensRaw = res.value as List<dynamic>;
+      final dynamic res = await basicJSCall(getTokensFunc, webviewController);
+      print(res);
+      final List<dynamic> tokensRaw = res as List<dynamic>;
       final List<T> tokens = tokensRaw.map(toElement).toList();
       return Either.right(tokens);
     } on Object catch (e) {
       getIt<Logger>().e(e);
       return Either.left(
-          NoDataFailure('Error: $e')); // TODO Add polkadot error type
+        NoDataFailure('Error: $e'),
+      ); // TODO Add polkadot error type
     }
   }
 }

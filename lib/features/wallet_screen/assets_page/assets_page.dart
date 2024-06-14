@@ -9,6 +9,7 @@ import 'package:threedpass/features/wallet_screen/assets_page/widgets/buttons_pa
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/coins_balance.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/poscan_assets_column.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/objects_list_assets.dart';
+import 'package:threedpass/features/wallet_screen/open_pools/open_pools_button.dart';
 
 class AssetsPage extends StatelessWidget {
   const AssetsPage({final Key? key}) : super(key: key);
@@ -27,6 +28,7 @@ class AssetsPage extends StatelessWidget {
               AssetPageButtonsPanel(),
             ],
           ),
+          OpenPoolsButton(),
           PoscanAssetsColumn(),
           ObjectsListAssets(),
         ];

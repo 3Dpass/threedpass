@@ -43,11 +43,7 @@ class SelectableAccountsList extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.only(
-        left: 16,
-        right: 16,
-        top: 12,
-      ),
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 128),
       // physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: accounts.length,

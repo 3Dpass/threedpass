@@ -9,5 +9,13 @@ extension DirtyArchitectureTrick on AppServiceLoaderCubit {
 
     getIt<PoscanAssetsCubit>().switchAccount(state.keyring.current);
     unawaited(getIt<PoscanAssetsCubit>().init());
+
+    if (state.keyring.current.address != null) {
+      unawaited(
+        getIt<PoolsCubit>().update(
+          address: state.keyring.current.address!,
+        ),
+      );
+    }
   }
 }

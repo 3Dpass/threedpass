@@ -547,7 +547,7 @@ packages:
     source: hosted
     version: "0.0.4"
   flutter_inappwebview:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_inappwebview
       sha256: f73505c792cf083d5566e1a94002311be497d984b5607f25be36d685cf6361cf
@@ -1167,8 +1167,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "3f34b82e9f720537cf8a4f72c1feec147b21e921"
-      resolved-ref: "3f34b82e9f720537cf8a4f72c1feec147b21e921"
+      ref: "86196a578fc9d10468bf88d9ae209a168b9f344d"
+      resolved-ref: "86196a578fc9d10468bf88d9ae209a168b9f344d"
       url: "https://github.com/L3odr0id/polkawallet_sdk.git"
     source: git
     version: "0.5.1"

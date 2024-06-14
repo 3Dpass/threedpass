@@ -35,8 +35,8 @@ class D3pSecondaryButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(iconData),
-          const SizedBox(width: 8),
+          if (iconData != null) Icon(iconData),
+          if (iconData != null) const SizedBox(width: 8),
           Text(localizedTextKey.tr()),
         ],
       ),

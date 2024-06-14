@@ -485,5 +485,9 @@
     "import_existing_account_floating_button_label": "Import",
     "transfers_history_title": "Transfers history",
     "snapshot_chain_status": "Chain status:",
-    "chain_status_recognized": "Recognized"
+    "chain_status_recognized": "Recognized",
+
+    "@2.16.0": {},
+    "open_pools_label": "Pools",
+    "pools_page_appbar": "Pools"
 }

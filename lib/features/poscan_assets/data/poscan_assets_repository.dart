@@ -151,7 +151,8 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
   Future<Either<Failure, List<PoscanAssetData>>> allTokens() async {
     final utility = GetTokensInfoUtility<PoscanAssetData>(
       call: 'asset',
-      appService: appServiceLoaderCubit.state,
+      webviewController: appServiceLoaderCubit
+          .state.plugin.sdk.webView!.webInstance!.webViewController,
       toElement: (final dynamic e) =>
           PoscanAssetData.fromJson(e as Map<String, dynamic>),
     );
@@ -163,7 +164,8 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
       tokensMetadata() async {
     final utility = GetTokensInfoUtility<PoscanAssetMetadata>(
       call: 'metadata',
-      appService: appServiceLoaderCubit.state,
+      webviewController: appServiceLoaderCubit
+          .state.plugin.sdk.webView!.webInstance!.webViewController,
       toElement: (final dynamic e) =>
           PoscanAssetMetadata.fromJson(e as Map<String, dynamic>),
     );

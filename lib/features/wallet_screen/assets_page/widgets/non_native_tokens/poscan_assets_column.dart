@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/buttons/secondary_button.dart';
-import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_title_large_text.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/non_native_tokens.dart';
