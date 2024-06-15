@@ -8,12 +8,6 @@ class PoolsPageWrapper extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(final BuildContext context) {
     return this;
-    // return BlocProvider<CreatePoscanAssetCubit>(
-    //   create: (final _) => getIt<CreatePoscanAssetCubit>(
-    //     param1: context.router,
-    //   ),
-    //   child: this,
-    // );
   }
 
   @override

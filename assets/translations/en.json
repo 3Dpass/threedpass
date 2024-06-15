@@ -488,6 +488,7 @@
     "chain_status_recognized": "Recognized",
 
     "@2.16.0": {},
-    "open_pools_label": "Pools",
-    "pools_page_appbar": "Pools"
+    "open_pools_label": "Explore pools",
+    "pools_page_appbar": "Pools",
+    "pools_text": "Earn fees by providing liquidity."
 }

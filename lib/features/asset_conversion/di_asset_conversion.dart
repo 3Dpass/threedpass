@@ -4,6 +4,7 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/asset_conversion/data/asset_conversion_repository.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/get_all_pools.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
+import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 
 class DIAssetConversion extends DIModule {
   @override
@@ -17,6 +18,7 @@ class DIAssetConversion extends DIModule {
     getIt.registerLazySingleton<GetAllPools>(
       () => GetAllPools(
         assetConversionRepository: getIt<AssetConversionRepository>(),
+        poscanAssetsCubit: getIt<PoscanAssetsCubit>(),
       ),
     );
 

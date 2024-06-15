@@ -154,6 +154,9 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     await pseudoNewState.subscribeToBalance();
     getIt<PoscanAssetsCubit>().switchAccount(state.keyring.current);
     unawaited(getIt<PoscanAssetsCubit>().updateBalances());
+    unawaited(
+      getIt<PoolsCubit>().update(address: state.keyring.current.address!),
+    );
 
     registerTransferCubits(pseudoNewState);
 

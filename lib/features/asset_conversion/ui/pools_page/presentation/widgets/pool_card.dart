@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/buttons/secondary_button.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart';
+import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 
 class PoolCard extends StatelessWidget {
-  const PoolCard({super.key});
+  const PoolCard(this.poolFullInfo, {super.key});
+
+  final PoolFullInfo poolFullInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +23,15 @@ class PoolCard extends StatelessWidget {
             Text.rich(
               TextSpan(
                 children: [
-                  WidgetSpan(
-                    child: _IconsRow(),
-                  ),
-                  WidgetSpan(
-                    child: SizedBox(width: 8),
-                  ),
+                  // WidgetSpan(
+                  //   child: _IconsRow(),
+                  // ),
+                  // WidgetSpan(
+                  //   child: SizedBox(width: 8),
+                  // ),
                   TextSpan(
-                    text: 'P3D–TEST',
+                    text:
+                        '${poolFullInfo.asset1Meta?.symbol ?? 'P3D'} - ${poolFullInfo.asset2Meta?.symbol ?? 'P3D'}',
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ],

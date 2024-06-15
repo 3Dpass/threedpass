@@ -1,4 +1,5 @@
 import 'package:polkawallet_sdk/polkawallet_sdk.dart';
+import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/utils/basic_polkadot_js_call.dart';
 import 'package:threedpass/core/polkawallet/utils/log.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
@@ -8,7 +9,7 @@ import 'package:threedpass/features/asset_conversion/domain/entities/raw_pool_re
 abstract class AssetConversionRepository {
   const AssetConversionRepository();
 
-  Future<LPBalance?> lpTokens({
+  Future<Either<Failure, LPBalance?>> lpTokens({
     required final int lpTokenId,
     required final String address,
   });
@@ -30,7 +31,7 @@ class AssetConversionRepositoryImpl extends AssetConversionRepository {
   }
 
   @override
-  Future<LPBalance?> lpTokens({
+  Future<Either<Failure, LPBalance?>> lpTokens({
     required final int lpTokenId,
     required final String address,
   }) async {
@@ -41,23 +42,17 @@ class AssetConversionRepositoryImpl extends AssetConversionRepository {
         sendNullAsArg: false,
       );
 
-      // final resStr = res.toString();
       print(res);
-      return LPBalance.fromJson(res as Map<String, dynamic>);
+      if (res == null) {
+        return const Either.right(null);
+      } else {
+        return Either.right(LPBalance.fromJson(res as Map<String, dynamic>));
+      }
     } on Object catch (e) {
       logE(e.toString());
-      return null;
+      return Either.left(NoDataFailure(e.toString()));
     }
   }
-
-  // GET LP TOKEn
-  //  const lpTokenId = pool?.[1]?.lpToken;
-
-  //       let lpToken = null;
-  //       if (selectedAccount?.address) {
-  //         const lpTokenAsset = await apiPool.query.poscanPoolAssets.account(lpTokenId, selectedAccount?.address);
-  //         lpToken = lpTokenAsset.toHuman() as LpTokenAsset;
-  //       }
 
   @override
   Future<RawPoolReserve?> poolReserve(final BasicPoolEntity basicPool) async {

@@ -4,18 +4,26 @@ import 'package:threedpass/features/asset_conversion/domain/use_cases/get_all_po
 
 class PoolsState {
   final List<PoolFullInfo> pools;
+  final bool isLoading;
   final String? error;
 
   const PoolsState({
     required this.pools,
     required this.error,
+    required this.isLoading,
   });
 }
 
 class PoolsCubit extends Cubit<PoolsState> {
   PoolsCubit({
     required this.getAllPools,
-  }) : super(const PoolsState(pools: [], error: null));
+  }) : super(
+          const PoolsState(
+            pools: [],
+            error: null,
+            isLoading: true,
+          ),
+        );
 
   final GetAllPools getAllPools;
 
@@ -23,10 +31,18 @@ class PoolsCubit extends Cubit<PoolsState> {
     final data = await getAllPools.call(GetAllPoolsParams(address: address));
     data.when(
       left: (final e) => emit(
-        PoolsState(error: e.cause, pools: state.pools),
+        PoolsState(
+          error: e.cause,
+          pools: state.pools,
+          isLoading: false,
+        ),
       ),
       right: (final data) => emit(
-        PoolsState(error: null, pools: data),
+        PoolsState(
+          error: null,
+          pools: data,
+          isLoading: false,
+        ),
       ),
     );
   }
