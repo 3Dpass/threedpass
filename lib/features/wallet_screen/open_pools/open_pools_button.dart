@@ -15,7 +15,7 @@ class OpenPoolsButton extends StatelessWidget {
       builder: (final context, final state) => Padding16(
         child: D3pSecondaryButton(
           localizedTextKey: 'open_pools_label',
-          // iconData: Icons.explore,
+          iconData: Icons.explore_outlined,
           onPressed: state.isLoading
               ? null
               : () => context.router.push(

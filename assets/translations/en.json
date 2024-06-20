@@ -488,7 +488,12 @@
     "chain_status_recognized": "Recognized",
 
     "@2.16.0": {},
-    "open_pools_label": "Explore pools",
+    "open_pools_label": "Pools",
     "pools_page_appbar": "Pools",
-    "pools_text": "Earn fees by providing liquidity."
+    "pools_text": "Earn fees by providing liquidity.",
+    "withdraw_button_label": "Withdraw",
+    "deposit_button_label": "Deposit",
+    "withdraw_page_title": "Withdraw",
+    "deposit_page_title": "Deposit",
+    "create_pool_appbar_title": "Create pool"
 }

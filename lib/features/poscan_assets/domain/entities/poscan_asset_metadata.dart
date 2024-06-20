@@ -13,6 +13,13 @@ class PoscanAssetMetadata {
 
   int get idecimals => int.parse(decimals);
 
+  bool get isNull =>
+      symbol == '' &&
+      decimals == '0' &&
+      deposit == '0' &&
+      !isFrozen &&
+      name == '';
+
   const PoscanAssetMetadata({
     required this.symbol,
     required this.decimals,

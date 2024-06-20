@@ -1,3 +1,4 @@
+import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/lp_balance.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/raw_pool_reserve.dart';
@@ -17,4 +18,22 @@ class PoolFullInfo {
     required this.asset1Meta,
     required this.asset2Meta,
   });
+
+  String realBalance1(int defaultDecimals) {
+    final asset1Decimals = asset1Meta?.idecimals ?? defaultDecimals;
+    final balance = BalanceUtils.formattedBigInt(
+      rawPoolReserve.balance1BigInt,
+      asset1Decimals,
+    );
+    return balance;
+  }
+
+  String realBalance2(int defaultDecimals) {
+    final asset2Decimals = asset2Meta?.idecimals ?? defaultDecimals;
+    final balance = BalanceUtils.formattedBigInt(
+      rawPoolReserve.balance2BigInt,
+      asset2Decimals,
+    );
+    return balance;
+  }
 }

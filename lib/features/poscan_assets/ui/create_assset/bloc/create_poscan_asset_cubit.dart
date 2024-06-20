@@ -47,15 +47,13 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState>
 
   @override
   final StackRouter outerRouter;
-
+  final AppServiceLoaderCubit appServiceLoaderCubit;
   final CreateAsset createAssetUseCase;
 
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController assetId = TextEditingController();
   final TextEditingController minBalance = TextEditingController();
   final TextEditingController maxSupply = TextEditingController();
-
-  final AppServiceLoaderCubit appServiceLoaderCubit;
 
   // final KeyPairData initialAcc;
 
