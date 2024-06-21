@@ -28,10 +28,8 @@ class PoolCard extends StatelessWidget {
 
     const String nativeSymbol = 'P3D';
 
-    String symbols1 = poolFullInfo.asset1Meta?.symbol ?? nativeSymbol;
-    String symbols2 = poolFullInfo.asset2Meta?.symbol ?? nativeSymbol;
-
-    // print(poolFullInfo.lpBalance?.rawBalance);
+    final String symbols1 = poolFullInfo.asset1Meta?.symbol ?? nativeSymbol;
+    final String symbols2 = poolFullInfo.asset2Meta?.symbol ?? nativeSymbol;
 
     return D3pCard(
       child: Padding(
@@ -57,25 +55,25 @@ class PoolCard extends StatelessWidget {
               ),
               maxLines: 2,
             ),
-            const SizedBoxH8(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                _LockedCoin(
-                  balance: asset1Balance,
-                  symbol: symbols1,
-                ),
-                const Text('  /  '),
-                _LockedCoin(
-                  balance: asset2Balance,
-                  symbol: symbols2,
-                ),
-              ],
+            const SizedBoxH16(),
+            Text(
+              'Total locked coins:',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: Colors.grey),
             ),
-            // https://dribbble.com/shots/18074802-Liquidity-pool-mobile/attachments/13265747?mode=media
-
+            const SizedBoxH4(),
+            _LockedCoin(
+              balance: asset1Balance,
+              symbol: symbols1,
+            ),
+            _LockedCoin(
+              balance: asset2Balance,
+              symbol: symbols2,
+            ),
             const SizedBoxH8(),
-            _LPTokens(),
+            _LPTokens(poolFullInfo.lpBalance?.balanceBigInt),
             const SizedBoxH16(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -163,6 +161,10 @@ class _LockedCoin extends StatelessWidget {
 }
 
 class _LPTokens extends StatelessWidget {
+  final BigInt? balance;
+
+  const _LPTokens(this.balance);
+
   @override
   Widget build(final BuildContext context) {
     return Text.rich(
@@ -175,7 +177,7 @@ class _LPTokens extends StatelessWidget {
                 ),
           ),
           TextSpan(
-            text: '0',
+            text: balance?.toString() ?? '0',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
         ],

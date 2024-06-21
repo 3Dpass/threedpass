@@ -16,15 +16,15 @@ class DINonNativeToken extends DIModule {
   @override
   Future<void> setup(final GetIt getIt) async {
     // Repos
-    getIt.registerSingleton<AssetsExtrinsicsRepository>(
-      AssetsExtrinsicsRepository(
+    getIt.registerLazySingleton<AssetsExtrinsicsRepository>(
+      () => AssetsExtrinsicsRepository(
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         client: getIt<Client>(),
         extrinsicsDatasourceGQL: getIt<ExtrinsicDatasourceGQL>(),
       ),
     );
-    getIt.registerSingleton<EventsRepository>(
-      EventsRepository(
+    getIt.registerLazySingleton<EventsRepository>(
+      () => EventsRepository(
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         client: getIt<Client>(),
         eventsDatasourceGQL: getIt<EventsDatasourceGQL>(),

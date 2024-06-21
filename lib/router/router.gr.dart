@@ -35,7 +35,7 @@ import 'package:threedpass/features/accounts/presentation/pages/create_account/i
     as _i42;
 import 'package:threedpass/features/accounts/presentation/pages/no_stable_hash_dialog.dart'
     as _i52;
-import 'package:threedpass/features/asset_conversion/ui/create_pool/presentation/create_pool_page.dart'
+import 'package:threedpass/features/asset_conversion/ui/create_pool/presentation/create_pool_page_wrapper.dart'
     as _i41;
 import 'package:threedpass/features/asset_conversion/ui/pools_page/presentation/pools_page.dart'
     as _i40;
@@ -459,7 +459,7 @@ abstract class $RootRouter extends _i63.RootStackRouter {
     PoolsRouteWrapper.name: (routeData) {
       return _i63.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i39.PoolsPageWrapper(),
+        child: _i63.WrappedRoute(child: const _i39.PoolsPageWrapper()),
       );
     },
     PoolsRoute.name: (routeData) {
@@ -468,10 +468,10 @@ abstract class $RootRouter extends _i63.RootStackRouter {
         child: const _i40.PoolsPage(),
       );
     },
-    CreatePoolRoute.name: (routeData) {
+    CreatePoolRouteWrapper.name: (routeData) {
       return _i63.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i41.CreatePoolPage(),
+        child: const _i41.CreatePoolPageWrapper(),
       );
     },
     ImportRawseedFormRoute.name: (routeData) {
@@ -1597,15 +1597,15 @@ class PoolsRoute extends _i63.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i41.CreatePoolPage]
-class CreatePoolRoute extends _i63.PageRouteInfo<void> {
-  const CreatePoolRoute({List<_i63.PageRouteInfo>? children})
+/// [_i41.CreatePoolPageWrapper]
+class CreatePoolRouteWrapper extends _i63.PageRouteInfo<void> {
+  const CreatePoolRouteWrapper({List<_i63.PageRouteInfo>? children})
       : super(
-          CreatePoolRoute.name,
+          CreatePoolRouteWrapper.name,
           initialChildren: children,
         );
 
-  static const String name = 'CreatePoolRoute';
+  static const String name = 'CreatePoolRouteWrapper';
 
   static const _i63.PageInfo<void> page = _i63.PageInfo<void>(name);
 }

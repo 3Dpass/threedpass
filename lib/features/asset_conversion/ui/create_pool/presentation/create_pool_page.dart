@@ -1,10 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/asset_conversion/ui/create_pool/bloc/create_pool_cubit.dart';
 import 'package:threedpass/features/other/some_form/some_form.dart';
 
-@RoutePage()
+// @RoutePage()
 class CreatePoolPage extends StatelessWidget {
   const CreatePoolPage({super.key});
 

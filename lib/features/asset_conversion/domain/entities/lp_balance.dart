@@ -10,4 +10,6 @@ class LPBalance {
 
   LPBalance.fromJson(final Map<String, dynamic> json)
       : rawBalance = json['balance'].toString();
+
+  BigInt get balanceBigInt => BigInt.parse(rawBalance.replaceAll(',', ''));
 }

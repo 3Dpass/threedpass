@@ -5,8 +5,8 @@ import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifi
 class DIWalletPage extends DIModule {
   @override
   Future<void> setup(final GetIt getIt) async {
-    getIt.registerSingleton<NotificationsBloc>(
-      NotificationsBloc(),
+    getIt.registerLazySingleton<NotificationsBloc>(
+      () => NotificationsBloc(),
     );
   }
 }

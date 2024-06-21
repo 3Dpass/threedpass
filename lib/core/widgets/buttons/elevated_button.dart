@@ -10,7 +10,6 @@ class D3pElevatedButton extends StatelessWidget {
     this.onPressed,
     this.iconData,
     this.padding,
-    this.icon,
     this.backgroundColor,
     this.foregroundColor,
     this.child,
@@ -19,10 +18,12 @@ class D3pElevatedButton extends StatelessWidget {
   final void Function()? onPressed;
   final String? text;
   final IconData? iconData;
+  @Deprecated('Use Padding widget to set padding, but not this param')
   final EdgeInsets? padding;
-  final Widget? icon;
-  final Color? foregroundColor;
-  final Color? backgroundColor;
+  @Deprecated('Only default colors should be used')
+  final Color? foregroundColor; // TODO Remove this
+  @Deprecated('Only default colors should be used')
+  final Color? backgroundColor; // TODO Remove this
   final Widget? child;
 
   @override
@@ -32,11 +33,10 @@ class D3pElevatedButton extends StatelessWidget {
       padding: padding ?? EdgeInsets.zero,
       child: SizedBox(
         child: PlatformElevatedButton(
-          padding: padding ?? EdgeInsets.zero,
+          // padding: padding ?? EdgeInsets.zero,
           onPressed: onPressed,
           child: child ??
               _ElevatedButtonChild(
-                icon: icon,
                 iconData: iconData,
                 text: text ?? '',
               ),
@@ -73,67 +73,29 @@ class D3pElevatedButton extends StatelessWidget {
 
 class _ElevatedButtonChild extends StatelessWidget {
   const _ElevatedButtonChild({
-    required this.icon,
     required this.iconData,
     required this.text,
   });
 
   final String text;
   final IconData? iconData;
-  final Widget? icon;
+
+  double get padding => text.isEmpty ? 0 : 8;
 
   @override
   Widget build(final BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        if (icon != null || iconData != null)
-          _Icon(
-            icon: icon,
-            iconData: iconData,
-            isTextEmpty: text.isEmpty,
+        if (iconData != null)
+          Padding(
+            padding: EdgeInsets.only(right: padding),
+            child: Icon(iconData),
           ),
         Text(
           text,
         ),
       ],
     );
-  }
-}
-
-class _Icon extends StatelessWidget {
-  const _Icon({
-    required this.iconData,
-    required this.icon,
-    required this.isTextEmpty,
-    final Key? key,
-  }) : super(key: key);
-
-  final IconData? iconData;
-  final Widget? icon;
-  final bool isTextEmpty;
-
-  double get padding => isTextEmpty ? 0 : 8;
-
-  @override
-  Widget build(final BuildContext context) {
-    assert(
-      icon == null || iconData == null,
-      'Either icon or iconData must be provided. Now both icon and iconData are not null.',
-    );
-
-    if (iconData != null) {
-      return Padding(
-        padding: EdgeInsets.only(right: padding),
-        child: Icon(iconData),
-      );
-    } else if (icon != null) {
-      return Padding(
-        padding: EdgeInsets.only(right: padding),
-        child: icon,
-      );
-    } else {
-      return const SizedBox();
-    }
   }
 }

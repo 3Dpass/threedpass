@@ -77,7 +77,7 @@ class PoolsPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         heroTag: 'create_pool',
         child: const Icon(Icons.add),
-        onPressed: () => context.router.push(const CreatePoolRoute()),
+        onPressed: () => context.router.push(const CreatePoolRouteWrapper()),
       ),
     );
   }

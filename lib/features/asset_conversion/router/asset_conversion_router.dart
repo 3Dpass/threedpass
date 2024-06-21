@@ -9,7 +9,7 @@ AutoRoute assetsConversionRoute = AutoRoute(
       path: '',
     ),
     AutoRoute(
-      page: CreatePoolRoute.page,
+      page: CreatePoolRouteWrapper.page,
     ),
   ],
 );
