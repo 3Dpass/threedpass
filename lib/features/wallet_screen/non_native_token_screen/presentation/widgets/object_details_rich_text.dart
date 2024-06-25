@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/layout/list_view_separated.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
+import 'package:threedpass/core/widgets/other/vertical_line_left_border.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/obj_details.dart';
 
 class ObjectDetailsRichText extends StatelessWidget {
@@ -14,19 +15,9 @@ class ObjectDetailsRichText extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final divColor = Theme.of(context).dividerColor;
     if (objDetails != null) {
       // TODO Add a deeplink to an object
-      return Container(
-        padding: const EdgeInsets.only(left: 8),
-        decoration: BoxDecoration(
-          border: Border(
-            left: BorderSide(
-              color: divColor,
-              width: 2.0,
-            ),
-          ),
-        ),
+      return VerticalLineLeftBorder(
         child: ListViewSeparated(
           children: [
             FastRichText(

@@ -495,5 +495,8 @@
     "deposit_button_label": "Deposit",
     "withdraw_page_title": "Withdraw",
     "deposit_page_title": "Deposit",
-    "create_pool_appbar_title": "Create pool"
+    "create_pool_appbar_title": "Create pool",
+    "create_pool_is_native_switch_label": "Native token (P3D)",
+    "asset_choice_validator_error": "Please select an asset",
+    "create_pool_asset_choice_title": "Asset {}"
 }

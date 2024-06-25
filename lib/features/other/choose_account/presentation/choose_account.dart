@@ -13,6 +13,7 @@ import 'package:threedpass/features/wallet_screen/transfer_page/widgets/basic_pa
 
 part 'choose_account_internal.dart';
 
+// TODO Refactor. This should not use AppServiceLoaderCubit and recieve list of accounts and initial one
 class ChooseAccount extends StatelessWidget {
   const ChooseAccount({
     required this.onAccountSelected,

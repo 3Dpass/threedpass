@@ -9,16 +9,6 @@ import 'package:threedpass/setup.dart';
 class CreatePoolPageWrapper extends StatelessWidget {
   const CreatePoolPageWrapper({super.key});
 
-  // @override
-  // Widget wrappedRoute(final BuildContext context) {
-  //   return BlocProvider<CreatePoolCubit>(
-  //     create: (final _) => getIt<CreatePoolCubit>(
-  //       param1: context.router,
-  //     ),
-  //     child: this,
-  //   );
-  // }
-
   @override
   Widget build(final BuildContext context) {
     return BlocProvider<CreatePoolCubit>(
