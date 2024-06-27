@@ -31,7 +31,7 @@ class CreatePoolState {
 class CreatePoolCubit extends Cubit<CreatePoolState>
     with ExtrinsicShowLoadingMixin {
   CreatePoolCubit({
-    required AppServiceLoaderCubit appServiceLoaderCubit,
+    required final AppServiceLoaderCubit appServiceLoaderCubit,
     required this.createPoolUseCase,
     required this.outerRouter,
   })  : account = appServiceLoaderCubit.state.keyring.current,

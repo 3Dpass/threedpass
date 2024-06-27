@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/features/asset_conversion/ui/create_pool/presentation/widgets/create_pool_asset_card.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notfication_put_object.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_create_asset_card.dart';
@@ -38,6 +39,10 @@ class NotificationCard extends StatelessWidget {
       case NotificationType.mintAsset:
         return NotificationMintAssetCard(
           notificationDTO as NotificationMintAsset,
+        );
+      case NotificationType.createPool:
+        return CreatePoolAssetCard(
+          notificationDTO as NotificationCreatePool,
         );
     }
   }

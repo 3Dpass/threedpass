@@ -64,29 +64,21 @@ class GetAllPools extends UseCase<List<PoolFullInfo>, GetAllPoolsParams> {
       //   print(element);
       // });
 
-      if (reserve != null) {
-        res.add(
-          PoolFullInfo(
-            basicInfo: pool,
-            rawPoolReserve: reserve,
-            lpBalance: lpBalance,
-            asset1Meta: asset1Meta,
-            asset2Meta: asset2Meta,
-            // asset1Meta: !pool.firstAsset.isNative
-            //     ? poscanAssetsCubit.state.metadata[pool.firstAsset.assetId]
-            //     : null,
-            // asset2Meta: !pool.secondAsset.isNative
-            //     ? poscanAssetsCubit.state.metadata[pool.secondAsset.assetId]
-            //     : null,
-          ),
-        );
-      } else {
-        return const Either.left(
-          NoDataFailure(
-            'Something went wrong',
-          ),
-        );
-      }
+      res.add(
+        PoolFullInfo(
+          basicInfo: pool,
+          rawPoolReserve: reserve,
+          lpBalance: lpBalance,
+          asset1Meta: asset1Meta,
+          asset2Meta: asset2Meta,
+          // asset1Meta: !pool.firstAsset.isNative
+          //     ? poscanAssetsCubit.state.metadata[pool.firstAsset.assetId]
+          //     : null,
+          // asset2Meta: !pool.secondAsset.isNative
+          //     ? poscanAssetsCubit.state.metadata[pool.secondAsset.assetId]
+          //     : null,
+        ),
+      );
     }
 
     return Either.right(res);

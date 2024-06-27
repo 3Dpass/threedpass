@@ -1,10 +1,17 @@
+import 'dart:convert';
+
 import 'package:polkawallet_sdk/polkawallet_sdk.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/utils/basic_polkadot_js_call.dart';
+import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/polkawallet/utils/log.dart';
+import 'package:threedpass/features/asset_conversion/data/pool_asset_field_to_js_arg.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/lp_balance.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/raw_pool_reserve.dart';
+import 'package:threedpass/features/asset_conversion/domain/use_cases/add_liquidity.dart';
+import 'package:threedpass/features/asset_conversion/domain/use_cases/create_pool.dart';
+import 'package:threedpass/features/asset_conversion/domain/use_cases/remove_liquidity.dart';
 
 abstract class AssetConversionRepository {
   const AssetConversionRepository();
@@ -15,12 +22,29 @@ abstract class AssetConversionRepository {
   });
   Future<RawPoolReserve?> poolReserve(final BasicPoolEntity basicPool);
   Future<Iterable<BasicPoolEntity>> poolsBasic();
+
+  Future<Either<Failure, void>> createPool({
+    required final CreatePoolParams params,
+    required final void Function(String) msgIdCallback,
+  });
+  Future<Either<Failure, void>> addLiquidity({
+    required final AddLiquidityParams params,
+    required final void Function(String) msgIdCallback,
+  });
+  Future<Either<Failure, void>> removeLiquidity({
+    required final RemoveLiquidity params,
+    required final void Function(String) msgIdCallback,
+  });
 }
 
 class AssetConversionRepositoryImpl extends AssetConversionRepository {
   final WalletSDK polkawalletSdk;
+  final CallSignExtrinsicUtil callSignExtrinsicUtil;
 
-  const AssetConversionRepositoryImpl({required this.polkawalletSdk});
+  const AssetConversionRepositoryImpl({
+    required this.polkawalletSdk,
+    required this.callSignExtrinsicUtil,
+  });
 
   static String assetFieldToJS(final PoolAssetField assetField) {
     if (assetField.isNative) {
@@ -75,6 +99,10 @@ return res;
     print(res);
     // [10,530,015,434, 9,509,085,784]
 
+    if (res == null) {
+      return null;
+    }
+
     final resT = RawPoolReserve.fromJson(res as List<dynamic>);
     return resT;
   }
@@ -110,5 +138,48 @@ return res;
     //   address: 'd1EHg63RUs3L74N1TeJEkZGBRRd1LfPHknZSPrSu373h5kGVa',
     // );
     return resT;
+  }
+
+  @override
+  Future<Either<Failure, void>> createPool({
+    required final CreatePoolParams params,
+    required final void Function(String p1) msgIdCallback,
+  }) async {
+    final args = [
+      params.asset1.toJSArg(),
+      params.asset2.toJSArg(),
+    ];
+    final argsEncoded = const JsonEncoder().convert(args);
+    // final argsEncoded = BigIntJsonHelper.replace(argsPreEncoded);
+    print(argsEncoded);
+
+    // return Either.right(null);
+
+    return callSignExtrinsicUtil.abstractExtrinsicCall(
+      argsEncoded: argsEncoded,
+      calls: ['tx', 'assetConversion', 'createPool'],
+      pubKey: params.account.pubKey!,
+      password: params.password,
+      updateStatus: params.updateStatus,
+      msgIdCallback: msgIdCallback,
+    );
+  }
+
+  @override
+  Future<Either<Failure, void>> addLiquidity({
+    required final AddLiquidityParams params,
+    required final void Function(String p1) msgIdCallback,
+  }) {
+    // TODO: implement addLiquidity
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, void>> removeLiquidity({
+    required final RemoveLiquidity params,
+    required final void Function(String p1) msgIdCallback,
+  }) {
+    // TODO: implement removeLiquidity
+    throw UnimplementedError();
   }
 }

@@ -6,7 +6,7 @@ import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_m
 
 class PoolFullInfo {
   final BasicPoolEntity basicInfo;
-  final RawPoolReserve rawPoolReserve;
+  final RawPoolReserve? rawPoolReserve;
   final LPBalance? lpBalance;
   final PoscanAssetMetadata? asset1Meta;
   final PoscanAssetMetadata? asset2Meta;
@@ -19,19 +19,19 @@ class PoolFullInfo {
     required this.asset2Meta,
   });
 
-  String realBalance1(int defaultDecimals) {
+  String realBalance1(final int defaultDecimals) {
     final asset1Decimals = asset1Meta?.idecimals ?? defaultDecimals;
     final balance = BalanceUtils.formattedBigInt(
-      rawPoolReserve.balance1BigInt,
+      rawPoolReserve?.balance1BigInt ?? BigInt.zero,
       asset1Decimals,
     );
     return balance;
   }
 
-  String realBalance2(int defaultDecimals) {
+  String realBalance2(final int defaultDecimals) {
     final asset2Decimals = asset2Meta?.idecimals ?? defaultDecimals;
     final balance = BalanceUtils.formattedBigInt(
-      rawPoolReserve.balance2BigInt,
+      rawPoolReserve?.balance2BigInt ?? BigInt.zero,
       asset2Decimals,
     );
     return balance;

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/obj_details.dart';
 import 'package:threedpass/setup.dart';
 

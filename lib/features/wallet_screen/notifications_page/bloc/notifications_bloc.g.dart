@@ -504,6 +504,101 @@ extension $NotificationMintAssetCopyWith on NotificationMintAsset {
       _$NotificationMintAssetCWProxyImpl(this);
 }
 
+abstract class _$NotificationCreatePoolCWProxy {
+  NotificationCreatePool admin(KeyPairData admin);
+
+  NotificationCreatePool asset1(PoolAssetField asset1);
+
+  NotificationCreatePool asset2(PoolAssetField asset2);
+
+  NotificationCreatePool status(ExtrinsicStatus status);
+
+  NotificationCreatePool message(String? message);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationCreatePool(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationCreatePool(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationCreatePool call({
+    KeyPairData? admin,
+    PoolAssetField? asset1,
+    PoolAssetField? asset2,
+    ExtrinsicStatus? status,
+    String? message,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNotificationCreatePool.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfNotificationCreatePool.copyWith.fieldName(...)`
+class _$NotificationCreatePoolCWProxyImpl
+    implements _$NotificationCreatePoolCWProxy {
+  const _$NotificationCreatePoolCWProxyImpl(this._value);
+
+  final NotificationCreatePool _value;
+
+  @override
+  NotificationCreatePool admin(KeyPairData admin) => this(admin: admin);
+
+  @override
+  NotificationCreatePool asset1(PoolAssetField asset1) => this(asset1: asset1);
+
+  @override
+  NotificationCreatePool asset2(PoolAssetField asset2) => this(asset2: asset2);
+
+  @override
+  NotificationCreatePool status(ExtrinsicStatus status) => this(status: status);
+
+  @override
+  NotificationCreatePool message(String? message) => this(message: message);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationCreatePool(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationCreatePool(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationCreatePool call({
+    Object? admin = const $CopyWithPlaceholder(),
+    Object? asset1 = const $CopyWithPlaceholder(),
+    Object? asset2 = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+  }) {
+    return NotificationCreatePool(
+      admin: admin == const $CopyWithPlaceholder() || admin == null
+          ? _value.admin
+          // ignore: cast_nullable_to_non_nullable
+          : admin as KeyPairData,
+      asset1: asset1 == const $CopyWithPlaceholder() || asset1 == null
+          ? _value.asset1
+          // ignore: cast_nullable_to_non_nullable
+          : asset1 as PoolAssetField,
+      asset2: asset2 == const $CopyWithPlaceholder() || asset2 == null
+          ? _value.asset2
+          // ignore: cast_nullable_to_non_nullable
+          : asset2 as PoolAssetField,
+      status: status == const $CopyWithPlaceholder() || status == null
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as ExtrinsicStatus,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+    );
+  }
+}
+
+extension $NotificationCreatePoolCopyWith on NotificationCreatePool {
+  /// Returns a callable class that can be used as follows: `instanceOfNotificationCreatePool.copyWith(...)` or like so:`instanceOfNotificationCreatePool.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$NotificationCreatePoolCWProxy get copyWith =>
+      _$NotificationCreatePoolCWProxyImpl(this);
+}
+
 abstract class _$NotificationsStateCWProxy {
   NotificationsState notifications(List<NotificationDTO> notifications);
 
