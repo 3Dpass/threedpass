@@ -27,6 +27,7 @@ class D3pSecondaryButton extends StatelessWidget {
         disabledForegroundColor: D3pColors.disabled,
         side: BorderSide(
           color: isDisabled ? D3pColors.disabled : D3pThemeData.mainColor,
+          width: 2.28,
         ),
         textStyle: Theme.of(context).customTextStyles.d3pFloatingButton,
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/asset_conversion/ui/create_pool/bloc/create_pool_cubit.dart';
-import 'package:threedpass/features/asset_conversion/ui/create_pool/presentation/widgets/create_pool_asset_field.dart';
+import 'package:threedpass/features/asset_conversion/ui/widgets/stateful_pool_asset_choice.dart';
 import 'package:threedpass/features/other/choose_account/presentation/choose_account.dart';
 import 'package:threedpass/features/other/some_form/some_form.dart';
 import 'package:threedpass/features/other/some_form/some_form_submit_button.dart';
@@ -25,13 +25,13 @@ class CreatePoolPage extends StatelessWidget {
               BlocProvider.of<CreatePoolCubit>(context).passwordController,
           onAccountSelected: null,
         ),
-        CreatePoolAssetField(
+        StatefulPoolAssetChoice<CreatePoolCubit, CreatePoolState>(
           assetNum: '1',
           onChanged: cubit.setAsset1,
           buildWhen: (final previous, final current) =>
               previous.asset1 != current.asset1,
         ),
-        CreatePoolAssetField(
+        StatefulPoolAssetChoice<CreatePoolCubit, CreatePoolState>(
           assetNum: '2',
           onChanged: cubit.setAsset2,
           buildWhen: (final previous, final current) =>

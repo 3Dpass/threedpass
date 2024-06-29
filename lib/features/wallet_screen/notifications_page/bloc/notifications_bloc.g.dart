@@ -599,6 +599,81 @@ extension $NotificationCreatePoolCopyWith on NotificationCreatePool {
       _$NotificationCreatePoolCWProxyImpl(this);
 }
 
+abstract class _$NotificationAddLiquidityCWProxy {
+  NotificationAddLiquidity params(AddLiquidityParams params);
+
+  NotificationAddLiquidity status(ExtrinsicStatus status);
+
+  NotificationAddLiquidity message(String? message);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationAddLiquidity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationAddLiquidity(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationAddLiquidity call({
+    AddLiquidityParams? params,
+    ExtrinsicStatus? status,
+    String? message,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNotificationAddLiquidity.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfNotificationAddLiquidity.copyWith.fieldName(...)`
+class _$NotificationAddLiquidityCWProxyImpl
+    implements _$NotificationAddLiquidityCWProxy {
+  const _$NotificationAddLiquidityCWProxyImpl(this._value);
+
+  final NotificationAddLiquidity _value;
+
+  @override
+  NotificationAddLiquidity params(AddLiquidityParams params) =>
+      this(params: params);
+
+  @override
+  NotificationAddLiquidity status(ExtrinsicStatus status) =>
+      this(status: status);
+
+  @override
+  NotificationAddLiquidity message(String? message) => this(message: message);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationAddLiquidity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationAddLiquidity(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationAddLiquidity call({
+    Object? params = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+  }) {
+    return NotificationAddLiquidity(
+      params: params == const $CopyWithPlaceholder() || params == null
+          ? _value.params
+          // ignore: cast_nullable_to_non_nullable
+          : params as AddLiquidityParams,
+      status: status == const $CopyWithPlaceholder() || status == null
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as ExtrinsicStatus,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+    );
+  }
+}
+
+extension $NotificationAddLiquidityCopyWith on NotificationAddLiquidity {
+  /// Returns a callable class that can be used as follows: `instanceOfNotificationAddLiquidity.copyWith(...)` or like so:`instanceOfNotificationAddLiquidity.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$NotificationAddLiquidityCWProxy get copyWith =>
+      _$NotificationAddLiquidityCWProxyImpl(this);
+}
+
 abstract class _$NotificationsStateCWProxy {
   NotificationsState notifications(List<NotificationDTO> notifications);
 

@@ -5,6 +5,7 @@ import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/utils/basic_polkadot_js_call.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/polkawallet/utils/log.dart';
+import 'package:threedpass/core/utils/big_int_json_helper.dart';
 import 'package:threedpass/features/asset_conversion/data/pool_asset_field_to_js_arg.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/lp_balance.dart';
@@ -32,7 +33,7 @@ abstract class AssetConversionRepository {
     required final void Function(String) msgIdCallback,
   });
   Future<Either<Failure, void>> removeLiquidity({
-    required final RemoveLiquidity params,
+    required final RemoveLiquidityParams params,
     required final void Function(String) msgIdCallback,
   });
 }
@@ -169,17 +170,60 @@ return res;
   Future<Either<Failure, void>> addLiquidity({
     required final AddLiquidityParams params,
     required final void Function(String p1) msgIdCallback,
-  }) {
-    // TODO: implement addLiquidity
-    throw UnimplementedError();
+  }) async {
+    final args = [
+      params.asset1.toJSArg(),
+      params.asset2.toJSArg(),
+      BigIntJsonHelper.encode(params.amount1Desired),
+      BigIntJsonHelper.encode(params.amount2Desired),
+      BigIntJsonHelper.encode(params.amount1Min),
+      BigIntJsonHelper.encode(params.amount2Min),
+      params.account.pubKey,
+    ];
+
+    String argsEncoded = '';
+    argsEncoded = const JsonEncoder().convert(args);
+    argsEncoded = BigIntJsonHelper.replace(argsEncoded);
+
+    print(argsEncoded);
+
+    return callSignExtrinsicUtil.abstractExtrinsicCall(
+      argsEncoded: argsEncoded,
+      calls: ['tx', 'assetConversion', 'addLiquidity'],
+      pubKey: params.account.pubKey!,
+      password: params.password,
+      updateStatus: params.updateStatus,
+      msgIdCallback: msgIdCallback,
+    );
   }
 
   @override
   Future<Either<Failure, void>> removeLiquidity({
-    required final RemoveLiquidity params,
+    required final RemoveLiquidityParams params,
     required final void Function(String p1) msgIdCallback,
   }) {
-    // TODO: implement removeLiquidity
-    throw UnimplementedError();
+    final args = [
+      params.asset1.toJSArg(),
+      params.asset2.toJSArg(),
+      BigIntJsonHelper.encode(params.lpTokenBurn),
+      BigIntJsonHelper.encode(params.amount1Min),
+      BigIntJsonHelper.encode(params.amount2Min),
+      params.account.pubKey,
+    ];
+
+    String argsEncoded = '';
+    argsEncoded = const JsonEncoder().convert(args);
+    argsEncoded = BigIntJsonHelper.replace(argsEncoded);
+
+    print(argsEncoded);
+
+    return callSignExtrinsicUtil.abstractExtrinsicCall(
+      argsEncoded: argsEncoded,
+      calls: ['tx', 'assetConversion', 'removeLiquidity'],
+      pubKey: params.account.pubKey!,
+      password: params.password,
+      updateStatus: params.updateStatus,
+      msgIdCallback: msgIdCallback,
+    );
   }
 }

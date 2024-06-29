@@ -7,22 +7,25 @@ import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart'
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
 import 'package:threedpass/features/poscan_assets/ui/widgets/dropdown_asset_child.dart';
 
-class CreatePoolAssetChoice extends StatefulWidget {
-  final void Function(PoolAssetField?) onChanged;
+class PoolAssetFieldChoice extends StatefulWidget {
+  final void Function(PoolAssetField?)? onChanged;
 
-  const CreatePoolAssetChoice({
+  const PoolAssetFieldChoice({
     required this.onChanged,
+    this.initialValue,
     super.key,
   });
 
   static const initialPoscanAssetField =
       PoolAssetField(isNative: true, assetId: null);
 
+  final PoolAssetField? initialValue;
+
   @override
   State<StatefulWidget> createState() => _State();
 }
 
-class _State extends State<CreatePoolAssetChoice> {
+class _State extends State<PoolAssetFieldChoice> {
   PoolAssetField? value;
 
   late final List<PoolAssetField> items;
@@ -32,11 +35,18 @@ class _State extends State<CreatePoolAssetChoice> {
   void initState() {
     metadata = BlocProvider.of<PoscanAssetsCubit>(context).state.metadata;
     items = <PoolAssetField>[
-      CreatePoolAssetChoice.initialPoscanAssetField,
+      PoolAssetFieldChoice.initialPoscanAssetField,
       ...metadata.keys
           .map((final e) => PoolAssetField(assetId: e, isNative: false)),
     ];
-    value = items.first;
+
+    value = widget.initialValue != null
+        ? items.firstWhere(
+            (final PoolAssetField element) =>
+                (element.isNative && widget.initialValue!.isNative) ||
+                element.assetId == widget.initialValue!.assetId,
+          )
+        : items.first;
 
     super.initState();
   }
@@ -50,12 +60,12 @@ class _State extends State<CreatePoolAssetChoice> {
             (final e) => DropdownMenuItem<PoolAssetField>(
               value: e,
               child: e.isNative
-                  ? Text('Native P3D')
+                  ? const Text('Native P3D')
                   : DropdownAssetChild(value: metadata[e.assetId]!),
             ),
           )
           .toList(),
-      onChanged: onChange,
+      onChanged: widget.onChanged != null ? onChange : null,
       value: value,
       validator: poolAssetValidator,
     );
@@ -72,7 +82,7 @@ class _State extends State<CreatePoolAssetChoice> {
   void onChange(final PoolAssetField? p0) {
     setState(() {
       value = p0;
-      widget.onChanged(p0);
+      widget.onChanged?.call(p0);
     });
   }
 }

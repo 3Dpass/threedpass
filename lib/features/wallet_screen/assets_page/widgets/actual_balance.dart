@@ -24,19 +24,24 @@ class BalanceCard extends StatelessWidget {
   final int tokenDecimals;
   final String tokenSymbol;
 
+  static const double height = 180;
+
   void onCardClick(final BuildContext context) {
     context.router.push(const TransactionsHistoryRouteWrapper());
   }
 
   @override
   Widget build(final BuildContext context) {
-    return Padding16(
-      child: ClickableCard(
-        onTap: () => onCardClick(context),
-        child: _MainBalanceContent(
-          balance: balance,
-          tokenDecimals: tokenDecimals,
-          tokenSymbol: tokenSymbol,
+    return SizedBox(
+      height: height,
+      child: Padding16(
+        child: ClickableCard(
+          onTap: () => onCardClick(context),
+          child: _MainBalanceContent(
+            balance: balance,
+            tokenDecimals: tokenDecimals,
+            tokenSymbol: tokenSymbol,
+          ),
         ),
       ),
     );

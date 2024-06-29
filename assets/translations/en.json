@@ -494,9 +494,14 @@
     "withdraw_button_label": "Withdraw",
     "deposit_button_label": "Deposit",
     "withdraw_page_title": "Withdraw",
-    "deposit_page_title": "Deposit",
     "create_pool_appbar_title": "Create pool",
     "create_pool_is_native_switch_label": "Native token (P3D)",
     "asset_choice_validator_error": "Please select an asset",
-    "create_pool_asset_choice_title": "Asset {}"
+    "create_pool_asset_choice_title": "Asset {}",
+    "add_liquidity_page_title": "Add liquidity",
+    "add_liquidity_page_choose_account_title": "Mint to",
+    "add_liquidity_page_amount_1_desired_label": "Amount 1 desired",
+    "add_liquidity_page_amount_2_desired_label": "Amount 2 desired",
+    "add_liquidity_page_amount_1_min_label" : "Amount 1 min",
+    "add_liquidity_page_amount_2_min_label" : "Amount 2 min"
 }

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:threedpass/core/widgets/buttons/secondary_button.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 class PoolCard extends StatelessWidget {
   const PoolCard(this.poolFullInfo, {super.key});
@@ -81,7 +83,11 @@ class PoolCard extends StatelessWidget {
                 Flexible(
                   child: D3pElevatedButton(
                     text: 'deposit_button_label'.tr(),
-                    onPressed: () {},
+                    onPressed: () => context.router.push(
+                      AddLiquidityRouteWrapper(
+                        poolFullInfo: poolFullInfo,
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 16),

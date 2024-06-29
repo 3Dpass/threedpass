@@ -20,7 +20,7 @@ class BalanceSection extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return SizedBox(
-      height: 238,
+      height: BalanceCard.height + 8 + AssetPageButtonsPanel.height,
       child: BlocBuilder<AppServiceLoaderCubit, AppService>(
         builder: (final context, final state) {
           if (state.networkStateData.isNull) {
@@ -37,6 +37,7 @@ class BalanceSection extends StatelessWidget {
                 return placeHolder;
               }
               return Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   BalanceCard(
                     balance: balance,

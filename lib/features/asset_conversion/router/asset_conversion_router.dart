@@ -11,5 +11,8 @@ AutoRoute assetsConversionRoute = AutoRoute(
     AutoRoute(
       page: CreatePoolRouteWrapper.page,
     ),
+    AutoRoute(
+      page: AddLiquidityRouteWrapper.page,
+    ),
   ],
 );

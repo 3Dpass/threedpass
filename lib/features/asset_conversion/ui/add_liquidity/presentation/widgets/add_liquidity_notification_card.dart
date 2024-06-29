@@ -8,50 +8,50 @@ import 'package:threedpass/features/wallet_screen/notifications_page/presentatio
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_card_basic.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_card_body_basic.dart';
 
-class CreatePoolAssetCard extends StatelessWidget {
-  final NotificationCreatePool notificationDTO;
+class AddLiquidityNotificationCard extends StatelessWidget {
+  final NotificationAddLiquidity notificationDTO;
 
-  const CreatePoolAssetCard(this.notificationDTO, {super.key});
+  const AddLiquidityNotificationCard(this.notificationDTO, {super.key});
 
   @override
   Widget build(final BuildContext context) {
     return NotificationCardBasic(
       message: notificationDTO.message,
       status: notificationDTO.status,
-      child: _CreatePoolAssetCardBody(
+      child: _AddLiquidityBody(
         notificationDTO: notificationDTO,
       ),
     );
   }
 }
 
-class _CreatePoolAssetCardBody extends StatelessWidget {
-  final NotificationCreatePool notificationDTO;
+class _AddLiquidityBody extends StatelessWidget {
+  final NotificationAddLiquidity notificationDTO;
 
-  const _CreatePoolAssetCardBody({required this.notificationDTO});
+  const _AddLiquidityBody({required this.notificationDTO});
 
   @override
   Widget build(final BuildContext context) {
     final assets = BlocProvider.of<PoscanAssetsCubit>(context).state.metadata;
 
     final asset1Symbols =
-        assets[notificationDTO.asset1.assetId]?.symbol ?? 'P3D';
+        assets[notificationDTO.params.asset1.assetId]?.symbol ?? 'P3D';
     final asset2Symbols =
-        assets[notificationDTO.asset2.assetId]?.symbol ?? 'P3D';
+        assets[notificationDTO.params.asset2.assetId]?.symbol ?? 'P3D';
     return NotificationCardBodyBasic(
       children: [
         const FastNotificationTile(
           iconData: Icons.keyboard_double_arrow_right,
           child: D3pBodyMediumText(
-            'assetConversion.createPool',
+            'assetConversion.addLiquidity',
             translate: false,
           ),
         ),
         FastNotificationTile(
           iconData: Icons.person,
           child: AccountChooseTileText(
-            address: notificationDTO.admin.address,
-            name: notificationDTO.admin.name,
+            address: notificationDTO.params.account.address,
+            name: notificationDTO.params.account.name,
           ),
         ),
         FastNotificationTile(

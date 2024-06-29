@@ -4,8 +4,11 @@ import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/features/asset_conversion/data/asset_conversion_repository.dart';
+import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart';
+import 'package:threedpass/features/asset_conversion/domain/use_cases/add_liquidity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/create_pool.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/get_all_pools.dart';
+import 'package:threedpass/features/asset_conversion/ui/add_liquidity/bloc/add_liquidity_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/create_pool/bloc/create_pool_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
@@ -35,9 +38,9 @@ class DIAssetConversion extends DIModule {
     getIt.registerFactory<CreatePool>(
       () => CreatePool(
         assetConversionRepository: getIt<AssetConversionRepository>(),
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         notificationsBloc: getIt<NotificationsBloc>(),
         poolsCubit: getIt<PoolsCubit>(),
-        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         webViewRunner: getIt<AppServiceLoaderCubit>()
             .state
             .plugin
@@ -52,6 +55,32 @@ class DIAssetConversion extends DIModule {
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         createPoolUseCase: getIt<CreatePool>(),
         outerRouter: param1,
+      ),
+    );
+
+    getIt.registerFactory<AddLiquidity>(
+      () => AddLiquidity(
+        assetConversionRepository: getIt<AssetConversionRepository>(),
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        notificationsBloc: getIt<NotificationsBloc>(),
+        poolsCubit: getIt<PoolsCubit>(),
+        webViewRunner: getIt<AppServiceLoaderCubit>()
+            .state
+            .plugin
+            .sdk
+            .api
+            .service
+            .webView!,
+      ),
+    );
+
+    getIt.registerFactoryParam<AddLiquidityCubit, StackRouter, PoolFullInfo>(
+      (final StackRouter param1, final PoolFullInfo param2) =>
+          AddLiquidityCubit(
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        addLiquidityUseCase: getIt<AddLiquidity>(),
+        outerRouter: param1,
+        poolFullInfo: param2,
       ),
     );
   }
