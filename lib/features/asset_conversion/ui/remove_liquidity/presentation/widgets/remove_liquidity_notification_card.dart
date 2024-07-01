@@ -8,27 +8,27 @@ import 'package:threedpass/features/wallet_screen/notifications_page/presentatio
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_card_basic.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_card_body_basic.dart';
 
-class AddLiquidityNotificationCard extends StatelessWidget {
-  final NotificationAddLiquidity notificationDTO;
+class RemoveLiquidityNotificationCard extends StatelessWidget {
+  final NotificationRemoveLiquidity notificationDTO;
 
-  const AddLiquidityNotificationCard(this.notificationDTO, {super.key});
+  const RemoveLiquidityNotificationCard(this.notificationDTO, {super.key});
 
   @override
   Widget build(final BuildContext context) {
     return NotificationCardBasic(
       message: notificationDTO.message,
       status: notificationDTO.status,
-      child: _AddLiquidityBody(
+      child: _RemoveLiquidityBody(
         notificationDTO: notificationDTO,
       ),
     );
   }
 }
 
-class _AddLiquidityBody extends StatelessWidget {
-  final NotificationAddLiquidity notificationDTO;
+class _RemoveLiquidityBody extends StatelessWidget {
+  final NotificationRemoveLiquidity notificationDTO;
 
-  const _AddLiquidityBody({required this.notificationDTO});
+  const _RemoveLiquidityBody({required this.notificationDTO});
 
   @override
   Widget build(final BuildContext context) {
@@ -43,7 +43,7 @@ class _AddLiquidityBody extends StatelessWidget {
         const FastNotificationTile(
           iconData: Icons.keyboard_double_arrow_right,
           child: D3pBodyMediumText(
-            'assetConversion.addLiquidity',
+            'assetConversion.removeLiquidity',
             translate: false,
           ),
         ),

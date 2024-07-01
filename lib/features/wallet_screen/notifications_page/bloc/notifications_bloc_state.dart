@@ -8,7 +8,8 @@ enum NotificationType {
   setMetadata,
   mintAsset,
   createPool,
-  addLiquidity
+  addLiquidity,
+  removeLiquidity,
 }
 
 abstract class NotificationDTO {
@@ -181,6 +182,20 @@ class NotificationAddLiquidity extends NotificationDTO {
 
   @override
   final NotificationType type = NotificationType.addLiquidity;
+}
+
+@CopyWith()
+class NotificationRemoveLiquidity extends NotificationDTO {
+  final RemoveLiquidityParams params;
+
+  NotificationRemoveLiquidity({
+    required this.params,
+    required super.status,
+    required super.message,
+  });
+
+  @override
+  final NotificationType type = NotificationType.removeLiquidity;
 }
 
 @CopyWith()

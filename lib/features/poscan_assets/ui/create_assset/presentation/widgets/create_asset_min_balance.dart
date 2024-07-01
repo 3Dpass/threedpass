@@ -15,6 +15,7 @@ class CreateAssetMinBalance extends StatelessWidget {
       labelText: 'create_account_label_min_balance'.tr(),
       validator: Validators.onlyBigInt,
       controller: cpac.minBalance,
+      keyboardType: TextInputType.number,
     );
   }
 }

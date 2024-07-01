@@ -30,6 +30,11 @@ class Validators {
 
     return res != null && res > BigInt.zero
         ? null
-        : 'error_wrong_amount_int'.tr();
+        : 'error_wrong_amount_bigint'.tr();
+  }
+
+  static String? onlyFloat(final String? p0) {
+    final res = double.tryParse(p0 ?? '');
+    return res != null && res > 0.0 ? null : 'error_wrong_amount_double'.tr();
   }
 }

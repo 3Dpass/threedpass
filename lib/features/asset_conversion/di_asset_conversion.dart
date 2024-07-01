@@ -8,9 +8,12 @@ import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_i
 import 'package:threedpass/features/asset_conversion/domain/use_cases/add_liquidity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/create_pool.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/get_all_pools.dart';
+import 'package:threedpass/features/asset_conversion/domain/use_cases/remove_liquidity.dart';
 import 'package:threedpass/features/asset_conversion/ui/add_liquidity/bloc/add_liquidity_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/create_pool/bloc/create_pool_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
+import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/bloc/remove_liquidity_cubit.dart';
+import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 
@@ -79,6 +82,33 @@ class DIAssetConversion extends DIModule {
           AddLiquidityCubit(
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         addLiquidityUseCase: getIt<AddLiquidity>(),
+        poscanAssetsCubit: getIt<PoscanAssetsCubit>(),
+        outerRouter: param1,
+        poolFullInfo: param2,
+      ),
+    );
+
+    getIt.registerFactory<RemoveLiquidity>(
+      () => RemoveLiquidity(
+        assetConversionRepository: getIt<AssetConversionRepository>(),
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        notificationsBloc: getIt<NotificationsBloc>(),
+        poolsCubit: getIt<PoolsCubit>(),
+        webViewRunner: getIt<AppServiceLoaderCubit>()
+            .state
+            .plugin
+            .sdk
+            .api
+            .service
+            .webView!,
+      ),
+    );
+
+    getIt.registerFactoryParam<RemoveLiquidityCubit, StackRouter, PoolFullInfo>(
+      (final StackRouter param1, final PoolFullInfo param2) =>
+          RemoveLiquidityCubit(
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        removeLiquidityUseCase: getIt<RemoveLiquidity>(),
         outerRouter: param1,
         poolFullInfo: param2,
       ),

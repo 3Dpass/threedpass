@@ -1,3 +1,4 @@
+import 'package:decimal/decimal.dart';
 import 'package:polkawallet_sdk/service/webViewRunner.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:super_core/super_core.dart';
@@ -63,10 +64,10 @@ class AddLiquidityParams {
   final KeyPairData account;
   final String password;
   final void Function() updateStatus;
-  final BigInt amount1Desired;
-  final BigInt amount2Desired;
-  final BigInt amount1Min;
-  final BigInt amount2Min;
+  final Decimal amount1Desired;
+  final Decimal amount2Desired;
+  final Decimal amount1Min;
+  final Decimal amount2Min;
 
   const AddLiquidityParams({
     required this.asset1,

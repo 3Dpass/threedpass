@@ -15,6 +15,7 @@ class SetMetadataDecimalslTextfield extends StatelessWidget {
       controller: smac.decimals,
       labelText: 'set_metadata_label_decimals'.tr(),
       validator: Validators.onlyU8,
+      keyboardType: TextInputType.number,
     );
   }
 }

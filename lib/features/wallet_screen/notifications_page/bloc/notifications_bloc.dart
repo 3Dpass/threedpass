@@ -5,6 +5,7 @@ import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/add_liquidity.dart';
+import 'package:threedpass/features/asset_conversion/domain/use_cases/remove_liquidity.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/obj_details.dart';
 import 'package:threedpass/setup.dart';
 

@@ -174,10 +174,10 @@ return res;
     final args = [
       params.asset1.toJSArg(),
       params.asset2.toJSArg(),
-      BigIntJsonHelper.encode(params.amount1Desired),
-      BigIntJsonHelper.encode(params.amount2Desired),
-      BigIntJsonHelper.encode(params.amount1Min),
-      BigIntJsonHelper.encode(params.amount2Min),
+      BigIntJsonHelper.encode(params.amount1Desired.toBigInt()),
+      BigIntJsonHelper.encode(params.amount2Desired.toBigInt()),
+      BigIntJsonHelper.encode(params.amount1Min.toBigInt()),
+      BigIntJsonHelper.encode(params.amount2Min.toBigInt()),
       params.account.pubKey,
     ];
 

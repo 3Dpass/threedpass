@@ -66,6 +66,7 @@ dependencies:
     git:
         url: https://github.com/L3odr0id/polkawallet_sdk.git
         ref: c9ca602c7861ee0c0e7dfd283188462434598194 # release/0.5.1 # branch name
+  decimal: ^2.3.3
 
   ## Code gen
   copy_with_extension: ^5.0.3
