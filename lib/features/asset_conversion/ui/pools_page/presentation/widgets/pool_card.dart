@@ -96,7 +96,11 @@ class PoolCard extends StatelessWidget {
                     localizedTextKey: 'withdraw_button_label',
                     onPressed: poolFullInfo.lpBalance?.rawBalance == null
                         ? null
-                        : () {},
+                        : () => context.router.push(
+                              RemoveLiquidityRouteWrapper(
+                                poolFullInfo: poolFullInfo,
+                              ),
+                            ),
                   ),
                 ),
               ],

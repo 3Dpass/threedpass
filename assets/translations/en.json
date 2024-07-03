@@ -505,5 +505,7 @@
     "add_liquidity_page_amount_1_min_label" : "Amount 1 min",
     "add_liquidity_page_amount_2_min_label" : "Amount 2 min",
     "error_wrong_amount_bigint": "A big integer expected",
-    "error_wrong_amount_double": "Wrong input"
+    "error_wrong_amount_double": "Wrong input",
+    "remove_liquidity_page_title": "Remove liquidity",
+    "remove_liquidity_page_choose_account_title": "Withdraw to"
 }

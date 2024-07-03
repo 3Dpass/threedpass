@@ -14,5 +14,8 @@ AutoRoute assetsConversionRoute = AutoRoute(
     AutoRoute(
       page: AddLiquidityRouteWrapper.page,
     ),
+    AutoRoute(
+      page: RemoveLiquidityRouteWrapper.page,
+    ),
   ],
 );

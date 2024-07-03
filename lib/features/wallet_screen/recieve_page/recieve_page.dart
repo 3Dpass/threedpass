@@ -8,11 +8,11 @@ import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/utils/copy_and_notify.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
+import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 
 part './widgets/copy_button.dart';
 part './widgets/qr_code.dart';
-part './widgets/address_text.dart';
 
 @RoutePage()
 class RecievePage extends StatelessWidget {
@@ -32,7 +32,12 @@ class RecievePage extends StatelessWidget {
           const SizedBox(height: 16),
           _QRCode(address),
           const SizedBox(height: 24),
-          _AddressText(address),
+          Padding16(
+            child: D3pBodyMediumText(
+              address,
+              translate: false,
+            ),
+          ),
           const SizedBox(height: 16),
           _CopyButton(address),
         ],

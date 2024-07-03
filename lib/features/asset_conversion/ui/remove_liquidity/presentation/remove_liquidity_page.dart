@@ -6,6 +6,7 @@ import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/slider/slider.dart';
 import 'package:threedpass/features/asset_conversion/ui/add_liquidity/bloc/add_liquidity_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/bloc/remove_liquidity_cubit.dart';
+import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/presentation/widgets/remove_liquidity_percentage_selector.dart';
 import 'package:threedpass/features/asset_conversion/ui/widgets/stateful_pool_asset_choice.dart';
 import 'package:threedpass/features/other/choose_account/presentation/choose_account.dart';
 import 'package:threedpass/features/other/some_form/some_form.dart';
@@ -20,34 +21,29 @@ class RemoveLiquidityPage extends StatelessWidget {
 
     return SomeForm(
       formKey: cubit.formKey,
-      appbarTitle: 'add_liquidity_page_title',
+      appbarTitle: 'remove_liquidity_page_title',
       submitButton: SomeFormSubmitButton(
         formState: cubit,
       ),
       children: [
         ChooseAccount(
-          title: 'add_liquidity_page_choose_account_title'.tr(),
+          title: 'remove_liquidity_page_choose_account_title'.tr(),
           passwordController: cubit.passwordController,
           onAccountSelected: null,
         ),
-        StatefulPoolAssetChoice<AddLiquidityCubit, void>(
+        StatefulPoolAssetChoice<RemoveLiquidityCubit, void>(
           assetNum: '1',
           onChanged: null,
           buildWhen: null,
           initialValue: cubit.asset1,
         ),
-        StatefulPoolAssetChoice<AddLiquidityCubit, void>(
+        StatefulPoolAssetChoice<RemoveLiquidityCubit, void>(
           assetNum: '2',
           onChanged: null,
           buildWhen: null,
           initialValue: cubit.asset2,
         ),
-        D3pSlider(
-          valueNotifier: ValueNotifier<double>(10),
-          minValue: 0,
-          maxValue: 100,
-          divisions: 100,
-        ),
+        RemoveLiquidityPercentageSelector(),
       ],
     );
   }

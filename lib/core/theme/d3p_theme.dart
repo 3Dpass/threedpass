@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
+import 'package:threedpass/core/theme/d3p_outlined_button_theme.dart';
 import 'package:threedpass/core/theme/d3p_tabbar_theme.dart';
 import 'package:threedpass/core/theme/d3p_text_style.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
@@ -34,6 +35,7 @@ class D3pThemeData {
     );
     final t1 = t.copyWith(
       elevatedButtonTheme: D3pElevatedButtonTheme.theme(t),
+      outlinedButtonTheme: D3pOutlinedButtonTheme.theme(t),
     );
     return t1;
   }
@@ -64,6 +66,7 @@ class D3pThemeData {
 
     final t1 = t.copyWith(
       elevatedButtonTheme: D3pElevatedButtonTheme.theme(t),
+      outlinedButtonTheme: D3pOutlinedButtonTheme.theme(t),
     );
     return t1;
   }
