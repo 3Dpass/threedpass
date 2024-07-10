@@ -45,7 +45,7 @@ class CallSignExtrinsicUtil {
         return const Either.left(NoDataFailure('res is not a Map'));
       }
     } on Object catch (e) {
-      logE(e);
+      logE(e, StackTrace.current);
       return Either.left(NoDataFailure(e.toString()));
     }
   }

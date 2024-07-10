@@ -242,7 +242,8 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
         HashesListLoaded(objects: list),
       );
     } else {
-      logE('Replace object is called, but state is not HashesListLoaded');
+      logE('Replace object is called, but state is not HashesListLoaded',
+          StackTrace.current);
       return;
     }
   }

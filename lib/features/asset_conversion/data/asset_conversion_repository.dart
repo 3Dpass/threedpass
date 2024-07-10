@@ -69,11 +69,14 @@ class AssetConversionRepositoryImpl extends AssetConversionRepository {
         args: '[$lpTokenId, "$address"]',
         sendNullAsArg: false,
       );
+      if (res == null) {
+        return const Either.right(null);
+      }
 
       final lpb = LPBalance.fromJson(res as Map<String, dynamic>);
       return Either.right(lpb.balanceBigInt);
     } on Object catch (e) {
-      logE(e.toString());
+      logE(e.toString(), StackTrace.current);
       return Either.left(NoDataFailure(e.toString()));
     }
   }
@@ -97,7 +100,7 @@ class AssetConversionRepositoryImpl extends AssetConversionRepository {
         ),
       );
     } on Object catch (e) {
-      logE(e.toString());
+      logE(e.toString(), StackTrace.current);
       return Either.left(NoDataFailure(e.toString()));
     }
   }

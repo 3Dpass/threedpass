@@ -10,10 +10,13 @@ class _UploadedObjectFabric {
   });
 
   UploadedObject object() {
-    return UploadedObject(
-      id: id,
-      raw: raw,
-      cacheDate: DateTime.now(),
+    return UploadedObject.fromJson(
+      raw.map<String, dynamic>(
+        (final dynamic key, final dynamic value) =>
+            MapEntry<String, dynamic>(key.toString(), value),
+      ),
+      DateTime.now(),
+      id,
     );
   }
 }

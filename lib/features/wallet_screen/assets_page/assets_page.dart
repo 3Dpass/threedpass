@@ -22,7 +22,7 @@ class AssetsPage extends StatelessWidget {
           BalanceSection(),
           OpenPoolsButton(),
           PoscanAssetsColumn(),
-          ObjectsListAssets(),
+          // ObjectsListAssets(), // TODO ISAR
         ];
         return Scaffold(
           backgroundColor: theme.customColors.scaffoldBackground,

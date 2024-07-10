@@ -58,7 +58,7 @@ class GetAllPools extends UseCase<List<PoolFullInfo>, GetAllPoolsParams> {
         final metadataReq =
             await poscanAssetsRepo.metadata(pool.firstAsset.assetId!);
         metadataReq.when(
-          left: (e) => logE(e.toString()),
+          left: (final e) => logE(e.toString(), StackTrace.current),
           right: (final data) => asset1Meta = data,
         );
       }
@@ -67,7 +67,7 @@ class GetAllPools extends UseCase<List<PoolFullInfo>, GetAllPoolsParams> {
         final metadataReq =
             await poscanAssetsRepo.metadata(pool.secondAsset.assetId!);
         metadataReq.when(
-          left: (e) => logE(e.toString()),
+          left: (final e) => logE(e.toString(), StackTrace.current),
           right: (final data) => asset2Meta = data,
         );
       }
@@ -86,12 +86,6 @@ class GetAllPools extends UseCase<List<PoolFullInfo>, GetAllPoolsParams> {
           asset1Meta: asset1Meta,
           asset2Meta: asset2Meta,
           totalLpTokenSupply: totalLPSupply!,
-          // asset1Meta: !pool.firstAsset.isNative
-          //     ? poscanAssetsCubit.state.metadata[pool.firstAsset.assetId]
-          //     : null,
-          // asset2Meta: !pool.secondAsset.isNative
-          //     ? poscanAssetsCubit.state.metadata[pool.secondAsset.assetId]
-          //     : null,
         ),
       );
     }

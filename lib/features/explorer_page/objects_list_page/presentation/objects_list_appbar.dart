@@ -11,7 +11,7 @@ class ObjectsListAppbar extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BlocBuilder<PoscanObjectsCubit, PoscanObjectsState>(
       builder: (final context, final state) {
-        final objectsCount = state.storageCount ?? state.objects.length;
+        final objectsCount = state.storageCount ?? 0;
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

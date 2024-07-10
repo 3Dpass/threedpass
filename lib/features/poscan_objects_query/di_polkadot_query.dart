@@ -28,13 +28,14 @@ class DIPoscanQuery extends DIModule {
       ),
     );
 
-    getIt.registerFactoryParam<ObjectsStore, int, void>(
-      (final int ss58, final _) => ObjectsStore(ss58),
+    getIt.registerLazySingleton<ObjectsStore>(
+      () => ObjectsStore(),
     );
     getIt.registerLazySingleton<PoscanObjectsCubit>(
       () => PoscanObjectsCubit(
         getObjCount: getIt<GetObjCount>(),
         getUploadedObject: getIt<GetUploadedObject>(),
+        store: getIt<ObjectsStore>(),
       ),
     );
   }

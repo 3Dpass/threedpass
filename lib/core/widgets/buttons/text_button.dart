@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_colors.dart';
 
 class D3pTextButton extends StatelessWidget {
   const D3pTextButton({
@@ -37,9 +37,13 @@ class D3pTextButton extends StatelessWidget {
             style: TextButton.styleFrom(
               foregroundColor:
                   textColor ?? Theme.of(context).colorScheme.primary,
+              disabledForegroundColor: D3pColors.disabled,
             ),
           ),
-          cupertino: (final _, final __) => CupertinoTextButtonData(),
+          cupertino: (final _, final __) => CupertinoTextButtonData(
+            color: textColor ?? Theme.of(context).colorScheme.primary,
+            disabledColor: D3pColors.disabled,
+          ),
           child: Row(
             mainAxisAlignment: mainAxisAlignment,
             children: [
@@ -49,12 +53,7 @@ class D3pTextButton extends StatelessWidget {
                   child: Icon(icon),
                 ),
               Flexible(
-                child: Text(
-                  text,
-                  style: TextStyle(
-                    color: textColor ?? D3pThemeData.mainColor,
-                  ),
-                ),
+                child: Text(text),
               ),
             ],
           ),
