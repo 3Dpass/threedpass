@@ -19,6 +19,20 @@ class Validators {
     return res != null && res > 0 ? null : 'error_wrong_amount_int'.tr();
   }
 
+  static String? onlyIntMax(final String? p0, final int max) {
+    final res = int.tryParse(p0 ?? '');
+
+    if (res == null) {
+      return 'error_wrong_amount_int'.tr();
+    }
+
+    if (res > max) {
+      return 'error_validation_max'.tr(args: [max.toString()]);
+    }
+
+    return null;
+  }
+
   static String? onlyU8(final String? p0) {
     final res = int.tryParse(p0 ?? '');
 

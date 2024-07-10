@@ -14,39 +14,39 @@ import 'package:flutter/widgets.dart' as _i73;
 import 'package:threedpass/core/widgets/default_loading_dialog.dart' as _i2;
 import 'package:threedpass/core/widgets/error_page.dart' as _i1;
 import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_credentials.dart'
-    as _i49;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_from_object/create_account_from_object.dart'
-    as _i44;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_info_page.dart'
-    as _i46;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_loader.dart'
     as _i51;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_mnemonic_backup.dart'
-    as _i47;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_mnemonic_confirm.dart'
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_from_object/create_account_from_object.dart'
+    as _i46;
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_info_page.dart'
     as _i48;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_type.dart'
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_loader.dart'
+    as _i53;
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_mnemonic_backup.dart'
+    as _i49;
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_mnemonic_confirm.dart'
     as _i50;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart'
-    as _i43;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/import_mnemonic_form.dart'
-    as _i45;
-import 'package:threedpass/features/accounts/presentation/pages/create_account/import_rawseed_form.dart'
-    as _i42;
-import 'package:threedpass/features/accounts/presentation/pages/no_stable_hash_dialog.dart'
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_type.dart'
     as _i52;
+import 'package:threedpass/features/accounts/presentation/pages/create_account/create_account_wrapper.dart'
+    as _i45;
+import 'package:threedpass/features/accounts/presentation/pages/create_account/import_mnemonic_form.dart'
+    as _i47;
+import 'package:threedpass/features/accounts/presentation/pages/create_account/import_rawseed_form.dart'
+    as _i44;
+import 'package:threedpass/features/accounts/presentation/pages/no_stable_hash_dialog.dart'
+    as _i54;
 import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart'
-    as _i76;
+    as _i74;
 import 'package:threedpass/features/asset_conversion/ui/add_liquidity/presentation/add_liquidity_page_wrapper.dart'
-    as _i63;
-import 'package:threedpass/features/asset_conversion/ui/create_pool/presentation/create_pool_page_wrapper.dart'
-    as _i41;
-import 'package:threedpass/features/asset_conversion/ui/pools_page/presentation/pools_page.dart'
-    as _i40;
-import 'package:threedpass/features/asset_conversion/ui/pools_page/presentation/pools_page_wrapper.dart'
     as _i39;
+import 'package:threedpass/features/asset_conversion/ui/create_pool/presentation/create_pool_page_wrapper.dart'
+    as _i43;
+import 'package:threedpass/features/asset_conversion/ui/pools_page/presentation/pools_page.dart'
+    as _i42;
+import 'package:threedpass/features/asset_conversion/ui/pools_page/presentation/pools_page_wrapper.dart'
+    as _i41;
 import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/presentation/remove_liquidity_page_wrapper.dart'
-    as _i64;
+    as _i40;
 import 'package:threedpass/features/compare_page/presentation/pages/compare_page_wrapper.dart'
     as _i3;
 import 'package:threedpass/features/explorer_page/explorer_page_wrapper.dart'
@@ -78,7 +78,7 @@ import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/s
 import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/set_metadata_page_wrapper.dart'
     as _i38;
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart'
-    as _i74;
+    as _i75;
 import 'package:threedpass/features/poscan_putobject/presentation/d3prpc_page.dart'
     as _i16;
 import 'package:threedpass/features/poscan_putobject/presentation/d3rpc_page_wrapper.dart'
@@ -102,27 +102,27 @@ import 'package:threedpass/features/scan_page/presentation/scan_page.dart'
 import 'package:threedpass/features/scan_page/presentation/scan_page_wrapper.dart'
     as _i11;
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart'
-    as _i75;
+    as _i76;
 import 'package:threedpass/features/settings_page/presentation/settings_page.dart'
-    as _i54;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/choose_algorithm_subpage.dart'
-    as _i60;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/grid_size_subpage.dart'
-    as _i57;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/pixel_ratio_subpage.dart'
-    as _i58;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/sections_subpage.dart'
-    as _i55;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/stable_hash_subpage.dart'
-    as _i61;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/trans_bytes_subpage.dart'
     as _i56;
-import 'package:threedpass/features/settings_page/presentation/settings_sub_page/wallet_node_subpage.dart'
-    as _i59;
-import 'package:threedpass/features/settings_page/router/empty_settings_route.dart'
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/choose_algorithm_subpage.dart'
     as _i62;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/grid_size_subpage.dart'
+    as _i59;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/pixel_ratio_subpage.dart'
+    as _i60;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/sections_subpage.dart'
+    as _i57;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/stable_hash_subpage.dart'
+    as _i63;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/trans_bytes_subpage.dart'
+    as _i58;
+import 'package:threedpass/features/settings_page/presentation/settings_sub_page/wallet_node_subpage.dart'
+    as _i61;
+import 'package:threedpass/features/settings_page/router/empty_settings_route.dart'
+    as _i64;
 import 'package:threedpass/features/uploaded_object_page/uploaded_object_page.dart'
-    as _i53;
+    as _i55;
 import 'package:threedpass/features/wallet_screen/add_contact_page/add_contact_page.dart'
     as _i25;
 import 'package:threedpass/features/wallet_screen/add_contact_page/domain/entities/contact.dart'
@@ -462,183 +462,11 @@ abstract class $RootRouter extends _i65.RootStackRouter {
         )),
       );
     },
-    PoolsRouteWrapper.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i65.WrappedRoute(child: const _i39.PoolsPageWrapper()),
-      );
-    },
-    PoolsRoute.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i40.PoolsPage(),
-      );
-    },
-    CreatePoolRouteWrapper.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i41.CreatePoolPageWrapper(),
-      );
-    },
-    ImportRawseedFormRoute.name: (routeData) {
-      final args = routeData.argsAs<ImportRawseedFormRouteArgs>(
-          orElse: () => const ImportRawseedFormRouteArgs());
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i42.ImportRawseedFormPage(key: args.key),
-      );
-    },
-    CreateAccountRouteWrapper.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i65.WrappedRoute(child: const _i43.CreateAccountPageWrapper()),
-      );
-    },
-    CreateAccountFromObjectRoute.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i44.CreateAccountFromObjectPage(),
-      );
-    },
-    ImportMnemonicFormRoute.name: (routeData) {
-      final args = routeData.argsAs<ImportMnemonicFormRouteArgs>(
-          orElse: () => const ImportMnemonicFormRouteArgs());
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i45.ImportMnemonicFormPage(key: args.key),
-      );
-    },
-    CreateAccountInfoRoute.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i46.CreateAccountInfoPage(),
-      );
-    },
-    CreateAccountMnemonicBackupRoute.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i47.CreateAccountMnemonicBackupPage(),
-      );
-    },
-    CreateAccountMnemonicConfirmRoute.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i48.CreateAccountMnemonicConfirmPage(),
-      );
-    },
-    CreateAccountCredentialsRoute.name: (routeData) {
-      final args = routeData.argsAs<CreateAccountCredentialsRouteArgs>();
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i49.CreateAccountCredentialsPage(
-          appbarText: args.appbarText,
-          key: args.key,
-        ),
-      );
-    },
-    CreateAccountTypeRoute.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i50.CreateAccountTypePage(),
-      );
-    },
-    CreateAccountLoaderRoute.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i51.CreateAccountLoaderPage(),
-      );
-    },
-    NoStableHashRoute.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i52.NoStableHashDialog(),
-      );
-    },
-    UploadedObjectRoute.name: (routeData) {
-      final args = routeData.argsAs<UploadedObjectRouteArgs>();
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i53.UploadedObjectPage(
-          uploadedObject: args.uploadedObject,
-          key: args.key,
-        ),
-      );
-    },
-    SettingsRoute.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i54.SettingsPage(),
-      );
-    },
-    SectionsSubRoute.name: (routeData) {
-      final args = routeData.argsAs<SectionsSubRouteArgs>();
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i55.SectionsSubPage(
-          initialState: args.initialState,
-          key: args.key,
-        ),
-      );
-    },
-    TransBytesSubRoute.name: (routeData) {
-      final args = routeData.argsAs<TransBytesSubRouteArgs>();
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i56.TransBytesSubPage(
-          initialState: args.initialState,
-          key: args.key,
-        ),
-      );
-    },
-    GridSizeSubRoute.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i57.GridSizeSubPage(),
-      );
-    },
-    PixelRatioSubRoute.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i58.PixelRatioSubPage(),
-      );
-    },
-    WalletNodeSubRoute.name: (routeData) {
-      final args = routeData.argsAs<WalletNodeSubRouteArgs>();
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i59.WalletNodeSubPage(
-          initialState: args.initialState,
-          key: args.key,
-        ),
-      );
-    },
-    ChooseAlgorithmSubRoute.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i60.ChooseAlgorithmSubPage(),
-      );
-    },
-    StableHashSubRoute.name: (routeData) {
-      final args = routeData.argsAs<StableHashSubRouteArgs>();
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i61.StableHashSubPage(
-          initialState: args.initialState,
-          key: args.key,
-        ),
-      );
-    },
-    SettingsWrapperRoute.name: (routeData) {
-      return _i65.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i62.EmptySettingsRoute(),
-      );
-    },
     AddLiquidityRouteWrapper.name: (routeData) {
       final args = routeData.argsAs<AddLiquidityRouteWrapperArgs>();
       return _i65.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i63.AddLiquidityPageWrapper(
+        child: _i39.AddLiquidityPageWrapper(
           poolFullInfo: args.poolFullInfo,
           key: args.key,
         ),
@@ -648,10 +476,182 @@ abstract class $RootRouter extends _i65.RootStackRouter {
       final args = routeData.argsAs<RemoveLiquidityRouteWrapperArgs>();
       return _i65.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i64.RemoveLiquidityPageWrapper(
+        child: _i40.RemoveLiquidityPageWrapper(
           poolFullInfo: args.poolFullInfo,
           key: args.key,
         ),
+      );
+    },
+    PoolsRouteWrapper.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i65.WrappedRoute(child: const _i41.PoolsPageWrapper()),
+      );
+    },
+    PoolsRoute.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i42.PoolsPage(),
+      );
+    },
+    CreatePoolRouteWrapper.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i43.CreatePoolPageWrapper(),
+      );
+    },
+    ImportRawseedFormRoute.name: (routeData) {
+      final args = routeData.argsAs<ImportRawseedFormRouteArgs>(
+          orElse: () => const ImportRawseedFormRouteArgs());
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i44.ImportRawseedFormPage(key: args.key),
+      );
+    },
+    CreateAccountRouteWrapper.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i65.WrappedRoute(child: const _i45.CreateAccountPageWrapper()),
+      );
+    },
+    CreateAccountFromObjectRoute.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i46.CreateAccountFromObjectPage(),
+      );
+    },
+    ImportMnemonicFormRoute.name: (routeData) {
+      final args = routeData.argsAs<ImportMnemonicFormRouteArgs>(
+          orElse: () => const ImportMnemonicFormRouteArgs());
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i47.ImportMnemonicFormPage(key: args.key),
+      );
+    },
+    CreateAccountInfoRoute.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i48.CreateAccountInfoPage(),
+      );
+    },
+    CreateAccountMnemonicBackupRoute.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i49.CreateAccountMnemonicBackupPage(),
+      );
+    },
+    CreateAccountMnemonicConfirmRoute.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i50.CreateAccountMnemonicConfirmPage(),
+      );
+    },
+    CreateAccountCredentialsRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateAccountCredentialsRouteArgs>();
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i51.CreateAccountCredentialsPage(
+          appbarText: args.appbarText,
+          key: args.key,
+        ),
+      );
+    },
+    CreateAccountTypeRoute.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i52.CreateAccountTypePage(),
+      );
+    },
+    CreateAccountLoaderRoute.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i53.CreateAccountLoaderPage(),
+      );
+    },
+    NoStableHashRoute.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i54.NoStableHashDialog(),
+      );
+    },
+    UploadedObjectRoute.name: (routeData) {
+      final args = routeData.argsAs<UploadedObjectRouteArgs>();
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i55.UploadedObjectPage(
+          uploadedObject: args.uploadedObject,
+          key: args.key,
+        ),
+      );
+    },
+    SettingsRoute.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i56.SettingsPage(),
+      );
+    },
+    SectionsSubRoute.name: (routeData) {
+      final args = routeData.argsAs<SectionsSubRouteArgs>();
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i57.SectionsSubPage(
+          initialState: args.initialState,
+          key: args.key,
+        ),
+      );
+    },
+    TransBytesSubRoute.name: (routeData) {
+      final args = routeData.argsAs<TransBytesSubRouteArgs>();
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i58.TransBytesSubPage(
+          initialState: args.initialState,
+          key: args.key,
+        ),
+      );
+    },
+    GridSizeSubRoute.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i59.GridSizeSubPage(),
+      );
+    },
+    PixelRatioSubRoute.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i60.PixelRatioSubPage(),
+      );
+    },
+    WalletNodeSubRoute.name: (routeData) {
+      final args = routeData.argsAs<WalletNodeSubRouteArgs>();
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i61.WalletNodeSubPage(
+          initialState: args.initialState,
+          key: args.key,
+        ),
+      );
+    },
+    ChooseAlgorithmSubRoute.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i62.ChooseAlgorithmSubPage(),
+      );
+    },
+    StableHashSubRoute.name: (routeData) {
+      final args = routeData.argsAs<StableHashSubRouteArgs>();
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i63.StableHashSubPage(
+          initialState: args.initialState,
+          key: args.key,
+        ),
+      );
+    },
+    SettingsWrapperRoute.name: (routeData) {
+      return _i65.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i64.EmptySettingsRoute(),
       );
     },
   };
@@ -1595,7 +1595,85 @@ class SetMetadataRouteWrapperArgs {
 }
 
 /// generated route for
-/// [_i39.PoolsPageWrapper]
+/// [_i39.AddLiquidityPageWrapper]
+class AddLiquidityRouteWrapper
+    extends _i65.PageRouteInfo<AddLiquidityRouteWrapperArgs> {
+  AddLiquidityRouteWrapper({
+    required _i74.PoolFullInfo poolFullInfo,
+    _i66.Key? key,
+    List<_i65.PageRouteInfo>? children,
+  }) : super(
+          AddLiquidityRouteWrapper.name,
+          args: AddLiquidityRouteWrapperArgs(
+            poolFullInfo: poolFullInfo,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'AddLiquidityRouteWrapper';
+
+  static const _i65.PageInfo<AddLiquidityRouteWrapperArgs> page =
+      _i65.PageInfo<AddLiquidityRouteWrapperArgs>(name);
+}
+
+class AddLiquidityRouteWrapperArgs {
+  const AddLiquidityRouteWrapperArgs({
+    required this.poolFullInfo,
+    this.key,
+  });
+
+  final _i74.PoolFullInfo poolFullInfo;
+
+  final _i66.Key? key;
+
+  @override
+  String toString() {
+    return 'AddLiquidityRouteWrapperArgs{poolFullInfo: $poolFullInfo, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i40.RemoveLiquidityPageWrapper]
+class RemoveLiquidityRouteWrapper
+    extends _i65.PageRouteInfo<RemoveLiquidityRouteWrapperArgs> {
+  RemoveLiquidityRouteWrapper({
+    required _i74.PoolFullInfo poolFullInfo,
+    _i66.Key? key,
+    List<_i65.PageRouteInfo>? children,
+  }) : super(
+          RemoveLiquidityRouteWrapper.name,
+          args: RemoveLiquidityRouteWrapperArgs(
+            poolFullInfo: poolFullInfo,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RemoveLiquidityRouteWrapper';
+
+  static const _i65.PageInfo<RemoveLiquidityRouteWrapperArgs> page =
+      _i65.PageInfo<RemoveLiquidityRouteWrapperArgs>(name);
+}
+
+class RemoveLiquidityRouteWrapperArgs {
+  const RemoveLiquidityRouteWrapperArgs({
+    required this.poolFullInfo,
+    this.key,
+  });
+
+  final _i74.PoolFullInfo poolFullInfo;
+
+  final _i66.Key? key;
+
+  @override
+  String toString() {
+    return 'RemoveLiquidityRouteWrapperArgs{poolFullInfo: $poolFullInfo, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i41.PoolsPageWrapper]
 class PoolsRouteWrapper extends _i65.PageRouteInfo<void> {
   const PoolsRouteWrapper({List<_i65.PageRouteInfo>? children})
       : super(
@@ -1609,7 +1687,7 @@ class PoolsRouteWrapper extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i40.PoolsPage]
+/// [_i42.PoolsPage]
 class PoolsRoute extends _i65.PageRouteInfo<void> {
   const PoolsRoute({List<_i65.PageRouteInfo>? children})
       : super(
@@ -1623,7 +1701,7 @@ class PoolsRoute extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i41.CreatePoolPageWrapper]
+/// [_i43.CreatePoolPageWrapper]
 class CreatePoolRouteWrapper extends _i65.PageRouteInfo<void> {
   const CreatePoolRouteWrapper({List<_i65.PageRouteInfo>? children})
       : super(
@@ -1637,7 +1715,7 @@ class CreatePoolRouteWrapper extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i42.ImportRawseedFormPage]
+/// [_i44.ImportRawseedFormPage]
 class ImportRawseedFormRoute
     extends _i65.PageRouteInfo<ImportRawseedFormRouteArgs> {
   ImportRawseedFormRoute({
@@ -1667,7 +1745,7 @@ class ImportRawseedFormRouteArgs {
 }
 
 /// generated route for
-/// [_i43.CreateAccountPageWrapper]
+/// [_i45.CreateAccountPageWrapper]
 class CreateAccountRouteWrapper extends _i65.PageRouteInfo<void> {
   const CreateAccountRouteWrapper({List<_i65.PageRouteInfo>? children})
       : super(
@@ -1681,7 +1759,7 @@ class CreateAccountRouteWrapper extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i44.CreateAccountFromObjectPage]
+/// [_i46.CreateAccountFromObjectPage]
 class CreateAccountFromObjectRoute extends _i65.PageRouteInfo<void> {
   const CreateAccountFromObjectRoute({List<_i65.PageRouteInfo>? children})
       : super(
@@ -1695,7 +1773,7 @@ class CreateAccountFromObjectRoute extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i45.ImportMnemonicFormPage]
+/// [_i47.ImportMnemonicFormPage]
 class ImportMnemonicFormRoute
     extends _i65.PageRouteInfo<ImportMnemonicFormRouteArgs> {
   ImportMnemonicFormRoute({
@@ -1725,7 +1803,7 @@ class ImportMnemonicFormRouteArgs {
 }
 
 /// generated route for
-/// [_i46.CreateAccountInfoPage]
+/// [_i48.CreateAccountInfoPage]
 class CreateAccountInfoRoute extends _i65.PageRouteInfo<void> {
   const CreateAccountInfoRoute({List<_i65.PageRouteInfo>? children})
       : super(
@@ -1739,7 +1817,7 @@ class CreateAccountInfoRoute extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i47.CreateAccountMnemonicBackupPage]
+/// [_i49.CreateAccountMnemonicBackupPage]
 class CreateAccountMnemonicBackupRoute extends _i65.PageRouteInfo<void> {
   const CreateAccountMnemonicBackupRoute({List<_i65.PageRouteInfo>? children})
       : super(
@@ -1753,7 +1831,7 @@ class CreateAccountMnemonicBackupRoute extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i48.CreateAccountMnemonicConfirmPage]
+/// [_i50.CreateAccountMnemonicConfirmPage]
 class CreateAccountMnemonicConfirmRoute extends _i65.PageRouteInfo<void> {
   const CreateAccountMnemonicConfirmRoute({List<_i65.PageRouteInfo>? children})
       : super(
@@ -1767,7 +1845,7 @@ class CreateAccountMnemonicConfirmRoute extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i49.CreateAccountCredentialsPage]
+/// [_i51.CreateAccountCredentialsPage]
 class CreateAccountCredentialsRoute
     extends _i65.PageRouteInfo<CreateAccountCredentialsRouteArgs> {
   CreateAccountCredentialsRoute({
@@ -1806,7 +1884,7 @@ class CreateAccountCredentialsRouteArgs {
 }
 
 /// generated route for
-/// [_i50.CreateAccountTypePage]
+/// [_i52.CreateAccountTypePage]
 class CreateAccountTypeRoute extends _i65.PageRouteInfo<void> {
   const CreateAccountTypeRoute({List<_i65.PageRouteInfo>? children})
       : super(
@@ -1820,7 +1898,7 @@ class CreateAccountTypeRoute extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i51.CreateAccountLoaderPage]
+/// [_i53.CreateAccountLoaderPage]
 class CreateAccountLoaderRoute extends _i65.PageRouteInfo<void> {
   const CreateAccountLoaderRoute({List<_i65.PageRouteInfo>? children})
       : super(
@@ -1834,7 +1912,7 @@ class CreateAccountLoaderRoute extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i52.NoStableHashDialog]
+/// [_i54.NoStableHashDialog]
 class NoStableHashRoute extends _i65.PageRouteInfo<void> {
   const NoStableHashRoute({List<_i65.PageRouteInfo>? children})
       : super(
@@ -1848,10 +1926,10 @@ class NoStableHashRoute extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i53.UploadedObjectPage]
+/// [_i55.UploadedObjectPage]
 class UploadedObjectRoute extends _i65.PageRouteInfo<UploadedObjectRouteArgs> {
   UploadedObjectRoute({
-    required _i74.UploadedObject uploadedObject,
+    required _i75.UploadedObject uploadedObject,
     _i66.Key? key,
     List<_i65.PageRouteInfo>? children,
   }) : super(
@@ -1875,7 +1953,7 @@ class UploadedObjectRouteArgs {
     this.key,
   });
 
-  final _i74.UploadedObject uploadedObject;
+  final _i75.UploadedObject uploadedObject;
 
   final _i66.Key? key;
 
@@ -1886,7 +1964,7 @@ class UploadedObjectRouteArgs {
 }
 
 /// generated route for
-/// [_i54.SettingsPage]
+/// [_i56.SettingsPage]
 class SettingsRoute extends _i65.PageRouteInfo<void> {
   const SettingsRoute({List<_i65.PageRouteInfo>? children})
       : super(
@@ -1900,10 +1978,10 @@ class SettingsRoute extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i55.SectionsSubPage]
+/// [_i57.SectionsSubPage]
 class SectionsSubRoute extends _i65.PageRouteInfo<SectionsSubRouteArgs> {
   SectionsSubRoute({
-    required _i75.GlobalSettings initialState,
+    required _i76.GlobalSettings initialState,
     _i66.Key? key,
     List<_i65.PageRouteInfo>? children,
   }) : super(
@@ -1927,7 +2005,7 @@ class SectionsSubRouteArgs {
     this.key,
   });
 
-  final _i75.GlobalSettings initialState;
+  final _i76.GlobalSettings initialState;
 
   final _i66.Key? key;
 
@@ -1938,10 +2016,10 @@ class SectionsSubRouteArgs {
 }
 
 /// generated route for
-/// [_i56.TransBytesSubPage]
+/// [_i58.TransBytesSubPage]
 class TransBytesSubRoute extends _i65.PageRouteInfo<TransBytesSubRouteArgs> {
   TransBytesSubRoute({
-    required _i75.GlobalSettings initialState,
+    required _i76.GlobalSettings initialState,
     _i66.Key? key,
     List<_i65.PageRouteInfo>? children,
   }) : super(
@@ -1965,7 +2043,7 @@ class TransBytesSubRouteArgs {
     this.key,
   });
 
-  final _i75.GlobalSettings initialState;
+  final _i76.GlobalSettings initialState;
 
   final _i66.Key? key;
 
@@ -1976,7 +2054,7 @@ class TransBytesSubRouteArgs {
 }
 
 /// generated route for
-/// [_i57.GridSizeSubPage]
+/// [_i59.GridSizeSubPage]
 class GridSizeSubRoute extends _i65.PageRouteInfo<void> {
   const GridSizeSubRoute({List<_i65.PageRouteInfo>? children})
       : super(
@@ -1990,7 +2068,7 @@ class GridSizeSubRoute extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i58.PixelRatioSubPage]
+/// [_i60.PixelRatioSubPage]
 class PixelRatioSubRoute extends _i65.PageRouteInfo<void> {
   const PixelRatioSubRoute({List<_i65.PageRouteInfo>? children})
       : super(
@@ -2004,10 +2082,10 @@ class PixelRatioSubRoute extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i59.WalletNodeSubPage]
+/// [_i61.WalletNodeSubPage]
 class WalletNodeSubRoute extends _i65.PageRouteInfo<WalletNodeSubRouteArgs> {
   WalletNodeSubRoute({
-    required _i75.GlobalSettings initialState,
+    required _i76.GlobalSettings initialState,
     _i66.Key? key,
     List<_i65.PageRouteInfo>? children,
   }) : super(
@@ -2031,7 +2109,7 @@ class WalletNodeSubRouteArgs {
     this.key,
   });
 
-  final _i75.GlobalSettings initialState;
+  final _i76.GlobalSettings initialState;
 
   final _i66.Key? key;
 
@@ -2042,7 +2120,7 @@ class WalletNodeSubRouteArgs {
 }
 
 /// generated route for
-/// [_i60.ChooseAlgorithmSubPage]
+/// [_i62.ChooseAlgorithmSubPage]
 class ChooseAlgorithmSubRoute extends _i65.PageRouteInfo<void> {
   const ChooseAlgorithmSubRoute({List<_i65.PageRouteInfo>? children})
       : super(
@@ -2056,10 +2134,10 @@ class ChooseAlgorithmSubRoute extends _i65.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i61.StableHashSubPage]
+/// [_i63.StableHashSubPage]
 class StableHashSubRoute extends _i65.PageRouteInfo<StableHashSubRouteArgs> {
   StableHashSubRoute({
-    required _i75.GlobalSettings initialState,
+    required _i76.GlobalSettings initialState,
     _i66.Key? key,
     List<_i65.PageRouteInfo>? children,
   }) : super(
@@ -2083,7 +2161,7 @@ class StableHashSubRouteArgs {
     this.key,
   });
 
-  final _i75.GlobalSettings initialState;
+  final _i76.GlobalSettings initialState;
 
   final _i66.Key? key;
 
@@ -2094,7 +2172,7 @@ class StableHashSubRouteArgs {
 }
 
 /// generated route for
-/// [_i62.EmptySettingsRoute]
+/// [_i64.EmptySettingsRoute]
 class SettingsWrapperRoute extends _i65.PageRouteInfo<void> {
   const SettingsWrapperRoute({List<_i65.PageRouteInfo>? children})
       : super(
@@ -2105,82 +2183,4 @@ class SettingsWrapperRoute extends _i65.PageRouteInfo<void> {
   static const String name = 'SettingsWrapperRoute';
 
   static const _i65.PageInfo<void> page = _i65.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i63.AddLiquidityPageWrapper]
-class AddLiquidityRouteWrapper
-    extends _i65.PageRouteInfo<AddLiquidityRouteWrapperArgs> {
-  AddLiquidityRouteWrapper({
-    required _i76.PoolFullInfo poolFullInfo,
-    _i66.Key? key,
-    List<_i65.PageRouteInfo>? children,
-  }) : super(
-          AddLiquidityRouteWrapper.name,
-          args: AddLiquidityRouteWrapperArgs(
-            poolFullInfo: poolFullInfo,
-            key: key,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'AddLiquidityRouteWrapper';
-
-  static const _i65.PageInfo<AddLiquidityRouteWrapperArgs> page =
-      _i65.PageInfo<AddLiquidityRouteWrapperArgs>(name);
-}
-
-class AddLiquidityRouteWrapperArgs {
-  const AddLiquidityRouteWrapperArgs({
-    required this.poolFullInfo,
-    this.key,
-  });
-
-  final _i76.PoolFullInfo poolFullInfo;
-
-  final _i66.Key? key;
-
-  @override
-  String toString() {
-    return 'AddLiquidityRouteWrapperArgs{poolFullInfo: $poolFullInfo, key: $key}';
-  }
-}
-
-/// generated route for
-/// [_i64.RemoveLiquidityPageWrapper]
-class RemoveLiquidityRouteWrapper
-    extends _i65.PageRouteInfo<RemoveLiquidityRouteWrapperArgs> {
-  RemoveLiquidityRouteWrapper({
-    required _i76.PoolFullInfo poolFullInfo,
-    _i66.Key? key,
-    List<_i65.PageRouteInfo>? children,
-  }) : super(
-          RemoveLiquidityRouteWrapper.name,
-          args: RemoveLiquidityRouteWrapperArgs(
-            poolFullInfo: poolFullInfo,
-            key: key,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'RemoveLiquidityRouteWrapper';
-
-  static const _i65.PageInfo<RemoveLiquidityRouteWrapperArgs> page =
-      _i65.PageInfo<RemoveLiquidityRouteWrapperArgs>(name);
-}
-
-class RemoveLiquidityRouteWrapperArgs {
-  const RemoveLiquidityRouteWrapperArgs({
-    required this.poolFullInfo,
-    this.key,
-  });
-
-  final _i76.PoolFullInfo poolFullInfo;
-
-  final _i66.Key? key;
-
-  @override
-  String toString() {
-    return 'RemoveLiquidityRouteWrapperArgs{poolFullInfo: $poolFullInfo, key: $key}';
-  }
 }

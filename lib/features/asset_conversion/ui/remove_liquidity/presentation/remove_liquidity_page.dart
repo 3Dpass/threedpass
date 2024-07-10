@@ -1,13 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/utils/validators.dart';
-import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
-import 'package:threedpass/core/widgets/slider/slider.dart';
-import 'package:threedpass/features/asset_conversion/ui/add_liquidity/bloc/add_liquidity_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/bloc/remove_liquidity_cubit.dart';
+import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/presentation/widgets/remove_liquidity_info_section.dart';
 import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/presentation/widgets/remove_liquidity_percentage_selector.dart';
-import 'package:threedpass/features/asset_conversion/ui/widgets/stateful_pool_asset_choice.dart';
+import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/presentation/widgets/slippage_tolerance.dart';
 import 'package:threedpass/features/other/choose_account/presentation/choose_account.dart';
 import 'package:threedpass/features/other/some_form/some_form.dart';
 import 'package:threedpass/features/other/some_form/some_form_submit_button.dart';
@@ -31,19 +28,9 @@ class RemoveLiquidityPage extends StatelessWidget {
           passwordController: cubit.passwordController,
           onAccountSelected: null,
         ),
-        StatefulPoolAssetChoice<RemoveLiquidityCubit, void>(
-          assetNum: '1',
-          onChanged: null,
-          buildWhen: null,
-          initialValue: cubit.asset1,
-        ),
-        StatefulPoolAssetChoice<RemoveLiquidityCubit, void>(
-          assetNum: '2',
-          onChanged: null,
-          buildWhen: null,
-          initialValue: cubit.asset2,
-        ),
-        RemoveLiquidityPercentageSelector(),
+        const RemoveLiquidityPercentageSelector(),
+        const SlippageTolerance(),
+        const RemoveLiquidityInfoSection(),
       ],
     );
   }

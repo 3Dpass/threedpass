@@ -6,6 +6,7 @@ import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/features/asset_conversion/data/asset_conversion_repository.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/add_liquidity.dart';
+import 'package:threedpass/features/asset_conversion/domain/use_cases/calc_remove_liquidity_info.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/create_pool.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/get_all_pools.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/remove_liquidity.dart';
@@ -104,11 +105,18 @@ class DIAssetConversion extends DIModule {
       ),
     );
 
+    getIt.registerFactory<CalcRemoveLiquidityInfo>(
+      () => CalcRemoveLiquidityInfo(
+        assetConversionRepository: getIt<AssetConversionRepository>(),
+      ),
+    );
+
     getIt.registerFactoryParam<RemoveLiquidityCubit, StackRouter, PoolFullInfo>(
       (final StackRouter param1, final PoolFullInfo param2) =>
           RemoveLiquidityCubit(
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         removeLiquidityUseCase: getIt<RemoveLiquidity>(),
+        calcRemoveLiquidityInfo: getIt<CalcRemoveLiquidityInfo>(),
         outerRouter: param1,
         poolFullInfo: param2,
       ),

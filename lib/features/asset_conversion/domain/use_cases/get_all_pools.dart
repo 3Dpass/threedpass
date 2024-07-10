@@ -37,6 +37,20 @@ class GetAllPools extends UseCase<List<PoolFullInfo>, GetAllPoolsParams> {
         },
       );
 
+      final totalLPSupplyResponse =
+          await assetConversionRepository.totalLPTokensSupply(
+        lpTokenId: pool.lpTokenId,
+      );
+
+      final totalLPSupply = totalLPSupplyResponse.when(
+        left: (final e) {
+          return null;
+        },
+        right: (final data) {
+          return data;
+        },
+      );
+
       PoscanAssetMetadata? asset1Meta;
       PoscanAssetMetadata? asset2Meta;
 
@@ -71,6 +85,7 @@ class GetAllPools extends UseCase<List<PoolFullInfo>, GetAllPoolsParams> {
           lpBalance: lpBalance,
           asset1Meta: asset1Meta,
           asset2Meta: asset2Meta,
+          totalLpTokenSupply: totalLPSupply!,
           // asset1Meta: !pool.firstAsset.isNative
           //     ? poscanAssetsCubit.state.metadata[pool.firstAsset.assetId]
           //     : null,

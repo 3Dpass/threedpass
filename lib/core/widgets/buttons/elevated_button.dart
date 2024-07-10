@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/theme/d3p_theme.dart';
 
 class D3pElevatedButton extends StatelessWidget {
   const D3pElevatedButton({
@@ -8,12 +9,14 @@ class D3pElevatedButton extends StatelessWidget {
     this.onPressed,
     this.iconData,
     this.child,
+    this.isInfinityWidth = true,
   }) : super(key: key);
 
   final void Function()? onPressed;
   final String? text;
   final IconData? iconData;
   final Widget? child;
+  final bool isInfinityWidth;
 
   @override
   Widget build(final BuildContext context) {
@@ -29,9 +32,11 @@ class D3pElevatedButton extends StatelessWidget {
         // TODO CHECK CUPERTINO
         material: (final context, final platform) => MaterialElevatedButtonData(
           style: ButtonStyle(
-            minimumSize: MaterialStateProperty.all(
-              const Size.fromHeight(50),
-            ),
+            minimumSize: isInfinityWidth
+                ? MaterialStateProperty.all(
+                    const Size.fromHeight(D3pThemeData.buttonHeight),
+                  )
+                : null,
           ),
         ),
       ),

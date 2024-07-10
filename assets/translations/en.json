@@ -507,5 +507,8 @@
     "error_wrong_amount_bigint": "A big integer expected",
     "error_wrong_amount_double": "Wrong input",
     "remove_liquidity_page_title": "Remove liquidity",
-    "remove_liquidity_page_choose_account_title": "Withdraw to"
+    "remove_liquidity_page_choose_account_title": "Withdraw to",
+    "amount_percentage_label": "Amount percentage",
+    "error_validation_max": "Max is {}",
+    "slippage_tolerance_label": "Slippage tolerance"
 }

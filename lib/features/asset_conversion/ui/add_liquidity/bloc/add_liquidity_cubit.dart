@@ -55,12 +55,14 @@ class AddLiquidityCubit extends Cubit<void> with ExtrinsicShowLoadingMixin {
     final params = AddLiquidityParams(
       asset1: asset1,
       asset2: asset2,
-      amount1Desired:
-          Decimal.parse(amount1Desired.text).setDecimals(asset1Decimals),
-      amount2Desired:
-          Decimal.parse(amount2Desired.text).setDecimals(asset2Decimals),
-      amount1Min: Decimal.parse(amount1Min.text).setDecimals(asset1Decimals),
-      amount2Min: Decimal.parse(amount2Min.text).setDecimals(asset2Decimals),
+      amount1Desired: Decimal.parse(amount1Desired.text)
+          .setDecimalsForUserInput(asset1Decimals),
+      amount2Desired: Decimal.parse(amount2Desired.text)
+          .setDecimalsForUserInput(asset2Decimals),
+      amount1Min: Decimal.parse(amount1Min.text)
+          .setDecimalsForUserInput(asset1Decimals),
+      amount2Min: Decimal.parse(amount2Min.text)
+          .setDecimalsForUserInput(asset2Decimals),
       account: account,
       password: passwordController.text,
       updateStatus: () => updateStatus(context),

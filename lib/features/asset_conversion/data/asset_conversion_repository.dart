@@ -17,9 +17,12 @@ import 'package:threedpass/features/asset_conversion/domain/use_cases/remove_liq
 abstract class AssetConversionRepository {
   const AssetConversionRepository();
 
-  Future<Either<Failure, LPBalance?>> lpTokens({
+  Future<Either<Failure, BigInt?>> lpTokens({
     required final int lpTokenId,
     required final String address,
+  });
+  Future<Either<Failure, BigInt>> totalLPTokensSupply({
+    required final int lpTokenId,
   });
   Future<RawPoolReserve?> poolReserve(final BasicPoolEntity basicPool);
   Future<Iterable<BasicPoolEntity>> poolsBasic();
@@ -56,7 +59,7 @@ class AssetConversionRepositoryImpl extends AssetConversionRepository {
   }
 
   @override
-  Future<Either<Failure, LPBalance?>> lpTokens({
+  Future<Either<Failure, BigInt?>> lpTokens({
     required final int lpTokenId,
     required final String address,
   }) async {
@@ -67,12 +70,32 @@ class AssetConversionRepositoryImpl extends AssetConversionRepository {
         sendNullAsArg: false,
       );
 
-      print(res);
-      if (res == null) {
-        return const Either.right(null);
-      } else {
-        return Either.right(LPBalance.fromJson(res as Map<String, dynamic>));
-      }
+      final lpb = LPBalance.fromJson(res as Map<String, dynamic>);
+      return Either.right(lpb.balanceBigInt);
+    } on Object catch (e) {
+      logE(e.toString());
+      return Either.left(NoDataFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, BigInt>> totalLPTokensSupply({
+    required final int lpTokenId,
+  }) async {
+    try {
+      final dynamic res = await polkawalletSdk.api.universal.callNoSign(
+        calls: ['query', 'poscanPoolAssets', 'asset'],
+        args: '[$lpTokenId]',
+        sendNullAsArg: false,
+      );
+
+      print('totalLPTokensSupply $res');
+      return Either.right(
+        BigInt.parse(
+          ((res as Map<String, dynamic>)['supply'] as String)
+              .replaceAll(',', ''),
+        ),
+      );
     } on Object catch (e) {
       logE(e.toString());
       return Either.left(NoDataFailure(e.toString()));

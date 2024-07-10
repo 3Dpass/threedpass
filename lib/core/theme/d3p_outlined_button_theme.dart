@@ -12,6 +12,8 @@ abstract class D3pOutlinedButtonTheme {
         foregroundColor: D3pThemeData.mainColor,
         disabledForegroundColor: D3pColors.disabled,
         textStyle: t.customTextStyles.d3pFloatingButton,
+        padding:
+            const EdgeInsets.symmetric(horizontal: D3pThemeData.buttonPadding),
       ).copyWith(
         side: MaterialStateProperty.resolveWith(
           (final states) {

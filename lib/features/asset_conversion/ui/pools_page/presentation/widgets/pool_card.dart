@@ -75,7 +75,7 @@ class PoolCard extends StatelessWidget {
               symbol: symbols2,
             ),
             const SizedBoxH8(),
-            _LPTokens(poolFullInfo.lpBalance?.balanceBigInt),
+            _LPTokens(poolFullInfo.lpBalance),
             const SizedBoxH16(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -94,7 +94,7 @@ class PoolCard extends StatelessWidget {
                 Flexible(
                   child: D3pSecondaryButton(
                     localizedTextKey: 'withdraw_button_label',
-                    onPressed: poolFullInfo.lpBalance?.rawBalance == null
+                    onPressed: poolFullInfo.lpBalance == null
                         ? null
                         : () => context.router.push(
                               RemoveLiquidityRouteWrapper(
