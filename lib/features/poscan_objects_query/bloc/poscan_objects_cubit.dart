@@ -45,10 +45,6 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
   final ObjectsStore store;
 
   Future<void> init() async {
-    // logV('Initializing poScan objects cache');
-
-    // TODO ISAR
-    // SAVE OBJECTS TO CACHE
     final realCount = (await getObjCount.call(null))
         .when(left: (final _) => null, right: (final realValue) => realValue);
 
@@ -57,19 +53,18 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
         print('GET OBJECT ID: $pageKey');
 
         UploadedObject? uploadedObject;
-        String? error;
         bool gotFromCache = false;
 
         // Get from cache
         uploadedObject = await store.get(pageKey);
 
-        if (uploadedObject == null) {
+        if (uploadedObject == null || !uploadedObject.isFinished) {
           // If no cache, get from node
           final objEither = await getUploadedObject.call(pageKey);
 
           objEither.when(
             left: (final e) {
-              error = e.cause ?? 'Error';
+              logE(e.cause ?? e.toString(), StackTrace.current);
             },
             right: (final data) {
               uploadedObject = data;
@@ -82,8 +77,7 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
 
         if (uploadedObject != null) {
           // Save to cache new approved objects
-          if (!gotFromCache &&
-              uploadedObject!.status == UploadedObjectStatus.approved) {
+          if (!gotFromCache) {
             try {
               await store.put(uploadedObject!);
             } on Object catch (e) {
@@ -96,8 +90,6 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
           } else {
             pagingController.appendPage([uploadedObject!], pageKey + 1);
           }
-        } else {
-          pagingController.error = error ?? 'Object id: $pageKey not found';
         }
       });
 

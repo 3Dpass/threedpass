@@ -42,6 +42,7 @@ Future<void> setup() async {
   await DIHashesList().setup(getIt);
 
   // Logger
+  // TODO MAKE IT JUST STATIC
   getIt.registerSingleton<Logger>(Logger());
 
   // Repos

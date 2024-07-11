@@ -55,17 +55,19 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
-      if (System.getenv("KEYSTORE_PATH")) {
+        multiDexEnabled true
+
+//      if (System.getenv("KEYSTORE_PATH")) {
             resValue "string", "app_name", "3DPass"
 
             println "Release properties"
-      } else {
-          applicationIdSuffix '.debug'
-          versionNameSuffix '-DEBUG'
-          resValue "string", "app_name", "3DPass debug"
-
-          println "Debug properties"
-      }
+//      } else {
+//          applicationIdSuffix '.debug'
+//          versionNameSuffix '-DEBUG'
+//          resValue "string", "app_name", "3DPass debug"
+//
+//          println "Debug properties"
+//      }
     }
 
 

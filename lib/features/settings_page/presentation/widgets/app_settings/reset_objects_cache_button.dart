@@ -21,6 +21,8 @@ class _State extends State<ResetObjectsCacheButton> {
   @override
   void initState() {
     super.initState();
+//  BlocProvider.of<PoscanObjectsCubit>(context).store.
+//     objectsChanged.asBroadcastStream()
   }
 
   // TODO Reload after cache update or don't save navigation pages in context
@@ -38,6 +40,11 @@ class _State extends State<ResetObjectsCacheButton> {
     }
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   Future<void> clearCache(final BuildContext context) async {
     final bloc = BlocProvider.of<PoscanObjectsCubit>(context);
 
@@ -50,9 +57,9 @@ class _State extends State<ResetObjectsCacheButton> {
       buildWhen: (final previous, final current) =>
           previous.isLoading != current.isLoading,
       builder: (final context, final state) {
-        if (!state.isLoading) {
-          loadCachedObjects();
-        }
+        // if (!state.isLoading) {
+        //   loadCachedObjects();
+        // }
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: D3pCard(

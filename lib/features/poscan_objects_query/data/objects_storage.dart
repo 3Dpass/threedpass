@@ -4,10 +4,12 @@ import 'package:threedpass/core/polkawallet/utils/log.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 
 class ObjectsStore {
-  ObjectsStore() : super();
+  ObjectsStore();
 
   bool isInitialized = false;
   late Isar isar;
+
+  Stream<void> get objectsChanged => isar.uploadedObjects.watchLazy();
 
   Future<void> open(final int ss58) async {
     isInitialized = false;

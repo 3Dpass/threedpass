@@ -174,6 +174,11 @@ extension Getters on UploadedObject {
       return null;
     }
   }
+
+  bool get isFinished {
+    return status == UploadedObjectStatus.approved ||
+        status == UploadedObjectStatus.notApproved;
+  }
 }
 
 extension _ on Object {

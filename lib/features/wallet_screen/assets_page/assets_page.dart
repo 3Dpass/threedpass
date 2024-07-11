@@ -20,7 +20,7 @@ class AssetsPage extends StatelessWidget {
         final theme = Theme.of(context);
         const children = [
           BalanceSection(),
-          OpenPoolsButton(),
+          // OpenPoolsButton(),
           PoscanAssetsColumn(),
           // ObjectsListAssets(), // TODO ISAR
         ];
