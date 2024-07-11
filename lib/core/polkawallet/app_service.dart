@@ -34,9 +34,6 @@ class AppService {
 
     plugin.sdk.api.account.unsubscribeBalance();
 
-    // plugin.sdk.webView.
-    // serviceRoot.webView!.addMsgHandler(msgId, onStatusChange);
-
     if (address != null) {
       unawaited(
         plugin.sdk.api.account.subscribeBalance(
@@ -58,7 +55,6 @@ class AppService {
       );
     }
   }
-  // final subScan = SubScanApi();
 }
 
 enum AppServiceInitStatus {

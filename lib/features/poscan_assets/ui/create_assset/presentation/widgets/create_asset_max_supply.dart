@@ -36,6 +36,7 @@ class CreateAssetMaxSupply extends StatelessWidget {
         validator: (final p0) =>
             onlyBigIntLimited(p0, state.propValue?.maxValue),
         controller: cpac.maxSupply,
+        keyboardType: TextInputType.number,
       ),
     );
   }

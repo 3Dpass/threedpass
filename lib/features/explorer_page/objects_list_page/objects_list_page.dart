@@ -1,9 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
-import 'package:threedpass/features/explorer_page/objects_list_page/presentation/explorer_uploaded_objects_list.dart';
 import 'package:threedpass/features/explorer_page/objects_list_page/presentation/objects_list_appbar.dart';
+import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
+import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
+import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/objects_list_item.dart';
+import 'package:threedpass/features/wallet_screen/transactions_history/presentation/widgets/first_page_exception_indicator.dart';
 
 @RoutePage()
 class ObjectsListPage extends StatelessWidget {
@@ -11,6 +16,8 @@ class ObjectsListPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final controller =
+        BlocProvider.of<PoscanObjectsCubit>(context).pagingController;
     return PlatformScaffold(
       appBar: PlatformAppBar(
         title: const ObjectsListAppbar(),
@@ -20,12 +27,29 @@ class ObjectsListPage extends StatelessWidget {
           titleSpacing: 0,
         ),
       ),
-      body: ListView(
-        children: const [
-          SizedBoxH16(),
-          ExplorerUploadedObjectsList(),
-          SizedBoxH16(),
-        ],
+      body: BlocBuilder<PoscanObjectsCubit, PoscanObjectsState>(
+        builder: (final context, final state) => state.isLoading
+            ? Center(
+                child: PlatformCircularProgressIndicator(),
+              )
+            : PagedListView<int, UploadedObject>.separated(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                pagingController: controller,
+                separatorBuilder: (final context, final index) =>
+                    const SizedBoxH8(),
+                builderDelegate: PagedChildBuilderDelegate<UploadedObject>(
+                  itemBuilder: (final context, final item, final index) =>
+                      ObjectsListItem(
+                    uploadedObject: item,
+                  ),
+                  firstPageErrorIndicatorBuilder: (final context) =>
+                      FirstPageExceptionIndicator(
+                    onTryAgain: controller.refresh,
+                    message: controller.error?.toString(),
+                  ),
+                ),
+              ),
       ),
     );
   }

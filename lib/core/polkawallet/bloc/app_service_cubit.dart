@@ -13,6 +13,7 @@ import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_test_net_plugin.dart';
 import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
 import 'package:threedpass/features/accounts/domain/account_info.dart';
+import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/data/objects_storage.dart';
@@ -111,7 +112,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     if (account.name.isEmpty) {
       throw Exception('Accont name or password is empty');
     }
-    // try {
+
     final addressInfo = await _getAddressForAccount(
       state: state,
       account: account,
@@ -137,11 +138,6 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     emit(state.copyWith());
 
     return res;
-    // } catch (e) {
-    //   rethrow;
-    //   // final a = state.plugin.sdk.api.account.queryIndexInfo();
-    //   // return KeyPairData();
-    // }
   }
 
   Future<void> changeAccount(final KeyPairData keyPairData) async {
@@ -158,6 +154,9 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     await pseudoNewState.subscribeToBalance();
     getIt<PoscanAssetsCubit>().switchAccount(state.keyring.current);
     unawaited(getIt<PoscanAssetsCubit>().updateBalances());
+    unawaited(
+      getIt<PoolsCubit>().update(address: state.keyring.current.address!),
+    );
 
     registerTransferCubits(pseudoNewState);
 

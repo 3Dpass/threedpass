@@ -6,38 +6,36 @@ class D3pSecondaryButton extends StatelessWidget {
   final IconData? iconData;
   final String localizedTextKey;
   final VoidCallback? onPressed;
+  final bool isInfinityWidth;
+  final bool translate;
 
   const D3pSecondaryButton({
     required this.localizedTextKey,
     this.iconData,
     this.onPressed,
+    this.isInfinityWidth = true,
+    this.translate = true,
     super.key,
   });
+
+  bool get isDisabled => onPressed == null;
+  String get textToShow => translate ? localizedTextKey.tr() : localizedTextKey;
 
   @override
   Widget build(final BuildContext context) {
     return OutlinedButton(
-      style: ButtonStyle(
-        minimumSize: const MaterialStatePropertyAll(Size.fromHeight(50)),
-        side: MaterialStateProperty.resolveWith(
-          (final states) {
-            if (!states.contains(MaterialState.disabled)) {
-              return BorderSide(
-                color: D3pThemeData.mainColor,
-              );
-            } else {
-              return null;
-            }
-          },
-        ),
+      style: OutlinedButton.styleFrom(
+        minimumSize: isInfinityWidth
+            ? const Size.fromHeight(D3pThemeData.buttonHeight)
+            : null,
       ),
       onPressed: onPressed,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(iconData),
-          const SizedBox(width: 8),
-          Text(localizedTextKey.tr()),
+          if (iconData != null) Icon(iconData),
+          if (iconData != null) const SizedBox(width: 8),
+          Text(textToShow),
         ],
       ),
     );

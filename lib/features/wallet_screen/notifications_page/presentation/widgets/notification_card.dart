@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/features/asset_conversion/ui/add_liquidity/presentation/widgets/add_liquidity_notification_card.dart';
+import 'package:threedpass/features/asset_conversion/ui/create_pool/presentation/widgets/create_pool_asset_card.dart';
+import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/presentation/widgets/remove_liquidity_notification_card.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notfication_put_object.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_create_asset_card.dart';
@@ -14,31 +17,34 @@ class NotificationCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    switch (notificationDTO.type) {
-      case NotificationType.transfer:
-        return NotificationTransferCard(
+    return switch (notificationDTO.type) {
+      NotificationType.transfer => NotificationTransferCard(
           notificationDTO as NotificationTransfer,
-        );
-      case NotificationType.putObject:
-        return NotificationPutObjectCard(
+        ),
+      NotificationType.putObject => NotificationPutObjectCard(
           notificationDTO as NotificationPutObject,
-        );
-      case NotificationType.transferBatch:
-        return NotificationTransferBatchCard(
+        ),
+      NotificationType.transferBatch => NotificationTransferBatchCard(
           notificationDTO as NotificationTransferBatch,
-        );
-      case NotificationType.createAsset:
-        return NotificationCreateAssetCard(
+        ),
+      NotificationType.createAsset => NotificationCreateAssetCard(
           notificationDTO as NotificationCreateAsset,
-        );
-      case NotificationType.setMetadata:
-        return NotificationSetMetadataCard(
+        ),
+      NotificationType.setMetadata => NotificationSetMetadataCard(
           notificationDTO as NotificationSetMetadata,
-        );
-      case NotificationType.mintAsset:
-        return NotificationMintAssetCard(
+        ),
+      NotificationType.mintAsset => NotificationMintAssetCard(
           notificationDTO as NotificationMintAsset,
-        );
-    }
+        ),
+      NotificationType.createPool => CreatePoolAssetCard(
+          notificationDTO as NotificationCreatePool,
+        ),
+      NotificationType.addLiquidity => AddLiquidityNotificationCard(
+          notificationDTO as NotificationAddLiquidity,
+        ),
+      NotificationType.removeLiquidity => RemoveLiquidityNotificationCard(
+          notificationDTO as NotificationRemoveLiquidity,
+        ),
+    };
   }
 }

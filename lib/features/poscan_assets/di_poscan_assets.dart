@@ -24,7 +24,7 @@ class DIPoscanAssets extends DIModule {
 
     getIt.registerLazySingleton<PoscanAssetsRepository>(
       () => PoscanAssetsRepositoryImpl(
-        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        polkawalletSDK: getIt<AppServiceLoaderCubit>().state.plugin.sdk,
         callSignExtrinsicUtil: getIt<CallSignExtrinsicUtil>(),
       ),
     );

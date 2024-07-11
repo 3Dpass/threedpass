@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/poscan_assets/ui/set_metadata/bloc/set_metadata_asset_cubit.dart';
 
+@Deprecated('Use SomeFormSubmitButton instead')
 class SetMetadataSubmitButton extends StatelessWidget {
   const SetMetadataSubmitButton({super.key});
 

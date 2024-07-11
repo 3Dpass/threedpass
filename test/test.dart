@@ -8,7 +8,7 @@ import 'utils/tx_logs_handler.dart' as tx_logs_handler;
 void main() {
   // config();
 
-  assets_formating.main();
+  // assets_formating.main();
   big_int_json_helper.main();
   // tx_logs_handler.main();
 

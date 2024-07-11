@@ -23,7 +23,7 @@ class CreateAssetPage extends StatelessWidget {
         CreateAssetInputId(),
         CreateAssetChooseAccount(),
         CreateAssetMinBalance(),
-        CreateAssetObjectOption(),
+        // CreateAssetObjectOption(), // TODO ISAR
       ],
     );
   }

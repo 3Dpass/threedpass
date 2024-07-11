@@ -6,10 +6,12 @@ import 'package:threedpass/core/widgets/paddings.dart';
 class FirstPageExceptionIndicator extends StatelessWidget {
   const FirstPageExceptionIndicator({
     required this.onTryAgain,
+    this.message,
     super.key,
   });
 
   final VoidCallback onTryAgain;
+  final String? message;
 
   @override
   Widget build(final BuildContext context) {
@@ -25,7 +27,7 @@ class FirstPageExceptionIndicator extends StatelessWidget {
             ),
             const SizedBoxH16(),
             Text(
-              'first_page_error_message'.tr(),
+              message ?? 'first_page_error_message'.tr(),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 48),

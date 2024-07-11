@@ -10,31 +10,32 @@ import 'package:threedpass/features/poscan_objects_query/domain/usecase/get_uplo
 class DIPoscanQuery extends DIModule {
   @override
   Future<void> setup(final GetIt getIt) async {
-    getIt.registerSingleton<StoragePoscanRepository>(
-      StoragePoscanRepository(
+    getIt.registerLazySingleton<StoragePoscanRepository>(
+      () => StoragePoscanRepository(
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
       ),
     );
 
-    getIt.registerSingleton<GetObjCount>(
-      GetObjCount(
+    getIt.registerLazySingleton<GetObjCount>(
+      () => GetObjCount(
         repository: getIt<StoragePoscanRepository>(),
       ),
     );
 
-    getIt.registerSingleton<GetUploadedObject>(
-      GetUploadedObject(
+    getIt.registerLazySingleton<GetUploadedObject>(
+      () => GetUploadedObject(
         repository: getIt<StoragePoscanRepository>(),
       ),
     );
 
-    getIt.registerFactoryParam<ObjectsStore, int, void>(
-      (final int ss58, final _) => ObjectsStore(ss58),
+    getIt.registerLazySingleton<ObjectsStore>(
+      () => ObjectsStore(),
     );
-    getIt.registerSingleton<PoscanObjectsCubit>(
-      PoscanObjectsCubit(
+    getIt.registerLazySingleton<PoscanObjectsCubit>(
+      () => PoscanObjectsCubit(
         getObjCount: getIt<GetObjCount>(),
         getUploadedObject: getIt<GetUploadedObject>(),
+        store: getIt<ObjectsStore>(),
       ),
     );
   }

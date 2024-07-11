@@ -8,8 +8,8 @@ import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifi
 class DIPreviewPage extends DIModule {
   @override
   Future<void> setup(final GetIt getIt) async {
-    getIt.registerSingleton<PoScanRepository>(
-      PoScanRepository(
+    getIt.registerLazySingleton<PoScanRepository>(
+      () => PoScanRepository(
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
       ),
     );

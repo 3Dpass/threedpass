@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:logger/logger.dart';
+import 'package:polkawallet_sdk/polkawallet_sdk.dart';
 import 'package:super_core/super_core.dart';
-import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/polkawallet/utils/none_mock.dart';
 import 'package:threedpass/core/utils/big_int_json_helper.dart';
@@ -41,16 +41,19 @@ abstract class PoscanAssetsRepository {
     final Iterable<int> tokenIds,
     final String address,
   );
+
+  Future<Either<Failure, PoscanAssetMetadata?>> metadata(final int _);
 }
 
 class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
   const PoscanAssetsRepositoryImpl({
-    required this.appServiceLoaderCubit,
+    required this.polkawalletSDK,
     required this.callSignExtrinsicUtil,
   });
 
-  final AppServiceLoaderCubit appServiceLoaderCubit;
+  // final AppServiceLoaderCubit appServiceLoaderCubit;
   final CallSignExtrinsicUtil callSignExtrinsicUtil;
+  final WalletSDK polkawalletSDK;
 
   @override
   Future<Either<Failure, void>> create({
@@ -151,7 +154,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
   Future<Either<Failure, List<PoscanAssetData>>> allTokens() async {
     final utility = GetTokensInfoUtility<PoscanAssetData>(
       call: 'asset',
-      appService: appServiceLoaderCubit.state,
+      webviewController: polkawalletSDK.webView!.webInstance!.webViewController,
       toElement: (final dynamic e) =>
           PoscanAssetData.fromJson(e as Map<String, dynamic>),
     );
@@ -163,7 +166,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
       tokensMetadata() async {
     final utility = GetTokensInfoUtility<PoscanAssetMetadata>(
       call: 'metadata',
-      appService: appServiceLoaderCubit.state,
+      webviewController: polkawalletSDK.webView!.webInstance!.webViewController,
       toElement: (final dynamic e) =>
           PoscanAssetMetadata.fromJson(e as Map<String, dynamic>),
     );
@@ -195,10 +198,8 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
 var p = (await api.query.poscanAssets.account($id, "$address")).toHuman();
 return p;
 """;
-
-      // TODO Typecast to CallAsyncJavaScriptResult from inappwebview
-      final dynamic response = await appServiceLoaderCubit.state.plugin.sdk.api
-          .universal.service.serviceRoot.webView!.webInstance!.webViewController
+      final dynamic response = await polkawalletSDK
+          .webView!.webInstance!.webViewController
           .callAsyncJavaScript(
         functionBody: getBalanceFunc,
       );
@@ -213,5 +214,33 @@ return p;
     }
 
     return res;
+  }
+
+  @override
+  Future<Either<Failure, PoscanAssetMetadata?>> metadata(
+    final int assetId,
+  ) async {
+    try {
+      final dynamic res = await polkawalletSDK.api.universal.callNoSign(
+        calls: ['query', 'poscanAssets', 'metadata'],
+        args: '[$assetId]',
+        sendNullAsArg: false,
+      );
+
+      if (res is Map<String, dynamic>) {
+        res['id'] = assetId;
+        final metadata = PoscanAssetMetadata.fromJson(res);
+        if (metadata.isNull) {
+          return const Either.right(null);
+        } else {
+          return Either.right(metadata);
+        }
+      } else {
+        return const Either.right(null);
+      }
+    } on Object catch (e) {
+      getIt<Logger>().e(e);
+      return Either.left(NoDataFailure(e.toString()));
+    }
   }
 }

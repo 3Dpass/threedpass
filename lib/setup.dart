@@ -8,6 +8,7 @@ import 'package:threedp_graphql/threedp_graphql.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/log.dart';
 import 'package:threedpass/core/utils/m_app_install_date.dart';
+import 'package:threedpass/features/asset_conversion/di_asset_conversion.dart';
 import 'package:threedpass/features/hashes_list/di/di_hashes_list.dart';
 import 'package:threedpass/features/poscan_assets/di_poscan_assets.dart';
 import 'package:threedpass/features/poscan_objects_query/di_polkadot_query.dart';
@@ -41,6 +42,7 @@ Future<void> setup() async {
   await DIHashesList().setup(getIt);
 
   // Logger
+  // TODO MAKE IT JUST STATIC
   getIt.registerSingleton<Logger>(Logger());
 
   // Repos
@@ -94,4 +96,6 @@ Future<void> setup() async {
   await DITransferPage().setup(getIt);
 
   await DIPoscanAssets().setup(getIt);
+
+  await DIAssetConversion().setup(getIt);
 }

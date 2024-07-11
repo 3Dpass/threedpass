@@ -25,9 +25,8 @@ class RenameObjectButton extends StatelessWidget {
         ),
       ),
       text: 'rename_object_button_label',
-      cardShape: CardShape.top,
+      cardShape: CardShape.all,
       isChevronGrey: false,
     );
-    // throw Exception('');
   }
 }

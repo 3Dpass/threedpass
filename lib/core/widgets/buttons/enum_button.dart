@@ -9,7 +9,6 @@ class EnumButton extends StatelessWidget {
     required this.isChosen,
     final Key? key,
     this.onPressed,
-    // this.backgroundColor,
     this.padding,
     this.child,
   })  : border = const RoundedRectangleBorder(),
@@ -22,7 +21,6 @@ class EnumButton extends StatelessWidget {
   static const buttonRadius = Radius.circular(8);
 
   final void Function()? onPressed;
-  // final Color? backgroundColor;
   final RoundedRectangleBorder border;
   final String? text;
   final EdgeInsetsGeometry? padding;
@@ -41,7 +39,6 @@ class EnumButton extends StatelessWidget {
         child: PlatformTextButton(
           onPressed: onPressed,
           child: Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _Icon(
                 isEmpty: !isChosen,
@@ -50,8 +47,7 @@ class EnumButton extends StatelessWidget {
                 child: child != null
                     ? child!
                     : Text(
-                        text ?? '',
-                        // style: theme.textTheme.labelLarge,
+                        text ?? ''
                       ),
               ),
               // placeholder to make flexible centered
@@ -62,10 +58,6 @@ class EnumButton extends StatelessWidget {
           ),
           material: (final context, final platform) => MaterialTextButtonData(
             style: theme.textButtonTheme.style!.copyWith(
-              // padding: MaterialStateProperty.all(EdgeInsets.zero),
-              // backgroundColor: MaterialStateProperty.all<Color>(
-              //   backgroundColor ?? themeData.cardColor,
-              // ),
               foregroundColor: MaterialStateProperty.all(
                 isChosen ? mainColor : theme.customColors.themeOpposite,
               ),

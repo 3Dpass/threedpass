@@ -9,6 +9,6 @@ void logD(final String msg) {
   getIt<Logger>().d(msg);
 }
 
-void logE(final String msg) {
-  getIt<Logger>().e(msg);
+void logE(final Object msg, final StackTrace? trace) {
+  getIt<Logger>().e(msg, msg, trace);
 }

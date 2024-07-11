@@ -5,45 +5,6 @@ import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/other/right_chevron.dart';
 
 class ListTileButton extends StatelessWidget {
-  // const ListTileButton.bottom({
-  //   required this.text,
-  //   this.onPressed,
-  //   this.backgroundColor,
-  //   this.padding,
-  //   final Key? key,
-  // })  : border = const RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.only(
-  //           bottomLeft: buttonRadius,
-  //           bottomRight: buttonRadius,
-  //         ),
-  //       ),
-  //       super(key: key);
-
-  // const ListTileButton.middle({
-  //   required this.text,
-  //   final Key? key,
-  //   this.onPressed,
-  //   this.backgroundColor,
-  //   this.padding,
-  // })  : border = const RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.zero,
-  //       ),
-  //       super(key: key);
-
-  // const ListTileButton.top({
-  //   required this.text,
-  //   final Key? key,
-  //   this.onPressed,
-  //   this.backgroundColor,
-  //   this.padding,
-  // })  : border = const RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.only(
-  //           topLeft: buttonRadius,
-  //           topRight: buttonRadius,
-  //         ),
-  //       ),
-  //       super(key: key);
-
   const ListTileButton.usual({
     required this.text,
     final Key? key,

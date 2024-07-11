@@ -22,7 +22,7 @@ class AppSettingsBlock extends StatelessWidget {
         DarkThemeSwitch(),
         ShowZeroAssets(),
         PinCodeSettings(),
-        ResetObjectsCacheButton(),
+        // ResetObjectsCacheButton(), // TODO ISAR
       ],
     );
   }

@@ -14,6 +14,7 @@ class MintAmountTextField extends StatelessWidget {
     return D3pTextFormField(
       controller: smac.amount,
       labelText: 'mint_amount_label'.tr(),
+      keyboardType: TextInputType.number,
       validator: Validators.onlyBigInt,
     );
   }

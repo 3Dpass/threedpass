@@ -18,6 +18,6 @@ class ReloadObjectsIconButton extends StatelessWidget {
     final bloc = BlocProvider.of<PoscanObjectsCubit>(context);
 
     await bloc.clear();
-    await bloc.loadAll();
+    bloc.pagingController.refresh();
   }
 }

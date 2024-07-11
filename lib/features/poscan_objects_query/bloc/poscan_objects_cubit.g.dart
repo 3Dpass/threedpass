@@ -7,9 +7,7 @@ part of 'poscan_objects_cubit.dart';
 // **************************************************************************
 
 abstract class _$PoscanObjectsStateCWProxy {
-  PoscanObjectsState objects(List<UploadedObject> objects);
-
-  PoscanObjectsState status(PoscanObjectStateStatus status);
+  PoscanObjectsState isLoading(bool isLoading);
 
   PoscanObjectsState message(String? message);
 
@@ -22,8 +20,7 @@ abstract class _$PoscanObjectsStateCWProxy {
   /// PoscanObjectsState(...).copyWith(id: 12, name: "My name")
   /// ````
   PoscanObjectsState call({
-    List<UploadedObject>? objects,
-    PoscanObjectStateStatus? status,
+    bool? isLoading,
     String? message,
     int? storageCount,
   });
@@ -36,12 +33,7 @@ class _$PoscanObjectsStateCWProxyImpl implements _$PoscanObjectsStateCWProxy {
   final PoscanObjectsState _value;
 
   @override
-  PoscanObjectsState objects(List<UploadedObject> objects) =>
-      this(objects: objects);
-
-  @override
-  PoscanObjectsState status(PoscanObjectStateStatus status) =>
-      this(status: status);
+  PoscanObjectsState isLoading(bool isLoading) => this(isLoading: isLoading);
 
   @override
   PoscanObjectsState message(String? message) => this(message: message);
@@ -59,20 +51,15 @@ class _$PoscanObjectsStateCWProxyImpl implements _$PoscanObjectsStateCWProxy {
   /// PoscanObjectsState(...).copyWith(id: 12, name: "My name")
   /// ````
   PoscanObjectsState call({
-    Object? objects = const $CopyWithPlaceholder(),
-    Object? status = const $CopyWithPlaceholder(),
+    Object? isLoading = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
     Object? storageCount = const $CopyWithPlaceholder(),
   }) {
     return PoscanObjectsState(
-      objects: objects == const $CopyWithPlaceholder() || objects == null
-          ? _value.objects
+      isLoading: isLoading == const $CopyWithPlaceholder() || isLoading == null
+          ? _value.isLoading
           // ignore: cast_nullable_to_non_nullable
-          : objects as List<UploadedObject>,
-      status: status == const $CopyWithPlaceholder() || status == null
-          ? _value.status
-          // ignore: cast_nullable_to_non_nullable
-          : status as PoscanObjectStateStatus,
+          : isLoading as bool,
       message: message == const $CopyWithPlaceholder()
           ? _value.message
           // ignore: cast_nullable_to_non_nullable

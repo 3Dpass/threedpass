@@ -10,7 +10,7 @@ class D3pIconButton extends StatelessWidget {
     this.size,
     this.splashRadius,
     this.emptyContraints = false,
-    this.text,
+    // this.text,
     this.cupertinoIcon,
     super.key,
   });
@@ -19,7 +19,6 @@ class D3pIconButton extends StatelessWidget {
     super.key,
   })  : iconData = Icons.abc,
         size = null,
-        text = null,
         iconColor = Colors.transparent,
         emptyContraints = false,
         splashRadius = null,
@@ -33,41 +32,34 @@ class D3pIconButton extends StatelessWidget {
   final double? size;
   final bool emptyContraints;
   final double? splashRadius;
-  final String? text;
   final EdgeInsets? padding;
   final IconData? cupertinoIcon;
 
   @override
   Widget build(final BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        PlatformIconButton(
-          icon: Icon(
-            iconData,
-            size: size,
-            color: iconColor,
-          ),
-          cupertinoIcon: cupertinoIcon != null
-              ? Icon(
-                  cupertinoIcon,
-                  size: size,
-                  color: iconColor,
-                )
-              : null,
-          onPressed: onPressed,
-          material: (final _, final __) => MaterialIconButtonData(
-            padding: padding ?? EdgeInsets.zero,
-            constraints: emptyContraints ? const BoxConstraints() : null,
-            splashRadius: splashRadius,
-            iconSize: size,
-          ),
-          cupertino: (context, platform) => CupertinoIconButtonData(
-            padding: padding ?? EdgeInsets.zero,
-          ),
-        ),
-        if (text != null) Text(text!),
-      ],
+    return PlatformIconButton(
+      icon: Icon(
+        iconData,
+        size: size,
+        color: iconColor,
+      ),
+      cupertinoIcon: cupertinoIcon != null
+          ? Icon(
+              cupertinoIcon,
+              size: size,
+              color: iconColor,
+            )
+          : null,
+      onPressed: onPressed,
+      material: (final _, final __) => MaterialIconButtonData(
+        padding: padding ?? EdgeInsets.zero,
+        constraints: emptyContraints ? const BoxConstraints() : null,
+        splashRadius: splashRadius,
+        iconSize: size,
+      ),
+      cupertino: (context, platform) => CupertinoIconButtonData(
+        padding: padding ?? EdgeInsets.zero,
+      ),
     );
   }
 }

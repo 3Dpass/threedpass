@@ -31,6 +31,7 @@ class D3pTextFormField extends StatelessWidget {
     this.isCollapsed = false,
     this.autofocus = false,
     this.makeLabelOutside = false,
+    this.suffixText,
     this.contentPadding =
         const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
     // this.focusedBorder,
@@ -58,6 +59,7 @@ class D3pTextFormField extends StatelessWidget {
   final int? maxLen;
   final int? maxLines;
   final IconData? suffixButton;
+  final String? suffixText;
   final bool obscureText;
   final bool isCollapsed;
   final bool autofocus;
@@ -105,6 +107,7 @@ class D3pTextFormField extends StatelessWidget {
                 onLabelButtonPressed: onLabelButtonPressed,
                 onSuffixButtonPressed: onSuffixButtonPressed,
               ).build(context),
+              suffixText: suffixText,
               hintText: hintText,
               hintStyle: textStyle.textInputHintStyle,
               isCollapsed: isCollapsed,

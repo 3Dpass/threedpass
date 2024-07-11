@@ -5,10 +5,10 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/asset_page_appbar.dart';
-import 'package:threedpass/features/wallet_screen/assets_page/widgets/buttons_panel.dart';
-import 'package:threedpass/features/wallet_screen/assets_page/widgets/coins_balance.dart';
+import 'package:threedpass/features/wallet_screen/assets_page/widgets/balance_section.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/poscan_assets_column.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/objects_list_assets.dart';
+import 'package:threedpass/features/wallet_screen/open_pools/open_pools_button.dart';
 
 class AssetsPage extends StatelessWidget {
   const AssetsPage({final Key? key}) : super(key: key);
@@ -19,29 +19,16 @@ class AssetsPage extends StatelessWidget {
       builder: (final context, final state) {
         final theme = Theme.of(context);
         const children = [
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CoinsBalance(),
-              SizedBoxH8(),
-              AssetPageButtonsPanel(),
-            ],
-          ),
+          BalanceSection(),
+          // OpenPoolsButton(),
           PoscanAssetsColumn(),
-          ObjectsListAssets(),
+          // ObjectsListAssets(), // TODO ISAR
         ];
         return Scaffold(
           backgroundColor: theme.customColors.scaffoldBackground,
           appBar: AssetPageAppbar(
             account: state.keyring.current,
           ),
-          // drawer: AccountsDrawer(
-          //   appServiceCubit: BlocProvider.of<AppServiceLoaderCubit>(context),
-          //   accounts: state.keyring.allAccounts,
-          //   current: state.keyring.current,
-          //   context: context,
-          //   theme: theme,
-          // ),
           body: ListView.separated(
             shrinkWrap: true,
             padding: const EdgeInsets.symmetric(vertical: 16),
