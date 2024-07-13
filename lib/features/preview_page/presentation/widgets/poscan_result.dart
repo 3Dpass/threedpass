@@ -6,6 +6,7 @@ import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
@@ -14,14 +15,41 @@ import 'package:threedpass/features/settings_page/domain/entities/scan_settings.
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/objects_list_item.dart';
 import 'package:threedpass/router/router.gr.dart';
 
-class PoscanResult extends StatelessWidget {
+class PoscanResult extends StatefulWidget {
   const PoscanResult({super.key});
 
   @override
-  Widget build(final BuildContext context) {
+  State<StatefulWidget> createState() => _State();
+}
+
+class _State extends State<PoscanResult> {
+  @override
+  void initState() {
+    super.initState();
+    findObj();
+  }
+
+  bool isLoaded = false;
+  UploadedObject? loadedObject;
+
+  Future<void> findObj() async {
     final snap = BlocProvider.of<PreviewPageCubit>(context).state.snapshot;
-    final loadedObject = BlocProvider.of<PoscanObjectsCubit>(context)
-        .findObjectByHashes(snap.hashes);
+    final foundObj = await BlocProvider.of<PoscanObjectsCubit>(context)
+        .findObjectByHashes(snap.hashesWithPrefix);
+
+    setState(() {
+      isLoaded = true;
+      this.loadedObject = foundObj;
+    });
+  }
+
+  @override
+  Widget build(final BuildContext context) {
+    if (!isLoaded) {
+      return const D3pProgressIndicator();
+    }
+
+    final snap = BlocProvider.of<PreviewPageCubit>(context).state.snapshot;
 
     final isSnapNoneTransBytes =
         snap.settingsConfig.transBytesMode == TransBytesMode.none;
@@ -37,7 +65,7 @@ class PoscanResult extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 2),
             child: ObjectsListItem(
-              uploadedObject: loadedObject,
+              uploadedObject: loadedObject!,
             ),
           ),
         BlocBuilder<AppServiceLoaderCubit, AppService>(
@@ -45,7 +73,7 @@ class PoscanResult extends StatelessWidget {
             final isNodeConnected =
                 state.status == AppServiceInitStatus.connected;
             final isObjectAlreadyApproved = loadedObject != null &&
-                loadedObject.status == UploadedObjectStatus.approved;
+                loadedObject!.status == UploadedObjectStatus.approved;
 
             final allConditions = isNodeConnected &&
                 !isObjectAlreadyApproved &&

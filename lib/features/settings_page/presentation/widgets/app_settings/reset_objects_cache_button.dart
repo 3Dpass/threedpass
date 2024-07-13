@@ -1,10 +1,11 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/polkawallet/utils/log.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
-import 'package:threedpass/core/widgets/progress_indicator/thin_progress_indicator.dart';
+import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
 
@@ -17,26 +18,33 @@ class ResetObjectsCacheButton extends StatefulWidget {
 
 class _State extends State<ResetObjectsCacheButton> {
   int? cachedObjects;
+  bool isListenerSet = false;
 
   @override
   void initState() {
     super.initState();
-//  BlocProvider.of<PoscanObjectsCubit>(context).store.
-//     objectsChanged.asBroadcastStream()
+    setListener();
   }
 
-  // TODO Reload after cache update or don't save navigation pages in context
-  Future<void> loadCachedObjects() async {
-    try {
-      final count = await BlocProvider.of<PoscanObjectsCubit>(context)
-          .store
-          .countEntries();
+  Future<void> setListener() async {
+    (await BlocProvider.of<PoscanObjectsCubit>(context).store.objectsChanged)
+        .asBroadcastStream()
+        .listen((final _) async {
+      unawaited(setCount());
+    });
+    unawaited(setCount());
+    setState(() {
+      isListenerSet = true;
+    });
+  }
 
+  Future<void> setCount() async {
+    final count =
+        await BlocProvider.of<PoscanObjectsCubit>(context).store.countEntries();
+    if (mounted) {
       setState(() {
         cachedObjects = count;
       });
-    } on Object catch (e) {
-      logE(e, StackTrace.current);
     }
   }
 
@@ -71,7 +79,9 @@ class _State extends State<ResetObjectsCacheButton> {
                       child: SizedBox(
                         height: 20,
                         width: 20,
-                        child: ThinProgressIndicator(),
+                        child: D3pProgressIndicator(
+                          strokeWidth: 2,
+                        ),
                       ),
                     )
                   : Row(
@@ -103,7 +113,7 @@ class _State extends State<ResetObjectsCacheButton> {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   icon: Icons.clear,
                                   text: 'Clear'.tr(),
-                                  onPressed: cachedObjects != null
+                                  onPressed: isListenerSet
                                       ? () => clearCache(context)
                                       : null,
                                 ),

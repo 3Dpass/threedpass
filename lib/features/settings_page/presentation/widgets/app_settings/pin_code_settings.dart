@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/logger.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/core/widgets/screen_lock/d3p_screen_lock_create_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
@@ -9,7 +9,6 @@ import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart'
 import 'package:threedpass/features/settings_page/domain/entities/app_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/default_settings_button.dart';
-import 'package:threedpass/setup.dart';
 
 class PinCodeSettings extends StatelessWidget {
   const PinCodeSettings({final Key? key}) : super(key: key);
@@ -44,7 +43,7 @@ class _NoPasswordSet extends StatelessWidget {
         final newGlobal = oldGlobal.copyWith(appSettings: newAppSettings);
         settings.updateSettings(newGlobal);
 
-        getIt<Logger>().i('Set new password $res');
+        logger.i('Set new password $res');
         actualHomeContext.router.pop();
       },
     );
@@ -86,7 +85,7 @@ class _PasswordWasSet extends StatelessWidget {
         final newGlobal = oldGlobal.copyWith(appSettings: newAppSettings);
         settings.updateSettings(newGlobal);
 
-        getIt<Logger>().i('Pin code was removed');
+        logger.i('Pin code was removed');
         actualHomeContext.router.pop();
       },
     );

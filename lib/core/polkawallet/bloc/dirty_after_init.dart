@@ -4,9 +4,12 @@ extension DirtyArchitectureTrick on AppServiceLoaderCubit {
   Future<void> _afterInit() async {
     final ss58 = this.state.networkStateData.ss58Format ?? ss58formatLive;
 
-    await getIt<ObjectsStore>()
+    await getIt<PoScanLocalRepository>()
         .open(ss58); // TODO WHEN RECONNECT TO NODE THIS SHOULD BE CALLED
     unawaited(getIt<PoscanObjectsCubit>().init());
+    unawaited(
+      getIt<PoscanObjectsCubit>().downloadOwnerObjects(state.keyring.current),
+    );
 
     getIt<PoscanAssetsCubit>().switchAccount(state.keyring.current);
     unawaited(getIt<PoscanAssetsCubit>().init());

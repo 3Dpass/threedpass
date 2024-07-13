@@ -59,12 +59,15 @@ class _ScrollableObjectsListState extends State<ScrollableObjectsList> {
             return const NoSavedObjectsPlaceholder();
           } else {
             if (state.requiresScroll) {
-              // TODO. IF PERFOMANCE IS POOR. REWRITE THIS USING LISTVIEW.BUILDER AND MANUAL OFFSET SCROLL
               WidgetsBinding.instance.addPostFrameCallback((final _) {
                 debugPrint('try scroll to new obj');
+
+                // TODO Remove try-catch and detect if scrool is needed
                 try {
-                  final obj = state.objects.firstWhere((final element) =>
-                      element.snapshots.any((final element) => element.isNew));
+                  final obj = state.objects.firstWhere(
+                    (final element) =>
+                        element.snapshots.any((final element) => element.isNew),
+                  );
                   final index = state.objects.indexOf(obj);
 
                   // TODO Scroll with padding to snapshot. Fix for miltiple local file hashes
@@ -78,7 +81,7 @@ class _ScrollableObjectsListState extends State<ScrollableObjectsList> {
                     curve: Curves.linear,
                   );
                   debugPrint('SCROLL SCROLL');
-                } on Object catch (e) {
+                } on Object catch (_) {
                   debugPrint('NO SCROLL');
                 }
               });

@@ -91,4 +91,7 @@ class Snapshot {
   bool get withEmptyHashes {
     return hashes.isEmpty || (hashes.first.isEmpty && hashes.length == 1);
   }
+
+  List<String> get hashesWithPrefix =>
+      hashes.map((final String e) => '0x' + e).toList();
 }

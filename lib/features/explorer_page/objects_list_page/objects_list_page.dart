@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/features/explorer_page/objects_list_page/presentation/objects_list_appbar.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
@@ -28,9 +29,11 @@ class ObjectsListPage extends StatelessWidget {
         ),
       ),
       body: BlocBuilder<PoscanObjectsCubit, PoscanObjectsState>(
+        buildWhen: (final previous, final current) =>
+            previous.isLoading != current.isLoading,
         builder: (final context, final state) => state.isLoading
-            ? Center(
-                child: PlatformCircularProgressIndicator(),
+            ? const Center(
+                child: D3pProgressIndicator(),
               )
             : PagedListView<int, UploadedObject>.separated(
                 padding:

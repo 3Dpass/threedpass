@@ -42,39 +42,44 @@ const UploadedObjectSchema = CollectionSchema(
       name: r'hashes',
       type: IsarType.stringList,
     ),
-    r'obj': PropertySchema(
+    r'hashesListJoined': PropertySchema(
       id: 5,
+      name: r'hashesListJoined',
+      type: IsarType.string,
+    ),
+    r'obj': PropertySchema(
+      id: 6,
       name: r'obj',
       type: IsarType.string,
     ),
     r'owner': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'owner',
       type: IsarType.string,
     ),
     r'propsRaw': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'propsRaw',
       type: IsarType.objectList,
       target: r'PropValueRaw',
     ),
     r'stateBlock': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'stateBlock',
       type: IsarType.longList,
     ),
     r'stateName': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'stateName',
       type: IsarType.string,
     ),
     r'whenApproved': PropertySchema(
-      id: 10,
+      id: 11,
       name: r'whenApproved',
       type: IsarType.long,
     ),
     r'whenCreated': PropertySchema(
-      id: 11,
+      id: 12,
       name: r'whenCreated',
       type: IsarType.long,
     )
@@ -84,7 +89,47 @@ const UploadedObjectSchema = CollectionSchema(
   deserialize: _uploadedObjectDeserialize,
   deserializeProp: _uploadedObjectDeserializeProp,
   idName: r'id',
-  indexes: {},
+  indexes: {
+    r'hashes': IndexSchema(
+      id: 6501283691434376082,
+      name: r'hashes',
+      unique: false,
+      replace: false,
+      properties: [
+        IndexPropertySchema(
+          name: r'hashes',
+          type: IndexType.hash,
+          caseSensitive: true,
+        )
+      ],
+    ),
+    r'hashesListJoined': IndexSchema(
+      id: -6593688471153462637,
+      name: r'hashesListJoined',
+      unique: false,
+      replace: false,
+      properties: [
+        IndexPropertySchema(
+          name: r'hashesListJoined',
+          type: IndexType.hash,
+          caseSensitive: true,
+        )
+      ],
+    ),
+    r'owner': IndexSchema(
+      id: 937942649497171216,
+      name: r'owner',
+      unique: false,
+      replace: false,
+      properties: [
+        IndexPropertySchema(
+          name: r'owner',
+          type: IndexType.hash,
+          caseSensitive: true,
+        )
+      ],
+    )
+  },
   links: {},
   embeddedSchemas: {r'PropValueRaw': PropValueRawSchema},
   getId: _uploadedObjectGetId,
@@ -109,6 +154,7 @@ int _uploadedObjectEstimateSize(
       bytesCount += value.length * 3;
     }
   }
+  bytesCount += 3 + object.hashesListJoined.length * 3;
   bytesCount += 3 + object.obj.length * 3;
   bytesCount += 3 + object.owner.length * 3;
   bytesCount += 3 + object.propsRaw.length * 3;
@@ -135,18 +181,19 @@ void _uploadedObjectSerialize(
   writer.writeString(offsets[2], object.categoryInternal);
   writer.writeString(offsets[3], object.compressedWith);
   writer.writeStringList(offsets[4], object.hashes);
-  writer.writeString(offsets[5], object.obj);
-  writer.writeString(offsets[6], object.owner);
+  writer.writeString(offsets[5], object.hashesListJoined);
+  writer.writeString(offsets[6], object.obj);
+  writer.writeString(offsets[7], object.owner);
   writer.writeObjectList<PropValueRaw>(
-    offsets[7],
+    offsets[8],
     allOffsets,
     PropValueRawSchema.serialize,
     object.propsRaw,
   );
-  writer.writeLongList(offsets[8], object.stateBlock);
-  writer.writeString(offsets[9], object.stateName);
-  writer.writeLong(offsets[10], object.whenApproved);
-  writer.writeLong(offsets[11], object.whenCreated);
+  writer.writeLongList(offsets[9], object.stateBlock);
+  writer.writeString(offsets[10], object.stateName);
+  writer.writeLong(offsets[11], object.whenApproved);
+  writer.writeLong(offsets[12], object.whenCreated);
 }
 
 UploadedObject _uploadedObjectDeserialize(
@@ -161,20 +208,21 @@ UploadedObject _uploadedObjectDeserialize(
     categoryInternal: reader.readString(offsets[2]),
     compressedWith: reader.readString(offsets[3]),
     hashes: reader.readStringList(offsets[4]) ?? [],
+    hashesListJoined: reader.readString(offsets[5]),
     id: id,
-    obj: reader.readString(offsets[5]),
-    owner: reader.readString(offsets[6]),
+    obj: reader.readString(offsets[6]),
+    owner: reader.readString(offsets[7]),
     propsRaw: reader.readObjectList<PropValueRaw>(
-          offsets[7],
+          offsets[8],
           PropValueRawSchema.deserialize,
           allOffsets,
           PropValueRaw(),
         ) ??
         [],
-    stateBlock: reader.readLongList(offsets[8]) ?? [],
-    stateName: reader.readString(offsets[9]),
-    whenApproved: reader.readLongOrNull(offsets[10]),
-    whenCreated: reader.readLong(offsets[11]),
+    stateBlock: reader.readLongList(offsets[9]) ?? [],
+    stateName: reader.readString(offsets[10]),
+    whenApproved: reader.readLongOrNull(offsets[11]),
+    whenCreated: reader.readLong(offsets[12]),
   );
   return object;
 }
@@ -201,6 +249,8 @@ P _uploadedObjectDeserializeProp<P>(
     case 6:
       return (reader.readString(offset)) as P;
     case 7:
+      return (reader.readString(offset)) as P;
+    case 8:
       return (reader.readObjectList<PropValueRaw>(
             offset,
             PropValueRawSchema.deserialize,
@@ -208,13 +258,13 @@ P _uploadedObjectDeserializeProp<P>(
             PropValueRaw(),
           ) ??
           []) as P;
-    case 8:
-      return (reader.readLongList(offset) ?? []) as P;
     case 9:
-      return (reader.readString(offset)) as P;
+      return (reader.readLongList(offset) ?? []) as P;
     case 10:
-      return (reader.readLongOrNull(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 11:
+      return (reader.readLongOrNull(offset)) as P;
+    case 12:
       return (reader.readLong(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -309,6 +359,141 @@ extension UploadedObjectQueryWhere
         upper: upperId,
         includeUpper: includeUpper,
       ));
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterWhereClause> hashesEqualTo(
+      List<String> hashes) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'hashes',
+        value: [hashes],
+      ));
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterWhereClause>
+      hashesNotEqualTo(List<String> hashes) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'hashes',
+              lower: [],
+              upper: [hashes],
+              includeUpper: false,
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'hashes',
+              lower: [hashes],
+              includeLower: false,
+              upper: [],
+            ));
+      } else {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'hashes',
+              lower: [hashes],
+              includeLower: false,
+              upper: [],
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'hashes',
+              lower: [],
+              upper: [hashes],
+              includeUpper: false,
+            ));
+      }
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterWhereClause>
+      hashesListJoinedEqualTo(String hashesListJoined) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'hashesListJoined',
+        value: [hashesListJoined],
+      ));
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterWhereClause>
+      hashesListJoinedNotEqualTo(String hashesListJoined) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'hashesListJoined',
+              lower: [],
+              upper: [hashesListJoined],
+              includeUpper: false,
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'hashesListJoined',
+              lower: [hashesListJoined],
+              includeLower: false,
+              upper: [],
+            ));
+      } else {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'hashesListJoined',
+              lower: [hashesListJoined],
+              includeLower: false,
+              upper: [],
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'hashesListJoined',
+              lower: [],
+              upper: [hashesListJoined],
+              includeUpper: false,
+            ));
+      }
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterWhereClause> ownerEqualTo(
+      String owner) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'owner',
+        value: [owner],
+      ));
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterWhereClause>
+      ownerNotEqualTo(String owner) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'owner',
+              lower: [],
+              upper: [owner],
+              includeUpper: false,
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'owner',
+              lower: [owner],
+              includeLower: false,
+              upper: [],
+            ));
+      } else {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'owner',
+              lower: [owner],
+              includeLower: false,
+              upper: [],
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'owner',
+              lower: [],
+              upper: [owner],
+              includeUpper: false,
+            ));
+      }
     });
   }
 }
@@ -1001,6 +1186,142 @@ extension UploadedObjectQueryFilter
         upper,
         includeUpper,
       );
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
+      hashesListJoinedEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'hashesListJoined',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
+      hashesListJoinedGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'hashesListJoined',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
+      hashesListJoinedLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'hashesListJoined',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
+      hashesListJoinedBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'hashesListJoined',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
+      hashesListJoinedStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'hashesListJoined',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
+      hashesListJoinedEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'hashesListJoined',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
+      hashesListJoinedContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'hashesListJoined',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
+      hashesListJoinedMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'hashesListJoined',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
+      hashesListJoinedIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'hashesListJoined',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
+      hashesListJoinedIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'hashesListJoined',
+        value: '',
+      ));
     });
   }
 
@@ -1902,6 +2223,20 @@ extension UploadedObjectQuerySortBy
     });
   }
 
+  QueryBuilder<UploadedObject, UploadedObject, QAfterSortBy>
+      sortByHashesListJoined() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hashesListJoined', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterSortBy>
+      sortByHashesListJoinedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hashesListJoined', Sort.desc);
+    });
+  }
+
   QueryBuilder<UploadedObject, UploadedObject, QAfterSortBy> sortByObj() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'obj', Sort.asc);
@@ -2025,6 +2360,20 @@ extension UploadedObjectQuerySortThenBy
     });
   }
 
+  QueryBuilder<UploadedObject, UploadedObject, QAfterSortBy>
+      thenByHashesListJoined() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hashesListJoined', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UploadedObject, UploadedObject, QAfterSortBy>
+      thenByHashesListJoinedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hashesListJoined', Sort.desc);
+    });
+  }
+
   QueryBuilder<UploadedObject, UploadedObject, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -2142,6 +2491,14 @@ extension UploadedObjectQueryWhereDistinct
     });
   }
 
+  QueryBuilder<UploadedObject, UploadedObject, QDistinct>
+      distinctByHashesListJoined({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'hashesListJoined',
+          caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<UploadedObject, UploadedObject, QDistinct> distinctByObj(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -2224,6 +2581,13 @@ extension UploadedObjectQueryProperty
       hashesProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'hashes');
+    });
+  }
+
+  QueryBuilder<UploadedObject, String, QQueryOperations>
+      hashesListJoinedProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'hashesListJoined');
     });
   }
 

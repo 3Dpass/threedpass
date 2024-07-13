@@ -1,6 +1,6 @@
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/polkawallet/utils/log.dart';
+import 'package:threedpass/core/utils/logger.dart';
 
 class CallSignExtrinsicUtil {
   final AppServiceLoaderCubit appServiceLoaderCubit;
@@ -33,7 +33,7 @@ class CallSignExtrinsicUtil {
         },
         msgIdCallback: msgIdCallback,
       );
-      logD(res.toString());
+      logger.d(res.toString());
       if (res is Map) {
         final String key = res.keys.first as String;
         if (key == 'error') {
@@ -45,7 +45,7 @@ class CallSignExtrinsicUtil {
         return const Either.left(NoDataFailure('res is not a Map'));
       }
     } on Object catch (e) {
-      logE(e, StackTrace.current);
+      logger.e(e);
       return Either.left(NoDataFailure(e.toString()));
     }
   }

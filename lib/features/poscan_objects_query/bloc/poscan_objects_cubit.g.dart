@@ -13,6 +13,8 @@ abstract class _$PoscanObjectsStateCWProxy {
 
   PoscanObjectsState storageCount(int? storageCount);
 
+  PoscanObjectsState areOwnerObjectsLoading(bool areOwnerObjectsLoading);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PoscanObjectsState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -23,6 +25,7 @@ abstract class _$PoscanObjectsStateCWProxy {
     bool? isLoading,
     String? message,
     int? storageCount,
+    bool? areOwnerObjectsLoading,
   });
 }
 
@@ -43,6 +46,10 @@ class _$PoscanObjectsStateCWProxyImpl implements _$PoscanObjectsStateCWProxy {
       this(storageCount: storageCount);
 
   @override
+  PoscanObjectsState areOwnerObjectsLoading(bool areOwnerObjectsLoading) =>
+      this(areOwnerObjectsLoading: areOwnerObjectsLoading);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PoscanObjectsState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -54,6 +61,7 @@ class _$PoscanObjectsStateCWProxyImpl implements _$PoscanObjectsStateCWProxy {
     Object? isLoading = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
     Object? storageCount = const $CopyWithPlaceholder(),
+    Object? areOwnerObjectsLoading = const $CopyWithPlaceholder(),
   }) {
     return PoscanObjectsState(
       isLoading: isLoading == const $CopyWithPlaceholder() || isLoading == null
@@ -68,6 +76,12 @@ class _$PoscanObjectsStateCWProxyImpl implements _$PoscanObjectsStateCWProxy {
           ? _value.storageCount
           // ignore: cast_nullable_to_non_nullable
           : storageCount as int?,
+      areOwnerObjectsLoading:
+          areOwnerObjectsLoading == const $CopyWithPlaceholder() ||
+                  areOwnerObjectsLoading == null
+              ? _value.areOwnerObjectsLoading
+              // ignore: cast_nullable_to_non_nullable
+              : areOwnerObjectsLoading as bool,
     );
   }
 }

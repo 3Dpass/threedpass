@@ -16,7 +16,7 @@ import 'package:threedpass/features/accounts/domain/account_info.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
-import 'package:threedpass/features/poscan_objects_query/data/objects_storage.dart';
+import 'package:threedpass/features/poscan_objects_query/data/poscan_local_repository.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
@@ -156,6 +156,9 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     unawaited(getIt<PoscanAssetsCubit>().updateBalances());
     unawaited(
       getIt<PoolsCubit>().update(address: state.keyring.current.address!),
+    );
+    unawaited(
+      getIt<PoscanObjectsCubit>().downloadOwnerObjects(state.keyring.current),
     );
 
     registerTransferCubits(pseudoNewState);

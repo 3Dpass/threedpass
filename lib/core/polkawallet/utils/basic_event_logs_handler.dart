@@ -1,9 +1,8 @@
 import 'dart:convert';
 
-import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/service/webViewRunner.dart';
 import 'package:polkawallet_sdk/utils/web_logs_handler.dart';
-import 'package:threedpass/setup.dart';
+import 'package:threedpass/core/utils/logger.dart';
 
 abstract class BasicEventLogsHandler extends WebLogsHandler {
   const BasicEventLogsHandler({
@@ -51,16 +50,16 @@ abstract class BasicEventLogsHandler extends WebLogsHandler {
 
     final String? title = dataSection['title'] as String?;
     final String? message = dataSection['message'] as String?;
-    getIt<Logger>().v('Found log $title $message');
+    logger.v('Found log $title $message');
 
     switch (title) {
       case 'system.ExtrinsicSuccess':
-        getIt<Logger>().v('Found ExtrinsicSuccess for $msgId');
+        logger.v('Found ExtrinsicSuccess for $msgId');
         onExtrinsicSuccess();
         dispose();
         break;
       case 'system.ExtrinsicFailed':
-        getIt<Logger>().v('Found ExtrinsicFailed for $msgId');
+        logger.v('Found ExtrinsicFailed for $msgId');
         onExtrinsicFailed(message);
         dispose();
         break;

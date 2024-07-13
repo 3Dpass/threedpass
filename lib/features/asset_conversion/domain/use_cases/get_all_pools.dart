@@ -1,5 +1,5 @@
 import 'package:super_core/super_core.dart';
-import 'package:threedpass/core/polkawallet/utils/log.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/asset_conversion/data/asset_conversion_repository.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
@@ -58,7 +58,7 @@ class GetAllPools extends UseCase<List<PoolFullInfo>, GetAllPoolsParams> {
         final metadataReq =
             await poscanAssetsRepo.metadata(pool.firstAsset.assetId!);
         metadataReq.when(
-          left: (final e) => logE(e.toString(), StackTrace.current),
+          left: (final e) => logger.e(e),
           right: (final data) => asset1Meta = data,
         );
       }
@@ -67,7 +67,7 @@ class GetAllPools extends UseCase<List<PoolFullInfo>, GetAllPoolsParams> {
         final metadataReq =
             await poscanAssetsRepo.metadata(pool.secondAsset.assetId!);
         metadataReq.when(
-          left: (final e) => logE(e.toString(), StackTrace.current),
+          left: (final e) => logger.e(e),
           right: (final data) => asset2Meta = data,
         );
       }

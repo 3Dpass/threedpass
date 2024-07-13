@@ -1,7 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:logger/logger.dart';
 import 'package:threedpass/core/errors/storage_error.dart';
-import 'package:threedpass/setup.dart';
+import 'package:threedpass/core/utils/logger.dart';
 
 class HiveUniversalStore<T> {
   late final Box<T> _box;
@@ -49,7 +48,7 @@ class HiveUniversalStore<T> {
     }
 
     if (index == -1) {
-      getIt<Logger>().e("Couldn't find object $value to replace");
+      logger.e("Couldn't find object $value to replace");
     } else {
       await _box.putAt(index, value);
     }

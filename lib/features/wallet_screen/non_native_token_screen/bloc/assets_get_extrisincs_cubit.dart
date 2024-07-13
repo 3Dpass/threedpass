@@ -2,18 +2,16 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:logger/logger.dart';
-import 'package:polkawallet_sdk/plugin/store/balances.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedp_graphql/features/events/domain/events_request_params.dart';
 import 'package:threedp_graphql/features/extrinsics/domain/extrisincs_request_params.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/transfer_non_native_tokens_dto.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/usecases/assets_get_extrinsics.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/usecases/get_events_usecase.dart';
-import 'package:threedpass/setup.dart';
 
 class AssetsGetExtrinsicsCubit extends Cubit<void> {
   AssetsGetExtrinsicsCubit({
@@ -49,7 +47,7 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
           );
           events.when(
             left: (final err) {
-              getIt<Logger>().e(err);
+              logger.e(err);
             },
             right: (final event) {
               final list = pagingController.itemList!;
@@ -67,7 +65,7 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
                   ],
                 );
               } else {
-                getIt<Logger>().wtf(
+                logger.wtf(
                   'Block ${item.blockNumber} with id ${item.extrinsicIdx} and status ${item.extrisincStatus} was not found in list. I do not understand why is this possible?! Somehow it throws errors...',
                 );
               }
@@ -79,7 +77,7 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
         }
       }
     } else {
-      getIt<Logger>().wtf(
+      logger.wtf(
         'AssetsGetExtrinsicsCubit pagingController.itemList is null. This situation is impossible. If you see this in the console, something really bad happens.',
       );
     }

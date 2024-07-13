@@ -85,7 +85,7 @@ class BalanceUtils {
       // }
     } on Exception catch (err) {
       throw Exception('BalanceUtils.tokenInt() value: ${value} error: ${err}');
-      // getIt<Logger>().e();
+      // logger.e();
       // debugPrint();
     }
   }

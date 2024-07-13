@@ -4,8 +4,8 @@ import 'package:polkawallet_sdk/polkawallet_sdk.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/utils/basic_polkadot_js_call.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
-import 'package:threedpass/core/polkawallet/utils/log.dart';
 import 'package:threedpass/core/utils/big_int_json_helper.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/asset_conversion/data/pool_asset_field_to_js_arg.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/lp_balance.dart';
@@ -76,7 +76,7 @@ class AssetConversionRepositoryImpl extends AssetConversionRepository {
       final lpb = LPBalance.fromJson(res as Map<String, dynamic>);
       return Either.right(lpb.balanceBigInt);
     } on Object catch (e) {
-      logE(e.toString(), StackTrace.current);
+      logger.e(e);
       return Either.left(NoDataFailure(e.toString()));
     }
   }
@@ -100,7 +100,7 @@ class AssetConversionRepositoryImpl extends AssetConversionRepository {
         ),
       );
     } on Object catch (e) {
-      logE(e.toString(), StackTrace.current);
+      logger.e(e);
       return Either.left(NoDataFailure(e.toString()));
     }
   }

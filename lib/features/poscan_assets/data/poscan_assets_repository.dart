@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/polkawallet_sdk.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/polkawallet/utils/none_mock.dart';
 import 'package:threedpass/core/utils/big_int_json_helper.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/poscan_assets/data/get_tokens_info_utility.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_balance.dart';
@@ -13,7 +13,6 @@ import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_d
 import 'package:threedpass/features/poscan_assets/domain/use_cases/create_asset.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/mint_asset.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/set_metadata.dart';
-import 'package:threedpass/setup.dart';
 
 abstract class PoscanAssetsRepository {
   const PoscanAssetsRepository();
@@ -190,7 +189,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
     final Iterable<int> tokensIds,
     final String address,
   ) async {
-    getIt<Logger>().d('tokensBalancesForCurrentAccount $tokensIds $address');
+    logger.d('tokensBalancesForCurrentAccount $tokensIds $address');
     final res = <int, PoscanAssetBalance>{};
 
     for (final id in tokensIds) {
@@ -209,7 +208,7 @@ return p;
         final balance = PoscanAssetBalance.fromJson(dataRaw);
         res[id] = balance;
       } on Object {
-        // getIt<Logger>().w(e);
+        // logger.w(e);
       }
     }
 
@@ -239,7 +238,7 @@ return p;
         return const Either.right(null);
       }
     } on Object catch (e) {
-      getIt<Logger>().e(e);
+      logger.e(e);
       return Either.left(NoDataFailure(e.toString()));
     }
   }
