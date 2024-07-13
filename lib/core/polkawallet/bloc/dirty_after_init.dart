@@ -7,12 +7,6 @@ extension DirtyArchitectureTrick on AppServiceLoaderCubit {
     await getIt<PoScanLocalRepository>()
         .open(ss58); // TODO WHEN RECONNECT TO NODE THIS SHOULD BE CALLED
     unawaited(getIt<PoscanObjectsCubit>().init());
-    unawaited(
-      getIt<PoscanObjectsCubit>().downloadOwnerObjects(state.keyring.current),
-    );
-
-    getIt<PoscanAssetsCubit>().switchAccount(state.keyring.current);
-    unawaited(getIt<PoscanAssetsCubit>().init());
 
     if (state.keyring.current.address != null) {
       unawaited(
@@ -20,6 +14,12 @@ extension DirtyArchitectureTrick on AppServiceLoaderCubit {
           address: state.keyring.current.address!,
         ),
       );
+      unawaited(
+        getIt<PoscanObjectsCubit>().downloadOwnerObjects(state.keyring.current),
+      );
+
+      getIt<PoscanAssetsCubit>().switchAccount(state.keyring.current);
+      unawaited(getIt<PoscanAssetsCubit>().init());
     }
   }
 }

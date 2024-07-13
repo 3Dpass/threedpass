@@ -47,7 +47,7 @@ class UploadedObjectPage extends StatelessWidget {
           ),
           const SizedBoxH16(),
           FastRichText(
-            mainText: '\n' + uploadedObject.hashes.join('\n'),
+            mainText: '\n' + uploadedObject.hashesListJoined,
             secondaryText: 'uploaded_object_hashes'.tr(),
           ),
           const SizedBoxH16(),

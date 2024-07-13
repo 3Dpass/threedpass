@@ -15,8 +15,6 @@ class UploadedObject {
   final String categoryExternal;
   final String categoryInternal;
   @Index()
-  final List<String> hashes;
-  @Index()
   final String hashesListJoined;
   final int whenCreated;
   final int? whenApproved;
@@ -36,7 +34,6 @@ class UploadedObject {
     required this.compressedWith,
     required this.categoryExternal,
     required this.categoryInternal,
-    required this.hashes,
     required this.hashesListJoined,
     required this.whenCreated,
     required this.whenApproved,
@@ -94,7 +91,6 @@ class UploadedObject {
       compressedWith: json['compressedWith'] as String,
       categoryExternal: category.keys.first,
       categoryInternal: category.values.first as String,
-      hashes: hashes,
       hashesListJoined: hashes.join('\n'),
       whenCreated: whenCreated,
       whenApproved: whenApproved,

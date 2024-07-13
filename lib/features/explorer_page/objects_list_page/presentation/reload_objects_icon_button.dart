@@ -17,7 +17,6 @@ class ReloadObjectsIconButton extends StatelessWidget {
   Future<void> reloadCache(final BuildContext context) async {
     final bloc = BlocProvider.of<PoscanObjectsCubit>(context);
 
-    await bloc.clear();
     bloc.pagingController.refresh();
   }
 }

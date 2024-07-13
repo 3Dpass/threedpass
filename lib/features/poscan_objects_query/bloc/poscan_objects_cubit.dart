@@ -125,6 +125,5 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
 
   Future<void> clear() async {
     pagingController.refresh();
-    await store.clear();
   }
 }

@@ -37,49 +37,44 @@ const UploadedObjectSchema = CollectionSchema(
       name: r'compressedWith',
       type: IsarType.string,
     ),
-    r'hashes': PropertySchema(
-      id: 4,
-      name: r'hashes',
-      type: IsarType.stringList,
-    ),
     r'hashesListJoined': PropertySchema(
-      id: 5,
+      id: 4,
       name: r'hashesListJoined',
       type: IsarType.string,
     ),
     r'obj': PropertySchema(
-      id: 6,
+      id: 5,
       name: r'obj',
       type: IsarType.string,
     ),
     r'owner': PropertySchema(
-      id: 7,
+      id: 6,
       name: r'owner',
       type: IsarType.string,
     ),
     r'propsRaw': PropertySchema(
-      id: 8,
+      id: 7,
       name: r'propsRaw',
       type: IsarType.objectList,
       target: r'PropValueRaw',
     ),
     r'stateBlock': PropertySchema(
-      id: 9,
+      id: 8,
       name: r'stateBlock',
       type: IsarType.longList,
     ),
     r'stateName': PropertySchema(
-      id: 10,
+      id: 9,
       name: r'stateName',
       type: IsarType.string,
     ),
     r'whenApproved': PropertySchema(
-      id: 11,
+      id: 10,
       name: r'whenApproved',
       type: IsarType.long,
     ),
     r'whenCreated': PropertySchema(
-      id: 12,
+      id: 11,
       name: r'whenCreated',
       type: IsarType.long,
     )
@@ -90,19 +85,6 @@ const UploadedObjectSchema = CollectionSchema(
   deserializeProp: _uploadedObjectDeserializeProp,
   idName: r'id',
   indexes: {
-    r'hashes': IndexSchema(
-      id: 6501283691434376082,
-      name: r'hashes',
-      unique: false,
-      replace: false,
-      properties: [
-        IndexPropertySchema(
-          name: r'hashes',
-          type: IndexType.hash,
-          caseSensitive: true,
-        )
-      ],
-    ),
     r'hashesListJoined': IndexSchema(
       id: -6593688471153462637,
       name: r'hashesListJoined',
@@ -147,13 +129,6 @@ int _uploadedObjectEstimateSize(
   bytesCount += 3 + object.categoryExternal.length * 3;
   bytesCount += 3 + object.categoryInternal.length * 3;
   bytesCount += 3 + object.compressedWith.length * 3;
-  bytesCount += 3 + object.hashes.length * 3;
-  {
-    for (var i = 0; i < object.hashes.length; i++) {
-      final value = object.hashes[i];
-      bytesCount += value.length * 3;
-    }
-  }
   bytesCount += 3 + object.hashesListJoined.length * 3;
   bytesCount += 3 + object.obj.length * 3;
   bytesCount += 3 + object.owner.length * 3;
@@ -180,20 +155,19 @@ void _uploadedObjectSerialize(
   writer.writeString(offsets[1], object.categoryExternal);
   writer.writeString(offsets[2], object.categoryInternal);
   writer.writeString(offsets[3], object.compressedWith);
-  writer.writeStringList(offsets[4], object.hashes);
-  writer.writeString(offsets[5], object.hashesListJoined);
-  writer.writeString(offsets[6], object.obj);
-  writer.writeString(offsets[7], object.owner);
+  writer.writeString(offsets[4], object.hashesListJoined);
+  writer.writeString(offsets[5], object.obj);
+  writer.writeString(offsets[6], object.owner);
   writer.writeObjectList<PropValueRaw>(
-    offsets[8],
+    offsets[7],
     allOffsets,
     PropValueRawSchema.serialize,
     object.propsRaw,
   );
-  writer.writeLongList(offsets[9], object.stateBlock);
-  writer.writeString(offsets[10], object.stateName);
-  writer.writeLong(offsets[11], object.whenApproved);
-  writer.writeLong(offsets[12], object.whenCreated);
+  writer.writeLongList(offsets[8], object.stateBlock);
+  writer.writeString(offsets[9], object.stateName);
+  writer.writeLong(offsets[10], object.whenApproved);
+  writer.writeLong(offsets[11], object.whenCreated);
 }
 
 UploadedObject _uploadedObjectDeserialize(
@@ -207,22 +181,21 @@ UploadedObject _uploadedObjectDeserialize(
     categoryExternal: reader.readString(offsets[1]),
     categoryInternal: reader.readString(offsets[2]),
     compressedWith: reader.readString(offsets[3]),
-    hashes: reader.readStringList(offsets[4]) ?? [],
-    hashesListJoined: reader.readString(offsets[5]),
+    hashesListJoined: reader.readString(offsets[4]),
     id: id,
-    obj: reader.readString(offsets[6]),
-    owner: reader.readString(offsets[7]),
+    obj: reader.readString(offsets[5]),
+    owner: reader.readString(offsets[6]),
     propsRaw: reader.readObjectList<PropValueRaw>(
-          offsets[8],
+          offsets[7],
           PropValueRawSchema.deserialize,
           allOffsets,
           PropValueRaw(),
         ) ??
         [],
-    stateBlock: reader.readLongList(offsets[9]) ?? [],
-    stateName: reader.readString(offsets[10]),
-    whenApproved: reader.readLongOrNull(offsets[11]),
-    whenCreated: reader.readLong(offsets[12]),
+    stateBlock: reader.readLongList(offsets[8]) ?? [],
+    stateName: reader.readString(offsets[9]),
+    whenApproved: reader.readLongOrNull(offsets[10]),
+    whenCreated: reader.readLong(offsets[11]),
   );
   return object;
 }
@@ -243,14 +216,12 @@ P _uploadedObjectDeserializeProp<P>(
     case 3:
       return (reader.readString(offset)) as P;
     case 4:
-      return (reader.readStringList(offset) ?? []) as P;
+      return (reader.readString(offset)) as P;
     case 5:
       return (reader.readString(offset)) as P;
     case 6:
       return (reader.readString(offset)) as P;
     case 7:
-      return (reader.readString(offset)) as P;
-    case 8:
       return (reader.readObjectList<PropValueRaw>(
             offset,
             PropValueRawSchema.deserialize,
@@ -258,13 +229,13 @@ P _uploadedObjectDeserializeProp<P>(
             PropValueRaw(),
           ) ??
           []) as P;
-    case 9:
+    case 8:
       return (reader.readLongList(offset) ?? []) as P;
-    case 10:
+    case 9:
       return (reader.readString(offset)) as P;
-    case 11:
+    case 10:
       return (reader.readLongOrNull(offset)) as P;
-    case 12:
+    case 11:
       return (reader.readLong(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -359,51 +330,6 @@ extension UploadedObjectQueryWhere
         upper: upperId,
         includeUpper: includeUpper,
       ));
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterWhereClause> hashesEqualTo(
-      List<String> hashes) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(IndexWhereClause.equalTo(
-        indexName: r'hashes',
-        value: [hashes],
-      ));
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterWhereClause>
-      hashesNotEqualTo(List<String> hashes) {
-    return QueryBuilder.apply(this, (query) {
-      if (query.whereSort == Sort.asc) {
-        return query
-            .addWhereClause(IndexWhereClause.between(
-              indexName: r'hashes',
-              lower: [],
-              upper: [hashes],
-              includeUpper: false,
-            ))
-            .addWhereClause(IndexWhereClause.between(
-              indexName: r'hashes',
-              lower: [hashes],
-              includeLower: false,
-              upper: [],
-            ));
-      } else {
-        return query
-            .addWhereClause(IndexWhereClause.between(
-              indexName: r'hashes',
-              lower: [hashes],
-              includeLower: false,
-              upper: [],
-            ))
-            .addWhereClause(IndexWhereClause.between(
-              indexName: r'hashes',
-              lower: [],
-              upper: [hashes],
-              includeUpper: false,
-            ));
-      }
     });
   }
 
@@ -961,231 +887,6 @@ extension UploadedObjectQueryFilter
         property: r'compressedWith',
         value: '',
       ));
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesElementEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'hashes',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesElementGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'hashes',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesElementLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'hashes',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesElementBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'hashes',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesElementStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'hashes',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesElementEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'hashes',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesElementContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'hashes',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesElementMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'hashes',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesElementIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'hashes',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesElementIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'hashes',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesLengthEqualTo(int length) {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'hashes',
-        length,
-        true,
-        length,
-        true,
-      );
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'hashes',
-        0,
-        true,
-        0,
-        true,
-      );
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'hashes',
-        0,
-        false,
-        999999,
-        true,
-      );
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesLengthLessThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'hashes',
-        0,
-        true,
-        length,
-        include,
-      );
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesLengthGreaterThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'hashes',
-        length,
-        include,
-        999999,
-        true,
-      );
-    });
-  }
-
-  QueryBuilder<UploadedObject, UploadedObject, QAfterFilterCondition>
-      hashesLengthBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'hashes',
-        lower,
-        includeLower,
-        upper,
-        includeUpper,
-      );
     });
   }
 
@@ -2485,12 +2186,6 @@ extension UploadedObjectQueryWhereDistinct
     });
   }
 
-  QueryBuilder<UploadedObject, UploadedObject, QDistinct> distinctByHashes() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'hashes');
-    });
-  }
-
   QueryBuilder<UploadedObject, UploadedObject, QDistinct>
       distinctByHashesListJoined({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -2574,13 +2269,6 @@ extension UploadedObjectQueryProperty
       compressedWithProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'compressedWith');
-    });
-  }
-
-  QueryBuilder<UploadedObject, List<String>, QQueryOperations>
-      hashesProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'hashes');
     });
   }
 

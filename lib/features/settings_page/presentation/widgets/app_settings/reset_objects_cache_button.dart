@@ -33,9 +33,11 @@ class _State extends State<ResetObjectsCacheButton> {
       unawaited(setCount());
     });
     unawaited(setCount());
-    setState(() {
-      isListenerSet = true;
-    });
+    if (mounted) {
+      setState(() {
+        isListenerSet = true;
+      });
+    }
   }
 
   Future<void> setCount() async {
@@ -48,15 +50,11 @@ class _State extends State<ResetObjectsCacheButton> {
     }
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   Future<void> clearCache(final BuildContext context) async {
     final bloc = BlocProvider.of<PoscanObjectsCubit>(context);
 
     await bloc.clear();
+    await bloc.store.clear();
   }
 
   @override

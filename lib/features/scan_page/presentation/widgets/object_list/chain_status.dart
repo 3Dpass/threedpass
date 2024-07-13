@@ -22,6 +22,14 @@ class _State extends State<ChainStatus> {
   @override
   void initState() {
     super.initState();
+
+    final objectsCubit = BlocProvider.of<PoscanObjectsCubit>(context);
+    objectsCubit.stream.listen((final _) {
+      if (!objectsCubit.state.areOwnerObjectsLoading) {
+        findObj();
+      }
+    });
+
     findObj();
   }
 
@@ -41,7 +49,6 @@ class _State extends State<ChainStatus> {
       buildWhen: (final previous, final current) =>
           previous.areOwnerObjectsLoading != current.areOwnerObjectsLoading,
       builder: (final context, final state) {
-        findObj();
         if (loadedObject != null) {
           final medium = Theme.of(context)
               .customTextStyles
