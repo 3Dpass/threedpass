@@ -1,5 +1,6 @@
 import 'package:isar/isar.dart';
-import 'package:threedpass/core/polkawallet/utils/log.dart';
+import 'package:threedpass/core/utils/logger.dart';
+import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
 
 part 'uploaded_object.g.dart';
 
@@ -13,9 +14,11 @@ class UploadedObject {
   final String compressedWith;
   final String categoryExternal;
   final String categoryInternal;
-  final List<String> hashes;
+  @Index()
+  final String hashesListJoined;
   final int whenCreated;
   final int? whenApproved;
+  @Index()
   final String owner;
   final List<PropValueRaw> propsRaw;
 
@@ -31,7 +34,7 @@ class UploadedObject {
     required this.compressedWith,
     required this.categoryExternal,
     required this.categoryInternal,
-    required this.hashes,
+    required this.hashesListJoined,
     required this.whenCreated,
     required this.whenApproved,
     required this.owner,
@@ -88,7 +91,7 @@ class UploadedObject {
       compressedWith: json['compressedWith'] as String,
       categoryExternal: category.keys.first,
       categoryInternal: category.values.first as String,
-      hashes: hashes,
+      hashesListJoined: hashes.join('\n'),
       whenCreated: whenCreated,
       whenApproved: whenApproved,
       owner: json['owner'] as String,
@@ -169,8 +172,7 @@ extension Getters on UploadedObject {
 
       return realStatus;
     } on Object catch (e) {
-      logE('UploadedObject statusDateUTC ' + e.toString() + ' $stateBlock',
-          StackTrace.current);
+      logger.e('UploadedObject statusDateUTC ' + e.toString() + ' $stateBlock');
       return null;
     }
   }
@@ -179,9 +181,21 @@ extension Getters on UploadedObject {
     return status == UploadedObjectStatus.approved ||
         status == UploadedObjectStatus.notApproved;
   }
+
+  List<PropValue> get props => propsRaw.isEmpty
+      ? []
+      : propsRaw
+          .map(
+            (final e) => PropValue(
+              propIdx: e.propIdx!.unsafeInt,
+              maxValue: e.maxValue!.unsafeBigInt,
+            ),
+          )
+          .toList();
 }
 
 extension _ on Object {
   int get unsafeInt => int.parse(this.toString().replaceAll(',', ''));
   int? get tryUnsafeInt => int.tryParse(this.toString().replaceAll(',', ''));
+  BigInt get unsafeBigInt => BigInt.parse(this.toString().replaceAll(',', ''));
 }

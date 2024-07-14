@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
-import 'package:threedpass/core/widgets/progress_indicator/thin_progress_indicator.dart';
+import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 
 class ExtrinsicStatusIcon extends StatelessWidget {
   final ExtrinsicStatus status;
@@ -19,7 +19,9 @@ class ExtrinsicStatusIcon extends StatelessWidget {
         return const SizedBox(
           width: 24,
           height: 24,
-          child: ThinProgressIndicator(),
+          child: D3pProgressIndicator(
+            strokeWidth: 2,
+          ),
         );
       case ExtrinsicStatus.success:
         return const Icon(

@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:logger/logger.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/big_int_json_helper.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
 import 'package:threedpass/features/poscan_putobject/domain/usecases/put_object_usecase.dart';
-import 'package:threedpass/setup.dart';
 
 class PoScanRepository {
   const PoScanRepository({
@@ -74,7 +73,7 @@ class PoScanRepository {
         },
         msgIdCallback: msgIdCallback,
       );
-      getIt<Logger>().d(res);
+      logger.d(res);
       if (res is Map) {
         final String key = res.keys.first as String;
         if (key == 'error') {
@@ -86,7 +85,7 @@ class PoScanRepository {
         return const Either.left(NoDataFailure('res is not a Map'));
       }
     } on Object catch (e) {
-      getIt<Logger>().e(e);
+      logger.e(e);
       return Either.left(NoDataFailure(e.toString()));
     }
   }

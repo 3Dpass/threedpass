@@ -1,6 +1,5 @@
-import 'package:logger/logger.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
-import 'package:threedpass/setup.dart';
+import 'package:threedpass/core/utils/logger.dart';
 
 extension DecodeAddress on AppService {
   Future<String> decodeAddress(
@@ -15,7 +14,7 @@ extension DecodeAddress on AppService {
       final d1 = await service.decodeAddress([address]);
       res = d1!.keys.first as String;
     } on Object catch (e) {
-      getIt<Logger>().e(e);
+      logger.e(e);
       res = 'ERROR';
     }
 

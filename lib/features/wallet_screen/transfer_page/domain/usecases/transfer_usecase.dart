@@ -7,8 +7,8 @@ import 'package:polkawallet_sdk/p3d/tx_params.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
-import 'package:threedpass/core/polkawallet/utils/log.dart';
 import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/data/repositories/transaction.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_type_enum.dart';
@@ -106,7 +106,7 @@ class Transfer extends UseCase<void, TransferUseCaseParams> {
           required final String? message,
           required final ExtrinsicStatus status,
         }) {
-          // getIt<Logger>()
+          // logger
           //     .w('Update batch notification: $message $status $msgId');
           final finishedTransaction = notification.copyWith(
             status: status,
@@ -177,7 +177,7 @@ class Transfer extends UseCase<void, TransferUseCaseParams> {
         ),
       );
     }
-    logV('Created ${notifications.length} notifications');
+    logger.v('Created ${notifications.length} notifications');
     for (final n in notifications) {
       notificationsBloc.add(AddNotification(n));
     }
@@ -193,7 +193,7 @@ class Transfer extends UseCase<void, TransferUseCaseParams> {
     if (!addressCorrect) {
       return const Either.left(BadDataFailure('Wrong address'));
     }
-    logV(
+    logger.v(
       'TransferUseCase: metas=${params.metaInfos.length}, type: ${params.transferType}',
     );
     late final Map<dynamic, dynamic> res;

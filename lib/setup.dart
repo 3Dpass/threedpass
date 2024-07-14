@@ -1,12 +1,11 @@
 import 'package:app_install_date/app_install_date.dart';
 import 'package:ferry/ferry.dart';
 import 'package:get_it/get_it.dart';
-import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:threedp_graphql/features/transfers_history/data/repositories/transfers_repository.dart';
 import 'package:threedp_graphql/threedp_graphql.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/polkawallet/utils/log.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/utils/m_app_install_date.dart';
 import 'package:threedpass/features/asset_conversion/di_asset_conversion.dart';
 import 'package:threedpass/features/hashes_list/di/di_hashes_list.dart';
@@ -36,14 +35,10 @@ Future<void> setup() async {
       instanceName: MAppInstallDate.instanceName,
     );
   } on Object catch (_) {
-    logD('Impossible to get app install date');
+    logger.d('Impossible to get app install date');
   }
 
   await DIHashesList().setup(getIt);
-
-  // Logger
-  // TODO MAKE IT JUST STATIC
-  getIt.registerSingleton<Logger>(Logger());
 
   // Repos
   getIt.registerSingleton<SettingsRepository>(

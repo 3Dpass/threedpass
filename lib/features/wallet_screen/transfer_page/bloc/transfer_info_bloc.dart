@@ -5,7 +5,6 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:polkawallet_sdk/p3d/balance_transaction_type.dart';
 import 'package:polkawallet_sdk/p3d/tx_info.dart';
@@ -15,12 +14,12 @@ import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_meta_dto.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_type_enum.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/usecases/transfer_usecase.dart';
-import 'package:threedpass/setup.dart';
 
 part 'meta_tx_infos_fabric.dart';
 part 'transfer_info_bloc.g.dart';
@@ -191,7 +190,7 @@ class TransferInfoBloc
             message = f.cause ?? '';
           },
           right: (final _) {
-            getIt<Logger>().d(
+            logger.wtf(
               'IMPOSSIBLE SITUATION. extrinsicAccepted = false, res = $res',
             );
           },

@@ -1,14 +1,12 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:logger/logger.dart';
 import 'package:super_core/super_core.dart';
-import 'package:threedpass/core/polkawallet/utils/log.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/domain/repositories/hashes_repository.dart';
-import 'package:threedpass/setup.dart';
 
 part 'hashes_list_event.dart';
 part 'hashes_list_state.dart';
@@ -85,7 +83,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       }
 
       if (!f) {
-        getIt<Logger>().e(
+        logger.e(
           'Could not found snapshot ${event.hash.name}',
         );
       } else {
@@ -152,7 +150,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
         }
       }
       if (!f) {
-        getIt<Logger>().e(
+        logger.e(
           'Not found an object with name=${event.object.name}',
         );
       } else {
@@ -184,7 +182,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
             obj.snapshots[oldSnapIndex] = event.newSnapshot;
             f = true;
           } else {
-            getIt<Logger>().e(
+            logger.e(
               'Not found a snapshot in object ${obj.name}. Old snapshot name=${event.oldSnapshot.name}',
             );
           }
@@ -192,7 +190,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
         }
       }
       if (!f) {
-        getIt<Logger>().e(
+        logger.e(
           'Not found an object with name=${event.object.name}',
         );
       } else {
@@ -223,7 +221,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
           HashesListLoaded(objects: list),
         );
       } else {
-        getIt<Logger>().e(
+        logger.e(
           'Not found a snapshot in object ${obj.name}. Snapshot name=${event.snap.name}',
         );
       }
@@ -242,8 +240,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
         HashesListLoaded(objects: list),
       );
     } else {
-      logE('Replace object is called, but state is not HashesListLoaded',
-          StackTrace.current);
+      logger.e('Replace object is called, but state is not HashesListLoaded');
       return;
     }
   }

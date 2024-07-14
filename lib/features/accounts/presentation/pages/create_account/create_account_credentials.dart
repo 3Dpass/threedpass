@@ -5,16 +5,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/api/apiKeyring.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/utils/show_text_snackbar.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
 import 'package:threedpass/features/accounts/domain/account_create.dart';
 import 'package:threedpass/features/accounts/domain/account_info.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/create_account_form.dart';
 import 'package:threedpass/router/router.gr.dart';
-import 'package:threedpass/setup.dart';
 
 @RoutePage()
 class CreateAccountCredentialsPage extends StatelessWidget {
@@ -61,7 +60,7 @@ class CreateAccountCredentialsPage extends StatelessWidget {
           },
         );
       } on Exception catch (e) {
-        getIt<Logger>().e(
+        logger.e(
           'ERROR: Could not create account $e',
         );
 

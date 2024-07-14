@@ -1,13 +1,12 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/logger.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/add_liquidity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/remove_liquidity.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/obj_details.dart';
-import 'package:threedpass/setup.dart';
 
 part 'notifications_bloc.g.dart';
 part 'notifications_bloc_state.dart';
@@ -36,7 +35,7 @@ class NotificationsBloc
     final newList = List<NotificationDTO>.from(state.notifications);
     final index = newList.indexOf(event.oldN);
     if (index == -1) {
-      getIt<Logger>().e(
+      logger.e(
         'Notifications was not found in list. N=${event.oldN} ${event.oldN}, L=${newList.length}',
       );
       return;

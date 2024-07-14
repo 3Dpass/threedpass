@@ -36,7 +36,7 @@ class SnapshotConnectedToUploaded extends StatelessWidget {
     final similarSnapshots = <Snapshot>[];
     localSnapshots.forEach((final snapshot) {
       for (final snapHash in snapshot.hashes) {
-        if (uploadedObject.hashes.contains(snapHash)) {
+        if (uploadedObject.hashesListJoined.contains(snapHash)) {
           similarSnapshots.add(snapshot);
           break;
         }
