@@ -31,7 +31,7 @@ class _State extends State<AssetsUploadedObjectsList> {
     final objectsCubit = BlocProvider.of<PoscanObjectsCubit>(context);
     objectsCubit.stream.listen((final _) {
       if (!objectsCubit.state.areOwnerObjectsLoading) {
-        loadUserObjects(); // TODO ISAR CALL ON BLOC UPDATE. SET REFRESH BUTTONS TO RELOAD USER OBJECTS
+        loadUserObjects();
       }
     });
     loadUserObjects();
@@ -59,8 +59,6 @@ class _State extends State<AssetsUploadedObjectsList> {
         buildWhen: (final previous, final current) =>
             hasPutObj(previous) != hasPutObj(current),
         builder: (final context, final notifState) {
-          print('REBUILD USER OBJECTS LIST');
-
           if ((relatedObjects?.isEmpty ?? false) && hasPutObj(notifState)) {
             return const ObjectsListEmptyRefresh();
           }

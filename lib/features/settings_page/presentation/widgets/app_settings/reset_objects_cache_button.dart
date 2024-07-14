@@ -52,8 +52,6 @@ class _State extends State<ResetObjectsCacheButton> {
 
   Future<void> clearCache(final BuildContext context) async {
     final bloc = BlocProvider.of<PoscanObjectsCubit>(context);
-
-    await bloc.clear();
     await bloc.store.clear();
   }
 
