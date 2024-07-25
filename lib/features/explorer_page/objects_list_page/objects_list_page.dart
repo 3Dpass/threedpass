@@ -33,7 +33,7 @@ class ObjectsListPage extends StatelessWidget {
             previous.isLoading != current.isLoading,
         builder: (final context, final state) => state.isLoading
             ? const Center(
-                child: D3pProgressIndicator(),
+                child: D3pProgressIndicator(size: 24),
               )
             : PagedListView<int, UploadedObject>.separated(
                 padding:

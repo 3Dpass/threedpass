@@ -39,14 +39,15 @@ class AssetCardBody extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         Flexible(
-          child: RichText(
-            text: TextSpan(
+          child: Text.rich(
+            TextSpan(
               text: balanceText(),
               children: [
                 const TextSpan(text: ' '),
                 TextSpan(text: metadata.symbol),
               ],
             ),
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),
       ],

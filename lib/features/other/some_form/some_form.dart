@@ -28,7 +28,7 @@ class SomeForm extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Some warning about fees
+            // TODO Some warning about fees
             // Text(
             //   'Transaction takes fees',
             //   style: textStyle.secondaryText,

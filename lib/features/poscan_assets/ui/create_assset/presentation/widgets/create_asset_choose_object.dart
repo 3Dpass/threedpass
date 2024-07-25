@@ -73,7 +73,7 @@ class _State extends State<CreateAssetChooseObject> {
                     );
                   },
                 )
-              : const D3pProgressIndicator(),
+              : const D3pProgressIndicator(size: 24),
         ),
       ],
     );

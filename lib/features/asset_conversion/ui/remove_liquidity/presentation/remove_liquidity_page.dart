@@ -1,10 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/bloc/remove_liquidity_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/presentation/widgets/remove_liquidity_info_section.dart';
 import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/presentation/widgets/remove_liquidity_percentage_selector.dart';
-import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/presentation/widgets/slippage_tolerance.dart';
+import 'package:threedpass/features/asset_conversion/ui/widgets/slippage_tolerance.dart';
 import 'package:threedpass/features/other/choose_account/presentation/choose_account.dart';
 import 'package:threedpass/features/other/some_form/some_form.dart';
 import 'package:threedpass/features/other/some_form/some_form_submit_button.dart';
@@ -24,12 +23,16 @@ class RemoveLiquidityPage extends StatelessWidget {
       ),
       children: [
         ChooseAccount(
-          title: 'remove_liquidity_page_choose_account_title'.tr(),
+          title: 'remove_liquidity_page_choose_account_title',
           passwordController: cubit.passwordController,
           onAccountSelected: null,
         ),
         const RemoveLiquidityPercentageSelector(),
-        const SlippageTolerance(),
+        SlippageTolerance(
+          controller: cubit.slippageTolerance,
+          hintText: '${RemoveLiquidityCubit.defaultSlippage}%',
+          onChanged: (final p0) => cubit.setSlippageTolerance(),
+        ),
         const RemoveLiquidityInfoSection(),
       ],
     );

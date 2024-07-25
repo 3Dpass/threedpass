@@ -17,6 +17,7 @@ import 'package:threedpass/features/asset_conversion/domain/use_cases/remove_liq
 abstract class AssetConversionRepository {
   const AssetConversionRepository();
 
+  Future<Either<Object, int>> existentialDeposit();
   Future<Either<Failure, BigInt?>> lpTokens({
     required final int lpTokenId,
     required final String address,
@@ -227,7 +228,7 @@ return res;
   Future<Either<Failure, void>> removeLiquidity({
     required final RemoveLiquidityParams params,
     required final void Function(String p1) msgIdCallback,
-  }) {
+  }) async {
     final args = [
       params.asset1.toJSArg(),
       params.asset2.toJSArg(),
@@ -241,7 +242,7 @@ return res;
     argsEncoded = const JsonEncoder().convert(args);
     argsEncoded = BigIntJsonHelper.replace(argsEncoded);
 
-    print(argsEncoded);
+    logger.v(argsEncoded);
 
     return callSignExtrinsicUtil.abstractExtrinsicCall(
       argsEncoded: argsEncoded,
@@ -251,5 +252,28 @@ return res;
       updateStatus: params.updateStatus,
       msgIdCallback: msgIdCallback,
     );
+  }
+
+  @override
+  Future<Either<Object, int>> existentialDeposit() async {
+    try {
+      const String getPoolsFunc = """
+var p = () => {
+ return api.consts.balances.existentialDeposit.toHuman();
+};
+var res = await p();
+return res;
+""";
+
+      final dynamic res = await basicJSCall(
+        getPoolsFunc,
+        polkawalletSdk.webView!.webInstance!.webViewController,
+      );
+
+      return Either.right(int.parse(res.toString().replaceAll(',', '')));
+    } on Object catch (e) {
+      logger.e(e);
+      return Either.left(e);
+    }
   }
 }

@@ -9,20 +9,11 @@ abstract class D3pElevatedButtonTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: t.colorScheme.primary,
         disabledBackgroundColor: t.cardColor,
-        disabledForegroundColor: t.colorScheme.onSurface.withOpacity(0.50),
+        disabledForegroundColor: D3pColors.disabled,
+        foregroundColor: t.colorScheme.onPrimary,
         textStyle: t.customTextStyles.d3pFloatingButton,
         padding:
             const EdgeInsets.symmetric(horizontal: D3pThemeData.buttonPadding),
-      ).copyWith(
-        foregroundColor: MaterialStateProperty.resolveWith(
-          (final states) {
-            if (states.contains(MaterialState.disabled)) {
-              return D3pColors.disabled;
-            } else {
-              return t.colorScheme.onPrimary;
-            }
-          },
-        ),
       ),
     );
   }

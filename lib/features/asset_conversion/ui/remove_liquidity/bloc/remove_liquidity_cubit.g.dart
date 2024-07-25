@@ -14,6 +14,8 @@ abstract class _$RemveLiquidityStateCWProxy {
   RemveLiquidityState removeLiquidityInfo(
       RemoveLiquidityInfo? removeLiquidityInfo);
 
+  RemveLiquidityState maxPercent(int? maxPercent);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RemveLiquidityState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -24,6 +26,7 @@ abstract class _$RemveLiquidityStateCWProxy {
     int? percentage,
     bool? isLoading,
     RemoveLiquidityInfo? removeLiquidityInfo,
+    int? maxPercent,
   });
 }
 
@@ -46,6 +49,10 @@ class _$RemveLiquidityStateCWProxyImpl implements _$RemveLiquidityStateCWProxy {
       this(removeLiquidityInfo: removeLiquidityInfo);
 
   @override
+  RemveLiquidityState maxPercent(int? maxPercent) =>
+      this(maxPercent: maxPercent);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RemveLiquidityState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -57,6 +64,7 @@ class _$RemveLiquidityStateCWProxyImpl implements _$RemveLiquidityStateCWProxy {
     Object? percentage = const $CopyWithPlaceholder(),
     Object? isLoading = const $CopyWithPlaceholder(),
     Object? removeLiquidityInfo = const $CopyWithPlaceholder(),
+    Object? maxPercent = const $CopyWithPlaceholder(),
   }) {
     return RemveLiquidityState(
       percentage:
@@ -72,6 +80,10 @@ class _$RemveLiquidityStateCWProxyImpl implements _$RemveLiquidityStateCWProxy {
           ? _value.removeLiquidityInfo
           // ignore: cast_nullable_to_non_nullable
           : removeLiquidityInfo as RemoveLiquidityInfo?,
+      maxPercent: maxPercent == const $CopyWithPlaceholder()
+          ? _value.maxPercent
+          // ignore: cast_nullable_to_non_nullable
+          : maxPercent as int?,
     );
   }
 }

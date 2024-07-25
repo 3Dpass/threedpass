@@ -100,7 +100,7 @@ class _ActualObjectsListSection extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     if (isLoading) {
-      return const D3pProgressIndicator();
+      return const D3pProgressIndicator(size: 24);
     }
     if (objects == null || objects!.isEmpty) {
       return const D3pBodyMediumText('no_owned_objects_found');

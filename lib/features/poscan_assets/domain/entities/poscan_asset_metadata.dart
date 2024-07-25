@@ -20,6 +20,8 @@ class PoscanAssetMetadata {
       !isFrozen &&
       name == '';
 
+  int get depositInt => int.parse(deposit.replaceAll(',', ''));
+
   const PoscanAssetMetadata({
     required this.symbol,
     required this.decimals,

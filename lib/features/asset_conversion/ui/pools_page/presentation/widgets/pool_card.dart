@@ -21,12 +21,9 @@ class PoolCard extends StatelessWidget {
   Widget build(final BuildContext context) {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     final defaultDecimals = appService.networkStateData.tokenDecimals!.first;
-    // print('default decimals $defaultDecimals');
 
     final asset1Balance = poolFullInfo.realBalance1(defaultDecimals);
-    // print(asset1Balance);
     final asset2Balance = poolFullInfo.realBalance2(defaultDecimals);
-    // print(asset2Balance);
 
     const String nativeSymbol = 'P3D';
 

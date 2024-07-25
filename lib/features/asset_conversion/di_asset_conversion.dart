@@ -7,6 +7,7 @@ import 'package:threedpass/features/asset_conversion/data/asset_conversion_repos
 import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/add_liquidity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/calc_remove_liquidity_info.dart';
+import 'package:threedpass/features/asset_conversion/domain/use_cases/calc_remove_liquidity_max_percent.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/create_pool.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/get_all_pools.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/remove_liquidity.dart';
@@ -106,7 +107,11 @@ class DIAssetConversion extends DIModule {
     );
 
     getIt.registerFactory<CalcRemoveLiquidityInfo>(
-      () => CalcRemoveLiquidityInfo(
+      () => const CalcRemoveLiquidityInfo(),
+    );
+
+    getIt.registerFactory<CalcRemoveLiquidityMaxPercent>(
+      () => CalcRemoveLiquidityMaxPercent(
         assetConversionRepository: getIt<AssetConversionRepository>(),
       ),
     );
@@ -117,6 +122,7 @@ class DIAssetConversion extends DIModule {
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         removeLiquidityUseCase: getIt<RemoveLiquidity>(),
         calcRemoveLiquidityInfo: getIt<CalcRemoveLiquidityInfo>(),
+        calcRemoveLiquidityMaxPercent: getIt<CalcRemoveLiquidityMaxPercent>(),
         outerRouter: param1,
         poolFullInfo: param2,
       ),

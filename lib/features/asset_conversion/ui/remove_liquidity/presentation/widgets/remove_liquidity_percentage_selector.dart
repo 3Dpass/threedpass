@@ -9,7 +9,7 @@ import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/bloc/re
 class RemoveLiquidityPercentageSelector extends StatelessWidget {
   const RemoveLiquidityPercentageSelector({super.key});
 
-  static const listOfP = [25, 50, 75, 100];
+  static const listOfP = [25, 50, 75];
 
   @override
   Widget build(final BuildContext context) {
@@ -20,16 +20,32 @@ class RemoveLiquidityPercentageSelector extends StatelessWidget {
         const D3pBodyMediumText('amount_percentage_label'),
         const SizedBoxH4(),
         BlocBuilder<RemoveLiquidityCubit, RemveLiquidityState>(
-          builder: (final _, final state) => Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(
+          buildWhen: (final previous, final current) =>
+              previous.percentage != current.percentage ||
+              previous.maxPercent != current.maxPercent,
+          builder: (final _, final state) {
+            final buttons = List.generate(
               listOfP.length,
               (final index) => _RLWrapper(
                 percentage: listOfP[index],
-                state: state,
+                isActive: state.percentage == listOfP[index],
               ),
-            ),
-          ),
+            );
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ...buttons,
+                _RLButton(
+                  text: 'max',
+                  isActive: state.percentage == state.maxPercent,
+                  onPressed: state.maxPercent != null
+                      ? () => BlocProvider.of<RemoveLiquidityCubit>(context)
+                          .setPercentage(state.maxPercent!)
+                      : null,
+                ),
+              ],
+            );
+          },
         ),
       ],
     );
@@ -38,20 +54,20 @@ class RemoveLiquidityPercentageSelector extends StatelessWidget {
 
 class _RLWrapper extends StatelessWidget {
   final int percentage;
-  final RemveLiquidityState state;
+  final bool isActive;
 
   const _RLWrapper({
     required this.percentage,
-    required this.state,
+    required this.isActive,
   });
 
   @override
   Widget build(final BuildContext context) {
     return _RLButton(
       text: '$percentage%',
-      isActive: state.percentage == percentage,
-      value: percentage,
-      onPressed: BlocProvider.of<RemoveLiquidityCubit>(context).setPercentage,
+      isActive: isActive,
+      onPressed: () => BlocProvider.of<RemoveLiquidityCubit>(context)
+          .setPercentage(percentage),
     );
   }
 }
@@ -61,27 +77,25 @@ class _RLButton extends StatelessWidget {
     required this.text,
     required this.isActive,
     required this.onPressed,
-    required this.value,
   });
 
   final String text;
   final bool isActive;
-  final int value;
-  final void Function(int) onPressed;
+  final void Function()? onPressed;
 
   @override
   Widget build(final BuildContext context) {
     return isActive
         ? D3pElevatedButton(
             text: text,
-            onPressed: () => onPressed(value),
             isInfinityWidth: false,
+            onPressed: onPressed,
           )
         : D3pSecondaryButton(
             localizedTextKey: text,
-            onPressed: () => onPressed(value),
             isInfinityWidth: false,
             translate: false,
+            onPressed: onPressed,
           );
   }
 }

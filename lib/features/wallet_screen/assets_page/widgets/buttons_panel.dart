@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
+import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/coin_transfer_button.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/recieve_button.dart';
@@ -40,16 +41,17 @@ class AssetPageButtonsPanel extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.max,
           children: [
-            Flexible(child: CoinTransferButton(), flex: 3),
+            Flexible(child: CoinTransferButton(), flex: 2),
             SizedBox(width: 8),
-            // Flexible(
-            //   child: D3pElevatedButton(
-            //     text: '',
-            //     onPressed: () {},
-            //   ),
-            //   flex: 1,
-            // ),
-            // SizedBox(width: 8),
+            Flexible(
+              child: D3pElevatedButton(
+                iconData: Icons.swap_horiz_outlined,
+                text: '',
+                onPressed: () {},
+              ),
+              flex: 1,
+            ),
+            SizedBox(width: 8),
             Flexible(child: RecieveButton(), flex: 1),
 
             // _SpecialIconButton(

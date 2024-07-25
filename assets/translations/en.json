@@ -487,7 +487,7 @@
     "snapshot_chain_status": "Chain status:",
     "chain_status_recognized": "Recognized",
 
-    "@2.16.0": {},
+    "@2.15.2": {},
     "open_pools_label": "Pools",
     "pools_page_appbar": "Pools",
     "pools_text": "Earn fees by providing liquidity.",
@@ -500,15 +500,15 @@
     "create_pool_asset_choice_title": "Asset {}",
     "add_liquidity_page_title": "Add liquidity",
     "add_liquidity_page_choose_account_title": "Mint to",
-    "add_liquidity_page_amount_1_desired_label": "Amount 1 desired",
-    "add_liquidity_page_amount_2_desired_label": "Amount 2 desired",
-    "add_liquidity_page_amount_1_min_label" : "Amount 1 min",
-    "add_liquidity_page_amount_2_min_label" : "Amount 2 min",
     "error_wrong_amount_bigint": "A big integer expected",
     "error_wrong_amount_double": "Wrong input",
     "remove_liquidity_page_title": "Remove liquidity",
     "remove_liquidity_page_choose_account_title": "Withdraw to",
     "amount_percentage_label": "Amount percentage",
     "error_validation_max": "Max is {}",
-    "slippage_tolerance_label": "Slippage tolerance"
+    "slippage_tolerance_label": "Slippage tolerance",
+
+    "@2.16.0": {},
+    "add_liquidity_page_amount_desired_pattern": "Amount {} desired",
+    "add_liquidity_page_amount_min_pattern": "Amount {} min"
 }
