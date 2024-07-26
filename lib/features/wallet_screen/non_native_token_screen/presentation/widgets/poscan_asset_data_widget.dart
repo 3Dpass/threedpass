@@ -6,8 +6,8 @@ import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/object_details_rich_text.dart';
 
-class PoscanAssetDataSection extends StatelessWidget {
-  const PoscanAssetDataSection({required this.poscanAssetData, super.key});
+class PoscanAssetDataWidget extends StatelessWidget {
+  const PoscanAssetDataWidget({required this.poscanAssetData, super.key});
 
   final PoscanAssetData poscanAssetData;
 

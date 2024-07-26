@@ -23,7 +23,7 @@ class RemoveLiquidityInfoSection extends StatelessWidget {
     final asset2Symbol = rlc.poolFullInfo.asset2Meta?.symbol ?? nativeSymbols;
     return SizedBox(
       height: 88,
-      child: BlocBuilder<RemoveLiquidityCubit, RemveLiquidityState>(
+      child: BlocBuilder<RemoveLiquidityCubit, RemoveLiquidityState>(
         builder: (final context, final state) {
           if (state.isLoading || state.removeLiquidityInfo == null) {
             return Center(

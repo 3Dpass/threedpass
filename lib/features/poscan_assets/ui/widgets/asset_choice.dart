@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
-import 'package:threedpass/features/poscan_assets/ui/widgets/dropdown_asset_child.dart';
+import 'package:threedpass/features/poscan_assets/ui/widgets/dropdown_metadata_item.dart';
 
 // TODO remove if no usage
 class AssetChoice extends StatefulWidget {
@@ -32,7 +32,7 @@ class _State extends State<AssetChoice> {
         .map(
           (final e) => DropdownMenuItem<PoscanAssetMetadata>(
             value: e.value,
-            child: DropdownAssetChild(value: e.value),
+            child: DropdownMetadataItem(value: e.value),
           ),
         )
         .toList();

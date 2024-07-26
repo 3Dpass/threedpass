@@ -9,10 +9,13 @@ import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
 import 'package:threedpass/router/router.gr.dart';
 
-class PoscanAssetMintSection extends StatelessWidget {
+class PoscanAssetMintWidget extends StatelessWidget {
   final PoscanAssetData poscanAssetData;
 
-  const PoscanAssetMintSection({required this.poscanAssetData, super.key});
+  const PoscanAssetMintWidget({
+    required this.poscanAssetData,
+    super.key,
+  });
 
   @override
   Widget build(final BuildContext context) {

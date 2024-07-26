@@ -21,27 +21,27 @@ import 'package:threedpass/features/asset_conversion/domain/use_cases/remove_liq
 part 'remove_liquidity_cubit.g.dart';
 
 @CopyWith()
-class RemveLiquidityState {
+class RemoveLiquidityState {
   final int percentage;
   final bool isLoading;
   final RemoveLiquidityInfo? removeLiquidityInfo;
   final int? maxPercent;
 
-  RemveLiquidityState({
+  RemoveLiquidityState({
     required this.percentage,
     required this.isLoading,
     required this.removeLiquidityInfo,
     required this.maxPercent,
   });
 
-  RemveLiquidityState.initial()
+  RemoveLiquidityState.initial()
       : percentage = 50,
         isLoading = false,
         maxPercent = null,
         removeLiquidityInfo = null;
 }
 
-class RemoveLiquidityCubit extends Cubit<RemveLiquidityState>
+class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
     with ExtrinsicShowLoadingMixin {
   RemoveLiquidityCubit({
     required final AppServiceLoaderCubit appServiceLoaderCubit,
@@ -53,7 +53,7 @@ class RemoveLiquidityCubit extends Cubit<RemveLiquidityState>
   })  : account = appServiceLoaderCubit.state.keyring.current,
         nativeTokenDecimals =
             appServiceLoaderCubit.state.networkStateData.safeDecimals,
-        super(RemveLiquidityState.initial()) {
+        super(RemoveLiquidityState.initial()) {
     setPercentage(state.percentage);
     calcMaxPercent();
   }

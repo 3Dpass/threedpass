@@ -6,23 +6,23 @@ part of 'remove_liquidity_cubit.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$RemveLiquidityStateCWProxy {
-  RemveLiquidityState percentage(int percentage);
+abstract class _$RemoveLiquidityStateCWProxy {
+  RemoveLiquidityState percentage(int percentage);
 
-  RemveLiquidityState isLoading(bool isLoading);
+  RemoveLiquidityState isLoading(bool isLoading);
 
-  RemveLiquidityState removeLiquidityInfo(
+  RemoveLiquidityState removeLiquidityInfo(
       RemoveLiquidityInfo? removeLiquidityInfo);
 
-  RemveLiquidityState maxPercent(int? maxPercent);
+  RemoveLiquidityState maxPercent(int? maxPercent);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RemveLiquidityState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RemoveLiquidityState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
-  /// RemveLiquidityState(...).copyWith(id: 12, name: "My name")
+  /// RemoveLiquidityState(...).copyWith(id: 12, name: "My name")
   /// ````
-  RemveLiquidityState call({
+  RemoveLiquidityState call({
     int? percentage,
     bool? isLoading,
     RemoveLiquidityInfo? removeLiquidityInfo,
@@ -30,43 +30,44 @@ abstract class _$RemveLiquidityStateCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfRemveLiquidityState.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfRemveLiquidityState.copyWith.fieldName(...)`
-class _$RemveLiquidityStateCWProxyImpl implements _$RemveLiquidityStateCWProxy {
-  const _$RemveLiquidityStateCWProxyImpl(this._value);
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfRemoveLiquidityState.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfRemoveLiquidityState.copyWith.fieldName(...)`
+class _$RemoveLiquidityStateCWProxyImpl
+    implements _$RemoveLiquidityStateCWProxy {
+  const _$RemoveLiquidityStateCWProxyImpl(this._value);
 
-  final RemveLiquidityState _value;
+  final RemoveLiquidityState _value;
 
   @override
-  RemveLiquidityState percentage(int percentage) =>
+  RemoveLiquidityState percentage(int percentage) =>
       this(percentage: percentage);
 
   @override
-  RemveLiquidityState isLoading(bool isLoading) => this(isLoading: isLoading);
+  RemoveLiquidityState isLoading(bool isLoading) => this(isLoading: isLoading);
 
   @override
-  RemveLiquidityState removeLiquidityInfo(
+  RemoveLiquidityState removeLiquidityInfo(
           RemoveLiquidityInfo? removeLiquidityInfo) =>
       this(removeLiquidityInfo: removeLiquidityInfo);
 
   @override
-  RemveLiquidityState maxPercent(int? maxPercent) =>
+  RemoveLiquidityState maxPercent(int? maxPercent) =>
       this(maxPercent: maxPercent);
 
   @override
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RemveLiquidityState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RemoveLiquidityState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
-  /// RemveLiquidityState(...).copyWith(id: 12, name: "My name")
+  /// RemoveLiquidityState(...).copyWith(id: 12, name: "My name")
   /// ````
-  RemveLiquidityState call({
+  RemoveLiquidityState call({
     Object? percentage = const $CopyWithPlaceholder(),
     Object? isLoading = const $CopyWithPlaceholder(),
     Object? removeLiquidityInfo = const $CopyWithPlaceholder(),
     Object? maxPercent = const $CopyWithPlaceholder(),
   }) {
-    return RemveLiquidityState(
+    return RemoveLiquidityState(
       percentage:
           percentage == const $CopyWithPlaceholder() || percentage == null
               ? _value.percentage
@@ -88,9 +89,9 @@ class _$RemveLiquidityStateCWProxyImpl implements _$RemveLiquidityStateCWProxy {
   }
 }
 
-extension $RemveLiquidityStateCopyWith on RemveLiquidityState {
-  /// Returns a callable class that can be used as follows: `instanceOfRemveLiquidityState.copyWith(...)` or like so:`instanceOfRemveLiquidityState.copyWith.fieldName(...)`.
+extension $RemoveLiquidityStateCopyWith on RemoveLiquidityState {
+  /// Returns a callable class that can be used as follows: `instanceOfRemoveLiquidityState.copyWith(...)` or like so:`instanceOfRemoveLiquidityState.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
-  _$RemveLiquidityStateCWProxy get copyWith =>
-      _$RemveLiquidityStateCWProxyImpl(this);
+  _$RemoveLiquidityStateCWProxy get copyWith =>
+      _$RemoveLiquidityStateCWProxyImpl(this);
 }

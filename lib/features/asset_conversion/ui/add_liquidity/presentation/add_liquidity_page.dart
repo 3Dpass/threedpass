@@ -9,7 +9,6 @@ import 'package:threedpass/core/widgets/other/full_row_text.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/asset_conversion/ui/add_liquidity/bloc/add_liquidity_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/widgets/slippage_tolerance.dart';
-import 'package:threedpass/features/asset_conversion/ui/widgets/stateful_pool_asset_choice.dart';
 import 'package:threedpass/features/other/choose_account/presentation/choose_account.dart';
 import 'package:threedpass/features/other/some_form/some_form.dart';
 import 'package:threedpass/features/other/some_form/some_form_submit_button.dart';
@@ -43,24 +42,15 @@ class AddLiquidityPage extends StatelessWidget {
         formState: cubit,
       ),
       children: [
+        Text(
+          '$asset1Symbols / $asset2Symbols',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
         ChooseAccount(
           title: 'add_liquidity_page_choose_account_title'.tr(),
           passwordController: cubit.passwordController,
           onAccountSelected: null,
         ),
-        StatefulPoolAssetChoice<AddLiquidityCubit, void>(
-          assetNum: '1',
-          onChanged: null,
-          buildWhen: null,
-          initialValue: cubit.asset1,
-        ),
-        StatefulPoolAssetChoice<AddLiquidityCubit, void>(
-          assetNum: '2',
-          onChanged: null,
-          buildWhen: null,
-          initialValue: cubit.asset2,
-        ),
-
         D3pTextFormField(
           labelText: 'add_liquidity_page_amount_desired_pattern'
               .tr(args: [asset1Symbols]),

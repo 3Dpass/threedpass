@@ -19,7 +19,7 @@ class RemoveLiquidityPercentageSelector extends StatelessWidget {
       children: [
         const D3pBodyMediumText('amount_percentage_label'),
         const SizedBoxH4(),
-        BlocBuilder<RemoveLiquidityCubit, RemveLiquidityState>(
+        BlocBuilder<RemoveLiquidityCubit, RemoveLiquidityState>(
           buildWhen: (final previous, final current) =>
               previous.percentage != current.percentage ||
               previous.maxPercent != current.maxPercent,

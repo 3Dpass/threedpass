@@ -9,7 +9,6 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/create_pool.dart';
-import 'package:threedpass/features/asset_conversion/ui/widgets/pool_asset_choice.dart';
 
 part 'create_pool_cubit.g.dart';
 
@@ -24,8 +23,8 @@ class CreatePoolState {
   });
 
   const CreatePoolState.initial()
-      : asset1 = PoolAssetFieldChoice.initialPoscanAssetField,
-        asset2 = PoolAssetFieldChoice.initialPoscanAssetField;
+      : asset1 = const PoolAssetField.native(),
+        asset2 = const PoolAssetField.native();
 }
 
 class CreatePoolCubit extends Cubit<CreatePoolState>

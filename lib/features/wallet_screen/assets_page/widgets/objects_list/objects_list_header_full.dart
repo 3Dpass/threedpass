@@ -29,6 +29,7 @@ class ObjectsListHeaderFull extends StatelessWidget {
       children: [
         const D3pTitleLargeText('objects_list_header'),
         D3pIconButton(
+          emptyContraints: true,
           iconData: Icons.refresh,
           onPressed: () => refreshObjectsList(context),
         ),

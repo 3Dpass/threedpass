@@ -35,4 +35,8 @@ class PoolAssetField {
     required this.isNative,
     required this.assetId,
   });
+
+  const PoolAssetField.native()
+      : isNative = true,
+        assetId = null;
 }
