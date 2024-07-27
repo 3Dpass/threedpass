@@ -52,7 +52,13 @@ class AssetPageButtonsPanel extends StatelessWidget {
                   text: '',
                   onPressed: state.isLoading
                       ? null
-                      : () => context.router.push(const SwapRouteWrapper()),
+                      : () => context.router.push(
+                            SwapRouteWrapper(
+                              poolAssets:
+                                  BlocProvider.of<PoscanAssetsCubit>(context)
+                                      .poolAssets,
+                            ),
+                          ),
                 ),
               ),
             ),

@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {
+  // TODO Replace to Exception
   final String? cause;
 
   const Failure([this.cause]);

@@ -63,7 +63,7 @@ class RemoveLiquidityInfoSection extends StatelessWidget {
           ];
 
           return FastSeparatedListView(
-            separator: const SizedBoxH8(),
+            separator: const H8(),
             children: children,
           );
         },

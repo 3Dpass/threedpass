@@ -1,31 +1,31 @@
+// ignore_for_file: prefer-single-widget-per-file, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
-class SizedBoxH16 extends SizedBox {
-  const SizedBoxH16({final Key? key}) : super(key: key, height: 16);
+class H4 extends SizedBox {
+  const H4() : super(height: 4);
 }
 
-// ignore: prefer-single-widget-per-file
-class SizedBoxH8 extends SizedBox {
-  const SizedBoxH8({final Key? key}) : super(key: key, height: 8);
+class H8 extends SizedBox {
+  const H8() : super(height: 8);
 }
 
-// ignore: prefer-single-widget-per-file
-class SizedBoxH24 extends StatelessWidget {
-  const SizedBoxH24({final Key? key}) : super(key: key);
-
-  @override
-  Widget build(final BuildContext context) => const SizedBox(height: 24);
+class H16 extends SizedBox {
+  const H16() : super(height: 16);
 }
 
-// ignore: prefer-single-widget-per-file
-class SizedBoxH36 extends StatelessWidget {
-  const SizedBoxH36({final Key? key}) : super(key: key);
-
-  @override
-  Widget build(final BuildContext context) => const SizedBox(height: 36);
+class H24 extends SizedBox {
+  const H24() : super(height: 24);
 }
 
-// ignore: prefer-single-widget-per-file
-class SizedBoxH4 extends SizedBox {
-  const SizedBoxH4({final Key? key}) : super(key: key, height: 4);
+class H36 extends SizedBox {
+  const H36() : super(height: 24);
+}
+
+class W8 extends SizedBox {
+  const W8() : super(width: 8);
+}
+
+class W16 extends SizedBox {
+  const W16() : super(width: 16);
 }

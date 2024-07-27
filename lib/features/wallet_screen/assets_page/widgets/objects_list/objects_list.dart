@@ -70,7 +70,7 @@ class _State extends State<AssetsUploadedObjectsList> {
               const Padding16(
                 child: ObjectsListHeaderFull(),
               ),
-              const SizedBoxH8(),
+              const H8(),
               Flexible(
                 child: _ActualObjectsListSection(
                   isLoading: state.areOwnerObjectsLoading,

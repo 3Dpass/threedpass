@@ -32,9 +32,9 @@ class CompareTable extends StatelessWidget {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBoxH16(),
+            const H16(),
             const TableHeader(),
-            const SizedBoxH16(),
+            const H16(),
             Flexible(
               child: ListView.separated(
                 padding: const EdgeInsets.only(bottom: 24),

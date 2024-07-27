@@ -44,7 +44,7 @@ class BalanceSection extends StatelessWidget {
                     tokenDecimals: tokenDecimals,
                     tokenSymbol: tokenSymbol,
                   ),
-                  const SizedBoxH8(),
+                  const H8(),
                   const AssetPageButtonsPanel(),
                 ],
               );

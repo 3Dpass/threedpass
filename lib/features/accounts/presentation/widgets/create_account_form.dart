@@ -54,20 +54,20 @@ class CreateAccountForm extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBoxH16(),
+              const H16(),
               D3pTextFormField(
                 labelText: 'create_credentials_name'.tr(),
                 controller: _nameCtrl,
                 validator: _nameValidator,
               ),
-              const SizedBoxH16(),
+              const H16(),
               D3pTextFormField(
                 labelText: 'create_credentials_password'.tr(),
                 controller: _passCtrl,
                 obscureText: true,
                 validator: _passValidator,
               ),
-              const SizedBoxH16(),
+              const H16(),
               D3pTextFormField(
                 labelText: 'create_credentials_password2'.tr(),
                 controller: _pass2Ctrl,

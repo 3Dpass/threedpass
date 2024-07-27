@@ -4,6 +4,7 @@ import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/features/asset_conversion/data/asset_conversion_repository.dart';
+import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/add_liquidity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/calc_remove_liquidity_info.dart';
@@ -129,10 +130,12 @@ class DIAssetConversion extends DIModule {
       ),
     );
 
-    getIt.registerFactoryParam<SwapCubit, StackRouter, void>(
-      (final StackRouter param1, final _) => SwapCubit(
+    getIt.registerFactoryParam<SwapCubit, StackRouter, List<PoolAssetField>>(
+      (final StackRouter param1, final List<PoolAssetField> param2) =>
+          SwapCubit(
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         outerRouter: param1,
+        poolAssets: param2,
       ),
     );
   }

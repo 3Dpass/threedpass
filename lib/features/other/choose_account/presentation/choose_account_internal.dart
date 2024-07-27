@@ -17,7 +17,7 @@ class _ChooseAccountInternal extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         D3pBodyMediumText(title ?? 'choose_account_subtitle'),
-        const SizedBoxH4(),
+        const H4(),
         BlocBuilder<ChooseAccountCubit, KeyPairData?>(
           builder: (final context, final state) {
             final chosen = state != null
@@ -48,7 +48,7 @@ class _ChooseAccountInternal extends StatelessWidget {
             );
           },
         ),
-        const SizedBoxH4(),
+        const H4(),
         BasicPasswordTextField(
           passwordController: cac.passwordController,
         ),

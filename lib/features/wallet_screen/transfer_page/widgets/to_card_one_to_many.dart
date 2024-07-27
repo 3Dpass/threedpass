@@ -34,7 +34,7 @@ class ToCardOneToMany extends StatelessWidget {
           ToCardBasic(
             data: data,
           ),
-          const SizedBoxH4(),
+          const H4(),
           AmountTextFieldBuilder(
             amountController: sendAmountData.amountController,
             transferType: metaInfoType,

@@ -78,11 +78,11 @@ class SnapshotCard extends StatelessWidget {
                 ),
             ],
           ),
-          const SizedBoxH8(),
+          const H8(),
           Text.rich(
             snapshot.settingsConfig.toShort(context),
           ),
-          const SizedBoxH8(),
+          const H8(),
           ChainStatus(
             snap: snapshot,
           ),

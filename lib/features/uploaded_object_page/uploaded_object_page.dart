@@ -25,9 +25,9 @@ class UploadedObjectPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [
-          const SizedBoxH16(),
+          const H16(),
           UploadedObjectIdText(uploadedObject: uploadedObject),
-          const SizedBoxH16(),
+          const H16(),
           Row(
             children: [
               UploadedObjectStatusText(uploadedObject: uploadedObject),
@@ -38,19 +38,19 @@ class UploadedObjectPage extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBoxH16(),
+          const H16(),
           UploadedObjectOwnerText(uploadedObject: uploadedObject),
           SnapshotConnectedToUploaded(
             uploadedObject: uploadedObject,
             topPadding: 16,
             isOnlyText: false,
           ),
-          const SizedBoxH16(),
+          const H16(),
           FastRichText(
             mainText: '\n' + uploadedObject.hashesListJoined,
             secondaryText: 'uploaded_object_hashes'.tr(),
           ),
-          const SizedBoxH16(),
+          const H16(),
         ],
       ),
     );

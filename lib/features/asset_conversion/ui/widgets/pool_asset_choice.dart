@@ -30,13 +30,7 @@ class _State extends State<PoolAssetFieldChoice> {
 
   @override
   void initState() {
-    metadata = BlocProvider.of<PoscanAssetsCubit>(context).state.metadata;
-    items = <PoolAssetField>[
-      PoolAssetField.native(),
-      ...metadata.keys
-          .map((final e) => PoolAssetField(assetId: e, isNative: false)),
-    ];
-
+    final items = BlocProvider.of<PoscanAssetsCubit>(context).poolAssets;
     value = widget.initialValue != null
         ? items.firstWhere(
             (final PoolAssetField element) =>

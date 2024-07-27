@@ -48,7 +48,7 @@ class SomeForm extends StatelessWidget {
             horizontal: 16,
           ),
           shrinkWrap: true,
-          separatorBuilder: (final context, final index) => const SizedBoxH16(),
+          separatorBuilder: (final context, final index) => const H16(),
           itemBuilder: (final context, final index) => widgets[index],
           itemCount: widgets.length,
         ),

@@ -14,11 +14,11 @@ class AccountCard extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Column(
           children: [
-            SizedBoxH8(),
+            H8(),
             CreateAccountButton(),
-            SizedBoxH4(),
+            H4(),
             ImportAccountButton(),
-            SizedBoxH8(),
+            H8(),
           ],
         ),
       ),

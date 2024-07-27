@@ -123,7 +123,7 @@ class _NoMetadataCanSet extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const D3pBodyMediumText('poscan_asset_page_metadata_help'),
-        const SizedBoxH8(),
+        const H8(),
         _GoToSetMetadata(
           poscanAssetData: poscanAssetData,
         ),

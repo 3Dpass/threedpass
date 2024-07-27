@@ -23,17 +23,17 @@ dependencies:
 
   ## UI
   # three_dart: ^0.0.16
-  three_dart:
+  three_dart: # TODO Remove
     git:
         url: https://github.com/L3odr0id/three_dart.git
         ref: 695b58ab4ef889c4f472fb79420a36134974da5e # mobile-branch # branch name
   # three_dart_jsm: ^0.0.10
-  three_dart_jsm:
+  three_dart_jsm: # TODO Remove
     git:
       url: https://github.com/L3odr0id/three_dart_jsm.git
       ref: b6c8e5fcf876151d601ab092fe7fc94901edb446
-  flutter_gl: ^0.0.18
-  flutter_platform_widgets: ^3.3.5
+  flutter_gl: ^0.0.18 # TODO Remove
+  flutter_platform_widgets: ^3.3.5 # TODO Remove
   flutter_screen_lock: ^9.0.1
   flutter_svg: ^2.0.7
   fluttertoast: ^8.2.2
@@ -70,10 +70,10 @@ dependencies:
   rational: ^2.2.3
 
   ## Code gen
-  copy_with_extension: ^5.0.3
+  copy_with_extension: ^5.0.3 # TODO REMOVE. Use only freezed
   freezed: ^2.3.5
-  equatable: ^2.0.5
-  json_annotation: ^4.8.1
+  equatable: ^2.0.5 # TODO REMOVE. Use only freezed
+  json_annotation: ^4.8.1 # TODO REMOVE. Use only freezed
 
   ## Utils
   intl: ^0.18.0
@@ -86,7 +86,7 @@ dependencies:
   app_install_date: ^0.1.3
   scrollview_observer: ^1.20.0
 
-  # Child packages
+  # Child packages. # TTODO Move all to main app
   super_core:
     path: ./packages/super_core
   threedp_graphql:
@@ -103,10 +103,10 @@ dev_dependencies:
   ## Generators
   hive_generator: ^2.0.0
   isar_generator: *isar_version
-  copy_with_extension_gen: ^5.0.3
+  copy_with_extension_gen: ^5.0.3 # TODO REMOVE. Use only freezed
   build_runner:
   auto_route_generator: ^7.1.1
-  json_serializable: ^6.3.1
+  json_serializable: ^6.3.1 # TODO REMOVE. Use only freezed
 
   ## Dev utils
   flutter_launcher_icons: ^0.9.3

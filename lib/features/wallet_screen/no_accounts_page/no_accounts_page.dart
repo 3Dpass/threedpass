@@ -16,7 +16,7 @@ class NoAccountsPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ConnectStatus(),
-          SizedBoxH24(),
+          H24(),
           AccountCard(),
         ],
       ),

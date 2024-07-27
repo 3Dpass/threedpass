@@ -1,6 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
+import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
@@ -121,4 +122,10 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
       },
     );
   }
+
+  List<PoolAssetField> get poolAssets => <PoolAssetField>[
+        const PoolAssetField.native(),
+        ...state.metadata.keys
+            .map((final e) => PoolAssetField(assetId: e, isNative: false)),
+      ];
 }

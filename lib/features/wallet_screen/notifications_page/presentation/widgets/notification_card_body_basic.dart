@@ -12,7 +12,7 @@ class NotificationCardBodyBasic extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (final context, final i) => children[i],
-      separatorBuilder: (final context, final i) => const SizedBoxH8(),
+      separatorBuilder: (final context, final i) => const H8(),
       itemCount: children.length,
     );
   }

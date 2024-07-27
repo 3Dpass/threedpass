@@ -12,7 +12,7 @@ class ObjectsListEmptyRefresh extends StatelessWidget {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBoxH16(),
+        H16(),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: ObjectsListHeaderFull(),

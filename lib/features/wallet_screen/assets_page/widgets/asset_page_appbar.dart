@@ -103,7 +103,7 @@ class _AccountName extends StatelessWidget {
             Fmt.shorterAddress(accountAddress),
             style: theme.customTextStyles.accountAddress,
           ),
-          const SizedBoxH4(),
+          const H4(),
           Text(
             accountName ?? 'Anonymous',
             style: theme.customTextStyles.accountName,

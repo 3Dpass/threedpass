@@ -17,7 +17,7 @@ class ScanIndicator extends StatelessWidget {
         child: state != null
             ? Column(
                 children: [
-                  const SizedBoxH8(),
+                  const H8(),
                   Row(
                     children: [
                       const SizedBox(width: 16),

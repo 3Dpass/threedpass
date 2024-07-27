@@ -61,7 +61,7 @@ class ImportRawseedFormPage extends StatelessWidget {
           const AddressIconPreview(
             placeholderText: 'import_rawseed_preview_placeholder',
           ),
-          const SizedBoxH16(),
+          const H16(),
           Column(
             children: [
               Padding(

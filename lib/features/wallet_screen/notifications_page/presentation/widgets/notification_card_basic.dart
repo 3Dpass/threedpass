@@ -42,7 +42,7 @@ class NotificationCardBasic extends StatelessWidget {
                   _TransferStatus(status),
                 ],
               ),
-              const SizedBoxH4(),
+              const H4(),
               _Message(message, status),
               child,
             ],
@@ -109,7 +109,7 @@ class _Message extends StatelessWidget {
             message!,
             translate: false,
           ),
-          const SizedBoxH4(),
+          const H4(),
         ],
       );
     } else {

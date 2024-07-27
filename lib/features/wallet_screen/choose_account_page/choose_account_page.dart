@@ -47,7 +47,7 @@ class SelectAccountPage extends StatelessWidget {
             heroTag: 'push_to_generate_account',
             onPressed: () => pushToGenerateAccount(context),
           ),
-          const SizedBoxH16(),
+          const H16(),
           FloatingActionButton.extended(
             icon: const Icon(Icons.import_export),
             label: Text('import_existing_account_floating_button_label'.tr()),

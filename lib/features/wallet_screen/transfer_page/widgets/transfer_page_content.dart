@@ -23,7 +23,7 @@ class TransferPageAddressesList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBoxH8(),
+        const H8(),
         FromsListView(
           transferInfo: state,
           metaInfoType: transferInfo.metaDTO.type,

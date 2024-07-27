@@ -91,7 +91,7 @@ class AddLiquidityPage extends StatelessWidget {
                     : const SizedBox(),
               ),
             ),
-            const SizedBoxH8(),
+            const H8(),
             BlocBuilder<AddLiquidityCubit, AddLiquidityState>(
               buildWhen: (final previous, final current) =>
                   previous.asset2Min != current.asset2Min,
