@@ -56,11 +56,8 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
 
   final PutObject putObjectUseCase;
 
-  final formKey = GlobalKey<FormState>();
-
   final TextEditingController nApprovalsController =
       TextEditingController(text: '10');
-  final TextEditingController accountPassword = TextEditingController();
   final int fileHash;
   final String filePath;
   final String localSnapshotName;
@@ -144,7 +141,7 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
     final params = PutObjectParams(
       localSnapshotName: localSnapshotName,
       account: state.account,
-      password: accountPassword.text,
+      password: passwordController.text,
       nApprovals: int.parse(nApprovalsController.text),
       pathToFile: filePath,
       categoryFabric: state.chosenCategory,

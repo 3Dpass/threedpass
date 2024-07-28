@@ -9,6 +9,7 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
+import 'package:threedpass/features/asset_conversion/domain/entities/swap_info.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/swap_method.dart';
 
 part 'swap_cubit.freezed.dart';
@@ -21,20 +22,12 @@ part 'swap_cubit.freezed.dart';
   toStringOverride: false,
 )
 class SwapState with _$SwapState {
-  // final PoolAssetField firstAsset;
-  // final PoolAssetField secondAsset;
-  // final SwapMethod chosenMethod;
-
-  // const SwapState({
-  //   required this.firstAsset,
-  //   required this.secondAsset,
-  //   required this.chosenMethod,
-  // });
-
   const factory SwapState({
     required final PoolAssetField firstAsset,
     required final PoolAssetField secondAsset,
     required final SwapMethod chosenMethod,
+    required final bool keepAlive,
+    required final SwapInfo? swapInfo,
   }) = _SwapState;
 }
 
@@ -51,21 +44,37 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
             firstAsset: poolAssets.first,
             secondAsset: poolAssets[1],
             chosenMethod: SwapMethod.swapExactTokensForTokens,
+            keepAlive: initialKeepAlive,
+            swapInfo: null,
           ),
         ) {
-    // setPercentage(state.percentage);
-    // calcMaxPercent();
+    firstAssetAmountController.addListener(() {
+      if (state.chosenMethod == SwapMethod.swapExactTokensForTokens) {
+        setSlippageTolerance();
+      }
+    });
+
+    secondAssetAmountController.addListener(() {
+      if (state.chosenMethod == SwapMethod.swapTokensForExactTokens) {
+        setSlippageTolerance();
+      }
+    });
   }
+
+  static const bool initialKeepAlive = true;
 
   @override
   final StackRouter outerRouter;
   final KeyPairData account;
   final int nativeTokenDecimals;
-
   final List<PoolAssetField> poolAssets;
 
-  final firstAssetAmountController = TextEditingController();
-  final secondAssetAmountController = TextEditingController();
+  final firstAssetAmountController = TextEditingController(text: '0');
+  final secondAssetAmountController = TextEditingController(text: '0');
+  final slippageToleranceController =
+      TextEditingController(text: defaultSlippage.toString());
+
+  static const defaultSlippage = 15;
 
   void setChosenMethod(final SwapMethod chosenMethod) {
     emit(
@@ -79,6 +88,18 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
 
   void setSecondAsset(final PoolAssetField asset) {
     emit(state.copyWith(secondAsset: asset));
+  }
+
+  void setKeepAlive(final bool keepAlive) {
+    emit(state.copyWith(keepAlive: keepAlive));
+  }
+
+  void setSlippageTolerance() {
+    emit(
+      state.copyWith(swapInfo: null),
+    );
+
+    // calculate();
   }
 
   @override

@@ -41,8 +41,6 @@ class CreatePoolCubit extends Cubit<CreatePoolState>
   final KeyPairData account;
   final CreatePool createPoolUseCase;
 
-  final passwordController = TextEditingController();
-
   void setAsset1(final PoolAssetField? value) {
     emit(state.copyWith(asset1: value));
   }

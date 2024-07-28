@@ -22,21 +22,27 @@ class TransferTypeSwitch extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final initialValue =
-        BlocProvider.of<TransferInfoBloc>(context).state.transactionOption ==
-            BalanceTransactionType.transferKeepAlive;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: D3pSwitchButton(
-        initialValue: initialValue,
-        helpText: 'transfer_keep_alive_help'.tr(),
-        onChanged: (final value) => onChanged(
-          context,
-          value
-              ? BalanceTransactionType.transferKeepAlive
-              : BalanceTransactionType.transfer,
+      child: BlocBuilder<TransferInfoBloc, TransferInfoBlocState>(
+        builder: (
+          final context,
+          final state,
+        ) =>
+            D3pSwitchButton(
+          value: state.transactionOption ==
+              BalanceTransactionType.transferKeepAlive,
+          helpText: 'transfer_keep_alive_help'.tr(),
+          onChanged: (final value) =>
+              BlocProvider.of<TransferInfoBloc>(context).add(
+            UpdateTransferTypeEvent(
+              value
+                  ? BalanceTransactionType.transferKeepAlive
+                  : BalanceTransactionType.transfer,
+            ),
+          ),
+          text: 'choose_transfer_keep_alive'.tr(),
         ),
-        text: 'choose_transfer_keep_alive'.tr(),
       ),
     );
   }

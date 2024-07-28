@@ -12,7 +12,7 @@ class PutObjectChooseAccount extends StatelessWidget {
 
     return ChooseAccount(
       onAccountSelected: cubit.setAcc,
-      passwordController: cubit.accountPassword,
+      passwordController: cubit.passwordController,
     );
   }
 }

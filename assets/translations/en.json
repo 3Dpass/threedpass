@@ -287,7 +287,6 @@
 
     "@2.7.2":{
     },
-    "choose_transfer_keep_alive": "Keep sender alive",
     "transfer_keep_alive_help": "With the keep-alive option set, the account is protected against removal due to low balances.",
 
     "@2.8.0":{
@@ -510,5 +509,7 @@
 
     "@2.16.0": {},
     "add_liquidity_page_amount_desired_pattern": "Amount {} desired",
-    "add_liquidity_page_amount_min_pattern": "Amount {} min"
+    "add_liquidity_page_amount_min_pattern": "Amount {} min",
+    "swap_appbar_title": "Swap",
+    "keep_alive_switch_label": "Keep alive"
 }

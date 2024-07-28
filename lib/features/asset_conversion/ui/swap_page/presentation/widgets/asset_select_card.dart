@@ -24,6 +24,8 @@ class AssetSelectCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final theme = Theme.of(context);
+
     return D3pCard(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -44,12 +46,19 @@ class AssetSelectCard extends StatelessWidget {
             const W16(),
             Flexible(
               child: TextFormField(
+                controller: controller,
+                autofocus: !isReadOnly,
+                readOnly: isReadOnly,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                 ),
                 textAlign: TextAlign.right,
                 keyboardType: TextInputType.number,
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: theme.textTheme.headlineSmall!.copyWith(
+                  color: isReadOnly
+                      ? theme.disabledColor
+                      : theme.primaryTextTheme.bodyMedium!.color,
+                ),
                 inputFormatters: [
                   NumberTextInputFormatter(
                     // integerDigits: 10,

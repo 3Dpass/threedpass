@@ -63,7 +63,6 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
   final PoscanAssetsCubit poscanAssetsCubit;
   final int nativeDecimals;
 
-  final passwordController = TextEditingController();
   final amount1DesiredController = TextEditingController();
   final amount2DesiredController = TextEditingController();
   final slippageController = TextEditingController(

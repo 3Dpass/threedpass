@@ -30,7 +30,6 @@ class SetMetadataAssetCubit extends Cubit<void> with ExtrinsicShowLoadingMixin {
   final TextEditingController name = TextEditingController();
   final TextEditingController symbol = TextEditingController();
   final TextEditingController decimals = TextEditingController();
-  final TextEditingController password = TextEditingController();
 
   final AppServiceLoaderCubit appServiceLoaderCubit;
 
@@ -40,7 +39,7 @@ class SetMetadataAssetCubit extends Cubit<void> with ExtrinsicShowLoadingMixin {
   ) async {
     final params = SetMetadataParams(
       admin: admin,
-      password: password.text,
+      password: passwordController.text,
       assetId: initialAssetId, // TODO Change if allow user to choose asset
       name: name.text,
       symbol: symbol.text,

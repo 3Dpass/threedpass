@@ -47,6 +47,7 @@ mixin ExtrinsicShowLoadingMixin {
   }
 
   final formKey = GlobalKey<FormState>();
+  final passwordController = TextEditingController();
 
   Future<Either<Failure, void>> callExtrinsic(
     final BuildContext context,

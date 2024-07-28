@@ -19,6 +19,8 @@ mixin _$SwapState {
   PoolAssetField get firstAsset => throw _privateConstructorUsedError;
   PoolAssetField get secondAsset => throw _privateConstructorUsedError;
   SwapMethod get chosenMethod => throw _privateConstructorUsedError;
+  bool get keepAlive => throw _privateConstructorUsedError;
+  SwapInfo? get swapInfo => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SwapStateCopyWith<SwapState> get copyWith =>
@@ -33,7 +35,9 @@ abstract class $SwapStateCopyWith<$Res> {
   $Res call(
       {PoolAssetField firstAsset,
       PoolAssetField secondAsset,
-      SwapMethod chosenMethod});
+      SwapMethod chosenMethod,
+      bool keepAlive,
+      SwapInfo? swapInfo});
 }
 
 /// @nodoc
@@ -52,6 +56,8 @@ class _$SwapStateCopyWithImpl<$Res, $Val extends SwapState>
     Object? firstAsset = null,
     Object? secondAsset = null,
     Object? chosenMethod = null,
+    Object? keepAlive = null,
+    Object? swapInfo = freezed,
   }) {
     return _then(_value.copyWith(
       firstAsset: null == firstAsset
@@ -66,6 +72,14 @@ class _$SwapStateCopyWithImpl<$Res, $Val extends SwapState>
           ? _value.chosenMethod
           : chosenMethod // ignore: cast_nullable_to_non_nullable
               as SwapMethod,
+      keepAlive: null == keepAlive
+          ? _value.keepAlive
+          : keepAlive // ignore: cast_nullable_to_non_nullable
+              as bool,
+      swapInfo: freezed == swapInfo
+          ? _value.swapInfo
+          : swapInfo // ignore: cast_nullable_to_non_nullable
+              as SwapInfo?,
     ) as $Val);
   }
 }
@@ -80,7 +94,9 @@ abstract class _$$_SwapStateCopyWith<$Res> implements $SwapStateCopyWith<$Res> {
   $Res call(
       {PoolAssetField firstAsset,
       PoolAssetField secondAsset,
-      SwapMethod chosenMethod});
+      SwapMethod chosenMethod,
+      bool keepAlive,
+      SwapInfo? swapInfo});
 }
 
 /// @nodoc
@@ -97,6 +113,8 @@ class __$$_SwapStateCopyWithImpl<$Res>
     Object? firstAsset = null,
     Object? secondAsset = null,
     Object? chosenMethod = null,
+    Object? keepAlive = null,
+    Object? swapInfo = freezed,
   }) {
     return _then(_$_SwapState(
       firstAsset: null == firstAsset
@@ -111,6 +129,14 @@ class __$$_SwapStateCopyWithImpl<$Res>
           ? _value.chosenMethod
           : chosenMethod // ignore: cast_nullable_to_non_nullable
               as SwapMethod,
+      keepAlive: null == keepAlive
+          ? _value.keepAlive
+          : keepAlive // ignore: cast_nullable_to_non_nullable
+              as bool,
+      swapInfo: freezed == swapInfo
+          ? _value.swapInfo
+          : swapInfo // ignore: cast_nullable_to_non_nullable
+              as SwapInfo?,
     ));
   }
 }
@@ -121,7 +147,9 @@ class _$_SwapState implements _SwapState {
   const _$_SwapState(
       {required this.firstAsset,
       required this.secondAsset,
-      required this.chosenMethod});
+      required this.chosenMethod,
+      required this.keepAlive,
+      required this.swapInfo});
 
   @override
   final PoolAssetField firstAsset;
@@ -129,6 +157,10 @@ class _$_SwapState implements _SwapState {
   final PoolAssetField secondAsset;
   @override
   final SwapMethod chosenMethod;
+  @override
+  final bool keepAlive;
+  @override
+  final SwapInfo? swapInfo;
 
   @JsonKey(ignore: true)
   @override
@@ -141,7 +173,9 @@ abstract class _SwapState implements SwapState {
   const factory _SwapState(
       {required final PoolAssetField firstAsset,
       required final PoolAssetField secondAsset,
-      required final SwapMethod chosenMethod}) = _$_SwapState;
+      required final SwapMethod chosenMethod,
+      required final bool keepAlive,
+      required final SwapInfo? swapInfo}) = _$_SwapState;
 
   @override
   PoolAssetField get firstAsset;
@@ -149,6 +183,10 @@ abstract class _SwapState implements SwapState {
   PoolAssetField get secondAsset;
   @override
   SwapMethod get chosenMethod;
+  @override
+  bool get keepAlive;
+  @override
+  SwapInfo? get swapInfo;
   @override
   @JsonKey(ignore: true)
   _$$_SwapStateCopyWith<_$_SwapState> get copyWith =>

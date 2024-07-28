@@ -10,7 +10,7 @@ class SetMetadataChooseAccount extends StatelessWidget {
   Widget build(final BuildContext context) {
     final smac = BlocProvider.of<SetMetadataAssetCubit>(context);
     return ChooseAccount(
-      passwordController: smac.password,
+      passwordController: smac.passwordController,
       onAccountSelected: null,
     );
   }

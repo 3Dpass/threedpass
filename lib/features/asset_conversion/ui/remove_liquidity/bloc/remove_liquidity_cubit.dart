@@ -67,7 +67,6 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
   final CalcRemoveLiquidityInfo calcRemoveLiquidityInfo;
   final CalcRemoveLiquidityMaxPercent calcRemoveLiquidityMaxPercent;
 
-  final passwordController = TextEditingController();
   // final lpTokenBurn = TextEditingController();
   // final amount1MinRecieve = TextEditingController();
   // final amount2MinRecieve = TextEditingController();

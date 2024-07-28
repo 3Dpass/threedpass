@@ -26,7 +26,6 @@ class MintAssetCubit extends Cubit<void> with ExtrinsicShowLoadingMixin {
   KeyPairData admin;
 
   final TextEditingController amount = TextEditingController();
-  final TextEditingController password = TextEditingController();
 
   void setAcc(final KeyPairData acc) {
     admin = acc;
@@ -38,7 +37,7 @@ class MintAssetCubit extends Cubit<void> with ExtrinsicShowLoadingMixin {
   ) async {
     final params = MintAssetParams(
       account: admin,
-      password: password.text,
+      password: passwordController.text,
       amount: BigInt.parse(amount.text),
       assetId: initialAsset, // TODO Change if allow user to choose asset
       updateStatus: () => updateStatus(context),
