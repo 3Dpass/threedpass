@@ -750,6 +750,80 @@ extension $NotificationRemoveLiquidityCopyWith on NotificationRemoveLiquidity {
       _$NotificationRemoveLiquidityCWProxyImpl(this);
 }
 
+abstract class _$NotificationSwapAssetsCWProxy {
+  NotificationSwapAssets params(SwapAssetsParams params);
+
+  NotificationSwapAssets status(ExtrinsicStatus status);
+
+  NotificationSwapAssets message(String? message);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationSwapAssets(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationSwapAssets(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationSwapAssets call({
+    SwapAssetsParams? params,
+    ExtrinsicStatus? status,
+    String? message,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNotificationSwapAssets.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfNotificationSwapAssets.copyWith.fieldName(...)`
+class _$NotificationSwapAssetsCWProxyImpl
+    implements _$NotificationSwapAssetsCWProxy {
+  const _$NotificationSwapAssetsCWProxyImpl(this._value);
+
+  final NotificationSwapAssets _value;
+
+  @override
+  NotificationSwapAssets params(SwapAssetsParams params) =>
+      this(params: params);
+
+  @override
+  NotificationSwapAssets status(ExtrinsicStatus status) => this(status: status);
+
+  @override
+  NotificationSwapAssets message(String? message) => this(message: message);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationSwapAssets(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationSwapAssets(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationSwapAssets call({
+    Object? params = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+  }) {
+    return NotificationSwapAssets(
+      params: params == const $CopyWithPlaceholder() || params == null
+          ? _value.params
+          // ignore: cast_nullable_to_non_nullable
+          : params as SwapAssetsParams,
+      status: status == const $CopyWithPlaceholder() || status == null
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as ExtrinsicStatus,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+    );
+  }
+}
+
+extension $NotificationSwapAssetsCopyWith on NotificationSwapAssets {
+  /// Returns a callable class that can be used as follows: `instanceOfNotificationSwapAssets.copyWith(...)` or like so:`instanceOfNotificationSwapAssets.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$NotificationSwapAssetsCWProxy get copyWith =>
+      _$NotificationSwapAssetsCWProxyImpl(this);
+}
+
 abstract class _$NotificationsStateCWProxy {
   NotificationsState notifications(List<NotificationDTO> notifications);
 

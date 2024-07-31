@@ -8,7 +8,7 @@ import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_i
 import 'package:threedpass/features/asset_conversion/domain/utils/calc_user_pool_reserves.dart';
 
 class CalcRemoveLiquidityMaxPercent
-    extends UseCase<void, CalcRemoveLiquidityMaxPercentParams> {
+    extends UseCase<double, CalcRemoveLiquidityMaxPercentParams> {
   const CalcRemoveLiquidityMaxPercent({
     required this.assetConversionRepository,
   });

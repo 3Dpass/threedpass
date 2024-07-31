@@ -26,17 +26,20 @@ class RemoveLiquidityState {
   final bool isLoading;
   final RemoveLiquidityInfo? removeLiquidityInfo;
   final int? maxPercent;
+  final bool isMaxChosen;
 
   RemoveLiquidityState({
     required this.percentage,
     required this.isLoading,
     required this.removeLiquidityInfo,
     required this.maxPercent,
+    required this.isMaxChosen,
   });
 
   RemoveLiquidityState.initial()
       : percentage = 50,
         isLoading = false,
+        isMaxChosen = false,
         maxPercent = null,
         removeLiquidityInfo = null;
 }
@@ -54,7 +57,7 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
         nativeTokenDecimals =
             appServiceLoaderCubit.state.networkStateData.safeDecimals,
         super(RemoveLiquidityState.initial()) {
-    setPercentage(state.percentage);
+    setPercentage(state.percentage, false);
     calcMaxPercent();
   }
 
@@ -67,17 +70,18 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
   final CalcRemoveLiquidityInfo calcRemoveLiquidityInfo;
   final CalcRemoveLiquidityMaxPercent calcRemoveLiquidityMaxPercent;
 
-  // final lpTokenBurn = TextEditingController();
-  // final amount1MinRecieve = TextEditingController();
-  // final amount2MinRecieve = TextEditingController();
   final slippageTolerance =
       TextEditingController(text: defaultSlippage.toString());
 
   static const defaultSlippage = 15;
 
-  void setPercentage(final int percentage) {
+  void setPercentage(final int percentage, final bool isMax) {
     emit(
-      state.copyWith(percentage: percentage, isLoading: true),
+      state.copyWith(
+        percentage: percentage,
+        isLoading: true,
+        isMaxChosen: isMax,
+      ),
     );
 
     calculate();

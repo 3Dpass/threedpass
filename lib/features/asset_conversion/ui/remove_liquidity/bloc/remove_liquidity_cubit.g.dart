@@ -16,6 +16,8 @@ abstract class _$RemoveLiquidityStateCWProxy {
 
   RemoveLiquidityState maxPercent(int? maxPercent);
 
+  RemoveLiquidityState isMaxChosen(bool isMaxChosen);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RemoveLiquidityState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -27,6 +29,7 @@ abstract class _$RemoveLiquidityStateCWProxy {
     bool? isLoading,
     RemoveLiquidityInfo? removeLiquidityInfo,
     int? maxPercent,
+    bool? isMaxChosen,
   });
 }
 
@@ -54,6 +57,10 @@ class _$RemoveLiquidityStateCWProxyImpl
       this(maxPercent: maxPercent);
 
   @override
+  RemoveLiquidityState isMaxChosen(bool isMaxChosen) =>
+      this(isMaxChosen: isMaxChosen);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RemoveLiquidityState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -66,6 +73,7 @@ class _$RemoveLiquidityStateCWProxyImpl
     Object? isLoading = const $CopyWithPlaceholder(),
     Object? removeLiquidityInfo = const $CopyWithPlaceholder(),
     Object? maxPercent = const $CopyWithPlaceholder(),
+    Object? isMaxChosen = const $CopyWithPlaceholder(),
   }) {
     return RemoveLiquidityState(
       percentage:
@@ -85,6 +93,11 @@ class _$RemoveLiquidityStateCWProxyImpl
           ? _value.maxPercent
           // ignore: cast_nullable_to_non_nullable
           : maxPercent as int?,
+      isMaxChosen:
+          isMaxChosen == const $CopyWithPlaceholder() || isMaxChosen == null
+              ? _value.isMaxChosen
+              // ignore: cast_nullable_to_non_nullable
+              : isMaxChosen as bool,
     );
   }
 }

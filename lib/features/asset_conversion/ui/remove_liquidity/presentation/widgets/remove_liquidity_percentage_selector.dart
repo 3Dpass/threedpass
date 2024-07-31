@@ -28,7 +28,10 @@ class RemoveLiquidityPercentageSelector extends StatelessWidget {
               listOfP.length,
               (final index) => _RLWrapper(
                 percentage: listOfP[index],
-                isActive: state.percentage == listOfP[index],
+                enabled: state.maxPercent != null &&
+                    listOfP[index] >= state.maxPercent!,
+                isActive:
+                    !state.isMaxChosen && state.percentage == listOfP[index],
               ),
             );
             return Row(
@@ -37,10 +40,10 @@ class RemoveLiquidityPercentageSelector extends StatelessWidget {
                 ...buttons,
                 _RLButton(
                   text: 'max',
-                  isActive: state.percentage == state.maxPercent,
+                  isActive: state.isMaxChosen,
                   onPressed: state.maxPercent != null
                       ? () => BlocProvider.of<RemoveLiquidityCubit>(context)
-                          .setPercentage(state.maxPercent!)
+                          .setPercentage(state.maxPercent!, true)
                       : null,
                 ),
               ],
@@ -55,10 +58,12 @@ class RemoveLiquidityPercentageSelector extends StatelessWidget {
 class _RLWrapper extends StatelessWidget {
   final int percentage;
   final bool isActive;
+  final bool enabled;
 
   const _RLWrapper({
     required this.percentage,
     required this.isActive,
+    required this.enabled,
   });
 
   @override
@@ -66,8 +71,10 @@ class _RLWrapper extends StatelessWidget {
     return _RLButton(
       text: '$percentage%',
       isActive: isActive,
-      onPressed: () => BlocProvider.of<RemoveLiquidityCubit>(context)
-          .setPercentage(percentage),
+      onPressed: enabled
+          ? () => BlocProvider.of<RemoveLiquidityCubit>(context)
+              .setPercentage(percentage, false)
+          : null,
     );
   }
 }

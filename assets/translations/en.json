@@ -350,7 +350,7 @@
     },
     "poscan_putobject_choose_category": "Category",
     "account_never_null": "Please choose an account",
-    "extrinsic_status": "Extrinsic:",
+    "extrinsic_status": "Status:",
 
     "contacts_button_label": "Contacts",
     "contacts_appbar_title": "My Contacts",

@@ -6,6 +6,7 @@ import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/add_liquidity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/remove_liquidity.dart';
+import 'package:threedpass/features/asset_conversion/domain/use_cases/swap_assets.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/obj_details.dart';
 
 part 'notifications_bloc.g.dart';

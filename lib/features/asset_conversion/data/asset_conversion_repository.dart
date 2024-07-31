@@ -13,10 +13,29 @@ import 'package:threedpass/features/asset_conversion/domain/entities/raw_pool_re
 import 'package:threedpass/features/asset_conversion/domain/use_cases/add_liquidity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/create_pool.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/remove_liquidity.dart';
+import 'package:threedpass/features/asset_conversion/domain/use_cases/swap_assets.dart';
 
 abstract class AssetConversionRepository {
   const AssetConversionRepository();
 
+  Future<Either<Failure, String>> getAssetTokenFromNativeToken({
+    required final int assetTokenId,
+    required final BigInt nativeTokenValue,
+  });
+  Future<Either<Failure, String>> getNativeTokenFromAssetToken({
+    required final int assetTokenId,
+    required final BigInt assetTokenValue,
+  });
+  Future<Either<Failure, String>> getAssetTokenAFromAssetTokenB({
+    required final int assetToken1Id,
+    required final int assetToken2Id,
+    required final BigInt assetToken2Value,
+  });
+  Future<Either<Failure, String>> getAssetTokenBFromAssetTokenA({
+    required final int assetToken1Id,
+    required final int assetToken2Id,
+    required final BigInt assetToken1Value,
+  });
   Future<Either<Object, int>> existentialDeposit();
   Future<Either<Failure, BigInt?>> lpTokens({
     required final int lpTokenId,
@@ -38,6 +57,10 @@ abstract class AssetConversionRepository {
   });
   Future<Either<Failure, void>> removeLiquidity({
     required final RemoveLiquidityParams params,
+    required final void Function(String) msgIdCallback,
+  });
+  Future<Either<Failure, void>> swapAssets({
+    required final SwapAssetsParams params,
     required final void Function(String) msgIdCallback,
   });
 }
@@ -269,11 +292,108 @@ return res;
         getPoolsFunc,
         polkawalletSdk.webView!.webInstance!.webViewController,
       );
-
       return Either.right(int.parse(res.toString().replaceAll(',', '')));
     } on Object catch (e) {
       logger.e(e);
       return Either.left(e);
     }
   }
+
+  @override
+  Future<Either<Failure, void>> swapAssets({
+    required final SwapAssetsParams params,
+    required final void Function(String p1) msgIdCallback,
+  }) {
+    final args = [
+      params.asset1.toJSArg(),
+      params.asset2.toJSArg(),
+      BigIntJsonHelper.encode(params.amount1),
+      BigIntJsonHelper.encode(params.amount2),
+      params.account.pubKey,
+      params.keepAlive,
+    ];
+
+    String argsEncoded = '';
+    argsEncoded = const JsonEncoder().convert(args);
+    argsEncoded = BigIntJsonHelper.replace(argsEncoded);
+
+    logger.v(argsEncoded);
+
+    return callSignExtrinsicUtil.abstractExtrinsicCall(
+      argsEncoded: argsEncoded,
+      calls: ['tx', 'assetConversion', params.swapMethod.toString()],
+      pubKey: params.account.pubKey!,
+      password: params.password,
+      updateStatus: params.updateStatus,
+      msgIdCallback: msgIdCallback,
+    );
+  }
+
+  Future<Either<Failure, String>> callTokenServiceRoutine(
+    final String tokenServiceCall,
+  ) async {
+    final String code = """
+var p = async () => {
+  return tokenServices.$tokenServiceCall;
+};
+var res = await p();
+return res;
+""";
+
+    final dynamic res = await basicJSCall(
+      code,
+      polkawalletSdk.webView!.webInstance!.webViewController,
+    );
+    // [[[Native, {Asset: 4}], {lpToken: 0}]]
+    if (res is String) {
+      return Either.right(res);
+    } else {
+      logger.e('res should be String');
+      return Either.left(
+        WrongTypeFailure(
+          'res',
+          'String',
+          res.runtimeType.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> getAssetTokenFromNativeToken({
+    required final int assetTokenId,
+    required final BigInt nativeTokenValue,
+  }) =>
+      callTokenServiceRoutine(
+        'getAssetTokenFromNativeToken(api, "$assetTokenId", "$nativeTokenValue")',
+      );
+
+  @override
+  Future<Either<Failure, String>> getAssetTokenAFromAssetTokenB({
+    required final int assetToken1Id,
+    required final int assetToken2Id,
+    required final BigInt assetToken2Value,
+  }) =>
+      callTokenServiceRoutine(
+        'getAssetTokenAFromAssetTokenB(api, "$assetToken2Value", "$assetToken1Id", "$assetToken2Id")',
+      );
+
+  @override
+  Future<Either<Failure, String>> getAssetTokenBFromAssetTokenA({
+    required final int assetToken1Id,
+    required final int assetToken2Id,
+    required final BigInt assetToken1Value,
+  }) =>
+      callTokenServiceRoutine(
+        'getAssetTokenBFromAssetTokenA(api, "$assetToken1Value", "$assetToken1Id", "$assetToken2Id")',
+      );
+
+  @override
+  Future<Either<Failure, String>> getNativeTokenFromAssetToken({
+    required final int assetTokenId,
+    required final BigInt assetTokenValue,
+  }) =>
+      callTokenServiceRoutine(
+        'getNativeTokenFromAssetToken(api, "$assetTokenId", "$assetTokenValue")',
+      );
 }

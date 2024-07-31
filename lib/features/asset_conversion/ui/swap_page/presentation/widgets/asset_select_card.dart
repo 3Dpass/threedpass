@@ -47,7 +47,7 @@ class AssetSelectCard extends StatelessWidget {
             Flexible(
               child: TextFormField(
                 controller: controller,
-                autofocus: !isReadOnly,
+                // autofocus: !isReadOnly,
                 readOnly: isReadOnly,
                 decoration: const InputDecoration(
                   border: InputBorder.none,

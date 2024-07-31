@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/input/switch_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
-import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/swap_method.dart';
 import 'package:threedpass/features/asset_conversion/ui/swap_page/bloc/swap_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/swap_page/presentation/widgets/asset_select_card.dart';
@@ -19,12 +18,8 @@ class SwapPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final metadata = BlocProvider.of<PoscanAssetsCubit>(context).state.metadata;
-    final items = <PoolAssetField>[
-      const PoolAssetField.native(),
-      ...metadata.keys
-          .map((final e) => PoolAssetField(assetId: e, isNative: false)),
-    ];
+    final items = BlocProvider.of<PoscanAssetsCubit>(context).poolAssets;
+
     final swapCubit = BlocProvider.of<SwapCubit>(context);
     return BlocBuilder<SwapCubit, SwapState>(
       builder: (final context, final state) {

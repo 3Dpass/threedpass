@@ -5,6 +5,7 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/coin_transfer_button.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/recieve_button.dart';
@@ -47,18 +48,27 @@ class AssetPageButtonsPanel extends StatelessWidget {
             Flexible(
               flex: 1,
               child: BlocBuilder<PoscanAssetsCubit, PoscanAssetsState>(
-                builder: (final context, final state) => D3pElevatedButton(
-                  iconData: Icons.swap_horiz_outlined,
-                  text: '',
-                  onPressed: state.isLoading
-                      ? null
-                      : () => context.router.push(
-                            SwapRouteWrapper(
-                              poolAssets:
-                                  BlocProvider.of<PoscanAssetsCubit>(context)
-                                      .poolAssets,
+                buildWhen: (final previous, final current) =>
+                    previous.isLoading != current.isLoading,
+                builder: (final context, final poscanAssetsState) =>
+                    BlocBuilder<PoolsCubit, PoolsState>(
+                  buildWhen: (final previous, final current) =>
+                      previous.isLoading != current.isLoading,
+                  builder: (final context, final poolsState) =>
+                      D3pElevatedButton(
+                    iconData: Icons.swap_horiz_outlined,
+                    text: '',
+                    onPressed: poscanAssetsState.isLoading ||
+                            poolsState.isLoading
+                        ? null
+                        : () => context.router.push(
+                              SwapRouteWrapper(
+                                poolAssets:
+                                    BlocProvider.of<PoscanAssetsCubit>(context)
+                                        .poolAssets,
+                              ),
                             ),
-                          ),
+                  ),
                 ),
               ),
             ),

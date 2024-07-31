@@ -5,7 +5,7 @@ import 'package:threedpass/features/asset_conversion/domain/entities/remove_liqu
 import 'package:threedpass/features/asset_conversion/domain/utils/calc_user_pool_reserves.dart';
 
 class CalcRemoveLiquidityInfo
-    extends UseCase<void, CalcRemoveLiquidityInfoParams> {
+    extends UseCase<RemoveLiquidityInfo, CalcRemoveLiquidityInfoParams> {
   const CalcRemoveLiquidityInfo();
 
   @override

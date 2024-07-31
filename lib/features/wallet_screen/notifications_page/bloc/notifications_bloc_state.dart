@@ -10,6 +10,7 @@ enum NotificationType {
   createPool,
   addLiquidity,
   removeLiquidity,
+  swapAssets
 }
 
 abstract class NotificationDTO {
@@ -196,6 +197,20 @@ class NotificationRemoveLiquidity extends NotificationDTO {
 
   @override
   final NotificationType type = NotificationType.removeLiquidity;
+}
+
+@CopyWith()
+class NotificationSwapAssets extends NotificationDTO {
+  final SwapAssetsParams params;
+
+  NotificationSwapAssets({
+    required this.params,
+    required super.status,
+    required super.message,
+  });
+
+  @override
+  final NotificationType type = NotificationType.swapAssets;
 }
 
 @CopyWith()
