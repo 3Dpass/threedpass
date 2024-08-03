@@ -511,5 +511,12 @@
     "add_liquidity_page_amount_desired_pattern": "Amount {} desired",
     "add_liquidity_page_amount_min_pattern": "Amount {} min",
     "swap_appbar_title": "Swap",
-    "keep_alive_switch_label": "Keep alive"
+    "keep_alive_switch_label": "Keep alive",
+    "swap_expected_output": "Expected output",
+    "swap_expected_input": "Expected input",
+    "swap_minimum_output": "Minimum output",
+    "swap_maximum_input": "Maximum input",
+    "add_liquidity_calculated_expected_min":"Expected min {}",
+    "remove_liquidity_calculated_expected_out":"Expected output {}",
+    "remove_liquidity_calculated_minimum_out":"Minimum output {}"
 }

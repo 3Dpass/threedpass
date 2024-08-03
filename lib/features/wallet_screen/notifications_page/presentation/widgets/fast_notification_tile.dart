@@ -16,7 +16,9 @@ class FastNotificationTile extends StatelessWidget {
       children: [
         Icon(iconData),
         const SizedBox(width: 16),
-        child,
+        Flexible(
+          child: child,
+        ),
       ],
     );
   }

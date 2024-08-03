@@ -101,7 +101,12 @@ class CalcSwapInfo extends UseCase<(Decimal, Decimal), CalcSwapInfoParams> {
         final assetTokenPriceWithSlippage =
             slippageReduce(tokenBPriceRational, params.slippage).toDecimal();
 
-        return Either.right((amount1, assetTokenPriceWithSlippage));
+        return Either.right(
+          (
+            tokenBPriceRational.toDecimal(),
+            assetTokenPriceWithSlippage,
+          ),
+        );
       } else {
         // Params: amount out, amount in max
         // Token B is user input. Token A is calculated
@@ -157,7 +162,12 @@ class CalcSwapInfo extends UseCase<(Decimal, Decimal), CalcSwapInfoParams> {
         final assetTokenPriceWithSlippage =
             slippageAdd(tokenAPriceRational, params.slippage).toDecimal();
 
-        return Either.right((assetTokenPriceWithSlippage, amount2));
+        return Either.right(
+          (
+            tokenAPriceRational.toDecimal(),
+            assetTokenPriceWithSlippage,
+          ),
+        );
       }
     } on Object catch (e, stackTrace) {
       return Either.left(BadDataFailure(e.toString() + stackTrace.toString()));

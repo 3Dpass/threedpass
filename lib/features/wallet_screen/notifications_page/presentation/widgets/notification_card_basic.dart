@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
+import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
@@ -63,8 +64,8 @@ class _TransferStatus extends StatelessWidget {
     switch (status) {
       case ExtrinsicStatus.loading:
         return Shimmer.fromColors(
-          baseColor: Colors.grey.shade400,
-          highlightColor: Colors.grey.shade100,
+          baseColor: D3pThemeData.shimmerBaseColor,
+          highlightColor: D3pThemeData.shimmerHighlightColor,
           enabled: true,
           child: const Row(
             children: [

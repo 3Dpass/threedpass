@@ -44,7 +44,7 @@ class _SwapAssetsBody extends StatelessWidget {
         FastNotificationTile(
           iconData: Icons.keyboard_double_arrow_right,
           child: D3pBodyMediumText(
-            'assetConversion.${notificationDTO.params.swapMethod}',
+            'assetConversion.${notificationDTO.params.swapMethod.name}',
             translate: false,
           ),
         ),

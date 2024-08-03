@@ -116,7 +116,6 @@ class AssetConversionRepositoryImpl extends AssetConversionRepository {
         sendNullAsArg: false,
       );
 
-      print('totalLPTokensSupply $res');
       return Either.right(
         BigInt.parse(
           ((res as Map<String, dynamic>)['supply'] as String)
@@ -140,14 +139,14 @@ let res = await pools.getPoolReserves(api, m1, m2);
 return res;
 """;
 
-    print('CODE ' + getPoolReserversFunc);
+    logger.v('CODE ' + getPoolReserversFunc);
 
     final dynamic res = await basicJSCall(
       getPoolReserversFunc,
       polkawalletSdk.webView!.webInstance!.webViewController,
     );
 
-    print(res);
+    logger.v('call res: $res');
     // [10,530,015,434, 9,509,085,784]
 
     if (res == null) {
@@ -303,10 +302,12 @@ return res;
   Future<Either<Failure, void>> swapAssets({
     required final SwapAssetsParams params,
     required final void Function(String p1) msgIdCallback,
-  }) {
+  }) async {
     final args = [
-      params.asset1.toJSArg(),
-      params.asset2.toJSArg(),
+      [
+        params.asset1.toJSArg(),
+        params.asset2.toJSArg(),
+      ],
       BigIntJsonHelper.encode(params.amount1),
       BigIntJsonHelper.encode(params.amount2),
       params.account.pubKey,
@@ -318,10 +319,13 @@ return res;
     argsEncoded = BigIntJsonHelper.replace(argsEncoded);
 
     logger.v(argsEncoded);
+    logger.v('Calling tx.assetConversion.${params.swapMethod.name}');
+    // params.updateStatus();
+    // return Either.right(null);
 
     return callSignExtrinsicUtil.abstractExtrinsicCall(
       argsEncoded: argsEncoded,
-      calls: ['tx', 'assetConversion', params.swapMethod.toString()],
+      calls: ['tx', 'assetConversion', params.swapMethod.name],
       pubKey: params.account.pubKey!,
       password: params.password,
       updateStatus: params.updateStatus,

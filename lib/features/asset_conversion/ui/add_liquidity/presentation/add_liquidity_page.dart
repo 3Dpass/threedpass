@@ -47,7 +47,7 @@ class AddLiquidityPage extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         ChooseAccount(
-          title: 'add_liquidity_page_choose_account_title'.tr(),
+          title: 'add_liquidity_page_choose_account_title',
           passwordController: cubit.passwordController,
           onAccountSelected: null,
         ),
@@ -84,7 +84,12 @@ class AddLiquidityPage extends StatelessWidget {
                 height: 16,
                 child: state.asset1Min != null
                     ? FullRowText(
-                        leftText: 'Expected min $asset1Symbols',
+                        leftText: 'add_liquidity_calculated_expected_min'.tr(
+                          args: [
+                            asset1Symbols,
+                          ],
+                        ),
+                        translateLeft: false,
                         rightText:
                             state.asset1Min!.toDouble().toStringAsPrecision(4),
                       )
@@ -99,7 +104,12 @@ class AddLiquidityPage extends StatelessWidget {
                 height: 16,
                 child: state.asset2Min != null
                     ? FullRowText(
-                        leftText: 'Expected min $asset2Symbols',
+                        leftText: 'add_liquidity_calculated_expected_min'.tr(
+                          args: [
+                            asset2Symbols,
+                          ],
+                        ),
+                        translateLeft: false,
                         rightText:
                             state.asset2Min!.toDouble().toStringAsPrecision(4),
                       )

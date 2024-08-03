@@ -20,7 +20,7 @@ mixin _$SwapState {
   PoolAssetField get secondAsset => throw _privateConstructorUsedError;
   SwapMethod get chosenMethod => throw _privateConstructorUsedError;
   bool get keepAlive => throw _privateConstructorUsedError;
-  SwapInfo? get swapInfo => throw _privateConstructorUsedError;
+  Decimal? get slippageValue => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SwapStateCopyWith<SwapState> get copyWith =>
@@ -37,7 +37,7 @@ abstract class $SwapStateCopyWith<$Res> {
       PoolAssetField secondAsset,
       SwapMethod chosenMethod,
       bool keepAlive,
-      SwapInfo? swapInfo});
+      Decimal? slippageValue});
 }
 
 /// @nodoc
@@ -57,7 +57,7 @@ class _$SwapStateCopyWithImpl<$Res, $Val extends SwapState>
     Object? secondAsset = null,
     Object? chosenMethod = null,
     Object? keepAlive = null,
-    Object? swapInfo = freezed,
+    Object? slippageValue = freezed,
   }) {
     return _then(_value.copyWith(
       firstAsset: null == firstAsset
@@ -76,10 +76,10 @@ class _$SwapStateCopyWithImpl<$Res, $Val extends SwapState>
           ? _value.keepAlive
           : keepAlive // ignore: cast_nullable_to_non_nullable
               as bool,
-      swapInfo: freezed == swapInfo
-          ? _value.swapInfo
-          : swapInfo // ignore: cast_nullable_to_non_nullable
-              as SwapInfo?,
+      slippageValue: freezed == slippageValue
+          ? _value.slippageValue
+          : slippageValue // ignore: cast_nullable_to_non_nullable
+              as Decimal?,
     ) as $Val);
   }
 }
@@ -96,7 +96,7 @@ abstract class _$$_SwapStateCopyWith<$Res> implements $SwapStateCopyWith<$Res> {
       PoolAssetField secondAsset,
       SwapMethod chosenMethod,
       bool keepAlive,
-      SwapInfo? swapInfo});
+      Decimal? slippageValue});
 }
 
 /// @nodoc
@@ -114,7 +114,7 @@ class __$$_SwapStateCopyWithImpl<$Res>
     Object? secondAsset = null,
     Object? chosenMethod = null,
     Object? keepAlive = null,
-    Object? swapInfo = freezed,
+    Object? slippageValue = freezed,
   }) {
     return _then(_$_SwapState(
       firstAsset: null == firstAsset
@@ -133,10 +133,10 @@ class __$$_SwapStateCopyWithImpl<$Res>
           ? _value.keepAlive
           : keepAlive // ignore: cast_nullable_to_non_nullable
               as bool,
-      swapInfo: freezed == swapInfo
-          ? _value.swapInfo
-          : swapInfo // ignore: cast_nullable_to_non_nullable
-              as SwapInfo?,
+      slippageValue: freezed == slippageValue
+          ? _value.slippageValue
+          : slippageValue // ignore: cast_nullable_to_non_nullable
+              as Decimal?,
     ));
   }
 }
@@ -149,7 +149,7 @@ class _$_SwapState implements _SwapState {
       required this.secondAsset,
       required this.chosenMethod,
       required this.keepAlive,
-      required this.swapInfo});
+      required this.slippageValue});
 
   @override
   final PoolAssetField firstAsset;
@@ -160,7 +160,7 @@ class _$_SwapState implements _SwapState {
   @override
   final bool keepAlive;
   @override
-  final SwapInfo? swapInfo;
+  final Decimal? slippageValue;
 
   @JsonKey(ignore: true)
   @override
@@ -175,7 +175,7 @@ abstract class _SwapState implements SwapState {
       required final PoolAssetField secondAsset,
       required final SwapMethod chosenMethod,
       required final bool keepAlive,
-      required final SwapInfo? swapInfo}) = _$_SwapState;
+      required final Decimal? slippageValue}) = _$_SwapState;
 
   @override
   PoolAssetField get firstAsset;
@@ -186,7 +186,7 @@ abstract class _SwapState implements SwapState {
   @override
   bool get keepAlive;
   @override
-  SwapInfo? get swapInfo;
+  Decimal? get slippageValue;
   @override
   @JsonKey(ignore: true)
   _$$_SwapStateCopyWith<_$_SwapState> get copyWith =>

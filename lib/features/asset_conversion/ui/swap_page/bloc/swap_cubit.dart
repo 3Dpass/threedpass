@@ -2,17 +2,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:super_core/either.dart';
 import 'package:super_core/failure.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/polkawallet/utils/decimal_set_decimals.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
-import 'package:threedpass/features/asset_conversion/domain/entities/swap_info.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/swap_method.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/calc_swap_info.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/swap_assets.dart';
@@ -34,7 +33,7 @@ class SwapState with _$SwapState {
     required final PoolAssetField secondAsset,
     required final SwapMethod chosenMethod,
     required final bool keepAlive,
-    required final SwapInfo? swapInfo,
+    required final Decimal? slippageValue,
   }) = _SwapState;
 }
 
@@ -56,7 +55,7 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
             secondAsset: poolAssets[1],
             chosenMethod: SwapMethod.swapExactTokensForTokens,
             keepAlive: initialKeepAlive,
-            swapInfo: null,
+            slippageValue: null,
           ),
         ) {
     firstAssetAmountController.addListener(() {
@@ -95,15 +94,26 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
     emit(
       state.copyWith(chosenMethod: chosenMethod),
     );
+    calculate();
   }
 
   void setFirstAsset(final PoolAssetField asset) {
-    emit(state.copyWith(firstAsset: asset));
+    emit(
+      state.copyWith(
+        firstAsset: asset,
+        // slippageValue: null,
+      ),
+    );
     calculate();
   }
 
   void setSecondAsset(final PoolAssetField asset) {
-    emit(state.copyWith(secondAsset: asset));
+    emit(
+      state.copyWith(
+        secondAsset: asset,
+        // slippageValue: null,
+      ),
+    );
     calculate();
   }
 
@@ -113,7 +123,9 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
 
   void setSlippageTolerance() {
     emit(
-      state.copyWith(swapInfo: null),
+      state.copyWith(
+          // slippageValue: null,
+          ),
     );
 
     calculate();
@@ -154,10 +166,11 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
       },
       right: (final data) {
         if (state.chosenMethod == SwapMethod.swapExactTokensForTokens) {
-          secondAssetAmountController.text = data.$2.toString();
+          secondAssetAmountController.text = data.$1.toString();
         } else {
           firstAssetAmountController.text = data.$1.toString();
         }
+        emit(state.copyWith(slippageValue: data.$2));
       },
     );
   }
@@ -193,12 +206,39 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
       return Either.left(BadDataFailure(data.toString()));
     }
 
+    final metadata = poscanAssetsCubit.state.metadata;
+
+    final asset1Decimals = state.firstAsset.isNative
+        ? nativeTokenDecimals
+        : metadata[state.firstAsset.assetId]!.idecimals;
+
+    final asset2Decimals = state.secondAsset.isNative
+        ? nativeTokenDecimals
+        : metadata[state.secondAsset.assetId]!.idecimals;
+
+    final amount1 = Decimal.parse(firstAssetAmountController.text)
+        .setDecimalsForUserInput(asset1Decimals);
+    final amount2 = Decimal.parse(secondAssetAmountController.text)
+        .setDecimalsForUserInput(asset2Decimals);
+
+    final firstAmountToSend =
+        state.chosenMethod == SwapMethod.swapExactTokensForTokens
+            ? amount1.toBigInt()
+            : amount2.toBigInt();
+
+    // If first method is choset then set 2nd decimals and opposite
+    final secondAmountDecimals =
+        state.chosenMethod == SwapMethod.swapExactTokensForTokens
+            ? asset2Decimals
+            : asset1Decimals;
+    final secondAmountToSend =
+        data.$2.setDecimalsForUserInput(secondAmountDecimals).toBigInt();
+
     final params = SwapAssetsParams(
       asset1: state.firstAsset,
       asset2: state.secondAsset,
-      // lpTokenBurn: lpTokenBurn.toBigInt(),
-      amount1: data.$1.toBigInt(),
-      amount2: data.$2.toBigInt(),
+      amount1: firstAmountToSend,
+      amount2: secondAmountToSend,
       account: account,
       password: passwordController.text,
       updateStatus: () => updateStatus(context),

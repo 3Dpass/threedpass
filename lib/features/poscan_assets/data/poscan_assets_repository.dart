@@ -83,7 +83,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
     argsEncoded = const JsonEncoder().convert(args);
     argsEncoded = BigIntJsonHelper.replace(argsEncoded);
 
-    print(argsEncoded);
+    logger.v(argsEncoded);
 
     return callSignExtrinsicUtil.abstractExtrinsicCall(
       argsEncoded: argsEncoded,
@@ -108,7 +108,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
       params.decimals,
     ];
     final argsEncoded = const JsonEncoder().convert(args);
-    print(argsEncoded);
+    logger.v(argsEncoded);
 
     return callSignExtrinsicUtil.abstractExtrinsicCall(
       argsEncoded: argsEncoded,
@@ -132,7 +132,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
     ];
     final argsPreEncoded = const JsonEncoder().convert(args);
     final argsEncoded = BigIntJsonHelper.replace(argsPreEncoded);
-    print(argsEncoded);
+    logger.v(argsEncoded);
 
     return callSignExtrinsicUtil.abstractExtrinsicCall(
       argsEncoded: argsEncoded,

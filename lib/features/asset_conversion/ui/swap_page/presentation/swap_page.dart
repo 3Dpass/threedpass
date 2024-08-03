@@ -7,6 +7,7 @@ import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/swap_method.dart';
 import 'package:threedpass/features/asset_conversion/ui/swap_page/bloc/swap_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/swap_page/presentation/widgets/asset_select_card.dart';
+import 'package:threedpass/features/asset_conversion/ui/swap_page/presentation/widgets/swap_info_text.dart';
 import 'package:threedpass/features/asset_conversion/ui/widgets/slippage_tolerance.dart';
 import 'package:threedpass/features/other/choose_account/presentation/choose_account.dart';
 import 'package:threedpass/features/other/some_form/some_form.dart';
@@ -68,6 +69,7 @@ class SwapPage extends StatelessWidget {
               hintText: '${SwapCubit.defaultSlippage}%',
               onChanged: (final p0) => swapCubit.setSlippageTolerance(),
             ),
+            const SwapInfoText(),
             ChooseAccount(
               onAccountSelected: null,
               passwordController: swapCubit.passwordController,

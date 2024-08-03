@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -37,25 +38,45 @@ class RemoveLiquidityInfoSection extends StatelessWidget {
             //   leftText: 'Price impact',
             // ),
             FullRowText(
-              leftText: 'Expected output $asset1Symbol',
+              leftText: 'remove_liquidity_calculated_expected_out'.tr(
+                args: [
+                  asset1Symbol,
+                ],
+              ),
+              translateLeft: false,
               rightText: state.removeLiquidityInfo!.amount1Expected
                   .toDouble()
                   .toStringAsPrecision(4),
             ),
             FullRowText(
-              leftText: 'Minimum output $asset1Symbol',
+              leftText: 'remove_liquidity_calculated_minimum_out'.tr(
+                args: [
+                  asset1Symbol,
+                ],
+              ),
+              translateLeft: false,
               rightText: state.removeLiquidityInfo!.amount1MinRecieve
                   .toDouble()
                   .toStringAsPrecision(4),
             ),
             FullRowText(
-              leftText: 'Expected output $asset2Symbol',
+              leftText: 'remove_liquidity_calculated_expected_out'.tr(
+                args: [
+                  asset2Symbol,
+                ],
+              ),
+              translateLeft: false,
               rightText: state.removeLiquidityInfo!.amount2Expected
                   .toDouble()
                   .toStringAsPrecision(4),
             ),
             FullRowText(
-              leftText: 'Minimum output $asset2Symbol', // TODO Localize
+              leftText: 'remove_liquidity_calculated_minimum_out'.tr(
+                args: [
+                  asset2Symbol,
+                ],
+              ),
+              translateLeft: false,
               rightText: state.removeLiquidityInfo!.amount2MinRecieve
                   .toDouble()
                   .toStringAsPrecision(4),

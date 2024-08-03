@@ -13,6 +13,9 @@ class D3pThemeData {
   static MaterialColor mainColor = Colors.green;
   static const Color secondaryButtonBG = Color(0xFF6D9B83);
 
+  static final Color shimmerBaseColor = Colors.grey.shade400;
+  static final Color shimmerHighlightColor = Colors.grey.shade100;
+
   static const double buttonHeight = 50;
   static const double buttonPadding = 12;
 

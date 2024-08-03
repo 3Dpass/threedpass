@@ -77,7 +77,7 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
 
     if (realCount != null) {
       pagingController.addPageRequestListener((final pageKey) async {
-        print('GET OBJECT ID: $pageKey');
+        logger.v('GET OBJECT ID: $pageKey');
 
         final objEither = await getUploadedObject.call(pageKey);
 

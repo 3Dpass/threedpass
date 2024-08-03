@@ -120,8 +120,9 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
         poolFullInfo.rawPoolReserve!.balance1Decimal,
       );
 
-      print(
-          'amount1optimal ${amount1Optimal.toDouble()} amount2optimal ${amount2Optimal.toDouble()}');
+      logger.v(
+        'amount1optimal ${amount1Optimal.toDouble()} amount2optimal ${amount2Optimal.toDouble()}',
+      );
 
       String? error;
 
