@@ -56,11 +56,9 @@ class _CreatePoolAssetCardBody extends StatelessWidget {
         ),
         FastNotificationTile(
           iconData: Icons.swap_vert_sharp,
-          child: Flexible(
-            child: D3pBodyMediumText(
-              '${asset1Symbols}/${asset2Symbols}',
-              translate: false,
-            ),
+          child: D3pBodyMediumText(
+            '${asset1Symbols}/${asset2Symbols}',
+            translate: false,
           ),
         ),
       ],

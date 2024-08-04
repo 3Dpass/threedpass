@@ -138,6 +138,7 @@ class DIAssetConversion extends DIModule {
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         notificationsBloc: getIt<NotificationsBloc>(),
         poolsCubit: getIt<PoolsCubit>(),
+        poscanAssetsCubit: getIt<PoscanAssetsCubit>(),
         webViewRunner: getIt<AppServiceLoaderCubit>()
             .state
             .plugin

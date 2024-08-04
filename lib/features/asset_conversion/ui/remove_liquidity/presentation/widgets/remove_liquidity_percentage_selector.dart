@@ -22,14 +22,15 @@ class RemoveLiquidityPercentageSelector extends StatelessWidget {
         BlocBuilder<RemoveLiquidityCubit, RemoveLiquidityState>(
           buildWhen: (final previous, final current) =>
               previous.percentage != current.percentage ||
-              previous.maxPercent != current.maxPercent,
+              previous.maxPercent != current.maxPercent ||
+              previous.isMaxChosen != current.isMaxChosen,
           builder: (final _, final state) {
             final buttons = List.generate(
               listOfP.length,
               (final index) => _RLWrapper(
                 percentage: listOfP[index],
                 enabled: state.maxPercent != null &&
-                    listOfP[index] >= state.maxPercent!,
+                    listOfP[index] <= state.maxPercent!,
                 isActive:
                     !state.isMaxChosen && state.percentage == listOfP[index],
               ),

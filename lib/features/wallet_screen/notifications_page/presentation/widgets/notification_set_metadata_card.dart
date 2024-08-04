@@ -50,12 +50,10 @@ class _SetMetadataBody extends StatelessWidget {
         ),
         FastNotificationTile(
           iconData: Icons.token,
-          child: Flexible(
-            child: FastRichText(
-              mainText: notificationDTO.assetId,
-              secondaryText: 'set_metadata_notification_asset_id'.tr(),
-              needSpace: true,
-            ),
+          child: FastRichText(
+            mainText: notificationDTO.assetId,
+            secondaryText: 'set_metadata_notification_asset_id'.tr(),
+            needSpace: true,
           ),
         ),
       ],

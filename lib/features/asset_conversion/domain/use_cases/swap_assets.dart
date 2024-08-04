@@ -8,6 +8,7 @@ import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_
 import 'package:threedpass/features/asset_conversion/domain/entities/swap_asset_global_handler.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/swap_method.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
+import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 
 class SwapAssets extends UseCase<void, SwapAssetsParams> {
@@ -15,6 +16,7 @@ class SwapAssets extends UseCase<void, SwapAssetsParams> {
   final NotificationsBloc notificationsBloc;
   final WebViewRunner webViewRunner;
   final PoolsCubit poolsCubit;
+  final PoscanAssetsCubit poscanAssetsCubit;
   final AppServiceLoaderCubit appServiceLoaderCubit;
 
   const SwapAssets({
@@ -22,6 +24,7 @@ class SwapAssets extends UseCase<void, SwapAssetsParams> {
     required this.notificationsBloc,
     required this.webViewRunner,
     required this.poolsCubit,
+    required this.poscanAssetsCubit,
     required this.appServiceLoaderCubit,
   });
 
@@ -49,6 +52,7 @@ class SwapAssets extends UseCase<void, SwapAssetsParams> {
             initialN: notificationLoading,
             webViewRunner: webViewRunner,
             poolsCubit: poolsCubit,
+            poscanAssetsCubit: poscanAssetsCubit,
             appServiceLoaderCubit: appServiceLoaderCubit,
           ),
         );

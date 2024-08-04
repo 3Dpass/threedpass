@@ -12,6 +12,7 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/polkawallet/utils/rational_remove_decimals.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/remove_liquidity_info.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/calc_remove_liquidity_info.dart';
@@ -57,8 +58,22 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
         nativeTokenDecimals =
             appServiceLoaderCubit.state.networkStateData.safeDecimals,
         super(RemoveLiquidityState.initial()) {
+    init();
+  }
+
+  Future<void> init() async {
+    logger.v('Init RemoveLiquidityCubit');
     setPercentage(state.percentage, false);
-    calcMaxPercent();
+    await calcMaxPercent();
+    logger.v(
+      'Init RemoveLiquidityCubit 2. maxPercent: ${state.maxPercent}, current: ${state.percentage}',
+    );
+    if (state.maxPercent != null && state.percentage > state.maxPercent!) {
+      logger.d(
+        'Adjustment current percentage after max is calculated. max: ${state.maxPercent}',
+      );
+      emit(state.copyWith(percentage: state.maxPercent));
+    }
   }
 
   @override
@@ -72,10 +87,13 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
 
   final slippageTolerance =
       TextEditingController(text: defaultSlippage.toString());
+  final customPercentage = TextEditingController();
 
   static const defaultSlippage = 15;
 
   void setPercentage(final int percentage, final bool isMax) {
+    logger.v('Set percentage $percentage, isMax: $isMax');
+    customPercentage.text = '$percentage';
     emit(
       state.copyWith(
         percentage: percentage,
@@ -96,25 +114,23 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
   }
 
   Future<void> calcMaxPercent() async {
-    unawaited(
-      calcRemoveLiquidityMaxPercent
-          .call(
-            CalcRemoveLiquidityMaxPercentParams(
-              nativeTokenDecimals: nativeTokenDecimals,
-              poolFullInfo: poolFullInfo,
-            ),
-          )
-          .then(
-            (final value) => value.when(
-              left: (final _) => null,
-              right: (final double maxPercent) => emit(
-                state.copyWith(
-                  maxPercent: maxPercent.round(),
-                ),
+    await calcRemoveLiquidityMaxPercent
+        .call(
+          CalcRemoveLiquidityMaxPercentParams(
+            nativeTokenDecimals: nativeTokenDecimals,
+            poolFullInfo: poolFullInfo,
+          ),
+        )
+        .then(
+          (final value) => value.when(
+            left: (final _) => null,
+            right: (final double maxPercent) => emit(
+              state.copyWith(
+                maxPercent: maxPercent.round(),
               ),
             ),
           ),
-    );
+        );
   }
 
   Future<void> calculate() async {

@@ -11,6 +11,8 @@ import 'package:threedpass/core/polkawallet/constants.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_core_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_test_net_plugin.dart';
+import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
+import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
 import 'package:threedpass/features/accounts/domain/account_info.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
@@ -231,4 +233,9 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
 
     return true;
   }
+
+  double get fastAvailableBalance => BalanceUtils.balanceToDouble(
+        state.chosenAccountBalance.value.availableBalance.toString(),
+        state.networkStateData.safeDecimals,
+      );
 }

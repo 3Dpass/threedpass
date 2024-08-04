@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/bloc/remove_liquidity_cubit.dart';
+import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/presentation/widgets/remove_liquidity_custom_percentage.dart';
 import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/presentation/widgets/remove_liquidity_info_section.dart';
 import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/presentation/widgets/remove_liquidity_percentage_selector.dart';
 import 'package:threedpass/features/asset_conversion/ui/widgets/slippage_tolerance.dart';
@@ -28,6 +29,7 @@ class RemoveLiquidityPage extends StatelessWidget {
           onAccountSelected: null,
         ),
         const RemoveLiquidityPercentageSelector(),
+        const RemoveLiquidityCustomPercentage(),
         SlippageTolerance(
           controller: cubit.slippageTolerance,
           hintText: '${RemoveLiquidityCubit.defaultSlippage}%',

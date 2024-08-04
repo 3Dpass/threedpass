@@ -53,11 +53,9 @@ class _PutObjectBody extends StatelessWidget {
         const H8(),
         FastNotificationTile(
           iconData: Icons.file_copy,
-          child: Flexible(
-            child: D3pBodyMediumText(
-              notificationDTO.localSnapshotName,
-              translate: false,
-            ),
+          child: D3pBodyMediumText(
+            notificationDTO.localSnapshotName,
+            translate: false,
           ),
         ),
       ],

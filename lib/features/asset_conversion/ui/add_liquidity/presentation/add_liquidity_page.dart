@@ -20,11 +20,12 @@ class AddLiquidityPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final cubit = BlocProvider.of<AddLiquidityCubit>(context);
-    final metadata = BlocProvider.of<PoscanAssetsCubit>(context).state.metadata;
-    final nativeSymbols = BlocProvider.of<AppServiceLoaderCubit>(context)
-        .state
-        .networkStateData
-        .safeNativeSymbol;
+    final poscanAssetsCubit = BlocProvider.of<PoscanAssetsCubit>(context);
+    final metadata = poscanAssetsCubit.state.metadata;
+    final appServiceLoaderCubit =
+        BlocProvider.of<AppServiceLoaderCubit>(context);
+    final nativeSymbols =
+        appServiceLoaderCubit.state.networkStateData.safeNativeSymbol;
 
     final asset1Symbols = (cubit.asset1.isNative
             ? nativeSymbols
@@ -34,6 +35,13 @@ class AddLiquidityPage extends StatelessWidget {
             ? nativeSymbols
             : metadata[cubit.asset2.assetId]?.symbol) ??
         '???';
+
+    final double asset1UserBalance = cubit.asset1.isNative
+        ? appServiceLoaderCubit.fastAvailableBalance
+        : poscanAssetsCubit.fastBalanceById(cubit.asset1.assetId!).toDouble();
+    final double asset2UserBalance = cubit.asset2.isNative
+        ? appServiceLoaderCubit.fastAvailableBalance
+        : poscanAssetsCubit.fastBalanceById(cubit.asset2.assetId!).toDouble();
 
     return SomeForm(
       formKey: cubit.formKey,
@@ -56,8 +64,9 @@ class AddLiquidityPage extends StatelessWidget {
               .tr(args: [asset1Symbols]),
           controller: cubit.amount1DesiredController,
           keyboardType: TextInputType.number,
-          validator: Validators.onlyFloat,
-          onChanged: (final p0) => cubit.setSlippageTolerance(),
+          validator: (final p0) =>
+              Validators.onlyFloatMax(p0, asset1UserBalance),
+          onChanged: (final p0) => cubit.onFirstDesiredChanged(),
         ),
 
         D3pTextFormField(
@@ -65,8 +74,9 @@ class AddLiquidityPage extends StatelessWidget {
               .tr(args: [asset2Symbols]),
           controller: cubit.amount2DesiredController,
           keyboardType: TextInputType.number,
-          validator: Validators.onlyFloat,
-          onChanged: (final p0) => cubit.setSlippageTolerance(),
+          validator: (final p0) =>
+              Validators.onlyFloatMax(p0, asset2UserBalance),
+          onChanged: (final p0) => cubit.onSecondDesiredChanged(),
         ),
 
         SlippageTolerance(
@@ -84,14 +94,13 @@ class AddLiquidityPage extends StatelessWidget {
                 height: 16,
                 child: state.asset1Min != null
                     ? FullRowText(
-                        leftText: 'add_liquidity_calculated_expected_min'.tr(
+                        leftText: 'add_liquidity_calculated_min'.tr(
                           args: [
                             asset1Symbols,
                           ],
                         ),
                         translateLeft: false,
-                        rightText:
-                            state.asset1Min!.toDouble().toStringAsPrecision(4),
+                        rightText: state.asset1Min!,
                       )
                     : const SizedBox(),
               ),
@@ -104,14 +113,13 @@ class AddLiquidityPage extends StatelessWidget {
                 height: 16,
                 child: state.asset2Min != null
                     ? FullRowText(
-                        leftText: 'add_liquidity_calculated_expected_min'.tr(
+                        leftText: 'add_liquidity_calculated_min'.tr(
                           args: [
                             asset2Symbols,
                           ],
                         ),
                         translateLeft: false,
-                        rightText:
-                            state.asset2Min!.toDouble().toStringAsPrecision(4),
+                        rightText: state.asset2Min!,
                       )
                     : const SizedBox(),
               ),

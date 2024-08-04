@@ -1,6 +1,9 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:decimal/decimal.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
+import 'package:rational/rational.dart';
+import 'package:threedpass/core/polkawallet/utils/decimal_set_decimals.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
@@ -128,4 +131,15 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
         ...state.metadata.keys
             .map((final e) => PoolAssetField(assetId: e, isNative: false)),
       ];
+
+  // TODO Refactor get decimals to UseCase
+  int decimalsById(final int assetId) {
+    return state.metadata[assetId]!.idecimals;
+  }
+
+  // TODO Refactor get balance to UseCase
+  Rational fastBalanceById(final int id) {
+    return Decimal.fromBigInt(state.balances[id]!.decodedRawBalance)
+        .setDecimalsForRaw(decimalsById(id));
+  }
 }

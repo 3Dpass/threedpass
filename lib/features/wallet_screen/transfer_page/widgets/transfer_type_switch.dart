@@ -41,7 +41,7 @@ class TransferTypeSwitch extends StatelessWidget {
                   : BalanceTransactionType.transfer,
             ),
           ),
-          text: 'choose_transfer_keep_alive'.tr(),
+          text: 'keep_alive_switch_label'.tr(),
         ),
       ),
     );

@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:threedpass/core/polkawallet/widgets/address_icon.dart';
 import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
@@ -69,7 +68,7 @@ class _OpenSelectAccountButton extends StatelessWidget {
           emptyContraints: true,
           iconData: Icons.switch_account_rounded,
           iconColor: theme.customColors.appBarButton,
-          onPressed: () => context.router.push(SelectAccountRoute()),
+          onPressed: () => context.router.push(const SelectAccountRoute()),
         ),
       ),
     );
@@ -117,7 +116,7 @@ class _AccountName extends StatelessWidget {
 class _ContactsPageIcon extends StatelessWidget {
   const _ContactsPageIcon();
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return SizedBox(
       // width: D3pAddressIcon.defaultSize,
       height: kToolbarHeight,
@@ -132,35 +131,35 @@ class _ContactsPageIcon extends StatelessWidget {
   }
 }
 
-class _CopyButton extends StatelessWidget {
-  const _CopyButton({
-    required this.accountAddress,
-  });
+// class _CopyButton extends StatelessWidget {
+//   const _CopyButton({
+//     required this.accountAddress,
+//   });
 
-  final String? accountAddress;
+//   final String? accountAddress;
 
-  @override
-  Widget build(final BuildContext context) {
-    final theme = Theme.of(context);
+//   @override
+//   Widget build(final BuildContext context) {
+//     final theme = Theme.of(context);
 
-    return SizedBox(
-      // color: Colors.red,
-      width: D3pAddressIcon.defaultSize,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          D3pIconButton(
-            emptyContraints: true,
-            iconData: Icons.copy,
-            size: 24,
-            iconColor: theme.customColors.appBarButton,
-            onPressed: () => copyAndNotify(
-              textToCopy: accountAddress ?? '',
-              textToShow: 'address_copied_to_clipboard'.tr(),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+//     return SizedBox(
+//       // color: Colors.red,
+//       width: D3pAddressIcon.defaultSize,
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           D3pIconButton(
+//             emptyContraints: true,
+//             iconData: Icons.copy,
+//             size: 24,
+//             iconColor: theme.customColors.appBarButton,
+//             onPressed: () => copyAndNotify(
+//               textToCopy: accountAddress ?? '',
+//               textToShow: 'address_copied_to_clipboard'.tr(),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
