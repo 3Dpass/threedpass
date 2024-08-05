@@ -33,14 +33,13 @@ class ObjectsListPage extends StatelessWidget {
             previous.isLoading != current.isLoading,
         builder: (final context, final state) => state.isLoading
             ? const Center(
-                child: D3pProgressIndicator(),
+                child: D3pProgressIndicator(size: 24),
               )
             : PagedListView<int, UploadedObject>.separated(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                 pagingController: controller,
-                separatorBuilder: (final context, final index) =>
-                    const SizedBoxH8(),
+                separatorBuilder: (final context, final index) => const H8(),
                 builderDelegate: PagedChildBuilderDelegate<UploadedObject>(
                   itemBuilder: (final context, final item, final index) =>
                       ObjectsListItem(

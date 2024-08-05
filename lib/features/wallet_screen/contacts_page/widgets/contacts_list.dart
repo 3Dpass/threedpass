@@ -24,7 +24,7 @@ class ContactsList extends StatelessWidget {
       // physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: contacts.length,
-      separatorBuilder: (final context, final index) => const SizedBoxH8(),
+      separatorBuilder: (final context, final index) => const H8(),
       itemBuilder: (final context, final objIndex) {
         final currentContact = contacts[objIndex];
         return D3pCard(

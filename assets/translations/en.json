@@ -258,7 +258,6 @@
     "existential_deposit_label": "existential deposit",
     "existential_deposit_text": "The minimum amount thath an account should have to be deemed active.",
     "estimated_transfer_fee": "Estimated transfer fee",
-    "keep_alive_label": "keep alive",
     "keep_alive_text": "With the keep-alive option set, the account is protected agains removal due to low balances.",
     "make_transfer_label": "Make transfer",
     "error_wrong_amount": "A real number smaller than the avaliable balance was expected",
@@ -287,7 +286,6 @@
 
     "@2.7.2":{
     },
-    "choose_transfer_keep_alive": "Keep sender alive",
     "transfer_keep_alive_help": "With the keep-alive option set, the account is protected against removal due to low balances.",
 
     "@2.8.0":{
@@ -351,7 +349,7 @@
     },
     "poscan_putobject_choose_category": "Category",
     "account_never_null": "Please choose an account",
-    "extrinsic_status": "Extrinsic:",
+    "extrinsic_status": "Status:",
 
     "contacts_button_label": "Contacts",
     "contacts_appbar_title": "My Contacts",
@@ -487,7 +485,7 @@
     "snapshot_chain_status": "Chain status:",
     "chain_status_recognized": "Recognized",
 
-    "@2.16.0": {},
+    "@2.15.2": {},
     "open_pools_label": "Pools",
     "pools_page_appbar": "Pools",
     "pools_text": "Earn fees by providing liquidity.",
@@ -500,15 +498,26 @@
     "create_pool_asset_choice_title": "Asset {}",
     "add_liquidity_page_title": "Add liquidity",
     "add_liquidity_page_choose_account_title": "Mint to",
-    "add_liquidity_page_amount_1_desired_label": "Amount 1 desired",
-    "add_liquidity_page_amount_2_desired_label": "Amount 2 desired",
-    "add_liquidity_page_amount_1_min_label" : "Amount 1 min",
-    "add_liquidity_page_amount_2_min_label" : "Amount 2 min",
     "error_wrong_amount_bigint": "A big integer expected",
     "error_wrong_amount_double": "Wrong input",
     "remove_liquidity_page_title": "Remove liquidity",
     "remove_liquidity_page_choose_account_title": "Withdraw to",
     "amount_percentage_label": "Amount percentage",
     "error_validation_max": "Max is {}",
-    "slippage_tolerance_label": "Slippage tolerance"
+    "slippage_tolerance_label": "Slippage tolerance",
+
+    "@2.16.0": {},
+    "add_liquidity_page_amount_desired_pattern": "Amount {} desired",
+    "add_liquidity_page_amount_min_pattern": "Amount {} min",
+    "swap_appbar_title": "Swap",
+    "keep_alive_switch_label": "Keep alive",
+    "swap_expected_output": "Expected output",
+    "swap_expected_input": "Expected input",
+    "swap_minimum_output": "Minimum output",
+    "swap_maximum_input": "Maximum input",
+    "add_liquidity_calculated_min":"Minimum {}",
+    "remove_liquidity_calculated_expected_out":"Expected output {}",
+    "remove_liquidity_calculated_minimum_out":"Minimum output {}",
+    "remove_liquidity_custom_percentage":"Custom percentage",
+    "error_validation_max_balance": "Your balance is {}"
 }

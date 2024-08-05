@@ -20,7 +20,7 @@ class ChooseApprovals extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         const D3pBodyMediumText('poscan_putobject_choose_napprovals'),
-        const SizedBoxH4(),
+        const H4(),
         D3pTextFormField(
           controller: cubit.nApprovalsController,
           hintText: 'n_approvals_hint'.tr(),

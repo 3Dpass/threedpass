@@ -26,7 +26,7 @@ class ObjectsList extends StatelessWidget {
       // physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: objects.length,
-      separatorBuilder: (final context, final index) => const SizedBoxH16(),
+      separatorBuilder: (final context, final index) => const H16(),
       itemBuilder: (final context, final objIndex) {
         final currentObject = objects[objIndex];
         final fileHashes = currentObject.fileHashes.toList();
@@ -36,15 +36,14 @@ class ObjectsList extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             _ObjectTitle(currentObject.name),
-            const SizedBoxH4(),
+            const H4(),
             ListView.separated(
               // primary: false,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               padding: EdgeInsets.zero,
               itemCount: fileHashes.length,
-              separatorBuilder: (final context, final index) =>
-                  const SizedBoxH4(),
+              separatorBuilder: (final context, final index) => const H4(),
               itemBuilder: (final _, final index) {
                 // children: List.generate(
                 //   fileHashes.length,

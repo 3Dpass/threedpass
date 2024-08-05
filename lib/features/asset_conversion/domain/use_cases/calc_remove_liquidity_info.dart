@@ -1,41 +1,23 @@
 import 'package:rational/rational.dart';
 import 'package:super_core/super_core.dart';
-import 'package:threedpass/core/polkawallet/utils/decimal_set_decimals.dart';
-import 'package:threedpass/features/asset_conversion/data/asset_conversion_repository.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/remove_liquidity_info.dart';
+import 'package:threedpass/features/asset_conversion/domain/utils/calc_user_pool_reserves.dart';
 
 class CalcRemoveLiquidityInfo
-    extends UseCase<void, CalcRemoveLiquidityInfoParams> {
-  const CalcRemoveLiquidityInfo({
-    required this.assetConversionRepository,
-  });
-
-  final AssetConversionRepository assetConversionRepository;
+    extends UseCase<RemoveLiquidityInfo, CalcRemoveLiquidityInfoParams> {
+  const CalcRemoveLiquidityInfo();
 
   @override
   Future<Either<Failure, RemoveLiquidityInfo>> call(
     final CalcRemoveLiquidityInfoParams params,
   ) async {
     try {
-      final asset1Decimals = params.poolFullInfo.asset1Meta?.idecimals ??
-          params.nativeTokenDecimals;
-      final asset2Decimals = params.poolFullInfo.asset2Meta?.idecimals ??
-          params.nativeTokenDecimals;
+      final assetUserBalances = params.poolFullInfo
+          .userPoolReserves(nativeTokenDecimals: params.nativeTokenDecimals);
 
-      final asset1Reserve = params.poolFullInfo.rawPoolReserve!.balance1Decimal
-          .setDecimalsForRaw(asset1Decimals);
-      final asset2Reserve = params.poolFullInfo.rawPoolReserve!.balance2Decimal
-          .setDecimalsForRaw(asset2Decimals);
-
-      // final tokenId = params.poolFullInfo.basicInfo.lpTokenId;
-      final totalLPSupply = params.poolFullInfo.totalLpTokenSupply;
-      final userLPTokens = params.poolFullInfo.lpBalance!;
-
-      final userLPRate = Rational(userLPTokens, totalLPSupply);
-
-      final asset1UserBalance = asset1Reserve * userLPRate;
-      final asset2UserBalance = asset2Reserve * userLPRate;
+      final asset1UserBalance = assetUserBalances.left;
+      final asset2UserBalance = assetUserBalances.right;
 
       final percentageRational = Rational.fromInt(params.percentage, 100);
 

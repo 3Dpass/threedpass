@@ -8,6 +8,7 @@ import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/theme_builder.dart';
+import 'package:threedpass/features/app/presentation/app_error_widget.dart';
 import 'package:threedpass/features/app/presentation/global_states_provider.dart';
 import 'package:threedpass/router/router.dart';
 import 'package:threedpass/setup.dart' as di_setup;
@@ -29,6 +30,7 @@ Future<void> main() async {
       ],
       path: 'assets/translations',
       fallbackLocale: const Locale('en'),
+      useFallbackTranslations: true,
       child: ThreeDApp(),
     ),
   );
@@ -53,6 +55,14 @@ class ThreeDApp extends StatelessWidget {
           child: PlatformApp.router(
             debugShowCheckedModeBanner: false,
             title: '3Dpass',
+            builder: (final context, final widget) {
+              ErrorWidget.builder = (final errorDetails) => AppErrorWidget(
+                    errorDetails: errorDetails,
+                    isScaffold: widget is Scaffold || widget is Navigator,
+                  );
+              if (widget != null) return widget;
+              throw StateError('widget is null');
+            },
             material: _MainMaterialAppRouterData(brightness).theme,
             cupertino: _MainCupertinoAppRouterData(brightness).theme,
             routerDelegate: _appRouter.delegate(),

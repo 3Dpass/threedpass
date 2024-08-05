@@ -20,7 +20,7 @@ class AssetsPage extends StatelessWidget {
         final theme = Theme.of(context);
         const children = [
           BalanceSection(),
-          // OpenPoolsButton(),
+          OpenPoolsButton(),
           PoscanAssetsColumn(),
           ObjectsListAssets(),
         ];
@@ -33,8 +33,7 @@ class AssetsPage extends StatelessWidget {
             shrinkWrap: true,
             padding: const EdgeInsets.symmetric(vertical: 16),
             itemCount: children.length,
-            separatorBuilder: (final context, final index) =>
-                const SizedBoxH16(),
+            separatorBuilder: (final context, final index) => const H16(),
             itemBuilder: (final context, final index) => children[index],
           ),
         );

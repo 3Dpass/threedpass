@@ -39,6 +39,8 @@ class PoscanAssetData {
     required this.reserved,
   });
 
+  int get minBalanceInt => int.parse(minBalance.replaceAll(',', ''));
+
   factory PoscanAssetData.fromJson(final Map<String, dynamic> json) =>
       _$PoscanAssetDataFromJson(json);
   Map<String, dynamic> toJson() => _$PoscanAssetDataToJson(this);

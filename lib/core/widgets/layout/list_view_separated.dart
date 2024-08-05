@@ -7,7 +7,7 @@ class ListViewSeparated extends StatelessWidget {
 
   const ListViewSeparated({
     required this.children,
-    this.separator = const SizedBoxH8(),
+    this.separator = const H8(),
     super.key,
   });
 

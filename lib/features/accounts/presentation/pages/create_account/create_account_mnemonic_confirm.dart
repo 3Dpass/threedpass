@@ -30,7 +30,7 @@ class CreateAccountMnemonicConfirmPage extends StatelessWidget {
           child: SubmitMnemonicConfirmButton(),
         ),
         children: [
-          const SizedBoxH16(),
+          const H16(),
           Text(
             'backup_confirm_header'.tr(),
             style: Theme.of(context)
@@ -38,7 +38,7 @@ class CreateAccountMnemonicConfirmPage extends StatelessWidget {
                 .d3ptitleLarge
                 .copyWith(fontWeight: FontWeight.bold),
           ),
-          const SizedBoxH16(),
+          const H16(),
           const D3pBodyMediumText('backup_confirm_text'),
           const SizedBox(height: 12),
           const Align(

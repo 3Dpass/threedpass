@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
 
-class DropdownAssetChild extends StatelessWidget {
-  const DropdownAssetChild({
+class DropdownMetadataItem extends StatelessWidget {
+  const DropdownMetadataItem({
     required this.value,
+    this.prefixColor,
+    this.mainColor,
     super.key,
   });
 
   final PoscanAssetMetadata value;
+  final Color? prefixColor;
+  final Color? mainColor;
 
   @override
   Widget build(final BuildContext context) {
+    final medium = Theme.of(context).customTextStyles.d3pBodyMedium;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -19,9 +25,14 @@ class DropdownAssetChild extends StatelessWidget {
           mainText: value.id.toString(),
           secondaryText: 'id:',
           needSpace: true,
+          secondaryTextColor: prefixColor,
+          mainTextColor: mainColor,
         ),
         const SizedBox(width: 16),
-        Text(value.symbol),
+        Text(
+          value.symbol,
+          style: mainColor != null ? medium.copyWith(color: mainColor) : medium,
+        ),
       ],
     );
   }

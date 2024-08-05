@@ -68,7 +68,7 @@ class FromAddressTextField extends StatelessWidget {
           'from_address_label'.tr(),
           style: textStyle.hintStyle,
         ),
-        const SizedBoxH4(),
+        const H4(),
         // BlocBuilder<TransferInfoBloc, TransferInfoBlocState>(
         //   builder: (context, state) =>
         D3pDropdownButton<KeyPairData>(

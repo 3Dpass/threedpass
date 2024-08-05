@@ -65,9 +65,10 @@ class _ElevatedButtonChild extends StatelessWidget {
             padding: EdgeInsets.only(right: padding),
             child: Icon(iconData),
           ),
-        Text(
-          text,
-        ),
+        if (text.isNotEmpty)
+          Text(
+            text,
+          ),
       ],
     );
   }

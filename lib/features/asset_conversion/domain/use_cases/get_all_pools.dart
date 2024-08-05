@@ -20,6 +20,13 @@ class GetAllPools extends UseCase<List<PoolFullInfo>, GetAllPoolsParams> {
   ) async {
     final res = <PoolFullInfo>[];
 
+    final tokensData = (await poscanAssetsRepo.allTokens())
+        .when(left: (final _) => null, right: (final data) => data);
+
+    if (tokensData == null) {
+      return const Either.left(NetworkFailure('Failed to get tokens data'));
+    }
+
     final basicPools = await assetConversionRepository.poolsBasic();
     for (final pool in basicPools) {
       final reserve = await assetConversionRepository.poolReserve(pool);
@@ -85,6 +92,16 @@ class GetAllPools extends UseCase<List<PoolFullInfo>, GetAllPoolsParams> {
           lpBalance: lpBalance,
           asset1Meta: asset1Meta,
           asset2Meta: asset2Meta,
+          asset1Data: pool.firstAsset.isNative
+              ? null
+              : tokensData.firstWhere(
+                  (final token) => token.id == pool.firstAsset.assetId!,
+                ),
+          asset2Data: pool.secondAsset.isNative
+              ? null
+              : tokensData.firstWhere(
+                  (final token) => token.id == pool.secondAsset.assetId!,
+                ),
           totalLpTokenSupply: totalLPSupply!,
         ),
       );

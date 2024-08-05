@@ -40,7 +40,7 @@ class AddContactPage extends StatelessWidget {
                     controller: nameTextController,
                     validator: _validateInputName,
                   ),
-                  const SizedBoxH16(),
+                  const H16(),
                   D3pTextFormField(
                     labelText: 'contact_address'.tr(),
                     hintText: 'contact_address_hint'.tr(),
@@ -50,7 +50,7 @@ class AddContactPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBoxH16(),
+            const H16(),
             D3pElevatedButton(
               text: 'add_contact'.tr(),
               onPressed: () => onTapAddContact(context),

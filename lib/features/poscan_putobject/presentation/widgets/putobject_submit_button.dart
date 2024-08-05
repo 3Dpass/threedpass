@@ -28,7 +28,7 @@ class PutObjectSubmitButton extends StatelessWidget {
           onPressed: () =>
               BlocProvider.of<PoscanPutObjectCubit>(context).submit(context),
         ),
-        const SizedBoxH24(),
+        const H24(),
       ],
     );
   }

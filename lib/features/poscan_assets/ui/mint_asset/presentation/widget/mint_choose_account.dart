@@ -10,7 +10,7 @@ class MintChooseAccount extends StatelessWidget {
   Widget build(final BuildContext context) {
     final smac = BlocProvider.of<MintAssetCubit>(context);
     return ChooseAccount(
-      passwordController: smac.password,
+      passwordController: smac.passwordController,
       onAccountSelected: null,
     );
   }

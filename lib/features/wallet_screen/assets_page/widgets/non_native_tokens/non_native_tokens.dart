@@ -72,8 +72,7 @@ class NonNativeTokens extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.only(top: listVPadding),
                   itemCount: resolvedList.length,
-                  separatorBuilder: (final context, final index) =>
-                      const SizedBoxH8(),
+                  separatorBuilder: (final context, final index) => const H8(),
                   itemBuilder: (final context, final index) =>
                       AssetsCard(resolvedList[index]),
                 );

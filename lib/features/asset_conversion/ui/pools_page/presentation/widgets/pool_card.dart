@@ -21,12 +21,9 @@ class PoolCard extends StatelessWidget {
   Widget build(final BuildContext context) {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     final defaultDecimals = appService.networkStateData.tokenDecimals!.first;
-    // print('default decimals $defaultDecimals');
 
     final asset1Balance = poolFullInfo.realBalance1(defaultDecimals);
-    // print(asset1Balance);
     final asset2Balance = poolFullInfo.realBalance2(defaultDecimals);
-    // print(asset2Balance);
 
     const String nativeSymbol = 'P3D';
 
@@ -57,7 +54,7 @@ class PoolCard extends StatelessWidget {
               ),
               maxLines: 2,
             ),
-            const SizedBoxH16(),
+            const H16(),
             Text(
               'Total locked coins:',
               style: Theme.of(context)
@@ -65,7 +62,7 @@ class PoolCard extends StatelessWidget {
                   .bodyMedium
                   ?.copyWith(color: Colors.grey),
             ),
-            const SizedBoxH4(),
+            const H4(),
             _LockedCoin(
               balance: asset1Balance,
               symbol: symbols1,
@@ -74,9 +71,9 @@ class PoolCard extends StatelessWidget {
               balance: asset2Balance,
               symbol: symbols2,
             ),
-            const SizedBoxH8(),
+            const H8(),
             _LPTokens(poolFullInfo.lpBalance),
-            const SizedBoxH16(),
+            const H16(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

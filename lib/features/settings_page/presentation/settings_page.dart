@@ -23,14 +23,14 @@ class SettingsPage extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBoxH8(),
+            H8(),
             HashSettingsBlock(),
             PreviewSettingsBlock(),
             WalletSettingsBlock(),
             AppSettingsBlock(),
-            SizedBoxH16(),
+            H16(),
             VersionInfo(),
-            SizedBoxH8(),
+            H8(),
           ],
         ),
       ),

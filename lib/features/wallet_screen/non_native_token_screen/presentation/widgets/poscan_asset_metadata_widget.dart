@@ -12,8 +12,8 @@ import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_m
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
 import 'package:threedpass/router/router.gr.dart';
 
-class PoscanAssetMetadataSection extends StatelessWidget {
-  const PoscanAssetMetadataSection({
+class PoscanAssetMetadataWidget extends StatelessWidget {
+  const PoscanAssetMetadataWidget({
     required this.metadata,
     required this.poscanAssetData,
     super.key,
@@ -39,7 +39,7 @@ class PoscanAssetMetadataSection extends StatelessWidget {
       }
     } else {
       return _HasMetadata(
-        metadata: metadata,
+        metadata: metadata!,
         poscanAssetData: poscanAssetData,
       );
     }
@@ -74,24 +74,24 @@ class _HasMetadata extends StatelessWidget {
     required this.poscanAssetData,
   });
 
-  final PoscanAssetMetadata? metadata;
+  final PoscanAssetMetadata metadata;
   final PoscanAssetData poscanAssetData;
 
   @override
   Widget build(final BuildContext context) {
     final children = <Widget>[
       FastRichText(
-        mainText: metadata!.name,
+        mainText: metadata.name,
         secondaryText: 'poscan_asset_page_name_secondary'.tr(),
         needSpace: true,
       ),
       FastRichText(
-        mainText: metadata!.symbol,
+        mainText: metadata.symbol,
         secondaryText: 'poscan_asset_page_symbol_secondary'.tr(),
         needSpace: true,
       ),
       FastRichText(
-        mainText: metadata!.decimals,
+        mainText: metadata.decimals,
         secondaryText: 'poscan_asset_page_decimals_secondary'.tr(),
         needSpace: true,
       ),
@@ -123,7 +123,7 @@ class _NoMetadataCanSet extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const D3pBodyMediumText('poscan_asset_page_metadata_help'),
-        const SizedBoxH8(),
+        const H8(),
         _GoToSetMetadata(
           poscanAssetData: poscanAssetData,
         ),

@@ -1,39 +1,17 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
-import 'package:threedpass/core/widgets/other/copy_span_widget.dart';
-import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
-import 'package:threedpass/core/widgets/other/padding_16.dart';
-import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/core/widgets/text/d3p_title_large_text.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
-import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
-import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
-import 'package:threedpass/features/preview_page/presentation/widgets/copy_text_card.dart';
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/bloc/assets_get_extrisincs_cubit.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_create.dart';
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_mint.dart';
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_set_meta_data.dart';
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_transfer.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_unknown.dart';
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/asset_transfer_button.dart';
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_balance_section.dart';
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_data_section.dart';
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_metadata_section.dart';
-import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_mint_section.dart';
+import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_balance_widget.dart';
+import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_data_widget.dart';
+import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_metadata_widget.dart';
+import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_mint_widget.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/widgets/poscan_asset_transfer_floating_button.dart';
-import 'package:threedpass/features/wallet_screen/widgets/asset_balance_text.dart';
 import 'package:threedpass/features/wallet_screen/widgets/block_datetime_w.dart';
 import 'package:threedpass/features/wallet_screen/widgets/extrinsic_status_icon.dart';
-import 'package:threedpass/features/wallet_screen/widgets/short_address.dart';
-import 'package:threedpass/features/wallet_screen/widgets/transaction_item.dart';
 
 // part 'widgets/assets_history_paged_list.dart';
 part './widgets/no_history_found.dart';
@@ -73,10 +51,10 @@ class NonNativeTokenScreen extends StatelessWidget {
     // final symbol = metadata?.symbol ?? '';
 
     final children = [
-      PoscanAssetDataSection(
+      PoscanAssetDataWidget(
         poscanAssetData: poscanAssetCombined.poscanAssetData,
       ),
-      PoscanAssetMetadataSection(
+      PoscanAssetMetadataWidget(
         poscanAssetData: poscanAssetCombined.poscanAssetData,
         metadata: metadata,
       ),
@@ -84,7 +62,7 @@ class NonNativeTokenScreen extends StatelessWidget {
 
     if (metadata != null) {
       children.add(
-        PoscanAssetMintSection(
+        PoscanAssetMintWidget(
           poscanAssetData: poscanAssetCombined.poscanAssetData,
         ),
       );
@@ -93,7 +71,7 @@ class NonNativeTokenScreen extends StatelessWidget {
     if (metadata != null) {
       children.insert(
         0,
-        PoscanAssetBalanceSection(
+        PoscanAssetBalanceWidget(
           poscanAssetBalance: poscanAssetCombined.poscanAssetBalance,
           metadata: metadata,
         ),

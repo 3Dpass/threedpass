@@ -59,7 +59,7 @@ class _State extends State<CreateAssetChooseObject> {
       mainAxisSize: MainAxisSize.min,
       children: [
         const D3pBodyMediumText('create_asset_choose_object'),
-        const SizedBoxH4(),
+        const H4(),
         SizedBox(
           height: 48,
           child: items != null
@@ -73,7 +73,7 @@ class _State extends State<CreateAssetChooseObject> {
                     );
                   },
                 )
-              : const D3pProgressIndicator(),
+              : const D3pProgressIndicator(size: 24),
         ),
       ],
     );

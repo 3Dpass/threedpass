@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 
 class D3pSwitchButton extends StatelessWidget {
-  D3pSwitchButton({
-    required final bool initialValue,
+  const D3pSwitchButton({
+    required this.value,
     required this.onChanged,
     required this.text,
     this.helpText,
-    final Key? key,
-  })  : switchValueNotifier = ValueNotifier<bool>(initialValue),
-        super(key: key);
+    super.key,
+  });
 
   final void Function(bool)? onChanged;
-  final ValueNotifier<bool> switchValueNotifier;
   final String text;
   final String? helpText;
+  final bool value;
 
   @override
   Widget build(final BuildContext context) {
@@ -27,6 +25,7 @@ class D3pSwitchButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               text,
@@ -43,19 +42,10 @@ class D3pSwitchButton extends StatelessWidget {
               ),
           ],
         ),
-        ValueListenableBuilder(
-          valueListenable: switchValueNotifier,
-          builder: (final context, final hasError, final child) =>
-              PlatformSwitch(
-            value: switchValueNotifier.value,
-            // ignore: prefer-extracting-callbacks
-            onChanged: onChanged != null
-                ? (final value) {
-                    switchValueNotifier.value = value;
-                    onChanged!(value);
-                  }
-                : null,
-          ),
+        Switch.adaptive(
+          value: value,
+          onChanged:
+              onChanged != null ? (final value) => onChanged!(value) : null,
         ),
       ],
     );

@@ -28,7 +28,7 @@ class OpenBottomSheet extends StatelessWidget {
       material: D3pBottonSheetTheme.materialTheme,
       builder: (final _) => Column(
         children: [
-          const SizedBoxH24(),
+          const H24(),
           Flexible(
             child: bottomSheetPlatform,
           ),
@@ -47,7 +47,7 @@ class OpenBottomSheet extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         D3pBodyMediumText(unlocalizedSubtitle),
-        const SizedBoxH4(),
+        const H4(),
         ClickableCard(
           padding: ClickableCard.buttonPaddingPreset,
           child: Row(

@@ -20,9 +20,9 @@ class ChooseProperties extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const D3pBodyMediumText("put_object_properties_subtitle"),
-            const SizedBoxH4(),
+            const H4(),
             state.defaultProperties.isEmpty
-                ? const SizedBoxH16()
+                ? const H16()
                 : ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),

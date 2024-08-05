@@ -27,7 +27,7 @@ class StatefulPoolAssetChoice<T extends StateStreamable<E>, E>
       mainAxisSize: MainAxisSize.min,
       children: [
         Text('create_pool_asset_choice_title'.tr(args: [assetNum])),
-        const SizedBoxH8(),
+        const H8(),
         BlocBuilder<T, E>(
           buildWhen: buildWhen,
           builder: (final context, final state) => PoolAssetFieldChoice(

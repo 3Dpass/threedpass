@@ -62,7 +62,7 @@ class SaveObjectDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             _ObjectNameInput(objectNameController),
-            const SizedBoxH8(),
+            const H8(),
             _SnapshotNameInput(snapshotNameController),
           ],
         ),

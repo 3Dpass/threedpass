@@ -46,7 +46,7 @@ class _State extends State<PoscanResult> {
   @override
   Widget build(final BuildContext context) {
     if (!isLoaded) {
-      return const D3pProgressIndicator();
+      return const D3pProgressIndicator(size: 24);
     }
 
     final snap = BlocProvider.of<PreviewPageCubit>(context).state.snapshot;

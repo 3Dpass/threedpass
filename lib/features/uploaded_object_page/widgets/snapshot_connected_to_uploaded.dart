@@ -61,7 +61,7 @@ class SnapshotConnectedToUploaded extends StatelessWidget {
           padding: EdgeInsets.zero,
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          separatorBuilder: (final context, final index) => const SizedBoxH4(),
+          separatorBuilder: (final context, final index) => const H4(),
           itemCount: similarSnapshots.length,
           itemBuilder: (final context, final index) {
             if (isOnlyText) {

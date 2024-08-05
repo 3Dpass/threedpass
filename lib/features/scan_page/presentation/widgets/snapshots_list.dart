@@ -29,7 +29,7 @@ class SnapshotsList extends StatelessWidget {
       // primary: false,
       shrinkWrap: true,
       itemCount: listToShow.length,
-      separatorBuilder: (final context, final index) => const SizedBoxH4(),
+      separatorBuilder: (final context, final index) => const H4(),
       itemBuilder: (final context, final index) => SelectableSnapshotCard(
         snapshot: listToShow[index],
         hashObject: currentObject,

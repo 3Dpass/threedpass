@@ -51,4 +51,15 @@ class Validators {
     final res = double.tryParse(p0 ?? '');
     return res != null && res > 0.0 ? null : 'error_wrong_amount_double'.tr();
   }
+
+  static String? onlyFloatBalanceMax(final String? p0, final double max) {
+    final of = onlyFloat(p0);
+    if (of != null) {
+      return of;
+    }
+    if (double.parse(p0!) > max) {
+      return 'error_validation_max_balance'.tr(args: [max.toString()]);
+    }
+    return null;
+  }
 }

@@ -47,7 +47,7 @@ class ChooseCategory extends StatelessWidget {
                   ),
                 ),
                 cat.subCats.isEmpty
-                    ? const SizedBoxH16()
+                    ? const H16()
                     : ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),

@@ -16,12 +16,9 @@ class ExtrinsicStatusIcon extends StatelessWidget {
           color: Colors.red,
         );
       case ExtrinsicStatus.loading:
-        return const SizedBox(
-          width: 24,
-          height: 24,
-          child: D3pProgressIndicator(
-            strokeWidth: 2,
-          ),
+        return const D3pProgressIndicator(
+          strokeWidth: 2,
+          size: 24,
         );
       case ExtrinsicStatus.success:
         return const Icon(

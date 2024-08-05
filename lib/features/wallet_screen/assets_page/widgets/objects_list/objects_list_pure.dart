@@ -15,7 +15,7 @@ class ObjectsListPure extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
       shrinkWrap: true,
       itemCount: objects.length,
-      separatorBuilder: (final context, final index) => const SizedBoxH8(),
+      separatorBuilder: (final context, final index) => const H8(),
       itemBuilder: (final context, final index) => ObjectsListItem(
         uploadedObject: objects[index],
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:scrollview_observer/scrollview_observer.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/no_saved_objects_placeholder.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/objects_list.dart';
@@ -60,7 +61,7 @@ class _ScrollableObjectsListState extends State<ScrollableObjectsList> {
           } else {
             if (state.requiresScroll) {
               WidgetsBinding.instance.addPostFrameCallback((final _) {
-                debugPrint('try scroll to new obj');
+                logger.d('try scroll to new obj');
 
                 // TODO Remove try-catch and detect if scrool is needed
                 try {
@@ -80,9 +81,9 @@ class _ScrollableObjectsListState extends State<ScrollableObjectsList> {
                     duration: const Duration(milliseconds: 1000),
                     curve: Curves.linear,
                   );
-                  debugPrint('SCROLL SCROLL');
+                  logger.d('SCROLL SCROLL');
                 } on Object catch (_) {
-                  debugPrint('NO SCROLL');
+                  logger.d('NO SCROLL');
                 }
               });
             }

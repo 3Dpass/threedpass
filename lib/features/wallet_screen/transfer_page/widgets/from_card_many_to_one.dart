@@ -34,7 +34,7 @@ class FromCardManyToOne extends StatelessWidget {
             data: data,
             isFirst: isFirst,
           ),
-          const SizedBoxH4(),
+          const H4(),
           AmountTextFieldBuilder(
             amountController: sendAmountData.amountController,
             transferType: metaInfoType,

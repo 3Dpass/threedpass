@@ -19,7 +19,7 @@ class CreateAssetChoosePropValue extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         const D3pBodyMediumText('create_asset_choose_prop'),
-        const SizedBoxH4(),
+        const H4(),
         BlocBuilder<CreatePoscanAssetCubit, CreatePoscanAssetState>(
           buildWhen: (final previous, final current) =>
               previous.propValue != current.propValue ||

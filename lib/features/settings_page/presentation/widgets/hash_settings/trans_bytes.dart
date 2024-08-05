@@ -3,6 +3,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 
 /// Empty input means, that trans bytes should be taken from chain.
@@ -63,7 +64,7 @@ class TransBytesInput {
     final realInput = hexInputFormatter.unmaskText(rawInput);
 
     if (int.tryParse(realInput, radix: 16) != null && realInput.length == 8) {
-      print('Valid $realInput');
+      logger.v('Valid $realInput');
       return null;
     } else {
       return 'error_hex'.tr();

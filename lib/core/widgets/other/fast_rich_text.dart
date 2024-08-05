@@ -7,27 +7,32 @@ class FastRichText extends StatelessWidget {
     required this.mainText,
     required this.secondaryText,
     this.needSpace = false,
-    this.mainTextStyle,
+    this.mainTextColor,
+    this.secondaryTextColor,
     super.key,
   });
 
   final String secondaryText;
   final String mainText;
   final bool needSpace;
-  final TextStyle? mainTextStyle;
+  final Color? secondaryTextColor;
+  final Color? mainTextColor;
 
   @override
   Widget build(final BuildContext context) {
     final medium = Theme.of(context).customTextStyles.d3pBodyMedium;
-
     return Text.rich(
       TextSpan(
         text: needSpace ? secondaryText + ' ' : secondaryText,
-        style: medium.copyWith(color: D3pColors.disabled),
+        style: medium.copyWith(
+          color: secondaryTextColor ?? D3pColors.disabled,
+        ),
         children: [
           TextSpan(
             text: mainText,
-            style: mainTextStyle ?? medium,
+            style: mainTextColor != null
+                ? medium.copyWith(color: mainTextColor)
+                : medium,
           ),
         ],
       ),

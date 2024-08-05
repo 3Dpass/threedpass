@@ -28,7 +28,7 @@ class SomeForm extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Some warning about fees
+            // TODO Some warning about fees
             // Text(
             //   'Transaction takes fees',
             //   style: textStyle.secondaryText,
@@ -48,7 +48,7 @@ class SomeForm extends StatelessWidget {
             horizontal: 16,
           ),
           shrinkWrap: true,
-          separatorBuilder: (final context, final index) => const SizedBoxH16(),
+          separatorBuilder: (final context, final index) => const H16(),
           itemBuilder: (final context, final index) => widgets[index],
           itemCount: widgets.length,
         ),

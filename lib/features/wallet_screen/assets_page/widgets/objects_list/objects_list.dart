@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
@@ -69,6 +70,7 @@ class _State extends State<AssetsUploadedObjectsList> {
               const Padding16(
                 child: ObjectsListHeaderFull(),
               ),
+              const H8(),
               Flexible(
                 child: _ActualObjectsListSection(
                   isLoading: state.areOwnerObjectsLoading,
@@ -100,7 +102,7 @@ class _ActualObjectsListSection extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     if (isLoading) {
-      return const D3pProgressIndicator();
+      return const D3pProgressIndicator(size: 24);
     }
     if (objects == null || objects!.isEmpty) {
       return const D3pBodyMediumText('no_owned_objects_found');

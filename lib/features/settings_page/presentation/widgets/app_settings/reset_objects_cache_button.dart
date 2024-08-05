@@ -72,12 +72,9 @@ class _State extends State<ResetObjectsCacheButton> {
               height: 56,
               child: state.isLoading
                   ? const Center(
-                      child: SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: D3pProgressIndicator(
-                          strokeWidth: 2,
-                        ),
+                      child: D3pProgressIndicator(
+                        strokeWidth: 2,
+                        size: 20,
                       ),
                     )
                   : Row(

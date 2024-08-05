@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
+import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
+import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/coin_transfer_button.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/recieve_button.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_meta_dto.dart';
@@ -40,17 +43,37 @@ class AssetPageButtonsPanel extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.max,
           children: [
-            Flexible(child: CoinTransferButton(), flex: 3),
-            SizedBox(width: 8),
-            // Flexible(
-            //   child: D3pElevatedButton(
-            //     text: '',
-            //     onPressed: () {},
-            //   ),
-            //   flex: 1,
-            // ),
-            // SizedBox(width: 8),
-            Flexible(child: RecieveButton(), flex: 1),
+            const Flexible(flex: 2, child: CoinTransferButton()),
+            const SizedBox(width: 8),
+            Flexible(
+              flex: 1,
+              child: BlocBuilder<PoscanAssetsCubit, PoscanAssetsState>(
+                buildWhen: (final previous, final current) =>
+                    previous.isLoading != current.isLoading,
+                builder: (final context, final poscanAssetsState) =>
+                    BlocBuilder<PoolsCubit, PoolsState>(
+                  buildWhen: (final previous, final current) =>
+                      previous.isLoading != current.isLoading,
+                  builder: (final context, final poolsState) =>
+                      D3pElevatedButton(
+                    iconData: Icons.swap_horiz_outlined,
+                    text: '',
+                    onPressed: poscanAssetsState.isLoading ||
+                            poolsState.isLoading
+                        ? null
+                        : () => context.router.push(
+                              SwapRouteWrapper(
+                                poolAssets:
+                                    BlocProvider.of<PoscanAssetsCubit>(context)
+                                        .poolAssets,
+                              ),
+                            ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 8),
+            const Flexible(flex: 1, child: RecieveButton()),
 
             // _SpecialIconButton(
             //   text: 'transfer_coins_button_label',

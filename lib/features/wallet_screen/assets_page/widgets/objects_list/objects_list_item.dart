@@ -23,7 +23,7 @@ class ObjectsListItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           UploadedObjectIdText(uploadedObject: uploadedObject),
-          const SizedBoxH8(),
+          const H8(),
           Row(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -35,12 +35,12 @@ class ObjectsListItem extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBoxH8(),
+          const H8(),
           UploadedObjectOwnerText(
             uploadedObject: uploadedObject,
             short: true,
           ),
-          const SizedBoxH8(),
+          const H8(),
           SnapshotConnectedToUploaded(
             uploadedObject: uploadedObject,
             topPadding: 8,

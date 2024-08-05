@@ -25,7 +25,7 @@ class FirstPageExceptionIndicator extends StatelessWidget {
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
-            const SizedBoxH16(),
+            const H16(),
             Text(
               message ?? 'first_page_error_message'.tr(),
               textAlign: TextAlign.center,

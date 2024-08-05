@@ -34,7 +34,7 @@ class _PutObjectBody extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBoxH8(),
+        const H8(),
         const FastNotificationTile(
           iconData: Icons.keyboard_double_arrow_right,
           child: D3pBodyMediumText(
@@ -42,7 +42,7 @@ class _PutObjectBody extends StatelessWidget {
             translate: false,
           ),
         ),
-        const SizedBoxH8(),
+        const H8(),
         FastNotificationTile(
           iconData: Icons.person,
           child: AccountChooseTileText(
@@ -50,14 +50,12 @@ class _PutObjectBody extends StatelessWidget {
             name: notificationDTO.account.name,
           ),
         ),
-        const SizedBoxH8(),
+        const H8(),
         FastNotificationTile(
           iconData: Icons.file_copy,
-          child: Flexible(
-            child: D3pBodyMediumText(
-              notificationDTO.localSnapshotName,
-              translate: false,
-            ),
+          child: D3pBodyMediumText(
+            notificationDTO.localSnapshotName,
+            translate: false,
           ),
         ),
       ],

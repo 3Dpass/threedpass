@@ -8,31 +8,15 @@ import 'package:threedpass/features/settings_page/domain/entities/global_setting
 class TestNetSwitch extends StatelessWidget {
   const TestNetSwitch({final Key? key}) : super(key: key);
 
-  /// This code is used to change [Plugin] mode.
-  /// It turned out to be a useless feature.
-  /// Now it is just an indicator for the user.
-  ///
-  // void onChanged(bool newValue, BuildContext context) {
-  //   final cubit = BlocProvider.of<SettingsConfigCubit>(context);
-  //   final newWalletConfig =
-  //       cubit.state.walletSettings.copyWith(isTestNet: newValue);
-  //   final newState = cubit.state.copyWith(walletSettings: newWalletConfig);
-  //   cubit.updateSettings(newState);
-
-  //   BlocProvider.of<AppServiceLoaderCubit>(context)
-  //       .changeNetwork(newWalletConfig);
-  // }
-
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
+      buildWhen: (final previous, final current) =>
+          previous.walletSettings.isTestNet != current.walletSettings.isTestNet,
       builder: (final context, final state) => D3pSwitchButton(
         text: 'wallet_settings_istestnet_switch'.tr(),
-        onChanged: null, //(value) => onChanged(value, context),
-        initialValue: BlocProvider.of<SettingsConfigCubit>(context)
-            .state
-            .walletSettings
-            .isTestNet,
+        onChanged: null,
+        value: state.walletSettings.isTestNet,
       ),
     );
   }

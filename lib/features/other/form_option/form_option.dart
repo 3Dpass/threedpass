@@ -82,8 +82,7 @@ class _FormOptionState extends State<FormOption> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: children.length,
-                  separatorBuilder: (final context, final index) =>
-                      const SizedBoxH16(),
+                  separatorBuilder: (final context, final index) => const H16(),
                   itemBuilder: (final context, final index) => Row(
                     children: [
                       Flexible(

@@ -18,5 +18,6 @@ class ReloadObjectsIconButton extends StatelessWidget {
     final bloc = BlocProvider.of<PoscanObjectsCubit>(context);
 
     bloc.pagingController.refresh();
+    // TODO Reload objects count
   }
 }

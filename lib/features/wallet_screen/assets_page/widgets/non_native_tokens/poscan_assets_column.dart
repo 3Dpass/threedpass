@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_title_large_text.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/non_native_tokens.dart';
@@ -26,12 +27,14 @@ class PoscanAssetsColumn extends StatelessWidget {
             children: [
               const D3pTitleLargeText('assets_title'),
               D3pIconButton(
+                emptyContraints: true,
                 iconData: Icons.refresh,
                 onPressed: () =>
                     BlocProvider.of<PoscanAssetsCubit>(context).init(),
               ),
             ],
           ),
+          const H8(),
           D3pElevatedButton(
             text: 'create_asset_button_label'.tr(),
             iconData: Icons.generating_tokens,

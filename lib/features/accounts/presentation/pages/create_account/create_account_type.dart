@@ -27,7 +27,7 @@ class CreateAccountTypePage extends StatelessWidget {
               'import_account_type_title'.tr(),
               style: Theme.of(context).customTextStyles.d3ptitleLarge,
             ),
-            const SizedBoxH8(),
+            const H8(),
             const _Item(CreateType.mnemonic),
             const _D3ObjectItem(),
             const _Item(CreateType.rawseed),

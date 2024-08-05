@@ -7,22 +7,13 @@ abstract class D3pElevatedButtonTheme {
   static ElevatedButtonThemeData theme(final ThemeData t) {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: t.colorScheme.primary,
-        disabledBackgroundColor: t.cardColor,
-        disabledForegroundColor: t.colorScheme.onSurface.withOpacity(0.50),
+        backgroundColor: t.colorScheme.primary, // TODO Remove this
+        disabledBackgroundColor: t.cardColor, // TODO Remove this
+        disabledForegroundColor: D3pColors.disabled,
+        foregroundColor: t.colorScheme.onPrimary, // TODO Remove this
         textStyle: t.customTextStyles.d3pFloatingButton,
         padding:
             const EdgeInsets.symmetric(horizontal: D3pThemeData.buttonPadding),
-      ).copyWith(
-        foregroundColor: MaterialStateProperty.resolveWith(
-          (final states) {
-            if (states.contains(MaterialState.disabled)) {
-              return D3pColors.disabled;
-            } else {
-              return t.colorScheme.onPrimary;
-            }
-          },
-        ),
       ),
     );
   }

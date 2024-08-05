@@ -5,7 +5,7 @@ import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
-import 'package:threedpass/features/poscan_assets/ui/widgets/dropdown_asset_child.dart';
+import 'package:threedpass/features/poscan_assets/ui/widgets/dropdown_asset_item.dart';
 
 class PoolAssetFieldChoice extends StatefulWidget {
   final void Function(PoolAssetField?)? onChanged;
@@ -15,9 +15,6 @@ class PoolAssetFieldChoice extends StatefulWidget {
     this.initialValue,
     super.key,
   });
-
-  static const initialPoscanAssetField =
-      PoolAssetField(isNative: true, assetId: null);
 
   final PoolAssetField? initialValue;
 
@@ -33,13 +30,7 @@ class _State extends State<PoolAssetFieldChoice> {
 
   @override
   void initState() {
-    metadata = BlocProvider.of<PoscanAssetsCubit>(context).state.metadata;
-    items = <PoolAssetField>[
-      PoolAssetFieldChoice.initialPoscanAssetField,
-      ...metadata.keys
-          .map((final e) => PoolAssetField(assetId: e, isNative: false)),
-    ];
-
+    items = BlocProvider.of<PoscanAssetsCubit>(context).poolAssets;
     value = widget.initialValue != null
         ? items.firstWhere(
             (final PoolAssetField element) =>
@@ -59,9 +50,9 @@ class _State extends State<PoolAssetFieldChoice> {
           .map(
             (final e) => DropdownMenuItem<PoolAssetField>(
               value: e,
-              child: e.isNative
-                  ? const Text('Native P3D')
-                  : DropdownAssetChild(value: metadata[e.assetId]!),
+              child: DropdownAssetItem(
+                value: e,
+              ),
             ),
           )
           .toList(),

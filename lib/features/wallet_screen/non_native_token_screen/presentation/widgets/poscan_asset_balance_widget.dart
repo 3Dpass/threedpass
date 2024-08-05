@@ -4,8 +4,8 @@ import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_m
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_balance.dart';
 import 'package:threedpass/features/wallet_screen/widgets/asset_balance_text.dart';
 
-class PoscanAssetBalanceSection extends StatelessWidget {
-  const PoscanAssetBalanceSection({
+class PoscanAssetBalanceWidget extends StatelessWidget {
+  const PoscanAssetBalanceWidget({
     required this.poscanAssetBalance,
     required this.metadata,
     super.key,

@@ -31,7 +31,7 @@ class PoScanRepository {
     final argsPreEncoded = const JsonEncoder().convert(crutchEncodedStruct);
     final argsEncoded = BigIntJsonHelper.replace(argsPreEncoded);
 
-    print(argsEncoded);
+    logger.v(argsEncoded);
     return argsEncoded;
   }
 
@@ -53,8 +53,8 @@ class PoScanRepository {
 
       final argPropValue = encodePropValues(params.propValues);
 
-      print(params.categoryFabric.build());
-      print(argPropValue);
+      logger.v(params.categoryFabric.build());
+      logger.v(argPropValue);
 
       final dynamic res = await poscanApi.putObject(
         pubKey: params.account.pubKey!,

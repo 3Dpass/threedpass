@@ -61,9 +61,9 @@ class PoolsPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     D3pBodyMediumText('pools_text'),
-                    const SizedBoxH16(),
+                    const H16(),
                     ListViewSeparated(
-                      separator: const SizedBoxH16(),
+                      separator: const H16(),
                       children:
                           state.pools.map((final e) => PoolCard(e)).toList(),
                     ),
