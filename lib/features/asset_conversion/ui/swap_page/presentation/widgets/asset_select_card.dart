@@ -57,7 +57,7 @@ class AssetSelectCard extends StatelessWidget {
                 style: theme.textTheme.headlineSmall!.copyWith(
                   color: isReadOnly
                       ? theme.disabledColor
-                      : theme.primaryTextTheme.bodyMedium!.color,
+                      : theme.textTheme.bodyMedium!.color,
                 ),
                 inputFormatters: [
                   NumberTextInputFormatter(

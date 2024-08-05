@@ -36,12 +36,12 @@ class AddLiquidityPage extends StatelessWidget {
             : metadata[cubit.asset2.assetId]?.symbol) ??
         '???';
 
-    final double asset1UserBalance = cubit.asset1.isNative
+    final double? asset1UserBalance = cubit.asset1.isNative
         ? appServiceLoaderCubit.fastAvailableBalance
-        : poscanAssetsCubit.fastBalanceById(cubit.asset1.assetId!).toDouble();
-    final double asset2UserBalance = cubit.asset2.isNative
+        : poscanAssetsCubit.fastBalanceById(cubit.asset1.assetId!)?.toDouble();
+    final double? asset2UserBalance = cubit.asset2.isNative
         ? appServiceLoaderCubit.fastAvailableBalance
-        : poscanAssetsCubit.fastBalanceById(cubit.asset2.assetId!).toDouble();
+        : poscanAssetsCubit.fastBalanceById(cubit.asset2.assetId!)?.toDouble();
 
     return SomeForm(
       formKey: cubit.formKey,
@@ -65,20 +65,18 @@ class AddLiquidityPage extends StatelessWidget {
           controller: cubit.amount1DesiredController,
           keyboardType: TextInputType.number,
           validator: (final p0) =>
-              Validators.onlyFloatMax(p0, asset1UserBalance),
+              Validators.onlyFloatBalanceMax(p0, asset1UserBalance ?? 0),
           onChanged: (final p0) => cubit.onFirstDesiredChanged(),
         ),
-
         D3pTextFormField(
           labelText: 'add_liquidity_page_amount_desired_pattern'
               .tr(args: [asset2Symbols]),
           controller: cubit.amount2DesiredController,
           keyboardType: TextInputType.number,
           validator: (final p0) =>
-              Validators.onlyFloatMax(p0, asset2UserBalance),
+              Validators.onlyFloatBalanceMax(p0, asset2UserBalance ?? 0),
           onChanged: (final p0) => cubit.onSecondDesiredChanged(),
         ),
-
         SlippageTolerance(
           controller: cubit.slippageController,
           hintText: '${AddLiquidityCubit.defaultSlippage}%',

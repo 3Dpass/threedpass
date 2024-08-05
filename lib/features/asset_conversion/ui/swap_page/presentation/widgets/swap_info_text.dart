@@ -5,6 +5,7 @@ import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/swap_method.dart';
 import 'package:threedpass/features/asset_conversion/ui/swap_page/bloc/swap_cubit.dart';
 
+// TODO Make Expected and min/max values always have the same number of digits
 class SwapInfoText extends StatelessWidget {
   const SwapInfoText({
     super.key,

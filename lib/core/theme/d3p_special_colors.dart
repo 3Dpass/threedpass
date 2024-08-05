@@ -79,3 +79,8 @@ extension NotificationCard on CustomColors {
       ? Colors.red.shade100
       : Colors.red.shade900;
 }
+
+extension SwapPageColors on CustomColors {
+  Color get assetChoiceChipPrefixColor =>
+      brightness == Brightness.light ? Colors.black : D3pColors.disabled;
+}

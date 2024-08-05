@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/input/switch_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/swap_method.dart';
+import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/swap_page/bloc/swap_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/swap_page/presentation/widgets/asset_select_card.dart';
 import 'package:threedpass/features/asset_conversion/ui/swap_page/presentation/widgets/swap_info_text.dart';
@@ -19,7 +21,26 @@ class SwapPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final items = BlocProvider.of<PoscanAssetsCubit>(context).poolAssets;
+    // TODO Refactor move to get pools assets usecase
+    final poolsState = BlocProvider.of<PoolsCubit>(context).state;
+    final assetsInPools = <int>{};
+    poolsState.pools.forEach((final pool) {
+      if (!pool.basicInfo.firstAsset.isNative) {
+        assetsInPools.add(pool.basicInfo.firstAsset.assetId!);
+      }
+
+      if (!pool.basicInfo.secondAsset.isNative) {
+        assetsInPools.add(pool.basicInfo.secondAsset.assetId!);
+      }
+    });
+
+    final items = <PoolAssetField>[
+      const PoolAssetField.native(),
+      ...BlocProvider.of<PoscanAssetsCubit>(context)
+          .poolAssets
+          .where((final element) => assetsInPools.contains(element.assetId))
+          .toList(),
+    ];
 
     final swapCubit = BlocProvider.of<SwapCubit>(context);
     return BlocBuilder<SwapCubit, SwapState>(

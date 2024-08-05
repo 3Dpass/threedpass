@@ -138,7 +138,10 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
   }
 
   // TODO Refactor get balance to UseCase
-  Rational fastBalanceById(final int id) {
+  Rational? fastBalanceById(final int id) {
+    if (state.balances[id] == null) {
+      return null;
+    }
     return Decimal.fromBigInt(state.balances[id]!.decodedRawBalance)
         .setDecimalsForRaw(decimalsById(id));
   }

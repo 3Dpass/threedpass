@@ -8,22 +8,31 @@ import 'package:threedpass/features/poscan_assets/ui/widgets/dropdown_metadata_i
 class DropdownAssetItem extends StatelessWidget {
   const DropdownAssetItem({
     required this.value,
+    this.prefixColor,
+    this.mainColor,
     super.key,
   });
 
   final PoolAssetField value;
+  final Color? prefixColor;
+  final Color? mainColor;
 
   @override
   Widget build(final BuildContext context) {
     if (value.isNative) {
+      final medium = Theme.of(context).customTextStyles.d3pBodyMedium;
       return Text(
         'Native P3D',
-        style: Theme.of(context).customTextStyles.d3pBodyMedium,
+        style: mainColor != null ? medium.copyWith(color: mainColor) : medium,
       );
     }
     final metadataAll =
         BlocProvider.of<PoscanAssetsCubit>(context).state.metadata;
     final metadata = metadataAll[value.assetId]!;
-    return DropdownMetadataItem(value: metadata);
+    return DropdownMetadataItem(
+      value: metadata,
+      prefixColor: prefixColor,
+      mainColor: mainColor,
+    );
   }
 }

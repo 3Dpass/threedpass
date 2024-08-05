@@ -149,8 +149,13 @@ class DIAssetConversion extends DIModule {
       ),
     );
 
-    getIt.registerFactory<CalcSwapInfo>(
-      () => CalcSwapInfo(
+    getIt.registerFactory<CalcSwapOnFirstChanged>(
+      () => CalcSwapOnFirstChanged(
+        assetConversionRepository: getIt<AssetConversionRepository>(),
+      ),
+    );
+    getIt.registerFactory<CalcSwapOnSecondChanged>(
+      () => CalcSwapOnSecondChanged(
         assetConversionRepository: getIt<AssetConversionRepository>(),
       ),
     );
@@ -164,7 +169,8 @@ class DIAssetConversion extends DIModule {
         swapAssets: getIt<SwapAssets>(),
         poscanAssetsCubit: getIt<PoscanAssetsCubit>(),
         poolsCubit: getIt<PoolsCubit>(),
-        calcSwapInfo: getIt<CalcSwapInfo>(),
+        calcSwapOnFirstChanged: getIt<CalcSwapOnFirstChanged>(),
+        calcSwapOnSecondChanged: getIt<CalcSwapOnSecondChanged>(),
       ),
     );
   }

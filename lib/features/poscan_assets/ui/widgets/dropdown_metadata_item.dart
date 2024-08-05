@@ -6,13 +6,18 @@ import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_m
 class DropdownMetadataItem extends StatelessWidget {
   const DropdownMetadataItem({
     required this.value,
+    this.prefixColor,
+    this.mainColor,
     super.key,
   });
 
   final PoscanAssetMetadata value;
+  final Color? prefixColor;
+  final Color? mainColor;
 
   @override
   Widget build(final BuildContext context) {
+    final medium = Theme.of(context).customTextStyles.d3pBodyMedium;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -20,11 +25,13 @@ class DropdownMetadataItem extends StatelessWidget {
           mainText: value.id.toString(),
           secondaryText: 'id:',
           needSpace: true,
+          secondaryTextColor: prefixColor,
+          mainTextColor: mainColor,
         ),
         const SizedBox(width: 16),
         Text(
           value.symbol,
-          style: Theme.of(context).customTextStyles.d3pBodyMedium,
+          style: mainColor != null ? medium.copyWith(color: mainColor) : medium,
         ),
       ],
     );

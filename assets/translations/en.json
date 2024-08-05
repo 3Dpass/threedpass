@@ -518,5 +518,6 @@
     "add_liquidity_calculated_min":"Minimum {}",
     "remove_liquidity_calculated_expected_out":"Expected output {}",
     "remove_liquidity_calculated_minimum_out":"Minimum output {}",
-    "remove_liquidity_custom_percentage":"Custom percentage"
+    "remove_liquidity_custom_percentage":"Custom percentage",
+    "error_validation_max_balance": "Your balance is {}"
 }

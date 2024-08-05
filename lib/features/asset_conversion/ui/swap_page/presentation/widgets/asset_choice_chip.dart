@@ -58,11 +58,15 @@ class _ChipMenuState extends State<AssetChoiceChip> {
       ),
       builder: (final context, final controller, final child) {
         return FilterChip(
+          elevation: 1,
           showCheckmark: false,
+          backgroundColor: Colors.green,
           label: DropdownAssetItem(
             value: selectedItem,
+            prefixColor: Colors.white,
+            mainColor: Colors.white,
           ),
-          selected: true,
+          // selected: true,
           onSelected: (final _) => onChipPressed(controller),
         );
       },
