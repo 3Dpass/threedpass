@@ -53,4 +53,4 @@ EasyLocalization(
 
 ### Copyright
 
-threedpass Copyright (C) 2023 3Dpass https://3dpass.org/
+threedpass Copyright (C) 2024 3Dpass https://3dpass.org/
