@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_dynamic_calls
 
+import 'package:equatable/equatable.dart';
+
 class BasicPoolEntity {
   final PoolAssetField firstAsset;
   final PoolAssetField secondAsset;
@@ -16,7 +18,7 @@ class BasicPoolEntity {
             ? const PoolAssetField(isNative: true, assetId: null)
             : PoolAssetField(
                 isNative: false,
-                assetId: int.parse(json[0]['Asset'].toString()),
+                assetId: int.parse(json[0][0]['Asset'].toString()),
               ),
         secondAsset = json[0][1] == 'Native'
             ? const PoolAssetField(isNative: true, assetId: null)
@@ -27,7 +29,7 @@ class BasicPoolEntity {
         lpTokenId = int.parse(json[1]['lpToken'].toString());
 }
 
-class PoolAssetField {
+class PoolAssetField extends Equatable {
   final bool isNative;
   final int? assetId;
 
@@ -39,4 +41,7 @@ class PoolAssetField {
   const PoolAssetField.native()
       : isNative = true,
         assetId = null;
+
+  @override
+  List<Object?> get props => [isNative, assetId];
 }
