@@ -47,7 +47,8 @@ class ObjectsListPage extends StatelessWidget {
                   ),
                   firstPageErrorIndicatorBuilder: (final context) =>
                       FirstPageExceptionIndicator(
-                    onTryAgain: controller.refresh,
+                    onTryAgain: () =>
+                        BlocProvider.of<PoscanObjectsCubit>(context).refresh(),
                     message: controller.error?.toString(),
                   ),
                 ),

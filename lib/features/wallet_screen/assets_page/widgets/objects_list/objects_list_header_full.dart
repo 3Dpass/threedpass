@@ -14,7 +14,6 @@ class ObjectsListHeaderFull extends StatelessWidget {
     final objectsCubit = BlocProvider.of<PoscanObjectsCubit>(context);
     final appServiceCubit = BlocProvider.of<AppServiceLoaderCubit>(context);
 
-    await objectsCubit.clear();
     if (appServiceCubit.state.keyring.allAccounts.isNotEmpty) {
       await objectsCubit
           .downloadOwnerObjects(appServiceCubit.state.keyring.current);
