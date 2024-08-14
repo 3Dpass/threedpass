@@ -6,10 +6,10 @@ import 'package:threedpass/core/widgets/input/switch_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/swap_method.dart';
-import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
-import 'package:threedpass/features/asset_conversion/ui/swap_page/bloc/swap_cubit.dart';
-import 'package:threedpass/features/asset_conversion/ui/swap_page/presentation/widgets/asset_select_card.dart';
-import 'package:threedpass/features/asset_conversion/ui/swap_page/presentation/widgets/swap_info_text.dart';
+import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
+import 'package:threedpass/features/asset_conversion/ui/swap/bloc/swap_cubit.dart';
+import 'package:threedpass/features/asset_conversion/ui/swap/presentation/widgets/asset_select_card.dart';
+import 'package:threedpass/features/asset_conversion/ui/swap/presentation/widgets/swap_info_text.dart';
 import 'package:threedpass/features/asset_conversion/ui/widgets/slippage_tolerance.dart';
 import 'package:threedpass/features/other/choose_account/presentation/choose_account.dart';
 import 'package:threedpass/features/other/some_form/some_form.dart';
@@ -58,7 +58,7 @@ class SwapPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 AssetSelectCard(
-                  initialSelectionIndex: 0,
+                  chosenItem: state.firstAsset,
                   items: items,
                   controller: swapCubit.firstAssetAmountController,
                   isReadOnly: !isFirstTextFieldActive,
@@ -77,7 +77,7 @@ class SwapPage extends StatelessWidget {
                 ),
                 const H4(),
                 AssetSelectCard(
-                  initialSelectionIndex: 1,
+                  chosenItem: state.secondAsset,
                   items: items,
                   controller: swapCubit.secondAssetAmountController,
                   isReadOnly: isFirstTextFieldActive,

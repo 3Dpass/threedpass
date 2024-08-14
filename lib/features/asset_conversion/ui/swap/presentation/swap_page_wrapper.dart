@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
-import 'package:threedpass/features/asset_conversion/ui/swap_page/bloc/swap_cubit.dart';
-import 'package:threedpass/features/asset_conversion/ui/swap_page/presentation/swap_page.dart';
+import 'package:threedpass/features/asset_conversion/ui/swap/bloc/swap_cubit.dart';
+import 'package:threedpass/features/asset_conversion/ui/swap/presentation/swap_page.dart';
 import 'package:threedpass/setup.dart';
 
 @RoutePage()

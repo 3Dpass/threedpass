@@ -10,8 +10,8 @@ import 'package:threedpass/core/widgets/layout/list_view_separated.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
-import 'package:threedpass/features/asset_conversion/ui/pools_page/presentation/widgets/pool_card.dart';
+import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
+import 'package:threedpass/features/asset_conversion/ui/pools_list/presentation/widgets/pool_card.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 @RoutePage()
@@ -60,7 +60,7 @@ class PoolsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    D3pBodyMediumText('pools_text'),
+                    const D3pBodyMediumText('pools_text'),
                     const H16(),
                     ListViewSeparated(
                       separator: const H16(),

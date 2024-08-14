@@ -139,14 +139,14 @@ let res = await pools.getPoolReserves(api, m1, m2);
 return res;
 """;
 
-    logger.v('CODE ' + getPoolReserversFunc);
+    // logger.v('CODE ' + getPoolReserversFunc);
 
     final dynamic res = await basicJSCall(
       getPoolReserversFunc,
       polkawalletSdk.webView!.webInstance!.webViewController,
     );
 
-    logger.v('call res: $res');
+    logger.v('poolReserve res: $res');
     // [10,530,015,434, 9,509,085,784]
 
     if (res == null) {
@@ -173,7 +173,7 @@ return res;
       polkawalletSdk.webView!.webInstance!.webViewController,
     );
     // [[[Native, {Asset: 4}], {lpToken: 0}]]
-    print(res);
+    logger.v('PoolsBasic res: $res');
 
     res as List<dynamic>;
     final resT = res
@@ -349,6 +349,9 @@ return res;
       polkawalletSdk.webView!.webInstance!.webViewController,
     );
     // [[[Native, {Asset: 4}], {lpToken: 0}]]
+    logger.v(
+      'callTokenServiceRoutine. tokenServiceCall: $tokenServiceCall res: $res',
+    );
     if (res is String) {
       return Either.right(res);
     } else {

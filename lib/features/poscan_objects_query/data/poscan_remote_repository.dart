@@ -27,6 +27,8 @@ class PoScanRemoteRepository {
       sendNullAsArg: false,
     );
 
+    logger.v('Objects count on storage res:$res');
+
     final resStr = res.toString();
     final maybeInt = int.tryParse(resStr);
     if (maybeInt != null) {

@@ -15,7 +15,7 @@ import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_
 import 'package:threedpass/features/asset_conversion/domain/entities/swap_method.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/calc_swap_info.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/swap_assets.dart';
-import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
+import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
 
@@ -117,9 +117,14 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
   }
 
   void setFirstAsset(final PoolAssetField asset) {
+    logger.v(
+      'Swap. setFirstAsset. isSelectedEqualToSecond:${asset == state.secondAsset} first:${state.firstAsset} second:${state.secondAsset}',
+    );
     emit(
       state.copyWith(
         firstAsset: asset,
+        secondAsset:
+            asset == state.secondAsset ? state.firstAsset : state.secondAsset,
         // slippageValue: null,
       ),
     );
@@ -130,6 +135,8 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
   void setSecondAsset(final PoolAssetField asset) {
     emit(
       state.copyWith(
+        firstAsset:
+            asset == state.firstAsset ? state.secondAsset : state.firstAsset,
         secondAsset: asset,
         // slippageValue: null,
       ),

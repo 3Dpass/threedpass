@@ -16,9 +16,9 @@ import 'package:threedpass/features/asset_conversion/domain/use_cases/remove_liq
 import 'package:threedpass/features/asset_conversion/domain/use_cases/swap_assets.dart';
 import 'package:threedpass/features/asset_conversion/ui/add_liquidity/bloc/add_liquidity_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/create_pool/bloc/create_pool_cubit.dart';
-import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
+import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/bloc/remove_liquidity_cubit.dart';
-import 'package:threedpass/features/asset_conversion/ui/swap_page/bloc/swap_cubit.dart';
+import 'package:threedpass/features/asset_conversion/ui/swap/bloc/swap_cubit.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
