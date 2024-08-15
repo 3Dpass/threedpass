@@ -462,7 +462,7 @@
     "set_metadata_label_name": "Name",
     "set_metadata_label_symbols": "Symbols",
     "set_metadata_label_decimals": "Decimals",
-    "error_u8": "Expected 0 < value < 255",
+    "error_u8": "Expected 0 <= value < 255",
     "set_metadata_notification_asset_id": "Asset id:",
     "show_all_assets_label": "Show all assets",
 
@@ -486,8 +486,8 @@
     "chain_status_recognized": "Recognized",
 
     "@2.15.2": {},
-    "open_pools_label": "Pools",
-    "pools_page_appbar": "Pools",
+    "open_pools_label": "Liquidity pools",
+    "pools_page_appbar": "Liquidity pools",
     "pools_text": "Earn fees by providing liquidity.",
     "withdraw_button_label": "Withdraw",
     "deposit_button_label": "Deposit",

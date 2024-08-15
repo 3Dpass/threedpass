@@ -80,6 +80,8 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
   // final amount1Min = TextEditingController();
   // final amount2Min = TextEditingController();
 
+  bool get areNullReserves => poolFullInfo.rawPoolReserve == null;
+
   Rational get slippageRate {
     final slippage = int.parse(slippageController.text);
     return Rational.fromInt(100 - slippage, 100);
@@ -89,32 +91,36 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
       ? nativeDecimals
       : poscanAssetsCubit.state.metadata[asset1.assetId]!.idecimals;
 
-  Decimal get amount1Desired => Decimal.parse(amount1DesiredController.text)
-      .setDecimalsForUserInput(asset1Decimals);
+  Decimal? get amount1Desired => Decimal.tryParse(amount1DesiredController.text)
+      ?.setDecimalsForUserInput(asset1Decimals);
 
   int get asset2Decimals => asset2.isNative
       ? nativeDecimals
       : poscanAssetsCubit.state.metadata[asset2.assetId]!.idecimals;
 
-  Decimal get amount2Desired => Decimal.parse(amount2DesiredController.text)
-      .setDecimalsForUserInput(asset2Decimals);
+  Decimal? get amount2Desired => Decimal.tryParse(amount2DesiredController.text)
+      ?.setDecimalsForUserInput(asset2Decimals);
 
   Rational get amount2Optimal => quote(
-        amount1Desired,
+        amount1Desired!,
         poolFullInfo.rawPoolReserve!.balance1Decimal,
         poolFullInfo.rawPoolReserve!.balance2Decimal,
       );
 
   Rational get amount1Optimal => quote(
-        amount2Desired,
+        amount2Desired!,
         poolFullInfo.rawPoolReserve!.balance2Decimal,
         poolFullInfo.rawPoolReserve!.balance1Decimal,
       );
 
-  Rational get amount1MinAmount => amount1Desired.toRational() * slippageRate;
-  Rational get amount2MinAmount => amount2Desired.toRational() * slippageRate;
+  Rational? get amount1MinAmount => amount1Desired != null
+      ? amount1Desired!.toRational() * slippageRate
+      : null;
+  Rational? get amount2MinAmount => amount2Desired != null
+      ? amount2Desired!.toRational() * slippageRate
+      : null;
 
-  Either<Object, _AddLiquidityInfo> calcInfo() {
+  Either<Object, _AddLiquidityInfo> calcInfoForNotNullPool() {
     try {
       final slippage = int.tryParse(slippageController.text);
       if (slippage == null) {
@@ -130,7 +136,7 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
       }
 
       logger.v(
-        'amount1optimal ${amount1Optimal.toDouble()} 1min: ${amount1MinAmount.toDouble()} amount2optimal ${amount2Optimal.toDouble()} 2min:${amount2MinAmount.toDouble()}',
+        'amount1optimal ${amount1Optimal.toDouble()} 1min: ${amount1MinAmount!.toDouble()} amount2optimal ${amount2Optimal.toDouble()} 2min:${amount2MinAmount!.toDouble()}',
       );
 
       String? error;
@@ -142,20 +148,20 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
           ? 'P3D'
           : poscanAssetsCubit.state.metadata[asset2.assetId]!.symbol;
 
-      if (amount2Optimal < amount2MinAmount) {
+      if (amount2Optimal < amount2MinAmount!) {
         error = 'ERROR: Asset $asset2Symbols deposit did not meet minimum';
       }
 
-      if (amount1Optimal < amount1MinAmount) {
+      if (amount1Optimal < amount1MinAmount!) {
         error = 'ERROR: Asset $asset1Symbols deposit did not meet minimum';
       }
 
       return Either.right(
         _AddLiquidityInfo(
-          asset1Desired: amount1Desired,
-          asset2Desired: amount2Desired,
-          asset1Min: amount1MinAmount,
-          asset2Min: amount2MinAmount,
+          asset1Desired: amount1Desired!,
+          asset2Desired: amount2Desired!,
+          asset1Min: amount1MinAmount!,
+          asset2Min: amount2MinAmount!,
           error: error,
         ),
       );
@@ -167,8 +173,10 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
 
   void onFirstDesiredChanged() {
     try {
-      amount2DesiredController.text =
-          amount2Optimal.setDecimalsNToFixedString(asset2Decimals);
+      if (!areNullReserves) {
+        amount2DesiredController.text =
+            amount2Optimal.setDecimalsNToFixedString(asset2Decimals);
+      }
       setSlippageTolerance();
     } on Object catch (e) {
       logger.v(e);
@@ -177,8 +185,10 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
 
   void onSecondDesiredChanged() {
     try {
-      amount1DesiredController.text =
-          amount1Optimal.setDecimalsNToFixedString(asset1Decimals);
+      if (!areNullReserves) {
+        amount1DesiredController.text =
+            amount1Optimal.setDecimalsNToFixedString(asset1Decimals);
+      }
       setSlippageTolerance();
     } on Object catch (e) {
       logger.v(e);
@@ -205,17 +215,35 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
 
     emit(
       AddLiquidityState(
-        asset1Min: amount1MinAmount.setDecimalsNToFixedString(asset1Decimals),
-        asset2Min: amount2MinAmount.setDecimalsNToFixedString(asset2Decimals),
+        asset1Min: amount1MinAmount?.setDecimalsNToFixedString(asset1Decimals),
+        asset2Min: amount2MinAmount?.setDecimalsNToFixedString(asset2Decimals),
       ),
     );
+  }
+
+  Either<Failure, _AddLiquidityInfo> calcInfoForNullPool() {
+    try {
+      return Either.right(
+        _AddLiquidityInfo(
+          asset1Desired: amount1Desired!,
+          asset2Desired: amount2Desired!,
+          asset1Min: amount1MinAmount!,
+          asset2Min: amount2MinAmount!,
+          error: null,
+        ),
+      );
+    } on Object catch (e) {
+      logger.e(e);
+      return Either.left(BadDataFailure(e.toString()));
+    }
   }
 
   @override
   Future<Either<Failure, void>> callExtrinsic(
     final BuildContext context,
   ) async {
-    final info = calcInfo();
+    final info =
+        areNullReserves ? calcInfoForNullPool() : calcInfoForNotNullPool();
 
     if (info.value is _AddLiquidityInfo) {
       final infoT = info.value! as _AddLiquidityInfo;

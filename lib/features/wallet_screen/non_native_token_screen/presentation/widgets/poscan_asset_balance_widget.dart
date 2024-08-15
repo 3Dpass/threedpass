@@ -21,7 +21,7 @@ class PoscanAssetBalanceWidget extends StatelessWidget {
       child: AssetBalanceText(
         balance: BalanceUtils.formattedBigInt(
           poscanAssetBalance != null
-              ? BigInt.parse(poscanAssetBalance!.balance)
+              ? poscanAssetBalance!.decodedRawBalance
               : BigInt.zero,
           int.parse(metadata.decimals),
         ),

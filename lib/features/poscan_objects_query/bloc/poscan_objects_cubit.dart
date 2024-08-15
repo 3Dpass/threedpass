@@ -71,33 +71,41 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
     emit(state.copyWith(areOwnerObjectsLoading: false));
   }
 
-  Future<void> init() async {
+  Future<void> setObjCount() async {
     final realCount = (await getObjCount.call(null))
         .when(left: (final _) => null, right: (final realValue) => realValue);
+    if (realCount != state.storageCount) {
+      emit(state.copyWith(storageCount: realCount));
+    }
+  }
 
-    if (realCount != null) {
-      pagingController.addPageRequestListener((final pageKey) async {
-        logger.v('GET OBJECT ID: $pageKey');
+  Future<void> pageRequestListener(final int pageKey) async {
+    logger.v('Request object id: $pageKey');
 
-        final objEither = await getUploadedObject.call(pageKey);
+    final objEither = await getUploadedObject.call(pageKey);
 
-        objEither.when(
-          left: (final e) {
-            logger.e(e.cause ?? e.toString());
-          },
-          right: (final uploadedObject) {
-            if (pageKey == realCount - 1) {
-              pagingController.appendLastPage([uploadedObject]);
-            } else {
-              pagingController.appendPage([uploadedObject], pageKey + 1);
-            }
-          },
-        );
-      });
+    objEither.when(
+      left: (final e) {
+        logger.e(e.cause ?? e.toString());
+      },
+      right: (final uploadedObject) {
+        final objectsLen = state.storageCount;
+        if (objectsLen != null && pageKey == objectsLen - 1) {
+          pagingController.appendLastPage([uploadedObject]);
+        } else {
+          pagingController.appendPage([uploadedObject], pageKey + 1);
+        }
+      },
+    );
+  }
 
+  Future<void> init() async {
+    await setObjCount();
+
+    if (state.storageCount != null) {
+      pagingController.addPageRequestListener(pageRequestListener);
       emit(
         state.copyWith(
-          storageCount: realCount,
           isLoading: false,
           message: null,
         ),
@@ -123,7 +131,9 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
     return store.firstFullHashEqual(hashes);
   }
 
-  Future<void> clear() async {
+  Future<void> refresh() async {
+    logger.v('Explorer refresh is called');
+    await setObjCount();
     pagingController.refresh();
   }
 }

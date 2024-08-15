@@ -36,7 +36,7 @@ class Validators {
   static String? onlyU8(final String? p0) {
     final res = int.tryParse(p0 ?? '');
 
-    return res != null && res > 0 && res <= 255 ? null : 'error_u8'.tr();
+    return res != null && res >= 0 && res <= 255 ? null : 'error_u8'.tr();
   }
 
   static String? onlyBigInt(final String? p0) {

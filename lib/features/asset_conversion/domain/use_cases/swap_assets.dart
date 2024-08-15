@@ -7,7 +7,7 @@ import 'package:threedpass/features/asset_conversion/data/asset_conversion_repos
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/swap_asset_global_handler.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/swap_method.dart';
-import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
+import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 

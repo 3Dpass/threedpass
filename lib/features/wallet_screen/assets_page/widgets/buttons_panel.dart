@@ -5,7 +5,7 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
-import 'package:threedpass/features/asset_conversion/ui/pools_page/bloc/pools_cubit.dart';
+import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/coin_transfer_button.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/recieve_button.dart';

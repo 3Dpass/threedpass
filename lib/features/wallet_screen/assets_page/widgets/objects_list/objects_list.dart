@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
@@ -41,6 +42,10 @@ class _State extends State<AssetsUploadedObjectsList> {
   List<UploadedObject>? relatedObjects;
 
   Future<void> loadUserObjects() async {
+    if (!mounted) {
+      logger.d('Called while not mounted.');
+      return;
+    }
     final uploadedObjectsCubit = BlocProvider.of<PoscanObjectsCubit>(context);
     final userObjects = await uploadedObjectsCubit
         .getUserObjects(widget.appService.keyring.current.address!);

@@ -3,22 +3,23 @@ import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
-import 'package:threedpass/features/asset_conversion/ui/swap_page/presentation/widgets/asset_choice_chip.dart';
+import 'package:threedpass/features/asset_conversion/ui/swap/presentation/widgets/asset_choice_chip.dart';
 import 'package:threedpass/features/poscan_assets/ui/widgets/dropdown_asset_item.dart';
 
 class AssetSelectCard extends StatelessWidget {
   final List<PoolAssetField> items;
-  final int initialSelectionIndex;
+  // final int initialSelectionIndex;
   final TextEditingController controller;
   final bool isReadOnly;
+  final PoolAssetField chosenItem;
   final void Function(PoolAssetField) onSelected;
 
   const AssetSelectCard({
     required this.items,
-    required this.initialSelectionIndex,
     required this.controller,
     required this.isReadOnly,
     required this.onSelected,
+    required this.chosenItem,
     super.key,
   });
 
@@ -32,8 +33,8 @@ class AssetSelectCard extends StatelessWidget {
         child: Row(
           children: [
             AssetChoiceChip(
+              chosenItem: chosenItem,
               onSelected: onSelected,
-              initialSelectionIndex: initialSelectionIndex,
               menuItemList: items
                   .map<(PoolAssetField, Widget)>(
                     (final e) => (

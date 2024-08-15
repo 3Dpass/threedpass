@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/other/full_row_text.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/swap_method.dart';
-import 'package:threedpass/features/asset_conversion/ui/swap_page/bloc/swap_cubit.dart';
+import 'package:threedpass/features/asset_conversion/ui/swap/bloc/swap_cubit.dart';
 
 // TODO Make Expected and min/max values always have the same number of digits
 class SwapInfoText extends StatelessWidget {
