@@ -20,8 +20,8 @@ import 'package:threedpass/features/preview_page/presentation/widgets/top_hashes
 class PreviewPageBody extends StatelessWidget {
   const PreviewPageBody({
     required this.previewPageCubitState,
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final PreviewPageCubitState previewPageCubitState;
 
@@ -39,6 +39,12 @@ class PreviewPageBody extends StatelessWidget {
         ObjectPreview(
           snapshot: previewPageCubitState.snapshot,
         ),
+        // Object3D(
+        //   size: Size(MediaQuery.of(context).size.width, 250.0),
+        //   zoom: 1.0,
+        //   path: previewPageCubitState.snapshot.realPath,
+        //   scale: 100,
+        // ),
         PreviewSaveButton(
           state: previewPageCubitState,
         ),
