@@ -2,13 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/widgets/buttons/custom_back_button.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/layout/list_view_separated.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/presentation/widgets/pool_card.dart';
@@ -46,9 +46,7 @@ class PoolsPage extends StatelessWidget {
       body: BlocBuilder<PoolsCubit, PoolsState>(
         builder: (final context, final state) {
           if (state.isLoading) {
-            return Center(
-              child: PlatformCircularProgressIndicator(),
-            );
+            return const D3pProgressIndicator(size: null);
           } else if (state.error != null) {
             return Center(child: Padding16(child: Text(state.error!)));
           } else {

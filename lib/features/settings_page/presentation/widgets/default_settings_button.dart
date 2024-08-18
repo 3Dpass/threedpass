@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_card_theme.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
@@ -282,7 +281,8 @@ class _BoolSwitch extends StatelessWidget {
       height: 16,
       child: ValueListenableBuilder(
         valueListenable: switchValueNotifier,
-        builder: (final context, final hasError, final child) => PlatformSwitch(
+        builder: (final context, final hasError, final child) =>
+            Switch.adaptive(
           value: switchValueNotifier.value,
           onChanged: onChangedInner,
         ),

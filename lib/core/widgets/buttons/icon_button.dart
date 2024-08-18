@@ -12,6 +12,7 @@ class D3pIconButton extends StatelessWidget {
     this.emptyContraints = false,
     // this.text,
     this.cupertinoIcon,
+    this.iconWidget,
     super.key,
   });
 
@@ -19,6 +20,7 @@ class D3pIconButton extends StatelessWidget {
     super.key,
   })  : iconData = Icons.abc,
         size = null,
+        iconWidget = null,
         iconColor = Colors.transparent,
         emptyContraints = false,
         splashRadius = null,
@@ -34,22 +36,25 @@ class D3pIconButton extends StatelessWidget {
   final double? splashRadius;
   final EdgeInsets? padding;
   final IconData? cupertinoIcon;
+  final Widget? iconWidget;
 
   @override
   Widget build(final BuildContext context) {
     return PlatformIconButton(
-      icon: Icon(
-        iconData,
-        size: size,
-        color: iconColor,
-      ),
-      cupertinoIcon: cupertinoIcon != null
-          ? Icon(
-              cupertinoIcon,
-              size: size,
-              color: iconColor,
-            )
-          : null,
+      icon: iconWidget ??
+          Icon(
+            iconData,
+            size: size,
+            color: iconColor,
+          ),
+      cupertinoIcon: iconWidget ??
+          (cupertinoIcon != null
+              ? Icon(
+                  cupertinoIcon,
+                  size: size,
+                  color: iconColor,
+                )
+              : null),
       onPressed: onPressed,
       material: (final _, final __) => MaterialIconButtonData(
         padding: padding ?? EdgeInsets.zero,
@@ -57,7 +62,7 @@ class D3pIconButton extends StatelessWidget {
         splashRadius: splashRadius,
         iconSize: size,
       ),
-      cupertino: (context, platform) => CupertinoIconButtonData(
+      cupertino: (final context, final platform) => CupertinoIconButtonData(
         padding: padding ?? EdgeInsets.zero,
       ),
     );

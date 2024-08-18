@@ -13,7 +13,7 @@ publish_to: 'none'
 version: 2.16.1+42
 
 environment:
-  sdk: ">=3.0.6 <3.3.5"
+  sdk: ">=3.0.6 <4.0.0" # Flutter 3.19.6
 
 isar_version: &isar_version 3.1.0+1 # define the version to be used
 
@@ -22,23 +22,11 @@ dependencies:
     sdk: flutter
 
   ## UI
-  # three_dart: ^0.0.16
-  three_dart: # TODO Remove
-    git:
-        url: https://github.com/L3odr0id/three_dart.git
-        ref: 695b58ab4ef889c4f472fb79420a36134974da5e # mobile-branch # branch name
-  # three_dart_jsm: ^0.0.10
-  three_dart_jsm: # TODO Remove
-    git:
-      url: https://github.com/L3odr0id/three_dart_jsm.git
-      ref: b6c8e5fcf876151d601ab092fe7fc94901edb446
-  flutter_gl: ^0.0.18 # TODO Remove
   flutter_platform_widgets: ^3.3.5 # TODO Remove
   flutter_screen_lock: ^9.0.1
   flutter_svg: ^2.0.7
   fluttertoast: ^8.2.2
   infinite_scroll_pagination: ^3.2.0
-  badges: ^3.1.1 # TODO Remove
   shimmer: ^3.0.0
   
   unicons: ^2.1.0

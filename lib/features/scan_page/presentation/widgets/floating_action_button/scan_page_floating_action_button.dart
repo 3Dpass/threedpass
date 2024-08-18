@@ -4,8 +4,8 @@ import 'package:threedpass/features/scan_page/bloc/select_snapshots_cubit.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/floating_action_button/delete_snapshots_button.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/floating_action_button/get_object_from_file_button.dart';
 
-class ScanPageFloatinActionButton extends StatelessWidget {
-  const ScanPageFloatinActionButton({super.key});
+class ScanPageFloatingActionButton extends StatelessWidget {
+  const ScanPageFloatingActionButton({super.key});
 
   @override
   Widget build(final BuildContext context) {

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/router/router.dart';
 import 'package:threedpass/router/router.gr.dart';
 
@@ -39,7 +40,7 @@ class DefaultLoadingDialog extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                PlatformCircularProgressIndicator(),
+                D3pProgressIndicator(size: null),
                 text != null
                     ? Row(
                         children: [

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
@@ -14,13 +13,11 @@ import 'package:threedpass/setup.dart' as di_setup;
 
 class GlobalStatesProvider extends StatelessWidget {
   const GlobalStatesProvider({
-    required this.builder,
+    required this.child,
     super.key,
   });
 
-  final Widget Function(
-    BuildContext context,
-  ) builder;
+  final Widget child;
 
   @override
   Widget build(final BuildContext context) {
@@ -56,13 +53,7 @@ class GlobalStatesProvider extends StatelessWidget {
           create: (final _) => di_setup.getIt<PoolsCubit>(),
         ),
       ],
-      child: PlatformProvider(
-        settings: PlatformSettingsData(
-          iosUsesMaterialWidgets: true,
-          iosUseZeroPaddingForAppbarPlatformIcon: true,
-        ),
-        builder: (final context) => builder(context),
-      ),
+      child: child,
     );
   }
 }

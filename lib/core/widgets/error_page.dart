@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
+import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 @RoutePage()
@@ -15,7 +15,8 @@ class ErrorPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return PlatformScaffold(
+    return D3pScaffold(
+      appbarTitle: 'Error',
       body: Center(
         child: Text(
           'Error: ${error}',

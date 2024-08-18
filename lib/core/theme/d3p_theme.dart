@@ -19,6 +19,16 @@ class D3pThemeData {
   static const double buttonHeight = 50;
   static const double buttonPadding = 12;
 
+  static const bottomSheetTheme = BottomSheetThemeData(
+    shape: RoundedRectangleBorder(
+      side: BorderSide.none,
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(16),
+        topRight: Radius.circular(16),
+      ),
+    ),
+  );
+
   static ThemeData get lightTheme {
     final t = ThemeData(
       primarySwatch: mainColor,
@@ -38,6 +48,7 @@ class D3pThemeData {
       ),
       appBarTheme: const D3pAppBarTheme(),
       tabBarTheme: const D3pTabBarTheme(),
+      bottomSheetTheme: bottomSheetTheme,
     );
     final t1 = t.copyWith(
       elevatedButtonTheme: D3pElevatedButtonTheme.theme(t),
@@ -68,6 +79,7 @@ class D3pThemeData {
       ),
       appBarTheme: const D3pAppBarTheme(),
       tabBarTheme: const D3pTabBarTheme(),
+      bottomSheetTheme: bottomSheetTheme,
     );
 
     final t1 = t.copyWith(

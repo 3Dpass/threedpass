@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:polkawallet_sdk/api/types/balanceData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/actual_balance.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/buttons_panel.dart';
 
 class BalanceSection extends StatelessWidget {
   const BalanceSection({super.key});
 
-  static final placeHolder = Center(
-    child: PlatformCircularProgressIndicator(),
-  );
+  static const placeHolder = D3pProgressIndicator(size: null);
 
   @override
   Widget build(final BuildContext context) {

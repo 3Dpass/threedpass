@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/widgets/appbars/d3p_platfrom_appbar.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
+import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 
 class SettingSubPage extends StatelessWidget {
   const SettingSubPage({
@@ -25,24 +23,14 @@ class SettingSubPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final theme = Theme.of(context);
-    return PlatformScaffold(
-      backgroundColor: theme.customColors.scaffoldBackground,
-      appBar: D3pPlatformAppBar(
-        textAlign: TextAlign.center,
-        titleText: appbarTitle,
-        leading: D3pIconButton(
-          iconData: Icons.arrow_back,
-          cupertinoIcon: Icons.arrow_back_ios_new,
-          onPressed: () => Navigator.of(context).pop(),
+    return D3pScaffold(
+      appbarTitle: appbarTitle,
+      appBarActions: [
+        D3pIconButton(
+          iconData: Icons.check,
+          onPressed: () => saveAndExit(context),
         ),
-        trailingActions: [
-          D3pIconButton(
-            iconData: Icons.check,
-            onPressed: () => saveAndExit(context),
-          ),
-        ],
-      ),
+      ],
       body: child,
     );
   }

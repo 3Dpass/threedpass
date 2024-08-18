@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/features/new_preview/3d_engine.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/delete_snapshot_button.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/deprecation_warning.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/explore_hashes_button.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/file_hash_card.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/hash_properties.dart';
-import 'package:threedpass/features/preview_page/presentation/widgets/object_preview/object_preview.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/poscan_result.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/preview_save_button.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/rename_object_button.dart';
@@ -25,6 +25,8 @@ class PreviewPageBody extends StatelessWidget {
 
   final PreviewPageCubitState previewPageCubitState;
 
+  static const double objectPreviewHeight = 250.0;
+
   @override
   Widget build(final BuildContext context) {
     return Column(
@@ -36,15 +38,12 @@ class PreviewPageBody extends StatelessWidget {
         SnapshotInfo(
           state: previewPageCubitState,
         ),
-        ObjectPreview(
-          snapshot: previewPageCubitState.snapshot,
+        Object3D(
+          size: Size(MediaQuery.of(context).size.width, objectPreviewHeight),
+          zoom: 1.0,
+          path: previewPageCubitState.snapshot.realPath,
+          scale: (objectPreviewHeight - 32) / 2,
         ),
-        // Object3D(
-        //   size: Size(MediaQuery.of(context).size.width, 250.0),
-        //   zoom: 1.0,
-        //   path: previewPageCubitState.snapshot.realPath,
-        //   scale: 100,
-        // ),
         PreviewSaveButton(
           state: previewPageCubitState,
         ),

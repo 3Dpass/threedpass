@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:threedpass/core/theme/d3p_bottom_sheet_theme.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
@@ -25,7 +24,6 @@ class OpenBottomSheet extends StatelessWidget {
   ) {
     return showPlatformModalSheet<dynamic>(
       context: context,
-      material: D3pBottonSheetTheme.materialTheme,
       builder: (final _) => Column(
         children: [
           const H24(),

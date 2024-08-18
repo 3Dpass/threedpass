@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
+import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 
 class ConnectStatus extends StatelessWidget {
@@ -54,11 +54,7 @@ class _Indicator extends StatelessWidget {
     switch (status) {
       case AppServiceInitStatus.init:
       case AppServiceInitStatus.connecting:
-        return SizedBox(
-          width: 30,
-          height: 30,
-          child: PlatformCircularProgressIndicator(),
-        );
+        return const D3pProgressIndicator(size: 30);
 
       case AppServiceInitStatus.connected:
         return Icon(Icons.check_box, color: customColors.positiveIcon);
