@@ -45,7 +45,6 @@ class _State extends State<AssetChoice> {
   @override
   Widget build(final BuildContext context) {
     return D3pDropdownButton(
-      context: context,
       items: items,
       onChanged: widget.onChanged,
       value: value,

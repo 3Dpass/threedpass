@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_card_theme.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
 
 class D3pCard extends StatelessWidget {
   final Widget child;
@@ -18,7 +17,7 @@ class D3pCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final bgColor = Theme.of(context).customColors.cardBackground;
+    // final bgColor = Theme.of(context).customColors.cardBackground;
     return Card(
       margin: EdgeInsets.zero,
       shape: MapperCardShapeToBorder(
@@ -26,7 +25,7 @@ class D3pCard extends StatelessWidget {
         side: side,
         radius: radius,
       ).border(),
-      color: bgColor,
+      // color: bgColor,
       child: child,
     );
   }

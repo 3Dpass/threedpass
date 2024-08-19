@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
-import 'package:threedpass/core/widgets/error_page.dart';
 import 'package:threedpass/features/accounts/router/create_account_page_route.dart';
 import 'package:threedpass/features/asset_conversion/router/asset_conversion_router.dart';
 import 'package:threedpass/features/home_page/router/home_page_route.dart';
@@ -13,7 +12,9 @@ import 'package:threedpass/features/preview_page/router/preview_page_route.dart'
 import 'package:threedpass/features/uploaded_object_page/uploaded_object_route.dart';
 import 'package:threedpass/router/router.gr.dart';
 
-@AutoRouterConfig(replaceInRouteName: 'Page|Screen|Dialog,Route')
+part 'bottom_sheet_route.dart';
+
+@AutoRouterConfig(replaceInRouteName: 'Page|Screen|Dialog|BottomSheet,Route')
 class RootRouter extends $RootRouter {
   @override
   RouteType defaultRouteType = const RouteType.adaptive();
@@ -21,11 +22,8 @@ class RootRouter extends $RootRouter {
   @override
   List<AutoRoute> routes = [
     initialAutoRoute,
-
     // Preview snapshots
     previewPageRoute,
-    // Error page route
-    errorPageRoute,
     // Create account route
     createAccountPageRoute,
     // Uploaded objecy route

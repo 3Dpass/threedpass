@@ -39,6 +39,10 @@ AutoRoute previewPageRoute = AutoRoute(
           page: D3PRPCRoute.page,
           path: '',
         ),
+        ModalBottomSheetAutoRoute(
+          page: ChooseCategoryBottomSheetRoute.page,
+          enableDrag: true,
+        ),
       ],
     ),
     CustomRoute(

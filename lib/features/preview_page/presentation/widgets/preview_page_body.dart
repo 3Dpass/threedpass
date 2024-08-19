@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/new_preview/3d_engine.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
@@ -68,7 +69,9 @@ class PreviewPageBody extends StatelessWidget {
         RenameSnapshotButton(state: previewPageCubitState),
         DeleteSnapshotButton(state: previewPageCubitState),
         const H16(),
-        const Divider(),
+        const Padding16(
+          child: Divider(),
+        ),
         const RenameObjectButton(),
         // const ScanOneMoreTimeButton(),
         const H16(),

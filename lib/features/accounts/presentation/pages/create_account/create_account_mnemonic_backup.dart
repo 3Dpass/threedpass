@@ -20,7 +20,7 @@ class CreateAccountMnemonicBackupPage extends StatelessWidget {
       }) {
         // Provide advanced options form
         return D3pScaffold(
-          appbarTitle: 'create_account_title',
+          appBarTitle: 'create_account_title',
           // listen and react to  advanced options form changes
           body: MnemonicBackupContent(
             mnemonic: mnemonic,

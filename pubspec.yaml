@@ -22,7 +22,7 @@ dependencies:
     sdk: flutter
 
   ## UI
-  flutter_platform_widgets: ^3.3.5 # TODO Remove
+  flutter_platform_widgets: ^6.0.2 # TODO Remove
   flutter_screen_lock: ^9.0.1
   flutter_svg: ^2.0.7
   fluttertoast: ^8.2.2

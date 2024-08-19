@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
@@ -7,33 +6,17 @@ import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 
 class OpenBottomSheet extends StatelessWidget {
   const OpenBottomSheet({
-    required this.bottomSheetPlatform,
+    required this.openBottomSheet,
     required this.buttonIconData,
     required this.buttonTextChild,
     required this.unlocalizedSubtitle,
     super.key,
   });
 
-  final Widget bottomSheetPlatform;
+  final void Function() openBottomSheet;
   final String unlocalizedSubtitle;
   final Widget buttonTextChild;
   final IconData buttonIconData;
-
-  Future<dynamic> openDialog(
-    final BuildContext context,
-  ) {
-    return showPlatformModalSheet<dynamic>(
-      context: context,
-      builder: (final _) => Column(
-        children: [
-          const H24(),
-          Flexible(
-            child: bottomSheetPlatform,
-          ),
-        ],
-      ),
-    );
-  }
 
   @override
   Widget build(final BuildContext context) {
@@ -48,6 +31,7 @@ class OpenBottomSheet extends StatelessWidget {
         const H4(),
         ClickableCard(
           padding: ClickableCard.buttonPaddingPreset,
+          onTap: openBottomSheet,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -58,7 +42,6 @@ class OpenBottomSheet extends StatelessWidget {
               ),
             ],
           ),
-          onTap: () => openDialog(context),
         ),
       ],
     );

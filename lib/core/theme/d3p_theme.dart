@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
@@ -10,7 +11,7 @@ import 'package:threedpass/setup.dart';
 import 'd3p_elevated_button_theme.dart';
 
 class D3pThemeData {
-  static MaterialColor mainColor = Colors.green;
+  static final mainColor = D3pColors.mainColor;
   static const Color secondaryButtonBG = Color(0xFF6D9B83);
 
   static final Color shimmerBaseColor = Colors.grey.shade400;
@@ -19,7 +20,7 @@ class D3pThemeData {
   static const double buttonHeight = 50;
   static const double buttonPadding = 12;
 
-  static const bottomSheetTheme = BottomSheetThemeData(
+  static const bottomSheetThemeData = BottomSheetThemeData(
     shape: RoundedRectangleBorder(
       side: BorderSide.none,
       borderRadius: BorderRadius.only(
@@ -29,69 +30,34 @@ class D3pThemeData {
     ),
   );
 
-  static ThemeData get lightTheme {
-    final t = ThemeData(
-      primarySwatch: mainColor,
-      primaryColor: Colors.black,
-      disabledColor: D3pColors.disabled,
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-      textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          minimumSize: const Size.fromHeight(50),
-          textStyle: D3pBasicTextStyle.button,
-        ),
-      ),
-      textTheme: const TextTheme(
-        labelLarge: D3pBasicTextStyle.button,
-        bodyLarge: D3pBasicTextStyle.bodyLarge,
-        bodyMedium: D3pBasicTextStyle.bodyMedium,
-      ),
-      appBarTheme: const D3pAppBarTheme(),
-      tabBarTheme: const D3pTabBarTheme(),
-      bottomSheetTheme: bottomSheetTheme,
-    );
-    final t1 = t.copyWith(
-      elevatedButtonTheme: D3pElevatedButtonTheme.theme(t),
-      outlinedButtonTheme: D3pOutlinedButtonTheme.theme(t),
-    );
-    return t1;
-  }
-
-  static ThemeData get darkTheme {
-    final t = ThemeData.dark().copyWith(
-      brightness: Brightness.dark,
-      colorScheme: ColorScheme.fromSwatch(
-        primarySwatch: mainColor,
-      ),
-      disabledColor: D3pColors.disabled,
-      primaryColor: Colors.black,
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-      textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          minimumSize: const Size.fromHeight(50),
-          textStyle: D3pBasicTextStyle.button,
-        ),
-      ),
-      textTheme: const TextTheme(
-        labelLarge: D3pBasicTextStyle.button,
-        bodyLarge: D3pBasicTextStyle.bodyLarge,
-        bodyMedium: D3pBasicTextStyle.bodyMedium,
-      ),
-      appBarTheme: const D3pAppBarTheme(),
-      tabBarTheme: const D3pTabBarTheme(),
-      bottomSheetTheme: bottomSheetTheme,
-    );
-
-    final t1 = t.copyWith(
-      elevatedButtonTheme: D3pElevatedButtonTheme.theme(t),
-      outlinedButtonTheme: D3pOutlinedButtonTheme.theme(t),
-    );
-    return t1;
-  }
-
   static ThemeData themeData(final Brightness brightness) {
-    return brightness == Brightness.light ? lightTheme : darkTheme;
+    // return brightness == Brightness.light ? lightTheme : darkTheme;
+    return ThemeData(
+      brightness: brightness,
+      colorSchemeSeed: D3pColors.mainColor,
+      visualDensity: VisualDensity.adaptivePlatformDensity,
+      appBarTheme: const D3pAppBarTheme(),
+      tabBarTheme: const D3pTabBarTheme(),
+      bottomSheetTheme: bottomSheetThemeData,
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          minimumSize: const Size(0, 50),
+          // textStyle: D3pBasicTextStyle.button,
+        ),
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        hintStyle: TextStyle(color: D3pColors.disabled),
+      ),
+    );
   }
+
+  static CupertinoThemeData cupertinoThemeData(final Brightness brightness) =>
+      CupertinoThemeData(
+        primaryColor: D3pColors.mainColor,
+        brightness: brightness,
+        barBackgroundColor: const D3pAppBarTheme().backgroundColor,
+        // scaffoldBackgroundColor: resolveBGColor(brightness),
+      );
 }
 
 class RealBrightness {

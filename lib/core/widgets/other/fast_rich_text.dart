@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
 class FastRichText extends StatelessWidget {
   const FastRichText({
@@ -20,11 +19,11 @@ class FastRichText extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final medium = Theme.of(context).customTextStyles.d3pBodyMedium;
+    final medium = Theme.of(context).textTheme.bodyMedium;
     return Text.rich(
       TextSpan(
         text: needSpace ? secondaryText + ' ' : secondaryText,
-        style: medium.copyWith(
+        style: medium!.copyWith(
           color: secondaryTextColor ?? D3pColors.disabled,
         ),
         children: [

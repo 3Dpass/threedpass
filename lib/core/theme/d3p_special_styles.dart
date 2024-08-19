@@ -39,14 +39,17 @@ class CustomTextStyles {
 
   TextStyle get d3plabelLarge =>
       themeData.textTheme.labelLarge!.copyWith(color: _themeOpposite);
+
+  TextStyle get fadedBodyMedium =>
+      themeData.textTheme.bodyMedium!.copyWith(color: D3pColors.disabled);
 }
 
-extension SwitchCustomText on CustomTextStyles {
-  TextStyle get switchButtonLabelEnabled => d3pBodyMedium;
+// extension SwitchCustomText on CustomTextStyles {
+//   TextStyle get switchButtonLabelEnabled => d3pBodyMedium;
 
-  TextStyle get switchButtonLabelDisabled =>
-      d3pBodyMedium.copyWith(color: themeData.customColors.disabled);
-}
+//   TextStyle get switchButtonLabelDisabled =>
+//       d3pBodyMedium.copyWith(color: themeData.customColors.disabled);
+// }
 
 extension AppBarCustomText on CustomTextStyles {
   TextStyle get appTitle => themeData.textTheme.bodyLarge!.copyWith(
@@ -80,15 +83,15 @@ extension TitleCustomText on CustomTextStyles {
       themeData.textTheme.titleSmall!.copyWith(color: _themeOpposite);
 }
 
-extension BodyCustomText on CustomTextStyles {
-  TextStyle get d3pReallyLarge => d3pBodyLarge.copyWith(fontSize: 18);
-  TextStyle get d3pBodyLarge =>
-      themeData.textTheme.bodyLarge!.copyWith(color: _themeOpposite);
-  TextStyle get d3pBodyMedium =>
-      themeData.textTheme.bodyMedium!.copyWith(color: _themeOpposite);
-  TextStyle get d3pBodySmall =>
-      themeData.textTheme.bodySmall!.copyWith(color: _themeOpposite);
-}
+// extension BodyCustomText on CustomTextStyles {
+//   TextStyle get d3pReallyLarge => d3pBodyLarge.copyWith(fontSize: 18);
+//   TextStyle get d3pBodyLarge =>
+//       themeData.textTheme.bodyLarge!.copyWith(color: _themeOpposite);
+//   TextStyle get d3pBodyMedium =>
+//       themeData.textTheme.bodyMedium!.copyWith(color: _themeOpposite);
+//   TextStyle get d3pBodySmall =>
+//       themeData.textTheme.bodySmall!.copyWith(color: _themeOpposite);
+// }
 
 extension SpecialText on CustomTextStyles {
   TextStyle get d3pSettingsHeader => themeData.textTheme.bodyLarge!
@@ -96,20 +99,4 @@ extension SpecialText on CustomTextStyles {
 
   TextStyle get d3pSettingsHeaderSmall => themeData.textTheme.bodySmall!
       .copyWith(color: themeData.customColors.moreFadedGrey);
-}
-
-extension Buttons on CustomTextStyles {
-  TextStyle get d3pFloatingButton =>
-      themeData.customTextStyles.d3pBodyMedium.copyWith(
-        fontSize: 16,
-        letterSpacing: 1.2,
-        fontWeight: FontWeight.w500,
-      );
-
-  TextStyle get hintStyle => d3pBodySmall.copyWith(color: D3pColors.disabled);
-}
-
-extension TextInput on CustomTextStyles {
-  TextStyle get textInputHintStyle =>
-      d3pBodyMedium.copyWith(color: D3pColors.disabled);
 }

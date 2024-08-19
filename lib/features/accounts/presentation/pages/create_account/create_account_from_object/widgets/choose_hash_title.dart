@@ -5,15 +5,15 @@ class _ChooseHashTitle extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final textStyles = Theme.of(context).customTextStyles;
+    final textStyles = Theme.of(context).textTheme;
     return Text.rich(
       TextSpan(
         text: 'create_from_object_text2'.tr(),
-        style: textStyles.d3ptitleLarge,
+        style: textStyles.titleLarge,
         children: [
           TextSpan(
             text: '\n' + 'create_from_object_text2_hint'.tr(),
-            style: textStyles.d3pBodyLarge,
+            style: textStyles.bodyLarge,
           ),
         ],
       ),

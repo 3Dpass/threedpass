@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/widgets/buttons/custom_back_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
-import 'package:threedpass/features/preview_page/presentation/widgets/appbar/preview_appbar.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/preview_page_body.dart';
 
 @RoutePage()
@@ -16,11 +17,11 @@ class PreviewPage extends StatelessWidget {
   Widget build(final BuildContext context) {
     final previewPageCubitState =
         BlocProvider.of<PreviewPageCubit>(context).state;
-
+    final object = previewPageCubitState.hashObject;
     return D3pScaffold(
-      appBarWidget: PreviewAppbarTitle(
-        hashObject: previewPageCubitState.hashObject,
-      ),
+      appBarLeading: const CustomBackButton(),
+      appBarTitle: object != null ? object.name : 'unsaved_object_appbar'.tr(),
+      translateAppbar: false,
       body: SingleChildScrollView(
         child: PreviewPageBody(
           previewPageCubitState: previewPageCubitState,

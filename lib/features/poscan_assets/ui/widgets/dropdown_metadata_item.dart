@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
 
@@ -17,7 +16,7 @@ class DropdownMetadataItem extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final medium = Theme.of(context).customTextStyles.d3pBodyMedium;
+    final medium = Theme.of(context).textTheme.bodyMedium;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -31,7 +30,8 @@ class DropdownMetadataItem extends StatelessWidget {
         const SizedBox(width: 16),
         Text(
           value.symbol,
-          style: mainColor != null ? medium.copyWith(color: mainColor) : medium,
+          style:
+              mainColor != null ? medium!.copyWith(color: mainColor) : medium,
         ),
       ],
     );

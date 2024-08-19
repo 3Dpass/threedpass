@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class D3pScaffold extends StatelessWidget {
   final Widget body;
-  final String? appbarTitle;
+  final String? appBarTitle;
   final Widget? appBarWidget;
   final bool translateAppbar;
   final Widget? floatingActionButton;
@@ -15,20 +15,20 @@ class D3pScaffold extends StatelessWidget {
 
   const D3pScaffold({
     required this.body,
-    this.appbarTitle,
+    this.appBarTitle,
     this.appBarWidget,
     this.floatingActionButton,
     this.translateAppbar = true,
     this.appBarLeading,
     this.appBarActions,
     super.key,
-  }) : assert(appbarTitle != null || appBarWidget != null,
+  }) : assert(appBarTitle != null || appBarWidget != null,
             'Either appbarTitle or appBarWidget must be provided');
 
   @override
   Widget build(final BuildContext context) {
     final appBarText = appBarWidget ??
-        Text(translateAppbar ? appbarTitle!.tr() : appbarTitle!);
+        Text(translateAppbar ? appBarTitle!.tr() : appBarTitle!);
 
     if (Platform.isIOS) {
       return CupertinoPageScaffold(

@@ -27,6 +27,7 @@ class HomePage extends StatelessWidget {
             BottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
+          selectedItemColor: Theme.of(context).focusColor,
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(

@@ -12,7 +12,7 @@ part of 'swap_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SwapState {
@@ -85,10 +85,11 @@ class _$SwapStateCopyWithImpl<$Res, $Val extends SwapState>
 }
 
 /// @nodoc
-abstract class _$$_SwapStateCopyWith<$Res> implements $SwapStateCopyWith<$Res> {
-  factory _$$_SwapStateCopyWith(
-          _$_SwapState value, $Res Function(_$_SwapState) then) =
-      __$$_SwapStateCopyWithImpl<$Res>;
+abstract class _$$SwapStateImplCopyWith<$Res>
+    implements $SwapStateCopyWith<$Res> {
+  factory _$$SwapStateImplCopyWith(
+          _$SwapStateImpl value, $Res Function(_$SwapStateImpl) then) =
+      __$$SwapStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -100,11 +101,11 @@ abstract class _$$_SwapStateCopyWith<$Res> implements $SwapStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SwapStateCopyWithImpl<$Res>
-    extends _$SwapStateCopyWithImpl<$Res, _$_SwapState>
-    implements _$$_SwapStateCopyWith<$Res> {
-  __$$_SwapStateCopyWithImpl(
-      _$_SwapState _value, $Res Function(_$_SwapState) _then)
+class __$$SwapStateImplCopyWithImpl<$Res>
+    extends _$SwapStateCopyWithImpl<$Res, _$SwapStateImpl>
+    implements _$$SwapStateImplCopyWith<$Res> {
+  __$$SwapStateImplCopyWithImpl(
+      _$SwapStateImpl _value, $Res Function(_$SwapStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -116,7 +117,7 @@ class __$$_SwapStateCopyWithImpl<$Res>
     Object? keepAlive = null,
     Object? slippageValue = freezed,
   }) {
-    return _then(_$_SwapState(
+    return _then(_$SwapStateImpl(
       firstAsset: null == firstAsset
           ? _value.firstAsset
           : firstAsset // ignore: cast_nullable_to_non_nullable
@@ -143,8 +144,8 @@ class __$$_SwapStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SwapState implements _SwapState {
-  const _$_SwapState(
+class _$SwapStateImpl implements _SwapState {
+  const _$SwapStateImpl(
       {required this.firstAsset,
       required this.secondAsset,
       required this.chosenMethod,
@@ -165,8 +166,8 @@ class _$_SwapState implements _SwapState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SwapStateCopyWith<_$_SwapState> get copyWith =>
-      __$$_SwapStateCopyWithImpl<_$_SwapState>(this, _$identity);
+  _$$SwapStateImplCopyWith<_$SwapStateImpl> get copyWith =>
+      __$$SwapStateImplCopyWithImpl<_$SwapStateImpl>(this, _$identity);
 }
 
 abstract class _SwapState implements SwapState {
@@ -175,7 +176,7 @@ abstract class _SwapState implements SwapState {
       required final PoolAssetField secondAsset,
       required final SwapMethod chosenMethod,
       required final bool keepAlive,
-      required final Decimal? slippageValue}) = _$_SwapState;
+      required final Decimal? slippageValue}) = _$SwapStateImpl;
 
   @override
   PoolAssetField get firstAsset;
@@ -189,6 +190,6 @@ abstract class _SwapState implements SwapState {
   Decimal? get slippageValue;
   @override
   @JsonKey(ignore: true)
-  _$$_SwapStateCopyWith<_$_SwapState> get copyWith =>
+  _$$SwapStateImplCopyWith<_$SwapStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

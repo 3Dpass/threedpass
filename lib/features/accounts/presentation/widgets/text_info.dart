@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
 class TextInfo extends StatelessWidget {
   const TextInfo({
@@ -17,7 +16,7 @@ class TextInfo extends StatelessWidget {
       padding: EdgeInsets.only(bottom: bigBottomPadding ? 32 : 5),
       child: Text(
         text,
-        style: Theme.of(context).customTextStyles.d3pBodyMedium,
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
     );
   }

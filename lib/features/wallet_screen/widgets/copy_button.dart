@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/utils/copy_and_notify.dart';
+import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 
 class CopyButton extends StatelessWidget {
   const CopyButton(this.textToCopy, {super.key});
@@ -12,15 +13,14 @@ class CopyButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return IconButton(
+    return D3pIconButton(
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      constraints: const BoxConstraints(),
-      splashRadius: 25,
+      // constraints: const BoxConstraints(),
+      emptyContraints: true,
+      splashRadius: 22,
       onPressed: () => onPressed(context),
-      icon: const Icon(
-        Icons.copy,
-        size: 20,
-      ),
+      size: 16,
+      iconData: Icons.copy,
     );
   }
 }

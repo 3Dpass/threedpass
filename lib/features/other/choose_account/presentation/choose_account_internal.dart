@@ -25,7 +25,6 @@ class _ChooseAccountInternal extends StatelessWidget {
                     .firstWhere((element) => element.address == state.address)
                 : null;
             return D3pDropdownButton<KeyPairData>(
-              context: context,
               isExpanded: true,
               items: cac.accounts
                   .map<DropdownMenuItem<KeyPairData>>(

@@ -11,7 +11,7 @@ PoscanAssetMetadata _$PoscanAssetMetadataFromJson(Map<String, dynamic> json) =>
       symbol: json['symbol'] as String,
       decimals: json['decimals'] as String,
       deposit: json['deposit'] as String,
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       isFrozen: json['isFrozen'] as bool,
       name: json['name'] as String,
     );

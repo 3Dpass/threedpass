@@ -70,7 +70,7 @@ class AccountPageTemplate extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => D3pScaffold(
-        appbarTitle: appbarTitle,
+        appBarTitle: appbarTitle,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

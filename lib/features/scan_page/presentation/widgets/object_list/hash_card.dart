@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
@@ -35,7 +34,7 @@ class SnapshotCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final theme = Theme.of(context).customTextStyles;
+    final theme = Theme.of(context).textTheme;
     final hashesListBloc = BlocProvider.of<HashesListBloc>(context);
     // final hashesListState = hashesListBloc.state as HashesListLoaded;
 
@@ -68,7 +67,7 @@ class SnapshotCard extends StatelessWidget {
               //   child:
               Text(
                 snapshot.name,
-                style: theme.d3pBodyLarge,
+                style: theme.bodyLarge,
               ),
               // ),
               if (snapshot.isNew)

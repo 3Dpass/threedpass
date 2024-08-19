@@ -24,7 +24,7 @@ class SettingSubPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return D3pScaffold(
-      appbarTitle: appbarTitle,
+      appBarTitle: appbarTitle,
       appBarActions: [
         D3pIconButton(
           iconData: Icons.check,

@@ -17,7 +17,7 @@ abstract class CustomSelectSettingsSubPageState<T>
   @override
   Widget build(final BuildContext context) {
     return D3pScaffold(
-      appbarTitle: appbarTitle,
+      appBarTitle: appbarTitle,
       // ignore: avoid-returning-widgets
       body: bodyBuilderOverride(context),
     );

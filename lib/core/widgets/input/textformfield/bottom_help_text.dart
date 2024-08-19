@@ -12,7 +12,7 @@ class _BottomHelpText extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
             child: Text(
               bottomHelpText!,
-              style: Theme.of(context).customTextStyles.d3pBodySmall,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           )
         : const SizedBox();

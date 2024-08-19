@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
@@ -16,8 +15,8 @@ class PoscanTokenDataDropdownMenuItem extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final medium = Theme.of(context).customTextStyles.d3pBodyMedium;
-    final grey = medium.copyWith(color: D3pColors.disabled);
+    final medium = Theme.of(context).textTheme.bodyMedium;
+    final grey = Theme.of(context).customTextStyles.fadedBodyMedium;
 
     return Text.rich(
       TextSpan(

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/bloc/transfers_from_cubit.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/bloc/transfers_to_cubit.dart';
@@ -27,9 +25,7 @@ class TransactionsHistoryPage extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: Theme.of(context).customColors.scaffoldBackground,
         appBar: AppBar(
-          backgroundColor: const D3pAppBarTheme().backgroundColor,
           title: Text('transfers_history_title'.tr()),
           bottom: TabBar(
             tabs: [

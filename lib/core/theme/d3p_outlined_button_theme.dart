@@ -8,29 +8,30 @@ abstract class D3pOutlinedButtonTheme {
 
   static OutlinedButtonThemeData theme(final ThemeData t) {
     return OutlinedButtonThemeData(
-      style: OutlinedButton.styleFrom(
-        foregroundColor: D3pThemeData.mainColor,
-        disabledForegroundColor: D3pColors.disabled,
-        textStyle: t.customTextStyles.d3pFloatingButton,
-        padding:
-            const EdgeInsets.symmetric(horizontal: D3pThemeData.buttonPadding),
-      ).copyWith(
-        side: MaterialStateProperty.resolveWith(
-          (final states) {
-            if (states.contains(MaterialState.disabled)) {
-              return BorderSide(
-                color: D3pColors.disabled,
-                width: width,
-              );
-            } else {
-              return BorderSide(
-                color: D3pThemeData.mainColor,
-                width: width,
-              );
-            }
-          },
-        ),
-      ),
-    );
+        style: OutlinedButton.styleFrom(
+      // foregroundColor: D3pThemeData.mainColor,
+      // disabledForegroundColor: D3pColors.disabled,
+      // textStyle: t.customTextStyles.d3pFloatingButton,
+      padding:
+          const EdgeInsets.symmetric(horizontal: D3pThemeData.buttonPadding),
+    )
+        // .copyWith(
+        //   side: MaterialStateProperty.resolveWith(
+        //     (final states) {
+        //       if (states.contains(MaterialState.disabled)) {
+        //         return BorderSide(
+        //           color: D3pColors.disabled,
+        //           width: width,
+        //         );
+        //       } else {
+        //         return BorderSide(
+        //           color: D3pThemeData.mainColor,
+        //           width: width,
+        //         );
+        //       }
+        //     },
+        //   ),
+        // ),
+        );
   }
 }

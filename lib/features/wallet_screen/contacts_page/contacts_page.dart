@@ -13,7 +13,7 @@ class ContactsPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return D3pScaffold(
-      appbarTitle: 'contacts_appbar_title',
+      appBarTitle: 'contacts_appbar_title',
       body: BlocBuilder<ContactsBloc, ContactsState>(
         builder: (final context, final state) {
           return ContactsList(contacts: state.contacts);

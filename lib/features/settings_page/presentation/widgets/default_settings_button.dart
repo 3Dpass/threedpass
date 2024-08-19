@@ -386,9 +386,7 @@ class _ValueText extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     if (value != null) {
-      final style = Theme.of(context).customTextStyles.d3pBodyMedium.copyWith(
-            color: D3pColors.disabled,
-          );
+      final style = Theme.of(context).customTextStyles.fadedBodyMedium;
       return Padding(
         padding: const EdgeInsets.only(left: 16, right: 8),
         child: Text(

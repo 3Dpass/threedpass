@@ -11,7 +11,7 @@ class ComparePage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return const D3pScaffold(
-      appbarTitle: 'compare_page_appbar',
+      appBarTitle: 'compare_page_appbar',
       body: Column(
         children: [
           Padding(

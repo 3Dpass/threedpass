@@ -66,7 +66,6 @@ class _State extends State<CreateAssetChooseObject> {
               ? BlocBuilder<CreatePoscanAssetCubit, CreatePoscanAssetState>(
                   builder: (final context, final state) {
                     return D3pDropdownButton<UploadedObject>(
-                      context: context,
                       items: items,
                       onChanged: cpac.setObject,
                       value: state.uploadedObject,

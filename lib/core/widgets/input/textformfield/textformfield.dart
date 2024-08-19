@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
@@ -32,6 +33,7 @@ class D3pTextFormField extends StatelessWidget {
     this.autofocus = false,
     this.makeLabelOutside = false,
     this.suffixText,
+    this.readOnly = false,
     this.contentPadding =
         const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
     // this.focusedBorder,
@@ -64,6 +66,7 @@ class D3pTextFormField extends StatelessWidget {
   final bool isCollapsed;
   final bool autofocus;
   final EdgeInsetsGeometry contentPadding;
+  final bool readOnly;
 
   final bool makeLabelOutside;
 
@@ -85,15 +88,15 @@ class D3pTextFormField extends StatelessWidget {
             children: [
               Text(
                 labelText ?? '',
-                style: textStyle.hintStyle,
+                style: textStyle.fadedBodyMedium,
               ),
               const H4(),
             ],
           ),
         SizedBox(
-          // height: 48,
           child: TextFormField(
-            style: textStyle.d3pBodyLarge,
+            // TODO Make CupertinoTextField
+            style: Theme.of(context).textTheme.bodyLarge,
             decoration: InputDecoration(
               isDense: false,
               filled: true,
@@ -109,7 +112,6 @@ class D3pTextFormField extends StatelessWidget {
               ).build(context),
               suffixText: suffixText,
               hintText: hintText,
-              hintStyle: textStyle.textInputHintStyle,
               isCollapsed: isCollapsed,
             ),
             autofocus: autofocus,
@@ -122,6 +124,7 @@ class D3pTextFormField extends StatelessWidget {
             maxLines: mMaxLines,
             keyboardType: keyboardType,
             obscureText: obscureText,
+            readOnly: readOnly,
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
         ),

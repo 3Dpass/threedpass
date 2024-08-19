@@ -35,7 +35,6 @@ class CreateAssetChoosePropValue extends StatelessWidget {
                 )
                 .toList();
             return D3pDropdownButton<PropValue>(
-              context: context,
               items: items,
               onChanged: cpac.setProperty,
               value: state.propValue,

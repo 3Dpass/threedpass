@@ -1,8 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
-import 'package:threedpass/core/widgets/text/d3p_title_large_text.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
 
 class ObjectsListHeaderFull extends StatelessWidget {
@@ -26,7 +26,10 @@ class ObjectsListHeaderFull extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const D3pTitleLargeText('objects_list_header'),
+        Text(
+          'objects_list_header'.tr(),
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
         D3pIconButton(
           emptyContraints: true,
           iconData: Icons.refresh,

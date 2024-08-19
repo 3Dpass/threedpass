@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/copy_text_card.dart';
 
@@ -33,7 +32,7 @@ class StableHashText extends StatelessWidget {
       );
     }
 
-    final textTheme = Theme.of(context).customTextStyles.d3pBodyMedium;
+    final bodyMedium = Theme.of(context).textTheme.bodyMedium;
 
     return Padding16(
       child: CopyTextCard(
@@ -48,7 +47,7 @@ class StableHashText extends StatelessWidget {
                 text: '',
                 children: children,
               ),
-              style: textTheme,
+              style: bodyMedium,
             ),
           ],
         ),

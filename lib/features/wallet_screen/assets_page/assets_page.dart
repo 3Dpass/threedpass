@@ -25,7 +25,7 @@ class AssetsPage extends StatelessWidget {
           ObjectsListAssets(),
         ];
         return Scaffold(
-          backgroundColor: theme.customColors.scaffoldBackground,
+          // TODO Refactor to D3pScaffold
           appBar: AssetPageAppbar(
             account: state.keyring.current,
           ),

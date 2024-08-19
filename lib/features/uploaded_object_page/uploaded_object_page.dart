@@ -21,7 +21,7 @@ class UploadedObjectPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return D3pScaffold(
-      appbarTitle: 'uploaded_object_title',
+      appBarTitle: 'uploaded_object_title',
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [

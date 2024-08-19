@@ -25,11 +25,12 @@ class D3pScreenLockTheme {
   Text get createTitle => basicText('screen_lock_title_set');
   Text get confirmTitle => basicText('screen_lock_title_confirm');
 
+  // TODO Check screen lock
   ScreenLockConfig get config => ScreenLockConfig(
-        backgroundColor: colors.scaffoldBackground,
+        // backgroundColor: colors.scaffoldBackground,
         buttonStyle: OutlinedButton.styleFrom(
           foregroundColor: colors.themeOpposite,
-          backgroundColor: colors.pinButtonBGColor,
+          // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               D3pCardTheme.radius,

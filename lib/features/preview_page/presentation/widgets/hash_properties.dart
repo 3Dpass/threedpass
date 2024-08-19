@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/utils/copy_and_notify.dart';
+import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/preview_page/presentation/widgets/copy_text_card.dart';
@@ -16,10 +18,22 @@ class ScanProperties extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Padding16(
-      child: CopyTextCard(
-        textToCopy: snapshot.settingsConfig.toRawString(),
-        textToShow: 'scan_properties_copied_toast'.tr(),
-        child: Text.rich(snapshot.settingsConfig.toText(context)),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CopyTextCard(
+            textToCopy: snapshot.settingsConfig.toRawString(),
+            textToShow: 'scan_properties_copied_toast'.tr(),
+            child: Text.rich(snapshot.settingsConfig.toText(context)),
+          ),
+          D3pTextButton(
+            text: 'Copy Rotation bytes',
+            onPressed: () => copyAndNotify(
+              textToCopy: snapshot.settingsConfig.transBytes,
+              textToShow: 'trans_bytes_copied_toast'.tr(),
+            ),
+          ), // TODO Localize
+        ],
       ),
     );
   }

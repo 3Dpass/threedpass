@@ -23,7 +23,7 @@ class SelectAccountPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return D3pScaffold(
-      appbarTitle: 'select_account_appbar_title',
+      appBarTitle: 'select_account_appbar_title',
       body: BlocBuilder<AppServiceLoaderCubit, AppService>(
         builder: (final context, final state) {
           if (state.status == AppServiceInitStatus.connected) {

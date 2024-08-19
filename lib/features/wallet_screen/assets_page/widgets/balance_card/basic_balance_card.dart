@@ -20,7 +20,7 @@ class BasicBalanceRow extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final textStyles = Theme.of(context).customTextStyles;
+    final textStyles = Theme.of(context).textTheme;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
@@ -36,7 +36,7 @@ class BasicBalanceRow extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 title,
-                style: textStyles.d3pBodyMedium,
+                style: textStyles.bodyMedium,
               ),
             ],
           ),
@@ -49,11 +49,11 @@ class BasicBalanceRow extends StatelessWidget {
               children: [
                 TextSpan(
                   text: ' ' + tokenSymbol,
-                  style: textStyles.d3pBodySmall,
+                  style: textStyles.bodySmall,
                 ),
               ],
             ),
-            style: textStyles.d3pBodyMedium,
+            style: textStyles.bodyMedium,
           ),
         ],
       ),

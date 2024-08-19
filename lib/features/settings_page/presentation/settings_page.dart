@@ -17,7 +17,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return const D3pScaffold(
-      appbarTitle: 'settings_title',
+      appBarTitle: 'settings_title',
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,

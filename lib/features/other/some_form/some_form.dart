@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/widgets/buttons/custom_back_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 
@@ -39,7 +40,8 @@ class SomeForm extends StatelessWidget {
       ),
     ];
     return D3pScaffold(
-      appbarTitle: appbarTitle,
+      appBarLeading: const CustomBackButton(),
+      appBarTitle: appbarTitle,
       body: Form(
         key: formKey,
         child: ListView.separated(
