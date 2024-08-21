@@ -41,8 +41,8 @@ extension AppBarCustomColors on CustomColors {
 }
 
 extension IconCustomColors on CustomColors {
-  Color get positiveIcon => Colors.green;
-  Color get errorIcon => dangerColor;
+  // Color get positiveIcon => Colors.green;
+  // Color get errorIcon => dangerColor;
   Color get uncertainIcon => Colors.orange;
   Color get popMenuIcon => Colors.grey;
   Color get moreFadedGrey =>

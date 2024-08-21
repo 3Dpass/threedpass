@@ -27,8 +27,9 @@ class HomePage extends StatelessWidget {
             BottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
-          selectedItemColor: Theme.of(context).focusColor,
+          selectedItemColor: Theme.of(context).colorScheme.primary,
           type: BottomNavigationBarType.fixed,
+          selectedFontSize: 12,
           items: [
             BottomNavigationBarItem(
               label: 'bottom_label_scan'.tr(),

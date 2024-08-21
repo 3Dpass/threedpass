@@ -1,6 +1,7 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:threedpass/core/theme/d3p_colors.dart';
 
 class D3pTextButton extends StatelessWidget {
   const D3pTextButton({
@@ -8,7 +9,6 @@ class D3pTextButton extends StatelessWidget {
     final Key? key,
     this.width,
     this.height,
-    this.padding,
     this.onPressed,
     this.textColor,
     this.icon,
@@ -17,7 +17,6 @@ class D3pTextButton extends StatelessWidget {
 
   final void Function()? onPressed;
   final double? height;
-  final EdgeInsets? padding;
   final String text;
   final Color? textColor;
   final double? width;
@@ -26,39 +25,42 @@ class D3pTextButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Padding(
-      padding: padding ?? EdgeInsets.zero,
-      child: SizedBox(
-        height: height,
-        width: width,
-        child: PlatformTextButton(
-          onPressed: onPressed,
-          material: (final _, final __) => MaterialTextButtonData(
-            style: TextButton.styleFrom(
-              foregroundColor:
-                  textColor ?? Theme.of(context).colorScheme.primary,
-              disabledForegroundColor: D3pColors.disabled,
-            ),
+    final textWidget = Text(
+      text,
+      style: textColor != null
+          ? Theme.of(context).textTheme.labelLarge!.copyWith(color: textColor)
+          : null,
+    );
+    final child = Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: mainAxisAlignment,
+      children: [
+        if (icon != null)
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: Icon(icon),
           ),
-          cupertino: (final _, final __) => CupertinoTextButtonData(
-            color: textColor ?? Theme.of(context).colorScheme.primary,
-            disabledColor: D3pColors.disabled,
-          ),
-          child: Row(
-            mainAxisAlignment: mainAxisAlignment,
-            children: [
-              if (icon != null)
-                Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: Icon(icon),
+        textWidget,
+      ],
+    );
+    return SizedBox(
+      height: height,
+      width: width,
+      child: Platform.isIOS || Platform.isMacOS
+          ? CupertinoButton(
+              onPressed: onPressed,
+              child: child,
+            )
+          : icon != null
+              ? TextButton.icon(
+                  onPressed: onPressed,
+                  icon: Icon(icon),
+                  label: textWidget,
+                )
+              : TextButton(
+                  onPressed: onPressed,
+                  child: child,
                 ),
-              Flexible(
-                child: Text(text),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

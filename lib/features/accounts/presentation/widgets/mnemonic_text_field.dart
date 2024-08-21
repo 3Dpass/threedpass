@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 
 class MnemonicTextField extends StatelessWidget {
@@ -16,6 +14,8 @@ class MnemonicTextField extends StatelessWidget {
     return D3pTextFormField(
       readOnly: true,
       controller: TextEditingController(text: text),
+      maxLines: 3,
+      enableInteractiveSelection: false,
     );
   }
 }

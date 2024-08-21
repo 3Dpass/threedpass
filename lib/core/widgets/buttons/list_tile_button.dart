@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+
 import 'package:threedpass/core/widgets/other/right_chevron.dart';
 
 class ListTileButton extends StatelessWidget {
@@ -30,7 +30,7 @@ class ListTileButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     final mainColor =
-        onPressed != null ? D3pThemeData.mainColor : theme.disabledColor;
+        onPressed != null ? theme.colorScheme.primary : theme.disabledColor;
 
     final trailingIcon = icon ??
         RightChevron(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
+import 'package:threedpass/features/preview/preview_page/bloc/preview_page_cubit.dart';
 
 class ChooseHashes extends StatelessWidget {
   const ChooseHashes({super.key});

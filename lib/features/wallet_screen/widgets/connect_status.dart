@@ -49,18 +49,22 @@ class _Indicator extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final customColors = Theme.of(context).customColors;
-
     switch (status) {
       case AppServiceInitStatus.init:
       case AppServiceInitStatus.connecting:
         return const D3pProgressIndicator(size: 30);
 
       case AppServiceInitStatus.connected:
-        return Icon(Icons.check_box, color: customColors.positiveIcon);
+        return Icon(
+          Icons.check_box,
+          color: Theme.of(context).colorScheme.primary,
+        );
 
       case AppServiceInitStatus.error:
-        return Icon(Icons.error_outline, color: customColors.errorIcon);
+        return Icon(
+          Icons.error_outline,
+          color: Theme.of(context).colorScheme.error,
+        );
     }
   }
 }

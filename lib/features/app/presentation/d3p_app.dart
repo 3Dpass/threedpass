@@ -7,11 +7,15 @@ import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/features/app/presentation/app_error_widget.dart';
 import 'package:threedpass/router/router.dart';
 
-class D3pApp extends StatelessWidget {
+class D3pPlatformApp extends StatelessWidget {
   final Brightness brightness;
   final RootRouter rootRouter;
 
-  const D3pApp({required this.brightness, required this.rootRouter, super.key});
+  const D3pPlatformApp({
+    required this.brightness,
+    required this.rootRouter,
+    super.key,
+  });
 
   Widget errorBuilder(final BuildContext context, final Widget? widget) {
     ErrorWidget.builder = (final errorDetails) => AppErrorWidget(

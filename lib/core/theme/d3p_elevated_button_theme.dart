@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
 
-abstract class D3pElevatedButtonTheme {
-  static ElevatedButtonThemeData theme(final ThemeData t) {
-    return ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        padding:
-            const EdgeInsets.symmetric(horizontal: D3pThemeData.buttonPadding),
-      ),
-    );
-  }
+class D3pElevatedButtonTheme extends ElevatedButtonThemeData {
+  D3pElevatedButtonTheme()
+      : super(
+          style: ElevatedButton.styleFrom(
+            minimumSize: const Size(0, D3pThemeData.buttonHeight),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(D3pThemeData.buttonBorderRadius),
+              ),
+            ),
+          ),
+        );
 }

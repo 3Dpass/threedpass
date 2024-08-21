@@ -49,7 +49,7 @@ class ThreeDApp extends StatelessWidget {
       child: ThemeBuilder(
         builder: (final BuildContext context, final Brightness brightness) =>
             Phoenix(
-          child: D3pApp(
+          child: D3pPlatformApp(
             brightness: brightness,
             rootRouter: _appRouter,
           ),

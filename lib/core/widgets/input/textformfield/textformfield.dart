@@ -34,6 +34,7 @@ class D3pTextFormField extends StatelessWidget {
     this.makeLabelOutside = false,
     this.suffixText,
     this.readOnly = false,
+    this.enableInteractiveSelection = true,
     this.contentPadding =
         const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
     // this.focusedBorder,
@@ -67,6 +68,7 @@ class D3pTextFormField extends StatelessWidget {
   final bool autofocus;
   final EdgeInsetsGeometry contentPadding;
   final bool readOnly;
+  final bool enableInteractiveSelection;
 
   final bool makeLabelOutside;
 
@@ -125,6 +127,7 @@ class D3pTextFormField extends StatelessWidget {
             keyboardType: keyboardType,
             obscureText: obscureText,
             readOnly: readOnly,
+            enableInteractiveSelection: enableInteractiveSelection,
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
         ),

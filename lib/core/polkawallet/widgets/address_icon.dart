@@ -31,7 +31,7 @@ class D3pAddressIcon extends StatelessWidget {
           BoxDecoration(
             color: theme.customColors.addressIconBackground,
             border: Border.fromBorderSide(
-              BorderSide(color: D3pThemeData.mainColor, width: 2),
+              BorderSide(color: theme.colorScheme.primary, width: 2),
             ),
             borderRadius: BorderRadius.all(
               Radius.circular((size ?? defaultSize) / 2),

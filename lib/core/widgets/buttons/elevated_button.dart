@@ -59,6 +59,7 @@ class _ElevatedButtonChild extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         if (iconData != null)

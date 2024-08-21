@@ -4,13 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/poscan_putobject/bloc/poscan_putobject_cubit.dart';
 import 'package:threedpass/features/poscan_putobject/domain/usecases/put_object_usecase.dart';
-import 'package:threedpass/features/preview_page/bloc/outer_context_cubit.dart';
-import 'package:threedpass/features/preview_page/bloc/preview_page_cubit.dart';
+import 'package:threedpass/features/preview/preview_page/bloc/outer_context_cubit.dart';
+import 'package:threedpass/features/preview/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/setup.dart';
 
 @RoutePage()
 class D3PRPCPageWrapper extends StatelessWidget implements AutoRouteWrapper {
-  const D3PRPCPageWrapper({super.key});
+  const D3PRPCPageWrapper(
+      {super.key}); // TODO Get filehas and snapshot hashes list instead of depending this and choose_hashes.dart on PreviewPageCubit
 
   @override
   Widget wrappedRoute(final BuildContext context) {
