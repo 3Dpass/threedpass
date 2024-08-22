@@ -11,4 +11,14 @@ extension ListExtensions<E> on List<E> {
 
     return found;
   }
+
+  E? findOrNull(bool Function(E elem) test) {
+    for (final element in this) {
+      if (test(element)) {
+        return element;
+      }
+    }
+
+    return null;
+  }
 }
