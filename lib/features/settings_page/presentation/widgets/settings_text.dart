@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
-import 'package:threedpass/core/utils/copy_and_notify.dart';
-import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 
 const int $nbsp = 0x00A0; // Non-breaking space

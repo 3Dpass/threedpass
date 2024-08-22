@@ -45,28 +45,55 @@ class MapperCardShapeToBorder {
   }) : this.radius = radius ?? D3pCardTheme.radius;
 
   ShapeBorder border() {
+    final borderRadius = MapperCardShapeToRadius(
+      cardShape: cardShape,
+      radius: radius,
+    ).border();
+
     switch (cardShape) {
       case CardShape.top:
         return RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(topLeft: radius, topRight: radius),
+          borderRadius: borderRadius,
           side: side ?? BorderSide.none,
         );
       case CardShape.bottom:
         return RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.only(bottomLeft: radius, bottomRight: radius),
+          borderRadius: borderRadius,
           side: side ?? BorderSide.none,
         );
       case CardShape.middle:
         return RoundedRectangleBorder(
-          borderRadius: BorderRadius.zero,
+          borderRadius: borderRadius,
           side: side ?? BorderSide.none,
         );
       case CardShape.all:
         return RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(radius),
+          borderRadius: borderRadius,
           side: side ?? BorderSide.none,
         );
+    }
+  }
+}
+
+class MapperCardShapeToRadius {
+  final CardShape cardShape;
+  final Radius radius;
+
+  MapperCardShapeToRadius({
+    required this.cardShape,
+    required this.radius,
+  });
+
+  BorderRadius border() {
+    switch (cardShape) {
+      case CardShape.top:
+        return BorderRadius.only(topLeft: radius, topRight: radius);
+      case CardShape.bottom:
+        return BorderRadius.only(bottomLeft: radius, bottomRight: radius);
+      case CardShape.middle:
+        return BorderRadius.zero;
+      case CardShape.all:
+        return BorderRadius.all(radius);
     }
   }
 }

@@ -27,13 +27,13 @@ class D3pThemeData {
 
   static ThemeData themeData(final Brightness brightness) {
     // return brightness == Brightness.light ? lightTheme : darkTheme;
-    return ThemeData(
+    final t = ThemeData(
       useMaterial3: true,
       brightness: brightness,
+      // disabledColor: Colors.blue,
       colorSchemeSeed: D3pColors.mainColor,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       appBarTheme: const D3pAppBarTheme(),
-      tabBarTheme: const D3pTabBarTheme(),
       elevatedButtonTheme: D3pElevatedButtonTheme(),
       outlinedButtonTheme: D3pOutlinedButtonTheme(),
       filledButtonTheme: D3pFilledButtonTheme(),
@@ -44,6 +44,14 @@ class D3pThemeData {
         hintStyle: TextStyle(color: D3pColors.disabled),
       ),
       cardTheme: D3pCardTheme.theme,
+    );
+
+    return t.copyWith(
+      tabBarTheme: D3pTabBarTheme(
+        brightness == Brightness.light
+            ? t.colorScheme.primaryContainer
+            : t.colorScheme.primary,
+      ),
     );
   }
 
