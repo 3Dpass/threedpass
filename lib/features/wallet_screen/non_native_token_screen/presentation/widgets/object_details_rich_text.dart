@@ -60,7 +60,8 @@ class _ObjectDetailsPropId extends StatelessWidget {
     );
 
     return FastRichText(
-      mainText: '${objDetails.propIdx} (${prop?.name ?? ''})',
+      mainText:
+          '${objDetails.propIdx} ${prop?.name != null ? '(${prop?.name})' : ''}',
       secondaryText: 'obj_details_prop_id'.tr(),
       needSpace: true,
     );

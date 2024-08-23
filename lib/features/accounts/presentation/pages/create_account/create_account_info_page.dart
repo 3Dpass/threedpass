@@ -20,10 +20,8 @@ class CreateAccountInfoPage extends StatelessWidget {
     final BuildContext context, [
     final String key = '',
   ]) async {
-    final service = context.read<AppService>();
-
     BlocProvider.of<AccountStoreBloc>(context).add(
-      GenerateMnemonicKey(service),
+      const GenerateMnemonicKey(),
     );
 
     unawaited(

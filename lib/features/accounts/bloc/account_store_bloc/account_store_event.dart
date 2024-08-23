@@ -15,9 +15,8 @@ class SetCredentials extends AccountStoreEvent {
 }
 
 class GenerateMnemonicKey extends AccountStoreEvent {
-  const GenerateMnemonicKey(this.service, [this.key = '']);
+  const GenerateMnemonicKey([this.key = '']);
 
-  final AppService service;
   final String key;
 }
 

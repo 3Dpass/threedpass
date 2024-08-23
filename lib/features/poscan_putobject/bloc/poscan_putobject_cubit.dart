@@ -18,7 +18,9 @@ part 'poscan_putobject_cubit.g.dart';
 class D3PRPCCubitState {
   final KeyPairData account;
   final List<String> chosenHashes;
-  final List<PoscanProperty> defaultProperties;
+  @Deprecated('REFACTOR')
+  final List<PoscanProperty>
+      defaultProperties; // TODO Refactor to use UseCase getDefaultProps
   final List<PoscanProperty> chosenProperties;
   final MapPoscanCategory chosenCategory;
 

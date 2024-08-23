@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
-import 'package:threedpass/core/widgets/dialog/material_alert_dialog_data.dart';
 
 class D3pPlatformDialog extends StatelessWidget {
   const D3pPlatformDialog({
@@ -17,18 +14,10 @@ class D3pPlatformDialog extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return PlatformAlertDialog(
-      title: Text(
-        title,
-        style: Theme.of(context).customTextStyles.d3ptitleLarge,
-      ),
+    return AlertDialog.adaptive(
+      title: Text(title),
       content: content,
-      material: (final context, final platform) => D3pMaterialAlertDialog(
-        actions: actions,
-      ),
-      cupertino: (final context, final platform) => CupertinoAlertDialogData(
-        actions: actions,
-      ),
+      actions: actions,
     );
   }
 }

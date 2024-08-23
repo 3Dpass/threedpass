@@ -7,6 +7,7 @@ import 'package:threedp_graphql/threedp_graphql.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/utils/m_app_install_date.dart';
+import 'package:threedpass/features/accounts/di_accounts.dart';
 import 'package:threedpass/features/asset_conversion/di_asset_conversion.dart';
 import 'package:threedpass/features/hashes_list/di/di_hashes_list.dart';
 import 'package:threedpass/features/poscan_assets/di_poscan_assets.dart';
@@ -77,6 +78,8 @@ Future<void> setup() async {
       repository: getIt<TransfersRepository>(),
     ),
   );
+
+  await DIAccounts().setup(getIt);
 
   await DINonNativeToken().setup(getIt);
 

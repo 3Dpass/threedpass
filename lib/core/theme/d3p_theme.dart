@@ -30,12 +30,11 @@ class D3pThemeData {
     final t = ThemeData(
       useMaterial3: true,
       brightness: brightness,
-      // disabledColor: Colors.blue,
       colorSchemeSeed: D3pColors.mainColor,
+      // primarySwatch: D3pColors.mainColor,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       appBarTheme: const D3pAppBarTheme(),
       elevatedButtonTheme: D3pElevatedButtonTheme(),
-      outlinedButtonTheme: D3pOutlinedButtonTheme(),
       filledButtonTheme: D3pFilledButtonTheme(),
       textButtonTheme: D3pTextButtonThemeData(),
       floatingActionButtonTheme: const D3pFloatingActionButtonThemeData(),
@@ -51,6 +50,9 @@ class D3pThemeData {
         brightness == Brightness.light
             ? t.colorScheme.primaryContainer
             : t.colorScheme.primary,
+      ),
+      outlinedButtonTheme: D3pOutlinedButtonTheme(
+        borderSideColor: t.colorScheme.primary,
       ),
     );
   }
