@@ -28,10 +28,10 @@ class D3pThemeData {
   static ThemeData themeData(final Brightness brightness) {
     // return brightness == Brightness.light ? lightTheme : darkTheme;
     final t = ThemeData(
-      useMaterial3: true,
+      useMaterial3: false,
       brightness: brightness,
-      colorSchemeSeed: D3pColors.mainColor,
-      // primarySwatch: D3pColors.mainColor,
+      // colorSchemeSeed: D3pColors.mainColor,
+      primarySwatch: D3pColors.mainColor,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       appBarTheme: const D3pAppBarTheme(),
       elevatedButtonTheme: D3pElevatedButtonTheme(),
@@ -53,6 +53,9 @@ class D3pThemeData {
       ),
       outlinedButtonTheme: D3pOutlinedButtonTheme(
         borderSideColor: t.colorScheme.primary,
+      ),
+      colorScheme: t.colorScheme.copyWith(
+        secondary: D3pColors.mainColor,
       ),
     );
   }
