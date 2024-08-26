@@ -117,7 +117,7 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
   }
 
   void setFirstAsset(final PoolAssetField asset) {
-    logger.v(
+    logger.t(
       'Swap. setFirstAsset. isSelectedEqualToSecond:${asset == state.secondAsset} first:${state.firstAsset} second:${state.secondAsset}',
     );
     emit(
@@ -203,10 +203,10 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
           ),
         );
       } else {
-        logger.v(res.value);
+        logger.t(res.value);
       }
     } on Object catch (e) {
-      logger.v(e);
+      logger.t(e);
     }
   }
 
@@ -239,10 +239,10 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
           ),
         );
       } else {
-        logger.v((res.value! as Failure).cause);
+        logger.t((res.value! as Failure).cause);
       }
     } on Object catch (e) {
-      logger.v(e);
+      logger.t(e);
     }
   }
 
@@ -250,7 +250,7 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
   //   final correctInput = asset1Decimal != null && asset2Decimal != null;
   //   final isDifferentAssets = state.firstAsset != state.secondAsset;
   //   if (!(correctInput && isDifferentAssets)) {
-  //     logger.v('Swap. Nothing to calculate');
+  //     logger.t('Swap. Nothing to calculate');
   //     return;
   //   }
   //   //  final items = BlocProvider.of<PoscanAssetsCubit>(context).poolAssets;

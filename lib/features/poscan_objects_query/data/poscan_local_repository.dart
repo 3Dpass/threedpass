@@ -76,25 +76,20 @@ class PoScanLocalRepository {
     });
   }
 
-  Future<UploadedObject?> firstFullHashEqual(final List<String> hashes) async {
+  Future<UploadedObject?> firstIfContainsAnyHash(
+      final List<String> hashes) async {
     return afterInit(() async {
-      final pattern = hashes.join('\n');
+      final filters = hashes
+          .map<FilterCondition>(
+            (final h) => FilterCondition.contains(
+              property: 'hashesListJoined',
+              value: h,
+            ),
+          )
+          .toList();
       return isar.uploadedObjects
-          .filter()
-          .hashesListJoinedEqualTo(pattern)
+          .buildQuery<UploadedObject>(filter: FilterGroup.or(filters))
           .findFirst();
     });
   }
-
-  // Future<List<UploadedObject>> filterIfContainsHashes(
-  //   final List<String> hashes,
-  // ) async {
-  //   return afterInit(() async {
-  //     final pattern = hashes.join('|');
-  //     return isar.uploadedObjects
-  //         .filter()
-  //         .hashesElementMatches(pattern)
-  //         .findAll();
-  //   });
-  // }
 }

@@ -36,6 +36,8 @@ class _State extends State<PoscanResult> {
     final foundObj = await BlocProvider.of<PoscanObjectsCubit>(context)
         .findObjectByHashes(snap.hashesWithPrefix);
 
+    print('FIND OBJ BY HASHES ${snap.hashesWithPrefix} $foundObj');
+
     setState(() {
       isLoaded = true;
       this.loadedObject = foundObj;

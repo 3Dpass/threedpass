@@ -26,7 +26,7 @@ return res;
 """;
     try {
       final dynamic res = await basicJSCall(getTokensFunc, webviewController);
-      logger.v(res);
+      logger.t(res);
       final List<dynamic> tokensRaw = res as List<dynamic>;
       final List<T> tokens = tokensRaw.map(toElement).toList();
       return Either.right(tokens);

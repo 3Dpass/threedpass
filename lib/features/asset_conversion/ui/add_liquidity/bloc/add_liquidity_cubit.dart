@@ -135,7 +135,7 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
         return const Either.left('Amount 2 is not integer');
       }
 
-      logger.v(
+      logger.t(
         'amount1optimal ${amount1Optimal.toDouble()} 1min: ${amount1MinAmount!.toDouble()} amount2optimal ${amount2Optimal.toDouble()} 2min:${amount2MinAmount!.toDouble()}',
       );
 
@@ -179,7 +179,7 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
       }
       setSlippageTolerance();
     } on Object catch (e) {
-      logger.v(e);
+      logger.t(e);
     }
   }
 
@@ -191,7 +191,7 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
       }
       setSlippageTolerance();
     } on Object catch (e) {
-      logger.v(e);
+      logger.t(e);
     }
   }
 

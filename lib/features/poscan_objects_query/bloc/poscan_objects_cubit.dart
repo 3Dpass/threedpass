@@ -60,7 +60,7 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
           ),
         );
 
-    logger.v('Load user objects by ids: $ids');
+    logger.t('Load user objects by ids: $ids');
 
     if (ids != null) {
       for (final id in ids) {
@@ -80,7 +80,7 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
   }
 
   Future<void> pageRequestListener(final int pageKey) async {
-    logger.v('Request object id: $pageKey');
+    logger.t('Request object id: $pageKey');
 
     final objEither = await getUploadedObject.call(pageKey);
 
@@ -128,11 +128,11 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
 
   Future<UploadedObject?> findObjectByHashes(final List<String> hashes) async {
     await store.initialized.future;
-    return store.firstFullHashEqual(hashes);
+    return store.firstIfContainsAnyHash(hashes);
   }
 
   Future<void> refresh() async {
-    logger.v('Explorer refresh is called');
+    logger.t('Explorer refresh is called');
     await setObjCount();
     pagingController.refresh();
   }

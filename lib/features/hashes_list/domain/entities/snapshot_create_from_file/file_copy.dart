@@ -21,7 +21,7 @@ class FileCopy {
 
     // Rename file to avoid collisions
     final newFilePath = objectsDirectory.path + rawObjName;
-    logger.v('newFilePath $newFilePath');
+    logger.t('newFilePath $newFilePath');
 
     // We don't create new file if it's already exists
     final objAlreadyExists = File(newFilePath).existsSync();
