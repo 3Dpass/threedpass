@@ -53,6 +53,7 @@ class HashObject extends Equatable {
   }
 
   /// if object contains snapshot with all equal hashes, but any name
+  @Deprecated('Use (==)')
   bool containsSnapshot(final Snapshot snapshot) {
     for (final s in snapshots) {
       if (listEquals(s.hashes, snapshot.hashes)) {

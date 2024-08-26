@@ -57,7 +57,7 @@ class RenameObjectDialog extends StatelessWidget {
       initialText: hashObject.name,
       title: 'rename_object_dialog_title'.tr(),
       actionText: 'rename_object_dialog_action'.tr(),
-      action: (final value) => renameObject(value, context),
+      action: (final value) async => renameObject(value, context),
     );
   }
 }

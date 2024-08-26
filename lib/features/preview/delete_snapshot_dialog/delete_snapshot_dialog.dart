@@ -21,7 +21,7 @@ class DeleteSnapshotDialog extends StatelessWidget {
     if (state.hashObject != null) {
       BlocProvider.of<HashesListBloc>(context).add(
         DeleteHash(
-          hash: state.snapshot,
+          snap: state.snapshot,
           // object: state.hashObject!,
         ),
       );
@@ -49,7 +49,7 @@ class DeleteSnapshotDialog extends StatelessWidget {
         ),
         D3pTextButton(
           text: 'Delete'.tr(),
-          onPressed: () => deleteSnapshot(context, state),
+          onPressed: () async => deleteSnapshot(context, state),
         ),
       ],
     );

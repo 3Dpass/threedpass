@@ -6,7 +6,10 @@ abstract class HashesRepository {
 
   Future<void> addObject(final HashObject hash);
   Future<void> deleteObject(final HashObject hash);
-  Future<void> replaceObject(final HashObject hash);
+  Future<void> replaceObject(
+    final HashObject oldObj,
+    final HashObject newObj,
+  );
 }
 
 class HashesRepositoryImpl implements HashesRepository {
@@ -32,7 +35,13 @@ class HashesRepositoryImpl implements HashesRepository {
   }
 
   @override
-  Future<void> replaceObject(final HashObject hash) async {
-    await hiveHashStore.replace(hash);
+  Future<void> replaceObject(
+    final HashObject oldObj,
+    final HashObject newObj,
+  ) async {
+    await hiveHashStore.replace(
+      oldObj,
+      newObj,
+    );
   }
 }

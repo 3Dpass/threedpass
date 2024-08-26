@@ -38,19 +38,22 @@ class HiveUniversalStore<T> {
   //   await _box.deleteAll(keys);
   // }
 
-  Future<void> replace(final T value) async {
-    var index = -1;
-    for (int i = 0; i < _box.length; ++i) {
-      if (_box.values.elementAt(i) == value) {
-        index = i;
-        break;
-      }
-    }
+  Future<void> replace(final T oldValue, final T newValue) async {
+    final indexOfOld = _box.values.toList().indexOf(oldValue);
 
-    if (index == -1) {
-      logger.e("Couldn't find object $value to replace");
+    // var index = -1;
+    // for (int i = 0; i < _box.length; ++i) {
+    //   if (_box.values.elementAt(i) == oldValue) {
+    //     index = i;
+    //     break;
+    //   }
+    // }
+
+    if (indexOfOld == -1) {
+      logger.e("Couldn't find object $oldValue to replace");
     } else {
-      await _box.putAt(index, value);
+      await _box.putAt(indexOfOld, newValue);
+      await _box.flush();
     }
   }
 

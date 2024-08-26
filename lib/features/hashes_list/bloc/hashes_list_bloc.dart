@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
@@ -50,48 +51,33 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     final Emitter<HashesListState> emit,
   ) async {
     if (state is HashesListLoaded) {
-      final list = (state as HashesListLoaded).objects;
-      bool f = false;
-      HashObject? hashObject;
-      for (final obj in list) {
-        if (obj.snapshots.contains(event.hash)) {
-          hashObject = obj;
-          // get snapshot to remove
-          final snapshotToRemove = event.hash;
-          // final snapshotToRemove = obj.snapshots.firstWhere(
-          //   (final snap) => snap == event.hash,
-          // );
+      final objectsList = (state as HashesListLoaded).objects;
+      final hashObj = objectsList
+          .findOrNull((final obj) => obj.snapshots.contains(event.snap));
 
-          final shouldDeleteFile =
-              obj.isObjectFileCanBeDeletedWithSnapshot(snapshotToRemove);
-
-          if (shouldDeleteFile) {
-            File(snapshotToRemove.realPath).deleteSync();
-          }
-
-          obj.snapshots.remove(snapshotToRemove);
-
-          // if only one snapshot, delete whole object
-          if (obj.snapshots.isEmpty) {
-            add(DeleteObject(object: obj));
-            return;
-          }
-
-          f = true;
-          break;
-        }
-      }
-
-      if (!f) {
+      if (hashObj == null) {
         logger.e(
-          'Could not found snapshot ${event.hash.name}',
-        );
-      } else {
-        await hashesRepository.replaceObject(hashObject!);
+            'Could not found hash obj to delete snapshot ${event.snap.name}');
+        return; // TODO Report error to user
       }
+
+      if (hashObj.snapshots.length == 1) {
+        add(DeleteObject(object: hashObj));
+        return;
+      }
+
+      final newSnapshotsList = List<Snapshot>.from(hashObj.snapshots);
+      newSnapshotsList.remove(event.snap);
+
+      final newObj = hashObj.copyWith(snapshots: newSnapshotsList);
+
+      await hashesRepository.replaceObject(hashObj, newObj);
+
+      objectsList.replace(hashObj, newObj);
+
       emit(
         HashesListLoaded(
-          objects: list,
+          objects: List<HashObject>.from(objectsList),
         ),
       );
     }
@@ -141,24 +127,14 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
   ) async {
     if (state is HashesListLoaded) {
       final list = (state as HashesListLoaded).objects;
-      bool f = false;
-      for (final obj in list) {
-        if (obj == event.object) {
-          obj.snapshots.add(event.hash);
-          f = true;
-          break;
-        }
-      }
-      if (!f) {
-        logger.e(
-          'Not found an object with name=${event.object.name}',
-        );
-      } else {
-        await hashesRepository.replaceObject(event.object);
-      }
+      final newObj = event.object
+          .copyWith(snapshots: [...event.object.snapshots, event.hash]);
+      await hashesRepository.replaceObject(event.object, newObj);
+      list.replace(event.object, newObj);
+
       emit(
         HashesListLoaded(
-          objects: list,
+          objects: List<HashObject>.from(list),
           requiresScroll: true,
         ),
       );
@@ -171,34 +147,16 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
   ) async {
     if (state is HashesListLoaded) {
       final list = (state as HashesListLoaded).objects;
-      bool f = false;
-      for (final obj in list) {
-        // find object
-        if (obj == event.object) {
-          // find old snapshot place
-          final oldSnapIndex = obj.snapshots.indexOf(event.oldSnapshot);
-          // replace it with new one
-          if (oldSnapIndex != -1) {
-            obj.snapshots[oldSnapIndex] = event.newSnapshot;
-            f = true;
-          } else {
-            logger.e(
-              'Not found a snapshot in object ${obj.name}. Old snapshot name=${event.oldSnapshot.name}',
-            );
-          }
-          break;
-        }
-      }
-      if (!f) {
-        logger.e(
-          'Not found an object with name=${event.object.name}',
-        );
-      } else {
-        await hashesRepository.replaceObject(event.object);
-      }
+
+      final newSnapshotsList = List<Snapshot>.from(event.object.snapshots);
+      newSnapshotsList.replace(event.oldSnapshot, event.newSnapshot);
+      final newObj = event.object.copyWith(snapshots: newSnapshotsList);
+      await hashesRepository.replaceObject(event.object, newObj);
+      list.replace(event.object, newObj);
+
       emit(
         HashesListLoaded(
-          objects: list,
+          objects: List<HashObject>.from(list),
         ),
       );
     }
@@ -239,6 +197,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       emit(
         HashesListLoaded(objects: list),
       );
+      await hashesRepository.replaceObject(event.oldObj, event.newObj);
     } else {
       logger.e('Replace object is called, but state is not HashesListLoaded');
       return;
