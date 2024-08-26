@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:rust_lzss/rust_lzss.dart';
 import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
 import 'package:threedpass/core/widgets/theme_builder.dart';
 import 'package:threedpass/features/app/presentation/d3p_app.dart';
@@ -13,6 +14,7 @@ import 'package:threedpass/setup.dart' as di_setup;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await RustLib.init();
   await hive_setup.hiveSetup();
   await di_setup.setup();
   await EasyLocalization.ensureInitialized();

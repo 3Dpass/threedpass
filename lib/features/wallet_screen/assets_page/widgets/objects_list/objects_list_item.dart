@@ -9,6 +9,7 @@ import 'package:threedpass/features/uploaded_object_page/widgets/snapshot_connec
 import 'package:threedpass/features/uploaded_object_page/widgets/uploaded_object_id_text.dart';
 import 'package:threedpass/features/uploaded_object_page/widgets/uploaded_object_owner_text.dart';
 import 'package:threedpass/features/uploaded_object_page/widgets/uploaded_object_status_text.dart';
+import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/poscan_object_preview.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class ObjectsListItem extends StatelessWidget {
@@ -22,6 +23,9 @@ class ObjectsListItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          PoscanObjectPreview(
+            uploadedObject: uploadedObject,
+          ),
           UploadedObjectIdText(uploadedObject: uploadedObject),
           const H8(),
           Row(

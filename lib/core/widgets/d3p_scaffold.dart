@@ -22,8 +22,10 @@ class D3pScaffold extends StatelessWidget {
     this.appBarLeading,
     this.appBarActions,
     super.key,
-  }) : assert(appBarTitle != null || appBarWidget != null,
-            'Either appbarTitle or appBarWidget must be provided');
+  }) : assert(
+          appBarTitle != null || appBarWidget != null,
+          'Either appbarTitle or appBarWidget must be provided',
+        );
 
   @override
   Widget build(final BuildContext context) {
