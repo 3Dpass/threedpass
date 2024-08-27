@@ -43,11 +43,12 @@ class Model {
   void scale(final double value) {
     double globalMaxCoord = 0.0;
     verts.forEach((final vert) {
-      final maxCoord = max(max(vert.x, vert.y), vert.z);
+      final maxCoord = max(max(vert.x.abs(), vert.y.abs()), vert.z.abs());
       if (maxCoord > globalMaxCoord) {
         globalMaxCoord = maxCoord;
       }
     });
+
     final scaleValue = value / globalMaxCoord;
     verts.forEach((final vert) {
       vert.scale(scaleValue);
@@ -74,7 +75,7 @@ class Model {
       }
       // Parse a material reference
       // else if (line.startsWith("usemtl ")) {
-      //   // material = line.substring(7);
+      //   material = line.substring(7);
       // }
       // Parse a face
       else if (line.startsWith("f ")) {

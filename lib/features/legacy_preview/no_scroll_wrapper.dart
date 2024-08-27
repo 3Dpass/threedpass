@@ -12,18 +12,33 @@ class NoScrollWrapper extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => SizedBox(
+        height: size.height,
         width: size.width,
-        height: size.height - 0.001,
         child: ScrollConfiguration(
           behavior: const ScrollBehavior().copyWith(overscroll: false),
           child: SingleChildScrollView(
             physics: const ClampingScrollPhysics(),
             child: SizedBox(
               width: size.width,
-              height: size.height,
+              height: size.height + 0.0001,
               child: child,
             ),
           ),
         ),
       );
+  //  SizedBox(
+  //       width: size.width,
+  //       height: size.height - 0.001,
+  //       child: ScrollConfiguration(
+  //         behavior: const ScrollBehavior().copyWith(overscroll: false),
+  //         child: SingleChildScrollView(
+  //           physics: const ClampingScrollPhysics(),
+  //           child: SizedBox(
+  //             width: size.width,
+  //             height: size.height,
+  //             child: child,
+  //           ),
+  //         ),
+  //       ),
+  //     );
 }

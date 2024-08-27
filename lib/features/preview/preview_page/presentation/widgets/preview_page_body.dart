@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
-import 'package:threedpass/features/legacy_preview/3d_engine.dart';
+import 'package:threedpass/features/legacy_preview/preview_from_file.dart';
 import 'package:threedpass/features/preview/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/preview/preview_page/presentation/widgets/delete_snapshot_button.dart';
 import 'package:threedpass/features/preview/preview_page/presentation/widgets/deprecation_warning.dart';
@@ -39,11 +39,11 @@ class PreviewPageBody extends StatelessWidget {
         SnapshotInfo(
           state: previewPageCubitState,
         ),
-        Object3D(
+        PreviewFromFile(
           size: Size(MediaQuery.of(context).size.width, objectPreviewHeight),
           zoom: 1.0,
           path: previewPageCubitState.snapshot.realPath,
-          scale: (objectPreviewHeight - 32) / 2,
+          // scale: (objectPreviewHeight - 32) / 2,
         ),
         PreviewSaveButton(
           state: previewPageCubitState,

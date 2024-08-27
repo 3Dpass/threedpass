@@ -1,5 +1,5 @@
 // ignore_for_file: prefer-first
-import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -11,17 +11,21 @@ import 'utils.dart';
 
 class Object3D extends StatefulWidget {
   final Size size;
-  final String path;
+  final String value;
   final double zoom;
-  final double scale;
+  // final double scale;
+  final Model model;
 
-  const Object3D({
+  Object3D({
     required this.size,
-    required this.path,
+    // required this.path,
+    required this.value,
     required this.zoom,
-    this.scale = 1.0,
+    // this.scale = 1.0,
     super.key,
-  });
+  }) : model = Model()
+          ..loadFromString(value)
+          ..scale((min(size.width, size.height) - 32) / 2);
 
   @override
   _Object3DState createState() => _Object3DState();
@@ -33,24 +37,9 @@ class _Object3DState extends State<Object3D> {
   double angleZ = 0.0;
   double zoom = 0.0;
 
-  Model? model;
-
   /*
    *  Load the 3D  data from a file in our /assets folder.
    */
-  @override
-  void initState() {
-    print('D INIT STATE');
-    File(widget.path).readAsString().then((final value) {
-      print('D READ FILE');
-      setState(() {
-        model = Model();
-        model!.loadFromString(value);
-        model!.scale(widget.scale);
-      });
-    });
-    super.initState();
-  }
 
   void _dragX(final Offset delta) {
     // setState(() {
@@ -76,9 +65,6 @@ class _Object3DState extends State<Object3D> {
 
   @override
   Widget build(final BuildContext context) {
-    if (model == null) {
-      return const Text('loading');
-    }
     return NoScrollWrapper(
       size: widget.size,
       child: Listener(
@@ -86,7 +72,7 @@ class _Object3DState extends State<Object3D> {
         child: CustomPaint(
           painter: _ObjectPainter(
             size: widget.size,
-            model: model!,
+            model: widget.model,
             angleX: angleX,
             angleY: angleY,
             angleZ: angleZ,
