@@ -14,9 +14,11 @@ part 'poscan_objects_cubit.g.dart';
 
 @CopyWith()
 class PoscanObjectsState {
+  @Deprecated('Use AsyncValue')
   final bool isLoading;
   final String? message;
   final int? storageCount; // Objects in remote storage
+  @Deprecated('Use AsyncValue')
   final bool areOwnerObjectsLoading;
 
   const PoscanObjectsState({

@@ -24,6 +24,7 @@ part 'remove_liquidity_cubit.g.dart';
 @CopyWith()
 class RemoveLiquidityState {
   final int percentage;
+  @Deprecated('Use AsyncValue')
   final bool isLoading;
   final RemoveLiquidityInfo? removeLiquidityInfo;
   final int? maxPercent;

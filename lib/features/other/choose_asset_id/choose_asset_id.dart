@@ -25,6 +25,7 @@ class ChooseAssetId extends StatefulWidget {
 class ChooseAssetIdState extends State<ChooseAssetId> {
   final List<PoscanAssetCombined> assets = [];
   late PoscanAssetCombined chosenAsset;
+  @Deprecated('Use AsyncValue')
   bool isLoading = true;
 
   final PoscanAssetsRepository repository = getIt<PoscanAssetsRepository>();

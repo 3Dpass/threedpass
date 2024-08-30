@@ -10,6 +10,7 @@ import 'package:threedpass/core/utils/m_app_install_date.dart';
 import 'package:threedpass/features/accounts/di_accounts.dart';
 import 'package:threedpass/features/asset_conversion/di_asset_conversion.dart';
 import 'package:threedpass/features/hashes_list/di/di_hashes_list.dart';
+import 'package:threedpass/features/poscan/di_poscan.dart';
 import 'package:threedpass/features/poscan_assets/di_poscan_assets.dart';
 import 'package:threedpass/features/poscan_objects_query/di_polkadot_query.dart';
 import 'package:threedpass/features/poscan_putobject/di_preview_page.dart';
@@ -96,4 +97,6 @@ Future<void> setup() async {
   await DIPoscanAssets().setup(getIt);
 
   await DIAssetConversion().setup(getIt);
+
+  await DIPoscan().setup(getIt);
 }

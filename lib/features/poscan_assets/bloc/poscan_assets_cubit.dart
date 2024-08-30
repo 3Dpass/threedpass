@@ -29,6 +29,7 @@ class PoscanAssetsState {
       )
       .toList();
 
+  @Deprecated('Use AsyncValue')
   final bool isLoading;
   final String errorMessage;
   final KeyPairData currentAccount;

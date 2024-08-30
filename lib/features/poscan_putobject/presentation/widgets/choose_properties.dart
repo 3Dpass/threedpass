@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/theme/d3p_theme.dart';
 import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
@@ -24,6 +25,7 @@ class ChooseProperties extends StatelessWidget {
             state.defaultProperties.isEmpty
                 ? const H16()
                 : ListView.separated(
+                    // TODO Shirnk props. Don't show too many. Maybe move them to bottom sheet
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: state.defaultProperties.length,
@@ -32,7 +34,7 @@ class ChooseProperties extends StatelessWidget {
                     itemBuilder: (final context, final index) {
                       final prop = state.defaultProperties.elementAt(index);
                       return SizedBox(
-                        height: 50,
+                        height: D3pThemeData.buttonHeight,
                         child: ClickableCard(
                           padding: ClickableCard.buttonPaddingPreset,
                           onTap: () =>
@@ -58,6 +60,7 @@ class ChooseProperties extends StatelessWidget {
     final PoscanProperty prop,
   ) {
     showDialog<void>(
+      // TODO Use auto_route
       context: parentContext,
       builder: (final BuildContext context) {
         return BlocProvider.value(

@@ -1,8 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_property.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/edit_property_button.dart';
@@ -27,7 +25,7 @@ class PropertyTileContent extends StatelessWidget {
     final enabledStyle = textStyles.bodyMedium!.copyWith(
       color: isChosen ? D3pColors.mainColor : theme.customColors.themeOpposite,
     );
-    final disabledStyle = theme.customTextStyles.fadedBodyMedium;
+    // final disabledStyle = theme.customTextStyles.fadedBodyMedium;
 
     return Row(
       mainAxisSize: MainAxisSize.max,
@@ -50,25 +48,25 @@ class PropertyTileContent extends StatelessWidget {
             style: enabledStyle,
           ),
         ),
-        W8(),
+        const W8(),
+        // Expanded(
+        //   flex: 2,
+        //   child: Text.rich(
+        //     TextSpan(
+        //       text: 'property_id_label'.tr(),
+        //       style: disabledStyle,
+        //       children: [
+        //         TextSpan(
+        //           text: prop.propValue.propIdx.toString(),
+        //           style: enabledStyle,
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        // ),
+        const W8(),
         Expanded(
-          flex: 2,
-          child: Text.rich(
-            TextSpan(
-              text: 'property_id_label'.tr(),
-              style: disabledStyle,
-              children: [
-                TextSpan(
-                  text: prop.propValue.propIdx.toString(),
-                  style: enabledStyle,
-                ),
-              ],
-            ),
-          ),
-        ),
-        W8(),
-        Expanded(
-          flex: 4,
+          flex: 3,
           child: PropertyMaxValueText(prop.propValue),
         ),
         Expanded(

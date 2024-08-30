@@ -3,17 +3,75 @@ import 'dart:io';
 
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/polkawallet/utils/basic_polkadot_js_call.dart';
 import 'package:threedpass/core/utils/big_int_json_helper.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
+import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_property.dart';
 import 'package:threedpass/features/poscan_putobject/domain/usecases/put_object_usecase.dart';
 
-class PoScanRepository {
-  const PoScanRepository({
+class PoScanPutObjectRepository {
+  const PoScanPutObjectRepository({
     required this.appServiceLoaderCubit,
   });
 
   final AppServiceLoaderCubit appServiceLoaderCubit;
+
+  Future<Either<Failure, List<PoscanProperty>>> properties() async {
+    try {
+      const String getPropsFunc = """
+var p = async () => {
+  const props = await api.query.poScan.properties.entries();
+    return props.map(([key, value]) => [key.args?.[0].toHuman(), value.toHuman()]);
+};
+var res = await p();
+return res;
+""";
+
+      final dynamic res = await basicJSCall(
+        getPropsFunc,
+        appServiceLoaderCubit
+            .state.plugin.sdk.webView!.webInstance!.webViewController,
+      );
+      // [ "1", {name: 'Share', class: 'Relative', maxValue: '100,000,000'}]
+      logger.t('properties res: $res');
+
+      res as List<dynamic>;
+      final resT = res.map<PoscanProperty>(
+        (final dynamic e) {
+          final rawList = e as List<dynamic>;
+          final data = rawList[1] as Map<String, dynamic>;
+          final id = int.parse(rawList.first as String);
+
+          return PoscanProperty(
+            name: data['name'] as String,
+            poscanPropertyType: PoscanPropertyType.values.firstWhere(
+              (final e) =>
+                  e.name.toLowerCase() ==
+                  data['class'].toString().toLowerCase(),
+              orElse: () => PoscanPropertyType.unknown,
+            ),
+            propValue: PropValue(
+              maxValue:
+                  BigInt.parse(data['maxValue'].toString().replaceAll(',', '')),
+              propIdx: id,
+            ),
+          );
+        },
+      );
+      final resTL = resT.toList();
+
+      resTL.sort(
+        (final a, final b) =>
+            a.propValue.propIdx.compareTo(b.propValue.propIdx),
+      );
+
+      return Either.right(resTL.toList());
+    } on Object catch (e) {
+      logger.e(e);
+      return Either.left(BadDataFailure(e.toString()));
+    }
+  }
 
   String encodePropValues(final List<PropValue>? propValues) {
     if (propValues == null) return 'null';
@@ -90,5 +148,3 @@ class PoScanRepository {
     }
   }
 }
-
-enum D3pRPCError { a, b }

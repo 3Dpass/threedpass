@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,10 +18,13 @@ class OpenPoolsButton extends StatelessWidget {
         child: D3pSecondaryButton(
           localizedTextKey: 'open_pools_label',
           iconData: Icons.explore_outlined,
-          onPressed: state.isLoading
+          onPressed: state
+                  .isLoading // TODO show pools button even when they are loading
               ? null
-              : () => context.router.push(
-                    const PoolsRouteWrapper(),
+              : () => unawaited(
+                    context.router.push(
+                      const PoolsRouteWrapper(),
+                    ),
                   ),
         ),
       ),

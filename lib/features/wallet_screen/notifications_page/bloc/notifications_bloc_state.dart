@@ -216,6 +216,7 @@ class NotificationSwapAssets extends NotificationDTO {
 @CopyWith()
 class NotificationsState {
   final List<NotificationDTO> notifications;
+  @Deprecated('Use AsyncValue')
   final bool isLoading;
 
   const NotificationsState({
