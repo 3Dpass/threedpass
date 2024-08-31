@@ -154,8 +154,14 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
         state.copyWith(status: AppServiceInitStatus.connected);
 
     await pseudoNewState.subscribeToBalance();
+    // TODO: Refactor. Make current accoutn a separate state. Listen to that state in poscanassets
     getIt<PoscanAssetsCubit>().switchAccount(state.keyring.current);
-    unawaited(getIt<PoscanAssetsCubit>().updateBalances());
+    // If only one account, load assets, otherwise just load balances
+    if (state.keyring.allAccounts.length == 1) {
+      unawaited(getIt<PoscanAssetsCubit>().init());
+    } else {
+      unawaited(getIt<PoscanAssetsCubit>().updateBalances());
+    }
     unawaited(
       getIt<PoolsCubit>().update(address: state.keyring.current.address!),
     );

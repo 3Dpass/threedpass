@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
 
 /// Fork of
 /// https://github.com/polkawallet-io/ui/blob/ce62db0d9b5abab5ce3167f0d1976480a33304ff/lib/components/v3/addressIcon.dart#L59

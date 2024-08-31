@@ -22,9 +22,6 @@ class SwapButton extends StatelessWidget {
         buildWhen: (final previous, final current) =>
             previous.isLoading != current.isLoading,
         builder: (final context, final poolsState) {
-          print(
-              'POOLS: ${BlocProvider.of<PoscanAssetsCubit>(context).poolAssets.length}');
-          // TODO BUG. WHen import first account pools arent loaded
           return D3pElevatedButton(
             iconData: Icons.swap_horiz_outlined,
             text: '',

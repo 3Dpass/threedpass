@@ -37,7 +37,6 @@ class D3pThemeData {
       elevatedButtonTheme: D3pElevatedButtonTheme(),
       filledButtonTheme: D3pFilledButtonTheme(),
       textButtonTheme: D3pTextButtonThemeData(),
-      floatingActionButtonTheme: const D3pFloatingActionButtonThemeData(),
       bottomSheetTheme: const D3pBottomSheetThemeData(),
       inputDecorationTheme: const InputDecorationTheme(
         hintStyle: TextStyle(color: D3pColors.disabled),
@@ -56,6 +55,9 @@ class D3pThemeData {
       ),
       colorScheme: t.colorScheme.copyWith(
         secondary: D3pColors.mainColor,
+      ),
+      floatingActionButtonTheme: D3pFloatingActionButtonThemeData(
+        foregroundColor: t.colorScheme.onPrimary,
       ),
     );
   }

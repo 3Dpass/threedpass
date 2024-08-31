@@ -129,7 +129,8 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
   }
 
   Future<UploadedObject?> findObjectByHashes(final List<String> hashes) async {
-    await store.initialized.future;
+    await store.initialized
+        .future; // TODO Remove this. Add flag to poscanstoragecubit state if store is initialized
     return store.firstIfContainsAnyHash(hashes);
   }
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
 class BasicBalanceRow extends StatelessWidget {
   final String tokenSymbol;

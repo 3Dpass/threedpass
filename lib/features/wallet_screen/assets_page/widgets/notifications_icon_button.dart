@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +16,7 @@ class NotificationsIconButton extends StatelessWidget {
   Color lastNTypeToBadgeColor(final ExtrinsicStatus status) {
     switch (status) {
       case ExtrinsicStatus.failed:
-        return Colors.red;
+        return Colors.red; // TODO Refactor. Use colors from Theme
       case ExtrinsicStatus.error:
         return Colors.red;
       case ExtrinsicStatus.success:
@@ -43,7 +45,8 @@ class NotificationsIconButton extends StatelessWidget {
               : const Icon(
                   Icons.notifications_none_outlined,
                 ),
-          onPressed: () => context.router.push(const NotificationsRoute()),
+          onPressed: () =>
+              unawaited(context.router.push(const NotificationsRoute())),
         );
       },
     );

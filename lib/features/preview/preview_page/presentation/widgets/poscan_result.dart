@@ -40,10 +40,12 @@ class _State extends State<PoscanResult> {
 
     print('FIND OBJ BY HASHES ${snap.hashesWithPrefix} $foundObj');
 
-    setState(() {
-      isLoaded = true;
-      this.loadedObject = foundObj;
-    });
+    if (mounted) {
+      setState(() {
+        isLoaded = true;
+        this.loadedObject = foundObj;
+      });
+    }
   }
 
   @override

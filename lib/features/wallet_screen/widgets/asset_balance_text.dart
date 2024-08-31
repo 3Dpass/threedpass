@@ -23,7 +23,7 @@ class AssetBalanceText extends StatelessWidget {
           ),
         ],
       ),
-      style: styles.headlineMedium,
+      style: styles.headlineMedium!.copyWith(color: styles.bodyLarge!.color),
     );
   }
 }
