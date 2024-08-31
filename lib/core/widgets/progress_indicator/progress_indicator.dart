@@ -8,7 +8,7 @@ class D3pProgressIndicator extends StatelessWidget {
   });
 
   final double strokeWidth;
-  final double size;
+  final double? size;
 
   @override
   Widget build(final BuildContext context) {

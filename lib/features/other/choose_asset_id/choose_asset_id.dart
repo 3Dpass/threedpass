@@ -25,6 +25,7 @@ class ChooseAssetId extends StatefulWidget {
 class ChooseAssetIdState extends State<ChooseAssetId> {
   final List<PoscanAssetCombined> assets = [];
   late PoscanAssetCombined chosenAsset;
+  @Deprecated('Use AsyncValue')
   bool isLoading = true;
 
   final PoscanAssetsRepository repository = getIt<PoscanAssetsRepository>();
@@ -86,7 +87,6 @@ class ChooseAssetIdState extends State<ChooseAssetId> {
         const D3pBodyMediumText('asset_id_dropdown_label'),
         const SizedBox(height: 4),
         D3pDropdownButton<PoscanAssetCombined>(
-          context: context,
           items: items,
           onChanged: widget.onChoose == null ? null : onChanged,
           value: chosenAsset,

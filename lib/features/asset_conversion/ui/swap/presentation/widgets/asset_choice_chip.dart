@@ -14,23 +14,9 @@ class AssetChoiceChip extends StatelessWidget {
 
   final List<(PoolAssetField, Widget)> menuItemList;
   final PoolAssetField chosenItem;
-  // final int initialSelectionIndex;
   final void Function(PoolAssetField)? onSelected;
 
-//   @override
-//   State<AssetChoiceChip> createState() => _ChipMenuState();
-// }
-
-// class _ChipMenuState extends State<AssetChoiceChip> {
-  // late PoolAssetField selectedItem;
-
   static const double menuButtonHeight = 48;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   selectedItem = widget.menuItemList[widget.initialSelectionIndex].$1;
-  // }
 
   void onChipPressed(final MenuController controller) {
     if (controller.isOpen) {
@@ -41,9 +27,6 @@ class AssetChoiceChip extends StatelessWidget {
   }
 
   void onMenuItemPressed(final PoolAssetField rec) {
-    // setState(() {
-    //   selectedItem = rec;
-    // });
     onSelected?.call(rec);
   }
 
@@ -62,11 +45,11 @@ class AssetChoiceChip extends StatelessWidget {
         return FilterChip(
           elevation: 1,
           showCheckmark: false,
-          backgroundColor: Colors.green,
+          // backgroundColor: Colors.green,
           label: DropdownAssetItem(
             value: chosenItem,
-            prefixColor: Colors.white,
-            mainColor: Colors.white,
+            // prefixColor: Colors.white,
+            // mainColor: Colors.white,
           ),
           // selected: true,
           onSelected: (final _) => onChipPressed(controller),

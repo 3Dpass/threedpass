@@ -29,12 +29,7 @@ class FromAddressTextField extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    // final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
-    // final theme = Theme.of(context);
-    // Colors from https://github.com/flutter/flutter/blob/936763f58963ef3dd103986fc232310c43360344/packages/flutter/lib/src/material/input_decorator.dart#L4561
-
-    final textStyle = Theme.of(context).customTextStyles;
-    // final colors = Theme.of(context).customColors;
+    final faded = Theme.of(context).customTextStyles.fadedBodyMedium;
 
     final allAccounts = BlocProvider.of<AppServiceLoaderCubit>(context)
         .state
@@ -66,13 +61,13 @@ class FromAddressTextField extends StatelessWidget {
       children: [
         Text(
           'from_address_label'.tr(),
-          style: textStyle.hintStyle,
+          style: faded,
         ),
         const H4(),
         // BlocBuilder<TransferInfoBloc, TransferInfoBlocState>(
         //   builder: (context, state) =>
         D3pDropdownButton<KeyPairData>(
-          context: context,
+          // context: context,
           isExpanded: true,
           items: accounts
               .map<DropdownMenuItem<KeyPairData>>(

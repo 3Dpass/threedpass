@@ -8,7 +8,7 @@ part of 'poscan_token_data.dart';
 
 PoscanAssetData _$PoscanAssetDataFromJson(Map<String, dynamic> json) =>
     PoscanAssetData(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       owner: json['owner'] as String,
       issuer: json['issuer'] as String,
       admin: json['admin'] as String,

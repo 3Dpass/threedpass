@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/asset_page_appbar.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/balance_section.dart';
@@ -17,7 +16,7 @@ class AssetsPage extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
       builder: (final context, final state) {
-        final theme = Theme.of(context);
+        // final theme = Theme.of(context);
         const children = [
           BalanceSection(),
           OpenPoolsButton(),
@@ -25,7 +24,7 @@ class AssetsPage extends StatelessWidget {
           ObjectsListAssets(),
         ];
         return Scaffold(
-          backgroundColor: theme.customColors.scaffoldBackground,
+          // TODO Refactor to D3pScaffold
           appBar: AssetPageAppbar(
             account: state.keyring.current,
           ),

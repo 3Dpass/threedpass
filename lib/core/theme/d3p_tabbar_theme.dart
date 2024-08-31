@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class D3pTabBarTheme extends TabBarTheme {
-  const D3pTabBarTheme()
-      : super(
-          indicator: const UnderlineTabIndicator(
+  D3pTabBarTheme(
+    final Color mainColor,
+  ) : super(
+          labelColor: mainColor,
+          indicator: UnderlineTabIndicator(
             borderSide: BorderSide(
-              color: Colors.green,
+              color: mainColor,
               width: 3,
             ),
           ),

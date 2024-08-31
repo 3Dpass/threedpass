@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
@@ -27,11 +27,11 @@ class NonNativeTokens extends StatelessWidget {
             return BlocBuilder<PoscanAssetsCubit, PoscanAssetsState>(
               builder: (final context, final poscanAssetsState) {
                 if (poscanAssetsState.isLoading) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 16),
+                  return const Padding(
+                    padding: EdgeInsets.only(top: 16),
                     child: Align(
                       alignment: Alignment.center,
-                      child: PlatformCircularProgressIndicator(),
+                      child: D3pProgressIndicator(size: null),
                     ),
                   );
                 }

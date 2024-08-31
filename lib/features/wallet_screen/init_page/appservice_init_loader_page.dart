@@ -8,8 +8,7 @@ class AppServiceInitLoaderPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return const D3pScaffold(
-      removeBackButton: true,
-      appbarTitle: 'wallet_header_title',
+      appBarTitle: 'wallet_header_title',
       body: Stack(
         children: [
           Align(

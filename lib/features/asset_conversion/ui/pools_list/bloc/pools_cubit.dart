@@ -4,6 +4,7 @@ import 'package:threedpass/features/asset_conversion/domain/use_cases/get_all_po
 
 class PoolsState {
   final List<PoolFullInfo> pools;
+  @Deprecated('Use AsyncValue')
   final bool isLoading;
   final String? error;
 

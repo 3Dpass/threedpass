@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 
@@ -27,19 +26,17 @@ class AccountChooseTileText extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final textStyles = Theme.of(context).customTextStyles;
+    final fadedBodyMedium = Theme.of(context).customTextStyles.fadedBodyMedium;
     return Text.rich(
       TextSpan(
         text: fixedName(),
-        style: textStyles.d3pBodyMedium,
         children: [
           TextSpan(
             text: shortAddress(),
-            style: textStyles.d3pBodyMedium.copyWith(color: D3pColors.disabled),
+            style: fadedBodyMedium,
           ),
         ],
       ),
     );
-    // return '${fixedName()}${shortAddress()}';
   }
 }

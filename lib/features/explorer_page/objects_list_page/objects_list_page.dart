@@ -1,11 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/features/explorer_page/objects_list_page/presentation/objects_list_appbar.dart';
+import 'package:threedpass/features/explorer_page/objects_list_page/presentation/reload_objects_icon_button.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/objects_list_item.dart';
@@ -19,15 +20,11 @@ class ObjectsListPage extends StatelessWidget {
   Widget build(final BuildContext context) {
     final controller =
         BlocProvider.of<PoscanObjectsCubit>(context).pagingController;
-    return PlatformScaffold(
-      appBar: PlatformAppBar(
-        title: const ObjectsListAppbar(),
-        cupertino: (final context, final platform) =>
-            CupertinoNavigationBarData(padding: EdgeInsetsDirectional.zero),
-        material: (final context, final platform) => MaterialAppBarData(
-          titleSpacing: 0,
-        ),
-      ),
+    return D3pScaffold(
+      appBarWidget: const ObjectsListAppbar(),
+      appBarActions: [
+        const ReloadObjectsIconButton(),
+      ],
       body: BlocBuilder<PoscanObjectsCubit, PoscanObjectsState>(
         buildWhen: (final previous, final current) =>
             previous.isLoading != current.isLoading,
@@ -47,7 +44,7 @@ class ObjectsListPage extends StatelessWidget {
                   ),
                   firstPageErrorIndicatorBuilder: (final context) =>
                       FirstPageExceptionIndicator(
-                    onTryAgain: () =>
+                    onTryAgain: () async =>
                         BlocProvider.of<PoscanObjectsCubit>(context).refresh(),
                     message: controller.error?.toString(),
                   ),

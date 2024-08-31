@@ -27,7 +27,7 @@ class PoScanRemoteRepository {
       sendNullAsArg: false,
     );
 
-    logger.v('Objects count on storage res:$res');
+    logger.t('Objects count on storage res:$res');
 
     final resStr = res.toString();
     final maybeInt = int.tryParse(resStr);
@@ -51,7 +51,7 @@ class PoScanRemoteRepository {
     );
 
     final resStr = res.toString();
-    logger.v('PALLET CALL RESULT: $resStr');
+    logger.t('PALLET CALL RESULT: $resStr');
     try {
       final resList = (res as List)
           .map((final dynamic e) => int.parse(e.toString()))

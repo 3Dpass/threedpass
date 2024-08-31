@@ -1,85 +1,74 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_appbar_theme.dart';
+import 'package:threedpass/core/theme/d3p_bottom_sheet_theme.dart';
+import 'package:threedpass/core/theme/d3p_card_theme.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
+import 'package:threedpass/core/theme/d3p_filled_button_theme.dart';
+import 'package:threedpass/core/theme/d3p_floating_action_button_theme.dart';
 import 'package:threedpass/core/theme/d3p_outlined_button_theme.dart';
 import 'package:threedpass/core/theme/d3p_tabbar_theme.dart';
-import 'package:threedpass/core/theme/d3p_text_style.dart';
+import 'package:threedpass/core/theme/d3p_text_button_theme.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/setup.dart';
 
 import 'd3p_elevated_button_theme.dart';
 
 class D3pThemeData {
-  static MaterialColor mainColor = Colors.green;
-  static const Color secondaryButtonBG = Color(0xFF6D9B83);
+  static final mainColor = D3pColors.mainColor;
+  // static const Color secondaryButtonBG = Color(0xFF6D9B83);
 
   static final Color shimmerBaseColor = Colors.grey.shade400;
   static final Color shimmerHighlightColor = Colors.grey.shade100;
 
   static const double buttonHeight = 50;
   static const double buttonPadding = 12;
-
-  static ThemeData get lightTheme {
-    final t = ThemeData(
-      primarySwatch: mainColor,
-      primaryColor: Colors.black,
-      disabledColor: D3pColors.disabled,
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-      textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          minimumSize: const Size.fromHeight(50),
-          textStyle: D3pBasicTextStyle.button,
-        ),
-      ),
-      textTheme: const TextTheme(
-        labelLarge: D3pBasicTextStyle.button,
-        bodyLarge: D3pBasicTextStyle.bodyLarge,
-        bodyMedium: D3pBasicTextStyle.bodyMedium,
-      ),
-      appBarTheme: const D3pAppBarTheme(),
-      tabBarTheme: const D3pTabBarTheme(),
-    );
-    final t1 = t.copyWith(
-      elevatedButtonTheme: D3pElevatedButtonTheme.theme(t),
-      outlinedButtonTheme: D3pOutlinedButtonTheme.theme(t),
-    );
-    return t1;
-  }
-
-  static ThemeData get darkTheme {
-    final t = ThemeData.dark().copyWith(
-      brightness: Brightness.dark,
-      colorScheme: ColorScheme.fromSwatch(
-        primarySwatch: mainColor,
-      ),
-      disabledColor: D3pColors.disabled,
-      primaryColor: Colors.black,
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-      textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          minimumSize: const Size.fromHeight(50),
-          textStyle: D3pBasicTextStyle.button,
-        ),
-      ),
-      textTheme: const TextTheme(
-        labelLarge: D3pBasicTextStyle.button,
-        bodyLarge: D3pBasicTextStyle.bodyLarge,
-        bodyMedium: D3pBasicTextStyle.bodyMedium,
-      ),
-      appBarTheme: const D3pAppBarTheme(),
-      tabBarTheme: const D3pTabBarTheme(),
-    );
-
-    final t1 = t.copyWith(
-      elevatedButtonTheme: D3pElevatedButtonTheme.theme(t),
-      outlinedButtonTheme: D3pOutlinedButtonTheme.theme(t),
-    );
-    return t1;
-  }
+  static const double buttonBorderRadius = D3pCardTheme.radiusValue;
 
   static ThemeData themeData(final Brightness brightness) {
-    return brightness == Brightness.light ? lightTheme : darkTheme;
+    // return brightness == Brightness.light ? lightTheme : darkTheme;
+    final t = ThemeData(
+      useMaterial3: false,
+      brightness: brightness,
+      // colorSchemeSeed: D3pColors.mainColor,
+      primarySwatch: D3pColors.mainColor,
+      visualDensity: VisualDensity.adaptivePlatformDensity,
+      appBarTheme: const D3pAppBarTheme(),
+      elevatedButtonTheme: D3pElevatedButtonTheme(),
+      filledButtonTheme: D3pFilledButtonTheme(),
+      textButtonTheme: D3pTextButtonThemeData(),
+      bottomSheetTheme: const D3pBottomSheetThemeData(),
+      inputDecorationTheme: const InputDecorationTheme(
+        hintStyle: TextStyle(color: D3pColors.disabled),
+      ),
+      cardTheme: D3pCardTheme.theme,
+    );
+
+    return t.copyWith(
+      tabBarTheme: D3pTabBarTheme(
+        brightness == Brightness.light
+            ? t.colorScheme.primaryContainer
+            : t.colorScheme.primary,
+      ),
+      outlinedButtonTheme: D3pOutlinedButtonTheme(
+        borderSideColor: t.colorScheme.primary,
+      ),
+      colorScheme: t.colorScheme.copyWith(
+        secondary: D3pColors.mainColor,
+      ),
+      floatingActionButtonTheme: D3pFloatingActionButtonThemeData(
+        foregroundColor: t.colorScheme.onPrimary,
+      ),
+    );
   }
+
+  static CupertinoThemeData cupertinoThemeData(final Brightness brightness) =>
+      CupertinoThemeData(
+        primaryColor: D3pColors.mainColor,
+        brightness: brightness,
+        barBackgroundColor: const D3pAppBarTheme().backgroundColor,
+        // scaffoldBackgroundColor: resolveBGColor(brightness),
+      );
 }
 
 class RealBrightness {

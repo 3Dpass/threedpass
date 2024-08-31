@@ -6,16 +6,11 @@ class _Label {
   final String? labelText;
 
   Widget? build(final BuildContext context) {
-    final textStyles = Theme.of(context).customTextStyles;
-
     if (labelText == null) return null;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2),
-      child: Text(
-        labelText!,
-        style: textStyles.d3pBodyMedium,
-      ),
+      child: Text(labelText!),
     );
   }
 }

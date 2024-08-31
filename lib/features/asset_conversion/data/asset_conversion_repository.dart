@@ -139,14 +139,14 @@ let res = await pools.getPoolReserves(api, m1, m2);
 return res;
 """;
 
-    // logger.v('CODE ' + getPoolReserversFunc);
+    // logger.t('CODE ' + getPoolReserversFunc);
 
     final dynamic res = await basicJSCall(
       getPoolReserversFunc,
       polkawalletSdk.webView!.webInstance!.webViewController,
     );
 
-    logger.v('poolReserve res: $res');
+    logger.t('poolReserve res: $res');
     // [10,530,015,434, 9,509,085,784]
 
     if (res == null) {
@@ -173,7 +173,7 @@ return res;
       polkawalletSdk.webView!.webInstance!.webViewController,
     );
     // [[[Native, {Asset: 4}], {lpToken: 0}]]
-    logger.v('PoolsBasic res: $res');
+    logger.t('PoolsBasic res: $res');
 
     res as List<dynamic>;
     final resT = res
@@ -264,7 +264,7 @@ return res;
     argsEncoded = const JsonEncoder().convert(args);
     argsEncoded = BigIntJsonHelper.replace(argsEncoded);
 
-    logger.v(argsEncoded);
+    logger.t(argsEncoded);
 
     return callSignExtrinsicUtil.abstractExtrinsicCall(
       argsEncoded: argsEncoded,
@@ -318,8 +318,8 @@ return res;
     argsEncoded = const JsonEncoder().convert(args);
     argsEncoded = BigIntJsonHelper.replace(argsEncoded);
 
-    logger.v(argsEncoded);
-    logger.v('Calling tx.assetConversion.${params.swapMethod.name}');
+    logger.t(argsEncoded);
+    logger.t('Calling tx.assetConversion.${params.swapMethod.name}');
     // params.updateStatus();
     // return Either.right(null);
 
@@ -349,7 +349,7 @@ return res;
       polkawalletSdk.webView!.webInstance!.webViewController,
     );
     // [[[Native, {Asset: 4}], {lpToken: 0}]]
-    logger.v(
+    logger.t(
       'callTokenServiceRoutine. tokenServiceCall: $tokenServiceCall res: $res',
     );
     if (res is String) {

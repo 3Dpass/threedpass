@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
 
 class EnumButton extends StatelessWidget {
   const EnumButton({
@@ -31,7 +30,7 @@ class EnumButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     final mainColor =
-        onPressed != null ? D3pThemeData.mainColor : theme.disabledColor;
+        onPressed != null ? theme.colorScheme.primary : theme.disabledColor;
 
     return Padding(
       padding: padding ?? EdgeInsets.zero,
@@ -44,11 +43,7 @@ class EnumButton extends StatelessWidget {
                 isEmpty: !isChosen,
               ),
               Flexible(
-                child: child != null
-                    ? child!
-                    : Text(
-                        text ?? ''
-                      ),
+                child: child != null ? child! : Text(text ?? ''),
               ),
               // placeholder to make flexible centered
               const _Icon(

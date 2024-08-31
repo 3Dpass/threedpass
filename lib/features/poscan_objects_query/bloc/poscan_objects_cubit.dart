@@ -14,9 +14,11 @@ part 'poscan_objects_cubit.g.dart';
 
 @CopyWith()
 class PoscanObjectsState {
+  @Deprecated('Use AsyncValue')
   final bool isLoading;
   final String? message;
   final int? storageCount; // Objects in remote storage
+  @Deprecated('Use AsyncValue')
   final bool areOwnerObjectsLoading;
 
   const PoscanObjectsState({
@@ -60,7 +62,7 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
           ),
         );
 
-    logger.v('Load user objects by ids: $ids');
+    logger.t('Load user objects by ids: $ids');
 
     if (ids != null) {
       for (final id in ids) {
@@ -80,7 +82,7 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
   }
 
   Future<void> pageRequestListener(final int pageKey) async {
-    logger.v('Request object id: $pageKey');
+    logger.t('Request object id: $pageKey');
 
     final objEither = await getUploadedObject.call(pageKey);
 
@@ -127,12 +129,13 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
   }
 
   Future<UploadedObject?> findObjectByHashes(final List<String> hashes) async {
-    await store.initialized.future;
-    return store.firstFullHashEqual(hashes);
+    await store.initialized
+        .future; // TODO Remove this. Add flag to poscanstoragecubit state if store is initialized
+    return store.firstIfContainsAnyHash(hashes);
   }
 
   Future<void> refresh() async {
-    logger.v('Explorer refresh is called');
+    logger.t('Explorer refresh is called');
     await setObjCount();
     pagingController.refresh();
   }

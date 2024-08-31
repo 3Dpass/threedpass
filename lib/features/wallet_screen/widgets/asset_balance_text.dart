@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
 class AssetBalanceText extends StatelessWidget {
   final String tokenSymbol;
@@ -13,18 +12,18 @@ class AssetBalanceText extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final styles = Theme.of(context).customTextStyles;
+    final styles = Theme.of(context).textTheme;
     return Text.rich(
       TextSpan(
         text: balance,
         children: [
           TextSpan(
             text: ' ' + tokenSymbol,
-            style: styles.d3pBodySmall,
+            style: styles.bodySmall,
           ),
         ],
       ),
-      style: styles.d3pheadlineMedium,
+      style: styles.headlineMedium!.copyWith(color: styles.bodyLarge!.color),
     );
   }
 }

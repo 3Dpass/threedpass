@@ -11,11 +11,13 @@ abstract class _$D3PRPCCubitStateCWProxy {
 
   D3PRPCCubitState chosenHashes(List<String> chosenHashes);
 
-  D3PRPCCubitState defaultProperties(List<PoscanProperty> defaultProperties);
-
   D3PRPCCubitState chosenProperties(List<PoscanProperty> chosenProperties);
 
   D3PRPCCubitState chosenCategory(MapPoscanCategory chosenCategory);
+
+  D3PRPCCubitState defaultProperties(List<PoscanProperty> defaultProperties);
+
+  D3PRPCCubitState isLoading(bool isLoading);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `D3PRPCCubitState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -26,9 +28,10 @@ abstract class _$D3PRPCCubitStateCWProxy {
   D3PRPCCubitState call({
     KeyPairData? account,
     List<String>? chosenHashes,
-    List<PoscanProperty>? defaultProperties,
     List<PoscanProperty>? chosenProperties,
     MapPoscanCategory? chosenCategory,
+    List<PoscanProperty>? defaultProperties,
+    bool? isLoading,
   });
 }
 
@@ -46,16 +49,19 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
       this(chosenHashes: chosenHashes);
 
   @override
-  D3PRPCCubitState defaultProperties(List<PoscanProperty> defaultProperties) =>
-      this(defaultProperties: defaultProperties);
-
-  @override
   D3PRPCCubitState chosenProperties(List<PoscanProperty> chosenProperties) =>
       this(chosenProperties: chosenProperties);
 
   @override
   D3PRPCCubitState chosenCategory(MapPoscanCategory chosenCategory) =>
       this(chosenCategory: chosenCategory);
+
+  @override
+  D3PRPCCubitState defaultProperties(List<PoscanProperty> defaultProperties) =>
+      this(defaultProperties: defaultProperties);
+
+  @override
+  D3PRPCCubitState isLoading(bool isLoading) => this(isLoading: isLoading);
 
   @override
 
@@ -68,9 +74,10 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
   D3PRPCCubitState call({
     Object? account = const $CopyWithPlaceholder(),
     Object? chosenHashes = const $CopyWithPlaceholder(),
-    Object? defaultProperties = const $CopyWithPlaceholder(),
     Object? chosenProperties = const $CopyWithPlaceholder(),
     Object? chosenCategory = const $CopyWithPlaceholder(),
+    Object? defaultProperties = const $CopyWithPlaceholder(),
+    Object? isLoading = const $CopyWithPlaceholder(),
   }) {
     return D3PRPCCubitState(
       account: account == const $CopyWithPlaceholder() || account == null
@@ -82,11 +89,6 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
               ? _value.chosenHashes
               // ignore: cast_nullable_to_non_nullable
               : chosenHashes as List<String>,
-      defaultProperties: defaultProperties == const $CopyWithPlaceholder() ||
-              defaultProperties == null
-          ? _value.defaultProperties
-          // ignore: cast_nullable_to_non_nullable
-          : defaultProperties as List<PoscanProperty>,
       chosenProperties: chosenProperties == const $CopyWithPlaceholder() ||
               chosenProperties == null
           ? _value.chosenProperties
@@ -97,6 +99,15 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
           ? _value.chosenCategory
           // ignore: cast_nullable_to_non_nullable
           : chosenCategory as MapPoscanCategory,
+      defaultProperties: defaultProperties == const $CopyWithPlaceholder() ||
+              defaultProperties == null
+          ? _value.defaultProperties
+          // ignore: cast_nullable_to_non_nullable
+          : defaultProperties as List<PoscanProperty>,
+      isLoading: isLoading == const $CopyWithPlaceholder() || isLoading == null
+          ? _value.isLoading
+          // ignore: cast_nullable_to_non_nullable
+          : isLoading as bool,
     );
   }
 }

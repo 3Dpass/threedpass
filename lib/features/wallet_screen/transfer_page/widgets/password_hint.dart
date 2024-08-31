@@ -7,7 +7,7 @@ class PasswordHint extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final textStyle = Theme.of(context).customTextStyles.hintStyle;
+    final faded = Theme.of(context).customTextStyles.fadedBodyMedium;
 
     return Padding(
       padding: const EdgeInsets.only(top: 2),
@@ -22,12 +22,12 @@ class PasswordHint extends StatelessWidget {
                   child: Icon(
                     Icons.content_paste_go,
                     size: 14,
-                    color: textStyle.color,
+                    color: faded.color,
                   ),
                 ),
                 TextSpan(text: 'password_hint_2'.tr()),
               ],
-              style: textStyle,
+              style: faded,
             ),
           ),
         ],

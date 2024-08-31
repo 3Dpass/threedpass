@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
+import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/screen_lock/d3p_screen_lock_create_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
@@ -51,13 +53,20 @@ class _NoPasswordSet extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return DefaultSettingsButton.openButton(
-      cardShape: CardShape.middle,
-      iconData: Icons.key,
-      iconColor: Colors.amber,
-      textValue: '',
-      onPressed: () => onPressed(context),
-      text: 'set_pin_button_label',
+    return Padding16(
+      child: LineButton(
+        icon: const Icon(
+          Icons.key,
+          color: Colors.amber,
+        ),
+        localization_key: 'set_pin_button_label',
+        goToBasicRight: const LineButtonRightValue(
+          chevronColor: D3pColors.disabled,
+          value: '',
+        ),
+        onBasePressed: () => onPressed(context),
+        cardShape: CardShape.middle,
+      ),
     );
   }
 }
@@ -93,13 +102,20 @@ class _PasswordWasSet extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return DefaultSettingsButton.openButton(
-      cardShape: CardShape.middle,
-      iconData: Icons.key_off,
-      iconColor: Colors.amber,
-      textValue: '',
-      onPressed: () => onPressed(context),
-      text: 'remove_pin_button_label',
+    return Padding16(
+      child: LineButton(
+        icon: const Icon(
+          Icons.key_off,
+          color: Colors.amber,
+        ),
+        localization_key: 'remove_pin_button_label',
+        goToBasicRight: const LineButtonRightValue(
+          chevronColor: D3pColors.disabled,
+          value: '',
+        ),
+        onBasePressed: () => onPressed(context),
+        cardShape: CardShape.middle,
+      ),
     );
   }
 }

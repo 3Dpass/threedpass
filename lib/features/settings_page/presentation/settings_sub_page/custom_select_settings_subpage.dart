@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/widgets/appbars/d3p_platfrom_appbar.dart';
-import 'package:threedpass/core/widgets/buttons/custom_back_button.dart';
-import 'package:threedpass/core/widgets/buttons/icon_button.dart';
+import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 
 abstract class CustomSelectSettingsSubPage extends StatefulWidget {
   const CustomSelectSettingsSubPage({super.key});
@@ -20,17 +16,8 @@ abstract class CustomSelectSettingsSubPageState<T>
 
   @override
   Widget build(final BuildContext context) {
-    final theme = Theme.of(context);
-    return PlatformScaffold(
-      backgroundColor: theme.customColors.scaffoldBackground,
-      appBar: D3pPlatformAppBar(
-        textAlign: TextAlign.center,
-        titleText: appbarTitle,
-        leading: const CustomBackButton(),
-        trailingActions: [
-          const D3pIconButton.fake(),
-        ],
-      ),
+    return D3pScaffold(
+      appBarTitle: appbarTitle,
       // ignore: avoid-returning-widgets
       body: bodyBuilderOverride(context),
     );

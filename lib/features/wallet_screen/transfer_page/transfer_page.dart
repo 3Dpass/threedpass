@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/widgets/buttons/custom_back_button.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/bloc/transfer_info_bloc.dart';
@@ -25,7 +26,8 @@ class TransferPage extends StatelessWidget {
     final transferInfo = BlocProvider.of<TransferInfoBloc>(context);
     // appService.keyring.
     return D3pScaffold(
-      appbarTitle: 'transfer_page_title'.tr() + ' ' + transferInfo.metaDTO.name,
+      appBarLeading: const CustomBackButton(),
+      appBarTitle: 'transfer_page_title'.tr() + ' ' + transferInfo.metaDTO.name,
       translateAppbar: false,
       body: Stack(
         children: [

@@ -19,7 +19,8 @@ class D3pSwitchButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final customStyles = Theme.of(context).customTextStyles;
+    final theme = Theme.of(context);
+    final customStyles = theme.customTextStyles;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,8 +31,8 @@ class D3pSwitchButton extends StatelessWidget {
             Text(
               text,
               style: onChanged != null
-                  ? customStyles.switchButtonLabelEnabled
-                  : customStyles.switchButtonLabelDisabled,
+                  ? theme.textTheme.bodyMedium
+                  : customStyles.fadedBodyMedium,
             ),
             if (helpText != null)
               D3pIconButton(

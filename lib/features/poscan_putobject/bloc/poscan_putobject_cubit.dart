@@ -7,7 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
-import 'package:threedpass/features/poscan_putobject/data/default_poscan_properties.dart';
+import 'package:threedpass/core/utils/logger.dart';
+import 'package:threedpass/features/poscan/domain/usecases/get_poscan_properties.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_property.dart';
 import 'package:threedpass/features/poscan_putobject/domain/usecases/put_object_usecase.dart';
@@ -18,16 +19,19 @@ part 'poscan_putobject_cubit.g.dart';
 class D3PRPCCubitState {
   final KeyPairData account;
   final List<String> chosenHashes;
-  final List<PoscanProperty> defaultProperties;
   final List<PoscanProperty> chosenProperties;
+  final List<PoscanProperty> defaultProperties;
   final MapPoscanCategory chosenCategory;
+  @Deprecated('Use AsyncValue')
+  final bool isLoading;
 
   const D3PRPCCubitState({
     required this.account,
     required this.chosenHashes,
-    required this.defaultProperties,
     required this.chosenProperties,
     required this.chosenCategory,
+    required this.defaultProperties,
+    required this.isLoading,
   });
 }
 
@@ -39,22 +43,41 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
     required this.putObjectUseCase,
     required this.localSnapshotName,
     required this.outerRouter,
+    required this.getPoscanProperties,
     required final List<String> initialHashes,
     required final KeyPairData initialAccount,
   }) : super(
           D3PRPCCubitState(
             account: initialAccount,
             chosenHashes: initialHashes,
-            defaultProperties: defaultProperties,
             chosenProperties: [],
+            defaultProperties: [],
+            isLoading: true,
             chosenCategory: PoscanCategories.first,
           ),
         );
 
+  Future<void> init() async {
+    final propsResponse = await getPoscanProperties.call(null);
+    propsResponse.when(
+      left: (final Failure value) {
+        logger.w(value);
+      },
+      right: (final List<PoscanProperty> value) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            defaultProperties: value,
+          ),
+        );
+      },
+    );
+  }
+
   @override
   final StackRouter outerRouter;
-
   final PutObject putObjectUseCase;
+  final GetPoscanProperties getPoscanProperties;
 
   final TextEditingController nApprovalsController =
       TextEditingController(text: '10');

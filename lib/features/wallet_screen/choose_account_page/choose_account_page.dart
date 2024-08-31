@@ -2,12 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/features/wallet_screen/choose_account_page/widgets/accounts_list.dart';
 import 'package:threedpass/router/route_paths.dart';
 
@@ -23,7 +23,7 @@ class SelectAccountPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return D3pScaffold(
-      appbarTitle: 'select_account_appbar_title',
+      appBarTitle: 'select_account_appbar_title',
       body: BlocBuilder<AppServiceLoaderCubit, AppService>(
         builder: (final context, final state) {
           if (state.status == AppServiceInitStatus.connected) {
@@ -33,7 +33,7 @@ class SelectAccountPage extends StatelessWidget {
               selectAccount: (final p0) => onSelectAccount(context, p0),
             );
           } else {
-            return Center(child: PlatformCircularProgressIndicator());
+            return const D3pProgressIndicator(size: null);
           }
         },
       ),

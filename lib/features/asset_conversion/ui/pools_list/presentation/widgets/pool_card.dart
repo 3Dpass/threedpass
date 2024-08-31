@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/buttons/secondary_button.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
@@ -150,7 +149,7 @@ class _LockedCoin extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final medium = Theme.of(context).customTextStyles.d3pBodyMedium;
+    final medium = Theme.of(context).textTheme.bodyMedium;
 
     return Text.rich(
       TextSpan(
@@ -159,7 +158,7 @@ class _LockedCoin extends StatelessWidget {
         children: [
           TextSpan(
             text: symbol,
-            style: medium.copyWith(color: D3pColors.disabled),
+            style: medium!.copyWith(color: D3pColors.disabled),
           ),
         ],
       ),

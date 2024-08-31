@@ -2,10 +2,12 @@ import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_va
 
 class PoscanProperty {
   final String name;
+  final PoscanPropertyType poscanPropertyType;
   final PropValue propValue;
 
   const PoscanProperty({
     required this.name,
+    required this.poscanPropertyType,
     required this.propValue,
   });
 
@@ -25,7 +27,10 @@ class PoscanProperty {
 
     return PoscanProperty(
       name: this.name,
+      poscanPropertyType: this.poscanPropertyType,
       propValue: newPropValue,
     );
   }
 }
+
+enum PoscanPropertyType { relative, absolute, unknown }

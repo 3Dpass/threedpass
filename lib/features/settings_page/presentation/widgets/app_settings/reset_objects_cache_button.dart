@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
@@ -78,44 +79,39 @@ class _State extends State<ResetObjectsCacheButton> {
                       ),
                     )
                   : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const SizedBox(width: 16),
-                        const Icon(
-                          Icons.storage,
-                          color: Colors.amber,
-                        ),
-                        const SizedBox(width: 16),
-                        D3pBodyMediumText(
-                          'reset_objects_cache_plural'.tr(
-                            args: [
-                              cachedObjects != null
-                                  ? 'objects_plural'.plural(cachedObjects!)
-                                  : '...',
-                            ],
-                          ),
-                          translate: false,
-                        ),
-                        Flexible(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              const Spacer(),
-                              Flexible(
-                                child: D3pTextButton(
-                                  // width: 105,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  icon: Icons.clear,
-                                  text: 'Clear'.tr(),
-                                  onPressed: isListenerSet
-                                      ? () => clearCache(context)
-                                      : null,
-                                ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            W16(),
+                            const Icon(
+                              Icons.storage,
+                              color: Colors.amber,
+                            ),
+                            W16(),
+                            D3pBodyMediumText(
+                              'reset_objects_cache_plural'.tr(
+                                args: [
+                                  cachedObjects != null
+                                      ? 'objects_plural'.plural(cachedObjects!)
+                                      : '...',
+                                ],
                               ),
-                              const SizedBox(width: 16),
-                            ],
-                          ),
+                              translate: false,
+                            ),
+                          ],
+                        ),
+                        D3pTextButton(
+                          // width: 105,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          icon: Icons.clear,
+                          text: 'Clear'.tr(),
+                          onPressed:
+                              isListenerSet ? () => clearCache(context) : null,
                         ),
                       ],
+                      // const SizedBox(width: 16),
                     ),
             ),
           ),

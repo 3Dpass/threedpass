@@ -79,7 +79,7 @@ class NonNativeTokenScreen extends StatelessWidget {
     }
 
     return D3pScaffold(
-      appbarTitle: appbarTitle(),
+      appBarTitle: appbarTitle(),
       translateAppbar: false,
       floatingActionButton: PoscanAssetTransferFloatingButton(
         poscanAssetMetadata: poscanAssetCombined.poscanAssetMetadata,

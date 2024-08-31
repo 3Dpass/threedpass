@@ -177,7 +177,7 @@ class Transfer extends UseCase<void, TransferUseCaseParams> {
         ),
       );
     }
-    logger.v('Created ${notifications.length} notifications');
+    logger.t('Created ${notifications.length} notifications');
     for (final n in notifications) {
       notificationsBloc.add(AddNotification(n));
     }
@@ -193,7 +193,7 @@ class Transfer extends UseCase<void, TransferUseCaseParams> {
     if (!addressCorrect) {
       return const Either.left(BadDataFailure('Wrong address'));
     }
-    logger.v(
+    logger.t(
       'TransferUseCase: metas=${params.metaInfos.length}, type: ${params.transferType}',
     );
     late final Map<dynamic, dynamic> res;

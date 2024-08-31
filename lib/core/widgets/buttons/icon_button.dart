@@ -1,9 +1,11 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class D3pIconButton extends StatelessWidget {
   const D3pIconButton({
-    required this.iconData,
+    this.iconData,
     this.padding,
     this.onPressed,
     this.iconColor,
@@ -12,13 +14,18 @@ class D3pIconButton extends StatelessWidget {
     this.emptyContraints = false,
     // this.text,
     this.cupertinoIcon,
+    this.iconWidget,
     super.key,
-  });
+  }) : assert(
+          iconData != null || iconWidget != null,
+          'Either iconData or iconWidget must be provided',
+        );
 
   const D3pIconButton.fake({
     super.key,
   })  : iconData = Icons.abc,
         size = null,
+        iconWidget = null,
         iconColor = Colors.transparent,
         emptyContraints = false,
         splashRadius = null,
@@ -26,7 +33,7 @@ class D3pIconButton extends StatelessWidget {
         cupertinoIcon = null,
         onPressed = null;
 
-  final IconData iconData;
+  final IconData? iconData;
   final Color? iconColor;
   final void Function()? onPressed;
   final double? size;
@@ -34,32 +41,34 @@ class D3pIconButton extends StatelessWidget {
   final double? splashRadius;
   final EdgeInsets? padding;
   final IconData? cupertinoIcon;
+  final Widget? iconWidget;
 
   @override
   Widget build(final BuildContext context) {
-    return PlatformIconButton(
-      icon: Icon(
-        iconData,
-        size: size,
-        color: iconColor,
-      ),
-      cupertinoIcon: cupertinoIcon != null
-          ? Icon(
-              cupertinoIcon,
+    if (Platform.isIOS || Platform.isMacOS) {
+      return CupertinoButton(
+        padding: padding,
+        onPressed: onPressed,
+        child: iconWidget ??
+            Icon(
+              cupertinoIcon ?? iconData,
               size: size,
               color: iconColor,
-            )
-          : null,
-      onPressed: onPressed,
-      material: (final _, final __) => MaterialIconButtonData(
-        padding: padding ?? EdgeInsets.zero,
+            ),
+      );
+    } else {
+      return IconButton(
+        padding: padding,
+        onPressed: onPressed,
+        icon: iconWidget ??
+            Icon(
+              iconData,
+              size: size,
+              color: iconColor,
+            ),
         constraints: emptyContraints ? const BoxConstraints() : null,
         splashRadius: splashRadius,
-        iconSize: size,
-      ),
-      cupertino: (context, platform) => CupertinoIconButtonData(
-        padding: padding ?? EdgeInsets.zero,
-      ),
-    );
+      );
+    }
   }
 }

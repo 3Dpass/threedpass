@@ -33,7 +33,7 @@ class CreateAccountFromObjectPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return const D3pScaffold(
-      appbarTitle: AccountAppbarTitle.import,
+      appBarTitle: AccountAppbarTitle.import,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 36),

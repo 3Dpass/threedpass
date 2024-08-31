@@ -1,11 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/app_settings/app_settings.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/hash_settings_block.dart';
-import 'package:threedpass/features/settings_page/presentation/widgets/preview_settings_block.dart';
-import 'package:threedpass/features/settings_page/presentation/widgets/settings_appbar.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/version_info.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/wallet_settings_block.dart';
 
@@ -17,15 +15,15 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return PlatformScaffold(
-      appBar: SettingsAppbar(),
-      body: const SingleChildScrollView(
+    return const D3pScaffold(
+      appBarTitle: 'settings_title',
+      body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             H8(),
             HashSettingsBlock(),
-            PreviewSettingsBlock(),
+            // PreviewSettingsBlock(),
             WalletSettingsBlock(),
             AppSettingsBlock(),
             H16(),

@@ -24,6 +24,7 @@ part 'remove_liquidity_cubit.g.dart';
 @CopyWith()
 class RemoveLiquidityState {
   final int percentage;
+  @Deprecated('Use AsyncValue')
   final bool isLoading;
   final RemoveLiquidityInfo? removeLiquidityInfo;
   final int? maxPercent;
@@ -62,10 +63,10 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
   }
 
   Future<void> init() async {
-    logger.v('Init RemoveLiquidityCubit');
+    logger.t('Init RemoveLiquidityCubit');
     setPercentage(state.percentage, false);
     await calcMaxPercent();
-    logger.v(
+    logger.t(
       'Init RemoveLiquidityCubit 2. maxPercent: ${state.maxPercent}, current: ${state.percentage}',
     );
     if (state.maxPercent != null && state.percentage > state.maxPercent!) {
@@ -92,7 +93,7 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
   static const defaultSlippage = 15;
 
   void setPercentage(final int percentage, final bool isMax) {
-    logger.v('Set percentage $percentage, isMax: $isMax');
+    logger.t('Set percentage $percentage, isMax: $isMax');
     customPercentage.text = '$percentage';
     emit(
       state.copyWith(

@@ -1,8 +1,5 @@
-import 'dart:ui';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
 
@@ -58,10 +55,9 @@ class PropertyMaxValueText extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final textStyles = theme.customTextStyles;
-    final enabledStyle = textStyles.d3pBodyMedium;
-    final disabledStyle =
-        textStyles.d3pBodyMedium.copyWith(color: D3pColors.disabled);
+    final textStyles = theme.textTheme;
+    final enabledStyle = textStyles.bodyMedium!;
+    final disabledStyle = theme.customTextStyles.fadedBodyMedium;
 
     return Text.rich(
       TextSpan(

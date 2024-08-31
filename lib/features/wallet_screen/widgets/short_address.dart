@@ -18,16 +18,22 @@ class ShortAddress extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final addressStr = Fmt.shorterAddress(address, pad: 10);
-    final styles = Theme.of(context).customTextStyles;
+    final medium = Theme.of(context).textTheme.bodyMedium;
+    final faded = Theme.of(context).customTextStyles.fadedBodyMedium;
     return Row(
       children: [
         Flexible(
           child: Text(
             '$prefix $addressStr',
-            style: colorSecondary ? styles.secondaryText : styles.d3pBodyMedium,
+            style: colorSecondary ? faded : medium,
           ),
         ),
-        colorSecondary ? const SizedBox() : CopyButton(address),
+        colorSecondary
+            ? const SizedBox()
+            : SizedBox(
+                height: 24,
+                child: CopyButton(address),
+              ),
       ],
     );
   }

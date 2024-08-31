@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/text/d3p_basic_text.dart';
 
 class D3pBodyLargeText extends StatelessWidget {
@@ -20,7 +19,7 @@ class D3pBodyLargeText extends StatelessWidget {
   Widget build(final BuildContext context) {
     return D3pBasicText(
       text,
-      style: Theme.of(context).customTextStyles.d3pBodyLarge,
+      style: Theme.of(context).textTheme.bodyLarge!,
       textAlign: textAlign,
       overflow: overflow,
       translate: translate,

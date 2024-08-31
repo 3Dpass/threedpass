@@ -64,7 +64,7 @@ class TransBytesInput {
     final realInput = hexInputFormatter.unmaskText(rawInput);
 
     if (int.tryParse(realInput, radix: 16) != null && realInput.length == 8) {
-      logger.v('Valid $realInput');
+      logger.t('Valid $realInput');
       return null;
     } else {
       return 'error_hex'.tr();

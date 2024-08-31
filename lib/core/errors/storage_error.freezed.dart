@@ -12,7 +12,7 @@ part of 'storage_error.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$StorageError {
@@ -75,25 +75,25 @@ class _$StorageErrorCopyWithImpl<$Res, $Val extends StorageError>
 }
 
 /// @nodoc
-abstract class _$$_ImpossibleOperationCopyWith<$Res> {
-  factory _$$_ImpossibleOperationCopyWith(_$_ImpossibleOperation value,
-          $Res Function(_$_ImpossibleOperation) then) =
-      __$$_ImpossibleOperationCopyWithImpl<$Res>;
+abstract class _$$ImpossibleOperationImplCopyWith<$Res> {
+  factory _$$ImpossibleOperationImplCopyWith(_$ImpossibleOperationImpl value,
+          $Res Function(_$ImpossibleOperationImpl) then) =
+      __$$ImpossibleOperationImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ImpossibleOperationCopyWithImpl<$Res>
-    extends _$StorageErrorCopyWithImpl<$Res, _$_ImpossibleOperation>
-    implements _$$_ImpossibleOperationCopyWith<$Res> {
-  __$$_ImpossibleOperationCopyWithImpl(_$_ImpossibleOperation _value,
-      $Res Function(_$_ImpossibleOperation) _then)
+class __$$ImpossibleOperationImplCopyWithImpl<$Res>
+    extends _$StorageErrorCopyWithImpl<$Res, _$ImpossibleOperationImpl>
+    implements _$$ImpossibleOperationImplCopyWith<$Res> {
+  __$$ImpossibleOperationImplCopyWithImpl(_$ImpossibleOperationImpl _value,
+      $Res Function(_$ImpossibleOperationImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ImpossibleOperation implements _ImpossibleOperation {
-  const _$_ImpossibleOperation();
+class _$ImpossibleOperationImpl implements _ImpossibleOperation {
+  const _$ImpossibleOperationImpl();
 
   @override
   String toString() {
@@ -101,9 +101,10 @@ class _$_ImpossibleOperation implements _ImpossibleOperation {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ImpossibleOperation);
+        (other.runtimeType == runtimeType &&
+            other is _$ImpossibleOperationImpl);
   }
 
   @override
@@ -173,29 +174,29 @@ class _$_ImpossibleOperation implements _ImpossibleOperation {
 }
 
 abstract class _ImpossibleOperation implements StorageError {
-  const factory _ImpossibleOperation() = _$_ImpossibleOperation;
+  const factory _ImpossibleOperation() = _$ImpossibleOperationImpl;
 }
 
 /// @nodoc
-abstract class _$$_NoDataStoredCopyWith<$Res> {
-  factory _$$_NoDataStoredCopyWith(
-          _$_NoDataStored value, $Res Function(_$_NoDataStored) then) =
-      __$$_NoDataStoredCopyWithImpl<$Res>;
+abstract class _$$NoDataStoredImplCopyWith<$Res> {
+  factory _$$NoDataStoredImplCopyWith(
+          _$NoDataStoredImpl value, $Res Function(_$NoDataStoredImpl) then) =
+      __$$NoDataStoredImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NoDataStoredCopyWithImpl<$Res>
-    extends _$StorageErrorCopyWithImpl<$Res, _$_NoDataStored>
-    implements _$$_NoDataStoredCopyWith<$Res> {
-  __$$_NoDataStoredCopyWithImpl(
-      _$_NoDataStored _value, $Res Function(_$_NoDataStored) _then)
+class __$$NoDataStoredImplCopyWithImpl<$Res>
+    extends _$StorageErrorCopyWithImpl<$Res, _$NoDataStoredImpl>
+    implements _$$NoDataStoredImplCopyWith<$Res> {
+  __$$NoDataStoredImplCopyWithImpl(
+      _$NoDataStoredImpl _value, $Res Function(_$NoDataStoredImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_NoDataStored implements _NoDataStored {
-  const _$_NoDataStored();
+class _$NoDataStoredImpl implements _NoDataStored {
+  const _$NoDataStoredImpl();
 
   @override
   String toString() {
@@ -203,9 +204,9 @@ class _$_NoDataStored implements _NoDataStored {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NoDataStored);
+        (other.runtimeType == runtimeType && other is _$NoDataStoredImpl);
   }
 
   @override
@@ -275,5 +276,5 @@ class _$_NoDataStored implements _NoDataStored {
 }
 
 abstract class _NoDataStored implements StorageError {
-  const factory _NoDataStored() = _$_NoDataStored;
+  const factory _NoDataStored() = _$NoDataStoredImpl;
 }

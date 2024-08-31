@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/compare_page/domain/entities/row_data.dart';
 
@@ -27,7 +26,7 @@ class AppTableRow extends StatelessWidget {
           Flexible(
             child: Text(
               rowData.hash,
-              style: Theme.of(context).customTextStyles.d3pBodyMedium.copyWith(
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontWeight: rowData.isStableHash ? FontWeight.bold : null,
                   ),
             ),

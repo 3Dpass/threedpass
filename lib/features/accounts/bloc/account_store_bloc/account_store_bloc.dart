@@ -3,7 +3,7 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/api/types/recoveryInfo.dart';
-import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/accounts/domain/account_advanced_options.dart';
 import 'package:threedpass/features/accounts/domain/account_info.dart';
 import 'package:threedpass/features/accounts/domain/rawseed_text.dart';
@@ -14,7 +14,10 @@ part 'account_store_state.dart';
 part 'account_store_bloc.g.dart';
 
 class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
-  AccountStoreBloc(this.outerContext) : super(_AccountStoreStateInitial()) {
+  AccountStoreBloc({
+    required this.outerContext,
+    required this.appServiceLoaderCubit,
+  }) : super(_AccountStoreStateInitial()) {
     on<SetCredentials>(_setCredentials);
     on<GenerateMnemonicKey>(_generateMnemonicKey);
     on<PopToRoout>(_popToRoout);
@@ -24,6 +27,7 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
   }
 
   final BuildContext outerContext;
+  final AppServiceLoaderCubit appServiceLoaderCubit;
 
   Future<void> _popToRoout(
     final PopToRoout event,
@@ -84,8 +88,9 @@ class AccountStoreBloc extends Bloc<AccountStoreEvent, AccountStoreState> {
     final GenerateMnemonicKey event,
     final Emitter<AccountStoreState> emit,
   ) async {
-    final data = await event.service.plugin.sdk.api.keyring.generateMnemonic(
-      event.service.plugin.basic.ss58!,
+    final service = appServiceLoaderCubit.state;
+    final data = await service.plugin.sdk.api.keyring.generateMnemonic(
+      service.networkStateData.ss58Format!,
       key: event.key,
       derivePath: state.accountAdvancedOptions.path,
       cryptoType: state.accountAdvancedOptions.type,

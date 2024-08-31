@@ -15,7 +15,6 @@ class ChooseList extends StatelessWidget {
       builder: (final context, final state) {
         final cubit = BlocProvider.of<CompareCubit>(context);
         return D3pDropdownButton<Snapshot>(
-          context: context,
           selectedItemBuilder: (final context) =>
               cubit.snapshotsToCompare.map<Widget>((final Snapshot item) {
             return Center(

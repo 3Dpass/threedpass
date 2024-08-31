@@ -32,6 +32,8 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
+    ndkVersion flutter.ndkVersion
+    
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
@@ -68,6 +70,7 @@ android {
     defaultConfig {
         applicationId "com.threedpass.wallet"
         minSdkVersion 24
+        buildToolsVersion "34"
         targetSdkVersion 34
         compileSdk 34
         versionCode flutterVersionCode.toInteger()

@@ -23,7 +23,7 @@ class _ChooseObjectDropdown extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: objectValueNotifier,
       builder: (final context, final _, final __) => _DropdownButtonHashObject(
-        context: context,
+        // context: context,
         objectsToUse: objectsToUse,
         objectValueNotifier: objectValueNotifier,
         onChanged: (final modelChosen) => onObjectChoose(modelChosen),
@@ -36,11 +36,11 @@ class _DropdownButtonHashObject extends D3pDropdownButton<HashObject> {
   _DropdownButtonHashObject({
     required final List<HashObject> objectsToUse,
     required super.onChanged,
-    required final BuildContext context,
+    // required final BuildContext context,
     required final ValueNotifier<HashObject> objectValueNotifier,
   }) : super(
           value: objectValueNotifier.value,
-          context: context,
+          // context: context,
           items: objectsToUse
               .map(
                 (final e) => DropdownMenuItem<HashObject>(

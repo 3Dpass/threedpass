@@ -18,7 +18,7 @@ class DeleteSnapshotsDialog extends StatelessWidget {
     for (final snap in selectSnapshotsCubit.state.snaps) {
       hashesBloc.add(
         DeleteHash(
-          hash: snap,
+          snap: snap,
         ),
       );
     }

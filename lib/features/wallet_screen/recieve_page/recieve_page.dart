@@ -24,7 +24,7 @@ class RecievePage extends StatelessWidget {
         BlocProvider.of<AppServiceLoaderCubit>(context).state.keyring.current;
     final address = accountData.address!;
     return D3pScaffold(
-      appbarTitle: 'recieve_page_title',
+      appBarTitle: 'recieve_page_title',
       body: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,

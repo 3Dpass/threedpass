@@ -28,6 +28,7 @@ class AssetPageAppbar extends AppBar {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                // D3pIconButton.fake(),
                 // D3pAddressIcon(
                 //   account.address,
                 //   svg: account.icon,
@@ -46,9 +47,8 @@ class AssetPageAppbar extends AppBar {
           ),
           actions: const [
             _ContactsPageIcon(),
-            SizedBox(width: 16),
+            W8(),
             NotificationsIconButton(),
-            SizedBox(width: 16),
           ],
         );
 }

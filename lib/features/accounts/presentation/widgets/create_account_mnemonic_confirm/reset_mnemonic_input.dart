@@ -9,12 +9,14 @@ class ResetMnemonicInput extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return D3pTextButton(
-      height: 35,
-      width: 100,
+    return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
-      text: 'Reset'.tr(),
-      onPressed: () => BlocProvider.of<MnemonicInputCubit>(context).reset(),
+      child: D3pTextButton(
+        height: 35,
+        width: 100,
+        text: 'Reset'.tr(),
+        onPressed: () => BlocProvider.of<MnemonicInputCubit>(context).reset(),
+      ),
     );
   }
 }

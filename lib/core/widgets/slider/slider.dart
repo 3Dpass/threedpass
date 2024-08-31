@@ -1,7 +1,8 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
 class D3pSlider extends StatefulWidget {
   const D3pSlider({
@@ -29,7 +30,8 @@ class D3pSlider extends StatefulWidget {
 class _State extends State<D3pSlider> {
   @override
   Widget build(final BuildContext context) {
-    final textStyles = Theme.of(context).customTextStyles;
+    final theme = Theme.of(context);
+    // final textStyles = theme.customTextStyles;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -38,29 +40,37 @@ class _State extends State<D3pSlider> {
         if (widget.label != null)
           Text(
             widget.label!.tr(),
-            style: textStyles.d3pBodySmall,
+            style: theme.textTheme.bodySmall,
           ),
         Row(
           children: [
             Text(
               '${widget.minValue}',
-              style: textStyles.d3pBodySmall,
+              style: theme.textTheme.bodySmall,
             ),
             Flexible(
               child: Container(
                 width: double.infinity,
-                child: PlatformSlider(
-                  value: widget.valueNotifier.value,
-                  min: widget.minValue,
-                  max: widget.maxValue,
-                  divisions: widget.divisions,
-                  onChanged: onChanged,
-                ),
+                child: Platform.isIOS || Platform.isMacOS
+                    ? CupertinoSlider(
+                        value: widget.valueNotifier.value,
+                        min: widget.minValue,
+                        max: widget.maxValue,
+                        divisions: widget.divisions,
+                        onChanged: onChanged,
+                      )
+                    : Slider(
+                        value: widget.valueNotifier.value,
+                        min: widget.minValue,
+                        max: widget.maxValue,
+                        divisions: widget.divisions,
+                        onChanged: onChanged,
+                      ),
               ),
             ),
             Text(
               '${widget.maxValue}',
-              style: textStyles.d3pBodySmall,
+              style: theme.textTheme.bodySmall,
             ),
           ],
         ),
@@ -68,7 +78,7 @@ class _State extends State<D3pSlider> {
           padding: const EdgeInsets.only(top: 0, left: 16, right: 16),
           child: Text(
             'pixel_ratio_help_text'.tr(),
-            style: textStyles.d3pBodySmall,
+            style: theme.textTheme.bodySmall,
           ),
         ),
       ],

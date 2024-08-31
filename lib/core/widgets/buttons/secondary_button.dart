@@ -18,7 +18,6 @@ class D3pSecondaryButton extends StatelessWidget {
     super.key,
   });
 
-  bool get isDisabled => onPressed == null;
   String get textToShow => translate ? localizedTextKey.tr() : localizedTextKey;
 
   @override

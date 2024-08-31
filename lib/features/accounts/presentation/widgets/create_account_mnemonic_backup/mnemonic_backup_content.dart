@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/mnemonic_text_field.dart';
 import 'package:threedpass/router/router.gr.dart';
@@ -16,7 +15,7 @@ class MnemonicBackupContent extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final textStyles = Theme.of(context).customTextStyles;
+    final textStyles = Theme.of(context).textTheme;
     return SafeArea(
       child: ListView(
         physics: const BouncingScrollPhysics(),
@@ -26,13 +25,12 @@ class MnemonicBackupContent extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             'backup_warn1_header'.tr(),
-            style:
-                textStyles.d3ptitleLarge.copyWith(fontWeight: FontWeight.bold),
+            style: textStyles.titleLarge!.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
           Text(
             'backup_warn1_text'.tr(),
-            style: textStyles.d3pBodyMedium,
+            style: textStyles.bodyMedium,
           ),
           const SizedBox(height: 12),
           MnemonicTextField(text: mnemonic),

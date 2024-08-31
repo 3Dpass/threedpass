@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_dropdown_theme.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
 // ignore: prefer-single-widget-per-file
 class D3pDropdownButton<T> extends DropdownButtonFormField<T> {
   D3pDropdownButton({
-    required final BuildContext context,
     required super.items,
     required super.onChanged,
     required super.value,
@@ -17,11 +14,8 @@ class D3pDropdownButton<T> extends DropdownButtonFormField<T> {
     super.validator,
     final String? hint,
   }) : super(
-          dropdownColor: Theme.of(context).customColors.scaffoldBackground,
-          hint: Text(
-            hint ?? '',
-            style: Theme.of(context).customTextStyles.textInputHintStyle,
-          ),
+          // dropdownColor: Theme.of(context).scaffoldBackgroundColor,
+          hint: Text(hint ?? ''),
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(horizontal: 8),
             filled: true,

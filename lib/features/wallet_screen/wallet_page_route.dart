@@ -40,6 +40,10 @@ AutoRoute walletPageRoute = AutoRoute(
     AutoRoute(
       page: ContactsRoute.page,
     ),
+    CustomRoute(
+      page: DeleteContactRoute.page,
+      customRouteBuilder: dialogBuilder,
+    ),
     AutoRoute(
       page: AddContactRoute.page,
     ),

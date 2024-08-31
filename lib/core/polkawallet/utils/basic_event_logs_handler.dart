@@ -50,16 +50,16 @@ abstract class BasicEventLogsHandler extends WebLogsHandler {
 
     final String? title = dataSection['title'] as String?;
     final String? message = dataSection['message'] as String?;
-    logger.v('Found log $title $message');
+    logger.t('Found log $title $message');
 
     switch (title) {
       case 'system.ExtrinsicSuccess':
-        logger.v('Found ExtrinsicSuccess for $msgId');
+        logger.t('Found ExtrinsicSuccess for $msgId');
         onExtrinsicSuccess();
         dispose();
         break;
       case 'system.ExtrinsicFailed':
-        logger.v('Found ExtrinsicFailed for $msgId');
+        logger.t('Found ExtrinsicFailed for $msgId');
         onExtrinsicFailed(message);
         dispose();
         break;

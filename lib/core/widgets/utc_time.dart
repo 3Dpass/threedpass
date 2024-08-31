@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 
 class UTCTime extends StatelessWidget {
@@ -19,8 +18,8 @@ class UTCTime extends StatelessWidget {
       );
     }
 
-    final medium = Theme.of(context).customTextStyles.d3pBodyMedium;
-    final small = Theme.of(context).customTextStyles.d3pBodySmall;
+    final medium = Theme.of(context).textTheme.bodyMedium;
+    final small = Theme.of(context).textTheme.bodySmall;
 
     return RichText(
       text: TextSpan(
@@ -33,7 +32,7 @@ class UTCTime extends StatelessWidget {
             child: Text(
               ' UTC',
               textScaleFactor: 0.8,
-              style: small.copyWith(
+              style: small!.copyWith(
                 color: D3pColors.disabled,
               ),
             ),

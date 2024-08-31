@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
+import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/app_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
@@ -19,18 +20,24 @@ class ShowZeroAssets extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
-      buildWhen: (final previous, final current) =>
-          previous.appSettings.showZeroAssets !=
-              current.appSettings.showZeroAssets ||
-          previous.appSettings.darkTheme != current.appSettings.darkTheme,
-      builder: (final context, final state) => DefaultSettingsButton.boolean(
-        text: 'show_all_assets_label',
-        iconData: Icons.exposure_zero_outlined,
-        iconColor: Colors.green,
-        initialValue: state.appSettings.showZeroAssets,
-        onPressedBool: (final bool p0) => onChanged(p0, context),
-        cardShape: CardShape.middle,
+    return Padding16(
+      child: BlocBuilder<SettingsConfigCubit, GlobalSettings>(
+        buildWhen: (final previous, final current) =>
+            previous.appSettings.showZeroAssets !=
+            current.appSettings.showZeroAssets,
+        builder: (final context, final state) => LineButton(
+          icon: const Icon(
+            Icons.exposure_zero_outlined,
+            color: Colors.green,
+          ),
+          localization_key: 'show_all_assets_label',
+          goToBasicRight: LineButtonRightBool(
+            onChange: (final bool p0) => onChanged(p0, context),
+            value: state.appSettings.showZeroAssets,
+          ),
+          onBasePressed: null,
+          cardShape: CardShape.middle,
+        ),
       ),
     );
   }

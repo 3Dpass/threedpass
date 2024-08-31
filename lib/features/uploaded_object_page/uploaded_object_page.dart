@@ -6,7 +6,9 @@ import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/utc_time.dart';
+import 'package:threedpass/features/legacy_preview/poscan_object_preview.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
+import 'package:threedpass/features/preview/preview_page/presentation/widgets/preview_page_body.dart';
 import 'package:threedpass/features/uploaded_object_page/widgets/snapshot_connected_to_uploaded.dart';
 import 'package:threedpass/features/uploaded_object_page/widgets/uploaded_object_id_text.dart';
 import 'package:threedpass/features/uploaded_object_page/widgets/uploaded_object_owner_text.dart';
@@ -21,10 +23,18 @@ class UploadedObjectPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return D3pScaffold(
-      appbarTitle: 'uploaded_object_title',
+      appBarTitle: 'uploaded_object_title',
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [
+          const H16(),
+          PoscanObjectPreview(
+            uploadedObject: uploadedObject,
+            size: Size(
+              MediaQuery.of(context).size.width - 16 * 2,
+              PreviewPageBody.objectPreviewHeight,
+            ),
+          ),
           const H16(),
           UploadedObjectIdText(uploadedObject: uploadedObject),
           const H16(),

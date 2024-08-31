@@ -45,7 +45,7 @@ class _State extends State<PoolAssetFieldChoice> {
   @override
   Widget build(final BuildContext context) {
     return D3pDropdownButton<PoolAssetField>(
-      context: context,
+      // context: context,
       items: items
           .map(
             (final e) => DropdownMenuItem<PoolAssetField>(

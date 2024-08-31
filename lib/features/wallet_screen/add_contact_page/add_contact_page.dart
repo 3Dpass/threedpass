@@ -24,7 +24,7 @@ class AddContactPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return D3pScaffold(
-      appbarTitle: 'add_contact_appbar_title',
+      appBarTitle: 'add_contact_appbar_title',
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

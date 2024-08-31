@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:scrollview_observer/scrollview_observer.dart';
 import 'package:threedpass/core/utils/logger.dart';
+import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/no_saved_objects_placeholder.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/objects_list.dart';
@@ -101,9 +101,7 @@ class _ScrollableObjectsListState extends State<ScrollableObjectsList> {
             );
           }
         } else {
-          return Center(
-            child: PlatformCircularProgressIndicator(),
-          );
+          return const D3pProgressIndicator(size: null);
         }
       },
     );
