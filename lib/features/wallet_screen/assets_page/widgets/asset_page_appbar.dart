@@ -22,7 +22,6 @@ class AssetPageAppbar extends AppBar {
           centerTitle: true,
           leading: const _OpenSelectAccountButton(),
           title: SizedBox(
-            // color: Colors.red,
             height: kToolbarHeight,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

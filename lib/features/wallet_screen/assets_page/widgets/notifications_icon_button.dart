@@ -13,12 +13,15 @@ import 'package:threedpass/router/router.gr.dart';
 class NotificationsIconButton extends StatelessWidget {
   const NotificationsIconButton({super.key});
 
-  Color lastNTypeToBadgeColor(final ExtrinsicStatus status) {
+  Color lastNTypeToBadgeColor({
+    required final ExtrinsicStatus status,
+    required final Color dangerColor,
+  }) {
     switch (status) {
       case ExtrinsicStatus.failed:
-        return Colors.red; // TODO Refactor. Use colors from Theme
+        return dangerColor;
       case ExtrinsicStatus.error:
-        return Colors.red;
+        return dangerColor;
       case ExtrinsicStatus.success:
         return D3pThemeData.mainColor;
       case ExtrinsicStatus.loading:
@@ -37,8 +40,10 @@ class NotificationsIconButton extends StatelessWidget {
           iconData: Icons.notifications_none_outlined,
           iconWidget: notificationsCount > 0
               ? Badge.count(
-                  backgroundColor:
-                      lastNTypeToBadgeColor(state.notifications.last.status),
+                  backgroundColor: lastNTypeToBadgeColor(
+                    status: state.notifications.last.status,
+                    dangerColor: Theme.of(context).colorScheme.error,
+                  ),
                   count: notificationsCount,
                   child: const Icon(Icons.notifications),
                 )

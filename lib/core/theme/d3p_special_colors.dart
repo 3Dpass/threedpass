@@ -22,8 +22,6 @@ class CustomColors {
 }
 
 extension SpecialCustomColors on CustomColors {
-  // Meaninful
-  Color get dangerColor => Colors.red;
   // For disabled items text
   Color get disabled => D3pColors.disabled;
   // Icon preview

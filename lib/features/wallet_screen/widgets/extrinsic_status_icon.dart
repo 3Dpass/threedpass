@@ -11,9 +11,9 @@ class ExtrinsicStatusIcon extends StatelessWidget {
   Widget build(final BuildContext context) {
     switch (status) {
       case ExtrinsicStatus.error:
-        return const Icon(
+        return Icon(
           Icons.error_outline,
-          color: Colors.red,
+          color: Theme.of(context).colorScheme.error,
         );
       case ExtrinsicStatus.loading:
         return const D3pProgressIndicator(
@@ -26,9 +26,9 @@ class ExtrinsicStatusIcon extends StatelessWidget {
           color: Colors.green,
         );
       case ExtrinsicStatus.failed:
-        return const Icon(
+        return Icon(
           Icons.close,
-          color: Colors.red,
+          color: Theme.of(context).colorScheme.error,
         );
     }
   }

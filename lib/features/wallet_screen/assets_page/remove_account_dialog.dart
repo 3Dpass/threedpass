@@ -67,7 +67,7 @@ class RemoveAccountDialog extends StatelessWidget {
         D3pTextButton(
           onPressed: () => deleteAccount(appServiceLoaderCubit, context),
           text: 'Delete'.tr(),
-          textColor: customColors.dangerColor,
+          textColor: Theme.of(context).colorScheme.error,
         ),
       ],
     );

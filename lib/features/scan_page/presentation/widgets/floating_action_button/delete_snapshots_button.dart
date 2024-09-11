@@ -11,9 +11,10 @@ class DeleteSnaphotsButton extends StatelessWidget {
     final selectBloc = BlocProvider.of<SelectSnapshotsCubit>(context);
     return FloatingActionButton(
       heroTag: 'delete_snapshots',
-      backgroundColor: Colors.red,
+      backgroundColor: Theme.of(context).colorScheme.error,
       child: const Icon(Icons.delete),
-      onPressed: () => showDialog<dynamic>(
+      onPressed: () async => showDialog<dynamic>(
+        // TODO Move to router
         context: context,
         builder: (final context) => DeleteSnapshotsDialog(
           selectSnapshotsCubit: selectBloc,

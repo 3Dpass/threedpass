@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
@@ -38,7 +39,7 @@ class _State extends State<PoscanResult> {
     final foundObj = await BlocProvider.of<PoscanObjectsCubit>(context)
         .findObjectByHashes(snap.hashesWithPrefix);
 
-    print('FIND OBJ BY HASHES ${snap.hashesWithPrefix} $foundObj');
+    logger.t('FIND OBJ BY HASHES ${snap.hashesWithPrefix} $foundObj');
 
     if (mounted) {
       setState(() {
