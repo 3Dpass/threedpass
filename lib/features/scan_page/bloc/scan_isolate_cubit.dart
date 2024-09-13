@@ -1,39 +1,30 @@
-import 'dart:isolate';
+import 'dart:async';
 
+import 'package:async/async.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/utils/logger.dart';
 
-class ScanIsolateData {
-  const ScanIsolateData({
-    required this.isolate,
-    required this.port,
-  });
+class ScanState {
+  final CancelableOperation<List<String>>? op;
 
-  final Isolate isolate;
-  final ReceivePort port;
+  const ScanState({required this.op});
 }
 
-class ScanIsolateCubit extends Cubit<ScanIsolateData?> {
-  ScanIsolateCubit() : super(null);
+class ScanIsolateCubit extends Cubit<ScanState> {
+  ScanIsolateCubit() : super(const ScanState(op: null));
 
   static const String cancelMsg =
       '%#User canceled scan tag#%'; // Tag for message handler
 
-  void setData(final Isolate i, final ReceivePort p) {
-    emit(
-      ScanIsolateData(
-        isolate: i,
-        port: p,
-      ),
-    );
+  void setData(final CancelableOperation<List<String>> op) {
+    emit(ScanState(op: op));
   }
 
-  void setNull() {
-    if (state != null) {
+  Future<void> setNull() async {
+    if (state.op != null) {
       logger.i('Stop scan');
-      state?.isolate.removeOnExitListener(state!.port.sendPort);
-      state?.isolate.kill();
+      unawaited(state.op?.cancel());
     }
-    emit(null);
+    emit(const ScanState(op: null));
   }
 }

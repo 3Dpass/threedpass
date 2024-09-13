@@ -36,8 +36,8 @@ dependencies:
   ## Core
   auto_route: ^8.1.4
   ffi: ^2.0.1
-  calc: # TODO Remove. Move to rust_helper
-    path: packages/calc
+  # calc: # TODO Remove. Move to rust_helper
+  #   path: packages/calc
   get_it: ^7.6.0
   flutter_bloc: ^8.1.3
   # flutter_form_bloc: ^0.30.1  # Use reactive forms instead
@@ -53,6 +53,7 @@ dependencies:
         ref: 1d79f05f057f3381725c40f3d014f7db16da6e3f # release/0.5.1 # branch name
   decimal: ^2.3.3
   rational: ^2.2.3
+  async: ^2.11.0
 
   ## Code gen
   copy_with_extension: ^5.0.3 # TODO REMOVE. Use only freezed

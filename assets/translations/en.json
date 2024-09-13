@@ -99,7 +99,7 @@
     "preview_settings_pixel_ratio_label": "Pixel ratio",
     "wallet_settings_istestnet_switch": "Is Test net",
     "node_url_label": "Node URL",
-    "error_hex": "Invalid input. Must be 8 digits",
+    "error_hex": "Invalid input. Must be 8 symbols",
 
     "pixel_ratio_help_text": "Decreasing the value reduces preview quality, but increases performance.",
     
@@ -176,7 +176,7 @@
     "create_credentials_name": "Name",
     "create_credentials_name_error": "Name can not be empty",
     "create_credentials_password": "Password",
-    "create_credentials_password_error": "6 to 18 digits and contains numbers and letters",
+    "create_credentials_password_error": "6 to 18 symbols and contains numbers and letters",
     "create_credentials_password2": "Confirm Password",
     "create_credentials_password2_error": "Inconsistent passwords",
 

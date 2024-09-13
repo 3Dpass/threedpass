@@ -11,10 +11,10 @@ class ScanIndicator extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return BlocBuilder<ScanIsolateCubit, ScanIsolateData?>(
+    return BlocBuilder<ScanIsolateCubit, ScanState>(
       builder: (final context, final state) => AnimatedSize(
         duration: const Duration(milliseconds: 1000),
-        child: state != null
+        child: state.op != null
             ? Column(
                 children: [
                   const H8(),
@@ -28,7 +28,7 @@ class ScanIndicator extends StatelessWidget {
                       Flexible(
                         child: D3pTextButton(
                           text: 'Cancel',
-                          onPressed: () =>
+                          onPressed: () async =>
                               BlocProvider.of<ScanIsolateCubit>(context)
                                   .setNull(),
                         ),

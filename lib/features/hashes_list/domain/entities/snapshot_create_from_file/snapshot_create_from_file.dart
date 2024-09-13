@@ -1,4 +1,9 @@
-import 'package:calc/calc.dart';
+import 'dart:async';
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:async/async.dart';
+import 'package:rust_lzss/rust_lzss.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/utils/hash_file.dart';
 import 'package:threedpass/core/utils/logger.dart';
@@ -10,6 +15,7 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/scan_page/bloc/scan_isolate_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/algorithm.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
+import 'package:convert/convert.dart';
 
 part './trans_bytes.dart';
 
@@ -133,21 +139,40 @@ class SnapshotFileFactory {
     final String filePath,
     final String transBytes,
   ) async {
-    final algo = AlgorithmMaster.mapToRust[settings.algorithm]!;
-    logger.i(
-      "Scan\n  file: $filePath\n  transBytes: $transBytes\n  gridSize: ${settings.gridSize}\n  nSections:${settings.nSections}\n  algorithm: $algo",
+    final op = CancelableOperation<List<String>>.fromFuture(
+      getHashes(settings, filePath, transBytes),
+      onCancel: () => scanIsolateCubit.setNull(),
     );
-    final calculator = Calc2(
-      gridSize: settings.gridSize,
-      nSections: settings.nSections,
-      filePath: filePath,
-      transBytes: transBytes,
-      algorithm: algo,
-      sendNone: settings.transBytesMode == TransBytesMode.none,
+    scanIsolateCubit.setData(op);
+
+    final resList = await op.value;
+    return resList.join('\n');
+  }
+
+  Future<List<String>> getHashes(
+    final ScanSettings settings,
+    final String filePath,
+    final String transBytes,
+  ) async {
+    final algo = AlgorithmMaster.mapToRust[settings.algorithm]!;
+    final transBytesIntList = hex.decode(transBytes); // TODO check if correct
+    final transBytesUint8List = Uint8List.fromList(transBytesIntList);
+
+    logger.i(
+      "Scan\n  file: $filePath\n  transBytes: $transBytes\n$transBytesIntList  gridSize: ${settings.gridSize}\n  nSections:${settings.nSections}\n  algorithm: $algo",
     );
 
-    return calculator.calcHashes(
-      scanIsolateCubit.setData,
+    final File f = File(filePath);
+    final content = f.readAsBytesSync();
+
+    return calc(
+      input: content,
+      algoRaw: algo,
+      par1: settings.gridSize,
+      par2: settings.nSections,
+      trans: settings.transBytesMode == TransBytesMode.none
+          ? null
+          : U8Array4(transBytesUint8List),
     );
   }
 }
