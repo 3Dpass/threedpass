@@ -8,7 +8,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/api/apiKeyring.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/logger.dart';
-import 'package:threedpass/core/utils/show_text_snackbar.dart';
 import 'package:threedpass/features/accounts/bloc/account_store_bloc/account_store_bloc.dart';
 import 'package:threedpass/features/accounts/domain/account_create.dart';
 import 'package:threedpass/features/accounts/domain/account_info.dart';
@@ -53,10 +52,9 @@ class CreateAccountCredentialsPage extends StatelessWidget {
         ).createAccount(
           appServiceLoaderCubit,
           () {
-            FastSnackBar(
-              textCode: 'error_import_duplicate',
-              context: context,
-            ).show();
+            Fluttertoast.showToast(
+              msg: 'error_import_duplicate'.tr(),
+            );
           },
         );
       } on Exception catch (e) {

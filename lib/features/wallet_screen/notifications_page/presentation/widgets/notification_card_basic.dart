@@ -79,9 +79,9 @@ class _TransferStatus extends StatelessWidget {
           ),
         );
       case ExtrinsicStatus.success:
-        return const D3pBodyMediumText(
+        return D3pBodyMediumText(
           'status_success',
-          color: Colors.green,
+          color: Theme.of(context).colorScheme.primary,
         );
       case ExtrinsicStatus.error:
         return const D3pBodyMediumText(

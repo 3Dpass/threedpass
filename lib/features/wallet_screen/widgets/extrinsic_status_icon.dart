@@ -21,9 +21,9 @@ class ExtrinsicStatusIcon extends StatelessWidget {
           size: 24,
         );
       case ExtrinsicStatus.success:
-        return const Icon(
+        return Icon(
           Icons.check,
-          color: Colors.green,
+          color: Theme.of(context).colorScheme.primary,
         );
       case ExtrinsicStatus.failed:
         return Icon(

@@ -9,6 +9,7 @@ class HomeContextState {
   final BuildContext context;
 }
 
+@Deprecated('Remove this')
 class HomeContextCubit extends Cubit<HomeContextState> {
   HomeContextCubit(final HomeContextState s) : super(s);
 

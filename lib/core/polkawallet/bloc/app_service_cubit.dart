@@ -131,6 +131,8 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       password: account.password,
     );
 
+    await state.plugin.sdk.api.service.keyring
+        .injectKeyPairsToWebView(state.keyring);
     // This variable is never used, but somehow this line solves bug
     // when [keyring.importAccount] returns wrong address.
 

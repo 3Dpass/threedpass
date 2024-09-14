@@ -35,14 +35,17 @@ class NotificationsIconButton extends StatelessWidget {
       builder: (final context, final state) {
         final notificationsCount = state.notifications.length;
 
+        final colorScheme = Theme.of(context).colorScheme;
+
         return D3pIconButton(
           emptyContraints: true,
           iconData: Icons.notifications_none_outlined,
           iconWidget: notificationsCount > 0
               ? Badge.count(
+                  textColor: colorScheme.onPrimary,
                   backgroundColor: lastNTypeToBadgeColor(
                     status: state.notifications.last.status,
-                    dangerColor: Theme.of(context).colorScheme.error,
+                    dangerColor: colorScheme.error,
                   ),
                   count: notificationsCount,
                   child: const Icon(Icons.notifications),

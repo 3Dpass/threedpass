@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:super_core/super_core.dart';
@@ -57,7 +56,8 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
 
       if (hashObj == null) {
         logger.e(
-            'Could not found hash obj to delete snapshot ${event.snap.name}');
+          'Could not found hash obj to delete snapshot ${event.snap.name}',
+        );
         return; // TODO Report error to user
       }
 
