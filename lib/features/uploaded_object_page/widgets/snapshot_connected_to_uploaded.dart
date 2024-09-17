@@ -24,10 +24,9 @@ class SnapshotConnectedToUploaded extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final localObjectsBloc = BlocProvider.of<HashesListBloc>(context).state;
-    if (!(localObjectsBloc is HashesListLoaded)) {
+    if (!localObjectsBloc.loaded) {
       return const SizedBox();
     }
-    // localObjectsBloc as HashesListLoaded;
 
     final localObjects = localObjectsBloc.objects;
     final localSnapshots = <Snapshot>[];

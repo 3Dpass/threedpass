@@ -72,7 +72,7 @@ class SnapshotFileFactory {
   }
 
   static HashObject? insertSnapIntoHashObject(
-    final HashesListLoaded hashListState,
+    final HashesListState hashListState,
     final Snapshot newSnapshot,
   ) {
     final snapName = newSnapshot.name;
@@ -107,30 +107,26 @@ class SnapshotFileFactory {
 
     final snapName = snapshotName(rawObjName);
 
-    if (hashListState is HashesListLoaded) {
-      Snapshot newSnapshot = Snapshot(
-        name: '1 $snapName',
-        hashes: hashes.split('\n'),
-        stamp: DateTime.now(),
-        relativePath: relativePath,
-        settingsConfig: settings.copyWith(
-          transBytes: transBytes,
-        ),
-        fileHash: hashFile(filePath),
-        isNew: true,
-      );
+    Snapshot newSnapshot = Snapshot(
+      name: '1 $snapName',
+      hashes: hashes.split('\n'),
+      stamp: DateTime.now(),
+      relativePath: relativePath,
+      settingsConfig: settings.copyWith(
+        transBytes: transBytes,
+      ),
+      fileHash: hashFile(filePath),
+      isNew: true,
+    );
 
-      final hashObject = insertSnapIntoHashObject(hashListState, newSnapshot);
+    final hashObject = insertSnapIntoHashObject(hashListState, newSnapshot);
 
-      if (hashObject != null) {
-        final i = hashObject.snapshots.length;
-        newSnapshot = newSnapshot.copyWith(name: '${i + 1} $snapName');
-      }
-
-      return Pair<HashObject?, Snapshot>(hashObject, newSnapshot);
-    } else {
-      throw Exception('Hashes list is not initalized :(');
+    if (hashObject != null) {
+      final i = hashObject.snapshots.length;
+      newSnapshot = newSnapshot.copyWith(name: '${i + 1} $snapName');
     }
+
+    return Pair<HashObject?, Snapshot>(hashObject, newSnapshot);
   }
 
   /// Calc hashes

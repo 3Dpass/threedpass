@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
@@ -10,13 +11,21 @@ import 'package:threedpass/features/hashes_list/domain/repositories/hashes_repos
 
 part 'hashes_list_event.dart';
 part 'hashes_list_state.dart';
+part 'hashes_list_bloc.freezed.dart';
 
 class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
   HashesListBloc({
     required this.hashesRepository,
     required this.objectsDirectory,
-  }) : super(HashesListInitial()) {
-    on<DeleteHash>(_deleteHash);
+  }) : super(
+          const HashesListState(
+            objects: [],
+            loaded: false,
+            isDeletingInProcess: false,
+            requiresScroll: false,
+          ),
+        ) {
+    on<DeleteSnapshots>(_deleteHash);
     on<DeleteObject>(_deleteObject);
     on<AddObject>(_addObject);
     on<SaveSnapshot>(_saveSnapshot);
@@ -39,48 +48,64 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     final Emitter<HashesListState> emit,
   ) async {
     emit(
-      HashesListLoaded(
+      state.copyWith(
         objects: event.objects,
+        loaded: true,
       ),
     );
   }
 
   Future<void> _deleteHash(
-    final DeleteHash event,
+    final DeleteSnapshots event,
     final Emitter<HashesListState> emit,
   ) async {
-    if (state is HashesListLoaded) {
-      final objectsList = (state as HashesListLoaded).objects;
-      final hashObj = objectsList
-          .findOrNull((final obj) => obj.snapshots.contains(event.snap));
+    if (!state.isDeletingInProcess) {
+      emit(state.copyWith(isDeletingInProcess: true));
+      print('Set isDeletingInProcess');
+    }
+
+    final objectsList = List<HashObject>.from(state.objects);
+
+    for (final snap in event.snapshots) {
+      logger.t('Start deleting snapshot ${snap.name}');
+
+      // objectsList.forEach((final obj) {
+      //   logger.t(
+      //     'Obj ${obj.name} has ${obj.snapshots.length} snaps: ${obj.snapshots.map((e) => e.name).join('\n')}',
+      //   );
+      // });
+
+      final hashObj =
+          objectsList.findOrNull((final obj) => obj.snapshots.contains(snap));
 
       if (hashObj == null) {
         logger.e(
-          'Could not found hash obj to delete snapshot ${event.snap.name}',
+          'Could not found hash obj to delete snapshot ${snap.name}',
         );
-        return; // TODO Report error to user
+        continue;
       }
 
       if (hashObj.snapshots.length == 1) {
-        add(DeleteObject(object: hashObj));
-        return;
+        // If single snapshot, delete object
+        await deleteObjectUtil(objects: objectsList, objectToDelete: hashObj);
+      } else {
+        // If more than one snapshot, replace object with fewer snapshots
+        final newSnapshotsList = List<Snapshot>.from(hashObj.snapshots);
+        newSnapshotsList.remove(snap);
+        final newObj = hashObj.copyWith(snapshots: newSnapshotsList);
+        await hashesRepository.replaceObject(hashObj, newObj);
+        objectsList.replace(hashObj, newObj);
       }
 
-      final newSnapshotsList = List<Snapshot>.from(hashObj.snapshots);
-      newSnapshotsList.remove(event.snap);
-
-      final newObj = hashObj.copyWith(snapshots: newSnapshotsList);
-
-      await hashesRepository.replaceObject(hashObj, newObj);
-
-      objectsList.replace(hashObj, newObj);
-
-      emit(
-        HashesListLoaded(
-          objects: List<HashObject>.from(objectsList),
-        ),
-      );
+      logger.t('Finish deleting snapshot ${snap.name}');
     }
+
+    emit(
+      state.copyWith(
+        objects: objectsList,
+        isDeletingInProcess: false,
+      ),
+    );
   }
 
   Future<void> _deleteObject(
@@ -88,18 +113,21 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     final Emitter<HashesListState> emit,
   ) async {
     await hashesRepository.deleteObject(event.object);
+    final list = List<HashObject>.from(state.objects);
+    await deleteObjectUtil(objects: list, objectToDelete: event.object);
+    emit(
+      state.copyWith(objects: list),
+    );
+  }
 
-    if (state is HashesListLoaded) {
-      final list = (state as HashesListLoaded).objects;
-      list.removeWhere(
-        (final element) => element == event.object,
-      );
-      emit(
-        HashesListLoaded(
-          objects: list,
-        ),
-      );
-    }
+  Future<void> deleteObjectUtil({
+    required final List<HashObject> objects,
+    required final HashObject objectToDelete,
+  }) async {
+    await hashesRepository.deleteObject(objectToDelete);
+    objects.removeWhere(
+      (final element) => element == objectToDelete,
+    );
   }
 
   Future<void> _addObject(
@@ -108,81 +136,67 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
   ) async {
     await hashesRepository.addObject(event.object);
 
-    if (state is HashesListLoaded) {
-      final list = (state as HashesListLoaded).objects;
-      list.add(event.object);
+    final list = List<HashObject>.from(state.objects);
+    list.add(event.object);
 
-      emit(
-        HashesListLoaded(
-          objects: list,
-          requiresScroll: true,
-        ),
-      );
-    }
+    emit(
+      state.copyWith(
+        objects: list,
+        requiresScroll: true,
+      ),
+    );
   }
 
   Future<void> _saveSnapshot(
     final SaveSnapshot event,
     final Emitter<HashesListState> emit,
   ) async {
-    if (state is HashesListLoaded) {
-      final list = (state as HashesListLoaded).objects;
-      final newObj = event.object
-          .copyWith(snapshots: [...event.object.snapshots, event.hash]);
-      await hashesRepository.replaceObject(event.object, newObj);
-      list.replace(event.object, newObj);
+    final list = List<HashObject>.from(state.objects);
+    final newObj = event.object
+        .copyWith(snapshots: [...event.object.snapshots, event.hash]);
+    await hashesRepository.replaceObject(event.object, newObj);
+    list.replace(event.object, newObj);
 
-      emit(
-        HashesListLoaded(
-          objects: List<HashObject>.from(list),
-          requiresScroll: true,
-        ),
-      );
-    }
+    emit(
+      state.copyWith(
+        objects: list,
+        requiresScroll: true,
+      ),
+    );
   }
 
   Future<void> _replaceSnapshot(
     final ReplaceSnapshot event,
     final Emitter<HashesListState> emit,
   ) async {
-    if (state is HashesListLoaded) {
-      final list = (state as HashesListLoaded).objects;
+    final list = List<HashObject>.from(state.objects);
 
-      final newSnapshotsList = List<Snapshot>.from(event.object.snapshots);
-      newSnapshotsList.replace(event.oldSnapshot, event.newSnapshot);
-      final newObj = event.object.copyWith(snapshots: newSnapshotsList);
-      await hashesRepository.replaceObject(event.object, newObj);
-      list.replace(event.object, newObj);
+    final newSnapshotsList = List<Snapshot>.from(event.object.snapshots);
+    newSnapshotsList.replace(event.oldSnapshot, event.newSnapshot);
+    final newObj = event.object.copyWith(snapshots: newSnapshotsList);
+    await hashesRepository.replaceObject(event.object, newObj);
+    list.replace(event.object, newObj);
 
-      emit(
-        HashesListLoaded(
-          objects: List<HashObject>.from(list),
-        ),
-      );
-    }
+    emit(
+      state.copyWith(objects: list),
+    );
   }
 
   Future<void> _unmarkNewSnap(
     final UnmarkNewSnap event,
     final Emitter<HashesListState> emit,
   ) async {
-    if (state is HashesListLoaded) {
-      final list = (state as HashesListLoaded).objects;
-      final obj = event.object;
+    final list = List<HashObject>.from(state.objects);
+    final obj = event.object;
 
-      // find old snapshot place
-      final oldSnapIndex = obj.snapshots.indexOf(event.snap);
-      // replace it with new one
-      if (oldSnapIndex != -1) {
-        obj.snapshots[oldSnapIndex] = event.snap.copyWith(isNew: false);
-        emit(
-          HashesListLoaded(objects: list),
-        );
-      } else {
-        logger.e(
-          'Not found a snapshot in object ${obj.name}. Snapshot name=${event.snap.name}',
-        );
-      }
+    // find old snapshot place
+    final oldSnapIndex = obj.snapshots.indexOf(event.snap);
+    // replace it with new one
+    if (oldSnapIndex != -1) {
+      obj.snapshots[oldSnapIndex] = event.snap.copyWith(isNew: false);
+      emit(
+        state.copyWith(objects: list),
+      );
     }
   }
 
@@ -190,17 +204,11 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     final ReplaceObject event,
     final Emitter<HashesListState> emit,
   ) async {
-    if (state is HashesListLoaded) {
-      final stateLL = state as HashesListLoaded;
-      final list = stateLL.objects;
-      list.replace(event.oldObj, event.newObj);
-      emit(
-        HashesListLoaded(objects: list),
-      );
-      await hashesRepository.replaceObject(event.oldObj, event.newObj);
-    } else {
-      logger.e('Replace object is called, but state is not HashesListLoaded');
-      return;
-    }
+    final list = List<HashObject>.from(state.objects);
+    list.replace(event.oldObj, event.newObj);
+    emit(
+      state.copyWith(objects: list),
+    );
+    await hashesRepository.replaceObject(event.oldObj, event.newObj);
   }
 }

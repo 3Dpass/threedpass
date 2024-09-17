@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,10 +44,12 @@ class ThreeDApp extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitDown,
-      DeviceOrientation.portraitUp,
-    ]);
+    unawaited(
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitDown,
+        DeviceOrientation.portraitUp,
+      ]),
+    );
 
     return GlobalStatesProvider(
       child: ThemeBuilder(

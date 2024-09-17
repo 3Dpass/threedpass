@@ -83,12 +83,6 @@ class _D3ObjectItem extends StatelessWidget {
     // Get objects with snapshots
     final hashObjects = BlocProvider.of<HashesListBloc>(context).state;
 
-    assert(
-      hashObjects is HashesListLoaded,
-      'Hashes list has to be loaded to create preview',
-    );
-    hashObjects as HashesListLoaded;
-
     // Find objects with stable hashes
     final realObjects = hashObjects.objects
         .where((final obj) => obj.stableHashes.isNotEmpty)
