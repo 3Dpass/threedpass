@@ -1,4 +1,4 @@
-import 'package:threedp_graphql/features/extrinsics/data/query/__generated__/get_extrnsics.data.gql.dart';
+import 'package:threedpass/features/graphql/extrinsics/data/query/__generated__/get_extrnsics.data.gql.dart';
 
 extension IsExtrinsicRelevant on GGetExtrinsicsData_getExtrinsics_objects {
   bool isRelevant(final String accountID) {

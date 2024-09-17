@@ -55,10 +55,11 @@ dependencies:
   decimal: ^2.3.3
   rational: ^2.2.3
   async: ^2.11.0
+  fpdart: ^1.1.0
 
   ## Code gen
   copy_with_extension: ^5.0.3 # TODO REMOVE. Use only freezed
-  freezed: ^2.3.5
+  freezed_annotation: ^2.4.4
   equatable: ^2.0.5 # TODO REMOVE. Use only freezed
   json_annotation: ^4.9.0 # TODO REMOVE. Use only freezed
 
@@ -76,12 +77,16 @@ dependencies:
   # Child packages. # TTODO Move all to main app
   super_core:
     path: ./packages/super_core
-  threedp_graphql:
-    path: ./packages/threedp_graphql
+  # threedp_graphql:
+  #   path: ./packages/threedp_graphql
   rust_lzss:
     path: ./packages/rust_lzss
 
-  gql_code_builder: ^0.7.1 # Fix compilations. Do not remove
+  # Graphql
+  ferry: ^0.16.0+1
+  ferry_hive_store: ^0.5.2
+  gql_http_link: ^1.1.0
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   # integration_test:
@@ -90,12 +95,15 @@ dev_dependencies:
     sdk: flutter
 
   ## Generators
+  build_runner:
   hive_generator: ^2.0.0
   isar_generator: 3.1.0+1
   copy_with_extension_gen: ^5.0.3 # TODO REMOVE. Use only freezed
-  build_runner:
   auto_route_generator: ^8.0.0
+  freezed: ^2.5.2
   json_serializable: ^6.3.1 # TODO REMOVE. Use only freezed
+  ferry_generator: ^0.12.0
+  gql_code_builder: ^0.13.0
 
   ## Dev utils
   flutter_launcher_icons: ^0.13.1

@@ -1,6 +1,5 @@
 import 'package:super_core/super_core.dart';
-import 'package:threedp_graphql/features/transfers_history/domain/entities/transfers_request_params.dart';
-import 'package:super_core/usecase.dart';
+import 'package:threedpass/features/graphql/transfers_history/domain/entities/transfers_request_params.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/data/repositories/transfers_repository.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/domain/entities/transfers_dto.dart';
 

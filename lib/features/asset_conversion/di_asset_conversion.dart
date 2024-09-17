@@ -11,7 +11,7 @@ import 'package:threedpass/features/asset_conversion/domain/use_cases/calc_remov
 import 'package:threedpass/features/asset_conversion/domain/use_cases/calc_remove_liquidity_max_percent.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/calc_swap_info.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/create_pool.dart';
-import 'package:threedpass/features/asset_conversion/domain/use_cases/get_all_pools.dart';
+import 'package:threedpass/features/asset_conversion/domain/use_cases/get_basic_pools.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/remove_liquidity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/swap_assets.dart';
 import 'package:threedpass/features/asset_conversion/ui/add_liquidity/bloc/add_liquidity_cubit.dart';
@@ -21,6 +21,7 @@ import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/bloc/re
 import 'package:threedpass/features/asset_conversion/ui/swap/bloc/swap_cubit.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
+import 'package:threedpass/features/poscan_assets/domain/use_cases/get_all_tokens_data.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 
 class DIAssetConversion extends DIModule {
@@ -32,15 +33,16 @@ class DIAssetConversion extends DIModule {
         callSignExtrinsicUtil: getIt<CallSignExtrinsicUtil>(),
       ),
     );
-    getIt.registerFactory<GetAllPools>(
-      () => GetAllPools(
+    getIt.registerFactory<GetBasicPools>(
+      () => GetBasicPools(
         assetConversionRepository: getIt<AssetConversionRepository>(),
         poscanAssetsRepo: getIt<PoscanAssetsRepository>(),
+        getAllTokensData: getIt<GetAllTokensData>(),
       ),
     );
     getIt.registerLazySingleton<PoolsCubit>(
       () => PoolsCubit(
-        getAllPools: getIt<GetAllPools>(),
+        getAllPools: getIt<GetBasicPools>(),
       ),
     );
 

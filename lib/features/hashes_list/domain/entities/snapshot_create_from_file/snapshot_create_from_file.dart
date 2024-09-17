@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:async/async.dart';
+import 'package:convert/convert.dart';
 import 'package:rust_lzss/rust_lzss.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/utils/hash_file.dart';
@@ -15,7 +16,6 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/scan_page/bloc/scan_isolate_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/algorithm.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
-import 'package:convert/convert.dart';
 
 part './trans_bytes.dart';
 

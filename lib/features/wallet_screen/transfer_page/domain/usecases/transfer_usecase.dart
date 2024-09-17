@@ -191,7 +191,7 @@ class Transfer extends UseCase<void, TransferUseCaseParams> {
     final addressCorrect = await checkAllAddresses(appService, txParams);
 
     if (!addressCorrect) {
-      return const Either.left(BadDataFailure('Wrong address'));
+      return Either.left(BadDataFailure('Wrong address'));
     }
     logger.t(
       'TransferUseCase: metas=${params.metaInfos.length}, type: ${params.transferType}',
@@ -238,7 +238,7 @@ class Transfer extends UseCase<void, TransferUseCaseParams> {
     // print('Finish TransferUseCase, res: $res');
     // final String key = res.keys.first as String;
     if (res['title'] == 'error') {
-      return Either.left(NoDataFailure(res['message'].toString()));
+      return Either.left(BadDataFailure(res['message'].toString()));
     } else {
       return const Either.right(null);
     }

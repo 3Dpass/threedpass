@@ -1,17 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/utils/async_value.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart';
-import 'package:threedpass/features/asset_conversion/domain/use_cases/get_all_pools.dart';
+import 'package:threedpass/features/asset_conversion/domain/use_cases/get_basic_pools.dart';
 
-class PoolsState {
+typedef PoolsState = AsyncValue<_State>;
+
+class _State {
   final List<PoolFullInfo> pools;
-  @Deprecated('Use AsyncValue')
-  final bool isLoading;
-  final String? error;
 
-  const PoolsState({
+  const _State({
     required this.pools,
-    required this.error,
-    required this.isLoading,
   });
 }
 
@@ -19,30 +17,29 @@ class PoolsCubit extends Cubit<PoolsState> {
   PoolsCubit({
     required this.getAllPools,
   }) : super(
-          const PoolsState(
-            pools: [],
-            error: null,
-            isLoading: true,
+          const AsyncValue.loading(
+            _State(
+              pools: [],
+            ),
           ),
         );
 
-  final GetAllPools getAllPools;
+  final GetBasicPools getAllPools;
 
   Future<void> update({required final String address}) async {
     final data = await getAllPools.call(GetAllPoolsParams(address: address));
     data.when(
       left: (final e) => emit(
-        PoolsState(
-          error: e.cause,
-          pools: state.pools,
-          isLoading: false,
+        AsyncValue.error(
+          e,
+          StackTrace.current, // TODO Set real stacktrace from Failure
         ),
       ),
       right: (final data) => emit(
-        PoolsState(
-          error: null,
-          pools: data,
-          isLoading: false,
+        AsyncValue.data(
+          _State(
+            pools: data,
+          ),
         ),
       ),
     );

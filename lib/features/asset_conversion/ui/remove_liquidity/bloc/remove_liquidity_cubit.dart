@@ -170,7 +170,7 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
     final BuildContext context,
   ) async {
     if (state.removeLiquidityInfo == null) {
-      return const Either.left(BadDataFailure('Params were not calculated'));
+      return Either.left(BadDataFailure('Params were not calculated'));
     }
 
     final lpTokenBurn = Decimal.fromBigInt(poolFullInfo.lpBalance!) *

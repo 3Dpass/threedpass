@@ -24,7 +24,7 @@ class SwapPage extends StatelessWidget {
     // TODO Refactor move to get pools assets usecase
     final poolsState = BlocProvider.of<PoolsCubit>(context).state;
     final assetsInPools = <int>{};
-    poolsState.pools.forEach((final pool) {
+    poolsState.value!.pools.forEach((final pool) {
       if (!pool.basicInfo.firstAsset.isNative) {
         assetsInPools.add(pool.basicInfo.firstAsset.assetId!);
       }

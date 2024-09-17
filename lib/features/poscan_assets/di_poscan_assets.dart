@@ -6,6 +6,7 @@ import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/create_asset.dart';
+import 'package:threedpass/features/poscan_assets/domain/use_cases/get_all_tokens_data.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/mint_asset.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/set_metadata.dart';
 import 'package:threedpass/features/poscan_assets/ui/create_assset/bloc/create_poscan_asset_cubit.dart';
@@ -87,6 +88,12 @@ class DIPoscanAssets extends DIModule {
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         mintAsset: getIt<MintAsset>(),
         outerRouter: router,
+      ),
+    );
+
+    getIt.registerFactory<GetAllTokensData>(
+      () => GetAllTokensData(
+        poscanAssetsRepo: getIt<PoscanAssetsRepository>(),
       ),
     );
   }

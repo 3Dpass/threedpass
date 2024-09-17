@@ -101,7 +101,7 @@ class AssetConversionRepositoryImpl extends AssetConversionRepository {
       return Either.right(lpb.balanceBigInt);
     } on Object catch (e) {
       logger.e(e);
-      return Either.left(NoDataFailure(e.toString()));
+      return Either.left(BadDataFailure(e.toString()));
     }
   }
 
@@ -124,7 +124,7 @@ class AssetConversionRepositoryImpl extends AssetConversionRepository {
       );
     } on Object catch (e) {
       logger.e(e);
-      return Either.left(NoDataFailure(e.toString()));
+      return Either.left(BadDataFailure(e.toString()));
     }
   }
 

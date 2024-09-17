@@ -2,12 +2,12 @@
 
 import 'dart:convert';
 
-import 'package:threedp_graphql/features/extrinsics/data/query/__generated__/get_extrnsics.data.gql.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/utils/encode_address.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 import 'package:threedpass/core/polkawallet/utils/find_token_symbol.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
+import 'package:threedpass/features/graphql/extrinsics/data/query/__generated__/get_extrnsics.data.gql.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_create.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_mint.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/asset_history_set_meta_data.dart';

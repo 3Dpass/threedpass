@@ -14,10 +14,12 @@ mixin ExtrinsicShowLoadingMixin {
     fastCheckPassed = true;
     DefaultLoadingDialog.hide(context);
     outerRouter.pop();
-    Fluttertoast.showToast(
-      msg: 'Extrinsic signed and broadcasted',
-      backgroundColor: D3pThemeData.mainColor,
-      toastLength: Toast.LENGTH_LONG,
+    unawaited(
+      Fluttertoast.showToast(
+        msg: 'Extrinsic signed and broadcasted',
+        backgroundColor: D3pThemeData.mainColor,
+        toastLength: Toast.LENGTH_LONG,
+      ),
     );
   }
 

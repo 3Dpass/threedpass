@@ -292,11 +292,11 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
   ) async {
     final slippageTolerance = int.tryParse(slippageToleranceController.text);
     if (slippageTolerance == null) {
-      return const Either.left(BadDataFailure('Invalid slippageTolerance'));
+      return Either.left(BadDataFailure('Invalid slippageTolerance'));
     }
 
     if (state.firstAsset == state.secondAsset) {
-      return const Either.left(BadDataFailure('Can not swap same asset'));
+      return Either.left(BadDataFailure('Can not swap same asset'));
     }
 
     final secondAmountToSendResponse =

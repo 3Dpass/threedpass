@@ -33,7 +33,7 @@ return res;
     } on Object catch (e) {
       logger.e(e);
       return Either.left(
-        NoDataFailure('Error: $e'),
+        BadDataFailure('Error: $e'),
       ); // TODO Add polkadot error type
     }
   }

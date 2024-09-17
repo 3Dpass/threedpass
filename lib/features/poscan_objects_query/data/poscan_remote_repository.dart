@@ -1,9 +1,6 @@
 import 'package:super_core/super_core.dart';
-import 'package:threedpass/core/errors/parse_failure.dart';
-import 'package:threedpass/core/errors/type_mismatch.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/polkawallet/failures.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/utils/to_string_dynamic.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
@@ -17,7 +14,7 @@ class PoScanRemoteRepository {
 
   Future<Either<Failure, int>> objCount() async {
     if (appServiceLoaderCubit.state.status != AppServiceInitStatus.connected) {
-      return const Either.left(AppServiceIsNotInitialized());
+      return Either.left(BadDataFailure('AppService is not initialized'));
     }
 
     final dynamic res =
@@ -34,13 +31,13 @@ class PoScanRemoteRepository {
     if (maybeInt != null) {
       return Either.right(maybeInt);
     } else {
-      return Either.left(NoDataFailure(resStr));
+      return Either.left(BadDataFailure(resStr));
     }
   }
 
   Future<Either<Failure, List<int>>> owners(final String accountId) async {
     if (appServiceLoaderCubit.state.status != AppServiceInitStatus.connected) {
-      return const Either.left(AppServiceIsNotInitialized());
+      return Either.left(BadDataFailure('AppService is not initialized'));
     }
 
     final dynamic res =
@@ -66,7 +63,7 @@ class PoScanRemoteRepository {
     final int id,
   ) async {
     if (appServiceLoaderCubit.state.status != AppServiceInitStatus.connected) {
-      return const Either.left(AppServiceIsNotInitialized());
+      return Either.left(BadDataFailure('AppService is not initialized'));
     }
 
     final dynamic res =
@@ -86,17 +83,17 @@ class PoScanRemoteRepository {
         );
       } on Object catch (e) {
         return Either.left(
-          ParseFailure(
+          BadDataFailure(
             'Could not parse UploadedObject ' + e.toString(),
           ),
         );
       }
     } else {
       return Either.left(
-        TypeMismatch(
-          varName: 'res',
-          expected: 'Map',
-          actual: res.runtimeType.toString(),
+        WrongTypeFailure(
+          'res',
+          'Map',
+          res.runtimeType.toString(),
         ),
       );
     }

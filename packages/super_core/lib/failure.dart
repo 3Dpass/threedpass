@@ -1,31 +1,32 @@
 import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {
-  // TODO Replace to Exception
-  final String? cause;
+  final String cause;
+  final StackTrace stackTrace;
 
-  const Failure([this.cause]);
+  Failure(this.cause, [StackTrace? stackTrace])
+      : this.stackTrace = stackTrace ?? StackTrace.current;
 
   @override
   List<Object> get props => [];
 }
 
 class NetworkFailure extends Failure {
-  const NetworkFailure([final String? cause]) : super(cause);
-}
-
-class NoDataFailure extends Failure {
-  const NoDataFailure([final String? cause]) : super(cause);
+  NetworkFailure(final String cause, [StackTrace? stackTrace])
+      : super(cause, stackTrace);
 }
 
 class WrongTypeFailure extends Failure {
-  const WrongTypeFailure(
-      final String varName, final String expectedType, final String actualType)
+  WrongTypeFailure(
+      final String varName, final String expectedType, final String actualType,
+      [StackTrace? stackTrace])
       : super(
           '$varName should be $expectedType, but it\'s type $actualType',
+          stackTrace,
         );
 }
 
 class BadDataFailure extends Failure {
-  const BadDataFailure([final String? cause]) : super(cause);
+  BadDataFailure(final String cause, [StackTrace? stackTrace])
+      : super(cause, stackTrace);
 }

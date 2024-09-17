@@ -29,7 +29,7 @@ class CreatePool extends UseCase<void, CreatePoolParams> {
     final CreatePoolParams params,
   ) async {
     if (params.asset1.isNative && params.asset2.isNative) {
-      return const Either.left(
+      return Either.left(
         BadDataFailure('Impossible to create pool of two native assets'),
       );
     }

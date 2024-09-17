@@ -239,7 +239,7 @@ return p;
       }
     } on Object catch (e) {
       logger.e(e);
-      return Either.left(NoDataFailure(e.toString()));
+      return Either.left(BadDataFailure(e.toString()));
     }
   }
 }

@@ -193,6 +193,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "8.9.2"
+  built_value_generator:
+    dependency: transitive
+    description:
+      name: built_value_generator
+      sha256: bb06c5e9dbdbd35ed6de21520e2e5112582c964fa584e2a4bb59887fc7a169b0
+      url: "https://pub.dev"
+    source: hosted
+    version: "8.9.2"
   characters:
     dependency: transitive
     description:
@@ -402,45 +410,53 @@ packages:
     source: hosted
     version: "1.3.1"
   ferry:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: ferry
-      sha256: b22ebfa5bea298c23dcdd93c78c985a1e121640130c9ca9f1624142eeccf1c39
+      sha256: "84928943cc7786c1a1c875a1dba876a2c396d4397e55fba75671d9dc7d4dec88"
       url: "https://pub.dev"
     source: hosted
-    version: "0.11.2+1"
+    version: "0.16.0+1"
   ferry_cache:
     dependency: transitive
     description:
       name: ferry_cache
-      sha256: b92cf28a91f1cecc1613aadb5487faea49be2d4b8cd296e3142ca9f3ed719cac
+      sha256: dc0e47dd37e0cb355f36c8d88bb2ebfccd78afeb3567597378073881bdac3280
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.4"
+    version: "0.9.0+1"
   ferry_exec:
     dependency: transitive
     description:
       name: ferry_exec
-      sha256: "72ed94d825b56b01a209d300a6c998fa0ce88538737fb65d708bf22f24d409ff"
+      sha256: "40eaf60a06ba0df21e54bc9ce22a97f89b10449b929ea77d5b5ab28c3781ee65"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "0.6.1"
+  ferry_generator:
+    dependency: "direct dev"
+    description:
+      name: ferry_generator
+      sha256: "6637ea751297f56c8971691f63b1191d14bf649dacfdcaa08a594915eba47bda"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.12.0"
   ferry_hive_store:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: ferry_hive_store
-      sha256: "397b13ae1b660dfdb665e2f5a71c51ce49cb024401c0a2d71b2ad43e3be49978"
+      sha256: "62a8329dabb2c3f79b8b5161e17a0c9d4e5d570579ea32ea555c78ae2334e095"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.5"
+    version: "0.5.2"
   ferry_store:
     dependency: transitive
     description:
       name: ferry_store
-      sha256: "39a03e2c722e272840a455efa9bb7097fcdab8952bc7621ead797ea73e84ff21"
+      sha256: "8a1d63aa72fe3f8322ffc7f64963b7c107f74b31c05cb7bddad226f0466538fb"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.5"
+    version: "0.5.3+1"
   ffi:
     dependency: "direct main"
     description:
@@ -597,8 +613,16 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "8.2.8"
-  freezed:
+  fpdart:
     dependency: "direct main"
+    description:
+      name: fpdart
+      sha256: "7413acc5a6569a3fe8277928fc7487f3198530f0c4e635d0baef199ea36e8ee9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
+  freezed:
+    dependency: "direct dev"
     description:
       name: freezed
       sha256: a434911f643466d78462625df76fd9eb13e57348ff43fe1f77bbe909522c67a1
@@ -606,7 +630,7 @@ packages:
     source: hosted
     version: "2.5.2"
   freezed_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: freezed_annotation
       sha256: c2e2d632dd9b8a2b7751117abcfc2b4888ecfe181bd9fca7170d9ef02e595fe2
@@ -657,42 +681,58 @@ packages:
     dependency: transitive
     description:
       name: gql
-      sha256: "998304fbb88a3956cfea10cd27a56f8e5d4b3bc110f03c952c18a9310774e8bb"
+      sha256: "994e0c530b5ca9fce716945031b90c7925eb00bd37624c43ad4cb51883f383b3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.14.0"
+    version: "1.0.0+1"
   gql_code_builder:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: gql_code_builder
-      sha256: "66fc942416d9703e59ac732b2cb4e8442261fc90e1fcf89881b5b796d0803d02"
+      sha256: e1002177a33fc4460ffde86187d01f3fc714627e9418dff7c4a8cf6f26119d63
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.1"
+    version: "0.13.0"
+  gql_code_builder_serializers:
+    dependency: transitive
+    description:
+      name: gql_code_builder_serializers
+      sha256: "5344091f97afb44b15840e32889cacc18116e095105d07671ba762e897c465d4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   gql_exec:
     dependency: transitive
     description:
       name: gql_exec
-      sha256: "0d1fdb2e4154efbfc1dcf3f35ec36d19c8428ff0d560eb4c45b354f8f871dc50"
+      sha256: "957db95ba37028001f76c1904e18b848f57cfef878e572ce77c6d898fafecf8f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.3"
+    version: "1.0.0+1"
   gql_http_link:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: gql_http_link
-      sha256: "89ef87b32947acf4189f564c095f1148b0ab9bb9996fe518716dbad66708b834"
+      sha256: ef6ad24d31beb5a30113e9b919eec20876903cc4b0ee0d31550047aaaba7d5dd
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.5"
+    version: "1.1.0"
   gql_link:
     dependency: transitive
     description:
       name: gql_link
-      sha256: f7973279126bc922d465c4f4da6ed93d187085e597b3480f5e14e74d28fe14bd
+      sha256: "4aa288a1e67c899b0d746a2209e949fd0dc87e56d9b759a5cdc46a7069722cf3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.1"
+    version: "1.0.0+1"
+  gql_tristate_value:
+    dependency: transitive
+    description:
+      name: gql_tristate_value
+      sha256: ae045e7e272fbfd030084315140c683c9b032a9861a37165f68c2ecd8a759664
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   graphs:
     dependency: transitive
     description:
@@ -718,7 +758,7 @@ packages:
     source: hosted
     version: "2.2.3"
   hive_flutter:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: hive_flutter
       sha256: dca1da446b1d808a51689fb5d0c6c9510c0a2ba01e22805d492c73b68e33eecc
@@ -961,10 +1001,10 @@ packages:
     dependency: transitive
     description:
       name: normalize
-      sha256: baf8caf2d8b745af5737cca6c24f7fe3cf3158897fdbcde9a909b9c8d3e2e5af
+      sha256: f78bf0552b9640c76369253f0b8fdabad4f3fbfc06bdae9359e71bee9a5b071b
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.2"
+    version: "0.9.1"
   number_text_input_formatter:
     dependency: "direct main"
     description:
@@ -1174,14 +1214,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
-  queue:
-    dependency: "direct main"
-    description:
-      name: queue
-      sha256: "9a41ecadc15db79010108c06eae229a45c56b18db699760f34e8c9ac9b831ff9"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.0+2"
   rational:
     dependency: "direct main"
     description:
@@ -1393,13 +1425,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.2"
-  threedp_graphql:
-    dependency: "direct main"
-    description:
-      path: "packages/threedp_graphql"
-      relative: true
-    source: path
-    version: "0.0.1"
   time:
     dependency: transitive
     description:

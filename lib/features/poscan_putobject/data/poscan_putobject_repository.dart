@@ -135,16 +135,23 @@ return res;
       if (res is Map) {
         final String key = res.keys.first as String;
         if (key == 'error') {
-          return Either.left(NoDataFailure(res[key].toString()));
+          return Either.left(BadDataFailure(res[key].toString()));
         } else {
           return Either.right(res.values.join(''));
         }
       } else {
-        return const Either.left(NoDataFailure('res is not a Map'));
+        return Either.left(
+          WrongTypeFailure(
+            'res',
+            'Map',
+            res.runtimeType.toString(),
+            StackTrace.current,
+          ),
+        );
       }
     } on Object catch (e) {
       logger.e(e);
-      return Either.left(NoDataFailure(e.toString()));
+      return Either.left(BadDataFailure(e.toString()));
     }
   }
 }
