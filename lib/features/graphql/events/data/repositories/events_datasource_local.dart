@@ -1,5 +1,4 @@
 import 'package:ferry/ferry.dart';
-import 'package:super_core/super_core.dart';
 import 'package:threedpass/features/graphql/events/data/query/__generated__/get_events.data.gql.dart';
 import 'package:threedpass/features/graphql/events/data/query/__generated__/get_events.req.gql.dart';
 import 'package:threedpass/features/graphql/events/domain/events_request_params.dart';
@@ -11,11 +10,11 @@ class EventsDatasourceLocal {
     required this.cache,
   });
 
-  void writeCache(GGetEventsReq request, GGetEventsData data) {
+  void writeCache(final GGetEventsReq request, final GGetEventsData data) {
     cache.writeQuery(request, data);
   }
 
-  Either<Failure, GGetEventsData> fetchTransfers(
+  GGetEventsData? fetchTransfers(
     final GetEventsParams requestParams,
   ) {
     final request = GGetEventsReq((final b) {
@@ -29,12 +28,6 @@ class EventsDatasourceLocal {
     });
     final response = cache.readQuery(request);
 
-    if (response == null) {
-      return Either.left(
-        BadDataFailure('Get null response from cache'),
-      );
-    } else {
-      return Either.right(response);
-    }
+    return response;
   }
 }

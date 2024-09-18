@@ -1,9 +1,9 @@
 import 'package:decimal/decimal.dart';
 import 'package:polkawallet_sdk/service/webViewRunner.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/features/asset_conversion/data/asset_conversion_repository.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/add_liquidity_global_handler.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
@@ -26,7 +26,7 @@ class AddLiquidity extends UseCase<void, AddLiquidityParams> {
   });
 
   @override
-  Future<Either<Failure, void>> call(
+  Future<void> call(
     final AddLiquidityParams params,
   ) async {
     final notificationLoading = NotificationAddLiquidity(

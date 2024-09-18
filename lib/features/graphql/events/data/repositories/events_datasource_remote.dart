@@ -1,9 +1,8 @@
 import 'package:ferry/ferry.dart';
-import 'package:super_core/super_core.dart';
-import 'package:threedpass/core/bloated_response.dart';
 import 'package:threedpass/features/graphql/events/data/query/__generated__/get_events.data.gql.dart';
 import 'package:threedpass/features/graphql/events/data/query/__generated__/get_events.req.gql.dart';
 import 'package:threedpass/features/graphql/events/domain/events_request_params.dart';
+import 'package:threedpass/features/graphql/utils/bloated_response.dart';
 
 class EventsDatasourceGQL {
   final Client client;
@@ -12,8 +11,7 @@ class EventsDatasourceGQL {
     required this.client,
   });
 
-  Future<Either<Failure, BloatedResponse<GGetEventsReq, GGetEventsData>>>
-      fetchTransfers(
+  Future<BloatedResponse<GGetEventsReq, GGetEventsData>> fetchTransfers(
     final GetEventsParams requestParams,
   ) async {
     final request = GGetEventsReq((final b) {
@@ -29,15 +27,11 @@ class EventsDatasourceGQL {
     final response = await client.request(request).first;
 
     if (response.hasErrors || response.data == null) {
-      return Either.left(
-        NetworkFailure(response.linkException.toString()),
-      );
+      throw Exception(response.linkException.toString());
     } else {
-      return Either.right(
-        BloatedResponse(
-          request: request,
-          data: response.data!,
-        ),
+      return BloatedResponse(
+        request: request,
+        data: response.data!,
       );
     }
   }

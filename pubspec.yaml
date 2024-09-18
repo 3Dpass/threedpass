@@ -37,11 +37,8 @@ dependencies:
   ## Core
   auto_route: ^8.1.4
   ffi: ^2.0.1
-  # calc: # TODO Remove. Move to rust_helper
-  #   path: packages/calc
   get_it: ^7.6.0
   flutter_bloc: ^8.1.3
-  # flutter_form_bloc: ^0.30.1  # Use reactive forms instead
   path_provider: ^2.1.0
   hive: ^2.2.3
   isar: 3.1.0+1
@@ -55,7 +52,7 @@ dependencies:
   decimal: ^2.3.3
   rational: ^2.2.3
   async: ^2.11.0
-  fpdart: ^1.1.0
+  # fpdart: ^1.1.0
 
   ## Code gen
   copy_with_extension: ^5.0.3 # TODO REMOVE. Use only freezed
@@ -74,11 +71,9 @@ dependencies:
   app_install_date: ^0.1.3
   scrollview_observer: ^1.20.0
 
-  # Child packages. # TTODO Move all to main app
+  # Child packages
   super_core:
     path: ./packages/super_core
-  # threedp_graphql:
-  #   path: ./packages/threedp_graphql
   rust_lzss:
     path: ./packages/rust_lzss
 

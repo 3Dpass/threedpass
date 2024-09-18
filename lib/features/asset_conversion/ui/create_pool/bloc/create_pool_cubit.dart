@@ -3,9 +3,8 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:super_core/either.dart';
-import 'package:super_core/failure.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/create_pool.dart';
@@ -28,7 +27,7 @@ class CreatePoolState {
 }
 
 class CreatePoolCubit extends Cubit<CreatePoolState>
-    with ExtrinsicShowLoadingMixin {
+    with ExtrinsicShowLoadingMixin<void, CreatePoolParams> {
   CreatePoolCubit({
     required final AppServiceLoaderCubit appServiceLoaderCubit,
     required this.createPoolUseCase,
@@ -50,15 +49,15 @@ class CreatePoolCubit extends Cubit<CreatePoolState>
   }
 
   @override
-  Future<Either<Failure, void>> callExtrinsic(final BuildContext context) {
-    final params = CreatePoolParams(
-      asset1: state.asset1,
-      asset2: state.asset2,
-      account: account,
-      password: passwordController.text,
-      updateStatus: () => updateStatus(context),
-    );
-    final res = createPoolUseCase.call(params);
-    return res;
-  }
+  CreatePoolParams params(final BuildContext context) => CreatePoolParams(
+        asset1: state.asset1,
+        asset2: state.asset2,
+        account: account,
+        password: passwordController.text,
+        updateStatus: () => updateStatus(context),
+      );
+
+  @override
+  SafeUseCaseCall<void, CreatePoolParams> get safeCall =>
+      createPoolUseCase.safeCall;
 }

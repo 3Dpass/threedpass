@@ -1,4 +1,3 @@
-import 'package:super_core/super_core.dart';
 import 'package:threedpass/features/graphql/transfers_history/domain/entities/transfers_request_params.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/bloc/get_transfers_cubit.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/domain/entities/transfers_dto.dart';
@@ -14,7 +13,7 @@ class TransfersFromCubit extends GetTransfersCubit {
   final GetTransfers getTransfers;
 
   @override
-  Future<Either<Failure, TransfersDTO>> getData(final String pageKey) {
+  Future<TransfersDTO> getData(final String pageKey) {
     return getTransfers(
       GetTransfersParams(
         pageKey: pageKey,

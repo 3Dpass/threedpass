@@ -1,5 +1,4 @@
-import 'package:super_core/super_core.dart';
-import 'package:threedpass/core/utils/logger.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/features/asset_conversion/data/asset_conversion_repository.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
@@ -19,68 +18,34 @@ class GetBasicPools extends UseCase<List<PoolFullInfo>, GetAllPoolsParams> {
   });
 
   @override
-  Future<Either<Failure, List<PoolFullInfo>>> call(
+  Future<List<PoolFullInfo>> call(
     final GetAllPoolsParams params,
   ) async {
     final res = <PoolFullInfo>[];
 
-    final tokensData = (await poscanAssetsRepo.allTokens())
-        .when(left: (final _) => null, right: (final data) => data);
-
-    if (tokensData == null) {
-      return Either.left(NetworkFailure('Failed to get tokens data'));
-    }
+    final tokensData = await poscanAssetsRepo.allTokens();
 
     final basicPools = await assetConversionRepository.poolsBasic();
     for (final pool in basicPools) {
       final reserve = await assetConversionRepository.poolReserve(pool);
-      final lpBalanceResponse = await assetConversionRepository.lpTokens(
+      final lpBalance = await assetConversionRepository.lpTokens(
         lpTokenId: pool.lpTokenId,
         address: params.address,
       );
 
-      final lpBalance = lpBalanceResponse.when(
-        left: (final e) {
-          return null;
-        },
-        right: (final data) {
-          return data;
-        },
-      );
-
-      final totalLPSupplyResponse =
-          await assetConversionRepository.totalLPTokensSupply(
+      final totalLPSupply = await assetConversionRepository.totalLPTokensSupply(
         lpTokenId: pool.lpTokenId,
-      );
-
-      final totalLPSupply = totalLPSupplyResponse.when(
-        left: (final e) {
-          return null;
-        },
-        right: (final data) {
-          return data;
-        },
       );
 
       PoscanAssetMetadata? asset1Meta;
       PoscanAssetMetadata? asset2Meta;
 
       if (pool.firstAsset.assetId != null) {
-        final metadataReq =
-            await poscanAssetsRepo.metadata(pool.firstAsset.assetId!);
-        metadataReq.when(
-          left: (final e) => logger.e(e),
-          right: (final data) => asset1Meta = data,
-        );
+        asset1Meta = await poscanAssetsRepo.metadata(pool.firstAsset.assetId!);
       }
 
       if (pool.secondAsset.assetId != null) {
-        final metadataReq =
-            await poscanAssetsRepo.metadata(pool.secondAsset.assetId!);
-        metadataReq.when(
-          left: (final e) => logger.e(e),
-          right: (final data) => asset2Meta = data,
-        );
+        asset2Meta = await poscanAssetsRepo.metadata(pool.secondAsset.assetId!);
       }
 
       // print('first asset id ${pool.firstAsset.assetId}');
@@ -111,7 +76,7 @@ class GetBasicPools extends UseCase<List<PoolFullInfo>, GetAllPoolsParams> {
       );
     }
 
-    return Either.right(res);
+    return res;
   }
 }
 

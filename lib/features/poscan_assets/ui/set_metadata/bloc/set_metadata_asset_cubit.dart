@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/set_metadata.dart';
 
@@ -14,7 +16,8 @@ import 'package:threedpass/features/poscan_assets/domain/use_cases/set_metadata.
 // name ascii
 // symbol ascii
 // decimals u8 0 <= u8 <= 255
-class SetMetadataAssetCubit extends Cubit<void> with ExtrinsicShowLoadingMixin {
+class SetMetadataAssetCubit extends Cubit<void>
+    with ExtrinsicShowLoadingMixin<void, SetMetadataParams> {
   SetMetadataAssetCubit({
     required this.appServiceLoaderCubit,
     required this.setMetadata,
@@ -34,22 +37,20 @@ class SetMetadataAssetCubit extends Cubit<void> with ExtrinsicShowLoadingMixin {
   final AppServiceLoaderCubit appServiceLoaderCubit;
 
   @override
-  Future<Either<Failure, void>> callExtrinsic(
-    final BuildContext context,
-  ) async {
-    final params = SetMetadataParams(
-      admin: admin,
-      password: passwordController.text,
-      assetId: initialAssetId, // TODO Change if allow user to choose asset
-      name: name.text,
-      symbol: symbol.text,
-      decimals: int.parse(decimals.text),
-      updateStatus: () => updateStatus(context),
-    );
-    final res = setMetadata.call(params);
-    return res;
-  }
+  final StackRouter outerRouter;
 
   @override
-  final StackRouter outerRouter;
+  FutureOr<SetMetadataParams> params(final BuildContext context) =>
+      SetMetadataParams(
+        admin: admin,
+        password: passwordController.text,
+        assetId: initialAssetId, // TODO Change if allow user to choose asset
+        name: name.text,
+        symbol: symbol.text,
+        decimals: int.parse(decimals.text),
+        updateStatus: () => updateStatus(context),
+      );
+
+  @override
+  SafeUseCaseCall<void, SetMetadataParams> get safeCall => setMetadata.safeCall;
 }

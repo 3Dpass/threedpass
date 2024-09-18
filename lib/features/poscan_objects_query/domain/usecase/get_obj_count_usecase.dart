@@ -1,4 +1,4 @@
-import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/features/poscan_objects_query/data/poscan_remote_repository.dart';
 
 class GetObjCount extends UseCase<int, void> {
@@ -9,8 +9,8 @@ class GetObjCount extends UseCase<int, void> {
   });
 
   @override
-  Future<Either<Failure, int>> call(
+  Future<int> call(
     final void params,
-  ) async =>
+  ) =>
       repository.objCount();
 }

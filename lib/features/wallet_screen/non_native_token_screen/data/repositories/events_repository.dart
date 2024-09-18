@@ -1,5 +1,4 @@
 import 'package:ferry/ferry.dart';
-import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/graphql/events/data/repositories/events_datasource_local.dart';
 import 'package:threedpass/features/graphql/events/data/repositories/events_datasource_remote.dart';
@@ -19,42 +18,23 @@ class EventsRepository {
     required this.eventsDatasourceLocal,
   });
 
-  Future<Either<Failure, SuccessEvenType>> fetchEvent(
+  Future<SuccessEvenType> fetchEvent(
     final GetEventsParams requestParams,
   ) async {
     // Get local data
     final localRes = eventsDatasourceLocal.fetchTransfers(requestParams);
 
-    return localRes.when(
-      right: (final data) {
-        // if has local data, use it
-        return Either.right(
-          SuccessEvenType(data),
-        );
-      },
-      left: (final error) async {
-        // if no local data, ask for remote
-        final remoteRes =
-            await eventsDatasourceGQL.fetchTransfers(requestParams);
+    if (localRes != null) {
+      return SuccessEvenType(localRes);
+    } else {
+      final bloatedResp =
+          await eventsDatasourceGQL.fetchTransfers(requestParams);
 
-        return remoteRes.when(
-          right: (final bloatedResp) {
-            // is no local data, but has remote
-            // save it and use.
-            eventsDatasourceLocal.writeCache(
-              bloatedResp.request,
-              bloatedResp.data,
-            );
-            return Either.right(
-              SuccessEvenType(bloatedResp.data),
-            );
-          },
-          left: (final err) {
-            // if neither local not remote data, return error
-            return Either.left(err);
-          },
-        );
-      },
-    );
+      eventsDatasourceLocal.writeCache(
+        bloatedResp.request,
+        bloatedResp.data,
+      );
+      return SuccessEvenType(bloatedResp.data);
+    }
   }
 }

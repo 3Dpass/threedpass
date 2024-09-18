@@ -27,21 +27,23 @@ class PoolsCubit extends Cubit<PoolsState> {
   final GetBasicPools getAllPools;
 
   Future<void> update({required final String address}) async {
-    final data = await getAllPools.call(GetAllPoolsParams(address: address));
-    data.when(
-      left: (final e) => emit(
+    await getAllPools.safeCall(
+      params: GetAllPoolsParams(address: address),
+      onError: (final e, final stackTrace) => emit(
         AsyncValue.error(
           e,
-          StackTrace.current, // TODO Set real stacktrace from Failure
+          stackTrace,
         ),
       ),
-      right: (final data) => emit(
-        AsyncValue.data(
-          _State(
-            pools: data,
+      onSuccess: (final List<PoolFullInfo> data) {
+        emit(
+          AsyncValue.data(
+            _State(
+              pools: data,
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

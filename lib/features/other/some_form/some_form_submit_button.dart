@@ -6,7 +6,7 @@ import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 class SomeFormSubmitButton extends StatelessWidget {
   const SomeFormSubmitButton({required this.formState, super.key});
 
-  final ExtrinsicShowLoadingMixin formState;
+  final ExtrinsicShowLoadingMixin<dynamic, dynamic> formState;
 
   @override
   Widget build(final BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/utils/logger.dart';
@@ -55,42 +56,51 @@ class PoscanObjectsCubit extends Cubit<PoscanObjectsState> {
 
   Future<void> downloadOwnerObjects(final KeyPairData account) async {
     emit(state.copyWith(areOwnerObjectsLoading: true));
-    final ids = await getOwnedObjectsIds.call(account.pubKey!).then(
-          (final value) => value.when(
-            left: (final _) => null,
-            right: (final ids) => ids,
-          ),
+    await getOwnedObjectsIds.safeCall(
+      params: account.pubKey!,
+      onError: (final e, final st) {
+        Fluttertoast.showToast(
+          msg: 'Failed to load user objects. $e',
+          toastLength: Toast.LENGTH_LONG,
         );
+        logger.e(e, stackTrace: st);
+        emit(state.copyWith(areOwnerObjectsLoading: false));
+      },
+      onSuccess: (final List<int> ids) async {
+        logger.t('Load user objects by ids: $ids');
 
-    logger.t('Load user objects by ids: $ids');
+        for (final id in ids) {
+          final _ = await getUploadedObject.call(id);
+        }
 
-    if (ids != null) {
-      for (final id in ids) {
-        final _ = await getUploadedObject.call(id);
-      }
-    }
-
-    emit(state.copyWith(areOwnerObjectsLoading: false));
+        emit(state.copyWith(areOwnerObjectsLoading: false));
+      },
+    );
   }
 
   Future<void> setObjCount() async {
-    final realCount = (await getObjCount.call(null))
-        .when(left: (final _) => null, right: (final realValue) => realValue);
-    if (realCount != state.storageCount) {
-      emit(state.copyWith(storageCount: realCount));
-    }
+    await getObjCount.safeCall(
+      params: null,
+      onError: (final Object e, final StackTrace st) {
+        logger.e(e, stackTrace: st);
+      },
+      onSuccess: (final int realCount) {
+        if (realCount != state.storageCount) {
+          emit(state.copyWith(storageCount: realCount));
+        }
+      },
+    );
   }
 
   Future<void> pageRequestListener(final int pageKey) async {
     logger.t('Request object id: $pageKey');
 
-    final objEither = await getUploadedObject.call(pageKey);
-
-    objEither.when(
-      left: (final e) {
-        logger.e(e.cause ?? e.toString());
+    await getUploadedObject.safeCall(
+      params: pageKey,
+      onError: (final e, final __) {
+        logger.e(e.toString());
       },
-      right: (final uploadedObject) {
+      onSuccess: (final uploadedObject) {
         final objectsLen = state.storageCount;
         if (objectsLen != null && pageKey == objectsLen - 1) {
           pagingController.appendLastPage([uploadedObject]);

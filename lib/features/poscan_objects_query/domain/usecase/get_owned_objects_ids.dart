@@ -1,4 +1,4 @@
-import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/features/poscan_objects_query/data/poscan_remote_repository.dart';
 
 class GetOwnedObjectsIds extends UseCase<List<int>, String> {
@@ -9,8 +9,8 @@ class GetOwnedObjectsIds extends UseCase<List<int>, String> {
   });
 
   @override
-  Future<Either<Failure, List<int>>> call(
+  Future<List<int>> call(
     final String accountId,
-  ) async =>
+  ) =>
       repository.owners(accountId);
 }

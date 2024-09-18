@@ -1,8 +1,6 @@
 import 'package:ferry/ferry.dart';
-import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/features/graphql/transfers_history/data/query/__generated__/get_transfers.data.gql.dart';
-import 'package:threedpass/features/graphql/transfers_history/data/repositories/transfers_repository.dart';
+import 'package:threedpass/features/graphql/transfers_history/data/repositories/transfers_repo_remote.dart';
 import 'package:threedpass/features/graphql/transfers_history/domain/entities/transfers_request_params.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/domain/entities/transfer_item.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/domain/entities/transfers_dto.dart';
@@ -10,7 +8,7 @@ import 'package:threedpass/features/wallet_screen/transactions_history/domain/en
 class TransfersRepository {
   final Client client;
   final AppServiceLoaderCubit appServiceLoaderCubit;
-  final TransfersDatasourceGQL transfersDatasourceGQL;
+  final TransfersDatasource transfersDatasourceGQL;
 
   const TransfersRepository({
     required this.client,
@@ -18,9 +16,11 @@ class TransfersRepository {
     required this.transfersDatasourceGQL,
   });
 
-  Future<Either<Failure, TransfersDTO>> right(
-    final GGetTransfersData rawResponse,
+  Future<TransfersDTO> fetchTransfers(
+    final GetTransfersParams requestParams,
   ) async {
+    final rawResponse = await transfersDatasourceGQL.get(requestParams);
+
     final newTransfers = rawResponse.getTransfers;
     final newObjects = newTransfers!.objects!.toList();
     final nextPageKey = newTransfers.pageInfo!.pageNext!;
@@ -35,24 +35,9 @@ class TransfersRepository {
       transferItems.add(tmp);
     }
 
-    return Either.right(
-      TransfersDTO(
-        objects: transferItems,
-        nextPageKey: nextPageKey,
-      ),
-    );
-  }
-
-  Future<Either<Failure, TransfersDTO>> fetchTransfers(
-    final GetTransfersParams requestParams,
-  ) async {
-    final response = await transfersDatasourceGQL.fetchTransfers(requestParams);
-
-    return response.when(
-      left: (final e) {
-        return Either.left(e);
-      },
-      right: right,
+    return TransfersDTO(
+      objects: transferItems,
+      nextPageKey: nextPageKey,
     );
   }
 }

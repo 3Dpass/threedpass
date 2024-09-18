@@ -1,8 +1,8 @@
 import 'package:polkawallet_sdk/service/webViewRunner.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/features/asset_conversion/data/asset_conversion_repository.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/remove_liquidity_global_handler.dart';
@@ -25,7 +25,7 @@ class RemoveLiquidity extends UseCase<void, RemoveLiquidityParams> {
   });
 
   @override
-  Future<Either<Failure, void>> call(
+  Future<void> call(
     final RemoveLiquidityParams params,
   ) async {
     final notificationLoading = NotificationRemoveLiquidity(

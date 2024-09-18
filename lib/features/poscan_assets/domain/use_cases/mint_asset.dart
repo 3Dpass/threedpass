@@ -1,7 +1,7 @@
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/mint_global_handler.dart';
@@ -21,7 +21,7 @@ class MintAsset extends UseCase<void, MintAssetParams> {
   });
 
   @override
-  Future<Either<Failure, void>> call(
+  Future<void> call(
     final MintAssetParams params,
   ) async {
     final notificationLoading = NotificationMintAsset(

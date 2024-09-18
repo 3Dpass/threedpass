@@ -1,19 +1,19 @@
 import 'package:ferry/ferry.dart';
-import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/architecture/remote_repository_interface.dart';
 import 'package:threedpass/features/graphql/transfers_history/data/query/__generated__/get_transfers.data.gql.dart';
 import 'package:threedpass/features/graphql/transfers_history/data/query/__generated__/get_transfers.req.gql.dart';
 import 'package:threedpass/features/graphql/transfers_history/domain/entities/transfers_request_params.dart';
 
-class TransfersDatasourceGQL {
+class TransfersDatasource
+    implements RemoteRepoI<GGetTransfersData, GetTransfersParams> {
   final Client client;
 
-  const TransfersDatasourceGQL({
+  const TransfersDatasource({
     required this.client,
   });
 
-  Future<Either<Failure, GGetTransfersData>> fetchTransfers(
-    final GetTransfersParams requestParams,
-  ) async {
+  @override
+  Future<GGetTransfersData> get(final GetTransfersParams requestParams) async {
     final request = GGetTransfersReq((final b) {
       b
         ..fetchPolicy = FetchPolicy.NoCache
@@ -25,13 +25,6 @@ class TransfersDatasourceGQL {
             requestParams.fromMultiAddressAccountId;
     });
     final response = await client.request(request).first;
-
-    if (response.hasErrors || response.data == null) {
-      return Either.left(
-        NetworkFailure(response.linkException.toString()),
-      );
-    } else {
-      return Either.right(response.data!);
-    }
+    return response.data!;
   }
 }

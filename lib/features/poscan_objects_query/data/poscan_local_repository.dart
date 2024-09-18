@@ -9,7 +9,8 @@ import 'package:threedpass/features/poscan_objects_query/domain/entities/uploade
 class PoScanLocalRepository {
   PoScanLocalRepository();
 
-  final Completer<void> initialized = Completer<void>();
+  final Completer<void> initialized = Completer<
+      void>(); // TODO Create state to handle store init AND remove objects changed stream
   bool _isInitialized = false;
   late Isar isar;
 

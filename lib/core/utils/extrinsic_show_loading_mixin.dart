@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:super_core/super_core.dart';
+import 'package:logger/logger.dart';
 import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/usecase.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 
-mixin ExtrinsicShowLoadingMixin {
+mixin ExtrinsicShowLoadingMixin<TResult, Params> {
   bool fastCheckPassed = false;
 
   void updateStatus(final BuildContext context) {
@@ -27,40 +29,58 @@ mixin ExtrinsicShowLoadingMixin {
 
   Future<void> showLoader({
     required final BuildContext context,
-    required final Future<Either<Failure, void>> Function() call,
+    required final Params params,
+    required final SafeUseCaseCall<TResult, Params> safeCall,
   }) async {
     DefaultLoadingDialog.show(context);
 
     fastCheckPassed = false;
 
-    final res = await call();
-
-    if (!fastCheckPassed) {
-      String message = '';
-      res.when(
-        left: (final f) {
-          message = f.cause ?? '';
-        },
-        right: (final _) {},
-      );
-      DefaultLoadingDialog.hide(context);
-      unawaited(Fluttertoast.showToast(msg: message));
-    }
+    await safeCall(
+      params: params,
+      onSuccess: (final _) {},
+      onError: (final e, final st) {
+        if (!fastCheckPassed) {
+          DefaultLoadingDialog.hide(context);
+          unawaited(
+            Fluttertoast.showToast(
+              msg: e.toString(),
+            ),
+          );
+        }
+      },
+    );
   }
 
   final formKey = GlobalKey<FormState>();
   final passwordController = TextEditingController();
 
-  Future<Either<Failure, void>> callExtrinsic(
-    final BuildContext context,
-  );
+  // Future<void> callExtrinsic(
+  //   final BuildContext context,
+  //   final Params params,
+  //   final SafeUseCaseCall<TResult, Params> safeCall,
+  // );
+
+  FutureOr<Params> params(final BuildContext context);
+  SafeUseCaseCall<TResult, Params> get safeCall;
 
   Future<void> submitExtrinsic(final BuildContext context) async {
-    if (formKey.currentState!.validate()) {
-      await showLoader(
-        context: context,
-        call: () => callExtrinsic(context),
+    try {
+      if (formKey.currentState!.validate()) {
+        await showLoader(
+          context: context,
+          params: await params(context),
+          safeCall: safeCall,
+        );
+      }
+    } on Object catch (e, stackTrace) {
+      logger.log(
+        Level.error,
+        'Error in extrinsic submit',
+        error: e,
+        stackTrace: stackTrace,
       );
+      await Fluttertoast.showToast(msg: 'Error: $e');
     }
   }
 }

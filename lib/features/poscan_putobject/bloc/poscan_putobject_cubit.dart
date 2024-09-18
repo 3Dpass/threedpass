@@ -4,8 +4,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/poscan/domain/usecases/get_poscan_properties.dart';
@@ -36,7 +37,7 @@ class D3PRPCCubitState {
 }
 
 class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
-    with ExtrinsicShowLoadingMixin {
+    with ExtrinsicShowLoadingMixin<void, PutObjectParams> {
   PoscanPutObjectCubit({
     required this.fileHash,
     required this.filePath,
@@ -58,12 +59,13 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
         );
 
   Future<void> init() async {
-    final propsResponse = await getPoscanProperties.call(null);
-    propsResponse.when(
-      left: (final Failure value) {
-        logger.w(value);
+    await getPoscanProperties.safeCall(
+      params: null,
+      onError: (final Object e, final StackTrace st) {
+        logger.e(e, stackTrace: st);
+        Fluttertoast.showToast(msg: e.toString());
       },
-      right: (final List<PoscanProperty> value) {
+      onSuccess: (final List<PoscanProperty> value) {
         emit(
           state.copyWith(
             isLoading: false,
@@ -158,28 +160,22 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
     emit(state.copyWith(account: acc));
   }
 
-  Future<Either<Failure, void>> callExtrinsic(
-    final BuildContext context,
-  ) async {
-    final params = PutObjectParams(
-      localSnapshotName: localSnapshotName,
-      account: state.account,
-      password: passwordController.text,
-      nApprovals: int.parse(nApprovalsController.text),
-      pathToFile: filePath,
-      categoryFabric: state.chosenCategory,
-      hashes: state.chosenHashes,
-      propValues: state.chosenProperties.map((final e) => e.propValue).toList(),
-      updateStatus: () => updateStatus(context),
-    );
-    final res = await putObjectUseCase.call(params);
-    return res;
-  }
+  @override
+  FutureOr<PutObjectParams> params(final BuildContext context) =>
+      PutObjectParams(
+        localSnapshotName: localSnapshotName,
+        account: state.account,
+        password: passwordController.text,
+        nApprovals: int.parse(nApprovalsController.text),
+        pathToFile: filePath,
+        categoryFabric: state.chosenCategory,
+        hashes: state.chosenHashes,
+        propValues:
+            state.chosenProperties.map((final e) => e.propValue).toList(),
+        updateStatus: () => updateStatus(context),
+      );
 
-  Future<void> submit(final BuildContext context) async {
-    await showLoader(
-      context: context,
-      call: () => callExtrinsic(context),
-    );
-  }
+  @override
+  SafeUseCaseCall<void, PutObjectParams> get safeCall =>
+      putObjectUseCase.safeCall;
 }

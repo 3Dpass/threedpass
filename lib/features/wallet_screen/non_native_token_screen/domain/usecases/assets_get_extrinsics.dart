@@ -1,4 +1,4 @@
-import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/features/graphql/extrinsics/domain/extrisincs_request_params.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/data/repositories/assets_extrinsics_repository.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/get_extrinsics_usecase_params.dart';
@@ -15,7 +15,7 @@ class AssetsGetExtrinsics
   });
 
   @override
-  Future<Either<Failure, TransfersNonNativeTokenDTO>> call(
+  Future<TransfersNonNativeTokenDTO> call(
     final GetExtrisincsParams params,
   ) async {
     return repository.fetchExtrinsincs(

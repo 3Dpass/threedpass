@@ -25,8 +25,8 @@ class PutObjectSubmitButton extends StatelessWidget {
         const SizedBox(height: 2),
         D3pElevatedButton(
           text: 'sign_extrinsic'.tr(),
-          onPressed: () =>
-              BlocProvider.of<PoscanPutObjectCubit>(context).submit(context),
+          onPressed: () async => BlocProvider.of<PoscanPutObjectCubit>(context)
+              .submitExtrinsic(context),
         ),
         const H24(),
       ],

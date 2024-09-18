@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:super_core/either.dart';
-import 'package:super_core/failure.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/decimal_set_decimals.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
@@ -38,7 +37,8 @@ class SwapState with _$SwapState {
   }) = _SwapState;
 }
 
-class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
+class SwapCubit extends Cubit<SwapState>
+    with ExtrinsicShowLoadingMixin<void, SwapAssetsParams> {
   SwapCubit({
     required final AppServiceLoaderCubit appServiceLoaderCubit,
     required this.poolAssets,
@@ -174,7 +174,7 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
     }
   }
 
-  Future<Either<Failure, (Decimal, Decimal)>> get calcOnFirstChanged =>
+  Future<(Decimal, Decimal)> get calcOnFirstChanged =>
       calcSwapOnFirstChanged.call(
         CalcSwapOnChangedParams(
           assetAmountControllerText:
@@ -193,24 +193,19 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
     }
     try {
       final res = await calcOnFirstChanged;
-      if (res.value is (Decimal, Decimal)) {
-        final resT = res.value! as (Decimal, Decimal);
-        secondAssetAmountController.text =
-            resT.$1.toStringAsFixed(asset2Decimals);
-        emit(
-          state.copyWith(
-            slippageValue: resT.$2,
-          ),
-        );
-      } else {
-        logger.t(res.value);
-      }
+
+      secondAssetAmountController.text = res.$1.toStringAsFixed(asset2Decimals);
+      emit(
+        state.copyWith(
+          slippageValue: res.$2,
+        ),
+      );
     } on Object catch (e) {
       logger.t(e);
     }
   }
 
-  Future<Either<Failure, (Decimal, Decimal)>> get calcOnSecondChanged =>
+  Future<(Decimal, Decimal)> get calcOnSecondChanged =>
       calcSwapOnSecondChanged.call(
         CalcSwapOnChangedParams(
           assetAmountControllerText:
@@ -229,86 +224,33 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
     }
     try {
       final res = await calcOnSecondChanged;
-      if (res.value is (Decimal, Decimal)) {
-        final resT = res.value! as (Decimal, Decimal);
-        firstAssetAmountController.text =
-            resT.$1.toStringAsFixed(asset1Decimals);
-        emit(
-          state.copyWith(
-            slippageValue: resT.$2,
-          ),
-        );
-      } else {
-        logger.t((res.value! as Failure).cause);
-      }
+
+      firstAssetAmountController.text = res.$1.toStringAsFixed(asset1Decimals);
+      emit(
+        state.copyWith(
+          slippageValue: res.$2,
+        ),
+      );
     } on Object catch (e) {
       logger.t(e);
     }
   }
 
-  // Future<void> calculate() async {
-  //   final correctInput = asset1Decimal != null && asset2Decimal != null;
-  //   final isDifferentAssets = state.firstAsset != state.secondAsset;
-  //   if (!(correctInput && isDifferentAssets)) {
-  //     logger.t('Swap. Nothing to calculate');
-  //     return;
-  //   }
-  //   //  final items = BlocProvider.of<PoscanAssetsCubit>(context).poolAssets;
-  //   // final metadata = poscanAssetsCubit.state.metadata;
-  //   final res = await calcSwapInfo.call(
-  //     CalcSwapInfoParams(
-  //       firstAsset: state.firstAsset,
-  //       secondAsset: state.secondAsset,
-  //       metadata: poscanAssetsCubit.state.metadata,
-  //       nativeTokenDecimals: nativeTokenDecimals,
-  //       firstAssetAmountControllerText:
-  //           firstAssetAmountController.text.replaceAll(',', ''),
-  //       secondAssetAmountControllerText:
-  //           secondAssetAmountController.text.replaceAll(',', ''),
-  //       swapMethod: state.chosenMethod,
-  //       slippage: int.parse(slippageToleranceController.text),
-  //     ),
-  //   );
-
-  //   res.when(
-  //     left: (final e) {
-  //       // Fluttertoast.showToast(msg: 'Error: $e');
-  //       logger.e(e.cause);
-  //     },
-  //     right: (final data) {
-  //       if (state.chosenMethod == SwapMethod.swapExactTokensForTokens) {
-  //         secondAssetAmountController.text = data.$1.toString();
-  //       } else {
-  //         firstAssetAmountController.text = data.$1.toString();
-  //       }
-  //       emit(state.copyWith(slippageValue: data.$2));
-  //     },
-  //   );
-  // }
-
   @override
-  Future<Either<Failure, void>> callExtrinsic(
-    final BuildContext context,
-  ) async {
+  Future<SwapAssetsParams> params(final BuildContext context) async {
     final slippageTolerance = int.tryParse(slippageToleranceController.text);
     if (slippageTolerance == null) {
-      return Either.left(BadDataFailure('Invalid slippageTolerance'));
+      throw Exception('Invalid slippageTolerance');
     }
 
     if (state.firstAsset == state.secondAsset) {
-      return Either.left(BadDataFailure('Can not swap same asset'));
+      throw Exception('Can not swap same asset');
     }
 
     final secondAmountToSendResponse =
-        state.chosenMethod == SwapMethod.swapExactTokensForTokens
-            ? await calcOnFirstChanged
-            : await calcOnSecondChanged;
-
-    if (!(secondAmountToSendResponse.value is (Decimal, Decimal))) {
-      return Either.left(
-        BadDataFailure(secondAmountToSendResponse.value.toString()),
-      );
-    }
+        await (state.chosenMethod == SwapMethod.swapExactTokensForTokens
+            ? calcOnFirstChanged
+            : calcOnSecondChanged);
 
     final amount1 = Decimal.parse(firstAssetAmountController.text)
         .setDecimalsForUserInput(asset1Decimals);
@@ -325,13 +267,12 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
         state.chosenMethod == SwapMethod.swapExactTokensForTokens
             ? asset2Decimals
             : asset1Decimals;
-    final secondAmountToSend =
-        (secondAmountToSendResponse.value! as (Decimal, Decimal))
-            .$2
-            .setDecimalsForUserInput(secondAmountDecimals)
-            .toBigInt();
 
-    final params = SwapAssetsParams(
+    final secondAmountToSend = secondAmountToSendResponse.$2
+        .setDecimalsForUserInput(secondAmountDecimals)
+        .toBigInt();
+
+    return SwapAssetsParams(
       asset1: state.firstAsset,
       asset2: state.secondAsset,
       amount1: firstAmountToSend,
@@ -342,7 +283,8 @@ class SwapCubit extends Cubit<SwapState> with ExtrinsicShowLoadingMixin {
       keepAlive: state.keepAlive,
       swapMethod: state.chosenMethod,
     );
-    final res = swapAssets.call(params);
-    return res;
   }
+
+  @override
+  SafeUseCaseCall<void, SwapAssetsParams> get safeCall => swapAssets.safeCall;
 }

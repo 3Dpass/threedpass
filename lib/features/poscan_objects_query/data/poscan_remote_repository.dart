@@ -1,4 +1,3 @@
-import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/logger.dart';
@@ -12,9 +11,9 @@ class PoScanRemoteRepository {
     required this.appServiceLoaderCubit,
   });
 
-  Future<Either<Failure, int>> objCount() async {
+  Future<int> objCount() async {
     if (appServiceLoaderCubit.state.status != AppServiceInitStatus.connected) {
-      return Either.left(BadDataFailure('AppService is not initialized'));
+      throw Exception('AppService is not initialized');
     }
 
     final dynamic res =
@@ -26,20 +25,10 @@ class PoScanRemoteRepository {
 
     logger.t('Objects count on storage res:$res');
 
-    final resStr = res.toString();
-    final maybeInt = int.tryParse(resStr);
-    if (maybeInt != null) {
-      return Either.right(maybeInt);
-    } else {
-      return Either.left(BadDataFailure(resStr));
-    }
+    return int.parse(res.toString());
   }
 
-  Future<Either<Failure, List<int>>> owners(final String accountId) async {
-    if (appServiceLoaderCubit.state.status != AppServiceInitStatus.connected) {
-      return Either.left(BadDataFailure('AppService is not initialized'));
-    }
-
+  Future<List<int>> owners(final String accountId) async {
     final dynamic res =
         await appServiceLoaderCubit.state.plugin.sdk.api.universal.callNoSign(
       calls: ['query', 'poScan', 'owners'],
@@ -49,21 +38,18 @@ class PoScanRemoteRepository {
 
     final resStr = res.toString();
     logger.t('PALLET CALL RESULT: $resStr');
-    try {
-      final resList = (res as List)
-          .map((final dynamic e) => int.parse(e.toString()))
-          .toList();
-      return Either.right(resList);
-    } on Object catch (e) {
-      return Either.left(BadDataFailure(e.toString()));
-    }
+
+    final resList = (res as List)
+        .map((final dynamic e) => int.parse(e.toString()))
+        .toList();
+    return resList;
   }
 
-  Future<Either<Failure, UploadedObject>> objects(
+  Future<UploadedObject> objects(
     final int id,
   ) async {
     if (appServiceLoaderCubit.state.status != AppServiceInitStatus.connected) {
-      return Either.left(BadDataFailure('AppService is not initialized'));
+      throw Exception('AppService is not initialized');
     }
 
     final dynamic res =
@@ -72,30 +58,11 @@ class PoScanRemoteRepository {
       args: '["$id"]',
       sendNullAsArg: false,
     );
-    if (res is Map) {
-      try {
-        return Either.right(
-          UploadedObject.fromJson(
-            res.toStringDynamic(),
-            DateTime.now(),
-            id,
-          ),
-        );
-      } on Object catch (e) {
-        return Either.left(
-          BadDataFailure(
-            'Could not parse UploadedObject ' + e.toString(),
-          ),
-        );
-      }
-    } else {
-      return Either.left(
-        WrongTypeFailure(
-          'res',
-          'Map',
-          res.runtimeType.toString(),
-        ),
-      );
-    }
+
+    return UploadedObject.fromJson(
+      (res as Map).toStringDynamic(),
+      DateTime.now(),
+      id,
+    );
   }
 }

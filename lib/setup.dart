@@ -8,7 +8,7 @@ import 'package:threedpass/core/utils/m_app_install_date.dart';
 import 'package:threedpass/features/accounts/di_accounts.dart';
 import 'package:threedpass/features/asset_conversion/di_asset_conversion.dart';
 import 'package:threedpass/features/graphql/graphql_di.dart';
-import 'package:threedpass/features/graphql/transfers_history/data/repositories/transfers_repository.dart';
+import 'package:threedpass/features/graphql/transfers_history/data/repositories/transfers_repo_remote.dart';
 import 'package:threedpass/features/hashes_list/di/di_hashes_list.dart';
 import 'package:threedpass/features/poscan/di_poscan.dart';
 import 'package:threedpass/features/poscan_assets/di_poscan_assets.dart';
@@ -70,7 +70,7 @@ Future<void> setup() async {
     TransfersRepository(
       client: getIt<Client>(),
       appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
-      transfersDatasourceGQL: getIt<TransfersDatasourceGQL>(),
+      transfersDatasourceGQL: getIt<TransfersDatasource>(),
     ),
   );
 

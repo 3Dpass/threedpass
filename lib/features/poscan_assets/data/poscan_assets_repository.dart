@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:polkawallet_sdk/polkawallet_sdk.dart';
-import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/polkawallet/utils/none_mock.dart';
 import 'package:threedpass/core/utils/big_int_json_helper.dart';
@@ -17,31 +16,31 @@ import 'package:threedpass/features/poscan_assets/domain/use_cases/set_metadata.
 abstract class PoscanAssetsRepository {
   const PoscanAssetsRepository();
 
-  Future<Either<Failure, void>> create({
+  Future<void> create({
     required final CreateAssetParams params,
     required final void Function() updateStatus,
     required final void Function(String) msgIdCallback,
   });
-  Future<Either<Failure, void>> setMetadata({
+  Future<void> setMetadata({
     required final SetMetadataParams params,
     required final void Function() updateStatus,
     required final void Function(String) msgIdCallback,
   });
-  Future<Either<Failure, void>> mint({
+  Future<void> mint({
     required final MintAssetParams params,
     required final void Function() updateStatus,
     required final void Function(String) msgIdCallback,
   });
 
-  Future<Either<Failure, void>> transfer();
-  Future<Either<Failure, List<PoscanAssetData>>> allTokens();
-  Future<Either<Failure, Map<int, PoscanAssetMetadata>>> tokensMetadata();
+  // Future<void> transfer();
+  Future<List<PoscanAssetData>> allTokens();
+  Future<Map<int, PoscanAssetMetadata>> tokensMetadata();
   Future<Map<int, PoscanAssetBalance>> tokensBalancesForCurrentAccount(
     final Iterable<int> tokenIds,
     final String address,
   );
 
-  Future<Either<Failure, PoscanAssetMetadata?>> metadata(final int _);
+  Future<PoscanAssetMetadata?> metadata(final int _);
 }
 
 class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
@@ -55,7 +54,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
   final WalletSDK polkawalletSDK;
 
   @override
-  Future<Either<Failure, void>> create({
+  Future<void> create({
     required final CreateAssetParams params,
     required final void Function() updateStatus,
     required final void Function(String) msgIdCallback,
@@ -96,7 +95,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
   }
 
   @override
-  Future<Either<Failure, void>> setMetadata({
+  Future<void> setMetadata({
     required final SetMetadataParams params,
     required final void Function() updateStatus,
     required final void Function(String) msgIdCallback,
@@ -121,7 +120,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
   }
 
   @override
-  Future<Either<Failure, void>> mint({
+  Future<void> mint({
     required final MintAssetParams params,
     required final void Function() updateStatus,
     required final void Function(String) msgIdCallback,
@@ -144,13 +143,13 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
     );
   }
 
-  @override
-  Future<Either<Failure, void>> transfer() async {
-    return const Either.right(null);
-  }
+  // @override
+  // Future<void> transfer() async {
+  //   return const Either.right(null);
+  // }
 
   @override
-  Future<Either<Failure, List<PoscanAssetData>>> allTokens() async {
+  Future<List<PoscanAssetData>> allTokens() async {
     final utility = GetTokensInfoUtility<PoscanAssetData>(
       call: 'asset',
       webviewController: polkawalletSDK.webView!.webInstance!.webViewController,
@@ -161,8 +160,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
   }
 
   @override
-  Future<Either<Failure, Map<int, PoscanAssetMetadata>>>
-      tokensMetadata() async {
+  Future<Map<int, PoscanAssetMetadata>> tokensMetadata() async {
     final utility = GetTokensInfoUtility<PoscanAssetMetadata>(
       call: 'metadata',
       webviewController: polkawalletSDK.webView!.webInstance!.webViewController,
@@ -170,18 +168,11 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
           PoscanAssetMetadata.fromJson(e as Map<String, dynamic>),
     );
     final metadataResult = await utility.getTokensInfo();
-    return metadataResult.when(
-      left: (final e) {
-        return Either.left(e);
-      },
-      right: (final data) {
-        final res = <int, PoscanAssetMetadata>{};
-        for (final e in data) {
-          res[e.id] = e;
-        }
-        return Either.right(res);
-      },
-    );
+    final res = <int, PoscanAssetMetadata>{};
+    for (final e in metadataResult) {
+      res[e.id] = e;
+    }
+    return res;
   }
 
   @override
@@ -216,30 +207,25 @@ return p;
   }
 
   @override
-  Future<Either<Failure, PoscanAssetMetadata?>> metadata(
+  Future<PoscanAssetMetadata?> metadata(
     final int assetId,
   ) async {
-    try {
-      final dynamic res = await polkawalletSDK.api.universal.callNoSign(
-        calls: ['query', 'poscanAssets', 'metadata'],
-        args: '[$assetId]',
-        sendNullAsArg: false,
-      );
+    final dynamic res = await polkawalletSDK.api.universal.callNoSign(
+      calls: ['query', 'poscanAssets', 'metadata'],
+      args: '[$assetId]',
+      sendNullAsArg: false,
+    );
 
-      if (res is Map<String, dynamic>) {
-        res['id'] = assetId;
-        final metadata = PoscanAssetMetadata.fromJson(res);
-        if (metadata.isNull) {
-          return const Either.right(null);
-        } else {
-          return Either.right(metadata);
-        }
+    if (res is Map<String, dynamic>) {
+      res['id'] = assetId;
+      final metadata = PoscanAssetMetadata.fromJson(res);
+      if (metadata.isNull) {
+        return null;
       } else {
-        return const Either.right(null);
+        return metadata;
       }
-    } on Object catch (e) {
-      logger.e(e);
-      return Either.left(BadDataFailure(e.toString()));
+    } else {
+      return null;
     }
   }
 }

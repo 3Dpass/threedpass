@@ -18,48 +18,48 @@ import 'package:threedpass/features/asset_conversion/domain/use_cases/swap_asset
 abstract class AssetConversionRepository {
   const AssetConversionRepository();
 
-  Future<Either<Failure, String>> getAssetTokenFromNativeToken({
+  Future<String> getAssetTokenFromNativeToken({
     required final int assetTokenId,
     required final BigInt nativeTokenValue,
   });
-  Future<Either<Failure, String>> getNativeTokenFromAssetToken({
+  Future<String> getNativeTokenFromAssetToken({
     required final int assetTokenId,
     required final BigInt assetTokenValue,
   });
-  Future<Either<Failure, String>> getAssetTokenAFromAssetTokenB({
+  Future<String> getAssetTokenAFromAssetTokenB({
     required final int assetToken1Id,
     required final int assetToken2Id,
     required final BigInt assetToken2Value,
   });
-  Future<Either<Failure, String>> getAssetTokenBFromAssetTokenA({
+  Future<String> getAssetTokenBFromAssetTokenA({
     required final int assetToken1Id,
     required final int assetToken2Id,
     required final BigInt assetToken1Value,
   });
-  Future<Either<Object, int>> existentialDeposit();
-  Future<Either<Failure, BigInt?>> lpTokens({
+  Future<int> existentialDeposit();
+  Future<BigInt?> lpTokens({
     required final int lpTokenId,
     required final String address,
   });
-  Future<Either<Failure, BigInt>> totalLPTokensSupply({
+  Future<BigInt> totalLPTokensSupply({
     required final int lpTokenId,
   });
   Future<RawPoolReserve?> poolReserve(final BasicPoolEntity basicPool);
   Future<Iterable<BasicPoolEntity>> poolsBasic();
 
-  Future<Either<Failure, void>> createPool({
+  Future<void> createPool({
     required final CreatePoolParams params,
     required final void Function(String) msgIdCallback,
   });
-  Future<Either<Failure, void>> addLiquidity({
+  Future<void> addLiquidity({
     required final AddLiquidityParams params,
     required final void Function(String) msgIdCallback,
   });
-  Future<Either<Failure, void>> removeLiquidity({
+  Future<void> removeLiquidity({
     required final RemoveLiquidityParams params,
     required final void Function(String) msgIdCallback,
   });
-  Future<Either<Failure, void>> swapAssets({
+  Future<void> swapAssets({
     required final SwapAssetsParams params,
     required final void Function(String) msgIdCallback,
   });
@@ -83,49 +83,36 @@ class AssetConversionRepositoryImpl extends AssetConversionRepository {
   }
 
   @override
-  Future<Either<Failure, BigInt?>> lpTokens({
+  Future<BigInt?> lpTokens({
     required final int lpTokenId,
     required final String address,
   }) async {
-    try {
-      final dynamic res = await polkawalletSdk.api.universal.callNoSign(
-        calls: ['query', 'poscanPoolAssets', 'account'],
-        args: '[$lpTokenId, "$address"]',
-        sendNullAsArg: false,
-      );
-      if (res == null) {
-        return const Either.right(null);
-      }
-
-      final lpb = LPBalance.fromJson(res as Map<String, dynamic>);
-      return Either.right(lpb.balanceBigInt);
-    } on Object catch (e) {
-      logger.e(e);
-      return Either.left(BadDataFailure(e.toString()));
+    final dynamic res = await polkawalletSdk.api.universal.callNoSign(
+      calls: ['query', 'poscanPoolAssets', 'account'],
+      args: '[$lpTokenId, "$address"]',
+      sendNullAsArg: false,
+    );
+    if (res == null) {
+      return null;
     }
+
+    final lpb = LPBalance.fromJson(res as Map<String, dynamic>);
+    return lpb.balanceBigInt;
   }
 
   @override
-  Future<Either<Failure, BigInt>> totalLPTokensSupply({
+  Future<BigInt> totalLPTokensSupply({
     required final int lpTokenId,
   }) async {
-    try {
-      final dynamic res = await polkawalletSdk.api.universal.callNoSign(
-        calls: ['query', 'poscanPoolAssets', 'asset'],
-        args: '[$lpTokenId]',
-        sendNullAsArg: false,
-      );
+    final dynamic res = await polkawalletSdk.api.universal.callNoSign(
+      calls: ['query', 'poscanPoolAssets', 'asset'],
+      args: '[$lpTokenId]',
+      sendNullAsArg: false,
+    );
 
-      return Either.right(
-        BigInt.parse(
-          ((res as Map<String, dynamic>)['supply'] as String)
-              .replaceAll(',', ''),
-        ),
-      );
-    } on Object catch (e) {
-      logger.e(e);
-      return Either.left(BadDataFailure(e.toString()));
-    }
+    return BigInt.parse(
+      ((res as Map<String, dynamic>)['supply'] as String).replaceAll(',', ''),
+    );
   }
 
   @override
@@ -191,7 +178,7 @@ return res;
   }
 
   @override
-  Future<Either<Failure, void>> createPool({
+  Future<void> createPool({
     required final CreatePoolParams params,
     required final void Function(String p1) msgIdCallback,
   }) async {
@@ -216,7 +203,7 @@ return res;
   }
 
   @override
-  Future<Either<Failure, void>> addLiquidity({
+  Future<void> addLiquidity({
     required final AddLiquidityParams params,
     required final void Function(String p1) msgIdCallback,
   }) async {
@@ -247,7 +234,7 @@ return res;
   }
 
   @override
-  Future<Either<Failure, void>> removeLiquidity({
+  Future<void> removeLiquidity({
     required final RemoveLiquidityParams params,
     required final void Function(String p1) msgIdCallback,
   }) async {
@@ -277,9 +264,8 @@ return res;
   }
 
   @override
-  Future<Either<Object, int>> existentialDeposit() async {
-    try {
-      const String getPoolsFunc = """
+  Future<int> existentialDeposit() async {
+    const String getPoolsFunc = """
 var p = () => {
  return api.consts.balances.existentialDeposit.toHuman();
 };
@@ -287,19 +273,15 @@ var res = await p();
 return res;
 """;
 
-      final dynamic res = await basicJSCall(
-        getPoolsFunc,
-        polkawalletSdk.webView!.webInstance!.webViewController,
-      );
-      return Either.right(int.parse(res.toString().replaceAll(',', '')));
-    } on Object catch (e) {
-      logger.e(e);
-      return Either.left(e);
-    }
+    final dynamic res = await basicJSCall(
+      getPoolsFunc,
+      polkawalletSdk.webView!.webInstance!.webViewController,
+    );
+    return int.parse(res.toString().replaceAll(',', ''));
   }
 
   @override
-  Future<Either<Failure, void>> swapAssets({
+  Future<void> swapAssets({
     required final SwapAssetsParams params,
     required final void Function(String p1) msgIdCallback,
   }) async {
@@ -333,7 +315,7 @@ return res;
     );
   }
 
-  Future<Either<Failure, String>> callTokenServiceRoutine(
+  Future<String> callTokenServiceRoutine(
     final String tokenServiceCall,
   ) async {
     final String code = """
@@ -353,21 +335,19 @@ return res;
       'callTokenServiceRoutine. tokenServiceCall: $tokenServiceCall res: $res',
     );
     if (res is String) {
-      return Either.right(res);
+      return res;
     } else {
-      logger.e('res should be String');
-      return Either.left(
-        WrongTypeFailure(
-          'res',
-          'String',
-          res.runtimeType.toString(),
-        ),
+      // logger.e('res should be String');
+      throw WrongTypeFailure(
+        'res',
+        'String',
+        res.runtimeType.toString(),
       );
     }
   }
 
   @override
-  Future<Either<Failure, String>> getAssetTokenFromNativeToken({
+  Future<String> getAssetTokenFromNativeToken({
     required final int assetTokenId,
     required final BigInt nativeTokenValue,
   }) =>
@@ -376,7 +356,7 @@ return res;
       );
 
   @override
-  Future<Either<Failure, String>> getAssetTokenAFromAssetTokenB({
+  Future<String> getAssetTokenAFromAssetTokenB({
     required final int assetToken1Id,
     required final int assetToken2Id,
     required final BigInt assetToken2Value,
@@ -386,7 +366,7 @@ return res;
       );
 
   @override
-  Future<Either<Failure, String>> getAssetTokenBFromAssetTokenA({
+  Future<String> getAssetTokenBFromAssetTokenA({
     required final int assetToken1Id,
     required final int assetToken2Id,
     required final BigInt assetToken1Value,
@@ -396,7 +376,7 @@ return res;
       );
 
   @override
-  Future<Either<Failure, String>> getNativeTokenFromAssetToken({
+  Future<String> getNativeTokenFromAssetToken({
     required final int assetTokenId,
     required final BigInt assetTokenValue,
   }) =>

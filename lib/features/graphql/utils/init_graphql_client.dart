@@ -5,7 +5,7 @@ class FerryClient {
   static const apiUrl = 'https://explorer-api.3dpscan.io/graphql/';
   late final Client client;
 
-  FerryClient({required Cache cache}) {
+  FerryClient({required final Cache cache}) {
     final link = HttpLink(apiUrl);
 
     client = Client(

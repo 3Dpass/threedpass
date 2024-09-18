@@ -1,5 +1,4 @@
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/utils/basic_polkadot_js_call.dart';
 import 'package:threedpass/core/utils/logger.dart';
 
@@ -14,7 +13,7 @@ class GetTokensInfoUtility<T> {
     required this.toElement,
   });
 
-  Future<Either<Failure, List<T>>> getTokensInfo() async {
+  Future<List<T>> getTokensInfo() async {
     final String getTokensFunc = """
 var p = async () => {
   const call = await api.query.poscanAssets.$call.entries();
@@ -24,17 +23,11 @@ var p = async () => {
 var res = await p();
 return res;
 """;
-    try {
-      final dynamic res = await basicJSCall(getTokensFunc, webviewController);
-      logger.t(res);
-      final List<dynamic> tokensRaw = res as List<dynamic>;
-      final List<T> tokens = tokensRaw.map(toElement).toList();
-      return Either.right(tokens);
-    } on Object catch (e) {
-      logger.e(e);
-      return Either.left(
-        BadDataFailure('Error: $e'),
-      ); // TODO Add polkadot error type
-    }
+
+    final dynamic res = await basicJSCall(getTokensFunc, webviewController);
+    logger.t(res);
+    final List<dynamic> tokensRaw = res as List<dynamic>;
+    final List<T> tokens = tokensRaw.map(toElement).toList();
+    return tokens;
   }
 }
