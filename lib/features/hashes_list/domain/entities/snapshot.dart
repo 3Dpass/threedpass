@@ -94,4 +94,6 @@ class Snapshot {
 
   List<String> get hashesWithPrefix =>
       hashes.map((final String e) => '0x' + e).toList();
+
+  bool get scanFailed => hashes.contains('Error');
 }

@@ -12,7 +12,7 @@ import 'package:threedpass/router/router.gr.dart';
 
 class NotificationsIconButton extends StatelessWidget {
   const NotificationsIconButton({super.key});
-
+  // TODO Fix color when error and pending are in the list
   Color lastNTypeToBadgeColor({
     required final ExtrinsicStatus status,
     required final Color dangerColor,
@@ -44,7 +44,7 @@ class NotificationsIconButton extends StatelessWidget {
               ? Badge.count(
                   textColor: colorScheme.onPrimary,
                   backgroundColor: lastNTypeToBadgeColor(
-                    status: state.notifications.last.status,
+                    status: state.notifications.first.status,
                     dangerColor: colorScheme.error,
                   ),
                   count: notificationsCount,

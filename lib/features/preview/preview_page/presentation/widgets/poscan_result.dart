@@ -64,6 +64,7 @@ class _State extends State<PoscanResult> {
             snap.settingsConfig.gridSize == ScanSettings.scanGridSize &&
             snap.settingsConfig.nSections == ScanSettings.scanNsections &&
             isSnapNoneTransBytes;
+
     return Column(
       children: [
         const SizedBox(height: 2),
@@ -85,13 +86,15 @@ class _State extends State<PoscanResult> {
             final allConditions = isNodeConnected &&
                 !isObjectAlreadyApproved &&
                 hasAccount &&
-                isCorrectSettings;
+                isCorrectSettings &&
+                !snap.scanFailed;
             return Padding16(
               child: D3pElevatedButton(
                 iconData: Icons.upload,
                 text: '3d_rpc_button_label'.tr(),
                 onPressed: allConditions
-                    ? () => context.router.push(const D3PRPCRouteWrapper())
+                    ? () async =>
+                        context.router.push(const D3PRPCRouteWrapper())
                     : null,
               ),
             );
