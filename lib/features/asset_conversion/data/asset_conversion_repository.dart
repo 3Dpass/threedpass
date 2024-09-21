@@ -45,7 +45,7 @@ abstract class AssetConversionRepository {
     required final int lpTokenId,
   });
   Future<RawPoolReserve?> poolReserve(final BasicPoolEntity basicPool);
-  Future<Iterable<BasicPoolEntity>> poolsBasic();
+  Future<List<BasicPoolEntity>> poolsBasic();
 
   Future<void> createPool({
     required final CreatePoolParams params,
@@ -145,7 +145,7 @@ return res;
   }
 
   @override
-  Future<Iterable<BasicPoolEntity>> poolsBasic() async {
+  Future<List<BasicPoolEntity>> poolsBasic() async {
     const String getPoolsFunc = """
 var p = async () => {
   const pools = await api.query.assetConversion.pools.entries();
@@ -174,7 +174,7 @@ return res;
     //   lpTokenId: 0,
     //   address: 'd1EHg63RUs3L74N1TeJEkZGBRRd1LfPHknZSPrSu373h5kGVa',
     // );
-    return resT;
+    return resT.toList();
   }
 
   @override

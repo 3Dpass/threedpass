@@ -1,113 +1,81 @@
-// import 'package:super_core/super_core.dart';
-// import 'package:threedpass/core/utils/logger.dart';
-// import 'package:threedpass/features/asset_conversion/data/asset_conversion_repository.dart';
-// import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
-// import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart';
-// import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
-// import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
+import 'package:threedpass/core/usecase.dart';
+import 'package:threedpass/features/asset_conversion/data/asset_conversion_repository.dart';
+import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
+import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
+import 'package:threedpass/features/poscan_assets/domain/use_cases/get_all_tokens_data.dart';
+import 'package:threedpass/features/poscan_assets/domain/use_cases/get_all_tokens_metadata.dart';
 
-// class GetFullPoolInfo extends UseCase<PoolFullInfo, GetFullPoolInfoParams> {
-//   final AssetConversionRepository assetConversionRepository;
-//   final PoscanAssetsRepository poscanAssetsRepo;
+class GetFullPoolInfo extends UseCase<PoolFullInfo, GetFullPoolInfoParams> {
+  final AssetConversionRepository assetConversionRepository;
+  // final PoscanAssetsRepository poscanAssetsRepo;
+  final GetAllTokensData getAllTokensData;
+  final GetAllTokensMetadata getAllTokensMetadata;
 
-//   const GetFullPoolInfo({
-//     required this.assetConversionRepository,
-//     required this.poscanAssetsRepo,
-//   });
+  const GetFullPoolInfo({
+    required this.assetConversionRepository,
+    required this.getAllTokensMetadata,
+    // required this.poscanAssetsRepo,
+    required this.getAllTokensData,
+  });
 
-//   @override
-//   Future<Either<Failure, PoolFullInfo>> call(
-//     final GetFullPoolInfoParams params,
-//   ) async {
-//     final pool = params.basicPool;
+  @override
+  Future<PoolFullInfo> call(
+    final GetFullPoolInfoParams params,
+  ) async {
+    final pool = params.basicPool;
+    final metadatas = await getAllTokensMetadata.call(null);
 
-//     final reserve = await assetConversionRepository.poolReserve(pool);
-//     final lpBalanceResponse = await assetConversionRepository.lpTokens(
-//       lpTokenId: pool.lpTokenId,
-//       address: params.address,
-//     );
+    final reserve = await assetConversionRepository.poolReserve(pool);
+    final lpBalance = await assetConversionRepository.lpTokens(
+      lpTokenId: pool.lpTokenId,
+      address: params.address,
+    );
 
-//     final lpBalance = lpBalanceResponse.when(
-//       left: (final e) {
-//         return null;
-//       },
-//       right: (final data) {
-//         return data;
-//       },
-//     );
+    final totalLPSupply = await assetConversionRepository.totalLPTokensSupply(
+      lpTokenId: pool.lpTokenId,
+    );
 
-//     final totalLPSupplyResponse =
-//         await assetConversionRepository.totalLPTokensSupply(
-//       lpTokenId: pool.lpTokenId,
-//     );
+    PoscanAssetMetadata? asset1Meta;
+    PoscanAssetMetadata? asset2Meta;
 
-//     final totalLPSupply = totalLPSupplyResponse.when(
-//       left: (final e) {
-//         return null;
-//       },
-//       right: (final data) {
-//         return data;
-//       },
-//     );
+    if (pool.firstAsset.assetId != null) {
+      asset1Meta = metadatas[pool.firstAsset.assetId!];
+    }
 
-//     PoscanAssetMetadata? asset1Meta;
-//     PoscanAssetMetadata? asset2Meta;
+    if (pool.secondAsset.assetId != null) {
+      asset2Meta = metadatas[pool.secondAsset.assetId!];
+    }
 
-//     if (pool.firstAsset.assetId != null) {
-//       final metadataReq =
-//           await poscanAssetsRepo.metadata(pool.firstAsset.assetId!);
-//       metadataReq.when(
-//         left: (final e) => logger.e(e),
-//         right: (final data) => asset1Meta = data,
-//       );
-//     }
+    final tokensData = await getAllTokensData.call(null);
 
-//     if (pool.secondAsset.assetId != null) {
-//       final metadataReq =
-//           await poscanAssetsRepo.metadata(pool.secondAsset.assetId!);
-//       metadataReq.when(
-//         left: (final e) => logger.e(e),
-//         right: (final data) => asset2Meta = data,
-//       );
-//     }
+    return PoolFullInfo(
+      basicInfo: pool,
+      rawPoolReserve: reserve,
+      lpBalance: lpBalance,
+      asset1Meta: asset1Meta,
+      asset2Meta: asset2Meta,
+      asset1Data: pool.firstAsset.isNative
+          ? null
+          : tokensData.firstWhere(
+              (final token) => token.id == pool.firstAsset.assetId!,
+            ),
+      asset2Data: pool.secondAsset.isNative
+          ? null
+          : tokensData.firstWhere(
+              (final token) => token.id == pool.secondAsset.assetId!,
+            ),
+      totalLpTokenSupply: totalLPSupply,
+    );
+  }
+}
 
-//     // print('first asset id ${pool.firstAsset.assetId}');
-//     // print('second asset id ${pool.secondAsset.assetId}');
-//     // poscanAssetsCubit.state.metadata.keys.forEach((element) {
-//     //   print(element);
-//     // });
+class GetFullPoolInfoParams {
+  const GetFullPoolInfoParams({
+    required this.basicPool,
+    required this.address,
+  });
 
-//     return Either.right(
-//       PoolFullInfo(
-//         basicInfo: pool,
-//         rawPoolReserve: reserve,
-//         lpBalance: lpBalance,
-//         asset1Meta: asset1Meta,
-//         asset2Meta: asset2Meta,
-//         asset1Data: pool.firstAsset.isNative
-//             ? null
-//             : tokensData.firstWhere(
-//                 (final token) => token.id == pool.firstAsset.assetId!,
-//               ),
-//         asset2Data: pool.secondAsset.isNative
-//             ? null
-//             : tokensData.firstWhere(
-//                 (final token) => token.id == pool.secondAsset.assetId!,
-//               ),
-//         totalLpTokenSupply: totalLPSupply!,
-//       ),
-//     );
-
-//     // return Either.right(res);
-//   }
-// }
-
-// class GetFullPoolInfoParams {
-//   const GetFullPoolInfoParams({
-//     required this.basicPool,
-//     required this.address,
-//   });
-
-//   final BasicPoolEntity basicPool;
-//   final String address;
-// }
+  final BasicPoolEntity basicPool;
+  final String address;
+}

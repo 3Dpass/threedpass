@@ -12,8 +12,9 @@ abstract class AsyncValue<T> {
     final StackTrace stackTrace,
   ) = AsyncError<T>;
 
+  bool get hasValue => value != null;
+
   bool get isLoading;
-  bool get hasValue;
   T? get value;
   Object? get error;
   StackTrace? get stackTrace;
@@ -104,23 +105,19 @@ class AsyncData<T> extends AsyncValue<T> {
   const AsyncData(final T value)
       : this._(
           value,
-          isLoading: false,
           error: null,
           stackTrace: null,
         );
 
   const AsyncData._(
     this.value, {
-    required this.isLoading,
     required this.error,
     required this.stackTrace,
+    this.isLoading = false,
   }) : super._();
 
   @override
   final T value;
-
-  @override
-  bool get hasValue => true;
 
   @override
   final bool isLoading;
@@ -164,14 +161,12 @@ class AsyncData<T> extends AsyncValue<T> {
 class AsyncLoading<T> extends AsyncValue<T> {
   /// {@macro asyncvalue.loading}
   const AsyncLoading([final T? maybeValue])
-      : hasValue = false,
-        value = maybeValue,
+      : value = maybeValue,
         error = null,
         stackTrace = null,
         super._();
 
   const AsyncLoading._({
-    required this.hasValue,
     required this.value,
     required this.error,
     required this.stackTrace,
@@ -179,9 +174,6 @@ class AsyncLoading<T> extends AsyncValue<T> {
 
   @override
   bool get isLoading => true;
-
-  @override
-  final bool hasValue;
 
   @override
   final T? value;
@@ -230,20 +222,17 @@ class AsyncLoading<T> extends AsyncValue<T> {
           isLoading: true,
           value: e.valueOrNull,
           stackTrace: e.stackTrace,
-          hasValue: e.hasValue,
         ),
         loading: (final _) => this,
       );
     } else {
       return previous.map(
         data: (final d) => AsyncLoading._(
-          hasValue: true,
           value: d.valueOrNull,
           error: d.error,
           stackTrace: d.stackTrace,
         ),
         error: (final e) => AsyncLoading._(
-          hasValue: e.hasValue,
           value: e.valueOrNull,
           error: e.error,
           stackTrace: e.stackTrace,
@@ -262,7 +251,6 @@ class AsyncError<T> extends AsyncValue<T> {
           error,
           stackTrace: stackTrace,
           isLoading: false,
-          hasValue: false,
           value: null,
         );
 
@@ -270,16 +258,12 @@ class AsyncError<T> extends AsyncValue<T> {
     this.error, {
     required this.stackTrace,
     required final T? value,
-    required this.hasValue,
     required this.isLoading,
   })  : _value = value,
         super._();
 
   @override
   final bool isLoading;
-
-  @override
-  final bool hasValue;
 
   final T? _value;
 
@@ -328,7 +312,6 @@ class AsyncError<T> extends AsyncValue<T> {
       stackTrace: stackTrace,
       isLoading: isLoading,
       value: previous.valueOrNull,
-      hasValue: previous.hasValue,
     );
   }
 }

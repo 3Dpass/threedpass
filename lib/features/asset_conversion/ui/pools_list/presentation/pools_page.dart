@@ -71,6 +71,14 @@ class PoolsPage extends StatelessWidget {
                           .map((final e) => PoolCard(e))
                           .toList(),
                     ),
+                    const H16(),
+                    if (state.isLoading)
+                      const Padding(
+                        padding: EdgeInsets.only(bottom: 16),
+                        child: D3pProgressIndicator(
+                          size: null,
+                        ),
+                      ),
                   ],
                 ),
               ),

@@ -34,7 +34,7 @@ class PutObject extends UseCase<void, PutObjectParams> {
       AddNotification(notificationLoading),
     );
 
-    final res = await repository.putObject(
+    final _ = await repository.putObject(
       params: params,
       updateStatus: () {
         params.updateStatus();

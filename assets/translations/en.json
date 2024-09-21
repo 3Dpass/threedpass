@@ -523,5 +523,8 @@
     "error_validation_max_balance": "Your balance is {}",
 
     "@2.17.0": {},
-    "copy_rotation_bytes": "Copy Rotation bytes"
+    "copy_rotation_bytes": "Copy Rotation bytes",
+
+    "@2.17.1": {},
+    "pools_loading": "Liquidity pools are still loading"
 }
