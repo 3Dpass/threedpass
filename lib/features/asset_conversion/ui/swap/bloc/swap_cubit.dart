@@ -20,6 +20,8 @@ import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_m
 
 part 'swap_cubit.freezed.dart';
 
+// typedef SwapState = AsyncValue<_SwapState>;
+
 @Freezed(
   equal: false,
   copyWith: true,
@@ -34,6 +36,8 @@ class SwapState with _$SwapState {
     required final SwapMethod chosenMethod,
     required final bool keepAlive,
     required final Decimal? slippageValue,
+    required final String errorUnlocalized,
+    required final bool isLoading,
   }) = _SwapState;
 }
 
@@ -52,23 +56,25 @@ class SwapCubit extends Cubit<SwapState>
         nativeTokenDecimals =
             appServiceLoaderCubit.state.networkStateData.safeDecimals,
         super(
-          SwapState(
+          _SwapState(
             firstAsset: poolAssets.first,
             secondAsset: poolAssets[1],
             chosenMethod: SwapMethod.swapExactTokensForTokens,
             keepAlive: initialKeepAlive,
             slippageValue: null,
+            errorUnlocalized: '',
+            isLoading: false,
           ),
         ) {
-    firstAssetAmountController.addListener(() {
+    firstAssetAmountController.addListener(() async {
       if (state.chosenMethod == SwapMethod.swapExactTokensForTokens) {
-        onFirstDesiredChanged();
+        await onFirstDesiredChanged();
       }
     });
 
-    secondAssetAmountController.addListener(() {
+    secondAssetAmountController.addListener(() async {
       if (state.chosenMethod == SwapMethod.swapTokensForExactTokens) {
-        onSecondDesiredChanged();
+        await onSecondDesiredChanged();
       }
     });
   }
@@ -82,7 +88,7 @@ class SwapCubit extends Cubit<SwapState>
   final List<PoolAssetField> poolAssets;
   final SwapAssets swapAssets;
   final PoscanAssetsCubit poscanAssetsCubit;
-  final PoolsCubit poolsCubit; // TODO Refactor to use getPoolsUseCase
+  final PoolsCubit poolsCubit;
   final CalcSwapOnFirstChanged calcSwapOnFirstChanged;
   final CalcSwapOnSecondChanged calcSwapOnSecondChanged;
 
@@ -109,14 +115,15 @@ class SwapCubit extends Cubit<SwapState>
   Decimal? get asset2Decimal =>
       Decimal.tryParse(secondAssetAmountController.text.replaceAll(',', ''));
 
-  void setChosenMethod(final SwapMethod chosenMethod) {
+  Future<void> setChosenMethod(final SwapMethod chosenMethod) async {
     emit(
-      state.copyWith(chosenMethod: chosenMethod),
+      state.copyWith(chosenMethod: chosenMethod, isLoading: true),
     );
-    handleOnChange();
+    await handleOnChange();
+    emit(state.copyWith(isLoading: false));
   }
 
-  void setFirstAsset(final PoolAssetField asset) {
+  Future<void> setFirstAsset(final PoolAssetField asset) async {
     logger.t(
       'Swap. setFirstAsset. isSelectedEqualToSecond:${asset == state.secondAsset} first:${state.firstAsset} second:${state.secondAsset}',
     );
@@ -125,32 +132,62 @@ class SwapCubit extends Cubit<SwapState>
         firstAsset: asset,
         secondAsset:
             asset == state.secondAsset ? state.firstAsset : state.secondAsset,
+        isLoading: true,
+        errorUnlocalized: '',
         // slippageValue: null,
       ),
     );
     cutDecimals();
-    handleOnChange();
+    await handleOnChange();
+    reportIfPoolDoesNotExist();
+    emit(state.copyWith(isLoading: false));
   }
 
-  void setSecondAsset(final PoolAssetField asset) {
+  Future<void> setSecondAsset(final PoolAssetField asset) async {
     emit(
       state.copyWith(
         firstAsset:
             asset == state.firstAsset ? state.secondAsset : state.firstAsset,
         secondAsset: asset,
+        isLoading: true,
+        errorUnlocalized: '',
         // slippageValue: null,
       ),
     );
     cutDecimals();
-    handleOnChange();
+    await handleOnChange();
+    reportIfPoolDoesNotExist();
+    emit(state.copyWith(isLoading: false));
   }
+
+  void reportIfPoolDoesNotExist() {
+    final result = checkIfChosenPoolExists();
+    if (result == null) {
+      emit(state.copyWith(errorUnlocalized: 'swap_pool_could_not_check'));
+      return;
+    }
+    if (!result) {
+      emit(state.copyWith(errorUnlocalized: 'swap_pool_not_found'));
+      return;
+    }
+  }
+
+  bool? checkIfChosenPoolExists() => poolsCubit.state.value?.pools.any(
+        (final poolInfo) =>
+            (poolInfo.basicInfo.firstAsset == state.firstAsset &&
+                poolInfo.basicInfo.secondAsset == state.secondAsset) ||
+            (poolInfo.basicInfo.firstAsset == state.secondAsset &&
+                poolInfo.basicInfo.secondAsset == state.firstAsset),
+      );
 
   void setKeepAlive(final bool keepAlive) {
     emit(state.copyWith(keepAlive: keepAlive));
   }
 
-  void setSlippageTolerance() {
-    handleOnChange();
+  Future<void> setSlippageTolerance() async {
+    emit(state.copyWith(isLoading: true));
+    await handleOnChange();
+    emit(state.copyWith(isLoading: false));
   }
 
   void cutDecimals() {
@@ -166,11 +203,11 @@ class SwapCubit extends Cubit<SwapState>
     }
   }
 
-  void handleOnChange() {
+  Future<void> handleOnChange() async {
     if (state.chosenMethod == SwapMethod.swapExactTokensForTokens) {
-      onFirstDesiredChanged();
+      await onFirstDesiredChanged();
     } else {
-      onSecondDesiredChanged();
+      await onSecondDesiredChanged();
     }
   }
 

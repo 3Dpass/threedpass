@@ -20,7 +20,7 @@ class RemoveLiquidityPage extends StatelessWidget {
       formKey: cubit.formKey,
       appbarTitle: 'remove_liquidity_page_title',
       submitButton: SomeFormSubmitButton(
-        formState: cubit,
+        extrinsicMixin: cubit,
       ),
       children: [
         ChooseAccount(

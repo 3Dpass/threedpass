@@ -8,14 +8,12 @@ import 'package:threedpass/features/poscan_assets/domain/use_cases/get_all_token
 
 class GetFullPoolInfo extends UseCase<PoolFullInfo, GetFullPoolInfoParams> {
   final AssetConversionRepository assetConversionRepository;
-  // final PoscanAssetsRepository poscanAssetsRepo;
   final GetAllTokensData getAllTokensData;
   final GetAllTokensMetadata getAllTokensMetadata;
 
   const GetFullPoolInfo({
     required this.assetConversionRepository,
     required this.getAllTokensMetadata,
-    // required this.poscanAssetsRepo,
     required this.getAllTokensData,
   });
 

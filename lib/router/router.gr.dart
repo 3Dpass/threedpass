@@ -33,8 +33,6 @@ import 'package:threedpass/features/accounts/presentation/pages/create_account/i
     as _i31;
 import 'package:threedpass/features/accounts/presentation/pages/no_stable_hash_dialog.dart'
     as _i35;
-import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart'
-    as _i78;
 import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart'
     as _i70;
 import 'package:threedpass/features/asset_conversion/ui/add_liquidity/presentation/add_liquidity_page_wrapper.dart'
@@ -80,7 +78,7 @@ import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/s
 import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/set_metadata_page_wrapper.dart'
     as _i56;
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart'
-    as _i80;
+    as _i79;
 import 'package:threedpass/features/poscan_putobject/presentation/d3prpc_page.dart'
     as _i18;
 import 'package:threedpass/features/poscan_putobject/presentation/d3rpc_page_wrapper.dart'
@@ -156,7 +154,7 @@ import 'package:threedpass/features/wallet_screen/recieve_page/recieve_page.dart
 import 'package:threedpass/features/wallet_screen/transactions_history/presentation/transactions_history_wrapper.dart'
     as _i61;
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_meta_dto.dart'
-    as _i79;
+    as _i78;
 import 'package:threedpass/features/wallet_screen/transfer_page/transfer_page.dart'
     as _i62;
 import 'package:threedpass/features/wallet_screen/transfer_page/transfer_page_wrapper.dart'
@@ -610,13 +608,9 @@ abstract class $RootRouter extends _i68.RootStackRouter {
       );
     },
     SwapRouteWrapper.name: (routeData) {
-      final args = routeData.argsAs<SwapRouteWrapperArgs>();
       return _i68.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i59.SwapPageWrapper(
-          poolAssets: args.poolAssets,
-          key: args.key,
-        ),
+        child: const _i59.SwapPageWrapper(),
       );
     },
     TransBytesSubRoute.name: (routeData) {
@@ -2024,40 +2018,16 @@ class StableHashSubRouteArgs {
 
 /// generated route for
 /// [_i59.SwapPageWrapper]
-class SwapRouteWrapper extends _i68.PageRouteInfo<SwapRouteWrapperArgs> {
-  SwapRouteWrapper({
-    required List<_i78.PoolAssetField> poolAssets,
-    _i69.Key? key,
-    List<_i68.PageRouteInfo>? children,
-  }) : super(
+class SwapRouteWrapper extends _i68.PageRouteInfo<void> {
+  const SwapRouteWrapper({List<_i68.PageRouteInfo>? children})
+      : super(
           SwapRouteWrapper.name,
-          args: SwapRouteWrapperArgs(
-            poolAssets: poolAssets,
-            key: key,
-          ),
           initialChildren: children,
         );
 
   static const String name = 'SwapRouteWrapper';
 
-  static const _i68.PageInfo<SwapRouteWrapperArgs> page =
-      _i68.PageInfo<SwapRouteWrapperArgs>(name);
-}
-
-class SwapRouteWrapperArgs {
-  const SwapRouteWrapperArgs({
-    required this.poolAssets,
-    this.key,
-  });
-
-  final List<_i78.PoolAssetField> poolAssets;
-
-  final _i69.Key? key;
-
-  @override
-  String toString() {
-    return 'SwapRouteWrapperArgs{poolAssets: $poolAssets, key: $key}';
-  }
+  static const _i68.PageInfo<void> page = _i68.PageInfo<void>(name);
 }
 
 /// generated route for
@@ -2146,7 +2116,7 @@ class TransferRouteArgs {
 class TransferRouteWrapper
     extends _i68.PageRouteInfo<TransferRouteWrapperArgs> {
   TransferRouteWrapper({
-    required _i79.TransferMetaDTO metadata,
+    required _i78.TransferMetaDTO metadata,
     _i69.Key? key,
     List<_i68.PageRouteInfo>? children,
   }) : super(
@@ -2170,7 +2140,7 @@ class TransferRouteWrapperArgs {
     this.key,
   });
 
-  final _i79.TransferMetaDTO metadata;
+  final _i78.TransferMetaDTO metadata;
 
   final _i69.Key? key;
 
@@ -2184,7 +2154,7 @@ class TransferRouteWrapperArgs {
 /// [_i64.UploadedObjectPage]
 class UploadedObjectRoute extends _i68.PageRouteInfo<UploadedObjectRouteArgs> {
   UploadedObjectRoute({
-    required _i80.UploadedObject uploadedObject,
+    required _i79.UploadedObject uploadedObject,
     _i69.Key? key,
     List<_i68.PageRouteInfo>? children,
   }) : super(
@@ -2208,7 +2178,7 @@ class UploadedObjectRouteArgs {
     this.key,
   });
 
-  final _i80.UploadedObject uploadedObject;
+  final _i79.UploadedObject uploadedObject;
 
   final _i69.Key? key;
 

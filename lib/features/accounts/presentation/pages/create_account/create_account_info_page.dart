@@ -63,7 +63,7 @@ class CreateAccountInfoPage extends StatelessWidget {
           bigBottomPadding: true,
         ),
       ],
-      onSubmitPressed: (final _) => onNextPressed(context),
+      onSubmitPressed: (final _) async => onNextPressed(context),
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -50,10 +52,10 @@ class _Item extends StatelessWidget {
     // log('onTap intem $importType');
     switch (createType) {
       case CreateType.mnemonic:
-        context.router.push(ImportMnemonicFormRoute());
+        unawaited(context.router.push(ImportMnemonicFormRoute()));
         break;
       case CreateType.rawseed:
-        context.router.push(ImportRawseedFormRoute());
+        unawaited(context.router.push(ImportRawseedFormRoute()));
         break;
     }
   }
@@ -93,9 +95,9 @@ class _D3ObjectItem extends StatelessWidget {
 
   void onTap(final BuildContext context) {
     if (isHashesAvaliable(context)) {
-      context.router.push(const CreateAccountFromObjectRoute());
+      unawaited(context.router.push(const CreateAccountFromObjectRoute()));
     } else {
-      context.router.push(const NoStableHashRoute());
+      unawaited(context.router.push(const NoStableHashRoute()));
     }
   }
 

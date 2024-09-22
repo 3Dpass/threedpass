@@ -25,15 +25,11 @@ class SwapButton extends StatelessWidget {
           return D3pElevatedButton(
             iconData: Icons.swap_horiz_outlined,
             text: '',
-            onPressed: poscanAssetsState.isLoading && !poolsState.hasValue
+            onPressed: poscanAssetsState.isLoading || !poolsState.hasValue
                 ? null
                 : () => unawaited(
                       context.router.push(
-                        SwapRouteWrapper(
-                          poolAssets:
-                              BlocProvider.of<PoscanAssetsCubit>(context)
-                                  .poolAssets,
-                        ),
+                        const SwapRouteWrapper(),
                       ),
                     ),
           );

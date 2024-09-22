@@ -526,5 +526,7 @@
     "copy_rotation_bytes": "Copy Rotation bytes",
 
     "@2.17.1": {},
-    "pools_loading": "Liquidity pools are still loading"
+    "pools_loading": "Liquidity pools are still loading",
+    "swap_pool_could_not_check": "Couldn't check if pool exists",
+    "swap_pool_not_found": "Liquditity pool not found"
 }

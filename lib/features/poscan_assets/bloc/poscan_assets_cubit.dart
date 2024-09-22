@@ -112,10 +112,12 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
           ),
           onSuccess: (final Map<int, PoscanAssetMetadata> metadata) async {
             final tokenIds = data.map((final e) => e.id);
+
             final balances = await repository.tokensBalancesForCurrentAccount(
               tokenIds,
               state.currentAccount.address.toString(),
             );
+
             emit(
               state.copyWith(
                 assets: data,
@@ -131,11 +133,13 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
     );
   }
 
-  List<PoolAssetField> get poolAssets => <PoolAssetField>[
-        const PoolAssetField.native(),
-        ...state.metadata.keys
-            .map((final e) => PoolAssetField(assetId: e, isNative: false)),
-      ];
+  List<PoolAssetField>? get poolAssets => state.isLoading
+      ? null
+      : <PoolAssetField>[
+          const PoolAssetField.native(),
+          ...state.metadata.keys
+              .map((final e) => PoolAssetField(assetId: e, isNative: false)),
+        ];
 
   // TODO Refactor get decimals to UseCase
   int decimalsById(final int assetId) {

@@ -33,6 +33,13 @@ class PoolsCubit extends Cubit<PoolsState> {
   final GetFullPoolInfo getFullPoolInfo;
 
   Future<void> update({required final String address}) async {
+    emit(
+      const AsyncValue.loading(
+        _State(
+          pools: [],
+        ),
+      ),
+    );
     await getAllPools.safeCall(
       params: null,
       // params: GetAllPoolsParams(address: address),
