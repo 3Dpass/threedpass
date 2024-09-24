@@ -50,8 +50,6 @@
     },
     "matches_FOUND": "found",
     "WHY_not_found": "Why?",
-    "save_this_object_button_label":"Save object",
-    "save_this_snapshot_button_label":"Save snapshot",
     "rename_this_snapshot_button_label":"Rename this snapshot",
 
     "stable_hashes_list_title": "Stable hashes",
@@ -322,8 +320,6 @@
     "top_hashes_copied_toast": "Top hashes copied",
     "trans_bytes_copied_toast": "Rotation bytes copied",
     "file_hash_copied": "File hash copied",
-    "unsaved_object_appbar": "Unnamed object",
-    "delete_new_snapshot": "Don't save snapshot",
     "delete_extisting_snapshot": "Delete snapshot",
     "delete_snapshot_confirm_title": "Do you want to delete {}?",
     "explore_hashes_button_title": "Compare hashes",

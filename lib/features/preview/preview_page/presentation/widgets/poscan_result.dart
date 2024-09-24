@@ -35,7 +35,7 @@ class _State extends State<PoscanResult> {
   UploadedObject? loadedObject;
 
   Future<void> findObj() async {
-    final snap = BlocProvider.of<PreviewPageCubit>(context).state.snapshot;
+    final snap = BlocProvider.of<PreviewPageCubit>(context).state;
     final foundObj = await BlocProvider.of<PoscanObjectsCubit>(context)
         .findObjectByHashes(snap.hashesWithPrefix);
 
@@ -55,7 +55,7 @@ class _State extends State<PoscanResult> {
       return const D3pProgressIndicator(size: 24);
     }
 
-    final snap = BlocProvider.of<PreviewPageCubit>(context).state.snapshot;
+    final snap = BlocProvider.of<PreviewPageCubit>(context).state;
 
     final isSnapNoneTransBytes =
         snap.settingsConfig.transBytesMode == TransBytesMode.none;

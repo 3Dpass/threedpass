@@ -9,7 +9,7 @@ class ChooseHashes extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final state = BlocProvider.of<PreviewPageCubit>(context).state;
+    final snapshot = BlocProvider.of<PreviewPageCubit>(context).state;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -18,7 +18,7 @@ class ChooseHashes extends StatelessWidget {
         const D3pBodyMediumText('poscan_putobject_choose_hashes'),
         const H4(),
         D3pBodyMediumText(
-          state.snapshot.hashes.join('\n'),
+          snapshot.hashes.join('\n'),
           translate: false,
         ),
       ],

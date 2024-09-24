@@ -11,7 +11,7 @@ class FileHashBlock extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final snap = BlocProvider.of<PreviewPageCubit>(context).state.snapshot;
+    final snap = BlocProvider.of<PreviewPageCubit>(context).state;
 
     final fileHashText = snap.fileHash.toString();
 

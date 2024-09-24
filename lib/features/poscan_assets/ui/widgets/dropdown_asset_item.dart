@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/ui/widgets/dropdown_metadata_item.dart';
@@ -25,13 +26,23 @@ class DropdownAssetItem extends StatelessWidget {
         style: mainColor != null ? medium!.copyWith(color: mainColor) : medium,
       );
     }
-    final metadataAll =
-        BlocProvider.of<PoscanAssetsCubit>(context).state.metadata;
-    final metadata = metadataAll[value.assetId]!;
-    return DropdownMetadataItem(
-      value: metadata,
-      prefixColor: prefixColor,
-      mainColor: mainColor,
-    );
+    final metadata = BlocProvider.of<PoscanAssetsCubit>(context)
+        .state
+        .metadata[value.assetId];
+    if (metadata != null) {
+      return DropdownMetadataItem(
+        value: metadata,
+        prefixColor: prefixColor,
+        mainColor: mainColor,
+      );
+    } else {
+      return FastRichText(
+        mainText: value.assetId.toString(),
+        secondaryText: 'id:',
+        needSpace: true,
+        secondaryTextColor: prefixColor,
+        mainTextColor: mainColor,
+      );
+    }
   }
 }

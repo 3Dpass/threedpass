@@ -12,14 +12,14 @@ class ExploreHashesButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final state = BlocProvider.of<PreviewPageCubit>(context).state;
+    final state = BlocProvider.of<PreviewPageCubit>(context);
+    final snapshot = state.state;
     // final colors = Theme.of(context).customColors;
     // final bgColor = colors.cardBackground;
     // final fgColorBright = colors.themeOpposite;
     // const fgColorDim = D3pColors.disabled;
 
-    final isActive =
-        state.hashObject != null && state.hashObject!.snapshots.length > 1;
+    final isActive = state.hashObject.snapshots.length > 1;
 
     return Padding16(
       child: D3pElevatedButton(
@@ -30,8 +30,8 @@ class ExploreHashesButton extends StatelessWidget {
         onPressed: isActive
             ? () => context.router.push(
                   CompareRouteWrapper(
-                    origObj: state.snapshot,
-                    hashObject: state.hashObject!,
+                    origObj: snapshot,
+                    hashObject: state.hashObject,
                   ),
                 )
             : null, // PUSH to compare page

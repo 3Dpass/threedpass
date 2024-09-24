@@ -66,13 +66,13 @@ void main() {
         relativePath: filePath,
       );
 
-      await context.router.push(
-        PreviewRouteWrapper(
-          hashObject: pair.left,
-          snapshot: pair.right,
-          createNewAnyway: true,
-        ),
-      );
+      // await context.router.push(
+      //   PreviewRouteWrapper(
+      //     hashObject: pair.left,
+      //     snapshot: pair.right,
+      //     createNewAnyway: true,
+      //   ),
+      // );
 
       print('aaaaaaa3');
 

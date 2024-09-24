@@ -17,8 +17,8 @@ class D3PRPCPageWrapper extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(final BuildContext context) {
-    final state = BlocProvider.of<PreviewPageCubit>(context).state;
-    final fileHash = state.snapshot.fileHash;
+    final snapshot = BlocProvider.of<PreviewPageCubit>(context).state;
+    final fileHash = snapshot.fileHash;
 
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
     final initialAccount = appService.keyring.current;
@@ -27,10 +27,10 @@ class D3PRPCPageWrapper extends StatelessWidget implements AutoRouteWrapper {
       // TODO Move to DI
       create: (final context) => PoscanPutObjectCubit(
         fileHash: fileHash,
-        filePath: state.snapshot.realPath,
+        filePath: snapshot.realPath,
         initialAccount: initialAccount,
-        initialHashes: state.snapshot.hashes,
-        localSnapshotName: state.snapshot.name,
+        initialHashes: snapshot.hashes,
+        localSnapshotName: snapshot.name,
         putObjectUseCase: getIt<PutObject>(),
         getPoscanProperties: getIt<GetPoscanProperties>(),
         outerRouter: BlocProvider.of<OuterContextCubit>(context).state.router,

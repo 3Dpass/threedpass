@@ -35,7 +35,7 @@ class DIHashesList extends DIModule {
       ),
     );
 
-    getIt.registerFactory<HashesListBloc>(
+    getIt.registerLazySingleton<HashesListBloc>(
       () => HashesListBloc(
         hashesRepository: getIt<HashesRepository>(),
         objectsDirectory: getIt<ObjectsDirectory>(),
