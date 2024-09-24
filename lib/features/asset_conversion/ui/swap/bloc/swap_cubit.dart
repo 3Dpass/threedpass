@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +79,21 @@ class SwapCubit extends Cubit<SwapState>
         await onSecondDesiredChanged();
       }
     });
+
+    subscription = poolsCubit.stream.asBroadcastStream().listen(
+      (final poolsState) {
+        if (state.errorUnlocalized.isNotEmpty) {
+          final result = checkIfChosenPoolExists();
+          logger.t('Checked if chosen pool exists: $result');
+          if (result ?? false) {
+            emit(state.copyWith(errorUnlocalized: ''));
+          }
+        }
+      },
+    );
   }
+
+  StreamSubscription<PoolsState>? subscription;
 
   static const bool initialKeepAlive = true;
 
@@ -324,4 +340,10 @@ class SwapCubit extends Cubit<SwapState>
 
   @override
   SafeUseCaseCall<void, SwapAssetsParams> get safeCall => swapAssets.safeCall;
+
+  @override
+  Future<void> close() async {
+    await subscription?.cancel();
+    return super.close();
+  }
 }

@@ -133,13 +133,25 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
     );
   }
 
-  List<PoolAssetField>? get poolAssets => state.isLoading
-      ? null
-      : <PoolAssetField>[
-          const PoolAssetField.native(),
-          ...state.metadata.keys
-              .map((final e) => PoolAssetField(assetId: e, isNative: false)),
-        ];
+  static const nonFungiblePropId = '0';
+
+  List<PoolAssetField>? get poolAssets {
+    if (state.isLoading) {
+      return null;
+    } else {
+      final assetsDataMap = <int, PoscanAssetData>{};
+      state.assets.forEach((final data) {
+        assetsDataMap[data.id] = data;
+      });
+      final possiblePoolIds = state.assets
+          .where((final data) => data.objDetails?.propIdx != nonFungiblePropId);
+      return <PoolAssetField>[
+        const PoolAssetField.native(),
+        ...possiblePoolIds
+            .map((final e) => PoolAssetField(assetId: e.id, isNative: false)),
+      ];
+    }
+  }
 
   // TODO Refactor get decimals to UseCase
   int decimalsById(final int assetId) {
