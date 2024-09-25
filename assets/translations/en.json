@@ -524,5 +524,20 @@
     "@2.17.1": {},
     "pools_loading": "Liquidity pools are still loading",
     "swap_pool_could_not_check": "Couldn't check if pool exists",
-    "swap_pool_not_found": "Liquditity pool not found"
+    "swap_pool_not_found": "Liquditity pool not found",
+    "uploaded_object_links_subtitle": "Links",
+    "uploaded_object_obj_details_subtitle": "Object details",
+    "asset_link_text": "View asset {}",
+    "snapshot_link_text": "View snapshot {}",
+    "uploaded_object_link_text": "View object {}",
+    "linked_assets_helper": "Linked {}:",
+    "assets_plural":{
+        "zero": "assets",
+        "one": "asset",
+        "two":  "assets",
+        "few":  "assets",
+        "many":  "assets",
+        "other":  "assets"
+    },
+    "linked_snapshots_helper": "+ {} found"
 }

@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/core/widgets/layout/list_view_separated.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/core/widgets/other/fetch_builder.dart';
@@ -22,7 +24,6 @@ class ObjectDetailsRichText extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     if (objDetails != null) {
-      // TODO Add a deeplink to an object
       return VerticalLineLeftBorder(
         child: ListViewSeparated(
           children: [
@@ -37,7 +38,23 @@ class ObjectDetailsRichText extends StatelessWidget {
               secondaryText: 'obj_details_prop_max_supply'.tr(),
               needSpace: true,
             ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                D3pTextButton(
+                  text: 'View object', // TODO LOCALIZATION
+                  icon: Icons.arrow_forward,
+                  iconAlignment: IconAlignment.end,
+                  // PUSH TO OBJ BY ID
+
+                  // onPressed: () => context.router.push(
+                  //   // UploadedObjectRoute(uploadedObject: uploadedObject),
+                  // ),
+                ),
+              ],
+            ),
           ],
+          // ),
         ),
       );
     } else {

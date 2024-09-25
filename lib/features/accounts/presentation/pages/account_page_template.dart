@@ -71,7 +71,7 @@ class AccountPageTemplate extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => D3pScaffold(
-        appBarLeading: CustomBackButton(),
+        appBarLeading: const CustomBackButton(),
         appBarTitle: appbarTitle,
         body: SafeArea(
           child: Column(

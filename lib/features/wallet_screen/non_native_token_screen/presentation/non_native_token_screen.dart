@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/widgets/buttons/custom_back_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
@@ -81,6 +82,7 @@ class NonNativeTokenScreen extends StatelessWidget {
     return D3pScaffold(
       appBarTitle: appbarTitle(),
       translateAppbar: false,
+      appBarLeading: const CustomBackButton(),
       floatingActionButton: PoscanAssetTransferFloatingButton(
         poscanAssetMetadata: poscanAssetCombined.poscanAssetMetadata,
         poscanAssetBalance: poscanAssetCombined.poscanAssetBalance,
