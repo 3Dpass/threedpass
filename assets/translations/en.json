@@ -539,5 +539,6 @@
         "many":  "assets",
         "other":  "assets"
     },
-    "linked_snapshots_helper": "+ {} found"
+    "linked_snapshots_helper": "+ {} found",
+    "view_object": "View object"
 }

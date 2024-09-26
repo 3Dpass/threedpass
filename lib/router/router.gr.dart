@@ -127,7 +127,7 @@ import 'package:threedpass/features/settings_page/presentation/settings_sub_page
     as _i65;
 import 'package:threedpass/features/settings_page/router/empty_settings_route.dart'
     as _i25;
-import 'package:threedpass/features/uploaded_object_page/uploaded_object_page.dart'
+import 'package:threedpass/features/uploaded_object_page/uploaded_object_wrapper.dart'
     as _i64;
 import 'package:threedpass/features/wallet_screen/add_contact_page/add_contact_page.dart'
     as _i1;
@@ -643,11 +643,12 @@ abstract class $RootRouter extends _i68.RootStackRouter {
         )),
       );
     },
-    UploadedObjectRoute.name: (routeData) {
-      final args = routeData.argsAs<UploadedObjectRouteArgs>();
+    UploadedObjectWrapper.name: (routeData) {
+      final args = routeData.argsAs<UploadedObjectWrapperArgs>();
       return _i68.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i64.UploadedObjectPage(
+        child: _i64.UploadedObjectWrapper(
+          objectId: args.objectId,
           uploadedObject: args.uploadedObject,
           key: args.key,
         ),
@@ -2131,40 +2132,46 @@ class TransferRouteWrapperArgs {
 }
 
 /// generated route for
-/// [_i64.UploadedObjectPage]
-class UploadedObjectRoute extends _i68.PageRouteInfo<UploadedObjectRouteArgs> {
-  UploadedObjectRoute({
-    required _i78.UploadedObject uploadedObject,
+/// [_i64.UploadedObjectWrapper]
+class UploadedObjectWrapper
+    extends _i68.PageRouteInfo<UploadedObjectWrapperArgs> {
+  UploadedObjectWrapper({
+    required int objectId,
+    _i78.UploadedObject? uploadedObject,
     _i69.Key? key,
     List<_i68.PageRouteInfo>? children,
   }) : super(
-          UploadedObjectRoute.name,
-          args: UploadedObjectRouteArgs(
+          UploadedObjectWrapper.name,
+          args: UploadedObjectWrapperArgs(
+            objectId: objectId,
             uploadedObject: uploadedObject,
             key: key,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'UploadedObjectRoute';
+  static const String name = 'UploadedObjectWrapper';
 
-  static const _i68.PageInfo<UploadedObjectRouteArgs> page =
-      _i68.PageInfo<UploadedObjectRouteArgs>(name);
+  static const _i68.PageInfo<UploadedObjectWrapperArgs> page =
+      _i68.PageInfo<UploadedObjectWrapperArgs>(name);
 }
 
-class UploadedObjectRouteArgs {
-  const UploadedObjectRouteArgs({
-    required this.uploadedObject,
+class UploadedObjectWrapperArgs {
+  const UploadedObjectWrapperArgs({
+    required this.objectId,
+    this.uploadedObject,
     this.key,
   });
 
-  final _i78.UploadedObject uploadedObject;
+  final int objectId;
+
+  final _i78.UploadedObject? uploadedObject;
 
   final _i69.Key? key;
 
   @override
   String toString() {
-    return 'UploadedObjectRouteArgs{uploadedObject: $uploadedObject, key: $key}';
+    return 'UploadedObjectWrapperArgs{objectId: $objectId, uploadedObject: $uploadedObject, key: $key}';
   }
 }
 

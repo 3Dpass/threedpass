@@ -7,10 +7,10 @@ import 'package:threedpass/core/widgets/layout/list_view_separated.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/core/widgets/other/fetch_builder.dart';
 import 'package:threedpass/core/widgets/other/vertical_line_left_border.dart';
-import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/features/poscan/bloc/get_poscan_properties_cubit.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/obj_details.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_property.dart';
+import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart';
 
 class ObjectDetailsRichText extends StatelessWidget {
@@ -42,14 +42,14 @@ class ObjectDetailsRichText extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 D3pTextButton(
-                  text: 'View object', // TODO LOCALIZATION
+                  text: 'view_object'.tr(),
                   icon: Icons.arrow_forward,
                   iconAlignment: IconAlignment.end,
-                  // PUSH TO OBJ BY ID
-
-                  // onPressed: () => context.router.push(
-                  //   // UploadedObjectRoute(uploadedObject: uploadedObject),
-                  // ),
+                  onPressed: () async => context.router.push(
+                    UploadedObjectWrapper(
+                      objectId: int.parse(objDetails!.objIdx),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -76,7 +76,7 @@ class _ObjectDetailsPropId extends StatelessWidget {
   Widget build(final BuildContext context) {
     return FetchBuilder<List<PoscanProperty>>(
       cubit: getIt<GetPoscanPropertiesCubit>(),
-      onLoading: () => const D3pProgressIndicator(size: 16),
+      onLoading: () => const Text('Loading...'),
       onError: (final Object? error) => Text(error.toString()),
       onSuccess: (final List<PoscanProperty> data) =>
           _ObjectDetailsPropIdData(objDetails, data),

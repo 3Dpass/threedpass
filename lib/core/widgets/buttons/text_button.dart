@@ -33,6 +33,7 @@ class D3pTextButton extends StatelessWidget {
       text,
       softWrap: true,
       maxLines: 2,
+      overflow: TextOverflow.ellipsis,
       style: textColor != null
           ? Theme.of(context).textTheme.labelLarge!.copyWith(color: textColor)
           : null,

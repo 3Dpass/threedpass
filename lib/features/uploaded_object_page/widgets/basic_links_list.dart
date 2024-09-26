@@ -24,7 +24,9 @@ class BasicLinksList extends StatelessWidget {
           return D3pTextButton(
             text: item.title,
             onPressed: item.onPressed,
-            flexibleText: true,
+            flexibleText: false,
+            icon: Icons.arrow_forward,
+            iconAlignment: IconAlignment.end,
           );
         }).toList(),
       );
