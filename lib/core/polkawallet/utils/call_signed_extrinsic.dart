@@ -7,7 +7,7 @@ class CallSignExtrinsicUtil {
 
   const CallSignExtrinsicUtil({required this.appServiceLoaderCubit});
 
-  Future<Either<Failure, void>> abstractExtrinsicCall({
+  Future<void> abstractExtrinsicCall({
     required final String argsEncoded,
     required final String pubKey,
     required final String password,
@@ -15,38 +15,37 @@ class CallSignExtrinsicUtil {
     required final void Function() updateStatus,
     required final void Function(String) msgIdCallback,
   }) async {
-    try {
-      bool flag = true;
+    bool flag = true;
 
-      final dynamic res =
-          await appServiceLoaderCubit.state.plugin.sdk.api.universal.callSign(
-        pubKey: pubKey,
-        password: password,
-        calls: calls,
-        args: argsEncoded,
-        onStatusChange: (final p0) {
-          if (flag) {
-            // Update status once to detec if extrinsic is accepted
-            updateStatus();
-            flag = false;
-          }
-        },
-        msgIdCallback: msgIdCallback,
-      );
-      logger.d(res.toString());
-      if (res is Map) {
-        final String key = res.keys.first as String;
-        if (key == 'error') {
-          return Either.left(NoDataFailure(res[key].toString()));
-        } else {
-          return const Either.right(null);
+    final dynamic res =
+        await appServiceLoaderCubit.state.plugin.sdk.api.universal.callSign(
+      pubKey: pubKey,
+      password: password,
+      calls: calls,
+      args: argsEncoded,
+      onStatusChange: (final p0) {
+        if (flag) {
+          // Update status once to detec if extrinsic is accepted
+          updateStatus();
+          flag = false;
         }
+      },
+      msgIdCallback: msgIdCallback,
+    );
+    logger.d(res.toString());
+    if (res is Map) {
+      final String key = res.keys.first as String;
+      if (key == 'error') {
+        throw Exception(res[key].toString());
       } else {
-        return const Either.left(NoDataFailure('res is not a Map'));
+        return;
       }
-    } on Object catch (e) {
-      logger.e(e);
-      return Either.left(NoDataFailure(e.toString()));
+    } else {
+      throw WrongTypeFailure(
+        'res',
+        'Map',
+        res.runtimeType.toString(),
+      );
     }
   }
 }

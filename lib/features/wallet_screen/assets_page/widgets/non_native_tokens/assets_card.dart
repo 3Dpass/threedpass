@@ -14,19 +14,18 @@ class AssetsCard extends StatelessWidget {
 
   final PoscanAssetCombined data;
 
-  void onCardClick(final BuildContext context) {
+  Future<void> onCardClick(final BuildContext context) async {
     final address = BlocProvider.of<AppServiceLoaderCubit>(context)
         .state
         .keyring
         .current
         .address!;
-    context.router.push(
+    await context.router.push(
       NonNativeTokenRouteWrapper(
         params: GetExtrinsicsUseCaseParams(
           address: address,
           poscanAssetCombined: data,
         ),
-        poscanAssetCombined: data,
       ),
     );
   }
@@ -34,7 +33,7 @@ class AssetsCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return ClickableCard(
-      onTap: () => onCardClick(context),
+      onTap: () async => onCardClick(context),
       child: data.poscanAssetMetadata != null
           ? AssetCardBody(
               metadata: data.poscanAssetMetadata!,

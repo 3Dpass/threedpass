@@ -9,25 +9,11 @@ import 'package:threedpass/features/preview/preview_page/presentation/widgets/st
 class StableHashesSection extends StatelessWidget {
   const StableHashesSection({super.key});
 
-  List<String> stableHashes(final PreviewPageCubitState state) {
-    switch (state.runtimeType) {
-      case PreviewNewSnapshot:
-        final stateT = state as PreviewNewSnapshot;
-        return stateT.hashObject.stableHashesPlusNew(stateT.snapshot);
-      case PreviewExistingSnapshot:
-        final stateT = state as PreviewExistingSnapshot;
-        return stateT.hashObject.stableHashes;
-      case PreviewNewObject:
-      default:
-        return [];
-    }
-  }
-
   @override
   Widget build(final BuildContext context) {
-    final state = BlocProvider.of<PreviewPageCubit>(context).state;
+    final hashObject = BlocProvider.of<PreviewPageCubit>(context).hashObject;
 
-    final hashes = stableHashes(state);
+    final hashes = hashObject.stableHashes;
 
     if (hashes.isEmpty) {
       return const _NoStableHashes();

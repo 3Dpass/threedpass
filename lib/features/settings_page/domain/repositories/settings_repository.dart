@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:calc/calc.dart';
+import 'package:rust_lzss/rust_lzss.dart';
 import 'package:threedpass/features/settings_page/data/repositories/settings_store.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
@@ -20,7 +20,7 @@ class SettingsRepositoryImpl implements SettingsRepository {
   Future<GlobalSettings> getConfig() async {
     final current = hiveSettingsStore.getSettings();
 
-    final v = await Calc2.getVersion();
+    final v = await packageVersion();
 
     return current.copyWith(
       scanSettings: current.scanSettings.copyWith(libVersion: v),

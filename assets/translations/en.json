@@ -50,8 +50,6 @@
     },
     "matches_FOUND": "found",
     "WHY_not_found": "Why?",
-    "save_this_object_button_label":"Save object",
-    "save_this_snapshot_button_label":"Save snapshot",
     "rename_this_snapshot_button_label":"Rename this snapshot",
 
     "stable_hashes_list_title": "Stable hashes",
@@ -99,7 +97,7 @@
     "preview_settings_pixel_ratio_label": "Pixel ratio",
     "wallet_settings_istestnet_switch": "Is Test net",
     "node_url_label": "Node URL",
-    "error_hex": "Invalid input. Must be 8 digits",
+    "error_hex": "Invalid input. Must be 8 symbols",
 
     "pixel_ratio_help_text": "Decreasing the value reduces preview quality, but increases performance.",
     
@@ -176,7 +174,7 @@
     "create_credentials_name": "Name",
     "create_credentials_name_error": "Name can not be empty",
     "create_credentials_password": "Password",
-    "create_credentials_password_error": "6 to 18 digits and contains numbers and letters",
+    "create_credentials_password_error": "6 to 32 symbols and contains numbers and letters",
     "create_credentials_password2": "Confirm Password",
     "create_credentials_password2_error": "Inconsistent passwords",
 
@@ -322,8 +320,6 @@
     "top_hashes_copied_toast": "Top hashes copied",
     "trans_bytes_copied_toast": "Rotation bytes copied",
     "file_hash_copied": "File hash copied",
-    "unsaved_object_appbar": "Unnamed object",
-    "delete_new_snapshot": "Don't save snapshot",
     "delete_extisting_snapshot": "Delete snapshot",
     "delete_snapshot_confirm_title": "Do you want to delete {}?",
     "explore_hashes_button_title": "Compare hashes",
@@ -523,5 +519,26 @@
     "error_validation_max_balance": "Your balance is {}",
 
     "@2.17.0": {},
-    "copy_rotation_bytes": "Copy Rotation bytes"
+    "copy_rotation_bytes": "Copy Rotation bytes",
+
+    "@2.17.1": {},
+    "pools_loading": "Liquidity pools are still loading",
+    "swap_pool_could_not_check": "Couldn't check if pool exists",
+    "swap_pool_not_found": "Liquditity pool not found",
+    "uploaded_object_links_subtitle": "Links",
+    "uploaded_object_obj_details_subtitle": "Object details",
+    "asset_link_text": "View asset {}",
+    "snapshot_link_text": "View snapshot {}",
+    "uploaded_object_link_text": "View object {}",
+    "linked_assets_helper": "Linked {}:",
+    "assets_plural":{
+        "zero": "assets",
+        "one": "asset",
+        "two":  "assets",
+        "few":  "assets",
+        "many":  "assets",
+        "other":  "assets"
+    },
+    "linked_snapshots_helper": "+ {} found",
+    "view_object": "View object"
 }

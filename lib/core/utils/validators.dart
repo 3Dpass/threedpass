@@ -1,9 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 
 class Validators {
+  static const String allowedSpecialSymbols = '_()!?<>,.%&;:~+=*&@#';
+  static final RegExp passRegExp = RegExp('[${allowedSpecialSymbols}A-z0-9]');
   static bool checkPassword(final String pass) {
-    final reg = RegExp(r'^(?![0-9]+$)(?![a-zA-Z]+$)[\S]{6,32}$');
-    return reg.hasMatch(pass);
+    return passRegExp.hasMatch(pass) && pass.length >= 6 && pass.length <= 32;
   }
 
   static String? notEmpty(final String? value) {

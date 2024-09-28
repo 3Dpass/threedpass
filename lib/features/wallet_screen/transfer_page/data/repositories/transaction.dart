@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:polkawallet_sdk/p3d/tx_info.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_type_enum.dart';
 
 abstract class _TransferRepository {
@@ -126,6 +128,9 @@ class SingleTransaction extends _TransferRepository {
 
   @override
   Future<Map<dynamic, dynamic>> useApi() async {
+    final encodedPasswords = jsonEncode(password);
+    logger.i(encodedPasswords);
+    logger.i(password);
     final d1 = await appService.plugin.sdk.api.tx.signAndSend(
       txInfo: txInfoMeta,
       password: password,

@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/core/widgets/dialog/d3p_platform_dialog.dart';
@@ -50,7 +49,7 @@ class RemoveAccountDialog extends StatelessWidget {
     final appServiceLoaderCubit =
         BlocProvider.of<AppServiceLoaderCubit>(context);
     final appService = appServiceLoaderCubit.state;
-    final customColors = Theme.of(context).customColors;
+    // final customColors = Theme.of(context).customColors;
 
     return D3pPlatformDialog(
       title: 'remove_accout_dialog_title'.tr(
@@ -65,9 +64,9 @@ class RemoveAccountDialog extends StatelessWidget {
           text: 'Cancel'.tr(),
         ),
         D3pTextButton(
-          onPressed: () => deleteAccount(appServiceLoaderCubit, context),
+          onPressed: () async => deleteAccount(appServiceLoaderCubit, context),
           text: 'Delete'.tr(),
-          textColor: customColors.dangerColor,
+          textColor: Theme.of(context).colorScheme.error,
         ),
       ],
     );

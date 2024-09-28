@@ -10,6 +10,8 @@ import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_c
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_balance.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
+import 'package:threedpass/features/poscan_assets/domain/use_cases/get_all_tokens_data.dart';
+import 'package:threedpass/features/poscan_assets/domain/use_cases/get_all_tokens_metadata.dart';
 
 part 'poscan_assets_cubit.g.dart';
 
@@ -57,9 +59,13 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
   PoscanAssetsCubit({
     required this.repository,
     required final KeyPairData currentAccount,
+    required this.getAllTokensData,
+    required this.getAllTokensMetadata,
   }) : super(PoscanAssetsState.initial(currentAccount));
 
   final PoscanAssetsRepository repository;
+  final GetAllTokensData getAllTokensData;
+  final GetAllTokensMetadata getAllTokensMetadata;
 
   void switchAccount(final KeyPairData newAccount) {
     emit(state.copyWith(currentAccount: newAccount));
@@ -84,18 +90,34 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
   Future<void> init() async {
     emit(state.copyWith(isLoading: true));
 
-    final dataResponse = await repository.allTokens();
-    final metadataResponse = await repository.tokensMetadata();
-
-    await dataResponse.when(
-      right: (final data) {
-        return metadataResponse.when(
-          right: (final metadata) async {
+    // final dataResponse = await repository.allTokens();
+    await getAllTokensData.safeCall(
+      params: null,
+      onError: (final e, final st) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            errorMessage: e.toString(),
+          ),
+        );
+      },
+      onSuccess: (final data) async {
+        await getAllTokensMetadata.safeCall(
+          params: null,
+          onError: (final e, final _) => emit(
+            state.copyWith(
+              isLoading: false,
+              errorMessage: e.toString(),
+            ),
+          ),
+          onSuccess: (final Map<int, PoscanAssetMetadata> metadata) async {
             final tokenIds = data.map((final e) => e.id);
+
             final balances = await repository.tokensBalancesForCurrentAccount(
               tokenIds,
               state.currentAccount.address.toString(),
             );
+
             emit(
               state.copyWith(
                 assets: data,
@@ -106,32 +128,30 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
               ),
             );
           },
-          left: (final e) {
-            emit(
-              state.copyWith(
-                isLoading: false,
-                errorMessage: e.cause,
-              ),
-            );
-          },
-        );
-      },
-      left: (final e) {
-        emit(
-          state.copyWith(
-            isLoading: false,
-            errorMessage: e.cause,
-          ),
         );
       },
     );
   }
 
-  List<PoolAssetField> get poolAssets => <PoolAssetField>[
+  static const nonFungiblePropId = '0';
+
+  List<PoolAssetField>? get poolAssets {
+    if (state.isLoading) {
+      return null;
+    } else {
+      final assetsDataMap = <int, PoscanAssetData>{};
+      state.assets.forEach((final data) {
+        assetsDataMap[data.id] = data;
+      });
+      final possiblePoolIds = state.assets
+          .where((final data) => data.objDetails?.propIdx != nonFungiblePropId);
+      return <PoolAssetField>[
         const PoolAssetField.native(),
-        ...state.metadata.keys
-            .map((final e) => PoolAssetField(assetId: e, isNative: false)),
+        ...possiblePoolIds
+            .map((final e) => PoolAssetField(assetId: e.id, isNative: false)),
       ];
+    }
+  }
 
   // TODO Refactor get decimals to UseCase
   int decimalsById(final int assetId) {

@@ -7,8 +7,6 @@ import 'package:polkawallet_sdk/api/types/networkStateData.dart';
 import 'package:polkawallet_sdk/plugin/index.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:threedpass/core/utils/logger.dart';
-import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
-import 'package:threedpass/setup.dart';
 
 part 'app_service.g.dart';
 
@@ -44,8 +42,6 @@ class AppService {
             if (keyring.current.address == data.accountId) {
               chosenAccountBalance.value = data;
             }
-
-            unawaited(getIt<PoscanAssetsCubit>().updateBalances());
           },
         ),
       );

@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/utils/async_value.dart';
 import 'package:threedpass/core/widgets/buttons/custom_back_button.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/layout/list_view_separated.dart';
@@ -45,11 +46,15 @@ class PoolsPage extends StatelessWidget {
       ),
       body: BlocBuilder<PoolsCubit, PoolsState>(
         builder: (final context, final state) {
-          if (state.isLoading) {
-            return const D3pProgressIndicator(size: null);
-          } else if (state.error != null) {
-            return Center(child: Padding16(child: Text(state.error!)));
-          } else {
+          if (state.hasError) {
+            return Center(
+              child: Padding16(
+                child: Text(
+                  state.error.toString(),
+                ),
+              ),
+            );
+          } else if (state.hasValue) {
             return SingleChildScrollView(
               child: Padding(
                 padding:
@@ -62,13 +67,24 @@ class PoolsPage extends StatelessWidget {
                     const H16(),
                     ListViewSeparated(
                       separator: const H16(),
-                      children:
-                          state.pools.map((final e) => PoolCard(e)).toList(),
+                      children: state.value!.pools
+                          .map((final e) => PoolCard(e))
+                          .toList(),
                     ),
+                    const H16(),
+                    if (state.isLoading)
+                      const Padding(
+                        padding: EdgeInsets.only(bottom: 16),
+                        child: D3pProgressIndicator(
+                          size: null,
+                        ),
+                      ),
                   ],
                 ),
               ),
             );
+          } else {
+            return const D3pProgressIndicator(size: null);
           }
         },
       ),

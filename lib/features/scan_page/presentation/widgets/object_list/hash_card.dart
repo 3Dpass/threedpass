@@ -44,7 +44,6 @@ class SnapshotCard extends StatelessWidget {
           () async {
             await context.router.push(
               PreviewRouteWrapper(
-                hashObject: hashObject,
                 snapshot: snapshot,
               ),
             );

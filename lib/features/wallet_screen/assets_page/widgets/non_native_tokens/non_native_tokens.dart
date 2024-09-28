@@ -48,7 +48,7 @@ class NonNativeTokens extends StatelessWidget {
                           ],
                         ),
                         translate: false,
-                        color: Colors.red,
+                        color: Theme.of(context).colorScheme.error,
                       ),
                     ),
                   );

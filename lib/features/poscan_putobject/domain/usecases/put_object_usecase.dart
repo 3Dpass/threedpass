@@ -1,7 +1,7 @@
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
 import 'package:threedpass/features/poscan_putobject/data/poscan_putobject_repository.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_categories.dart';
@@ -20,7 +20,7 @@ class PutObject extends UseCase<void, PutObjectParams> {
   });
 
   @override
-  Future<Either<Failure, void>> call(
+  Future<void> call(
     final PutObjectParams params,
   ) async {
     final notificationLoading = NotificationPutObject(
@@ -34,7 +34,7 @@ class PutObject extends UseCase<void, PutObjectParams> {
       AddNotification(notificationLoading),
     );
 
-    final res = await repository.putObject(
+    final _ = await repository.putObject(
       params: params,
       updateStatus: () {
         params.updateStatus();
@@ -52,7 +52,7 @@ class PutObject extends UseCase<void, PutObjectParams> {
         );
       },
     );
-    return res;
+    // return null;
   }
 }
 

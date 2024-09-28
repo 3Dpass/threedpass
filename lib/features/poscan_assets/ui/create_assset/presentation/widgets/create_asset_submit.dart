@@ -11,8 +11,8 @@ class CreateAssetSubmit extends StatelessWidget {
   Widget build(final BuildContext context) {
     return D3pElevatedButton(
       text: 'sign_extrinsic'.tr(),
-      onPressed: () => BlocProvider.of<CreatePoscanAssetCubit>(context)
-          .callExtrinsic(context),
+      onPressed: () async => BlocProvider.of<CreatePoscanAssetCubit>(context)
+          .submitExtrinsic(context),
     );
   }
 }

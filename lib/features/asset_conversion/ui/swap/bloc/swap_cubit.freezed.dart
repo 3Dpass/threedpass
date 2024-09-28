@@ -21,6 +21,8 @@ mixin _$SwapState {
   SwapMethod get chosenMethod => throw _privateConstructorUsedError;
   bool get keepAlive => throw _privateConstructorUsedError;
   Decimal? get slippageValue => throw _privateConstructorUsedError;
+  String get errorUnlocalized => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SwapStateCopyWith<SwapState> get copyWith =>
@@ -37,7 +39,9 @@ abstract class $SwapStateCopyWith<$Res> {
       PoolAssetField secondAsset,
       SwapMethod chosenMethod,
       bool keepAlive,
-      Decimal? slippageValue});
+      Decimal? slippageValue,
+      String errorUnlocalized,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -58,6 +62,8 @@ class _$SwapStateCopyWithImpl<$Res, $Val extends SwapState>
     Object? chosenMethod = null,
     Object? keepAlive = null,
     Object? slippageValue = freezed,
+    Object? errorUnlocalized = null,
+    Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
       firstAsset: null == firstAsset
@@ -80,6 +86,14 @@ class _$SwapStateCopyWithImpl<$Res, $Val extends SwapState>
           ? _value.slippageValue
           : slippageValue // ignore: cast_nullable_to_non_nullable
               as Decimal?,
+      errorUnlocalized: null == errorUnlocalized
+          ? _value.errorUnlocalized
+          : errorUnlocalized // ignore: cast_nullable_to_non_nullable
+              as String,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -97,7 +111,9 @@ abstract class _$$SwapStateImplCopyWith<$Res>
       PoolAssetField secondAsset,
       SwapMethod chosenMethod,
       bool keepAlive,
-      Decimal? slippageValue});
+      Decimal? slippageValue,
+      String errorUnlocalized,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -116,6 +132,8 @@ class __$$SwapStateImplCopyWithImpl<$Res>
     Object? chosenMethod = null,
     Object? keepAlive = null,
     Object? slippageValue = freezed,
+    Object? errorUnlocalized = null,
+    Object? isLoading = null,
   }) {
     return _then(_$SwapStateImpl(
       firstAsset: null == firstAsset
@@ -138,6 +156,14 @@ class __$$SwapStateImplCopyWithImpl<$Res>
           ? _value.slippageValue
           : slippageValue // ignore: cast_nullable_to_non_nullable
               as Decimal?,
+      errorUnlocalized: null == errorUnlocalized
+          ? _value.errorUnlocalized
+          : errorUnlocalized // ignore: cast_nullable_to_non_nullable
+              as String,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -150,7 +176,9 @@ class _$SwapStateImpl implements _SwapState {
       required this.secondAsset,
       required this.chosenMethod,
       required this.keepAlive,
-      required this.slippageValue});
+      required this.slippageValue,
+      required this.errorUnlocalized,
+      required this.isLoading});
 
   @override
   final PoolAssetField firstAsset;
@@ -162,6 +190,10 @@ class _$SwapStateImpl implements _SwapState {
   final bool keepAlive;
   @override
   final Decimal? slippageValue;
+  @override
+  final String errorUnlocalized;
+  @override
+  final bool isLoading;
 
   @JsonKey(ignore: true)
   @override
@@ -176,7 +208,9 @@ abstract class _SwapState implements SwapState {
       required final PoolAssetField secondAsset,
       required final SwapMethod chosenMethod,
       required final bool keepAlive,
-      required final Decimal? slippageValue}) = _$SwapStateImpl;
+      required final Decimal? slippageValue,
+      required final String errorUnlocalized,
+      required final bool isLoading}) = _$SwapStateImpl;
 
   @override
   PoolAssetField get firstAsset;
@@ -188,6 +222,10 @@ abstract class _SwapState implements SwapState {
   bool get keepAlive;
   @override
   Decimal? get slippageValue;
+  @override
+  String get errorUnlocalized;
+  @override
+  bool get isLoading;
   @override
   @JsonKey(ignore: true)
   _$$SwapStateImplCopyWith<_$SwapStateImpl> get copyWith =>

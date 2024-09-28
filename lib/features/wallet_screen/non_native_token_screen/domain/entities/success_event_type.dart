@@ -1,5 +1,5 @@
-import 'package:threedp_graphql/features/events/data/query/__generated__/get_events.data.gql.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/features/graphql/events/data/query/__generated__/get_events.data.gql.dart';
 
 class SuccessEvenType {
   final ExtrinsicStatus isSuccessful;
@@ -10,7 +10,7 @@ class SuccessEvenType {
   static ExtrinsicStatus _initIsSuccessful(final GGetEventsData event) {
     try {
       final ex = event.getEvents?.objects
-          ?.firstWhere((final p0) => p0.eventModule == 'System');
+          ?.firstWhere((final p0) => p0!.eventModule == 'System');
       switch (ex?.eventName ?? '') {
         case 'ExtrinsicFailed':
           return ExtrinsicStatus.failed;

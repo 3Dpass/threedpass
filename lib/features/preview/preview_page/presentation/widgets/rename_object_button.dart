@@ -12,8 +12,10 @@ class RenameObjectButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final state = BlocProvider.of<PreviewPageCubit>(context).state;
-    // final colors = Theme.of(context).customColors;
+    final ppc = BlocProvider.of<PreviewPageCubit>(context);
+    final snap = ppc.state;
+    final hashObj = ppc.hashObject;
+
     final theme = Theme.of(context);
 
     return Padding16(
@@ -29,8 +31,8 @@ class RenameObjectButton extends StatelessWidget {
         ),
         onBasePressed: () => context.router.push(
           RenameObjectRoute(
-            snapshot: state.snapshot,
-            hashObject: state.hashObject!,
+            snapshot: snap,
+            hashObject: hashObj, // TODO Remove hashObject from path
           ),
         ),
         cardShape: CardShape.all,

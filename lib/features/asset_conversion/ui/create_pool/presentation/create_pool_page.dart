@@ -17,7 +17,7 @@ class CreatePoolPage extends StatelessWidget {
       formKey: BlocProvider.of<CreatePoolCubit>(context).formKey,
       appbarTitle: 'create_pool_appbar_title',
       submitButton: SomeFormSubmitButton(
-        formState: BlocProvider.of<CreatePoolCubit>(context),
+        extrinsicMixin: BlocProvider.of<CreatePoolCubit>(context),
       ),
       children: [
         ChooseAccount(

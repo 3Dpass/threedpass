@@ -4,6 +4,7 @@
 // ignore_for_file: invalid_use_of_internal_member, unused_import, unnecessary_import
 
 import '../frb_generated.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 String greet({required String name}) =>
@@ -11,3 +12,29 @@ String greet({required String name}) =>
 
 Future<Uint8List> decompressObj({required List<int> obj}) =>
     RustLib.instance.api.crateApiSimpleDecompressObj(obj: obj);
+
+Future<List<String>> calc(
+        {required List<int> input,
+        required String algoRaw,
+        required int par1,
+        required int par2,
+        U8Array4? trans}) =>
+    RustLib.instance.api.crateApiSimpleCalc(
+        input: input, algoRaw: algoRaw, par1: par1, par2: par2, trans: trans);
+
+Future<String> packageVersion() =>
+    RustLib.instance.api.crateApiSimplePackageVersion();
+
+class U8Array4 extends NonGrowableListView<int> {
+  static const arraySize = 4;
+
+  @internal
+  Uint8List get inner => _inner;
+  final Uint8List _inner;
+
+  U8Array4(this._inner)
+      : assert(_inner.length == arraySize),
+        super(_inner);
+
+  U8Array4.init() : this(Uint8List(arraySize));
+}

@@ -8,10 +8,9 @@ class TopHashesTitle extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final state = BlocProvider.of<PreviewPageCubit>(context).state;
-    final title_str = state.snapshot.withEmptyHashes
-        ? 'no_top_hashes_found'
-        : 'top_hashes_title';
+    final snapshot = BlocProvider.of<PreviewPageCubit>(context).state;
+    final title_str =
+        snapshot.withEmptyHashes ? 'no_top_hashes_found' : 'top_hashes_title';
 
     return SectionTitle(titleUnlocalized: title_str);
   }

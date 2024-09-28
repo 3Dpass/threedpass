@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -50,10 +52,10 @@ class _Item extends StatelessWidget {
     // log('onTap intem $importType');
     switch (createType) {
       case CreateType.mnemonic:
-        context.router.push(ImportMnemonicFormRoute());
+        unawaited(context.router.push(ImportMnemonicFormRoute()));
         break;
       case CreateType.rawseed:
-        context.router.push(ImportRawseedFormRoute());
+        unawaited(context.router.push(ImportRawseedFormRoute()));
         break;
     }
   }
@@ -83,12 +85,6 @@ class _D3ObjectItem extends StatelessWidget {
     // Get objects with snapshots
     final hashObjects = BlocProvider.of<HashesListBloc>(context).state;
 
-    assert(
-      hashObjects is HashesListLoaded,
-      'Hashes list has to be loaded to create preview',
-    );
-    hashObjects as HashesListLoaded;
-
     // Find objects with stable hashes
     final realObjects = hashObjects.objects
         .where((final obj) => obj.stableHashes.isNotEmpty)
@@ -99,9 +95,9 @@ class _D3ObjectItem extends StatelessWidget {
 
   void onTap(final BuildContext context) {
     if (isHashesAvaliable(context)) {
-      context.router.push(const CreateAccountFromObjectRoute());
+      unawaited(context.router.push(const CreateAccountFromObjectRoute()));
     } else {
-      context.router.push(const NoStableHashRoute());
+      unawaited(context.router.push(const NoStableHashRoute()));
     }
   }
 

@@ -47,7 +47,7 @@ class AddLiquidityPage extends StatelessWidget {
       formKey: cubit.formKey,
       appbarTitle: 'add_liquidity_page_title',
       submitButton: SomeFormSubmitButton(
-        formState: cubit,
+        extrinsicMixin: cubit,
       ),
       children: [
         Text(

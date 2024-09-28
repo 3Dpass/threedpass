@@ -4,10 +4,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:polkawallet_sdk/p3d/tx_info.dart';
 import 'package:polkawallet_sdk/p3d/tx_params.dart';
-import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/data/repositories/transaction.dart';
@@ -186,12 +186,12 @@ class Transfer extends UseCase<void, TransferUseCaseParams> {
   }
 
   @override
-  Future<Either<Failure, void>> call(final TransferUseCaseParams params) async {
+  Future<void> call(final TransferUseCaseParams params) async {
     final txParams = params.metaInfos.map((final e) => e.params()).toList();
     final addressCorrect = await checkAllAddresses(appService, txParams);
 
     if (!addressCorrect) {
-      return const Either.left(BadDataFailure('Wrong address'));
+      throw Exception('Wrong address');
     }
     logger.t(
       'TransferUseCase: metas=${params.metaInfos.length}, type: ${params.transferType}',
@@ -238,9 +238,7 @@ class Transfer extends UseCase<void, TransferUseCaseParams> {
     // print('Finish TransferUseCase, res: $res');
     // final String key = res.keys.first as String;
     if (res['title'] == 'error') {
-      return Either.left(NoDataFailure(res['message'].toString()));
-    } else {
-      return const Either.right(null);
+      throw Exception(res['message'].toString());
     }
   }
 }

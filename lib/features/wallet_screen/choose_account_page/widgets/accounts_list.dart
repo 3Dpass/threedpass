@@ -76,7 +76,7 @@ class SelectableAccountsList extends StatelessWidget {
                 ),
                 D3pIconButton(
                   iconData: Icons.delete,
-                  iconColor: Colors.red,
+                  iconColor: Theme.of(context).colorScheme.error,
                   onPressed: () => deleteAccount(context),
                   emptyContraints: true,
                   splashRadius: 22,

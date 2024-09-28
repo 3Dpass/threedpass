@@ -50,7 +50,7 @@ class ImportRawseedFormPage extends StatelessWidget {
 
     return AddressIconPreviewCubitProvider(
       child: AccountPageTemplate.import(
-        onSubmitPressed: (final inner) => onSubmitPressed(
+        onSubmitPressed: (final inner) async => onSubmitPressed(
           innerContext: inner,
           outerContext: context,
           appService: appService,

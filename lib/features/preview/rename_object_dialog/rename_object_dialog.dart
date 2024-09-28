@@ -42,7 +42,6 @@ class RenameObjectDialog extends StatelessWidget {
     unawaited(
       outerContext.router.push(
         PreviewRouteWrapper(
-          hashObject: newObj,
           snapshot: snapshot,
         ),
       ),

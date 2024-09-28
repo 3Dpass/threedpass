@@ -6,12 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:rational/rational.dart';
-import 'package:super_core/either.dart';
-import 'package:super_core/failure.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/decimal_set_decimals.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/polkawallet/utils/rational_remove_decimals.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
@@ -46,7 +45,7 @@ class _AddLiquidityInfo {
 }
 
 class AddLiquidityCubit extends Cubit<AddLiquidityState>
-    with ExtrinsicShowLoadingMixin {
+    with ExtrinsicShowLoadingMixin<void, AddLiquidityParams> {
   AddLiquidityCubit({
     required final AppServiceLoaderCubit appServiceLoaderCubit,
     required this.poolFullInfo,
@@ -120,55 +119,48 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
       ? amount2Desired!.toRational() * slippageRate
       : null;
 
-  Either<Object, _AddLiquidityInfo> calcInfoForNotNullPool() {
-    try {
-      final slippage = int.tryParse(slippageController.text);
-      if (slippage == null) {
-        return const Either.left('Slippage is not integer');
-      }
-
-      if (Decimal.tryParse(amount1DesiredController.text) == null) {
-        return const Either.left('Amount 1 is not integer');
-      }
-
-      if (Decimal.tryParse(amount2DesiredController.text) == null) {
-        return const Either.left('Amount 2 is not integer');
-      }
-
-      logger.t(
-        'amount1optimal ${amount1Optimal.toDouble()} 1min: ${amount1MinAmount!.toDouble()} amount2optimal ${amount2Optimal.toDouble()} 2min:${amount2MinAmount!.toDouble()}',
-      );
-
-      String? error;
-
-      final asset1Symbols = asset1.isNative
-          ? 'P3D'
-          : poscanAssetsCubit.state.metadata[asset1.assetId]!.symbol;
-      final asset2Symbols = asset2.isNative
-          ? 'P3D'
-          : poscanAssetsCubit.state.metadata[asset2.assetId]!.symbol;
-
-      if (amount2Optimal < amount2MinAmount!) {
-        error = 'ERROR: Asset $asset2Symbols deposit did not meet minimum';
-      }
-
-      if (amount1Optimal < amount1MinAmount!) {
-        error = 'ERROR: Asset $asset1Symbols deposit did not meet minimum';
-      }
-
-      return Either.right(
-        _AddLiquidityInfo(
-          asset1Desired: amount1Desired!,
-          asset2Desired: amount2Desired!,
-          asset1Min: amount1MinAmount!,
-          asset2Min: amount2MinAmount!,
-          error: error,
-        ),
-      );
-    } on Object catch (e) {
-      logger.e(e);
-      return Either.left(e);
+  _AddLiquidityInfo calcInfoForNotNullPool() {
+    final slippage = int.tryParse(slippageController.text);
+    if (slippage == null) {
+      throw Exception('Slippage is not integer');
     }
+
+    if (Decimal.tryParse(amount1DesiredController.text) == null) {
+      throw Exception('Amount 1 is not integer');
+    }
+
+    if (Decimal.tryParse(amount2DesiredController.text) == null) {
+      throw Exception('Amount 2 is not integer');
+    }
+
+    logger.t(
+      'amount1optimal ${amount1Optimal.toDouble()} 1min: ${amount1MinAmount!.toDouble()} amount2optimal ${amount2Optimal.toDouble()} 2min:${amount2MinAmount!.toDouble()}',
+    );
+
+    String? error;
+
+    final asset1Symbols = asset1.isNative
+        ? 'P3D'
+        : poscanAssetsCubit.state.metadata[asset1.assetId]!.symbol;
+    final asset2Symbols = asset2.isNative
+        ? 'P3D'
+        : poscanAssetsCubit.state.metadata[asset2.assetId]!.symbol;
+
+    if (amount2Optimal < amount2MinAmount!) {
+      error = 'ERROR: Asset $asset2Symbols deposit did not meet minimum';
+    }
+
+    if (amount1Optimal < amount1MinAmount!) {
+      error = 'ERROR: Asset $asset1Symbols deposit did not meet minimum';
+    }
+
+    return _AddLiquidityInfo(
+      asset1Desired: amount1Desired!,
+      asset2Desired: amount2Desired!,
+      asset1Min: amount1MinAmount!,
+      asset2Min: amount2MinAmount!,
+      error: error,
+    );
   }
 
   void onFirstDesiredChanged() {
@@ -221,52 +213,45 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
     );
   }
 
-  Either<Failure, _AddLiquidityInfo> calcInfoForNullPool() {
-    try {
-      return Either.right(
-        _AddLiquidityInfo(
-          asset1Desired: amount1Desired!,
-          asset2Desired: amount2Desired!,
-          asset1Min: amount1MinAmount!,
-          asset2Min: amount2MinAmount!,
-          error: null,
-        ),
+  _AddLiquidityInfo calcInfoForNullPool() => _AddLiquidityInfo(
+        asset1Desired: amount1Desired!,
+        asset2Desired: amount2Desired!,
+        asset1Min: amount1MinAmount!,
+        asset2Min: amount2MinAmount!,
+        error: null,
       );
-    } on Object catch (e) {
-      logger.e(e);
-      return Either.left(BadDataFailure(e.toString()));
-    }
-  }
+
+  // @override
+  // Future<Either<Failure, void>> callExtrinsic(
+  //   final BuildContext context,
+  // ) async {
+
+  //     final res = addLiquidityUseCase.call(params);
+  //     return res;
+  //   } else {
+  //     return Either.left(BadDataFailure(info.value.toString()));
+  //   }
+  // }
 
   @override
-  Future<Either<Failure, void>> callExtrinsic(
-    final BuildContext context,
-  ) async {
+  AddLiquidityParams params(final BuildContext context) {
     final info =
         areNullReserves ? calcInfoForNullPool() : calcInfoForNotNullPool();
 
-    if (info.value is _AddLiquidityInfo) {
-      final infoT = info.value! as _AddLiquidityInfo;
-
-      if (infoT.error != null) {
-        return Either.left(BadDataFailure(infoT.error!));
-      }
-
-      final params = AddLiquidityParams(
-        asset1: asset1,
-        asset2: asset2,
-        amount1Desired: infoT.asset1Desired,
-        amount2Desired: infoT.asset2Desired,
-        amount1Min: infoT.asset1Min.toBigInt().toDecimal(),
-        amount2Min: infoT.asset2Min.toBigInt().toDecimal(),
-        account: account,
-        password: passwordController.text,
-        updateStatus: () => updateStatus(context),
-      );
-      final res = addLiquidityUseCase.call(params);
-      return res;
-    } else {
-      return Either.left(BadDataFailure(info.value.toString()));
-    }
+    return AddLiquidityParams(
+      asset1: asset1,
+      asset2: asset2,
+      amount1Desired: info.asset1Desired,
+      amount2Desired: info.asset2Desired,
+      amount1Min: info.asset1Min.toBigInt().toDecimal(),
+      amount2Min: info.asset2Min.toBigInt().toDecimal(),
+      account: account,
+      password: passwordController.text,
+      updateStatus: () => updateStatus(context),
+    );
   }
+
+  @override
+  SafeUseCaseCall<void, AddLiquidityParams> get safeCall =>
+      addLiquidityUseCase.safeCall;
 }

@@ -55,7 +55,7 @@ class _ScrollableObjectsListState extends State<ScrollableObjectsList> {
   Widget build(final BuildContext context) {
     return BlocBuilder<HashesListBloc, HashesListState>(
       builder: (final context, final state) {
-        if (state is HashesListLoaded) {
+        if (state.loaded) {
           if (state.objects.isEmpty) {
             return const NoSavedObjectsPlaceholder();
           } else {

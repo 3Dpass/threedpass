@@ -42,6 +42,10 @@ class CustomTextStyles {
 
   TextStyle get fadedBodyMedium =>
       themeData.textTheme.bodyMedium!.copyWith(color: D3pColors.disabled);
+
+  TextStyle get errorMedium => themeData.textTheme.bodyMedium!.copyWith(
+        color: themeData.colorScheme.error,
+      );
 }
 
 // extension SwitchCustomText on CustomTextStyles {
@@ -63,15 +67,6 @@ extension AppBarCustomText on CustomTextStyles {
         fontSize: 18,
         color: Colors.white,
       );
-}
-
-extension HeadLineCustomText on CustomTextStyles {
-  TextStyle get d3pheadlineLarge =>
-      themeData.textTheme.headlineLarge!.copyWith(color: _themeOpposite);
-  TextStyle get d3pheadlineMedium =>
-      themeData.textTheme.headlineMedium!.copyWith(color: _themeOpposite);
-  TextStyle get d3pheadlineSmall =>
-      themeData.textTheme.headlineSmall!.copyWith(color: _themeOpposite);
 }
 
 extension TitleCustomText on CustomTextStyles {

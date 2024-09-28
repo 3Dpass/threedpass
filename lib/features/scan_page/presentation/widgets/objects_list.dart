@@ -12,7 +12,7 @@ class ObjectsList extends StatelessWidget {
     final Key? key,
   }) : super(key: key);
 
-  final HashesListLoaded state;
+  final HashesListState state;
   final ScrollController scrollController;
   // ListObserverController(controller: scrollController);
 

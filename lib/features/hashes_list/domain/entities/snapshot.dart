@@ -1,5 +1,4 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:threedpass/core/utils/hash2.dart';
@@ -53,7 +52,7 @@ class Snapshot {
   String get shareText => hashes.join('\n');
 
   @override
-  bool operator ==(final dynamic other) {
+  bool operator ==(final Object other) {
     if (other is Snapshot) {
       return name == other.name && listEquals(hashes, other.hashes);
     } else {
@@ -95,4 +94,6 @@ class Snapshot {
 
   List<String> get hashesWithPrefix =>
       hashes.map((final String e) => '0x' + e).toList();
+
+  bool get scanFailed => hashes.contains('Error');
 }

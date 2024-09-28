@@ -12,7 +12,7 @@ class ResetMnemonicInput extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: D3pTextButton(
-        height: 35,
+        height: 35, // TODO Remove hardcoded sizes
         width: 100,
         text: 'Reset'.tr(),
         onPressed: () => BlocProvider.of<MnemonicInputCubit>(context).reset(),

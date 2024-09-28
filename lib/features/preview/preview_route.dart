@@ -48,8 +48,5 @@ AutoRoute previewPageRoute = AutoRoute(
     AutoRoute(
       page: ExplainPutObjectRoute.page,
     ),
-    CustomRoute(
-      page: UploadedObjectRoute.page,
-    ),
   ],
 );

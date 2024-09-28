@@ -1,4 +1,5 @@
 // import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/annotations.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,7 +8,7 @@ import 'package:threedpass/core/widgets/dialog/d3p_platform_dialog.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/scan_page/bloc/select_snapshots_cubit.dart';
 
-// @RoutePage()
+@RoutePage()
 class DeleteSnapshotsDialog extends StatelessWidget {
   const DeleteSnapshotsDialog({required this.selectSnapshotsCubit, super.key});
 
@@ -15,13 +16,13 @@ class DeleteSnapshotsDialog extends StatelessWidget {
 
   void deleteSnap(final BuildContext context) {
     final hashesBloc = BlocProvider.of<HashesListBloc>(context);
-    for (final snap in selectSnapshotsCubit.state.snaps) {
-      hashesBloc.add(
-        DeleteHash(
-          snap: snap,
-        ),
-      );
-    }
+
+    hashesBloc.add(
+      DeleteSnapshots(
+        snapshots: selectSnapshotsCubit.state.snaps,
+      ),
+    );
+
     selectSnapshotsCubit.makeUnselectable();
     Navigator.of(context).pop();
   }

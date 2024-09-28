@@ -1,14 +1,16 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/core/widgets/layout/list_view_separated.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/core/widgets/other/fetch_builder.dart';
 import 'package:threedpass/core/widgets/other/vertical_line_left_border.dart';
-import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/features/poscan/bloc/get_poscan_properties_cubit.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/obj_details.dart';
 import 'package:threedpass/features/poscan_putobject/domain/entities/poscan_property.dart';
+import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart';
 
 class ObjectDetailsRichText extends StatelessWidget {
@@ -22,7 +24,6 @@ class ObjectDetailsRichText extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     if (objDetails != null) {
-      // TODO Add a deeplink to an object
       return VerticalLineLeftBorder(
         child: ListViewSeparated(
           children: [
@@ -37,7 +38,23 @@ class ObjectDetailsRichText extends StatelessWidget {
               secondaryText: 'obj_details_prop_max_supply'.tr(),
               needSpace: true,
             ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                D3pTextButton(
+                  text: 'view_object'.tr(),
+                  icon: Icons.arrow_forward,
+                  iconAlignment: IconAlignment.end,
+                  onPressed: () async => context.router.push(
+                    UploadedObjectWrapper(
+                      objectId: int.parse(objDetails!.objIdx),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
+          // ),
         ),
       );
     } else {
@@ -59,7 +76,7 @@ class _ObjectDetailsPropId extends StatelessWidget {
   Widget build(final BuildContext context) {
     return FetchBuilder<List<PoscanProperty>>(
       cubit: getIt<GetPoscanPropertiesCubit>(),
-      onLoading: () => const D3pProgressIndicator(size: 16),
+      onLoading: () => const Text('Loading...'),
       onError: (final Object? error) => Text(error.toString()),
       onSuccess: (final List<PoscanProperty> data) =>
           _ObjectDetailsPropIdData(objDetails, data),

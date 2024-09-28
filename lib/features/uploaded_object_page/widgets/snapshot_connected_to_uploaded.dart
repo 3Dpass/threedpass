@@ -1,85 +1,31 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/theme/d3p_colors.dart';
-import 'package:threedpass/core/widgets/paddings.dart';
-import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/hashes_list/domain/extentions/find_hashobject_by_snapshot.dart';
-import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
-import 'package:threedpass/features/scan_page/presentation/widgets/object_list/hash_card.dart';
+import 'package:threedpass/features/uploaded_object_page/widgets/basic_links_list.dart';
+import 'package:threedpass/router/router.gr.dart';
 
 class SnapshotConnectedToUploaded extends StatelessWidget {
   const SnapshotConnectedToUploaded({
-    required this.uploadedObject,
-    required this.topPadding,
-    required this.isOnlyText, // TODO Remove isOnlyText and make 2 independent widgets
+    required this.snapshots,
     super.key,
   });
 
-  final UploadedObject uploadedObject;
-  final double topPadding;
-  final bool isOnlyText;
+  final Iterable<Snapshot> snapshots;
 
   @override
   Widget build(final BuildContext context) {
-    final localObjectsBloc = BlocProvider.of<HashesListBloc>(context).state;
-    if (!(localObjectsBloc is HashesListLoaded)) {
-      return const SizedBox();
-    }
-    // localObjectsBloc as HashesListLoaded;
-
-    final localObjects = localObjectsBloc.objects;
-    final localSnapshots = <Snapshot>[];
-    localObjects.forEach((final obj) => localSnapshots.addAll(obj.snapshots));
-
-    final similarSnapshots = <Snapshot>[];
-    localSnapshots.forEach((final snapshot) {
-      for (final snapHash in snapshot.hashes) {
-        if (uploadedObject.hashesListJoined.contains(snapHash)) {
-          similarSnapshots.add(snapshot);
-          break;
-        }
-      }
-    });
-
-    if (similarSnapshots.isEmpty) {
-      return const SizedBox();
-    }
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: topPadding,
-        ),
-        const D3pBodyMediumText(
-          'local_snapshots_with_same_hashes',
-          color: D3pColors.disabled,
-        ),
-        ListView.separated(
-          padding: EdgeInsets.zero,
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          separatorBuilder: (final context, final index) => const H4(),
-          itemCount: similarSnapshots.length,
-          itemBuilder: (final context, final index) {
-            if (isOnlyText) {
-              return D3pBodyMediumText(
-                similarSnapshots[index].name,
-                translate: false,
-              );
-            } else {
-              final snap = similarSnapshots[index];
-              final hashObject = localObjectsBloc.findBySnapshot(snap)!;
-              return SnapshotCard(
-                snapshot: snap,
-                hashObject: hashObject,
-              );
-            }
-          },
-        ),
-      ],
+    return BasicLinksList(
+      items: snapshots.map<LinkParams>((final snapshot) {
+        return LinkParams(
+          title: 'snapshot_link_text'.tr(args: [snapshot.name]),
+          onPressed: () async => context.router.push(
+            PreviewRouteWrapper(
+              snapshot: snapshot,
+            ),
+          ),
+        );
+      }).toList(),
     );
   }
 }

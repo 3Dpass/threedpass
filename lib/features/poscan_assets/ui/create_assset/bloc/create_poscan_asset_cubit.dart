@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/obj_details.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/create_asset.dart';
@@ -34,7 +36,7 @@ class CreatePoscanAssetState {
 }
 
 class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState>
-    with ExtrinsicShowLoadingMixin {
+    with ExtrinsicShowLoadingMixin<void, CreateAssetParams> {
   CreatePoscanAssetCubit({
     required this.appServiceLoaderCubit,
     required this.createAssetUseCase,
@@ -78,9 +80,7 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState>
   }
 
   @override
-  Future<Either<Failure, void>> callExtrinsic(
-    final BuildContext context,
-  ) async {
+  FutureOr<CreateAssetParams> params(BuildContext context) {
     ObjDetailsPoscanAsset? objDetails;
     if (state.includeObject) {
       objDetails = ObjDetailsPoscanAsset.fromSuperTypes(
@@ -90,7 +90,7 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState>
       );
     }
 
-    final params = CreateAssetParams(
+    return CreateAssetParams(
       admin: state.keyPairData,
       assetId: int.parse(assetId.text),
       password: passwordController.text,
@@ -98,7 +98,9 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState>
       objDetails: objDetails,
       updateStatus: () => updateStatus(context),
     );
-    final res = createAssetUseCase.call(params);
-    return res;
   }
+
+  @override
+  SafeUseCaseCall<void, CreateAssetParams> get safeCall =>
+      createAssetUseCase.safeCall;
 }

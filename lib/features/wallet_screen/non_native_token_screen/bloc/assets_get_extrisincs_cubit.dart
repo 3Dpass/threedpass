@@ -2,11 +2,10 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:super_core/super_core.dart';
-import 'package:threedp_graphql/features/events/domain/events_request_params.dart';
-import 'package:threedp_graphql/features/extrinsics/domain/extrisincs_request_params.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 import 'package:threedpass/core/utils/logger.dart';
+import 'package:threedpass/features/graphql/events/domain/events_request_params.dart';
+import 'package:threedpass/features/graphql/extrinsics/domain/extrisincs_request_params.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/transfer_non_native_token_atom.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/transfer_non_native_tokens_dto.dart';
@@ -45,35 +44,29 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
               extrinsicIdx: item.extrinsicIdx,
             ),
           );
-          events.when(
-            left: (final err) {
-              logger.e(err);
-            },
-            right: (final event) {
-              final list = pagingController.itemList!;
-              final index = list.indexOf(item);
-              if (index != -1) {
-                // print(index);
-                // print(list.length);
-                list.replaceRange(
-                  index,
-                  index + 1,
-                  [
-                    item.ultimateCopyWith(
-                      event.isSuccessful,
-                    ),
-                  ],
-                );
-              } else {
-                logger.wtf(
-                  'Block ${item.blockNumber} with id ${item.extrinsicIdx} and status ${item.extrisincStatus} was not found in list. I do not understand why is this possible?! Somehow it throws errors...',
-                );
-              }
-              pagingController.itemList = list;
-              // pagingController.notifyListeners();
-              // print('${item.blockDatetime} ${item.runtimeType}');
-            },
-          );
+
+          final list = pagingController.itemList!;
+          final index = list.indexOf(item);
+          if (index != -1) {
+            // print(index);
+            // print(list.length);
+            list.replaceRange(
+              index,
+              index + 1,
+              [
+                item.ultimateCopyWith(
+                  events.isSuccessful,
+                ),
+              ],
+            );
+          } else {
+            logger.wtf(
+              'Block ${item.blockNumber} with id ${item.extrinsicIdx} and status ${item.extrisincStatus} was not found in list. I do not understand why is this possible?! Somehow it throws errors...',
+            );
+          }
+          pagingController.itemList = list;
+          // pagingController.notifyListeners();
+          // print('${item.blockDatetime} ${item.runtimeType}');
         }
       }
     } else {
@@ -84,7 +77,7 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
   }
 
   /// Override this method and call proper UseCase.
-  Future<Either<Failure, TransfersNonNativeTokenDTO>> getData(
+  Future<TransfersNonNativeTokenDTO> getData(
     final String pageKey,
   ) {
     return getExtrinsics.call(
@@ -98,20 +91,17 @@ class AssetsGetExtrinsicsCubit extends Cubit<void> {
   Future<void> nextPage(
     final String pageKey,
   ) async {
-    final queryRes = await getData(pageKey);
-    queryRes.when(
-      left: (final e) {
-        pagingController.error = e;
-        // final b = 1 + 1;
-      },
-      right: (final data) {
-        if (data.objects.isEmpty) {
-          pagingController.appendLastPage(data.objects);
-        } else {
-          pagingController.appendPage(data.objects, data.nextPageKey);
-        }
-      },
-    );
+    try {
+      final data = await getData(pageKey);
+      if (data.objects.isEmpty) {
+        pagingController.appendLastPage(data.objects);
+      } else {
+        pagingController.appendPage(data.objects, data.nextPageKey);
+      }
+    } on Object catch (e) {
+      pagingController.error = e;
+    }
+
     unawaited(update());
   }
 }

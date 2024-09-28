@@ -4,12 +4,12 @@ abstract class HashesListEvent {
   const HashesListEvent();
 }
 
-class DeleteHash extends HashesListEvent {
-  const DeleteHash({
-    required this.snap,
+class DeleteSnapshots extends HashesListEvent {
+  const DeleteSnapshots({
+    required this.snapshots,
   });
 
-  final Snapshot snap;
+  final List<Snapshot> snapshots;
 }
 
 class DeleteObject extends HashesListEvent {

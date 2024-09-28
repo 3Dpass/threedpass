@@ -30,7 +30,7 @@ class _State extends State<PoolAssetFieldChoice> {
 
   @override
   void initState() {
-    items = BlocProvider.of<PoscanAssetsCubit>(context).poolAssets;
+    items = BlocProvider.of<PoscanAssetsCubit>(context).poolAssets!;
     value = widget.initialValue != null
         ? items.firstWhere(
             (final PoolAssetField element) =>

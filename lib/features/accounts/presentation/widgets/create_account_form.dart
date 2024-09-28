@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:threedpass/core/utils/validators.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
@@ -66,6 +67,9 @@ class CreateAccountForm extends StatelessWidget {
                 controller: _passCtrl,
                 obscureText: true,
                 validator: _passValidator,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(Validators.passRegExp),
+                ],
               ),
               const H16(),
               D3pTextFormField(
@@ -73,6 +77,11 @@ class CreateAccountForm extends StatelessWidget {
                 controller: _pass2Ctrl,
                 obscureText: true,
                 validator: _pass2Validator,
+              ),
+              const H24(),
+              Text(
+                'Allowed special symbols: ${Validators.allowedSpecialSymbols}',
+                style: Theme.of(context).inputDecorationTheme.hintStyle,
               ),
             ],
           ),

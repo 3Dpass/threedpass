@@ -55,7 +55,7 @@ class ModalBottomSheetAutoRoute extends CustomRoute {
           ),
         );
 
-  static CustomRouteBuilder routeBuilderFactory({
+  static CustomRouteBuilder<dynamic> routeBuilderFactory({
     required final double initialChildSize,
     required final double minChildSize,
     required final double maxChildSize,

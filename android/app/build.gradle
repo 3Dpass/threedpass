@@ -100,6 +100,12 @@ android {
 //            }
         }
     }
+
+    applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach { output ->
+            outputFileName = "threedpass" + "-" + versionName + "-" + output.getFilter(com.android.build.OutputFile.ABI) + ".apk"
+        }
+    }
 }
 
 flutter {

@@ -1,17 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/get_extrinsics_usecase_params.dart';
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/non_native_token_screen.dart';
 
 @RoutePage()
 class NonNativeTokenPageWrapper extends StatelessWidget {
   final GetExtrinsicsUseCaseParams params;
-  final PoscanAssetCombined poscanAssetCombined;
+  // final PoscanAssetCombined poscanAssetCombined;
 
   const NonNativeTokenPageWrapper(
     this.params, {
-    required this.poscanAssetCombined,
     super.key,
   });
 
@@ -34,7 +32,7 @@ class NonNativeTokenPageWrapper extends StatelessWidget {
         //   ],
         //   child:
         NonNativeTokenScreen(
-      poscanAssetCombined: poscanAssetCombined,
+      poscanAssetCombined: params.poscanAssetCombined,
       // ),
     );
   }

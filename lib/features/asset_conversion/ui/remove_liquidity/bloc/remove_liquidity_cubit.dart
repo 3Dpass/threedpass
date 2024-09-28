@@ -6,11 +6,10 @@ import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:super_core/either.dart';
-import 'package:super_core/failure.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/polkawallet/utils/rational_remove_decimals.dart';
+import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/pool_full_info.dart';
@@ -47,7 +46,7 @@ class RemoveLiquidityState {
 }
 
 class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
-    with ExtrinsicShowLoadingMixin {
+    with ExtrinsicShowLoadingMixin<void, RemoveLiquidityParams> {
   RemoveLiquidityCubit({
     required final AppServiceLoaderCubit appServiceLoaderCubit,
     required this.poolFullInfo,
@@ -123,12 +122,9 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
           ),
         )
         .then(
-          (final value) => value.when(
-            left: (final _) => null,
-            right: (final double maxPercent) => emit(
-              state.copyWith(
-                maxPercent: maxPercent.round(),
-              ),
+          (final value) => emit(
+            state.copyWith(
+              maxPercent: value.round(),
             ),
           ),
         );
@@ -137,22 +133,13 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
   Future<void> calculate() async {
     final slippage = int.tryParse(slippageTolerance.text);
     if (slippage != null) {
-      final data = await calcRemoveLiquidityInfo.call(
+      final newInfo = await calcRemoveLiquidityInfo.call(
         CalcRemoveLiquidityInfoParams(
           nativeTokenDecimals: nativeTokenDecimals,
           percentage: state.percentage,
           poolFullInfo: poolFullInfo,
           slippage: slippage,
         ),
-      );
-      final newInfo = data.when(
-        left: (final Failure value) => null,
-        right: (final RemoveLiquidityInfo value) => value,
-        //  {
-        //   print(
-        //     'amount1MinRecieve ${value.amount1MinRecieve.toDouble()} amount2MinRecieve ${value.amount2MinRecieve.toDouble()} amount1Expected ${value.amount1Expected.toDouble()} amount2Expected ${value.amount2Expected.toDouble()}',
-        //   );
-        // },
       );
 
       emit(
@@ -166,11 +153,9 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
   }
 
   @override
-  Future<Either<Failure, void>> callExtrinsic(
-    final BuildContext context,
-  ) async {
+  RemoveLiquidityParams params(final BuildContext context) {
     if (state.removeLiquidityInfo == null) {
-      return const Either.left(BadDataFailure('Params were not calculated'));
+      throw Exception('Params were not calculated');
     }
 
     final lpTokenBurn = Decimal.fromBigInt(poolFullInfo.lpBalance!) *
@@ -183,7 +168,7 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
     final asset2Decimals =
         poolFullInfo.asset2Meta?.idecimals ?? nativeTokenDecimals;
 
-    final params = RemoveLiquidityParams(
+    return RemoveLiquidityParams(
       asset1: poolFullInfo.basicInfo.firstAsset,
       asset2: poolFullInfo.basicInfo.secondAsset,
       lpTokenBurn: lpTokenBurn.toBigInt(),
@@ -195,7 +180,9 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
       password: passwordController.text,
       updateStatus: () => updateStatus(context),
     );
-    final res = removeLiquidityUseCase.call(params);
-    return res;
   }
+
+  @override
+  SafeUseCaseCall<void, RemoveLiquidityParams> get safeCall =>
+      removeLiquidityUseCase.safeCall;
 }

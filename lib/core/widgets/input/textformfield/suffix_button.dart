@@ -24,7 +24,7 @@ class _SuffixButton {
               if (labelButton != null)
                 D3pIconButton(
                   emptyContraints: true,
-                  iconData: labelButton!,
+                  iconData: labelButton,
                   size: 20,
                   onPressed: onLabelButtonPressed,
                   iconColor: colors.themeOpposite,
@@ -35,7 +35,7 @@ class _SuffixButton {
               if (suffixButton != null)
                 D3pIconButton(
                   emptyContraints: true,
-                  iconData: suffixButton!,
+                  iconData: suffixButton,
                   size: 20,
                   onPressed: onSuffixButtonPressed,
                   iconColor: colors.themeOpposite,

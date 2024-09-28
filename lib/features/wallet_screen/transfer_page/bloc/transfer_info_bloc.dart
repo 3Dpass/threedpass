@@ -14,7 +14,6 @@ import 'package:super_core/super_core.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
-import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_meta_dto.dart';
@@ -181,23 +180,27 @@ class TransferInfoBloc
         },
       );
 
-      final res = await transfer.call(params);
-
-      if (!extrinsicAccepted) {
-        String message = '';
-        res.when(
-          left: (final f) {
-            message = f.cause ?? '';
-          },
-          right: (final _) {
-            logger.wtf(
-              'IMPOSSIBLE SITUATION. extrinsicAccepted = false, res = $res',
-            );
-          },
-        );
-        DefaultLoadingDialog.hide(globalContext);
-        unawaited(Fluttertoast.showToast(msg: message));
-      }
+      await transfer.safeCall(
+        params: params,
+        onSuccess: (final _) {},
+        onError: (final e, final st) {
+          if (!extrinsicAccepted) {
+            // String message = '';
+            // res.when(
+            //   left: (final f) {
+            //     message = f.cause ?? '';
+            //   },
+            //   right: (final _) {
+            //     logger.wtf(
+            //       'IMPOSSIBLE SITUATION. extrinsicAccepted = false, res = $res',
+            //     );
+            //   },
+            // );
+            DefaultLoadingDialog.hide(globalContext);
+            unawaited(Fluttertoast.showToast(msg: e.toString()));
+          }
+        },
+      );
     }
   }
 
