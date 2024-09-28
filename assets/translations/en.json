@@ -174,7 +174,7 @@
     "create_credentials_name": "Name",
     "create_credentials_name_error": "Name can not be empty",
     "create_credentials_password": "Password",
-    "create_credentials_password_error": "6 to 18 symbols and contains numbers and letters",
+    "create_credentials_password_error": "6 to 32 symbols and contains numbers and letters",
     "create_credentials_password2": "Confirm Password",
     "create_credentials_password2_error": "Inconsistent passwords",
 

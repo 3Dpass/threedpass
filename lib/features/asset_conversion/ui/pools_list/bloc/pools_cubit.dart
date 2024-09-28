@@ -32,7 +32,13 @@ class PoolsCubit extends Cubit<PoolsState> {
   final GetBasicPools getAllPools;
   final GetFullPoolInfo getFullPoolInfo;
 
+  int counter = 0;
+
   Future<void> update({required final String address}) async {
+    counter++;
+
+    final currentCounter = counter;
+
     emit(
       const AsyncValue.loading(
         _State(
@@ -40,6 +46,11 @@ class PoolsCubit extends Cubit<PoolsState> {
         ),
       ),
     );
+
+    logger.t(
+      '[POOLS] Start pools update. Current: $currentCounter. Counter: $counter',
+    );
+
     await getAllPools.safeCall(
       params: null,
       // params: GetAllPoolsParams(address: address),
@@ -50,7 +61,17 @@ class PoolsCubit extends Cubit<PoolsState> {
         ),
       ),
       onSuccess: (final List<BasicPoolEntity> data) async {
+        logger.t(
+          '[POOLS] Got basic pools len=${data.length}. Current: $currentCounter. Counter: $counter',
+        );
         for (final basic in data) {
+          if (currentCounter != counter) {
+            logger.t(
+              '[POOLS] Stop pools update. Current: $currentCounter. Counter: $counter',
+            );
+            return;
+          }
+
           await getFullPoolInfo.safeCall(
             params: GetFullPoolInfoParams(
               basicPool: basic,
@@ -74,6 +95,12 @@ class PoolsCubit extends Cubit<PoolsState> {
               final resState = _State(
                 pools: poolsList,
               );
+              if (currentCounter != counter) {
+                logger.t(
+                  '[POOLS] Skip emit. Current: $currentCounter. Counter: $counter',
+                );
+                return;
+              }
               if (basic == data.last) {
                 emit(
                   AsyncValue.data(resState),
