@@ -1,4 +1,4 @@
-import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/errors/wrong_type_fauilure.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/logger.dart';
 

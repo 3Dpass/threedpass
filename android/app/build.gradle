@@ -103,7 +103,11 @@ android {
 
     applicationVariants.configureEach { variant ->
         variant.outputs.configureEach { output ->
-            outputFileName = "threedpass" + "-" + versionName + "-" + output.getFilter(com.android.build.OutputFile.ABI) + ".apk"
+            def abiFilter = output.getFilter(com.android.build.OutputFile.ABI)
+            def abiVariant = abiFilter != null ? abiFilter : "universal"
+//            def abiFilter = output.variantOutputConfiguration.filters.find { it.filterType == FilterConfiguration.FilterType.ABI }
+//            def abiVariant = abiFilter != null ? abiFilter.identifier : "universal"
+            outputFileName = "threedpass" + "-" + versionName + "-" + abiVariant + ".apk"
         }
     }
 }

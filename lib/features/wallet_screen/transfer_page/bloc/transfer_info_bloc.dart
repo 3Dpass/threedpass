@@ -10,10 +10,11 @@ import 'package:polkawallet_sdk/p3d/balance_transaction_type.dart';
 import 'package:polkawallet_sdk/p3d/tx_info.dart';
 import 'package:polkawallet_sdk/p3d/tx_params.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:super_core/super_core.dart';
+
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
+import 'package:threedpass/core/utils/list_extentions.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_meta_dto.dart';

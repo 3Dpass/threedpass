@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/utils/di_module.dart';
+
 import 'package:threedpass/features/poscan/bloc/get_poscan_properties_cubit.dart';
 import 'package:threedpass/features/poscan/domain/usecases/get_poscan_properties.dart';
 import 'package:threedpass/features/poscan_putobject/data/poscan_putobject_repository.dart';

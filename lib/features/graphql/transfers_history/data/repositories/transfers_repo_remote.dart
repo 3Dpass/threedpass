@@ -1,18 +1,15 @@
 import 'package:ferry/ferry.dart';
-import 'package:threedpass/core/architecture/remote_repository_interface.dart';
 import 'package:threedpass/features/graphql/transfers_history/data/query/__generated__/get_transfers.data.gql.dart';
 import 'package:threedpass/features/graphql/transfers_history/data/query/__generated__/get_transfers.req.gql.dart';
 import 'package:threedpass/features/graphql/transfers_history/domain/entities/transfers_request_params.dart';
 
-class TransfersDatasource
-    implements RemoteRepoI<GGetTransfersData, GetTransfersParams> {
+class TransfersDatasource {
   final Client client;
 
   const TransfersDatasource({
     required this.client,
   });
 
-  @override
   Future<GGetTransfersData> get(final GetTransfersParams requestParams) async {
     final request = GGetTransfersReq((final b) {
       b

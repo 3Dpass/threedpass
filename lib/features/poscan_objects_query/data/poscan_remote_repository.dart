@@ -1,7 +1,7 @@
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/logger.dart';
-import 'package:threedpass/core/utils/to_string_dynamic.dart';
+import 'package:threedpass/core/utils/to_map_string_dynamic.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 
 class PoScanRemoteRepository {
@@ -60,7 +60,7 @@ class PoScanRemoteRepository {
     );
 
     return UploadedObject.fromJson(
-      (res as Map).toStringDynamic(),
+      (res as Map).toMapStringDynamic(),
       DateTime.now(),
       id,
     );

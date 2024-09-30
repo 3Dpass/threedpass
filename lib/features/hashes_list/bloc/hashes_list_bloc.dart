@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/utils/list_extentions.dart';
+
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
@@ -75,8 +76,8 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
       //   );
       // });
 
-      final hashObj =
-          objectsList.findOrNull((final obj) => obj.snapshots.contains(snap));
+      final hashObj = objectsList
+          .firstWhereOrNull((final obj) => obj.snapshots.contains(snap));
 
       if (hashObj == null) {
         logger.e(
