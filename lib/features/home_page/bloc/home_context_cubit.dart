@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class HomeContextState {
   const HomeContextState({
@@ -16,7 +15,7 @@ class HomeContextCubit extends Cubit<HomeContextState> {
   Future<void> showDialogC(
     final Widget Function(BuildContext __) builder,
   ) async {
-    await showPlatformDialog<void>(
+    await showAdaptiveDialog<void>(
       useRootNavigator: false,
       context: state.context,
       barrierDismissible: false,

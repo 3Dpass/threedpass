@@ -72,8 +72,6 @@ dependencies:
   scrollview_observer: ^1.20.0
 
   # Child packages
-  super_core:
-    path: ./packages/super_core
   rust_lzss:
     path: ./packages/rust_lzss
 

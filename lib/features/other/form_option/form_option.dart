@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 
@@ -50,7 +49,7 @@ class _FormOptionState extends State<FormOption> {
               child: ValueListenableBuilder(
                 valueListenable: valueListenable,
                 builder: (final context, final hasError, final child) =>
-                    PlatformSwitch(
+                    Switch.adaptive(
                   value: valueListenable.value,
                   onChanged: (final p0) => valueListenable.value = p0,
                 ),
