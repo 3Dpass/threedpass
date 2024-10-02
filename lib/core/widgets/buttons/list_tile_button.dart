@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 
 import 'package:threedpass/core/widgets/other/right_chevron.dart';
@@ -40,8 +39,13 @@ class ListTileButton extends StatelessWidget {
     return Padding(
       padding: padding ?? EdgeInsets.zero,
       child: SizedBox(
-        child: PlatformTextButton(
-          padding: EdgeInsets.zero,
+        child: TextButton(
+          // TODO Cupertino?
+          style: TextButton.styleFrom(
+            padding: EdgeInsets.zero,
+            backgroundColor: theme.cardColor,
+            shape: border,
+          ),
           onPressed: onPressed,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -57,41 +61,11 @@ class ListTileButton extends StatelessWidget {
               ],
             ),
           ),
-          material: (final context, final platform) => _ListTileMaterial(
-            themeData: theme,
-            backgroundColor: backgroundColor,
-            border: border,
-          ).style(),
-          cupertino: (final context, final platform) => CupertinoTextButtonData(
-            // color: mainColor,
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-          ),
+          // cupertino: (final context, final platform) => CupertinoTextButtonData(
+          //   // color: mainColor,
+          //   padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+          // ),
         ),
-      ),
-    );
-  }
-}
-
-class _ListTileMaterial {
-  final ThemeData themeData;
-  final Color? backgroundColor;
-  final RoundedRectangleBorder border;
-
-  _ListTileMaterial({
-    required this.themeData,
-    required this.backgroundColor,
-    required this.border,
-  });
-
-  MaterialTextButtonData style() {
-    return MaterialTextButtonData(
-      style: themeData.textButtonTheme.style!.copyWith(
-        // padding: MaterialStateProperty.all(EdgeInsets.zero),
-        backgroundColor: MaterialStateProperty.all<Color>(
-          backgroundColor ?? themeData.cardColor,
-        ),
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        shape: MaterialStateProperty.all<OutlinedBorder>(border),
       ),
     );
   }

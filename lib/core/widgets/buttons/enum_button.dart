@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:threedpass/core/theme/d3p_special_colors.dart';
 
 class EnumButton extends StatelessWidget {
   const EnumButton({
@@ -35,7 +33,13 @@ class EnumButton extends StatelessWidget {
     return Padding(
       padding: padding ?? EdgeInsets.zero,
       child: SizedBox(
-        child: PlatformTextButton(
+        child: TextButton(
+          // TODO Cupertino ?
+          style: TextButton.styleFrom(
+            foregroundColor: mainColor,
+            shape: border,
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          ),
           onPressed: onPressed,
           child: Row(
             children: [
@@ -51,17 +55,17 @@ class EnumButton extends StatelessWidget {
               ),
             ],
           ),
-          material: (final context, final platform) => MaterialTextButtonData(
-            style: theme.textButtonTheme.style!.copyWith(
-              foregroundColor: MaterialStateProperty.all(
-                isChosen ? mainColor : theme.customColors.themeOpposite,
-              ),
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              shape: MaterialStateProperty.all<OutlinedBorder>(border),
-            ),
-          ),
-          cupertino: (final context, final platform) =>
-              _CupertinoTextButtonData(),
+          // material: (final context, final platform) => MaterialTextButtonData(
+          //   style: theme.textButtonTheme.style!.copyWith(
+          //     foregroundColor: MaterialStateProperty.all(
+          //       isChosen ? mainColor : theme.customColors.themeOpposite,
+          //     ),
+          //     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          //     shape: MaterialStateProperty.all<OutlinedBorder>(border),
+          //   ),
+          // ),
+          // cupertino: (final context, final platform) =>
+          //     _CupertinoTextButtonData(),
         ),
       ),
     );
@@ -80,11 +84,4 @@ class _Icon extends StatelessWidget {
       color: isEmpty ? Colors.transparent : null,
     );
   }
-}
-
-class _CupertinoTextButtonData extends CupertinoTextButtonData {
-  _CupertinoTextButtonData()
-      : super(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-        );
 }
