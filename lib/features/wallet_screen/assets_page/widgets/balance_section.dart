@@ -5,10 +5,8 @@ import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
-import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/actual_balance.dart';
-import 'package:threedpass/features/wallet_screen/assets_page/widgets/buttons_panel.dart';
 
 class BalanceSection extends StatelessWidget {
   const BalanceSection({super.key});
@@ -18,7 +16,7 @@ class BalanceSection extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return SizedBox(
-      height: BalanceCard.height + 8 + AssetPageButtonsPanel.height,
+      height: BalanceCard.height,
       child: BlocBuilder<AppServiceLoaderCubit, AppService>(
         builder: (final context, final state) {
           if (state.networkStateData.isNull) {
@@ -42,8 +40,6 @@ class BalanceSection extends StatelessWidget {
                     tokenDecimals: tokenDecimals,
                     tokenSymbol: tokenSymbol,
                   ),
-                  const H8(),
-                  const AssetPageButtonsPanel(),
                 ],
               );
             },

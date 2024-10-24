@@ -55,15 +55,6 @@ class EnumButton extends StatelessWidget {
               ),
             ],
           ),
-          // material: (final context, final platform) => MaterialTextButtonData(
-          //   style: theme.textButtonTheme.style!.copyWith(
-          //     foregroundColor: MaterialStateProperty.all(
-          //       isChosen ? mainColor : theme.customColors.themeOpposite,
-          //     ),
-          //     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          //     shape: MaterialStateProperty.all<OutlinedBorder>(border),
-          //   ),
-          // ),
           // cupertino: (final context, final platform) =>
           //     _CupertinoTextButtonData(),
         ),

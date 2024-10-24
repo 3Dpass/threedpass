@@ -8,9 +8,7 @@ class PreviewPageCubit extends Cubit<Snapshot> {
 
   final HashesListBloc hashesListBloc;
 
-  HashObject get hashObject => hashesListBloc.state.objects.firstWhere(
-        (final hashObj) => hashObj.snapshots.contains(
-          state,
-        ),
+  HashObject get hashObject => hashesListBloc.state.value!.objects.firstWhere(
+        (final hashObj) => hashObj.snapshots.contains(state),
       );
 }

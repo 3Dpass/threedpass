@@ -86,9 +86,10 @@ class _D3ObjectItem extends StatelessWidget {
     final hashObjects = BlocProvider.of<HashesListBloc>(context).state;
 
     // Find objects with stable hashes
-    final realObjects = hashObjects.objects
-        .where((final obj) => obj.stableHashes.isNotEmpty)
-        .toList();
+    final realObjects = hashObjects.value?.objects
+            .where((final obj) => obj.stableHashes.isNotEmpty)
+            .toList() ??
+        [];
 
     return realObjects.isNotEmpty;
   }

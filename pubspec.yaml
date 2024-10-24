@@ -32,6 +32,7 @@ dependencies:
   file_picker: ^8.1.2
   qr_flutter: ^4.1.0
   package_info_plus: ^8.0.2
+  flutter_fancy_tree_view: ^1.6.0   # animated_tree_view: ^2.2.1
   
   ## Core
   auto_route: ^8.1.4
@@ -51,6 +52,7 @@ dependencies:
   decimal: ^2.3.3
   rational: ^2.2.3
   async: ^2.11.0
+  hashlib: ^1.21.0
   # fpdart: ^1.1.0
 
   ## Code gen
@@ -103,6 +105,9 @@ dev_dependencies:
   ## Linters
   flutter_lints: ^4.0.0
   dart_code_metrics: ^5.7.5 # TODO MOVE TO https://github.com/rei-codes/dart-code-metrics
+  #   git:
+  #     url: https://github.com/rei-codes/dart-code-metrics.git
+  #     ref: 1c38aede63e6a7d28d5dc81424e578a1e10ffc25
   extra_pedantic: ^4.0.0
 
 # The following section is specific to Flutter.

@@ -17,32 +17,25 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HashesListState {
   List<HashObject> get objects => throw _privateConstructorUsedError;
-  bool get loaded => throw _privateConstructorUsedError;
-  bool get isDeletingInProcess => throw _privateConstructorUsedError;
-  bool get requiresScroll => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HashesListStateCopyWith<HashesListState> get copyWith =>
+  _$HashesListStateCopyWith<_HashesListState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HashesListStateCopyWith<$Res> {
-  factory $HashesListStateCopyWith(
-          HashesListState value, $Res Function(HashesListState) then) =
-      _$HashesListStateCopyWithImpl<$Res, HashesListState>;
+abstract class _$HashesListStateCopyWith<$Res> {
+  factory _$HashesListStateCopyWith(
+          _HashesListState value, $Res Function(_HashesListState) then) =
+      __$HashesListStateCopyWithImpl<$Res, _HashesListState>;
   @useResult
-  $Res call(
-      {List<HashObject> objects,
-      bool loaded,
-      bool isDeletingInProcess,
-      bool requiresScroll});
+  $Res call({List<HashObject> objects});
 }
 
 /// @nodoc
-class _$HashesListStateCopyWithImpl<$Res, $Val extends HashesListState>
-    implements $HashesListStateCopyWith<$Res> {
-  _$HashesListStateCopyWithImpl(this._value, this._then);
+class __$HashesListStateCopyWithImpl<$Res, $Val extends _HashesListState>
+    implements _$HashesListStateCopyWith<$Res> {
+  __$HashesListStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -53,91 +46,53 @@ class _$HashesListStateCopyWithImpl<$Res, $Val extends HashesListState>
   @override
   $Res call({
     Object? objects = null,
-    Object? loaded = null,
-    Object? isDeletingInProcess = null,
-    Object? requiresScroll = null,
   }) {
     return _then(_value.copyWith(
       objects: null == objects
           ? _value.objects
           : objects // ignore: cast_nullable_to_non_nullable
               as List<HashObject>,
-      loaded: null == loaded
-          ? _value.loaded
-          : loaded // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDeletingInProcess: null == isDeletingInProcess
-          ? _value.isDeletingInProcess
-          : isDeletingInProcess // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requiresScroll: null == requiresScroll
-          ? _value.requiresScroll
-          : requiresScroll // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$HashesListStateImplCopyWith<$Res>
-    implements $HashesListStateCopyWith<$Res> {
-  factory _$$HashesListStateImplCopyWith(_$HashesListStateImpl value,
-          $Res Function(_$HashesListStateImpl) then) =
-      __$$HashesListStateImplCopyWithImpl<$Res>;
+abstract class _$$_HashesListStateImplCopyWith<$Res>
+    implements _$HashesListStateCopyWith<$Res> {
+  factory _$$_HashesListStateImplCopyWith(_$_HashesListStateImpl value,
+          $Res Function(_$_HashesListStateImpl) then) =
+      __$$_HashesListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<HashObject> objects,
-      bool loaded,
-      bool isDeletingInProcess,
-      bool requiresScroll});
+  $Res call({List<HashObject> objects});
 }
 
 /// @nodoc
-class __$$HashesListStateImplCopyWithImpl<$Res>
-    extends _$HashesListStateCopyWithImpl<$Res, _$HashesListStateImpl>
-    implements _$$HashesListStateImplCopyWith<$Res> {
-  __$$HashesListStateImplCopyWithImpl(
-      _$HashesListStateImpl _value, $Res Function(_$HashesListStateImpl) _then)
+class __$$_HashesListStateImplCopyWithImpl<$Res>
+    extends __$HashesListStateCopyWithImpl<$Res, _$_HashesListStateImpl>
+    implements _$$_HashesListStateImplCopyWith<$Res> {
+  __$$_HashesListStateImplCopyWithImpl(_$_HashesListStateImpl _value,
+      $Res Function(_$_HashesListStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? objects = null,
-    Object? loaded = null,
-    Object? isDeletingInProcess = null,
-    Object? requiresScroll = null,
   }) {
-    return _then(_$HashesListStateImpl(
+    return _then(_$_HashesListStateImpl(
       objects: null == objects
           ? _value._objects
           : objects // ignore: cast_nullable_to_non_nullable
               as List<HashObject>,
-      loaded: null == loaded
-          ? _value.loaded
-          : loaded // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDeletingInProcess: null == isDeletingInProcess
-          ? _value.isDeletingInProcess
-          : isDeletingInProcess // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requiresScroll: null == requiresScroll
-          ? _value.requiresScroll
-          : requiresScroll // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$HashesListStateImpl implements _HashesListState {
-  const _$HashesListStateImpl(
-      {required final List<HashObject> objects,
-      required this.loaded,
-      required this.isDeletingInProcess,
-      required this.requiresScroll})
+class _$_HashesListStateImpl implements __HashesListState {
+  const _$_HashesListStateImpl({required final List<HashObject> objects})
       : _objects = objects;
 
   final List<HashObject> _objects;
@@ -149,42 +104,26 @@ class _$HashesListStateImpl implements _HashesListState {
   }
 
   @override
-  final bool loaded;
-  @override
-  final bool isDeletingInProcess;
-  @override
-  final bool requiresScroll;
-
-  @override
   String toString() {
-    return 'HashesListState(objects: $objects, loaded: $loaded, isDeletingInProcess: $isDeletingInProcess, requiresScroll: $requiresScroll)';
+    return '_HashesListState(objects: $objects)';
   }
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HashesListStateImplCopyWith<_$HashesListStateImpl> get copyWith =>
-      __$$HashesListStateImplCopyWithImpl<_$HashesListStateImpl>(
+  _$$_HashesListStateImplCopyWith<_$_HashesListStateImpl> get copyWith =>
+      __$$_HashesListStateImplCopyWithImpl<_$_HashesListStateImpl>(
           this, _$identity);
 }
 
-abstract class _HashesListState implements HashesListState {
-  const factory _HashesListState(
-      {required final List<HashObject> objects,
-      required final bool loaded,
-      required final bool isDeletingInProcess,
-      required final bool requiresScroll}) = _$HashesListStateImpl;
+abstract class __HashesListState implements _HashesListState {
+  const factory __HashesListState({required final List<HashObject> objects}) =
+      _$_HashesListStateImpl;
 
   @override
   List<HashObject> get objects;
   @override
-  bool get loaded;
-  @override
-  bool get isDeletingInProcess;
-  @override
-  bool get requiresScroll;
-  @override
   @JsonKey(ignore: true)
-  _$$HashesListStateImplCopyWith<_$HashesListStateImpl> get copyWith =>
+  _$$_HashesListStateImplCopyWith<_$_HashesListStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

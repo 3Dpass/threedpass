@@ -78,10 +78,10 @@ class SnapshotFileFactory {
     final snapName = newSnapshot.name;
 
     HashObject? hashObject;
-    final index = hashListState.objects
+    final index = hashListState.value!.objects
         .indexWhere((final element) => newSnapshot.belongsToObject(element));
     if (index != -1) {
-      hashObject = hashListState.objects[index];
+      hashObject = hashListState.value!.objects[index];
     }
 
     if (hashObject != null) {

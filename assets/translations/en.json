@@ -540,5 +540,8 @@
         "other":  "assets"
     },
     "linked_snapshots_helper": "+ {} found",
-    "view_object": "View object"
+    "view_object": "View object",
+
+    "@2.18.0": {},
+    "create_atomic_swap_choose_account_label": "Choose account"
 }

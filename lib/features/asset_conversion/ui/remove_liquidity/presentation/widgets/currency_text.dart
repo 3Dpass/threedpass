@@ -16,7 +16,7 @@ class CurrencyText extends StatelessWidget {
   final String asset2Symbol;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final medium = Theme.of(context).textTheme.bodyMedium;
     final mediumSecondary = medium!.copyWith(color: D3pColors.disabled);
     return Text.rich(

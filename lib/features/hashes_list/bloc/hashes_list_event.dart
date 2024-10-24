@@ -12,14 +12,6 @@ class DeleteSnapshots extends HashesListEvent {
   final List<Snapshot> snapshots;
 }
 
-class DeleteObject extends HashesListEvent {
-  const DeleteObject({
-    required this.object,
-  });
-
-  final HashObject object;
-}
-
 class SaveSnapshot extends HashesListEvent {
   const SaveSnapshot({
     required this.hash,

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:threedpass/core/utils/async_value.dart';
 import 'package:threedpass/core/utils/list_extentions.dart';
 
 import 'package:threedpass/core/utils/logger.dart';
@@ -14,20 +15,21 @@ part 'hashes_list_event.dart';
 part 'hashes_list_state.dart';
 part 'hashes_list_bloc.freezed.dart';
 
-class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
+typedef HashesListState = AsyncValue<_HashesListState>;
+
+class HashesListBloc
+    extends Bloc<HashesListEvent, AsyncValue<_HashesListState>> {
   HashesListBloc({
     required this.hashesRepository,
     required this.objectsDirectory,
   }) : super(
-          const HashesListState(
-            objects: [],
-            loaded: false,
-            isDeletingInProcess: false,
-            requiresScroll: false,
+          const AsyncValue.loading(
+            _HashesListState(
+              objects: [],
+            ),
           ),
         ) {
     on<DeleteSnapshots>(_deleteHash);
-    on<DeleteObject>(_deleteObject);
     on<AddObject>(_addObject);
     on<SaveSnapshot>(_saveSnapshot);
     on<ReplaceSnapshot>(_replaceSnapshot);
@@ -49,9 +51,10 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     final Emitter<HashesListState> emit,
   ) async {
     emit(
-      state.copyWith(
-        objects: event.objects,
-        loaded: true,
+      AsyncValue.data(
+        _HashesListState(
+          objects: event.objects,
+        ),
       ),
     );
   }
@@ -60,12 +63,12 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     final DeleteSnapshots event,
     final Emitter<HashesListState> emit,
   ) async {
-    if (!state.isDeletingInProcess) {
-      emit(state.copyWith(isDeletingInProcess: true));
+    if (!state.isLoading) {
+      emit(AsyncValue.loading(state.value));
       print('Set isDeletingInProcess');
     }
 
-    final objectsList = List<HashObject>.from(state.objects);
+    final objectsList = List<HashObject>.from(state.value!.objects);
 
     for (final snap in event.snapshots) {
       logger.t('Start deleting snapshot ${snap.name}');
@@ -100,24 +103,12 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
 
       logger.t('Finish deleting snapshot ${snap.name}');
     }
-
     emit(
-      state.copyWith(
-        objects: objectsList,
-        isDeletingInProcess: false,
+      AsyncValue.data(
+        _HashesListState(
+          objects: objectsList,
+        ),
       ),
-    );
-  }
-
-  Future<void> _deleteObject(
-    final DeleteObject event,
-    final Emitter<HashesListState> emit,
-  ) async {
-    await hashesRepository.deleteObject(event.object);
-    final list = List<HashObject>.from(state.objects);
-    await deleteObjectUtil(objects: list, objectToDelete: event.object);
-    emit(
-      state.copyWith(objects: list),
     );
   }
 
@@ -137,13 +128,14 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
   ) async {
     await hashesRepository.addObject(event.object);
 
-    final list = List<HashObject>.from(state.objects);
+    final list = List<HashObject>.from(state.value!.objects);
     list.add(event.object);
 
     emit(
-      state.copyWith(
-        objects: list,
-        requiresScroll: true,
+      AsyncValue.data(
+        state.value!.copyWith(
+          objects: list,
+        ),
       ),
     );
   }
@@ -152,16 +144,17 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     final SaveSnapshot event,
     final Emitter<HashesListState> emit,
   ) async {
-    final list = List<HashObject>.from(state.objects);
+    final list = List<HashObject>.from(state.value!.objects);
     final newObj = event.object
         .copyWith(snapshots: [...event.object.snapshots, event.hash]);
     await hashesRepository.replaceObject(event.object, newObj);
     list.replace(event.object, newObj);
 
     emit(
-      state.copyWith(
-        objects: list,
-        requiresScroll: true,
+      AsyncValue.data(
+        state.value!.copyWith(
+          objects: list,
+        ),
       ),
     );
   }
@@ -170,7 +163,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     final ReplaceSnapshot event,
     final Emitter<HashesListState> emit,
   ) async {
-    final list = List<HashObject>.from(state.objects);
+    final list = List<HashObject>.from(state.value!.objects);
 
     final newSnapshotsList = List<Snapshot>.from(event.object.snapshots);
     newSnapshotsList.replace(event.oldSnapshot, event.newSnapshot);
@@ -179,7 +172,11 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     list.replace(event.object, newObj);
 
     emit(
-      state.copyWith(objects: list),
+      AsyncValue.data(
+        state.value!.copyWith(
+          objects: list,
+        ),
+      ),
     );
   }
 
@@ -187,7 +184,7 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     final UnmarkNewSnap event,
     final Emitter<HashesListState> emit,
   ) async {
-    final list = List<HashObject>.from(state.objects);
+    final list = List<HashObject>.from(state.value!.objects);
     final obj = event.object;
 
     // find old snapshot place
@@ -196,8 +193,15 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     if (oldSnapIndex != -1) {
       obj.snapshots[oldSnapIndex] = event.snap.copyWith(isNew: false);
       emit(
-        state.copyWith(objects: list),
+        AsyncValue.data(
+          state.value!.copyWith(
+            objects: list,
+          ),
+        ),
       );
+    } else {
+      logger
+          .e('Could not find snapshot name=${event.snap.name} to unmark new.');
     }
   }
 
@@ -205,10 +209,14 @@ class HashesListBloc extends Bloc<HashesListEvent, HashesListState> {
     final ReplaceObject event,
     final Emitter<HashesListState> emit,
   ) async {
-    final list = List<HashObject>.from(state.objects);
+    final list = List<HashObject>.from(state.value!.objects);
     list.replace(event.oldObj, event.newObj);
     emit(
-      state.copyWith(objects: list),
+      AsyncValue.data(
+        state.value!.copyWith(
+          objects: list,
+        ),
+      ),
     );
     await hashesRepository.replaceObject(event.oldObj, event.newObj);
   }

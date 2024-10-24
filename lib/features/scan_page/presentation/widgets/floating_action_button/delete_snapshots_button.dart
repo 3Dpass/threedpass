@@ -15,10 +15,10 @@ class DeleteSnaphotsButton extends StatelessWidget {
       builder: (final BuildContext context, final HashesListState state) {
         return FloatingActionButton(
           heroTag: 'delete_snapshots',
-          backgroundColor: state.isDeletingInProcess
+          backgroundColor: state.isLoading
               ? Theme.of(context).disabledColor
               : Theme.of(context).colorScheme.error,
-          onPressed: state.isDeletingInProcess
+          onPressed: state.isLoading
               ? null
               : () async => context.router.push(
                     DeleteSnapshotsRoute(selectSnapshotsCubit: selectBloc),

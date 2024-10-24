@@ -80,7 +80,7 @@ class CreatePoscanAssetCubit extends Cubit<CreatePoscanAssetState>
   }
 
   @override
-  FutureOr<CreateAssetParams> params(BuildContext context) {
+  FutureOr<CreateAssetParams> params(final BuildContext context) {
     ObjDetailsPoscanAsset? objDetails;
     if (state.includeObject) {
       objDetails = ObjDetailsPoscanAsset.fromSuperTypes(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/features/scan_page/presentation/widgets/object_list/scrollable_objects_list.dart';
+import 'package:threedpass/features/scan_page/presentation/widgets/object_list/objects_tree.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/scan_indicator.dart';
 
 class ScanPageContent extends StatelessWidget {
@@ -11,7 +11,7 @@ class ScanPageContent extends StatelessWidget {
       children: [
         ScanIndicator(),
         Flexible(
-          child: ScrollableObjectsList(),
+          child: ObjectsTree(),
         ),
       ],
     );
