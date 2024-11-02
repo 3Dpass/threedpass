@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
+import 'package:threedpass/features/scan_page/bloc/objects_expanded_cubit.dart';
 import 'package:threedpass/features/scan_page/presentation/widgets/object_list/file_hashes_list.dart';
 
-// stores ExpansionPanel state information
-class Item {
-  Item({
+class _Item {
+  _Item({
     required this.hashObject,
     this.isExpanded = false,
   });
@@ -15,66 +16,55 @@ class Item {
   bool isExpanded;
 }
 
-class ExpansionPanelObjectsList extends StatefulWidget {
+class ExpansionPanelObjectsList extends StatelessWidget {
   const ExpansionPanelObjectsList({required this.objects, super.key});
 
   final List<HashObject> objects;
-
-  @override
-  State<ExpansionPanelObjectsList> createState() =>
-      _ExpansionPanelObjectsListState();
-}
-
-class _ExpansionPanelObjectsListState extends State<ExpansionPanelObjectsList> {
-  late final List<Item> _data;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _data = widget.objects
-        .map(
-          (final e) => Item(
-            hashObject: e,
-          ),
-        )
-        .toList();
-  }
 
   @override
   Widget build(final BuildContext context) {
     final bgColor = Theme.of(context).scaffoldBackgroundColor;
 
     return SingleChildScrollView(
-      child: ExpansionPanelList(
-        materialGapSize: 0,
-        expansionCallback: onExpand,
-        children: _data.map<ExpansionPanel>((final Item item) {
-          return ExpansionPanel(
-            backgroundColor: bgColor,
-            headerBuilder: (final BuildContext context, final bool isExpanded) {
-              return ListTile(
-                title: Text(item.hashObject.name),
-                titleTextStyle:
-                    Theme.of(context).customTextStyles.d3ptitleLarge,
+      child: BlocBuilder<ObjectsExpandedCubit, ObjectsExpandedState>(
+        builder:
+            (final BuildContext context, final ObjectsExpandedState state) {
+          final List<_Item> _data = objects
+              .map(
+                (final e) => _Item(
+                  hashObject: e,
+                  isExpanded: state.isExpanded(e),
+                ),
+              )
+              .toList();
+          return ExpansionPanelList(
+            materialGapSize: 0,
+            expansionCallback: (final int index, final bool isExpanded) =>
+                BlocProvider.of<ObjectsExpandedCubit>(context)
+                    .set(_data[index].hashObject, isExpanded),
+            children: _data.map<ExpansionPanel>((final _Item item) {
+              return ExpansionPanel(
+                backgroundColor: bgColor,
+                headerBuilder:
+                    (final BuildContext context, final bool isExpanded) {
+                  return ListTile(
+                    title: Text(item.hashObject.name),
+                    titleTextStyle:
+                        Theme.of(context).customTextStyles.d3ptitleLarge,
+                  );
+                },
+                body: Padding16(
+                  child: FileHashesList(
+                    currentObject: item.hashObject,
+                  ),
+                ),
+                isExpanded: item.isExpanded,
+                canTapOnHeader: true,
               );
-            },
-            body: Padding16(
-              child: FileHashesList(
-                currentObject: item.hashObject,
-              ),
-            ),
-            isExpanded: item.isExpanded,
-            canTapOnHeader: true,
+            }).toList(),
           );
-        }).toList(),
+        },
       ),
     );
-  }
-
-  void onExpand(final int index, final bool isExpanded) {
-    setState(() {
-      _data[index].isExpanded = isExpanded;
-    });
   }
 }

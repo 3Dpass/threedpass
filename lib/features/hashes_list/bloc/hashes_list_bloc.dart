@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:threedpass/core/utils/async_value.dart';
 import 'package:threedpass/core/utils/list_extentions.dart';
@@ -10,6 +11,7 @@ import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/hashes_list/domain/repositories/hashes_repository.dart';
+import 'package:threedpass/features/scan_page/bloc/objects_expanded_cubit.dart';
 
 part 'hashes_list_event.dart';
 part 'hashes_list_state.dart';
@@ -22,6 +24,7 @@ class HashesListBloc
   HashesListBloc({
     required this.hashesRepository,
     required this.objectsDirectory,
+    required this.objectsExpandedCubit,
   }) : super(
           const AsyncValue.loading(
             _HashesListState(
@@ -40,6 +43,7 @@ class HashesListBloc
 
   final HashesRepository hashesRepository;
   final ObjectsDirectory objectsDirectory;
+  final ObjectsExpandedCubit objectsExpandedCubit;
 
   Future<void> init() async {
     final objects = hashesRepository.getAll();
@@ -99,6 +103,7 @@ class HashesListBloc
         final newObj = hashObj.copyWith(snapshots: newSnapshotsList);
         await hashesRepository.replaceObject(hashObj, newObj);
         objectsList.replace(hashObj, newObj);
+        objectsExpandedCubit.changeKey(hashObj, newObj);
       }
 
       logger.t('Finish deleting snapshot ${snap.name}');
@@ -149,6 +154,7 @@ class HashesListBloc
         .copyWith(snapshots: [...event.object.snapshots, event.hash]);
     await hashesRepository.replaceObject(event.object, newObj);
     list.replace(event.object, newObj);
+    objectsExpandedCubit.changeKey(event.object, newObj);
 
     emit(
       AsyncValue.data(
@@ -164,12 +170,12 @@ class HashesListBloc
     final Emitter<HashesListState> emit,
   ) async {
     final list = List<HashObject>.from(state.value!.objects);
-
     final newSnapshotsList = List<Snapshot>.from(event.object.snapshots);
     newSnapshotsList.replace(event.oldSnapshot, event.newSnapshot);
     final newObj = event.object.copyWith(snapshots: newSnapshotsList);
     await hashesRepository.replaceObject(event.object, newObj);
     list.replace(event.object, newObj);
+    objectsExpandedCubit.changeKey(event.object, newObj);
 
     emit(
       AsyncValue.data(
@@ -178,27 +184,29 @@ class HashesListBloc
         ),
       ),
     );
+
+    event.onReplaced();
   }
 
   Future<void> _unmarkNewSnap(
     final UnmarkNewSnap event,
     final Emitter<HashesListState> emit,
   ) async {
-    final list = List<HashObject>.from(state.value!.objects);
-    final obj = event.object;
-
     // find old snapshot place
-    final oldSnapIndex = obj.snapshots.indexOf(event.snap);
+    final oldSnapIndex = event.object.snapshots.indexOf(event.snap);
+    final newSnap = event.snap.copyWith(isNew: false);
+
     // replace it with new one
     if (oldSnapIndex != -1) {
-      obj.snapshots[oldSnapIndex] = event.snap.copyWith(isNew: false);
+      event.object.snapshots[oldSnapIndex] = newSnap;
       emit(
         AsyncValue.data(
           state.value!.copyWith(
-            objects: list,
+            objects: List<HashObject>.from(state.value!.objects),
           ),
         ),
       );
+      event.onUmarked(newSnap);
     } else {
       logger
           .e('Could not find snapshot name=${event.snap.name} to unmark new.');
@@ -211,6 +219,7 @@ class HashesListBloc
   ) async {
     final list = List<HashObject>.from(state.value!.objects);
     list.replace(event.oldObj, event.newObj);
+    objectsExpandedCubit.changeKey(event.oldObj, event.newObj);
     emit(
       AsyncValue.data(
         state.value!.copyWith(

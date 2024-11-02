@@ -14,6 +14,7 @@ import 'package:threedpass/features/poscan/di_poscan.dart';
 import 'package:threedpass/features/poscan_assets/di_poscan_assets.dart';
 import 'package:threedpass/features/poscan_objects_query/di_polkadot_query.dart';
 import 'package:threedpass/features/poscan_putobject/di_preview_page.dart';
+import 'package:threedpass/features/scan_page/di_scan_page.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
 import 'package:threedpass/features/settings_page/data/repositories/settings_store.dart';
 import 'package:threedpass/features/settings_page/domain/repositories/settings_repository.dart';
@@ -79,6 +80,8 @@ Future<void> setup() async {
       repository: getIt<TransfersRepository>(),
     ),
   );
+
+  await DIScanPage().setup(getIt);
 
   await DIAccounts().setup(getIt);
 

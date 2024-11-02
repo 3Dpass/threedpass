@@ -33,18 +33,20 @@ class RenameSnapshotDialog extends StatelessWidget {
         oldSnapshot: snapshot,
         newSnapshot: newNamedModel,
         object: hashObject,
-      ),
-    );
+        onReplaced: () async {
+          final outerContext =
+              BlocProvider.of<OuterContextCubit>(context).state;
+          // TODO When rename object do bloc_builder instead of re-push
+          await outerContext.router.pop();
 
-    final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
-    // TODO When rename object do bloc_builder instead of re-push
-    await outerContext.router.pop();
-
-    unawaited(
-      outerContext.router.push(
-        PreviewRouteWrapper(
-          snapshot: newNamedModel,
-        ),
+          unawaited(
+            outerContext.router.push(
+              PreviewRouteWrapper(
+                snapshot: newNamedModel,
+              ),
+            ),
+          );
+        },
       ),
     );
   }
