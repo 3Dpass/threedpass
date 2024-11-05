@@ -31,7 +31,7 @@ class DefaultLoadingDialog extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Dialog(
       child: SizedBox(
-        height: 42,
+        height: 84,
         width: 42,
         child: Center(
           child: Row(

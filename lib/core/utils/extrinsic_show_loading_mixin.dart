@@ -32,7 +32,7 @@ mixin ExtrinsicShowLoadingMixin<TResult, Params> {
     required final Params params,
     required final SafeUseCaseCall<TResult, Params> safeCall,
   }) async {
-    DefaultLoadingDialog.show(context);
+    unawaited(DefaultLoadingDialog.show(context));
 
     fastCheckPassed = false;
 

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/basic_polkadot_js_call.dart';
+import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/utils/big_int_json_helper.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
@@ -12,9 +13,11 @@ import 'package:threedpass/features/poscan_putobject/domain/usecases/put_object_
 class PoScanPutObjectRepository {
   const PoScanPutObjectRepository({
     required this.appServiceLoaderCubit,
+    required this.callSignExtrinsicUtil,
   });
 
   final AppServiceLoaderCubit appServiceLoaderCubit;
+  final CallSignExtrinsicUtil callSignExtrinsicUtil;
 
   Future<List<PoscanProperty>> properties() async {
     const String getPropsFunc = """
@@ -85,45 +88,61 @@ return res;
     return argsEncoded;
   }
 
-  Future<String> putObject({
+  Future<void> putObject({
     required final PutObjectParams params,
     required final void Function() updateStatus,
     required final void Function(String) msgIdCallback,
   }) async {
-    final poscanApi = appServiceLoaderCubit.state.plugin.sdk.api.poscan;
-
     final file = File(params.pathToFile);
     final bytes = file.readAsStringSync();
     final jbytes = jsonEncode(bytes);
 
-    bool flag = true;
+    // bool flag = true;
 
-    // final basicEncoding = const JsonEncoder().convert(params.propValues);
+    final argCat = jsonEncode(params.categoryFabric.build());
+    final argNApprovals = jsonEncode(params.nApprovals);
+
+    final hashesToHex = params.hashes.map((e) => '"0x' + e + '"');
+    final hexHashesStr = hashesToHex.join(',');
+    final argHashes = '[$hexHashesStr]';
 
     final argPropValue = encodePropValues(params.propValues);
 
-    logger.t(params.categoryFabric.build());
-    logger.t(argPropValue);
+    final argsEncoded =
+        '[$argCat, ${params.isPrivate}, $jbytes, $argNApprovals, $argHashes, $argPropValue]';
 
-    final dynamic res = await poscanApi.putObject(
+    print('argsEncoded = $argsEncoded');
+
+    //       final args = [
+    //         params.categoryFabric.build(),
+    //         params.nApprovals,
+    //       hashesToHex,
+    //         params.propValues,
+    //   // params.asset1.toJSArg(),
+    //   // params.asset2.toJSArg(),
+    // ];
+
+    // final argFile = file.toList().map((e) => e.toRadixString(16)).join(''); // 0x$argFile
+
+    // final pseudoHex = hashes.map((e) => '0x' + e).toList();
+    // final argHashes = jsonEncode(pseudoHex);
+
+    // final res = serviceRoot.webView!.evalJavascript(
+    //   'poScan.txPutObject(api, "$pubKey", "$password", "$msgId", $argCat, $file, $nApprovals, $argHashes, $propValue)',
+    // );
+
+    // return Either.right(null);
+
+    // print()
+
+    // return;
+    return callSignExtrinsicUtil.abstractExtrinsicCall(
+      argsEncoded: argsEncoded,
+      calls: ['tx', 'poScan', 'putObject'],
       pubKey: params.account.pubKey!,
       password: params.password,
-      category: params.categoryFabric.build(),
-      file: jbytes,
-      nApprovals: params.nApprovals,
-      hashes: params.hashes,
-      propValue: argPropValue,
-      onStatusChange: (final p0) {
-        // print('$p0');
-        if (flag) {
-          updateStatus();
-          flag = false;
-        }
-      },
+      updateStatus: params.updateStatus,
       msgIdCallback: msgIdCallback,
     );
-    logger.d(res);
-
-    return (res as Map).values.join('');
   }
 }

@@ -3,6 +3,7 @@ import 'package:ferry/ferry.dart';
 import 'package:get_it/get_it.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/utils/m_app_install_date.dart';
 import 'package:threedpass/features/accounts/di_accounts.dart';
@@ -78,6 +79,12 @@ Future<void> setup() async {
   getIt.registerLazySingleton<GetTransfers>(
     () => GetTransfers(
       repository: getIt<TransfersRepository>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<CallSignExtrinsicUtil>(
+    () => CallSignExtrinsicUtil(
+      appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
     ),
   );
 

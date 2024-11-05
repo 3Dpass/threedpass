@@ -19,12 +19,6 @@ import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifi
 class DIPoscanAssets extends DIModule {
   @override
   Future<void> setup(final GetIt getIt) async {
-    getIt.registerLazySingleton<CallSignExtrinsicUtil>(
-      () => CallSignExtrinsicUtil(
-        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
-      ),
-    );
-
     getIt.registerLazySingleton<PoscanAssetsRepository>(
       () => PoscanAssetsRepositoryImpl(
         polkawalletSDK: getIt<AppServiceLoaderCubit>().state.plugin.sdk,

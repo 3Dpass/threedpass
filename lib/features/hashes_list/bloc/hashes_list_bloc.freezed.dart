@@ -91,7 +91,9 @@ class __$$_HashesListStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HashesListStateImpl implements __HashesListState {
+class _$_HashesListStateImpl
+    with DiagnosticableTreeMixin
+    implements __HashesListState {
   const _$_HashesListStateImpl({required final List<HashObject> objects})
       : _objects = objects;
 
@@ -104,8 +106,16 @@ class _$_HashesListStateImpl implements __HashesListState {
   }
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return '_HashesListState(objects: $objects)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', '_HashesListState'))
+      ..add(DiagnosticsProperty('objects', objects));
   }
 
   @JsonKey(ignore: true)

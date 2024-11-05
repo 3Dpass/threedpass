@@ -25,7 +25,7 @@ class ChooseProperties extends StatelessWidget {
             state.defaultProperties.isEmpty
                 ? const H16()
                 : ListView.separated(
-                    // TODO Shirnk props. Don't show too many. Maybe move them to bottom sheet
+                    // TODO Shirnk props. Maybe move them to bottom sheet
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: state.defaultProperties.length,

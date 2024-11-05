@@ -13,7 +13,7 @@ class ScanIndicator extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BlocBuilder<ScanIsolateCubit, ScanState>(
       builder: (final context, final state) => AnimatedSize(
-        duration: const Duration(milliseconds: 1000),
+        duration: const Duration(milliseconds: 700),
         child: state.op != null
             ? Column(
                 children: [

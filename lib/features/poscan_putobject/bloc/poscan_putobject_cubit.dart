@@ -23,6 +23,7 @@ class D3PRPCCubitState {
   final List<PoscanProperty> chosenProperties;
   final List<PoscanProperty> defaultProperties;
   final MapPoscanCategory chosenCategory;
+  final bool isPrivate;
   @Deprecated('Use AsyncValue')
   final bool isLoading;
 
@@ -32,6 +33,7 @@ class D3PRPCCubitState {
     required this.chosenProperties,
     required this.chosenCategory,
     required this.defaultProperties,
+    required this.isPrivate,
     required this.isLoading,
   });
 }
@@ -53,6 +55,7 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
             chosenHashes: initialHashes,
             chosenProperties: [],
             defaultProperties: [],
+            isPrivate: false,
             isLoading: true,
             chosenCategory: PoscanCategories.first,
           ),
@@ -107,6 +110,10 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
     newList.remove(hash);
 
     emit(state.copyWith(chosenHashes: newList));
+  }
+
+  void setIsPrivate(final bool isPrivate) {
+    emit(state.copyWith(isPrivate: isPrivate));
   }
 
   void toggleProp(final PoscanProperty prop) {
@@ -170,6 +177,7 @@ class PoscanPutObjectCubit extends Cubit<D3PRPCCubitState>
         pathToFile: filePath,
         categoryFabric: state.chosenCategory,
         hashes: state.chosenHashes,
+        isPrivate: state.isPrivate,
         propValues:
             state.chosenProperties.map((final e) => e.propValue).toList(),
         updateStatus: () => updateStatus(context),
