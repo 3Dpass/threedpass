@@ -7,6 +7,7 @@ import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_category.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_file.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_hashes.dart';
+import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_is_private.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_properties.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/putobject_choose_account.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/putobject_submit_button.dart';
@@ -25,6 +26,7 @@ class D3PRPCPage extends StatelessWidget {
         ChooseFile(),
         PutObjectChooseAccount(),
         ChooseCategory(),
+        ChooseIsPrivate(),
         ChooseApprovals(),
         ChooseHashes(),
         ChooseProperties(),

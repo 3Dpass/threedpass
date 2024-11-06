@@ -42,6 +42,13 @@ class D3pThemeData {
         hintStyle: TextStyle(color: D3pColors.disabled),
       ),
       cardTheme: D3pCardTheme.theme,
+      dialogTheme: const DialogTheme(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            D3pCardTheme.radius,
+          ),
+        ),
+      ),
     );
 
     return t.copyWith(

@@ -10,7 +10,7 @@ publish_to: 'none'
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.17.1+46
+version: 2.17.2+47
 
 environment:
   sdk: ">=3.0.6 <4.0.0"
@@ -21,7 +21,6 @@ dependencies:
     sdk: flutter
 
   ## UI
-  flutter_platform_widgets: ^7.0.1 # TODO Remove
   flutter_screen_lock: ^9.0.1
   flutter_svg: ^2.0.7
   fluttertoast: ^8.2.2
@@ -52,6 +51,7 @@ dependencies:
   decimal: ^2.3.3
   rational: ^2.2.3
   async: ^2.11.0
+  hashlib: ^1.21.0
   # fpdart: ^1.1.0
 
   ## Code gen
@@ -72,8 +72,6 @@ dependencies:
   scrollview_observer: ^1.20.0
 
   # Child packages
-  super_core:
-    path: ./packages/super_core
   rust_lzss:
     path: ./packages/rust_lzss
 
@@ -106,6 +104,9 @@ dev_dependencies:
   ## Linters
   flutter_lints: ^4.0.0
   dart_code_metrics: ^5.7.5 # TODO MOVE TO https://github.com/rei-codes/dart-code-metrics
+  #   git:
+  #     url: https://github.com/rei-codes/dart-code-metrics.git
+  #     ref: 1c38aede63e6a7d28d5dc81424e578a1e10ffc25
   extra_pedantic: ^4.0.0
 
 # The following section is specific to Flutter.

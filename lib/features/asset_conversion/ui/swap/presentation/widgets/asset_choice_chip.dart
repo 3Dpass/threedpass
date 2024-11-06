@@ -34,11 +34,11 @@ class AssetChoiceChip extends StatelessWidget {
   Widget build(final BuildContext context) {
     return MenuAnchor(
       style: MenuStyle(
-        backgroundColor: MaterialStateProperty.all(
+        backgroundColor: WidgetStateProperty.all(
           Theme.of(context).scaffoldBackgroundColor,
         ),
-        maximumSize: const MaterialStatePropertyAll(
-          Size.fromHeight(menuButtonHeight * 5),
+        maximumSize: WidgetStateProperty.all(
+          const Size.fromHeight(menuButtonHeight * 5),
         ),
       ),
       builder: (final context, final controller, final child) {

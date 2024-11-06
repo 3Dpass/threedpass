@@ -1,7 +1,8 @@
 import 'package:ferry/ferry.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
-import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/utils/di_module.dart';
+
 import 'package:threedpass/features/graphql/extrinsics/data/repositories/extrinsic_datasource.dart';
 import 'package:threedpass/features/graphql/transfers_history/data/repositories/transfers_repo_remote.dart';
 import 'package:threedpass/features/graphql/utils/ferry_cache.dart';

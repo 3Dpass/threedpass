@@ -1,5 +1,4 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:threedpass/core/errors/storage_error.dart';
 import 'package:threedpass/core/utils/logger.dart';
 
 class HiveUniversalStore<T> {
@@ -20,7 +19,7 @@ class HiveUniversalStore<T> {
   }
 
   /// Delete object by unknown key
-  Future<StorageError?> removeObject(final T value) async {
+  Future<void> removeObject(final T value) async {
     final map = _box.toMap();
     final dynamic key = map.keys
         .firstWhere((final dynamic k) => map[k] == value, orElse: () => null);
@@ -28,9 +27,11 @@ class HiveUniversalStore<T> {
     if (key != null) {
       await _box.delete(key);
       await _box.flush();
-      return null;
+      return;
+    } else {
+      logger.e("Couldn't find object $value to remove");
+      throw Exception("Couldn't find object $value to remove");
     }
-    return const StorageError.impossibleOperation();
   }
 
   // Future<void> removeAll() async {

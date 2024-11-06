@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,16 +44,24 @@ class SnapshotCard extends StatelessWidget {
       // key: setGlobalKey ? hashesListState.globalKeyMap[snapshot] : null,
       onTap: onTap ??
           () async {
-            await context.router.push(
-              PreviewRouteWrapper(
-                snapshot: snapshot,
-              ),
-            );
             if (snapshot.isNew) {
               hashesListBloc.add(
                 UnmarkNewSnap(
                   object: hashObject,
                   snap: snapshot,
+                  onUmarked: (final snap) => context.router.push(
+                    PreviewRouteWrapper(
+                      snapshot: snap,
+                    ),
+                  ),
+                ),
+              );
+            } else {
+              unawaited(
+                context.router.push(
+                  PreviewRouteWrapper(
+                    snapshot: snapshot,
+                  ),
                 ),
               );
             }

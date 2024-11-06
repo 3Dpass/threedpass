@@ -4,7 +4,7 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 
 extension FindHashObjectBySnapshot on HashesListState {
   HashObject? findBySnapshot(final Snapshot snapshot) {
-    for (final hashObject in this.objects) {
+    for (final hashObject in this.value?.objects ?? <HashObject>[]) {
       if (hashObject.snapshots.contains(snapshot)) {
         return hashObject;
       }

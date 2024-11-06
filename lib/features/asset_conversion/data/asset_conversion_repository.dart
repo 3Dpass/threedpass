@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:polkawallet_sdk/polkawallet_sdk.dart';
-import 'package:super_core/super_core.dart';
+import 'package:threedpass/core/errors/wrong_type_fauilure.dart';
+
 import 'package:threedpass/core/polkawallet/utils/basic_polkadot_js_call.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/utils/big_int_json_helper.dart';

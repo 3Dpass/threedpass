@@ -17,6 +17,8 @@ abstract class _$D3PRPCCubitStateCWProxy {
 
   D3PRPCCubitState defaultProperties(List<PoscanProperty> defaultProperties);
 
+  D3PRPCCubitState isPrivate(bool isPrivate);
+
   D3PRPCCubitState isLoading(bool isLoading);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `D3PRPCCubitState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -31,6 +33,7 @@ abstract class _$D3PRPCCubitStateCWProxy {
     List<PoscanProperty>? chosenProperties,
     MapPoscanCategory? chosenCategory,
     List<PoscanProperty>? defaultProperties,
+    bool? isPrivate,
     bool? isLoading,
   });
 }
@@ -61,6 +64,9 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
       this(defaultProperties: defaultProperties);
 
   @override
+  D3PRPCCubitState isPrivate(bool isPrivate) => this(isPrivate: isPrivate);
+
+  @override
   D3PRPCCubitState isLoading(bool isLoading) => this(isLoading: isLoading);
 
   @override
@@ -77,6 +83,7 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
     Object? chosenProperties = const $CopyWithPlaceholder(),
     Object? chosenCategory = const $CopyWithPlaceholder(),
     Object? defaultProperties = const $CopyWithPlaceholder(),
+    Object? isPrivate = const $CopyWithPlaceholder(),
     Object? isLoading = const $CopyWithPlaceholder(),
   }) {
     return D3PRPCCubitState(
@@ -104,6 +111,10 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
           ? _value.defaultProperties
           // ignore: cast_nullable_to_non_nullable
           : defaultProperties as List<PoscanProperty>,
+      isPrivate: isPrivate == const $CopyWithPlaceholder() || isPrivate == null
+          ? _value.isPrivate
+          // ignore: cast_nullable_to_non_nullable
+          : isPrivate as bool,
       isLoading: isLoading == const $CopyWithPlaceholder() || isLoading == null
           ? _value.isLoading
           // ignore: cast_nullable_to_non_nullable

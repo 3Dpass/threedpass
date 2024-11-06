@@ -1,7 +1,8 @@
 import 'package:ferry/ferry.dart';
 import 'package:get_it/get_it.dart';
-import 'package:super_core/super_core.dart';
+
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/utils/di_module.dart';
 import 'package:threedpass/features/graphql/events/data/repositories/events_datasource_local.dart';
 import 'package:threedpass/features/graphql/events/data/repositories/events_datasource_remote.dart';
 import 'package:threedpass/features/graphql/extrinsics/data/repositories/extrinsic_datasource.dart';

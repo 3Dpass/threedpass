@@ -12,14 +12,6 @@ class DeleteSnapshots extends HashesListEvent {
   final List<Snapshot> snapshots;
 }
 
-class DeleteObject extends HashesListEvent {
-  const DeleteObject({
-    required this.object,
-  });
-
-  final HashObject object;
-}
-
 class SaveSnapshot extends HashesListEvent {
   const SaveSnapshot({
     required this.hash,
@@ -35,11 +27,13 @@ class ReplaceSnapshot extends HashesListEvent {
     required this.oldSnapshot,
     required this.newSnapshot,
     required this.object,
+    required this.onReplaced,
   });
 
   final Snapshot newSnapshot;
   final Snapshot oldSnapshot;
   final HashObject object;
+  final VoidCallback onReplaced;
 }
 
 class ReplaceObject extends HashesListEvent {
@@ -72,8 +66,10 @@ class UnmarkNewSnap extends HashesListEvent {
   const UnmarkNewSnap({
     required this.object,
     required this.snap,
+    required this.onUmarked,
   });
 
   final Snapshot snap;
   final HashObject object;
+  final void Function(Snapshot snap) onUmarked;
 }

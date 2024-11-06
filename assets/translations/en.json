@@ -334,7 +334,7 @@
     "from_address_dropdown_hint": "Choose account",
     "poscan_putobject_choose_napprovals": "nApprovals",
     "poscan_putobject_choose_hashes": "Hashes",
-    "poscan_putobject_fees_warning": "This transaction takes 100+ P3D",
+    "poscan_putobject_fees_warning": "This transaction takes fees",
     "poscan_putobject_choose_properties": "Properties (optional)",
     "PROPERTIES_number_plural": {
         "zero": "0 properties chosen",
@@ -540,5 +540,9 @@
         "other":  "assets"
     },
     "linked_snapshots_helper": "+ {} found",
-    "view_object": "View object"
+    "view_object": "View object",
+
+    "@2.17.2": {},
+    "create_atomic_swap_choose_account_label": "Choose account",
+    "put_object_is_private_flag": "Is private"
 }

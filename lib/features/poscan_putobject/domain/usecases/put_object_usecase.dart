@@ -36,9 +36,7 @@ class PutObject extends UseCase<void, PutObjectParams> {
 
     final _ = await repository.putObject(
       params: params,
-      updateStatus: () {
-        params.updateStatus();
-      },
+      updateStatus: params.updateStatus,
       msgIdCallback: (final msgId) {
         appServiceLoaderCubit.state.plugin.sdk.api.service.webView!
             .addGlobalHandler(
@@ -61,6 +59,7 @@ class PutObjectParams {
     required this.account,
     required this.password,
     required this.nApprovals,
+    required this.isPrivate,
     required this.pathToFile,
     required this.categoryFabric,
     required this.hashes,
@@ -72,6 +71,7 @@ class PutObjectParams {
   final KeyPairData account;
   final String password;
   final int nApprovals;
+  final bool isPrivate;
   final String pathToFile;
   final MapPoscanCategory categoryFabric;
   final List<String> hashes;

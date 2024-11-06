@@ -5,9 +5,9 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/asset_page_appbar.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/balance_section.dart';
+import 'package:threedpass/features/wallet_screen/assets_page/widgets/buttons_panel.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/poscan_assets_column.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/objects_list_assets.dart';
-import 'package:threedpass/features/wallet_screen/open_pools/open_pools_button.dart';
 
 class AssetsPage extends StatelessWidget {
   const AssetsPage({final Key? key}) : super(key: key);
@@ -19,7 +19,8 @@ class AssetsPage extends StatelessWidget {
         // final theme = Theme.of(context);
         const children = [
           BalanceSection(),
-          OpenPoolsButton(),
+          // const H8(),
+          AssetPageButtonsPanel(),
           PoscanAssetsColumn(),
           ObjectsListAssets(),
         ];

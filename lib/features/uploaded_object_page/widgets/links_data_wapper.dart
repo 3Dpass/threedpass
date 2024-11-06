@@ -31,7 +31,7 @@ class LinksDataWrapper extends StatelessWidget {
         // final localObjects = localObjectsBloc.objects;
         final similarSnapshots = <Snapshot>[];
 
-        snapshotsState.objects.forEach(
+        snapshotsState.value?.objects.forEach(
           (final obj) => obj.snapshots.forEach(
             (final snapshot) {
               for (final snapHash in snapshot.hashes) {
