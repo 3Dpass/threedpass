@@ -38,9 +38,6 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-    lintOptions {
-        disable 'InvalidPackage'
-    }
 
     splits {
         abi {
@@ -100,13 +97,15 @@ android {
 //            }
         }
     }
+    namespace 'com.threedpass.wallet'
+    lint {
+        disable 'InvalidPackage'
+    }
 
     applicationVariants.configureEach { variant ->
         variant.outputs.configureEach { output ->
             def abiFilter = output.getFilter(com.android.build.OutputFile.ABI)
             def abiVariant = abiFilter != null ? abiFilter : "universal"
-//            def abiFilter = output.variantOutputConfiguration.filters.find { it.filterType == FilterConfiguration.FilterType.ABI }
-//            def abiVariant = abiFilter != null ? abiFilter.identifier : "universal"
             outputFileName = "threedpass" + "-" + versionName + "-" + abiVariant + ".apk"
         }
     }

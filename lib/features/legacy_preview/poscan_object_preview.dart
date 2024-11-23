@@ -61,9 +61,7 @@ class _State extends State<PoscanObjectPreview> {
       child: isLoaded
           ? Object3D(
               size: widget.size,
-              zoom: 1.0,
               value: content,
-              // scale: (widget.size.height - 32) / 2,
             )
           : const D3pProgressIndicator(size: 24),
     );
