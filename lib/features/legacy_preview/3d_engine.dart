@@ -9,19 +9,26 @@ import 'package:vector_math/vector_math.dart' as math;
 import 'model.dart';
 import 'utils.dart';
 
+class RenderParams {
+  final bool backfaceCulling;
+
+  const RenderParams({
+    this.backfaceCulling = true,
+  });
+}
+
 class Object3D extends StatefulWidget {
   final Size size;
   final String value;
-  final double zoom;
+  // final double zoom;
   // final double scale;
   final Model model;
+  final RenderParams params;
 
   Object3D({
     required this.size,
-    // required this.path,
     required this.value,
-    required this.zoom,
-    // this.scale = 1.0,
+    this.params = const RenderParams(),
     super.key,
   }) : model = Model()
           ..loadFromString(value)
@@ -37,30 +44,24 @@ class _Object3DState extends State<Object3D> {
   double angleZ = 0.0;
   double zoom = 0.0;
 
-  /*
-   *  Load the 3D  data from a file in our /assets folder.
-   */
+  final Map<String, Color> colorCache = {};
 
   void _dragX(final Offset delta) {
-    // setState(() {
     angleX += delta.dy;
     if (angleX > 360) {
       angleX = angleX - 360;
     } else if (angleX < 0) {
       angleX = 360 - angleX;
     }
-    // });
   }
 
   void _dragY(final Offset delta) {
-    // setState(() {
     angleY += delta.dx;
     if (angleY > 360) {
       angleY = angleY - 360;
     } else if (angleY < 0) {
       angleY = 360 - angleY;
     }
-    // });
   }
 
   @override
@@ -73,10 +74,12 @@ class _Object3DState extends State<Object3D> {
           painter: _ObjectPainter(
             size: widget.size,
             model: widget.model,
+            params: widget.params,
+            colorCache: colorCache,
             angleX: angleX,
             angleY: angleY,
             angleZ: angleZ,
-            zoom: widget.zoom,
+            // zoom: widget.zoom,
           ),
           size: widget.size,
         ),
@@ -85,11 +88,11 @@ class _Object3DState extends State<Object3D> {
   }
 
   void onPointerMove(final PointerMoveEvent moveEvent) {
-    // print('D SCALE UPDATE $details');
-    // print('Delta ${moveEvent.delta}');
     setState(() {
       _dragX(moveEvent.delta);
       _dragY(moveEvent.delta);
+      // print(
+      //     'Set state. moveX: ${moveEvent.delta.dx}, moveY: ${moveEvent.delta.dy}. Diff: ${now.difference(lastUpdate).inMilliseconds}');
     });
   }
 }
@@ -100,9 +103,9 @@ class _Object3DState extends State<Object3D> {
  *  https://api.flutter.dev/flutter/rendering/CustomPainter-class.html
  */
 class _ObjectPainter extends CustomPainter {
-  final double _viewPortX;
-  final double _viewPortY;
-  final double zoom;
+  // final double _viewPortX;
+  // final double _viewPortY;
+  static const double zoom = 1.0;
 
   final math.Vector3 camera;
   final math.Vector3 light;
@@ -116,19 +119,40 @@ class _ObjectPainter extends CustomPainter {
   List<math.Vector3> verts;
 
   final Model model;
+  final RenderParams params;
+
+  // The same paint draws paths on canvas
+  final Paint reusablePaint;
+  // The same matrix to transform the vertices
+  final math.Matrix4 reusableTrans;
+
+  final Map<String, Color> colorCache;
+
+  // Camera at origin
+  static final viewDirection = math.Vector3(0, 0, 1);
+  static const color = Color.fromRGBO(127, 127, 127, 1);
 
   _ObjectPainter({
     required this.size,
     required this.model,
+    required this.params,
+    required this.colorCache,
     required this.angleX,
     required this.angleY,
     required this.angleZ,
-    required this.zoom,
+    // required this.zoom,
   })  : this.camera = math.Vector3(0.0, 0.0, 0.0),
         light = math.Vector3(0.0, 0.0, 100.0),
         verts = <math.Vector3>[],
-        _viewPortX = size.width / 2,
-        _viewPortY = size.height / 2;
+        reusablePaint = Paint()..style = PaintingStyle.fill,
+        // _viewPortX = size.width / 2,
+        // _viewPortY = size.height / 2,
+        reusableTrans =
+            math.Matrix4.translationValues(size.width / 2, size.height / 2, 1)
+              ..scale(zoom, -zoom)
+              ..rotateX(Utils.degreeToRadian(angleX))
+              ..rotateY(Utils.degreeToRadian(angleY))
+              ..rotateZ(Utils.degreeToRadian(angleZ));
 
   /*
    *  We use a 4x4 matrix to perform our rotation, translation and scaling in
@@ -136,12 +160,28 @@ class _ObjectPainter extends CustomPainter {
    *  https://www.euclideanspace.com/maths/geometry/affine/matrix4x4/index.htm
    */
   math.Vector3 _calcVertex(final math.Vector3 vertex) {
-    final trans = math.Matrix4.translationValues(_viewPortX, _viewPortY, 1);
-    trans.scale(zoom, -zoom);
-    trans.rotateX(Utils.degreeToRadian(angleX));
-    trans.rotateY(Utils.degreeToRadian(angleY));
-    trans.rotateZ(Utils.degreeToRadian(angleZ));
-    return trans.transform3(vertex);
+    return reusableTrans.transform3(vertex);
+  }
+
+  double dp(final double val, final int places) {
+    final num mod = pow(10.0, places);
+    return (val * mod).round().toDouble() / mod;
+  }
+
+  Color computeShadedColor(final Color baseColor, final double brightness) {
+    final roundedBrightness = dp(brightness, 3);
+    final key = '${baseColor.value}_${roundedBrightness}';
+    // print('Color: ${baseColor.value}');
+    final cachedColor = colorCache[key];
+    if (cachedColor != null) {
+      return cachedColor;
+    }
+    final r = (roundedBrightness * baseColor.red).toInt();
+    final g = (roundedBrightness * baseColor.green).toInt();
+    final b = (roundedBrightness * baseColor.blue).toInt();
+    final newColor = Color.fromARGB(255, r, g, b);
+    colorCache[key] = newColor;
+    return newColor;
   }
 
   /*
@@ -163,13 +203,12 @@ class _ObjectPainter extends CustomPainter {
     final brightness = normal.clamp(0.0, 1.0);
 
     // Assign a lighting color
-    final r = (brightness * color.red).toInt();
-    final g = (brightness * color.green).toInt();
-    final b = (brightness * color.blue).toInt();
-
-    final paint = Paint();
-    paint.color = Color.fromARGB(255, r, g, b);
-    paint.style = PaintingStyle.fill;
+    // final r = (brightness * color.red).toInt();
+    // final g = (brightness * color.green).toInt();
+    // final b = (brightness * color.blue).toInt();
+    // reusablePaint.color = Color.fromARGB(255, r, g, b);
+    final shadedColor = computeShadedColor(color, brightness);
+    reusablePaint.color = shadedColor;
 
     // Paint the face
     final path = Path();
@@ -178,7 +217,27 @@ class _ObjectPainter extends CustomPainter {
     path.lineTo(v3.x, v3.y);
     path.lineTo(v1.x, v1.y);
     path.close();
-    canvas.drawPath(path, paint);
+    canvas.drawPath(path, reusablePaint);
+  }
+
+  /*
+   *  Backface culling.  If the polygon is facing the camera, then it is visible
+   */
+  bool backfaceCullingSkip(
+    final math.Vector3 v1,
+    final math.Vector3 v2,
+    final math.Vector3 v3,
+  ) {
+    if (!params.backfaceCulling) {
+      return false;
+    }
+
+    // Calculate the surface normal
+    final normalVector = Utils.normalVector3(v1, v2, v3);
+
+    // Backface culling: skip if normal points away from the camera
+    final dotProduct = normalVector.dot(viewDirection);
+    return dotProduct <= 0;
   }
 
   /*
@@ -188,15 +247,23 @@ class _ObjectPainter extends CustomPainter {
   @override
   void paint(final Canvas canvas, final Size size) {
     // Rotate and translate the vertices
-    verts = <math.Vector3>[];
-    for (int i = 0; i < model.verts.length; i++) {
-      verts.add(_calcVertex(math.Vector3.copy(model.verts[i])));
-    }
+    verts = model.verts
+        .map((final v) => _calcVertex(math.Vector3.copy(v)))
+        .toList();
 
     // Sort
     final sorted = <Map<String, dynamic>>[];
     for (var i = 0; i < model.faces.length; i++) {
       final face = model.faces[i];
+      // Reference the rotated vertices
+      final v1 = verts[face[0] - 1];
+      final v2 = verts[face[1] - 1];
+      final v3 = verts[face[2] - 1];
+
+      if (backfaceCullingSkip(v1, v2, v3)) {
+        continue;
+      }
+
       sorted.add(<String, dynamic>{
         "index": i,
         "order": Utils.zIndex(
@@ -214,9 +281,11 @@ class _ObjectPainter extends CustomPainter {
     // Render
     for (int i = 0; i < sorted.length; i++) {
       final face = model.faces[sorted[i]["index"] as int];
-      final color = model.colors[sorted[i]["index"] as int];
+      // final color = model.colors[sorted[i]["index"] as int];
       _drawFace(canvas, face, color);
     }
+
+    // print(' Keys: ${colorCache.length}');
   }
 
   /*

@@ -12,8 +12,8 @@ class Model {
   final List<Vector3> verts;
   final List<List<int>> faces;
 
-  final List<Color> colors;
-  Map<String, Color> materials;
+  // final List<Color> colors;
+  // Map<String, Color> materials;
 
   /* 
    *  Converts normalised color values to a Color()
@@ -29,16 +29,16 @@ class Model {
 
   Model()
       : verts = <Vector3>[],
-        faces = <List<int>>[],
-        colors = <Color>[],
-        materials = {
-          "frontal": _toRGBA(0.848100, 0.607500, 1.000000),
-          "occipital": _toRGBA(1.000000, 0.572600, 0.392400),
-          "parietal": _toRGBA(0.379700, 0.830900, 1.000000),
-          "temporal": _toRGBA(1.000000, 0.930700, 0.468300),
-          "cerebellum": _toRGBA(0.506300, 1.000000, 0.598200),
-          "stem": _toRGBA(0.500000, 0.500000, 0.500000),
-        };
+        faces = <List<int>>[];
+  // colors = <Color>[],
+  // materials = {
+  //   "frontal": _toRGBA(0.848100, 0.607500, 1.000000),
+  //   "occipital": _toRGBA(1.000000, 0.572600, 0.392400),
+  //   "parietal": _toRGBA(0.379700, 0.830900, 1.000000),
+  //   "temporal": _toRGBA(1.000000, 0.930700, 0.468300),
+  //   "cerebellum": _toRGBA(0.506300, 1.000000, 0.598200),
+  //   "stem": _toRGBA(0.500000, 0.500000, 0.500000),
+  // };
 
   void scale(final double value) {
     double globalMaxCoord = 0.0;
@@ -88,7 +88,7 @@ class Model {
           ]),
         );
         //colors.add(materials[material]);
-        colors.add(_toRGBA(0.5, 0.5, 0.5));
+        // colors.add(_toRGBA(0.5, 0.5, 0.5));
       }
     });
   }

@@ -49,8 +49,6 @@ class _State extends State<PreviewFromFile> {
           ? Object3D(
               size: widget.size,
               value: fileContent,
-              zoom: widget.zoom,
-              // scale: widget.scale,
             )
           : const D3pProgressIndicator(size: 24),
     );
