@@ -1,25 +1,22 @@
 # Threedpass
 
-3Dpass mobile light wallet for Android and iOS. [Read more](https://3dpass.org/mobile-wallet) about its features.
+3Dpass mobile light wallet for Android and iOS.
+Tha wallet connects to the Node via RPC/API endpoints:
+- wss://rpc.3dpscan.io
 
-## 3D object recognition
-This embedded option allows to recognize the same shaped 3D objects by means of processing its 3D models in .obj format. Due to the fact, that the app hasn't had a native 3D scanner integrated yet, now you can only process 3D models made by third party scanning/modeling apps and devices. 
+  ![put_object_mobile](https://github.com/user-attachments/assets/67545790-bb18-4cfd-bfc0-7c109fc4e528)
 
-[pass3d](https://github.com/3Dpass/pass3d) recognition tool is used as an implementation of [Grid2d](https://3dpass.org/grid2d) algorithm.
 
-[![recognition](https://github.com/3Dpass/threedpass/assets/107915078/acacc1b0-223e-4c4f-a6c4-3b74fa32c9a9)](https://3dpass.org/features#3drecognition)
+## Features
+- 3D objects recognition and its digital identity [HASH ID](https://3dpass.org/features#recognition-hash-id) creation, the objects preview
+- [3DPRC-2](https://github.com/3Dpass/whitepaper/blob/main/3DPRC-2.md) token standard: The object tokenization into either share-asset or non-fungible asset
+- Rregular [fungible assets](https://3dpass.org/features#fungibleassets) creation
+- [P3D](https://3dpass.org/coin#P3D) (native utility token) transfers
+- Assets (the users' tokens) [transfers](https://3dpass.org/mobile-wallet#light-assets-transfer)
+- Assets management
+- Tokens [decentralized swap](https://3dpass.org/features#dex) UI
 
-## P3D Transfers
-Tha wallet connects to the Node via RPC/API endpoints. These are the mainnet public endpoints:
-- wss://rpc.3dpscan.io 
-- wss://rpc2.3dpass.org
-
-[![accounts](https://github.com/3Dpass/threedpass/assets/107915078/4e58f82c-e61e-4780-b89b-dfe0b4ae2a64)](https://3dpass.org/mobile-wallet#light)
-
-## 3D-object-wallet
-Tis option allows to produce crypto wallet (address + keys) out of 3D object and its recovery by means of scanning.
-
-[![3d-object-wallet](https://github.com/3Dpass/threedpass/assets/107915078/6997f689-d91d-48b0-8c02-f305e0512c9a)](https://3dpass.org/mobile-wallet#creation)
+Explore the wallet [features](https://3dpass.org/mobile-wallet) and how to tips.
 
 ## How to translate the UI
 
@@ -53,4 +50,4 @@ EasyLocalization(
 
 ### Copyright
 
-threedpass Copyright (C) 2024 3Dpass https://3dpass.org/
+threedpass Copyright (C) 2025 3Dpass https://3dpass.org/
