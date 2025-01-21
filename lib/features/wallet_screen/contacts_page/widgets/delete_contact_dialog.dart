@@ -29,8 +29,10 @@ class DeleteContactDialog extends StatelessWidget {
   Widget build(final BuildContext context) {
     return D3pPlatformDialog(
       title: 'delete_contact_confirm_title'.tr(args: [contact.name]),
-      content: Text('delete_contact_confirm_text'
-          .tr(args: [contact.name, Fmt.shorterAddress(contact.address)]),),
+      content: Text(
+        'delete_contact_confirm_text'
+            .tr(args: [contact.name, Fmt.shorterAddress(contact.address)]),
+      ),
       actions: [
         D3pTextButton(
           text: 'Cancel'.tr(),

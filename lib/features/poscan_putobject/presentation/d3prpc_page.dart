@@ -22,14 +22,16 @@ class D3PRPCPage extends StatelessWidget {
       formKey: BlocProvider.of<PoscanPutObjectCubit>(context).formKey,
       appbarTitle: 'upload_to_3d_rpc_title',
       submitButton: const PutObjectSubmitButton(),
+      afterForm: const [
+        ChooseHashes(),
+        ChooseProperties(),
+      ],
       children: const [
         ChooseFile(),
         PutObjectChooseAccount(),
         ChooseCategory(),
         ChooseIsPrivate(),
         ChooseApprovals(),
-        ChooseHashes(),
-        ChooseProperties(),
       ],
     );
   }

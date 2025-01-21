@@ -544,5 +544,10 @@
 
     "@2.17.2": {},
     "create_atomic_swap_choose_account_label": "Choose account",
-    "put_object_is_private_flag": "Is private"
+
+    "@2.18.0": {},
+    "error_nothing_chosen_two_radio": "Please choose an option",
+    "put_object_is_private": "Private",
+    "put_object_is_public": "Public",
+    "obj_visibility_title": "Object visibility"
 }

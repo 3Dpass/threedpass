@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/buttons/custom_back_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
+import 'package:threedpass/core/widgets/layout/list_view_separated.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 
 class SomeForm extends StatelessWidget {
@@ -9,50 +10,49 @@ class SomeForm extends StatelessWidget {
   final List<Widget> children;
   final Widget submitButton;
 
+  /// Field for buttons list or something we don't actually need to validate.
+  /// If this is included into a Column inside Form,
+  /// then the whole Form is never validate (always returns valid)
+  final List<Widget> afterForm;
+
   const SomeForm({
     required this.formKey,
     required this.appbarTitle,
     required this.children,
     required this.submitButton,
+    this.afterForm = const [],
     super.key,
   });
 
   @override
   Widget build(final BuildContext context) {
-    // final textStyle = Theme.of(context).customTextStyles;
-
-    final widgets = <Widget>[
-      ...children,
-      Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // TODO Some warning about fees
-            // Text(
-            //   'Transaction takes fees',
-            //   style: textStyle.secondaryText,
-            // ),
-            submitButton,
-          ],
-        ),
-      ),
-    ];
     return D3pScaffold(
       appBarLeading: const CustomBackButton(),
       appBarTitle: appbarTitle,
-      body: Form(
-        key: formKey,
-        child: ListView.separated(
-          padding: const EdgeInsets.symmetric(
-            vertical: 16,
-            horizontal: 16,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Flexible(
+                child: Form(
+                  key: formKey,
+                  child: ListViewSeparated(
+                    separator: const H16(),
+                    children: children,
+                  ),
+                ),
+              ),
+              const H16(),
+              ListViewSeparated(
+                separator: const H16(),
+                children: afterForm,
+              ),
+              const H24(),
+              submitButton,
+            ],
           ),
-          shrinkWrap: true,
-          separatorBuilder: (final context, final index) => const H16(),
-          itemBuilder: (final context, final index) => widgets[index],
-          itemCount: widgets.length,
         ),
       ),
     );

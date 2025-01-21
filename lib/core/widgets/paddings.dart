@@ -14,6 +14,10 @@ class H16 extends SizedBox {
   const H16({super.key}) : super(height: 16);
 }
 
+class H20 extends SizedBox {
+  const H20({super.key}) : super(height: 20);
+}
+
 class H24 extends SizedBox {
   const H24({super.key}) : super(height: 24);
 }

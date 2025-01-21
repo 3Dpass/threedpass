@@ -23,7 +23,7 @@ class ChooseCategory extends StatelessWidget {
           translate: false,
         ),
       ),
-      openBottomSheet: () => context.router.push(
+      openBottomSheet: () async => context.router.push(
         const ChooseCategoryBottomSheetRoute(),
       ),
     );
