@@ -12,10 +12,10 @@ import 'package:threedpass/router/router.gr.dart';
 class CoinTransferButton extends StatelessWidget {
   const CoinTransferButton({final Key? key}) : super(key: key);
 
-  void onPressed(final BuildContext context) {
+  Future<void> onPressed(final BuildContext context) async {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
 
-    context.router.push(
+    await context.router.push(
       TransferRouteWrapper(
         metadata: CoinsTransferMetaDTO(
           name: appService.networkStateData.tokenSymbol?.first ?? '',
@@ -32,7 +32,7 @@ class CoinTransferButton extends StatelessWidget {
         return D3pElevatedButton(
           text: 'transfer_coins_button_label'.tr(),
           iconData: Icons.arrow_upward_rounded,
-          onPressed: isReady ? () => onPressed(context) : null,
+          onPressed: isReady ? () async => onPressed(context) : null,
         );
       },
     );

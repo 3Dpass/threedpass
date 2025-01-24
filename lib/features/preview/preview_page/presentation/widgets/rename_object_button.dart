@@ -29,7 +29,7 @@ class RenameObjectButton extends StatelessWidget {
           chevronColor: theme.colorScheme.onSurface,
           value: '',
         ),
-        onBasePressed: () => context.router.push(
+        onBasePressed: () async => context.router.push(
           RenameObjectRoute(
             snapshot: snap,
             hashObject: hashObj, // TODO Remove hashObject from path

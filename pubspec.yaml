@@ -103,9 +103,10 @@ dev_dependencies:
   ## Linters
   flutter_lints: ^4.0.0
   # dart_code_metrics: # TODO Upgrade isar and import this
-  #   git:
-  #     url: https://github.com/L3odr0id/dart-code-metrics.git
-  #     ref: af4868809f790eb6e7ea012bb78b1b762ff701eb
+    # path: ../dart-code-metrics
+    # git:
+    #   url: https://github.com/L3odr0id/dart-code-metrics.git
+    #   ref: af4868809f790eb6e7ea012bb78b1b762ff701eb
   extra_pedantic: ^4.0.0
 
 # The following section is specific to Flutter.

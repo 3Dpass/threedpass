@@ -4,8 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/utils/show_text_snackbar.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
@@ -53,7 +53,7 @@ class AddContactPage extends StatelessWidget {
             const H16(),
             D3pElevatedButton(
               text: 'add_contact'.tr(),
-              onPressed: () => onTapAddContact(context),
+              onPressed: () async => onTapAddContact(context),
               iconData: Icons.add,
             ),
           ],
@@ -82,18 +82,12 @@ class AddContactPage extends StatelessWidget {
               contact: newContact,
             ),
           );
-          unawaited(context.router.pop());
+          unawaited(context.router.maybePop());
         } else {
-          FastSnackBar(
-            textCode: 'contact_name_exists',
-            context: context,
-          ).show();
+          await Fluttertoast.showToast(msg: 'contact_name_exists'.tr());
         }
       } else {
-        FastSnackBar(
-          textCode: 'bad_address',
-          context: context,
-        ).show();
+        await Fluttertoast.showToast(msg: 'bad_address'.tr());
       }
     }
   }

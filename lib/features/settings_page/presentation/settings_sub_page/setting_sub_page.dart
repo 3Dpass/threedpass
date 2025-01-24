@@ -16,9 +16,9 @@ class SettingSubPage extends StatelessWidget {
 
   final void Function(BuildContext context) onSavePressed;
 
-  void saveAndExit(final BuildContext context) {
+  Future<void> saveAndExit(final BuildContext context) async {
     onSavePressed(context);
-    context.router.pop();
+    await context.router.maybePop();
   }
 
   @override
@@ -28,7 +28,7 @@ class SettingSubPage extends StatelessWidget {
       appBarActions: [
         D3pIconButton(
           iconData: Icons.check,
-          onPressed: () => saveAndExit(context),
+          onPressed: () async => saveAndExit(context),
         ),
       ],
       body: child,

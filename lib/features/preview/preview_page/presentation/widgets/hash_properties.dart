@@ -32,7 +32,7 @@ class ScanProperties extends StatelessWidget {
             onPressed:
                 snapshot.settingsConfig.transBytesMode == TransBytesMode.none
                     ? null
-                    : () => copyAndNotify(
+                    : () async => copyAndNotify(
                           textToCopy: snapshot.settingsConfig.transBytes,
                           textToShow: 'trans_bytes_copied_toast'.tr(),
                         ),

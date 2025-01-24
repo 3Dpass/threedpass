@@ -18,7 +18,7 @@ class SettingsRepositoryImpl implements SettingsRepository {
   });
   @override
   Future<GlobalSettings> getConfig() async {
-    final current = hiveSettingsStore.getSettings();
+    final current = await hiveSettingsStore.getSettings();
 
     final v = await packageVersion();
 

@@ -13,8 +13,8 @@ import 'package:unicons/unicons.dart';
 class AlgorithmButton extends StatelessWidget {
   const AlgorithmButton({super.key});
 
-  void onPressed(final BuildContext context) {
-    context.router.push(const ChooseAlgorithmSubRoute());
+  Future<void> onPressed(final BuildContext context) async {
+    await context.router.push(const ChooseAlgorithmSubRoute());
   }
 
   @override
@@ -36,7 +36,7 @@ class AlgorithmButton extends StatelessWidget {
               chevronColor: D3pColors.disabled,
               value: value,
             ),
-            onBasePressed: () => onPressed(context),
+            onBasePressed: () async => onPressed(context),
             cardShape: CardShape.top,
           );
         },

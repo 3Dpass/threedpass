@@ -19,10 +19,10 @@ class AssetPageButtonsPanel extends StatelessWidget {
   static const double height =
       D3pThemeData.buttonHeight + 8 + D3pThemeData.buttonHeight;
 
-  void onPressedSend(final BuildContext context) {
+  Future<void> onPressedSend(final BuildContext context) async {
     final appService = BlocProvider.of<AppServiceLoaderCubit>(context).state;
 
-    context.router.push(
+    await context.router.push(
       TransferRouteWrapper(
         metadata: CoinsTransferMetaDTO(
           name: appService.networkStateData.tokenSymbol?.first ?? '',
@@ -32,8 +32,8 @@ class AssetPageButtonsPanel extends StatelessWidget {
     );
   }
 
-  void onPressedRecieve(final BuildContext context) {
-    context.router.push(const RecieveRoute());
+  Future<void> onPressedRecieve(final BuildContext context) async {
+    await context.router.push(const RecieveRoute());
   }
 
   @override

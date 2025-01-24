@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:threedpass/core/persistence/hive_universal_store.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 
@@ -6,13 +8,13 @@ class HiveSettingsStore extends HiveUniversalStore<GlobalSettings> {
 
   static final _defaultValue = GlobalSettings.defaultValues();
 
-  GlobalSettings getSettings() {
+  Future<GlobalSettings> getSettings() async {
     final currentData = getAt(0);
     if (currentData != null) {
       final correctData = currentData.selfValidate();
       return correctData;
     } else {
-      setSettings(_defaultValue);
+      unawaited(setSettings(_defaultValue));
       return _defaultValue;
     }
   }

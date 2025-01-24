@@ -28,7 +28,7 @@ class ExploreHashesButton extends StatelessWidget {
         // foregroundColor: isActive ? fgColorBright : fgColorDim,
         iconData: Icons.compare_arrows_rounded,
         onPressed: isActive
-            ? () => context.router.push(
+            ? () async => context.router.push(
                   CompareRouteWrapper(
                     origObj: snapshot,
                     hashObject: state.hashObject,

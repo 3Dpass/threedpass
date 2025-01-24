@@ -13,8 +13,8 @@ import 'package:unicons/unicons.dart';
 class GridSizeButton extends StatelessWidget {
   const GridSizeButton({super.key});
 
-  void onPressed(final BuildContext context) {
-    context.router.push(const GridSizeSubRoute());
+  Future<void> onPressed(final BuildContext context) async {
+    await context.router.push(const GridSizeSubRoute());
   }
 
   @override

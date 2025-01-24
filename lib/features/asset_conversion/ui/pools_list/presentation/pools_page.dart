@@ -32,7 +32,8 @@ class PoolsPage extends StatelessWidget {
             Text('pools_page_appbar'.tr()),
             D3pIconButton(
               iconData: Icons.refresh,
-              onPressed: () => BlocProvider.of<PoolsCubit>(context).update(
+              onPressed: () async =>
+                  BlocProvider.of<PoolsCubit>(context).update(
                 address: BlocProvider.of<AppServiceLoaderCubit>(context)
                     .state
                     .keyring

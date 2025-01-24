@@ -45,7 +45,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
             status: AppServiceInitStatus.init,
           ),
         ) {
-    _init(settingsConfigCubit.state.walletSettings);
+    unawaited(_init(settingsConfigCubit.state.walletSettings));
   }
 
   final SettingsConfigCubit settingsConfigCubit;

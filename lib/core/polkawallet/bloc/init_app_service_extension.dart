@@ -91,7 +91,7 @@ extension _ on AppServiceLoaderCubit {
       final currentWalletSettings = settingsConfigCubit.state.walletSettings;
       final isNodeTestNet = networkData.ss58Format == ss58formatTest;
       if (currentWalletSettings.isTestNet != isNodeTestNet) {
-        settingsConfigCubit.updateSettings(
+        await settingsConfigCubit.updateSettings(
           settingsConfigCubit.state.copyWith(
             walletSettings: currentWalletSettings.copyWith(
               isTestNet: isNodeTestNet,

@@ -33,7 +33,7 @@ class ObjectsListHeaderFull extends StatelessWidget {
         D3pIconButton(
           emptyContraints: true,
           iconData: Icons.refresh,
-          onPressed: () => refreshObjectsList(context),
+          onPressed: () async => refreshObjectsList(context),
         ),
       ],
     );

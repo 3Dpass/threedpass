@@ -65,9 +65,10 @@ class TwoRadioField extends FormField<TwoRadioState> {
         );
 
   static void onChangedDefault(
-      final TwoRadioState? value,
-      final FormFieldState<TwoRadioState> state,
-      final void Function(TwoRadioState)? callBack) {
+    final TwoRadioState? value,
+    final FormFieldState<TwoRadioState> state,
+    final void Function(TwoRadioState)? callBack,
+  ) {
     state.didChange(value);
     // state.validate();
     if (callBack != null) {

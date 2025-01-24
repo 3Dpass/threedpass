@@ -7,7 +7,7 @@ class ExplainPutObjectPage extends StatelessWidget {
   const ExplainPutObjectPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     // TODO: implement build
     throw UnimplementedError();
   }

@@ -12,7 +12,7 @@ class SetMetadataSubmitButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     return D3pElevatedButton(
       text: 'sign_extrinsic'.tr(),
-      onPressed: () => BlocProvider.of<SetMetadataAssetCubit>(context)
+      onPressed: () async => BlocProvider.of<SetMetadataAssetCubit>(context)
           .submitExtrinsic(context),
     );
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'package:isar/isar.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';

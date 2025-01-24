@@ -20,7 +20,7 @@ class SubmitMnemonicConfirmButton extends StatelessWidget {
     return BlocBuilder<MnemonicInputCubit, MnemonicInputState>(
       builder: (final context, final state) => D3pElevatedButton(
         onPressed: state.words.isEmpty && state.result == mnemonic
-            ? () => context.router.push(
+            ? () async => context.router.push(
                   CreateAccountCredentialsRoute(
                     appbarText: AccountAppbarTitle.create,
                   ),

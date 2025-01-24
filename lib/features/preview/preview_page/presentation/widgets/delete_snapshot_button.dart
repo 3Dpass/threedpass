@@ -30,8 +30,8 @@ class DeleteSnapshotButton extends StatelessWidget {
           value: '',
         ),
         onBasePressed: state.isNew
-            ? () => context.router.pop()
-            : () => context.router.push(const DeleteSnapshotRoute()),
+            ? () async => context.router.maybePop()
+            : () async => context.router.push(const DeleteSnapshotRoute()),
         cardShape: CardShape.bottom,
       ),
     );

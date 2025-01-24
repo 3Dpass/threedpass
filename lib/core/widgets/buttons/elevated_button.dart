@@ -34,7 +34,7 @@ class D3pElevatedButton extends StatelessWidget {
         onPressed: onPressed,
         style: ButtonStyle(
           minimumSize: isInfinityWidth
-              ? MaterialStateProperty.all(
+              ? WidgetStateProperty.all(
                   const Size.fromHeight(D3pThemeData.buttonHeight),
                 )
               : null,

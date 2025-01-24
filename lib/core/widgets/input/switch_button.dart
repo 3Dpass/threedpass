@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
@@ -52,11 +54,13 @@ class D3pSwitchButton extends StatelessWidget {
     );
   }
 
-  void showHelp() {
+  Future<void> showHelp() async {
     // TODO show dialog instead of toast
-    Fluttertoast.showToast(
-      msg: helpText ?? '',
-      toastLength: Toast.LENGTH_LONG,
+    unawaited(
+      Fluttertoast.showToast(
+        msg: helpText ?? '',
+        toastLength: Toast.LENGTH_LONG,
+      ),
     );
   }
 }

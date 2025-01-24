@@ -33,22 +33,10 @@ class CommonDialog extends StatelessWidget {
       content: D3pTextFormField(
         controller: controller,
       ),
-      // SingleChildScrollView(
-      //   child: Column(
-      //     children: <Widget>[
-      //       D3pTextFormField(
-      //         // decoration: const InputDecoration(
-      //         //   isCollapsed: false,
-      //         // ),
-      //         controller: controller,
-      //       ),
-      //     ],
-      //   ),
-      // ),
       actions: [
         D3pTextButton(
           text: 'Cancel'.tr(),
-          onPressed: () => context.router.pop(),
+          onPressed: () async => context.router.maybePop(),
         ),
         D3pTextButton(
           text: actionText,

@@ -25,11 +25,12 @@ class ImportMnemonicTextfield extends StatelessWidget {
     return passed ? null : 'Invalid'.tr() + ' ' + 'import_type_mnemonic'.tr();
   }
 
-  void changeAddressIconPreview(final String? s, final BuildContext context) {
+  Future<void> changeAddressIconPreview(
+      final String? s, final BuildContext context) async {
     if (s != null) {
       final String mnemonic = s.trim().toLowerCase();
       if (mnemonic.split(' ').length >= 12) {
-        BlocProvider.of<AddressIconDataPreviewCubit>(context)
+        await BlocProvider.of<AddressIconDataPreviewCubit>(context)
             .updateInfo(mnemonic);
       } else {
         BlocProvider.of<AddressIconDataPreviewCubit>(context).dropInfo();
@@ -46,7 +47,8 @@ class ImportMnemonicTextfield extends StatelessWidget {
       hintText: 'import_mnemonic_hint'.tr(),
       controller: textEditingController,
       validator: _validateInput,
-      onChanged: (final value) => changeAddressIconPreview(value, context),
+      onChanged: (final value) async =>
+          changeAddressIconPreview(value, context),
     );
   }
 }

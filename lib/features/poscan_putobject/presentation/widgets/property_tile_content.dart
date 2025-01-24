@@ -32,8 +32,8 @@ class PropertyTileContent extends StatelessWidget {
       children: [
         Checkbox.adaptive(
           // activeColor: D3pColors.mainColor,
-          fillColor: MaterialStateProperty.resolveWith(
-            (final states) => states.contains(MaterialState.selected)
+          fillColor: WidgetStateProperty.resolveWith(
+            (final states) => states.contains(WidgetState.selected)
                 ? D3pColors.mainColor
                 : null,
           ),

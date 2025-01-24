@@ -18,9 +18,8 @@ import 'package:threedpass/setup.dart';
 class GetObjectFromFileFloatingButton extends StatelessWidget {
   const GetObjectFromFileFloatingButton({final Key? key}) : super(key: key);
 
-  void showToast(final String text, final BuildContext context) {
-    Fluttertoast.showToast(msg: text);
-  }
+  Future<void> showToast(final String text, final BuildContext context) async =>
+      Fluttertoast.showToast(msg: text);
 
   // void showLoader(final BuildContext context) {
   //   final homeContext = BlocProvider.of<HomeContextCubit>(context);
@@ -98,16 +97,16 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
         );
       }
     } on FilePickerException catch (e) {
-      showToast(e.message, context);
+      unawaited(showToast(e.message, context));
       logger.e('Caught FilePickerException: $e');
     } on Exception catch (e) {
       logger.e('Caught Exception during file scan: $e');
 
       if (e.toString().contains(ScanIsolateCubit.cancelMsg)) {
-        showToast('Scanning canceled by user.', context);
+        unawaited(showToast('Scanning canceled by user.', context));
         // hideLoader(context);
       } else {
-        showToast('Error during file pick. $e', context);
+        unawaited(showToast('Error during file pick. $e', context));
       }
     }
   }
@@ -117,7 +116,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
     return FloatingActionButton(
       heroTag: 'get_object_from_file',
       child: const Icon(Icons.folder_open_rounded),
-      onPressed: () => createHashFromFile(
+      onPressed: () async => createHashFromFile(
         context,
       ),
     );

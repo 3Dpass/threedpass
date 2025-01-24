@@ -67,7 +67,8 @@ class _OpenSelectAccountButton extends StatelessWidget {
           emptyContraints: true,
           iconData: Icons.switch_account_rounded,
           iconColor: theme.customColors.appBarButton,
-          onPressed: () => context.router.push(const SelectAccountRoute()),
+          onPressed: () async =>
+              context.router.push(const SelectAccountRoute()),
         ),
       ),
     );
@@ -88,7 +89,7 @@ class _AccountName extends StatelessWidget {
     final theme = Theme.of(context);
 
     return GestureDetector(
-      onTap: () => copyAndNotify(
+      onTap: () async => copyAndNotify(
         textToCopy: accountAddress ?? '',
         textToShow: 'address_copied_to_clipboard'.tr(),
       ),
@@ -123,7 +124,7 @@ class _ContactsPageIcon extends StatelessWidget {
         child: D3pIconButton(
           emptyContraints: true,
           iconData: Icons.person_sharp,
-          onPressed: () => context.router.push(const ContactsRoute()),
+          onPressed: () async => context.router.push(const ContactsRoute()),
         ),
       ),
     );

@@ -26,8 +26,8 @@ class BalanceCard extends StatelessWidget {
 
   static const double height = 180;
 
-  void onCardClick(final BuildContext context) {
-    context.router.push(const TransactionsHistoryRouteWrapper());
+  Future<void> onCardClick(final BuildContext context) async {
+    await context.router.push(const TransactionsHistoryRouteWrapper());
   }
 
   @override
@@ -36,7 +36,7 @@ class BalanceCard extends StatelessWidget {
       height: height,
       child: Padding16(
         child: ClickableCard(
-          onTap: () => onCardClick(context),
+          onTap: () async => onCardClick(context),
           child: _MainBalanceContent(
             balance: balance,
             tokenDecimals: tokenDecimals,

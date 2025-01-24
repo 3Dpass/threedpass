@@ -12,10 +12,10 @@ import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 mixin ExtrinsicShowLoadingMixin<TResult, Params> {
   bool fastCheckPassed = false;
 
-  void updateStatus(final BuildContext context) {
+  Future<void> updateStatus(final BuildContext context) async {
     fastCheckPassed = true;
     DefaultLoadingDialog.hide(context);
-    outerRouter.pop();
+    unawaited(outerRouter.maybePop());
     unawaited(
       Fluttertoast.showToast(
         msg: 'Extrinsic signed and broadcasted',
