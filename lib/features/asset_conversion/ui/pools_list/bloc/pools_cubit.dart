@@ -69,6 +69,7 @@ class PoolsCubit extends Cubit<PoolsState> {
             logger.t(
               '[POOLS] Stop pools update. Current: $currentCounter. Counter: $counter',
             );
+
             return;
           }
 

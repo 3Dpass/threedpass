@@ -10,9 +10,11 @@ class _SubmitButton extends StatelessWidget {
       SetRawseed(RawseedText(chosenHash.value)),
     );
 
-    context.router.push(
-      CreateAccountCredentialsRoute(
-        appbarText: AccountAppbarTitle.import,
+    unawaited(
+      context.router.push(
+        CreateAccountCredentialsRoute(
+          appbarText: AccountAppbarTitle.import,
+        ),
       ),
     );
   }

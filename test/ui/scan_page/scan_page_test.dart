@@ -20,10 +20,8 @@ void main() {
 
   group('Example test', () {
     testWidgets('MyWidget has a title and message', (final tester) async {
-      print('aaaaaaa1');
       // Initial pump
       await tester.pumpWidget(app);
-      print('aaaaaaa2');
 
       final filePath = '${Directory.current.path}/resources/3dpass-487203.obj';
       // final Uri basedir = (goldenFileComparator. as LocalFileComparator).basedir;
@@ -74,11 +72,7 @@ void main() {
       //   ),
       // );
 
-      print('aaaaaaa3');
-
       await tester.pumpAndSettle();
-
-      print('aaaaaaa4');
     });
   });
 }

@@ -18,7 +18,7 @@ class DefaultLoadingDialog extends StatelessWidget {
         context: context,
         useRootNavigator: false,
         barrierDismissible: false,
-        builder: (_) => DefaultLoadingDialog(
+        builder: (final _) => DefaultLoadingDialog(
           text: text,
         ),
       );

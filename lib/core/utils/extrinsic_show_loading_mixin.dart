@@ -12,7 +12,7 @@ import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 mixin ExtrinsicShowLoadingMixin<TResult, Params> {
   bool fastCheckPassed = false;
 
-  Future<void> updateStatus(final BuildContext context) async {
+  void updateStatus(final BuildContext context) {
     fastCheckPassed = true;
     DefaultLoadingDialog.hide(context);
     unawaited(outerRouter.maybePop());

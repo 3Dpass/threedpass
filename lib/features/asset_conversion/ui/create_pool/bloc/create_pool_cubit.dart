@@ -28,6 +28,11 @@ class CreatePoolState {
 
 class CreatePoolCubit extends Cubit<CreatePoolState>
     with ExtrinsicShowLoadingMixin<void, CreatePoolParams> {
+  @override
+  final StackRouter outerRouter;
+  final KeyPairData account;
+  final CreatePool createPoolUseCase;
+
   CreatePoolCubit({
     required final AppServiceLoaderCubit appServiceLoaderCubit,
     required this.createPoolUseCase,
@@ -36,9 +41,8 @@ class CreatePoolCubit extends Cubit<CreatePoolState>
         super(const CreatePoolState.initial());
 
   @override
-  final StackRouter outerRouter;
-  final KeyPairData account;
-  final CreatePool createPoolUseCase;
+  SafeUseCaseCall<void, CreatePoolParams> get safeCall =>
+      createPoolUseCase.safeCall;
 
   void setAsset1(final PoolAssetField? value) {
     emit(state.copyWith(asset1: value));
@@ -52,12 +56,8 @@ class CreatePoolCubit extends Cubit<CreatePoolState>
   CreatePoolParams params(final BuildContext context) => CreatePoolParams(
         asset1: state.asset1,
         asset2: state.asset2,
+        updateStatus: () => updateStatus(context),
         account: account,
         password: passwordController.text,
-        updateStatus: () => updateStatus(context),
       );
-
-  @override
-  SafeUseCaseCall<void, CreatePoolParams> get safeCall =>
-      createPoolUseCase.safeCall;
 }
