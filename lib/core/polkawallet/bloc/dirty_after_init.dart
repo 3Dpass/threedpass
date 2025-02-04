@@ -1,6 +1,6 @@
 part of './app_service_cubit.dart';
 
-extension DirtyArchitectureTrick on AppServiceLoaderCubit {
+extension DirtyAfterInit on AppServiceLoaderCubit {
   Future<void> _afterInit() async {
     final ss58 = this.state.networkStateData.ss58Format ?? ss58formatLive;
 

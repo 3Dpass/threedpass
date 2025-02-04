@@ -20,6 +20,7 @@ class BalanceUtils {
         // eg. 1.63e+25
         return BigInt.from(double.parse(raw));
       }
+
       return BigInt.from(
         NumberFormat(',##0.000').parse(raw),
       ); // NumberFormat(',##0.000')
@@ -34,6 +35,7 @@ class BalanceUtils {
     if (value == null) {
       return 0;
     }
+
     return value / BigInt.from(pow(10, decimals));
   }
 
@@ -42,13 +44,13 @@ class BalanceUtils {
   static String doubleFormat(
     final double? value, {
     final int length = 4,
-    final int round = 0,
   }) {
     if (value == null) {
       return '~';
     }
     final NumberFormat f =
         NumberFormat(",##0${length > 0 ? '.' : ''}${'#' * length}", 'en_US');
+
     return f.format(value);
   }
 
@@ -62,6 +64,7 @@ class BalanceUtils {
     if (raw == null || raw.isEmpty) {
       return '~';
     }
+
     return doubleFormat(
       bigIntToDouble(balanceInt(raw), decimals),
       length: length,
@@ -77,6 +80,7 @@ class BalanceUtils {
     // double v = 0;
     try {
       final v = double.parse(value ?? '');
+
       return BigInt.from(v * pow(10, decimals));
       // if (double.tryParse(value) != null) {
       //   v = NumberFormat(",##0.${"0" * decimals}").parse(value).toDouble();

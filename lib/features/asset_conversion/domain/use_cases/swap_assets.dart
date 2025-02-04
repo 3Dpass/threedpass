@@ -33,32 +33,29 @@ class SwapAssets extends UseCase<void, SwapAssetsParams> {
     final SwapAssetsParams params,
   ) async {
     final notificationLoading = NotificationSwapAssets(
+      params: params,
       status: ExtrinsicStatus.loading,
       message: null,
-      params: params,
     );
 
     notificationsBloc.add(
       AddNotification(notificationLoading),
     );
 
-    final res = await assetConversionRepository.swapAssets(
+    return await assetConversionRepository.swapAssets(
       params: params,
       msgIdCallback: (final msgId) {
-        webViewRunner.addGlobalHandler(
-          SwapAssetGlobalHandler(
-            msgId: msgId,
-            notificationsBloc: notificationsBloc,
-            initialN: notificationLoading,
-            webViewRunner: webViewRunner,
-            poolsCubit: poolsCubit,
-            poscanAssetsCubit: poscanAssetsCubit,
-            appServiceLoaderCubit: appServiceLoaderCubit,
-          ),
-        );
+        webViewRunner.addGlobalHandler(SwapAssetGlobalHandler(
+          msgId: msgId,
+          notificationsBloc: notificationsBloc,
+          initialN: notificationLoading,
+          webViewRunner: webViewRunner,
+          poolsCubit: poolsCubit,
+          poscanAssetsCubit: poscanAssetsCubit,
+          appServiceLoaderCubit: appServiceLoaderCubit,
+        ));
       },
     );
-    return res;
   }
 }
 

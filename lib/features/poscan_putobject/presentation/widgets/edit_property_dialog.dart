@@ -18,6 +18,7 @@ class EditPropertyDialog extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     _maxValueController.text = prop.propValue.maxValue.toString();
+
     return D3pPlatformDialog(
       title: 'edit_action'
           .tr(args: [prop.name, prop.propValue.propIdx.toString()]),
@@ -40,12 +41,12 @@ class EditPropertyDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         D3pTextButton(
-          onPressed: () => Navigator.of(context).pop(),
           text: 'Cancel'.tr(),
+          onPressed: () => Navigator.of(context).pop(),
         ),
         D3pTextButton(
-          onPressed: () => _editProperty(context),
           text: 'edit_action_submit'.tr(),
+          onPressed: () => _editProperty(context),
         ),
       ],
     );

@@ -31,15 +31,13 @@ class PropertyTileContent extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: [
         Checkbox.adaptive(
-          // activeColor: D3pColors.mainColor,
+          value: isChosen,
+          onChanged: null,
           fillColor: WidgetStateProperty.resolveWith(
             (final states) => states.contains(WidgetState.selected)
                 ? D3pColors.mainColor
                 : null,
           ),
-          value: isChosen,
-          // fillColor: MaterialStatePropertyAll(D3pThemeData.mainColor),
-          onChanged: null,
         ),
         Expanded(
           flex: 3,

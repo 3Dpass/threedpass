@@ -73,12 +73,12 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       // hideLoader(context);
       isolateCubit.setNull();
 
-      if (pair.left == null) {
+      if (pair.$1 == null) {
         // Create new object
         final newObj = HashObject(
-          name: 'Object ${pair.right.fileHash}',
+          name: 'Object ${pair.$2.fileHash}',
           snapshots: [
-            pair.right,
+            pair.$2,
           ],
         );
         hashesListBloc.add(AddObject(object: newObj));
@@ -88,7 +88,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
         ));
       } else {
         // Add snapshot
-        hashesListBloc.add(SaveSnapshot(hash: pair.right, object: pair.left!));
+        hashesListBloc.add(SaveSnapshot(hash: pair.$2, object: pair.$1!));
         unawaited(
           Fluttertoast.showToast(
             msg: 'Object recognized',

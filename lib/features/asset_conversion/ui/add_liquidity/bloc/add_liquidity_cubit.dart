@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:rational/rational.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/polkawallet/utils/decimal_set_decimals.dart';
+import 'package:threedpass/core/polkawallet/utils/set_decimals.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/polkawallet/utils/rational_remove_decimals.dart';
 import 'package:threedpass/core/usecase.dart';

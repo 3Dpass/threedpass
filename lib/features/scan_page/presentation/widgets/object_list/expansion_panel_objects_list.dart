@@ -37,14 +37,10 @@ class ExpansionPanelObjectsList extends StatelessWidget {
                 ),
               )
               .toList();
+
           return ExpansionPanelList(
-            materialGapSize: 0,
-            expansionCallback: (final int index, final bool isExpanded) =>
-                BlocProvider.of<ObjectsExpandedCubit>(context)
-                    .set(_data[index].hashObject, isExpanded),
             children: _data.map<ExpansionPanel>((final _Item item) {
               return ExpansionPanel(
-                backgroundColor: bgColor,
                 headerBuilder:
                     (final BuildContext context, final bool isExpanded) {
                   return ListTile(
@@ -54,14 +50,17 @@ class ExpansionPanelObjectsList extends StatelessWidget {
                   );
                 },
                 body: Padding16(
-                  child: FileHashesList(
-                    currentObject: item.hashObject,
-                  ),
+                  child: FileHashesList(currentObject: item.hashObject),
                 ),
                 isExpanded: item.isExpanded,
                 canTapOnHeader: true,
+                backgroundColor: bgColor,
               );
             }).toList(),
+            expansionCallback: (final int index, final bool isExpanded) =>
+                BlocProvider.of<ObjectsExpandedCubit>(context)
+                    .set(_data[index].hashObject, isExpanded),
+            materialGapSize: 0,
           );
         },
       ),

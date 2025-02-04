@@ -81,6 +81,7 @@ class D3pTextFormField extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final textStyle = Theme.of(context).customTextStyles;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,36 +98,35 @@ class D3pTextFormField extends StatelessWidget {
           ),
         SizedBox(
           child: TextFormField(
-            // TODO Make CupertinoTextField
-            style: Theme.of(context).textTheme.bodyLarge,
-            decoration: InputDecoration(
-              isDense: false,
-              filled: true,
-              border: D3pTextInputTheme.border,
-              focusedBorder: D3pTextInputTheme.focusedBorder,
-              contentPadding: contentPadding,
-              label: makeLabelOutside ? null : _Label(labelText).build(context),
-              suffixIcon: _SuffixButton(
-                labelButton: labelButton,
-                suffixButton: suffixButton,
-                onLabelButtonPressed: onLabelButtonPressed,
-                onSuffixButtonPressed: onSuffixButtonPressed,
-              ).build(context),
-              suffixText: suffixText,
-              hintText: hintText,
-              isCollapsed: isCollapsed,
-            ),
-            autofocus: autofocus,
             controller: controller,
-            onChanged: onChanged,
-            inputFormatters: inputFormatters,
-            maxLength: maxLen,
-            enabled: enabled,
-            validator: validator,
-            maxLines: mMaxLines,
+            decoration: InputDecoration(
+                isDense: false,
+                filled: true,
+                border: D3pTextInputTheme.border,
+                focusedBorder: D3pTextInputTheme.focusedBorder,
+                contentPadding: contentPadding,
+                label:
+                    makeLabelOutside ? null : _Label(labelText).build(context),
+                suffixIcon: _SuffixButton(
+                        labelButton: labelButton,
+                        suffixButton: suffixButton,
+                        onLabelButtonPressed: onLabelButtonPressed,
+                        onSuffixButtonPressed: onSuffixButtonPressed)
+                    .build(context),
+                suffixText: suffixText,
+                hintText: hintText,
+                isCollapsed: isCollapsed),
             keyboardType: keyboardType,
-            obscureText: obscureText,
+            style: Theme.of(context).textTheme.bodyLarge,
+            autofocus: autofocus,
             readOnly: readOnly,
+            obscureText: obscureText,
+            maxLines: mMaxLines,
+            maxLength: maxLen,
+            onChanged: onChanged,
+            validator: validator,
+            inputFormatters: inputFormatters,
+            enabled: enabled,
             enableInteractiveSelection: enableInteractiveSelection,
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),

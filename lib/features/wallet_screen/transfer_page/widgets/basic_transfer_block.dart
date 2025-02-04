@@ -18,12 +18,7 @@ class BasicTransferBlock extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(
-          left: 16,
-          right: 16,
-          bottom: 16,
-          top: 2,
-        ),
+        padding: const EdgeInsets.only(left: 16, top: 2, right: 16, bottom: 16),
         child: Column(
           children: [
             _DismissIcon(dismiss: dismiss),
@@ -48,8 +43,8 @@ class _DismissIcon extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           D3pIconButton(
-            onPressed: dismiss,
             iconData: Icons.horizontal_rule_outlined,
+            onPressed: dismiss,
             emptyContraints: true,
           ),
         ],

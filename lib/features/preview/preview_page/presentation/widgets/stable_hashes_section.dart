@@ -15,11 +15,9 @@ class StableHashesSection extends StatelessWidget {
 
     final hashes = hashObject.stableHashes;
 
-    if (hashes.isEmpty) {
-      return const _NoStableHashes();
-    } else {
-      return _HasStableHashes(hashes: hashes);
-    }
+    return hashes.isEmpty
+        ? const _NoStableHashes()
+        : _HasStableHashes(hashes: hashes);
   }
 }
 
@@ -29,13 +27,11 @@ class _NoStableHashes extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SectionTitle(titleUnlocalized: 'no_stable_hash_placeholder'),
-        Padding16(
-          child: D3pBodyMediumText('no_stable_hash_help'),
-        ),
+        Padding16(child: D3pBodyMediumText('no_stable_hash_help')),
       ],
     );
   }
@@ -49,13 +45,11 @@ class _HasStableHashes extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SectionTitle(titleUnlocalized: 'stable_hashes_list_title'),
-        StableHashText(
-          hashes: hashes,
-        ),
+        StableHashText(hashes: hashes),
       ],
     );
   }

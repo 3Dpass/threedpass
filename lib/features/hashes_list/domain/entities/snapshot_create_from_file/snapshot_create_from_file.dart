@@ -8,7 +8,6 @@ import 'package:rust_lzss/rust_lzss.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/utils/hash_file.dart';
 import 'package:threedpass/core/utils/logger.dart';
-import 'package:threedpass/core/utils/pair.dart';
 import 'package:threedpass/core/utils/random_hex.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
@@ -40,7 +39,7 @@ class SnapshotFileFactory {
     return '$rawObjName ${Fmt.basicDateFormat.format(DateTime.now())}';
   }
 
-  Future<Pair<HashObject?, Snapshot>> createSnapshotFromFile({
+  Future<(HashObject?, Snapshot)> createSnapshotFromFile({
     required final String pickedFilePath,
     required final String relativePath,
   }) async {
@@ -95,7 +94,7 @@ class SnapshotFileFactory {
     return hashObject;
   }
 
-  Future<Pair<HashObject?, Snapshot>> _createSnapshot({
+  Future<(HashObject?, Snapshot)> _createSnapshot({
     required final String filePath,
     required final ScanSettings settings,
     required final HashesListState hashListState,
@@ -126,7 +125,7 @@ class SnapshotFileFactory {
       newSnapshot = newSnapshot.copyWith(name: '${i + 1} $snapName');
     }
 
-    return Pair<HashObject?, Snapshot>(hashObject, newSnapshot);
+    return (hashObject, newSnapshot);
   }
 
   /// Calc hashes

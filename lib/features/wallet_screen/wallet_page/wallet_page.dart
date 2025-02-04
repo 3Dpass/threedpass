@@ -33,22 +33,19 @@ class WalletPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
-      buildWhen: buildWhen,
       builder: (final context, final state) {
         switch (state.status) {
           case AppServiceInitStatus.init:
             return const AppServiceInitLoaderPage();
-
           case AppServiceInitStatus.connecting:
           case AppServiceInitStatus.connected:
           case AppServiceInitStatus.error:
-            if (state.keyring.allAccounts.isEmpty) {
-              return const NoAccountsPage();
-            } else {
-              return const AssetsPage();
-            }
+            return state.keyring.allAccounts.isEmpty
+                ? const NoAccountsPage()
+                : const AssetsPage();
         }
       },
+      buildWhen: buildWhen,
     );
   }
 }

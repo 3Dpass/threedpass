@@ -27,7 +27,7 @@ class AppService {
   final PolkawalletPlugin plugin;
   final AppServiceInitStatus status;
 
-  Future<void> subscribeToBalance() async {
+  void subscribeToBalance() {
     final address = keyring.current.address;
 
     plugin.sdk.api.account.unsubscribeBalance();
@@ -36,7 +36,7 @@ class AppService {
       unawaited(
         plugin.sdk.api.account.subscribeBalance(
           address,
-          (final data) async {
+          (final data) {
             logger.i('Balance updated: ${data.availableBalance}');
 
             if (keyring.current.address == data.accountId) {

@@ -1,6 +1,6 @@
 import 'package:decimal/decimal.dart';
 import 'package:rational/rational.dart';
-import 'package:threedpass/core/polkawallet/utils/decimal_set_decimals.dart';
+import 'package:threedpass/core/polkawallet/utils/set_decimals.dart';
 import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/features/asset_conversion/data/asset_conversion_repository.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';

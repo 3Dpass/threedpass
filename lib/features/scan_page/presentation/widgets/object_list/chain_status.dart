@@ -45,23 +45,21 @@ class _State extends State<ChainStatus> {
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<PoscanObjectsCubit, PoscanObjectsState>(
-      buildWhen: (final previous, final current) =>
-          previous.areOwnerObjectsLoading != current.areOwnerObjectsLoading,
       builder: (final context, final state) {
         if (loadedObject != null) {
           return Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: FastRichText(
-              mainText: 'chain_status_recognized'.tr(),
-              secondaryText: 'snapshot_chain_status'.tr(),
-              needSpace: true,
-              mainTextColor: D3pThemeData.mainColor,
-            ),
-          );
+              padding: const EdgeInsets.only(bottom: 8),
+              child: FastRichText(
+                  mainText: 'chain_status_recognized'.tr(),
+                  secondaryText: 'snapshot_chain_status'.tr(),
+                  needSpace: true,
+                  mainTextColor: D3pThemeData.mainColor));
         } else {
           return const SizedBox();
         }
       },
+      buildWhen: (final previous, final current) =>
+          previous.areOwnerObjectsLoading != current.areOwnerObjectsLoading,
     );
   }
 }

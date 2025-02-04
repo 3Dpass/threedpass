@@ -10,7 +10,7 @@ analyzer:
   plugins:
     - dart_code_linter
   exclude:
-    - '**/packages/rust_lzss/cargokit/**'
+    - 'packages/rust_lzss/cargokit/**'
     - '**/*.g.dart'
     - '**/*.freezed.dart'
     - '**/*.gr.dart'
@@ -29,3 +29,9 @@ dart_code_linter:
     - avoid-dynamic: false
     - avoid-non-null-assertion: false
     - format-comment: false
+    - avoid-ignoring-return-values: false
+    - prefer-static-class: false
+    - member-ordering: false
+    - prefer-moving-to-variable: false
+    - no-magic-number: false
+    - prefer-single-widget-per-file: false

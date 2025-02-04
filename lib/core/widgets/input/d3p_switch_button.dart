@@ -39,9 +39,9 @@ class D3pSwitchButton extends StatelessWidget {
             if (helpText != null)
               D3pIconButton(
                 iconData: Icons.info_outline_rounded,
-                size: 20,
-                iconColor: Colors.blue,
                 onPressed: showHelp,
+                iconColor: Colors.blue,
+                size: 20,
               ),
           ],
         ),
@@ -54,7 +54,7 @@ class D3pSwitchButton extends StatelessWidget {
     );
   }
 
-  Future<void> showHelp() async {
+  void showHelp() {
     // TODO show dialog instead of toast
     unawaited(
       Fluttertoast.showToast(

@@ -15,8 +15,8 @@ class CalcRemoveLiquidityInfo
     final assetUserBalances = params.poolFullInfo
         .userPoolReserves(nativeTokenDecimals: params.nativeTokenDecimals);
 
-    final asset1UserBalance = assetUserBalances.left;
-    final asset2UserBalance = assetUserBalances.right;
+    final asset1UserBalance = assetUserBalances.$1;
+    final asset2UserBalance = assetUserBalances.$2;
 
     final percentageRational = Rational.fromInt(params.percentage, 100);
 

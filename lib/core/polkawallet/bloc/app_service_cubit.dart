@@ -36,6 +36,13 @@ part 'dirty_after_init.dart';
 /// This class does [emit] just to notify listeners to rebuild widgets
 ///
 class AppServiceLoaderCubit extends Cubit<AppService> {
+  final SettingsConfigCubit settingsConfigCubit;
+
+  double get fastAvailableBalance => BalanceUtils.balanceToDouble(
+        state.chosenAccountBalance.value.availableBalance.toString(),
+        state.networkStateData.safeDecimals,
+      );
+
   AppServiceLoaderCubit({
     required this.settingsConfigCubit,
   }) : super(
@@ -47,8 +54,6 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
         ) {
     unawaited(_init(settingsConfigCubit.state.walletSettings));
   }
-
-  final SettingsConfigCubit settingsConfigCubit;
 
   Future<Map<dynamic, dynamic>> importAccount({
     required final AccountInfo account,
@@ -73,33 +78,6 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       return res;
     } else {
       throw Exception('Account was NOT imported');
-    }
-  }
-
-  static Future<AddressIconData> _getAddressForAccount({
-    required final AppService state,
-    required final AccountInfo account,
-    final CryptoType cryptoType = defaultCryptoType,
-    final String derivePath = '',
-  }) async {
-    if (account is AccountCreateMnemonic) {
-      return state.plugin.sdk.api.keyring.addressFromMnemonic(
-        state.networkStateData.ss58Format!,
-        cryptoType: cryptoType,
-        derivePath: derivePath,
-        mnemonic: account.mnemonic,
-      );
-    } else if (account is AccountCreateSeed) {
-      return state.plugin.sdk.api.keyring.addressFromRawSeed(
-        state.networkStateData.ss58Format!,
-        cryptoType: cryptoType,
-        derivePath: derivePath,
-        rawSeed: account.seed,
-      );
-    } else {
-      throw Exception(
-        'AccountInfo has undefined type AppserviceLoaderCubit._getAddressForAccount',
-      );
     }
   }
 
@@ -155,7 +133,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     final pseudoNewState =
         state.copyWith(status: AppServiceInitStatus.connected);
 
-    await pseudoNewState.subscribeToBalance();
+    pseudoNewState.subscribeToBalance();
     // TODO: Refactor. Make current accoutn a separate state. Listen to that state in poscanassets
     getIt<PoscanAssetsCubit>().switchAccount(state.keyring.current);
     // If only one account, load assets, otherwise just load balances
@@ -199,8 +177,8 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     }
     getIt.registerFactory<TransfersToCubit>(
       () => TransfersToCubit(
-        getTransfers: getIt<GetTransfers>(),
         toMultiAddressAccountId: userPubKey,
+        getTransfers: getIt<GetTransfers>(),
       ),
     );
 
@@ -209,8 +187,8 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     }
     getIt.registerFactory<TransfersFromCubit>(
       () => TransfersFromCubit(
-        getTransfers: getIt<GetTransfers>(),
         fromMultiAddressAccountId: userPubKey,
+        getTransfers: getIt<GetTransfers>(),
       ),
     );
   }
@@ -222,8 +200,8 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     state.plugin.sdk.webView!.addGlobalHandler(
       TxUpdateEventLogsHandler(
         msgId: msgId,
-        setTransactionResult: setTransactionResult,
         webViewRunner: state.plugin.sdk.webView!,
+        setTransactionResult: setTransactionResult,
       ),
     );
   }
@@ -242,8 +220,30 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     return true;
   }
 
-  double get fastAvailableBalance => BalanceUtils.balanceToDouble(
-        state.chosenAccountBalance.value.availableBalance.toString(),
-        state.networkStateData.safeDecimals,
+  static Future<AddressIconData> _getAddressForAccount({
+    required final AppService state,
+    required final AccountInfo account,
+    final CryptoType cryptoType = defaultCryptoType,
+    final String derivePath = '',
+  }) async {
+    if (account is AccountCreateMnemonic) {
+      return state.plugin.sdk.api.keyring.addressFromMnemonic(
+        state.networkStateData.ss58Format!,
+        cryptoType: cryptoType,
+        derivePath: derivePath,
+        mnemonic: account.mnemonic,
       );
+    } else if (account is AccountCreateSeed) {
+      return state.plugin.sdk.api.keyring.addressFromRawSeed(
+        state.networkStateData.ss58Format!,
+        cryptoType: cryptoType,
+        derivePath: derivePath,
+        rawSeed: account.seed,
+      );
+    } else {
+      throw Exception(
+        'AccountInfo has undefined type AppserviceLoaderCubit._getAddressForAccount',
+      );
+    }
+  }
 }

@@ -25,6 +25,6 @@ class BasicTransferTextField extends D3pTextFormField {
     super.makeLabelOutside = true,
     super.bottomWidget,
     super.contentPadding =
-        const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+        const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
   });
 }

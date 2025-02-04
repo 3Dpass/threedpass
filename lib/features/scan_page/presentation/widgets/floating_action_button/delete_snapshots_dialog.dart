@@ -31,13 +31,9 @@ class DeleteSnapshotsDialog extends StatelessWidget {
   Widget build(final BuildContext context) {
     return D3pPlatformDialog(
       title: 'delete_snapshots_dialog_title'.tr(),
-      content: Text(
-        'delete_snapshots_dialog_content'.tr(
-          args: [
-            'snapshots_plural'.plural(selectSnapshotsCubit.state.snaps.length),
-          ],
-        ),
-      ),
+      content: Text('delete_snapshots_dialog_content'.tr(args: [
+        'snapshots_plural'.plural(selectSnapshotsCubit.state.snaps.length),
+      ])),
       actions: [
         D3pTextButton(
           text: 'Cancel'.tr(),

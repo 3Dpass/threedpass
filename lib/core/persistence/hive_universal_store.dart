@@ -5,6 +5,8 @@ class HiveUniversalStore<T> {
   late final Box<T> _box;
   final String _boxName;
 
+  int get length => _box.values.length;
+
   HiveUniversalStore({
     required final String boxName,
   }) : _boxName = boxName;
@@ -15,7 +17,7 @@ class HiveUniversalStore<T> {
 
   Future<void> addObject(final T value) async {
     await _box.add(value);
-    return _box.flush();
+    await _box.flush();
   }
 
   /// Delete object by unknown key
@@ -27,6 +29,7 @@ class HiveUniversalStore<T> {
     if (key != null) {
       await _box.delete(key);
       await _box.flush();
+
       return;
     } else {
       logger.e("Couldn't find object $value to remove");
@@ -64,7 +67,7 @@ class HiveUniversalStore<T> {
 
   Future<void> put(final int index, final T value) async {
     await _box.put(index, value);
-    return _box.flush();
+    await _box.flush();
   }
 
   Future<void> putAt0(final T value) async {
@@ -73,7 +76,7 @@ class HiveUniversalStore<T> {
     } else {
       await _box.putAt(0, value);
     }
-    return _box.flush();
+    await _box.flush();
   }
 
   Iterable<T> getAll() {
@@ -84,6 +87,4 @@ class HiveUniversalStore<T> {
     await _box.clear();
     await _box.flush();
   }
-
-  int get length => _box.values.length;
 }

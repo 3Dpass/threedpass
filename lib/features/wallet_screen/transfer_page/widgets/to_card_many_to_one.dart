@@ -18,11 +18,10 @@ class ToCardManyToOne extends StatelessWidget {
   Widget build(final BuildContext context) {
     final dismissFunctionFabric = DismissFunctionFabric(context);
     final dismiss = isFirst ? null : dismissFunctionFabric.buildToAddress(data);
+
     return BasicTransferBlock(
+      child: ToCardBasic(data: data),
       dismiss: dismiss,
-      child: ToCardBasic(
-        data: data,
-      ),
     );
   }
 }

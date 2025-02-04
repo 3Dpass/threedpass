@@ -44,99 +44,68 @@ class AddLiquidityPage extends StatelessWidget {
         : poscanAssetsCubit.fastBalanceById(cubit.asset2.assetId!)?.toDouble();
 
     return SomeForm(
-      formKey: cubit.formKey,
-      appbarTitle: 'add_liquidity_page_title',
-      submitButton: SomeFormSubmitButton(
-        extrinsicMixin: cubit,
-      ),
-      children: [
-        Text(
-          '$asset1Symbols / $asset2Symbols',
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
-        ChooseAccount(
-          title: 'add_liquidity_page_choose_account_title',
-          passwordController: cubit.passwordController,
-          onAccountSelected: null,
-        ),
-        D3pTextFormField(
-          labelText: 'add_liquidity_page_amount_desired_pattern'
-              .tr(args: [asset1Symbols]),
-          controller: cubit.amount1DesiredController,
-          keyboardType: TextInputType.number,
-          validator: (final p0) =>
-              Validators.onlyFloatBalanceMax(p0, asset1UserBalance ?? 0),
-          onChanged: (final p0) => cubit.onFirstDesiredChanged(),
-        ),
-        D3pTextFormField(
-          labelText: 'add_liquidity_page_amount_desired_pattern'
-              .tr(args: [asset2Symbols]),
-          controller: cubit.amount2DesiredController,
-          keyboardType: TextInputType.number,
-          validator: (final p0) =>
-              Validators.onlyFloatBalanceMax(p0, asset2UserBalance ?? 0),
-          onChanged: (final p0) => cubit.onSecondDesiredChanged(),
-        ),
-        SlippageTolerance(
-          controller: cubit.slippageController,
-          hintText: '${AddLiquidityCubit.defaultSlippage}%',
-          onChanged: (final p0) => cubit.setSlippageTolerance(),
-        ),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
+        formKey: cubit.formKey,
+        appbarTitle: 'add_liquidity_page_title',
+        children: [
+          Text(
+            '$asset1Symbols / $asset2Symbols',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+          ChooseAccount(
+            onAccountSelected: null,
+            passwordController: cubit.passwordController,
+            title: 'add_liquidity_page_choose_account_title',
+          ),
+          D3pTextFormField(
+            controller: cubit.amount1DesiredController,
+            labelText: 'add_liquidity_page_amount_desired_pattern'
+                .tr(args: [asset1Symbols]),
+            validator: (final p0) =>
+                Validators.onlyFloatBalanceMax(p0, asset1UserBalance ?? 0),
+            onChanged: (final p0) => cubit.onFirstDesiredChanged(),
+            keyboardType: TextInputType.number,
+          ),
+          D3pTextFormField(
+            controller: cubit.amount2DesiredController,
+            labelText: 'add_liquidity_page_amount_desired_pattern'
+                .tr(args: [asset2Symbols]),
+            validator: (final p0) =>
+                Validators.onlyFloatBalanceMax(p0, asset2UserBalance ?? 0),
+            onChanged: (final p0) => cubit.onSecondDesiredChanged(),
+            keyboardType: TextInputType.number,
+          ),
+          SlippageTolerance(
+              controller: cubit.slippageController,
+              hintText: '${AddLiquidityCubit.defaultSlippage}%',
+              onChanged: (final p0) => cubit.setSlippageTolerance()),
+          Column(mainAxisSize: MainAxisSize.min, children: [
             BlocBuilder<AddLiquidityCubit, AddLiquidityState>(
-              buildWhen: (final previous, final current) =>
-                  previous.asset1Min != current.asset1Min,
-              builder: (final context, final state) => SizedBox(
-                height: 16,
-                child: state.asset1Min != null
-                    ? FullRowText(
-                        leftText: 'add_liquidity_calculated_min'.tr(
-                          args: [
-                            asset1Symbols,
-                          ],
-                        ),
-                        translateLeft: false,
-                        rightText: state.asset1Min!,
-                      )
-                    : const SizedBox(),
-              ),
-            ),
+                buildWhen: (final previous, final current) =>
+                    previous.asset1Min != current.asset1Min,
+                builder: (final context, final state) => SizedBox(
+                    height: 16,
+                    child: state.asset1Min != null
+                        ? FullRowText(
+                            leftText: 'add_liquidity_calculated_min'
+                                .tr(args: [asset1Symbols]),
+                            translateLeft: false,
+                            rightText: state.asset1Min!)
+                        : const SizedBox())),
             const H8(),
             BlocBuilder<AddLiquidityCubit, AddLiquidityState>(
-              buildWhen: (final previous, final current) =>
-                  previous.asset2Min != current.asset2Min,
-              builder: (final context, final state) => SizedBox(
-                height: 16,
-                child: state.asset2Min != null
-                    ? FullRowText(
-                        leftText: 'add_liquidity_calculated_min'.tr(
-                          args: [
-                            asset2Symbols,
-                          ],
-                        ),
-                        translateLeft: false,
-                        rightText: state.asset2Min!,
-                      )
-                    : const SizedBox(),
-              ),
-            ),
-          ],
-        ),
-        // D3pTextFormField(
-        //   labelText: 'add_liquidity_page_amount_1_min_label'.tr(),
-        //   controller: cubit.amount1Min,
-        //   keyboardType: TextInputType.number,
-        //   validator: Validators.onlyFloat,
-        // ),
-        // D3pTextFormField(
-        //   labelText: 'add_liquidity_page_amount_2_min_label'.tr(),
-        //   controller: cubit.amount2Min,
-        //   keyboardType: TextInputType.number,
-        //   validator: Validators.onlyFloat,
-        // ),
-      ],
-    );
+                buildWhen: (final previous, final current) =>
+                    previous.asset2Min != current.asset2Min,
+                builder: (final context, final state) => SizedBox(
+                    height: 16,
+                    child: state.asset2Min != null
+                        ? FullRowText(
+                            leftText: 'add_liquidity_calculated_min'
+                                .tr(args: [asset2Symbols]),
+                            translateLeft: false,
+                            rightText: state.asset2Min!)
+                        : const SizedBox()))
+          ])
+        ],
+        submitButton: SomeFormSubmitButton(extrinsicMixin: cubit));
   }
 }

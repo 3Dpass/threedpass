@@ -54,7 +54,7 @@ extension _ on AppServiceLoaderCubit {
     //   }),
     // );
 
-    await newAppService.subscribeToBalance();
+    newAppService.subscribeToBalance();
     // await newAppService.setTokensData();
 
     AppServiceLoaderCubit.registerTransferCubits(newAppService);

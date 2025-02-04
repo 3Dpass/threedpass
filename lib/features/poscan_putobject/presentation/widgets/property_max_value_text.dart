@@ -30,19 +30,18 @@ class PropertyMaxValueText extends StatelessWidget {
         tmp = tmp ~/ big10;
         res++;
       }
+
       return TextSpan(
         text: '10^',
-        style: enabledStyle,
         children: [
           TextSpan(
             text: res.toString(),
-            style: enabledStyle.copyWith(
-              fontFeatures: <FontFeature>[
-                const FontFeature.superscripts(),
-              ],
-            ),
+            style: enabledStyle.copyWith(fontFeatures: <FontFeature>[
+              const FontFeature.superscripts(),
+            ]),
           ),
         ],
+        style: enabledStyle,
       );
     } else {
       return TextSpan(
@@ -62,10 +61,8 @@ class PropertyMaxValueText extends StatelessWidget {
     return Text.rich(
       TextSpan(
         text: 'property_max_value_label'.tr(),
+        children: [formattedMaxValue(propValue.maxValue, enabledStyle)],
         style: disabledStyle,
-        children: [
-          formattedMaxValue(propValue.maxValue, enabledStyle),
-        ],
       ),
     );
   }

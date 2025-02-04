@@ -26,14 +26,11 @@ class FromCardManyToOne extends StatelessWidget {
     final dismissFunctionFabric = DismissFunctionFabric(context);
     final dismiss =
         isFirst ? null : dismissFunctionFabric.buildFromAddress(data);
+
     return BasicTransferBlock(
-      dismiss: dismiss,
       child: Column(
         children: [
-          FromCardBasic(
-            data: data,
-            isFirst: isFirst,
-          ),
+          FromCardBasic(data: data, isFirst: isFirst),
           const H4(),
           AmountTextFieldBuilder(
             amountController: sendAmountData.amountController,
@@ -42,6 +39,7 @@ class FromCardManyToOne extends StatelessWidget {
           ),
         ],
       ),
+      dismiss: dismiss,
     );
   }
 }
