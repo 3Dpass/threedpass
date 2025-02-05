@@ -24,24 +24,21 @@ class OpenBottomSheet extends StatelessWidget {
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         D3pBodyMediumText(unlocalizedSubtitle),
         const H4(),
         ClickableCard(
-          padding: ClickableCard.buttonPaddingPreset,
-          onTap: openBottomSheet,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               buttonTextChild,
-              Icon(
-                buttonIconData,
-                color: colors.themeOpposite,
-              ),
+              Icon(buttonIconData, color: colors.themeOpposite),
             ],
           ),
+          onTap: openBottomSheet,
+          padding: ClickableCard.buttonPaddingPreset,
         ),
       ],
     );

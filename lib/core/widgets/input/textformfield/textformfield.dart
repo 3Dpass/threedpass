@@ -100,22 +100,22 @@ class D3pTextFormField extends StatelessWidget {
           child: TextFormField(
             controller: controller,
             decoration: InputDecoration(
-                isDense: false,
-                filled: true,
-                border: D3pTextInputTheme.border,
-                focusedBorder: D3pTextInputTheme.focusedBorder,
-                contentPadding: contentPadding,
-                label:
-                    makeLabelOutside ? null : _Label(labelText).build(context),
-                suffixIcon: _SuffixButton(
-                        labelButton: labelButton,
-                        suffixButton: suffixButton,
-                        onLabelButtonPressed: onLabelButtonPressed,
-                        onSuffixButtonPressed: onSuffixButtonPressed)
-                    .build(context),
-                suffixText: suffixText,
-                hintText: hintText,
-                isCollapsed: isCollapsed),
+              label: makeLabelOutside ? null : _Label(labelText).build(context),
+              hintText: hintText,
+              isCollapsed: isCollapsed,
+              isDense: false,
+              contentPadding: contentPadding,
+              suffixIcon: _SuffixButton(
+                labelButton: labelButton,
+                suffixButton: suffixButton,
+                onLabelButtonPressed: onLabelButtonPressed,
+                onSuffixButtonPressed: onSuffixButtonPressed,
+              ).build(context),
+              suffixText: suffixText,
+              filled: true,
+              focusedBorder: D3pTextInputTheme.focusedBorder,
+              border: D3pTextInputTheme.border,
+            ),
             keyboardType: keyboardType,
             style: Theme.of(context).textTheme.bodyLarge,
             autofocus: autofocus,

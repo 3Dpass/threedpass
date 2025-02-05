@@ -15,8 +15,8 @@ class PutObjectSubmitButton extends StatelessWidget {
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'poscan_putobject_fees_warning'.tr(),
@@ -25,7 +25,7 @@ class PutObjectSubmitButton extends StatelessWidget {
         const SizedBox(height: 2),
         D3pElevatedButton(
           text: 'sign_extrinsic'.tr(),
-          onPressed: () async => BlocProvider.of<PoscanPutObjectCubit>(context)
+          onPressed: () => BlocProvider.of<PoscanPutObjectCubit>(context)
               .submitExtrinsic(context),
         ),
         const H24(),

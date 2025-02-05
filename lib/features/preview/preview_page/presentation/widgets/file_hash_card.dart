@@ -17,16 +17,16 @@ class FileHashBlock extends StatelessWidget {
 
     return Padding16(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'file_hash_title'.tr(),
             style: Theme.of(context).customTextStyles.d3plabelLarge,
           ),
           CopyTextCard(
-            textToCopy: fileHashText,
             textToShow: 'file_hash_copied'.tr(),
+            textToCopy: fileHashText,
             child: Text(fileHashText),
           ),
         ],

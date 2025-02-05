@@ -10,17 +10,15 @@ class DefaultLoadingDialog extends StatelessWidget {
 
   final String? text;
 
-  static Future<void> show(
+  static void show(
     final BuildContext context, [
     final String? text,
-  ]) async =>
+  ]) =>
       showAdaptiveDialog(
         context: context,
-        useRootNavigator: false,
+        builder: (final _) => DefaultLoadingDialog(text: text),
         barrierDismissible: false,
-        builder: (final _) => DefaultLoadingDialog(
-          text: text,
-        ),
+        useRootNavigator: false,
       );
 
   static void hide(final BuildContext context) {
@@ -31,12 +29,12 @@ class DefaultLoadingDialog extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Dialog(
       child: SizedBox(
-        height: 84,
         width: 42,
+        height: 84,
         child: Center(
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const D3pProgressIndicator(size: null),
               text != null
@@ -53,7 +51,7 @@ class DefaultLoadingDialog extends StatelessWidget {
   }
 }
 
-AutoRoute defaultLoadingDialog = CustomRoute(
+final AutoRoute defaultLoadingDialog = CustomRoute(
   page: DefaultLoadingRoute.page,
   customRouteBuilder: dialogBuilder,
 );

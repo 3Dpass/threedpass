@@ -17,11 +17,8 @@ class ChooseCategoryBottomSheet extends StatelessWidget {
   Widget build(final BuildContext context) {
     final textStyles = Theme.of(context).customTextStyles;
     return BlocBuilder<PoscanPutObjectCubit, D3PRPCCubitState>(
-      buildWhen: (final previous, final current) =>
-          previous.chosenCategory != current.chosenCategory,
       builder: (final context, final state) => ListView.builder(
         shrinkWrap: true,
-        itemCount: PoscanCategories.allCats.length,
         itemBuilder: (final context, final index) {
           final cat = PoscanCategories.allCats[index];
           return Column(
@@ -37,27 +34,45 @@ class ChooseCategoryBottomSheet extends StatelessWidget {
               ),
               cat.subCats.isEmpty
                   ? const H16()
-                  : ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: cat.subCats.length,
-                      itemBuilder: (final context, final index) => EnumButton(
-                        text: cat.subCats[index].capitalizeFirst(),
-                        onPressed: () =>
-                            BlocProvider.of<PoscanPutObjectCubit>(context)
-                                .changeCategory(
-                          MapPoscanCategory(
-                            cat: cat.catName,
-                            subCat: cat.subCats[index],
-                          ),
-                        ),
-                        isChosen: state.chosenCategory.cat == cat.catName &&
-                            state.chosenCategory.subCat == cat.subCats[index],
-                      ),
-                    ),
+                  : _CatsList(state: state, cat: cat),
             ],
           );
         },
+        itemCount: PoscanCategories.allCats.length,
+      ),
+      buildWhen: (final previous, final current) =>
+          previous.chosenCategory != current.chosenCategory,
+    );
+  }
+}
+
+class _CatsList extends StatelessWidget {
+  final D3PRPCCubitState state;
+  final PoscanCategories cat;
+
+  const _CatsList({
+    required this.state,
+    required this.cat,
+  });
+
+  @override
+  Widget build(final BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(
+        cat.subCats.length,
+        (final index) => EnumButton(
+          text: cat.subCats[index].capitalizeFirst(),
+          isChosen: state.chosenCategory.cat == cat.catName &&
+              state.chosenCategory.subCat == cat.subCats[index],
+          onPressed: () =>
+              BlocProvider.of<PoscanPutObjectCubit>(context).changeCategory(
+            MapPoscanCategory(
+              cat: cat.catName,
+              subCat: cat.subCats[index],
+            ),
+          ),
+        ),
       ),
     );
   }

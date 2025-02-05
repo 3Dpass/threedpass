@@ -12,7 +12,7 @@ class MintAssetSubmitButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     return D3pElevatedButton(
       text: 'sign_extrinsic'.tr(),
-      onPressed: () async =>
+      onPressed: () =>
           BlocProvider.of<MintAssetCubit>(context).submitExtrinsic(context),
     );
   }

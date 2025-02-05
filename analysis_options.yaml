@@ -26,12 +26,17 @@ dart_code_linter:
   metrics-exclude:
     - test/**
   rules:
+    - prefer-commenting-analyzer-ignores: false
     - avoid-dynamic: false
+    - avoid-substring: false
     - avoid-non-null-assertion: false
     - format-comment: false
     - avoid-ignoring-return-values: false
     - prefer-static-class: false
-    - member-ordering: false
+    - prefer-conditional-expressions: false
+    - no-equal-arguments: false
+    - member-ordering: false # TODO Enable this rule and below
+    - newline-before-return: false
     - prefer-moving-to-variable: false
     - no-magic-number: false
     - prefer-single-widget-per-file: false

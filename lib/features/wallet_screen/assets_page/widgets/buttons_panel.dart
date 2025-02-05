@@ -38,7 +38,7 @@ class AssetPageButtonsPanel extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return const SizedBox(
+    return SizedBox(
       height: height,
       child: Padding16(
         child: Column(
@@ -63,6 +63,15 @@ class AssetPageButtonsPanel extends StatelessWidget {
               children: [
                 Flexible(
                   child: OpenPoolsButton(),
+                ),
+                Flexible(
+                  child: TextButton(
+                    onPressed: () =>
+                        context.router.push(CreateSwapRouteWapper()),
+                    child: Text(
+                      'DEBUG ATOMIC SWAP',
+                    ),
+                  ),
                 ),
                 // Flexible(
                 //   child: SwapButton(),

@@ -8,6 +8,7 @@ import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/utils/m_app_install_date.dart';
 import 'package:threedpass/features/accounts/di_accounts.dart';
 import 'package:threedpass/features/asset_conversion/di_asset_conversion.dart';
+import 'package:threedpass/features/atomic_swap/di_atomic_swap.dart';
 import 'package:threedpass/features/graphql/graphql_di.dart';
 import 'package:threedpass/features/graphql/transfers_history/data/repositories/transfers_repo_remote.dart';
 import 'package:threedpass/features/hashes_list/di/di_hashes_list.dart';
@@ -109,4 +110,6 @@ Future<void> setup() async {
   await DIAssetConversion().setup(getIt);
 
   await DIPoscan().setup(getIt);
+
+  await DiAtomicSwap().setup(getIt);
 }

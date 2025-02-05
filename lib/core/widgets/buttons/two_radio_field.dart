@@ -19,38 +19,38 @@ class TwoRadioField extends FormField<TwoRadioState> {
           validator: validator,
           builder: (final FormFieldState<TwoRadioState> state) {
             return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 D3pBodyMediumText(titleKey),
                 const H4(),
                 Flexible(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Flexible(
-                        child: _SpecialRadioListTile(
-                          title: label.$1,
-                          textTheme: textTheme(state.context),
-                          value: TwoRadioState.first,
-                          groupValue: state.value,
-                          onChanged: (final value) =>
-                              onChangedDefault(value, state, onChanged),
+                  child: Row(mainAxisSize: MainAxisSize.max, children: [
+                    Flexible(
+                      child: _SpecialRadioListTile(
+                        title: label.$1,
+                        textTheme: textTheme(state.context),
+                        value: TwoRadioState.first,
+                        groupValue: state.value,
+                        onChanged: (final value) => onChangedDefault(
+                          value,
+                          state,
+                          onChanged,
                         ),
                       ),
-                      const Spacer(),
-                      Flexible(
-                        child: _SpecialRadioListTile(
-                          title: label.$2,
-                          textTheme: textTheme(state.context),
-                          value: TwoRadioState.second,
-                          groupValue: state.value,
-                          onChanged: (final value) =>
-                              onChangedDefault(value, state, onChanged),
-                        ),
+                    ),
+                    const Spacer(),
+                    Flexible(
+                      child: _SpecialRadioListTile(
+                        title: label.$2,
+                        textTheme: textTheme(state.context),
+                        value: TwoRadioState.second,
+                        groupValue: state.value,
+                        onChanged: (final value) =>
+                            onChangedDefault(value, state, onChanged),
                       ),
-                    ],
-                  ),
+                    ),
+                  ]),
                 ),
                 if (state.hasError)
                   Text(

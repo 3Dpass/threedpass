@@ -230,11 +230,11 @@ class SwapCubit extends Cubit<SwapState>
   Future<(Decimal, Decimal)> get calcOnFirstChanged =>
       calcSwapOnFirstChanged.call(
         CalcSwapOnChangedParams(
-          assetAmountControllerText:
-              firstAssetAmountController.text.replaceAll(',', ''),
           firstAsset: state.firstAsset,
           secondAsset: state.secondAsset,
           metadata: metadata,
+          assetAmountControllerText:
+              firstAssetAmountController.text.replaceAll(',', ''),
           slippage: int.parse(slippageToleranceController.text),
           nativeTokenDecimals: nativeTokenDecimals,
         ),
@@ -261,11 +261,11 @@ class SwapCubit extends Cubit<SwapState>
   Future<(Decimal, Decimal)> get calcOnSecondChanged =>
       calcSwapOnSecondChanged.call(
         CalcSwapOnChangedParams(
-          assetAmountControllerText:
-              secondAssetAmountController.text.replaceAll(',', ''),
           firstAsset: state.firstAsset,
           secondAsset: state.secondAsset,
           metadata: metadata,
+          assetAmountControllerText:
+              secondAssetAmountController.text.replaceAll(',', ''),
           slippage: int.parse(slippageToleranceController.text),
           nativeTokenDecimals: nativeTokenDecimals,
         ),
@@ -344,6 +344,7 @@ class SwapCubit extends Cubit<SwapState>
   @override
   Future<void> close() async {
     await subscription?.cancel();
+
     return super.close();
   }
 }

@@ -76,27 +76,27 @@ class ModalBottomSheetAutoRoute extends CustomRoute {
       final AutoRoutePage<T> page,
     ) {
       return ModalBottomSheetRoute<T>(
-        backgroundColor: backgroundColor,
-        isDismissible: barrierDismissible,
-        modalBarrierColor: barrierColor,
-        shape: shape,
-        isScrollControlled: isScrollControlled ?? true,
-        enableDrag: enableDrag ?? true,
-        showDragHandle: showDragHandle,
-        barrierLabel: barrierLabel,
-        settings: page,
-        useSafeArea: useSafeArea ?? false,
-        barrierOnTapHint: barrierOnTapHint,
         builder: (final context) {
           return isScrollControlled ?? true
               ? ModalDraggableSheet(
+                  child: child,
                   initialChildSize: initialChildSize,
                   minChildSize: minChildSize,
                   maxChildSize: maxChildSize,
-                  child: child,
                 )
               : child;
         },
+        barrierLabel: barrierLabel,
+        barrierOnTapHint: barrierOnTapHint,
+        backgroundColor: backgroundColor,
+        shape: shape,
+        modalBarrierColor: barrierColor,
+        isDismissible: barrierDismissible,
+        enableDrag: enableDrag ?? true,
+        showDragHandle: showDragHandle,
+        isScrollControlled: isScrollControlled ?? true,
+        settings: page,
+        useSafeArea: useSafeArea ?? false,
       );
     };
   }
@@ -125,8 +125,8 @@ class ModalDraggableSheet extends StatelessWidget {
       expand: false,
       builder: (final context, final ScrollController scrollController) =>
           DraggableScrollController(
-        scrollController: scrollController,
         child: child,
+        scrollController: scrollController,
       ),
     );
   }
@@ -164,6 +164,7 @@ class DraggableScrollController extends InheritedWidget {
     final widget = context
         .getElementForInheritedWidgetOfExactType<DraggableScrollController>()
         ?.widget as DraggableScrollController?;
+
     return widget?.scrollController;
   }
 

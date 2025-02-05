@@ -24,6 +24,7 @@ class AssetsPage extends StatelessWidget {
           PoscanAssetsColumn(),
           ObjectsListAssets(),
         ];
+
         return Scaffold(
           // TODO Refactor to D3pScaffold
           appBar: AssetPageAppbar(
@@ -32,9 +33,9 @@ class AssetsPage extends StatelessWidget {
           body: ListView.separated(
             shrinkWrap: true,
             padding: const EdgeInsets.symmetric(vertical: 16),
-            itemCount: children.length,
-            separatorBuilder: (final context, final index) => const H16(),
             itemBuilder: (final context, final index) => children[index],
+            separatorBuilder: (final context, final index) => const H16(),
+            itemCount: children.length,
           ),
         );
       },

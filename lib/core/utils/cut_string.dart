@@ -1,4 +1,4 @@
-extension Cut on String {
+extension CutString on String {
   String cut(final int max) {
     return length > max ? substring(0, max) : this;
   }

@@ -8,15 +8,28 @@ import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/features/atomic_swap/domain/atomic_swap_params.dart';
 
 class CreateSwapState {
-  const CreateSwapState();
+  const CreateSwapState({
+    required this.target,
+    required this.action,
+    required this.duration,
+  });
+
+  const CreateSwapState.initial()
+      : this(
+          target: null,
+          action: null,
+          duration: null,
+        );
+
+  final String? target;
+  final BigInt? action;
+  final DateTime? duration;
 }
 
 class CreateAtomicSwapCubit extends Cubit<CreateSwapState>
     with ExtrinsicShowLoadingMixin<void, AtomicCreateSwapParams> {
   CreateAtomicSwapCubit({required this.outerRouter})
-      : super(
-          const CreateSwapState(),
-        );
+      : super(const CreateSwapState.initial());
 
   @override
   final StackRouter outerRouter;
@@ -32,5 +45,5 @@ class CreateAtomicSwapCubit extends Cubit<CreateSwapState>
   }
 
   final secretInputController = TextEditingController();
-   final toAccountController = TextEditingController();
+  final toAccountController = TextEditingController();
 }

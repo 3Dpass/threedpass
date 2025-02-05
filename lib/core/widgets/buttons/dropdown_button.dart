@@ -19,8 +19,8 @@ class D3pDropdownButton<T> extends DropdownButtonFormField<T> {
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(horizontal: 8),
             filled: true,
-            border: D3pDropdownTheme.border,
             focusedBorder: D3pDropdownTheme.focusedBorder,
+            border: D3pDropdownTheme.border,
           ),
         );
 }

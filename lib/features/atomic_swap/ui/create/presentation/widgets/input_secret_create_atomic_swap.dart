@@ -14,7 +14,9 @@ class InputSecretCreateAtomicSwap extends StatefulWidget {
 
 class _State extends State<InputSecretCreateAtomicSwap> {
   String? hashedProof;
-  late final TextEditingController textController;
+
+  late final TextEditingController
+      textController; // remote this. Use  BlocProvider.of<CreateAtomicSwapCubit>(context) right in the build function. use text arg in onTextFieldChanged
 
   @override
   void initState() {

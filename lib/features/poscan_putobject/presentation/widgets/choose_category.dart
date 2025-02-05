@@ -13,19 +13,18 @@ class ChooseCategory extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return OpenBottomSheet(
-      unlocalizedSubtitle: 'poscan_putobject_choose_category',
+      openBottomSheet: () =>
+          context.router.push(const ChooseCategoryBottomSheetRoute()),
       buttonIconData: Icons.check_box_outline_blank_outlined,
       buttonTextChild: BlocBuilder<PoscanPutObjectCubit, D3PRPCCubitState>(
-        buildWhen: (final previous, final current) =>
-            previous.chosenCategory != current.chosenCategory,
         builder: (final context, final state) => D3pBodyMediumText(
           '${state.chosenCategory.cat.capitalizeFirst()} -> ${state.chosenCategory.subCat.capitalizeFirst()}',
           translate: false,
         ),
+        buildWhen: (final previous, final current) =>
+            previous.chosenCategory != current.chosenCategory,
       ),
-      openBottomSheet: () async => context.router.push(
-        const ChooseCategoryBottomSheetRoute(),
-      ),
+      unlocalizedSubtitle: 'poscan_putobject_choose_category',
     );
   }
 }

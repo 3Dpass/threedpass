@@ -1,4 +1,4 @@
-// ignore_for_file: prefer-single-widget-per-file, use_key_in_widget_constructors
+// ignore_for_file: prefer-single-widget-per-file, use_key_in_widget_constructors, prefer-correct-type-name, prefer-match-file-name
 
 import 'package:flutter/material.dart';
 
