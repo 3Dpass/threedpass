@@ -114,11 +114,9 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return FloatingActionButton(
-      heroTag: 'get_object_from_file',
       child: const Icon(Icons.folder_open_rounded),
-      onPressed: () async => createHashFromFile(
-        context,
-      ),
+      heroTag: 'get_object_from_file',
+      onPressed: () async => createHashFromFile(context),
     );
   }
 }

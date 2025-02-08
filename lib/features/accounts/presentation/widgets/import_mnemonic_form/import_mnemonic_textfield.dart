@@ -26,7 +26,9 @@ class ImportMnemonicTextfield extends StatelessWidget {
   }
 
   Future<void> changeAddressIconPreview(
-      final String? s, final BuildContext context) async {
+    final String? s,
+    final BuildContext context,
+  ) async {
     if (s != null) {
       final String mnemonic = s.trim().toLowerCase();
       if (mnemonic.split(' ').length >= 12) {
@@ -43,9 +45,9 @@ class ImportMnemonicTextfield extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return D3pTextFormField(
-      labelText: 'import_type_mnemonic'.tr(),
-      hintText: 'import_mnemonic_hint'.tr(),
       controller: textEditingController,
+      hintText: 'import_mnemonic_hint'.tr(),
+      labelText: 'import_type_mnemonic'.tr(),
       validator: _validateInput,
       onChanged: (final value) async =>
           changeAddressIconPreview(value, context),

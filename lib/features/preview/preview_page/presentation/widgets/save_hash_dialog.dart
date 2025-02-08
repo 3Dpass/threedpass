@@ -40,12 +40,12 @@ class SaveHashDialog extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return CommonDialog(
-      snapshot: snapshot,
       hashObject: hashObject,
-      initialText: snapshot.name,
-      title: 'save_snapshot_title'.tr(),
-      actionText: 'Save'.tr(),
+      snapshot: snapshot,
       action: (final value) async => saveSnapshot(value, context),
+      actionText: 'Save'.tr(),
+      title: 'save_snapshot_title'.tr(),
+      initialText: snapshot.name,
     );
   }
 }

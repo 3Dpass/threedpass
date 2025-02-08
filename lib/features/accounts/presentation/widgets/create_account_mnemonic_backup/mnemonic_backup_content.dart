@@ -19,8 +19,8 @@ class MnemonicBackupContent extends StatelessWidget {
     return SafeArea(
       child: ListView(
         physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.all(16),
         shrinkWrap: true,
+        padding: const EdgeInsets.all(16),
         children: [
           const SizedBox(height: 16),
           Text(
@@ -28,18 +28,15 @@ class MnemonicBackupContent extends StatelessWidget {
             style: textStyles.titleLarge!.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
-          Text(
-            'backup_warn1_text'.tr(),
-            style: textStyles.bodyMedium,
-          ),
+          Text('backup_warn1_text'.tr(), style: textStyles.bodyMedium),
           const SizedBox(height: 12),
           MnemonicTextField(text: mnemonic),
           const SizedBox(height: 12),
           D3pElevatedButton(
-            onPressed: () async => context.router.push(
+            text: 'Next'.tr(),
+            onPressed: () => context.router.push(
               const CreateAccountMnemonicConfirmRoute(),
             ),
-            text: 'Next'.tr(),
           ),
         ],
       ),

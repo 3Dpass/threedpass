@@ -23,18 +23,16 @@ class ExploreHashesButton extends StatelessWidget {
 
     return Padding16(
       child: D3pElevatedButton(
-        // backgroundColor: bgColor,
         text: 'explore_hashes_button_title'.tr(),
-        // foregroundColor: isActive ? fgColorBright : fgColorDim,
-        iconData: Icons.compare_arrows_rounded,
         onPressed: isActive
-            ? () async => context.router.push(
+            ? () => context.router.push(
                   CompareRouteWrapper(
                     origObj: snapshot,
                     hashObject: state.hashObject,
                   ),
                 )
-            : null, // PUSH to compare page
+            : null,
+        iconData: Icons.compare_arrows_rounded,
       ),
     );
   }

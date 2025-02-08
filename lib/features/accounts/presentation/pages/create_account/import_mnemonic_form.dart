@@ -64,13 +64,6 @@ class ImportMnemonicFormPage extends StatelessWidget {
 
     return AddressIconPreviewCubitProvider(
       child: AccountPageTemplate.import(
-        onSubmitPressed: (final inner) async => onSubmitPressed(
-          innerContext: inner,
-          outerContext: context,
-          appService: appService,
-          mnemonicInput: controller.text,
-        ),
-        needHorizontalPadding: false,
         children: [
           const AddressIconPreview(
             placeholderText: 'import_mnemonic_preview_placeholder',
@@ -90,6 +83,13 @@ class ImportMnemonicFormPage extends StatelessWidget {
             ],
           ),
         ],
+        onSubmitPressed: (final inner) async => onSubmitPressed(
+          innerContext: inner,
+          outerContext: context,
+          appService: appService,
+          mnemonicInput: controller.text,
+        ),
+        needHorizontalPadding: false,
       ),
     );
   }

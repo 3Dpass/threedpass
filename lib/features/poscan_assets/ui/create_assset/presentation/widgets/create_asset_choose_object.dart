@@ -55,8 +55,8 @@ class _State extends State<CreateAssetChooseObject> {
   Widget build(final BuildContext context) {
     final cpac = BlocProvider.of<CreatePoscanAssetCubit>(context);
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const D3pBodyMediumText('create_asset_choose_object'),
         const H4(),

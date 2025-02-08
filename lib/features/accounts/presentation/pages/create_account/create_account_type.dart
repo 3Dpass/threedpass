@@ -18,12 +18,10 @@ class CreateAccountTypePage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return AccountPageTemplate.import(
-      disableScrolling: true,
-      disableBottomButton: true,
       children: [
         Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'import_account_type_title'.tr(),
@@ -36,6 +34,8 @@ class CreateAccountTypePage extends StatelessWidget {
           ],
         ),
       ],
+      disableScrolling: true,
+      disableBottomButton: true,
     );
   }
 }

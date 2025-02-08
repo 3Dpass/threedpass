@@ -114,20 +114,18 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
   }
 
   Future<void> calcMaxPercent() async {
-    await calcRemoveLiquidityMaxPercent
-        .call(
-          CalcRemoveLiquidityMaxPercentParams(
-            nativeTokenDecimals: nativeTokenDecimals,
-            poolFullInfo: poolFullInfo,
-          ),
-        )
-        .then(
-          (final value) => emit(
-            state.copyWith(
-              maxPercent: value.round(),
-            ),
-          ),
-        );
+    final value = await calcRemoveLiquidityMaxPercent.call(
+      CalcRemoveLiquidityMaxPercentParams(
+        poolFullInfo: poolFullInfo,
+        nativeTokenDecimals: nativeTokenDecimals,
+      ),
+    );
+
+    emit(
+      state.copyWith(
+        maxPercent: value.round(),
+      ),
+    );
   }
 
   Future<void> calculate() async {
@@ -135,10 +133,10 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
     if (slippage != null) {
       final newInfo = await calcRemoveLiquidityInfo.call(
         CalcRemoveLiquidityInfoParams(
-          nativeTokenDecimals: nativeTokenDecimals,
-          percentage: state.percentage,
           poolFullInfo: poolFullInfo,
+          percentage: state.percentage,
           slippage: slippage,
+          nativeTokenDecimals: nativeTokenDecimals,
         ),
       );
 
@@ -171,14 +169,14 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
     return RemoveLiquidityParams(
       asset1: poolFullInfo.basicInfo.firstAsset,
       asset2: poolFullInfo.basicInfo.secondAsset,
+      updateStatus: () => updateStatus(context),
+      account: account,
+      password: passwordController.text,
       lpTokenBurn: lpTokenBurn.toBigInt(),
       amount1Min: state.removeLiquidityInfo!.amount1MinRecieve
           .removeDecimals(asset1Decimals),
       amount2Min: state.removeLiquidityInfo!.amount2MinRecieve
           .removeDecimals(asset2Decimals),
-      account: account,
-      password: passwordController.text,
-      updateStatus: () => updateStatus(context),
     );
   }
 

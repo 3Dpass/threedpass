@@ -36,7 +36,7 @@ class D3pTextFormField extends StatelessWidget {
     this.readOnly = false,
     this.enableInteractiveSelection = true,
     this.contentPadding =
-        const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+        const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
     // this.focusedBorder,
     // this.border,
     this.bottomWidget,

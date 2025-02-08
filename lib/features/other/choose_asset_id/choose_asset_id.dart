@@ -36,7 +36,7 @@ class ChooseAssetIdState extends State<ChooseAssetId> {
     init();
   }
 
-  Future<void> init() async {
+  void init() {
     final loadedAssets =
         BlocProvider.of<PoscanAssetsCubit>(context).state.combined;
 

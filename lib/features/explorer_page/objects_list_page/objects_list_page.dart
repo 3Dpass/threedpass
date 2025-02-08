@@ -21,36 +21,29 @@ class ObjectsListPage extends StatelessWidget {
     final controller =
         BlocProvider.of<PoscanObjectsCubit>(context).pagingController;
     return D3pScaffold(
-      appBarWidget: const ObjectsListAppbar(),
-      appBarActions: [
-        const ReloadObjectsIconButton(),
-      ],
       body: BlocBuilder<PoscanObjectsCubit, PoscanObjectsState>(
-        buildWhen: (final previous, final current) =>
-            previous.isLoading != current.isLoading,
         builder: (final context, final state) => state.isLoading
-            ? const Center(
-                child: D3pProgressIndicator(size: 24),
-              )
+            ? const Center(child: D3pProgressIndicator(size: 24))
             : PagedListView<int, UploadedObject>.separated(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                 pagingController: controller,
-                separatorBuilder: (final context, final index) => const H8(),
                 builderDelegate: PagedChildBuilderDelegate<UploadedObject>(
                   itemBuilder: (final context, final item, final index) =>
-                      ObjectsListItem(
-                    uploadedObject: item,
-                  ),
+                      ObjectsListItem(uploadedObject: item),
                   firstPageErrorIndicatorBuilder: (final context) =>
                       FirstPageExceptionIndicator(
-                    onTryAgain: () async =>
+                    onTryAgain: () =>
                         BlocProvider.of<PoscanObjectsCubit>(context).refresh(),
                     message: controller.error?.toString(),
                   ),
                 ),
+                separatorBuilder: (final context, final index) => const H8(),
+                padding: const EdgeInsets.all(16),
               ),
+        buildWhen: (final previous, final current) =>
+            previous.isLoading != current.isLoading,
       ),
+      appBarWidget: const ObjectsListAppbar(),
+      appBarActions: [const ReloadObjectsIconButton()],
     );
   }
 }

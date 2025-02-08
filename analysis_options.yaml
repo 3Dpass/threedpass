@@ -35,6 +35,7 @@ dart_code_linter:
     - prefer-static-class: false
     - prefer-conditional-expressions: false
     - no-equal-arguments: false
+    - prefer-extracting-callbacks: false
     - member-ordering: false # TODO Enable this rule and below
     - newline-before-return: false
     - prefer-moving-to-variable: false

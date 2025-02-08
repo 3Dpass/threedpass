@@ -43,7 +43,7 @@ class SectionsSubPage extends StatelessWidget {
       appbarTitle: 'n_sections_label',
       onSavePressed: onSavePressed,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        padding: const EdgeInsets.all(16),
         child: SectionsTextField(
           controller: controller,
         ),

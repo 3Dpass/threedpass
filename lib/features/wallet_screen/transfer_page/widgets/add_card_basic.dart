@@ -28,10 +28,10 @@ class AddCardRowBasic extends StatelessWidget {
                 height: 43,
                 child: Center(
                   child: D3pIconButton(
-                    emptyContraints: true,
-                    padding: EdgeInsets.zero,
                     iconData: Icons.add_circle_outline_rounded,
+                    padding: EdgeInsets.zero,
                     onPressed: onPressed,
+                    emptyContraints: true,
                   ),
                 ),
               ),

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -15,18 +13,16 @@ class CreateAccountInfoPage extends StatelessWidget {
   const CreateAccountInfoPage({final Key? key}) : super(key: key);
 
   /// There is an opportunity to generage menmonic using [key] seed
-  Future<void> onNextPressed(
-    final BuildContext context, [
-    final String key = '',
-  ]) async {
+  void onNextPressed(
+    final BuildContext context,
+    // final String key = '',
+  ) {
     BlocProvider.of<AccountStoreBloc>(context).add(
       const GenerateMnemonicKey(),
     );
 
-    unawaited(
-      context.router.push(
-        const CreateAccountMnemonicBackupRoute(),
-      ),
+    context.router.push(
+      const CreateAccountMnemonicBackupRoute(),
     );
   }
 
@@ -63,7 +59,7 @@ class CreateAccountInfoPage extends StatelessWidget {
           bigBottomPadding: true,
         ),
       ],
-      onSubmitPressed: (final _) async => onNextPressed(context),
+      onSubmitPressed: (final _) => onNextPressed(context),
     );
   }
 }

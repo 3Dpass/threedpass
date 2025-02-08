@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i70;
+import 'package:flutter/cupertino.dart' as _i75;
 import 'package:flutter/material.dart' as _i71;
 import 'package:threedpass/core/widgets/default_loading_dialog.dart' as _i22;
 import 'package:threedpass/core/widgets/dialog/d3p_choose_datetime_modal.dart'
@@ -80,7 +81,7 @@ import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/s
 import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/set_metadata_page_wrapper.dart'
     as _i58;
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart'
-    as _i80;
+    as _i81;
 import 'package:threedpass/features/poscan_putobject/presentation/d3prpc_page.dart'
     as _i19;
 import 'package:threedpass/features/poscan_putobject/presentation/d3rpc_page_wrapper.dart'
@@ -104,7 +105,7 @@ import 'package:threedpass/features/preview/rename_object_dialog/rename_object_d
 import 'package:threedpass/features/preview/rename_snapshot_dialog/rename_snapshot_dialog.dart'
     as _i50;
 import 'package:threedpass/features/scan_page/bloc/select_snapshots_cubit.dart'
-    as _i76;
+    as _i77;
 import 'package:threedpass/features/scan_page/presentation/scan_page.dart'
     as _i53;
 import 'package:threedpass/features/scan_page/presentation/scan_page_wrapper.dart'
@@ -112,7 +113,7 @@ import 'package:threedpass/features/scan_page/presentation/scan_page_wrapper.dar
 import 'package:threedpass/features/scan_page/presentation/widgets/floating_action_button/delete_snapshots_dialog.dart'
     as _i25;
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart'
-    as _i78;
+    as _i79;
 import 'package:threedpass/features/settings_page/presentation/settings_page.dart'
     as _i59;
 import 'package:threedpass/features/settings_page/presentation/settings_sub_page/choose_algorithm_subpage.dart'
@@ -136,7 +137,7 @@ import 'package:threedpass/features/uploaded_object_page/uploaded_object_wrapper
 import 'package:threedpass/features/wallet_screen/add_contact_page/add_contact_page.dart'
     as _i1;
 import 'package:threedpass/features/wallet_screen/add_contact_page/domain/entities/contact.dart'
-    as _i75;
+    as _i76;
 import 'package:threedpass/features/wallet_screen/assets_page/remove_account_dialog.dart'
     as _i47;
 import 'package:threedpass/features/wallet_screen/choose_account_page/choose_account_page.dart'
@@ -146,7 +147,7 @@ import 'package:threedpass/features/wallet_screen/contacts_page/contacts_page.da
 import 'package:threedpass/features/wallet_screen/contacts_page/widgets/delete_contact_dialog.dart'
     as _i23;
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/domain/entities/get_extrinsics_usecase_params.dart'
-    as _i77;
+    as _i78;
 import 'package:threedpass/features/wallet_screen/non_native_token_screen/presentation/non_native_token_wrapper.dart'
     as _i38;
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/notifications_page.dart'
@@ -156,7 +157,7 @@ import 'package:threedpass/features/wallet_screen/recieve_page/recieve_page.dart
 import 'package:threedpass/features/wallet_screen/transactions_history/presentation/transactions_history_wrapper.dart'
     as _i63;
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_meta_dto.dart'
-    as _i79;
+    as _i80;
 import 'package:threedpass/features/wallet_screen/transfer_page/transfer_page.dart'
     as _i64;
 import 'package:threedpass/features/wallet_screen/transfer_page/transfer_page_wrapper.dart'
@@ -316,7 +317,8 @@ abstract class $RootRouter extends _i70.RootStackRouter {
           initialDate: args.initialDate,
           firstDate: args.firstDate,
           lastDate: args.lastDate,
-          onDateTimeChanged: args.onDateTimeChanged,
+          onDone: args.onDone,
+          onCancel: args.onCancel,
         ),
       );
     },
@@ -1081,11 +1083,12 @@ class D3PRPCRouteWrapper extends _i70.PageRouteInfo<void> {
 /// [_i21.D3pChooseDateTimeModal]
 class ChooseDateTimeRoute extends _i70.PageRouteInfo<ChooseDateTimeRouteArgs> {
   ChooseDateTimeRoute({
-    _i71.Key? key,
+    _i75.Key? key,
     DateTime? initialDate,
     DateTime? firstDate,
     DateTime? lastDate,
-    void Function(DateTime?)? onDateTimeChanged,
+    void Function(DateTime)? onDone,
+    void Function()? onCancel,
     List<_i70.PageRouteInfo>? children,
   }) : super(
           ChooseDateTimeRoute.name,
@@ -1094,7 +1097,8 @@ class ChooseDateTimeRoute extends _i70.PageRouteInfo<ChooseDateTimeRouteArgs> {
             initialDate: initialDate,
             firstDate: firstDate,
             lastDate: lastDate,
-            onDateTimeChanged: onDateTimeChanged,
+            onDone: onDone,
+            onCancel: onCancel,
           ),
           initialChildren: children,
         );
@@ -1111,10 +1115,11 @@ class ChooseDateTimeRouteArgs {
     this.initialDate,
     this.firstDate,
     this.lastDate,
-    this.onDateTimeChanged,
+    this.onDone,
+    this.onCancel,
   });
 
-  final _i71.Key? key;
+  final _i75.Key? key;
 
   final DateTime? initialDate;
 
@@ -1122,11 +1127,13 @@ class ChooseDateTimeRouteArgs {
 
   final DateTime? lastDate;
 
-  final void Function(DateTime?)? onDateTimeChanged;
+  final void Function(DateTime)? onDone;
+
+  final void Function()? onCancel;
 
   @override
   String toString() {
-    return 'ChooseDateTimeRouteArgs{key: $key, initialDate: $initialDate, firstDate: $firstDate, lastDate: $lastDate, onDateTimeChanged: $onDateTimeChanged}';
+    return 'ChooseDateTimeRouteArgs{key: $key, initialDate: $initialDate, firstDate: $firstDate, lastDate: $lastDate, onDone: $onDone, onCancel: $onCancel}';
   }
 }
 
@@ -1172,7 +1179,7 @@ class DefaultLoadingRouteArgs {
 /// [_i23.DeleteContactDialog]
 class DeleteContactRoute extends _i70.PageRouteInfo<DeleteContactRouteArgs> {
   DeleteContactRoute({
-    required _i75.Contact contact,
+    required _i76.Contact contact,
     _i71.Key? key,
     List<_i70.PageRouteInfo>? children,
   }) : super(
@@ -1196,7 +1203,7 @@ class DeleteContactRouteArgs {
     this.key,
   });
 
-  final _i75.Contact contact;
+  final _i76.Contact contact;
 
   final _i71.Key? key;
 
@@ -1225,7 +1232,7 @@ class DeleteSnapshotRoute extends _i70.PageRouteInfo<void> {
 class DeleteSnapshotsRoute
     extends _i70.PageRouteInfo<DeleteSnapshotsRouteArgs> {
   DeleteSnapshotsRoute({
-    required _i76.SelectSnapshotsCubit selectSnapshotsCubit,
+    required _i77.SelectSnapshotsCubit selectSnapshotsCubit,
     _i71.Key? key,
     List<_i70.PageRouteInfo>? children,
   }) : super(
@@ -1249,7 +1256,7 @@ class DeleteSnapshotsRouteArgs {
     this.key,
   });
 
-  final _i76.SelectSnapshotsCubit selectSnapshotsCubit;
+  final _i77.SelectSnapshotsCubit selectSnapshotsCubit;
 
   final _i71.Key? key;
 
@@ -1513,7 +1520,7 @@ class NoStableHashRoute extends _i70.PageRouteInfo<void> {
 class NonNativeTokenRouteWrapper
     extends _i70.PageRouteInfo<NonNativeTokenRouteWrapperArgs> {
   NonNativeTokenRouteWrapper({
-    required _i77.GetExtrinsicsUseCaseParams params,
+    required _i78.GetExtrinsicsUseCaseParams params,
     _i71.Key? key,
     List<_i70.PageRouteInfo>? children,
   }) : super(
@@ -1537,7 +1544,7 @@ class NonNativeTokenRouteWrapperArgs {
     this.key,
   });
 
-  final _i77.GetExtrinsicsUseCaseParams params;
+  final _i78.GetExtrinsicsUseCaseParams params;
 
   final _i71.Key? key;
 
@@ -1935,7 +1942,7 @@ class ScanRouteWrapper extends _i70.PageRouteInfo<void> {
 /// [_i55.SectionsSubPage]
 class SectionsSubRoute extends _i70.PageRouteInfo<SectionsSubRouteArgs> {
   SectionsSubRoute({
-    required _i78.GlobalSettings initialState,
+    required _i79.GlobalSettings initialState,
     _i71.Key? key,
     List<_i70.PageRouteInfo>? children,
   }) : super(
@@ -1959,7 +1966,7 @@ class SectionsSubRouteArgs {
     this.key,
   });
 
-  final _i78.GlobalSettings initialState;
+  final _i79.GlobalSettings initialState;
 
   final _i71.Key? key;
 
@@ -2054,7 +2061,7 @@ class SettingsRoute extends _i70.PageRouteInfo<void> {
 /// [_i60.StableHashSubPage]
 class StableHashSubRoute extends _i70.PageRouteInfo<StableHashSubRouteArgs> {
   StableHashSubRoute({
-    required _i78.GlobalSettings initialState,
+    required _i79.GlobalSettings initialState,
     _i71.Key? key,
     List<_i70.PageRouteInfo>? children,
   }) : super(
@@ -2078,7 +2085,7 @@ class StableHashSubRouteArgs {
     this.key,
   });
 
-  final _i78.GlobalSettings initialState;
+  final _i79.GlobalSettings initialState;
 
   final _i71.Key? key;
 
@@ -2106,7 +2113,7 @@ class SwapRouteWrapper extends _i70.PageRouteInfo<void> {
 /// [_i62.TransBytesSubPage]
 class TransBytesSubRoute extends _i70.PageRouteInfo<TransBytesSubRouteArgs> {
   TransBytesSubRoute({
-    required _i78.GlobalSettings initialState,
+    required _i79.GlobalSettings initialState,
     _i71.Key? key,
     List<_i70.PageRouteInfo>? children,
   }) : super(
@@ -2130,7 +2137,7 @@ class TransBytesSubRouteArgs {
     this.key,
   });
 
-  final _i78.GlobalSettings initialState;
+  final _i79.GlobalSettings initialState;
 
   final _i71.Key? key;
 
@@ -2188,7 +2195,7 @@ class TransferRouteArgs {
 class TransferRouteWrapper
     extends _i70.PageRouteInfo<TransferRouteWrapperArgs> {
   TransferRouteWrapper({
-    required _i79.TransferMetaDTO metadata,
+    required _i80.TransferMetaDTO metadata,
     _i71.Key? key,
     List<_i70.PageRouteInfo>? children,
   }) : super(
@@ -2212,7 +2219,7 @@ class TransferRouteWrapperArgs {
     this.key,
   });
 
-  final _i79.TransferMetaDTO metadata;
+  final _i80.TransferMetaDTO metadata;
 
   final _i71.Key? key;
 
@@ -2228,7 +2235,7 @@ class UploadedObjectWrapper
     extends _i70.PageRouteInfo<UploadedObjectWrapperArgs> {
   UploadedObjectWrapper({
     required int objectId,
-    _i80.UploadedObject? uploadedObject,
+    _i81.UploadedObject? uploadedObject,
     _i71.Key? key,
     List<_i70.PageRouteInfo>? children,
   }) : super(
@@ -2256,7 +2263,7 @@ class UploadedObjectWrapperArgs {
 
   final int objectId;
 
-  final _i80.UploadedObject? uploadedObject;
+  final _i81.UploadedObject? uploadedObject;
 
   final _i71.Key? key;
 
@@ -2270,7 +2277,7 @@ class UploadedObjectWrapperArgs {
 /// [_i67.WalletNodeSubPage]
 class WalletNodeSubRoute extends _i70.PageRouteInfo<WalletNodeSubRouteArgs> {
   WalletNodeSubRoute({
-    required _i78.GlobalSettings initialState,
+    required _i79.GlobalSettings initialState,
     _i71.Key? key,
     List<_i70.PageRouteInfo>? children,
   }) : super(
@@ -2294,7 +2301,7 @@ class WalletNodeSubRouteArgs {
     this.key,
   });
 
-  final _i78.GlobalSettings initialState;
+  final _i79.GlobalSettings initialState;
 
   final _i71.Key? key;
 

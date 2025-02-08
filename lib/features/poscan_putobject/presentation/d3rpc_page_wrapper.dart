@@ -28,14 +28,12 @@ class D3PRPCPageWrapper extends StatelessWidget implements AutoRouteWrapper {
       create: (final context) => PoscanPutObjectCubit(
         fileHash: fileHash,
         filePath: snapshot.realPath,
-        initialAccount: initialAccount,
-        initialHashes: snapshot.hashes,
-        localSnapshotName: snapshot.name,
         putObjectUseCase: getIt<PutObject>(),
+        localSnapshotName: snapshot.name,
+        outerRouter: context.rootRouter,
         getPoscanProperties: getIt<GetPoscanProperties>(),
-        outerRouter: context
-            .rootRouter, // BlocProvider.of<OuterContextCubit>(context).state.router,
-        // ignore: discarded_futures
+        initialHashes: snapshot.hashes,
+        initialAccount: initialAccount,
       )..init(),
       child: this,
     );

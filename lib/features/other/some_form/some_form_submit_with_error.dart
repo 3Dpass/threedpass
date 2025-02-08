@@ -19,8 +19,8 @@ class SomeFormSubmitWithErrorButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (unlocalizedError.isNotEmpty)
           Padding(

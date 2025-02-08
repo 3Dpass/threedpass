@@ -24,9 +24,9 @@ class PoscanAssetsState {
   List<PoscanAssetCombined> get combined => assets
       .map(
         (final e) => PoscanAssetCombined(
+          poscanAssetBalance: balances[e.id],
           poscanAssetData: e,
           poscanAssetMetadata: metadata[e.id],
-          poscanAssetBalance: balances[e.id],
         ),
       )
       .toList();

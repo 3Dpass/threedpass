@@ -23,12 +23,12 @@ class D3pSecondaryButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return OutlinedButton(
+      onPressed: onPressed,
       style: OutlinedButton.styleFrom(
         minimumSize: isInfinityWidth
             ? const Size.fromHeight(D3pThemeData.buttonHeight)
             : null,
       ),
-      onPressed: onPressed,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -1,11 +1,7 @@
-import 'dart:io';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/utils/auto_route_getter.dart';
 import 'package:threedpass/core/widgets/buttons/secondary_button.dart';
-import 'package:threedpass/core/widgets/dialog/d3p_choose_datetime_modal.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class D3pDatetimePicker extends FormField<DateTime> {
@@ -14,7 +10,7 @@ class D3pDatetimePicker extends FormField<DateTime> {
     // required final String titleKey,
     // final TwoRadioState? value = TwoRadioState.nothing,
     final String? Function(DateTime?)? validator,
-    final void Function(DateTime)? onChanged,
+    final void Function(DateTime)? onDone,
     super.key,
   }) : super(
           initialValue: null,
@@ -26,12 +22,15 @@ class D3pDatetimePicker extends FormField<DateTime> {
 
             return D3pSecondaryButton(
               localizedTextKey: text,
-              onPressed: () => onPressed(state),
+              onPressed: () => onPressed(state, onDone),
             );
           },
         );
 
-  static void onPressed(final FormFieldState<DateTime> state) {
+  static void onPressed(
+    final FormFieldState<DateTime> state,
+    final void Function(DateTime)? onChanged,
+  ) {
     final initialDateTime = state.value ?? DateTime.now();
     final lastDate = initialDateTime.add(Duration(days: 365));
     // final locale = Localizations.localeOf(state.context);
@@ -40,35 +39,11 @@ class D3pDatetimePicker extends FormField<DateTime> {
         initialDate: initialDateTime,
         firstDate: initialDateTime,
         lastDate: lastDate,
+        onDone: (p0) {
+          state.didChange(p0);
+          onChanged?.call(p0);
+        },
       ),
     );
-    // show(
-    //   context: state.context,
-    //   initialDate: initialDateTime,
-    //   firstDate: initialDateTime,
-    //   lastDate: lastDate,
-    //   locale: locale,
-    // );
-    // showCupertinoModalPopup(
-    //   context: state.context,
-    //   builder: (_) => Container(
-    //     height: 300,
-    //     padding: const EdgeInsets.only(top: 10),
-    //     color: Colors.white,
-    //     child: Column(
-    //       mainAxisSize: MainAxisSize.min,
-    //       children: [
-    //         SizedBox(
-    //           height: 250,
-    //           child: CupertinoDatePicker(
-    //             mode: CupertinoDatePickerMode.dateAndTime,
-    //             onDateTimeChanged: (DateTime newDate) {},
-    //             initialDateTime: initialDateTime,
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }

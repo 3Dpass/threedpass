@@ -14,10 +14,10 @@ class CustomTextStyles {
   final ThemeData themeData;
 
   TextStyle get tableHeader => TextStyle(
+        color: brightness == Brightness.light ? Colors.black : Colors.white,
         fontSize: 16,
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.italic,
-        color: brightness == Brightness.light ? Colors.black : Colors.white,
       );
 
   TextStyle get matchesHyperlink => themeData.textTheme.bodyMedium!

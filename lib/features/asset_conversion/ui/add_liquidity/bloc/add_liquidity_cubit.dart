@@ -241,13 +241,13 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
     return AddLiquidityParams(
       asset1: asset1,
       asset2: asset2,
+      updateStatus: () => updateStatus(context),
+      account: account,
+      password: passwordController.text,
       amount1Desired: info.asset1Desired,
       amount2Desired: info.asset2Desired,
       amount1Min: info.asset1Min.toBigInt().toDecimal(),
       amount2Min: info.asset2Min.toBigInt().toDecimal(),
-      account: account,
-      password: passwordController.text,
-      updateStatus: () => updateStatus(context),
     );
   }
 

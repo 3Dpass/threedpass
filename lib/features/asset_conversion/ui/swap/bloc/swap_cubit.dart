@@ -328,12 +328,12 @@ class SwapCubit extends Cubit<SwapState>
     return SwapAssetsParams(
       asset1: state.firstAsset,
       asset2: state.secondAsset,
-      amount1: firstAmountToSend,
-      amount2: secondAmountToSend,
+      updateStatus: () => updateStatus(context),
       account: account,
       password: passwordController.text,
-      updateStatus: () => updateStatus(context),
       keepAlive: state.keepAlive,
+      amount1: firstAmountToSend,
+      amount2: secondAmountToSend,
       swapMethod: state.chosenMethod,
     );
   }
