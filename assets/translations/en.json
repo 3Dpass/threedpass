@@ -550,5 +550,7 @@
     "error_nothing_chosen_two_radio": "Please choose an option",
     "put_object_is_private": "Private",
     "put_object_is_public": "Public",
-    "obj_visibility_title": "Object visibility"
+    "obj_visibility_title": "Object visibility",
+    "no_date_chosen_validator": "Please choose the date and time",
+    "create_atomic_swap_choose_deadline_title": "Expiration date and time"
 }

@@ -7,9 +7,14 @@ class _ChooseDeadline extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Row(
       children: [
-        Text('Expiration date and time:'), // TODO Localize
+        Text('create_atomic_swap_choose_deadline_title'.tr()),
         Flexible(
-          child: D3pDatetimePicker(),
+          child: D3pDatetimePicker(
+            validator: (p0) =>
+                p0 != null ? null : 'no_date_chosen_validator'.tr(),
+            onDone:
+                BlocProvider.of<CreateAtomicSwapCubit>(context).updateDeadline,
+          ),
         ),
       ],
     );

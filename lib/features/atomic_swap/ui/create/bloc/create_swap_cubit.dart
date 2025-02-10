@@ -6,30 +6,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/features/atomic_swap/domain/atomic_swap_params.dart';
+import 'package:threedpass/features/atomic_swap/ui/create/domain/entities/create_atomic_swap_state.dart';
 
-class CreateSwapState {
-  const CreateSwapState({
-    required this.target,
-    required this.action,
-    required this.duration,
-  });
-
-  const CreateSwapState.initial()
-      : this(
-          target: null,
-          action: null,
-          duration: null,
-        );
-
-  final String? target;
-  final BigInt? action;
-  final DateTime? duration;
-}
-
-class CreateAtomicSwapCubit extends Cubit<CreateSwapState>
+class CreateAtomicSwapCubit extends Cubit<CreateAtomicSwapState>
     with ExtrinsicShowLoadingMixin<void, AtomicCreateSwapParams> {
   CreateAtomicSwapCubit({required this.outerRouter})
-      : super(const CreateSwapState.initial());
+      : super(const CreateAtomicSwapState.initial());
+
+  final secretInputController = TextEditingController();
+  final toAccountController = TextEditingController();
 
   @override
   final StackRouter outerRouter;
@@ -44,6 +29,11 @@ class CreateAtomicSwapCubit extends Cubit<CreateSwapState>
     throw UnimplementedError();
   }
 
-  final secretInputController = TextEditingController();
-  final toAccountController = TextEditingController();
+  void updateDeadline(DateTime newDeadline) {
+    emit(
+      state.copyWith(
+        deadline: newDeadline,
+      ),
+    );
+  }
 }
