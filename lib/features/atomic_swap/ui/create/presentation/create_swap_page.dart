@@ -11,7 +11,7 @@ import 'package:threedpass/features/atomic_swap/ui/create/bloc/create_swap_cubit
 import 'package:threedpass/features/atomic_swap/ui/create/presentation/widgets/choose_account_create_atomic_swap.dart';
 import 'package:threedpass/features/other/some_form/some_form.dart';
 import 'package:threedpass/features/other/some_form/some_form_submit_with_error.dart';
-import 'package:threedpass/features/wallet_screen/transfer_page/widgets/to_address_textfield.dart';
+import 'package:threedpass/features/wallet_screen/contacts_page/utils/open_contacts_picker.dart';
 
 part 'widgets/choose_deadline.dart';
 part 'widgets/choose_target.dart';
@@ -26,7 +26,7 @@ class CreateSwapPage extends StatelessWidget {
     return SomeForm(
       formKey: BlocProvider.of<CreateAtomicSwapCubit>(context).formKey,
       appbarTitle: 'create_asset_page_title',
-      children: const [
+      children: [
         ChooseAccountCreateAtomicSwap(),
         _ChooseTarget(),
         _InputSecret(),

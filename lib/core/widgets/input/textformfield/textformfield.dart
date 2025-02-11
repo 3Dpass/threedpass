@@ -13,6 +13,7 @@ part 'label.dart';
 
 class D3pTextFormField extends StatelessWidget {
   D3pTextFormField({
+    super.key,
     final TextEditingController? controller,
     this.hintText,
     this.labelText,
@@ -40,7 +41,6 @@ class D3pTextFormField extends StatelessWidget {
     // this.focusedBorder,
     // this.border,
     this.bottomWidget,
-    super.key,
   }) : controller = controller ?? TextEditingController();
 
   final void Function()? onLabelButtonPressed;

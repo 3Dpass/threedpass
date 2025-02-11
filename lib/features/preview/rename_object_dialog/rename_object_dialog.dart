@@ -51,7 +51,7 @@ class RenameObjectDialog extends StatelessWidget {
     return CommonDialog(
       hashObject: hashObject,
       snapshot: snapshot,
-      action: (final value) async => renameObject(value, context),
+      action: (final value) => renameObject(value, context),
       actionText: 'rename_object_dialog_action'.tr(),
       title: 'rename_object_dialog_title'.tr(),
       initialText: hashObject.name,

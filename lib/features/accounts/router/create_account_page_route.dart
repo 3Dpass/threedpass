@@ -3,7 +3,7 @@ import 'package:threedpass/router/route_paths.dart';
 import 'package:threedpass/router/router.dart';
 import 'package:threedpass/router/router.gr.dart';
 
-AutoRoute createAccountPageRoute = AutoRoute(
+final createAccountPageRoute = AutoRoute(
   page: CreateAccountRouteWrapper.page,
   path: RoutePaths.createAccountMain,
   children: [

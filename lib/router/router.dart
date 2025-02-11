@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/core/widgets/dialog/d3p_choose_datetime_modal.dart';
+import 'package:threedpass/core/widgets/dialog/d3p_notification_dialog.dart';
 import 'package:threedpass/features/accounts/router/create_account_page_route.dart';
 import 'package:threedpass/features/asset_conversion/router/asset_conversion_router.dart';
 import 'package:threedpass/features/atomic_swap/atomic_swap_router.dart';
@@ -43,6 +44,8 @@ class RootRouter extends $RootRouter {
     defaultLoadingDialog,
     // DateTime picker
     dateTimeRoute,
+    // Basic notification
+    notificationRoute,
   ];
 }
 

@@ -51,12 +51,12 @@ class RenameSnapshotDialog extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return CommonDialog(
-      snapshot: snapshot,
       hashObject: hashObject,
-      initialText: snapshot.name,
-      title: 'rename_snapshot_title'.tr(),
+      snapshot: snapshot,
+      action: (final value) => renameSnapshot(value, context),
       actionText: 'rename_action'.tr(),
-      action: (final value) async => renameSnapshot(value, context),
+      title: 'rename_snapshot_title'.tr(),
+      initialText: snapshot.name,
     );
   }
 }

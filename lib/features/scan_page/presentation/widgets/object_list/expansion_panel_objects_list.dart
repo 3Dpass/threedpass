@@ -49,7 +49,13 @@ class ExpansionPanelObjectsList extends StatelessWidget {
                         Theme.of(context).customTextStyles.d3ptitleLarge,
                   );
                 },
-                body: Padding16(
+                body: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    top: 4,
+                    right: 16,
+                    bottom: 12,
+                  ),
                   child: FileHashesList(currentObject: item.hashObject),
                 ),
                 isExpanded: item.isExpanded,

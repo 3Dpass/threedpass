@@ -22,7 +22,7 @@
     "Invalid": "Invalid",
     "Clear": "Clear",
     "Copy": "Copy",
-    "OK": "OK",
+    "OK": "Ok",
     "Error": "Error",
     "Done": "Done",
 
@@ -552,5 +552,7 @@
     "put_object_is_public": "Public",
     "obj_visibility_title": "Object visibility",
     "no_date_chosen_validator": "Please choose the date and time",
-    "create_atomic_swap_choose_deadline_title": "Expiration date and time"
+    "create_atomic_swap_choose_deadline_title": "Expiration date and time",
+    "no_contacts_notification_dialog_title": "No contacts",
+    "no_contacts_notification_dialog_content": "Your contacts list is empty."
 }

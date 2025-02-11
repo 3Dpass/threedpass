@@ -3,6 +3,7 @@ import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 
 class BasicTransferTextField extends D3pTextFormField {
   BasicTransferTextField({
+    super.key,
     super.autofocus,
     super.bottomHelpText,
     super.controller,
@@ -10,7 +11,6 @@ class BasicTransferTextField extends D3pTextFormField {
     super.hintText,
     super.inputFormatters,
     super.isCollapsed,
-    super.key,
     super.keyboardType,
     super.labelButton,
     super.labelText,
