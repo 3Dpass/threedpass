@@ -9,7 +9,9 @@ part of 'create_atomic_swap_state.dart';
 abstract class _$CreateAtomicSwapStateCWProxy {
   CreateAtomicSwapState target(String? target);
 
-  CreateAtomicSwapState action(BigInt? action);
+  CreateAtomicSwapState hashedProof(String? hashedProof);
+
+  CreateAtomicSwapState action(PalletAtomicSwapBaseAction? action);
 
   CreateAtomicSwapState deadline(DateTime? deadline);
 
@@ -21,7 +23,8 @@ abstract class _$CreateAtomicSwapStateCWProxy {
   /// ````
   CreateAtomicSwapState call({
     String? target,
-    BigInt? action,
+    String? hashedProof,
+    PalletAtomicSwapBaseAction? action,
     DateTime? deadline,
   });
 }
@@ -37,7 +40,12 @@ class _$CreateAtomicSwapStateCWProxyImpl
   CreateAtomicSwapState target(String? target) => this(target: target);
 
   @override
-  CreateAtomicSwapState action(BigInt? action) => this(action: action);
+  CreateAtomicSwapState hashedProof(String? hashedProof) =>
+      this(hashedProof: hashedProof);
+
+  @override
+  CreateAtomicSwapState action(PalletAtomicSwapBaseAction? action) =>
+      this(action: action);
 
   @override
   CreateAtomicSwapState deadline(DateTime? deadline) =>
@@ -53,6 +61,7 @@ class _$CreateAtomicSwapStateCWProxyImpl
   /// ````
   CreateAtomicSwapState call({
     Object? target = const $CopyWithPlaceholder(),
+    Object? hashedProof = const $CopyWithPlaceholder(),
     Object? action = const $CopyWithPlaceholder(),
     Object? deadline = const $CopyWithPlaceholder(),
   }) {
@@ -61,10 +70,14 @@ class _$CreateAtomicSwapStateCWProxyImpl
           ? _value.target
           // ignore: cast_nullable_to_non_nullable
           : target as String?,
+      hashedProof: hashedProof == const $CopyWithPlaceholder()
+          ? _value.hashedProof
+          // ignore: cast_nullable_to_non_nullable
+          : hashedProof as String?,
       action: action == const $CopyWithPlaceholder()
           ? _value.action
           // ignore: cast_nullable_to_non_nullable
-          : action as BigInt?,
+          : action as PalletAtomicSwapBaseAction?,
       deadline: deadline == const $CopyWithPlaceholder()
           ? _value.deadline
           // ignore: cast_nullable_to_non_nullable

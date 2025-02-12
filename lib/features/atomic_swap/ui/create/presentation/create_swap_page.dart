@@ -1,13 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:hashlib/hashlib.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/d3p_datetime_picker.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/atomic_swap/ui/create/bloc/create_swap_cubit.dart';
+import 'package:threedpass/features/atomic_swap/ui/create/domain/entities/create_atomic_swap_state.dart';
 import 'package:threedpass/features/atomic_swap/ui/create/presentation/widgets/choose_account_create_atomic_swap.dart';
 import 'package:threedpass/features/other/some_form/some_form.dart';
 import 'package:threedpass/features/other/some_form/some_form_submit_with_error.dart';

@@ -1,11 +1,11 @@
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:threedpass/features/atomic_swap/ui/create/domain/create_atomic_swap_action.dart';
+import 'package:threedpass/features/atomic_swap/ui/create/domain/entities/pallet_atomic_swap_base_action.dart';
 
 class CreateAtomicSwapParams {
   final KeyPairData account;
   final KeyPairData target;
   final String secret;
-  final CreateAtomicSwapAction action;
+  final PalletAtomicSwapBaseAction action;
   final int duration;
 
   const CreateAtomicSwapParams({
