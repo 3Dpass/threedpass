@@ -24,15 +24,7 @@ class ClickableCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return D3pCard(
-      side: side,
-      cardShape: cardShape,
-      // radius: radius,
       child: InkWell(
-        onTap: onTap,
-        borderRadius: MapperCardShapeToRadius(
-          cardShape: cardShape,
-          radius: D3pCardTheme.radius,
-        ).border(),
         child: Padding(
           padding: padding,
           child: SizedBox(
@@ -40,7 +32,14 @@ class ClickableCard extends StatelessWidget {
             child: child,
           ),
         ),
+        onTap: onTap,
+        borderRadius: MapperCardShapeToRadius(
+          cardShape: cardShape,
+          radius: D3pCardTheme.radius,
+        ).border(),
       ),
+      cardShape: cardShape,
+      side: side,
     );
   }
 }

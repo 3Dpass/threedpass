@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/utils/copy_and_notify.dart';
+import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 import 'package:threedpass/core/widgets/buttons/d3p_datetime_picker.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
@@ -14,7 +16,8 @@ import 'package:threedpass/features/wallet_screen/contacts_page/utils/open_conta
 part 'widgets/choose_deadline.dart';
 part 'widgets/choose_target.dart';
 part 'widgets/input_secret.dart';
-part './widgets/create_swap_submit_button.dart';
+part 'widgets/create_swap_submit_button.dart';
+part 'widgets/warning_checkbox.dart';
 
 class CreateSwapPage extends StatelessWidget {
   const CreateSwapPage({super.key});
@@ -29,6 +32,7 @@ class CreateSwapPage extends StatelessWidget {
         _ChooseTarget(),
         _InputSecret(),
         _ChooseDeadline(),
+        _WarningCheckbox(),
       ],
       submitButton: const _CreateSwapSubmitButton(),
     );

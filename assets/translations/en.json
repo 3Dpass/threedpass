@@ -554,5 +554,8 @@
     "no_date_chosen_validator": "Please choose the date and time",
     "create_atomic_swap_choose_deadline_title": "Expiration date and time",
     "no_contacts_notification_dialog_title": "No contacts",
-    "no_contacts_notification_dialog_content": "Your contacts list is empty."
+    "no_contacts_notification_dialog_content": "Your contacts list is empty.",
+    "input_secret_create_atomic_swap": "Secret",
+    "input_secret_create_atomic_swap_result": "Hashed proof (blake2b_256)",
+    "open_date_time_picker": "Choose date"
 }

@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
-import 'package:threedpass/core/theme/d3p_text_input_theme.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 
@@ -80,7 +78,7 @@ class D3pTextFormField extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final textStyle = Theme.of(context).customTextStyles;
+    // final textStyle = Theme.of(context).customTextStyles;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -91,7 +89,7 @@ class D3pTextFormField extends StatelessWidget {
             children: [
               Text(
                 labelText ?? '',
-                style: textStyle.fadedBodyMedium,
+                // style: textStyle.fadedBodyMedium,
               ),
               const H4(),
             ],
@@ -113,8 +111,6 @@ class D3pTextFormField extends StatelessWidget {
               ).build(context),
               suffixText: suffixText,
               filled: true,
-              focusedBorder: D3pTextInputTheme.focusedBorder,
-              border: D3pTextInputTheme.border,
             ),
             keyboardType: keyboardType,
             style: Theme.of(context).textTheme.bodyLarge,

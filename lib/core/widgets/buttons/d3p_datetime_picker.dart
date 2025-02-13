@@ -17,8 +17,9 @@ class D3pDatetimePicker extends FormField<DateTime> {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: validator,
           builder: (final FormFieldState<DateTime> state) {
-            final text =
-                state.value == null ? 'Choose date' : state.value.toString();
+            final text = state.value == null
+                ? 'open_date_time_picker'
+                : state.value.toString();
 
             return D3pSecondaryButton(
               localizedTextKey: text,

@@ -5,5 +5,5 @@ import 'package:flutter/material.dart';
 /// so it's declared as public. But please be careful
 class D3pColors {
   static const disabled = Colors.grey;
-  static MaterialColor mainColor = Colors.green;
+  static const MaterialColor mainColor = Colors.green;
 }
