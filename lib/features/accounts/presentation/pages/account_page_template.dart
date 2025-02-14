@@ -71,8 +71,6 @@ class AccountPageTemplate extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => D3pScaffold(
-        appBarLeading: const CustomBackButton(),
-        appBarTitle: appbarTitle,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,11 +80,9 @@ class AccountPageTemplate extends StatelessWidget {
                   physics: disableScrolling ?? false
                       ? const NeverScrollableScrollPhysics()
                       : null,
-                  padding: EdgeInsets.symmetric(
-                    vertical: 16,
-                    horizontal: needHorizontalPadding ? 16 : 0,
-                  ),
                   shrinkWrap: true,
+                  padding: EdgeInsets.symmetric(
+                      vertical: 16, horizontal: needHorizontalPadding ? 16 : 0),
                   children: children,
                 ),
               ),
@@ -94,17 +90,17 @@ class AccountPageTemplate extends StatelessWidget {
                   ? const SizedBox()
                   : Padding(
                       padding: const EdgeInsets.only(
-                        bottom: 36,
-                        top: 12,
                         left: 16,
+                        top: 12,
                         right: 16,
+                        bottom: 36,
                       ),
                       child: onSubmitPressed != null
                           ? SizedBox(
                               width: double.infinity,
                               child: D3pElevatedButton(
-                                onPressed: () => onSubmitPressed!(context),
                                 text: 'Next'.tr(),
+                                onPressed: () => onSubmitPressed!(context),
                               ),
                             )
                           : submitButton,
@@ -112,6 +108,8 @@ class AccountPageTemplate extends StatelessWidget {
             ],
           ),
         ),
+        appBarTitle: appbarTitle,
+        appBarLeading: const CustomBackButton(),
       );
 }
 

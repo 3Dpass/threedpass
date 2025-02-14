@@ -20,17 +20,11 @@ class FullRowText extends StatelessWidget {
     final mediumSecondary = medium!.copyWith(color: D3pColors.disabled);
 
     return Row(
-      mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.max,
       children: [
-        Text(
-          translateLeft ? leftText.tr() : leftText,
-          style: mediumSecondary,
-        ),
-        Text(
-          rightText,
-          style: medium,
-        ),
+        Text(translateLeft ? leftText.tr() : leftText, style: mediumSecondary),
+        Text(rightText, style: medium),
       ],
     );
   }

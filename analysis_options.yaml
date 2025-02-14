@@ -41,3 +41,4 @@ dart_code_linter:
     - prefer-moving-to-variable: false
     - no-magic-number: false
     - prefer-single-widget-per-file: false
+    - prefer-correct-edge-insets-constructor: false

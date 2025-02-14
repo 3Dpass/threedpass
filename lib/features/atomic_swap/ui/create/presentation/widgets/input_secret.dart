@@ -17,6 +17,7 @@ class _InputSecret extends StatelessWidget {
               .secretInputController,
           onChanged: (final _) =>
               BlocProvider.of<CreateAtomicSwapCubit>(context).updateSecret(),
+          validator: Validators.notEmpty,
         ),
         const H8(),
         Text('input_secret_create_atomic_swap_result'.tr()),

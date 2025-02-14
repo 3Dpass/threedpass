@@ -5,10 +5,8 @@ class _WarningCheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        // Checkbox form field
-      ],
+    return D3pSwitchFormField(
+      title: 'Lol',
     );
   }
 }

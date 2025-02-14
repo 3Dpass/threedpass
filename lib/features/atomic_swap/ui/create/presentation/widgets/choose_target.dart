@@ -16,14 +16,15 @@ class _ChooseTarget extends StatelessWidget {
         Text('Target account'),
         H4(),
         D3pTextFormField(
+          key: textFieldKey,
           controller: textController,
           suffixButton: Icons.person,
           onSuffixButtonPressed: () => openContactsPicker(
-              context: context,
-              textFieldKey: textFieldKey,
-              onPicked: (final contact) =>
-                  textController.text = contact.address),
-          key: textFieldKey,
+            context: context,
+            textFieldKey: textFieldKey,
+            onPicked: (final contact) => textController.text = contact.address,
+          ),
+          validator: Validators.notEmpty,
         ),
       ],
     );

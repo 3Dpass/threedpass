@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/widgets/other/form_field_error_text.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 
@@ -52,13 +53,7 @@ class TwoRadioField extends FormField<TwoRadioState> {
                     ),
                   ]),
                 ),
-                if (state.hasError)
-                  Text(
-                    state.errorText ?? '',
-                    style: textTheme(state.context).bodyMedium!.copyWith(
-                          color: Theme.of(state.context).colorScheme.error,
-                        ),
-                  ),
+                FormFieldErrorText(state),
               ],
             );
           },

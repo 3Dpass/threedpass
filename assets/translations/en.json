@@ -557,5 +557,6 @@
     "no_contacts_notification_dialog_content": "Your contacts list is empty.",
     "input_secret_create_atomic_swap": "Secret",
     "input_secret_create_atomic_swap_result": "Hashed proof (blake2b_256)",
-    "open_date_time_picker": "Choose date"
+    "open_date_time_picker": "Choose date",
+    "error_only_true": "Select this to continue"
 }
