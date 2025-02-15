@@ -8,6 +8,7 @@ class D3pSecondaryButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final bool isInfinityWidth;
   final bool translate;
+  final Color? color;
 
   const D3pSecondaryButton({
     required this.localizedTextKey,
@@ -15,6 +16,7 @@ class D3pSecondaryButton extends StatelessWidget {
     this.onPressed,
     this.isInfinityWidth = true,
     this.translate = true,
+    this.color,
     super.key,
   });
 
@@ -28,6 +30,8 @@ class D3pSecondaryButton extends StatelessWidget {
         minimumSize: isInfinityWidth
             ? const Size.fromHeight(D3pThemeData.buttonHeight)
             : null,
+        foregroundColor: color,
+        side: color != null ? BorderSide(color: color!) : null,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

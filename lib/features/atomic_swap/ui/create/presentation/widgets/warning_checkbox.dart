@@ -6,7 +6,7 @@ class _WarningCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return D3pSwitchFormField(
-      title: 'Lol',
+      title: "I've saved the secret in a safe place.",
     );
   }
 }

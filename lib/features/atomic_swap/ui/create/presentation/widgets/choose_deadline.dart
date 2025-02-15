@@ -8,6 +8,7 @@ class _ChooseDeadline extends StatelessWidget {
     return Row(
       children: [
         Text('create_atomic_swap_choose_deadline_title'.tr()),
+        W16(),
         Flexible(
           child: D3pDatetimePicker(
             validator: (p0) =>

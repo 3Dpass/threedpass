@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/buttons/secondary_button.dart';
 import 'package:threedpass/router/router.gr.dart';
@@ -17,16 +16,31 @@ class D3pDatetimePicker extends FormField<DateTime> {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: validator,
           builder: (final FormFieldState<DateTime> state) {
-            final text = state.value == null
-                ? 'open_date_time_picker'
-                : state.value.toString();
+            final theme = Theme.of(state.context);
 
             return D3pSecondaryButton(
-              localizedTextKey: text,
+              localizedTextKey: buttonText(state),
               onPressed: () => onPressed(state, onDone),
+              color: state.hasError ? theme.colorScheme.error : null,
             );
           },
         );
+
+  static String buttonText(
+    final FormFieldState<DateTime> state,
+  ) {
+    if (state.hasError && state.value == null) {
+      return 'no_date_time_chosen';
+    } else if (state.hasError) {
+      return 'date_time_picker_error';
+    }
+
+    if (state.value == null) {
+      return 'open_date_time_picker';
+    }
+
+    return state.value!.toIso8601String();
+  }
 
   static void onPressed(
     final FormFieldState<DateTime> state,

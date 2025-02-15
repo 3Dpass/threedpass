@@ -12,12 +12,11 @@ class _InputSecret extends StatelessWidget {
         Text('input_secret_create_atomic_swap'.tr()),
         const H4(),
         D3pTextFormField(
-          // TODO Make it obscurable like password
           controller: BlocProvider.of<CreateAtomicSwapCubit>(context)
               .secretInputController,
+          validator: Validators.notEmpty,
           onChanged: (final _) =>
               BlocProvider.of<CreateAtomicSwapCubit>(context).updateSecret(),
-          validator: Validators.notEmpty,
         ),
         const H8(),
         Text('input_secret_create_atomic_swap_result'.tr()),
@@ -27,14 +26,14 @@ class _InputSecret extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: Text(state.hashedProof ?? '?'),
+                  child: Text(state.hashedProof ?? ''),
                 ),
                 W8(),
                 Icon(Icons.copy),
               ],
             ),
             onTap: () => copyAndNotify(
-              textToCopy: state.hashedProof ?? '?',
+              textToCopy: state.hashedProof ?? '',
             ),
           ),
           buildWhen: (previous, current) =>
