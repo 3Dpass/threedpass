@@ -1,14 +1,13 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/widgets/buttons/secondary_button.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class D3pDatetimePicker extends FormField<DateTime> {
   D3pDatetimePicker({
-    // required final (String, String) label,
-    // required final String titleKey,
-    // final TwoRadioState? value = TwoRadioState.nothing,
-    final String? Function(DateTime?)? validator,
+    final String? Function(DateTime?)? validator = _isNotEmpty,
     final void Function(DateTime)? onDone,
     super.key,
   }) : super(
@@ -17,29 +16,32 @@ class D3pDatetimePicker extends FormField<DateTime> {
           validator: validator,
           builder: (final FormFieldState<DateTime> state) {
             final theme = Theme.of(state.context);
+            final bt = buttonText(state);
 
             return D3pSecondaryButton(
-              localizedTextKey: buttonText(state),
+              localizedTextKey: bt.$1,
               onPressed: () => onPressed(state, onDone),
+              translate: bt.$2,
               color: state.hasError ? theme.colorScheme.error : null,
             );
           },
         );
 
-  static String buttonText(
+  static (String, bool) buttonText(
     final FormFieldState<DateTime> state,
   ) {
-    if (state.hasError && state.value == null) {
-      return 'no_date_time_chosen';
+    final dateTime = state.value;
+    if (state.hasError && dateTime == null) {
+      return ('no_date_time_chosen', true);
     } else if (state.hasError) {
-      return 'date_time_picker_error';
+      return ('date_time_picker_error', true);
     }
 
-    if (state.value == null) {
-      return 'open_date_time_picker';
+    if (dateTime == null) {
+      return ('open_date_time_picker', true);
+    } else {
+      return (Fmt.shortDateFormat.format(dateTime), false);
     }
-
-    return state.value!.toIso8601String();
   }
 
   static void onPressed(
@@ -47,13 +49,12 @@ class D3pDatetimePicker extends FormField<DateTime> {
     final void Function(DateTime)? onChanged,
   ) {
     final initialDateTime = state.value ?? DateTime.now();
-    final lastDate = initialDateTime.add(Duration(days: 365));
     // final locale = Localizations.localeOf(state.context);
     state.context.router.push(
       ChooseDateTimeRoute(
         initialDate: initialDateTime,
         firstDate: initialDateTime,
-        lastDate: lastDate,
+        lastDate: null,
         onDone: (p0) {
           state.didChange(p0);
           onChanged?.call(p0);
@@ -62,3 +63,5 @@ class D3pDatetimePicker extends FormField<DateTime> {
     );
   }
 }
+
+String? _isNotEmpty(p0) => p0 != null ? null : 'no_date_chosen_validator'.tr();

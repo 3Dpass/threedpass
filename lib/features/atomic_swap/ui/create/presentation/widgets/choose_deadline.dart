@@ -11,8 +11,6 @@ class _ChooseDeadline extends StatelessWidget {
         W16(),
         Flexible(
           child: D3pDatetimePicker(
-            validator: (p0) =>
-                p0 != null ? null : 'no_date_chosen_validator'.tr(),
             onDone:
                 BlocProvider.of<CreateAtomicSwapCubit>(context).updateDeadline,
           ),

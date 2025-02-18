@@ -15,12 +15,12 @@ class D3pScaffold extends StatelessWidget {
 
   const D3pScaffold({
     required this.body,
-    this.appBarTitle,
-    this.appBarWidget,
-    this.floatingActionButton,
-    this.translateAppbar = true,
     this.appBarLeading,
+    this.appBarTitle,
     this.appBarActions,
+    this.appBarWidget,
+    this.translateAppbar = true,
+    this.floatingActionButton,
     super.key,
   }) : assert(
           appBarTitle != null || appBarWidget != null,
@@ -62,8 +62,8 @@ class D3pScaffold extends StatelessWidget {
     } else {
       return Scaffold(
         appBar: AppBar(
-          title: appBarText,
           leading: appBarLeading,
+          title: appBarText,
           actions: appBarActions,
         ),
         body: body,

@@ -32,6 +32,7 @@ dart_code_linter:
     - avoid-non-null-assertion: false
     - format-comment: false
     - avoid-ignoring-return-values: false
+    - prefer-correct-identifier-length: false
     - prefer-static-class: false
     - prefer-conditional-expressions: false
     - no-equal-arguments: false
@@ -42,3 +43,4 @@ dart_code_linter:
     - no-magic-number: false
     - prefer-single-widget-per-file: false
     - prefer-correct-edge-insets-constructor: false
+    - arguments-ordering: false

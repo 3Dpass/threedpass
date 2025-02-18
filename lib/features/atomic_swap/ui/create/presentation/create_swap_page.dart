@@ -7,6 +7,8 @@ import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 import 'package:threedpass/core/widgets/buttons/d3p_datetime_picker.dart';
 import 'package:threedpass/core/widgets/input/d3p_switch_form_field.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
+import 'package:threedpass/core/widgets/layout/list_view_separated.dart';
+import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/atomic_swap/ui/create/bloc/create_swap_cubit.dart';
 import 'package:threedpass/features/atomic_swap/ui/create/domain/entities/create_atomic_swap_state.dart';
@@ -30,13 +32,23 @@ class CreateSwapPage extends StatelessWidget {
       formKey: BlocProvider.of<CreateAtomicSwapCubit>(context).formKey,
       appbarTitle: 'create_asset_page_title',
       children: [
-        ChooseAccountCreateAtomicSwap(),
-        _ChooseTarget(),
-        _InputSecret(),
-        _ChooseDeadline(),
+        Padding16(
+          child: ListViewSeparated(
+            children: [
+              ChooseAccountCreateAtomicSwap(),
+              _ChooseTarget(),
+              _InputSecret(),
+              _ChooseDeadline(),
+            ],
+            separator: const H16(),
+          ),
+        ),
         _WarningCheckbox(),
       ],
-      submitButton: const _CreateSwapSubmitButton(),
+      submitButton: const Padding16(
+        child: _CreateSwapSubmitButton(),
+      ),
+      horizontalPadding: 0,
     );
   }
 }

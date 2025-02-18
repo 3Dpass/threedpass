@@ -9,6 +9,7 @@ class SomeForm extends StatelessWidget {
   final String appbarTitle;
   final List<Widget> children;
   final Widget submitButton;
+  final double horizontalPadding;
 
   /// Field for buttons list or something we don't actually need to validate.
   /// If this is included into a Column inside Form,
@@ -21,6 +22,7 @@ class SomeForm extends StatelessWidget {
     required this.children,
     required this.submitButton,
     this.afterForm = const [],
+    this.horizontalPadding = 16,
     super.key,
   });
 
@@ -31,7 +33,10 @@ class SomeForm extends StatelessWidget {
       appBarTitle: appbarTitle,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          padding: EdgeInsets.symmetric(
+            horizontal: horizontalPadding,
+            vertical: 16,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

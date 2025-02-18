@@ -66,7 +66,7 @@ class ObjectsListItem extends StatelessWidget {
           ),
         ],
       ),
-      onTap: () async => context.router.push(
+      onTap: () => context.router.push(
         UploadedObjectWrapper(
           objectId: uploadedObject.id,
           uploadedObject: uploadedObject,
