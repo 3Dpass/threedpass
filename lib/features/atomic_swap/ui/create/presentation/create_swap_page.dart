@@ -30,7 +30,7 @@ class CreateSwapPage extends StatelessWidget {
   Widget build(final BuildContext context) {
     return SomeForm(
       formKey: BlocProvider.of<CreateAtomicSwapCubit>(context).formKey,
-      appbarTitle: 'create_asset_page_title',
+      appbarTitle: 'poscan_atomic_swap_page_title',
       children: [
         Padding16(
           child: ListViewSeparated(

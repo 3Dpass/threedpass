@@ -8,7 +8,7 @@ class D3pSwitchFormField extends FormField<bool> {
     final bool initialValue = false,
     final String? Function(bool?) validator = _onlyTrue,
     final void Function(bool)? onChanged,
-    required final String title,
+    required final String localizationKey,
     super.key,
   }) : super(
           initialValue: initialValue,
@@ -25,7 +25,7 @@ class D3pSwitchFormField extends FormField<bool> {
                     state.didChange(p0);
                     onChanged?.call(p0);
                   },
-                  title: Text(title),
+                  title: Text(localizationKey.tr()),
                 ),
                 Padding16(
                   child: FormFieldErrorText(state),

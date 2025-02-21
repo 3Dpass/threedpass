@@ -32,15 +32,10 @@ class BalanceSection extends StatelessWidget {
               if (balance.isNull) {
                 return placeHolder;
               }
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  BalanceCard(
-                    balance: balance,
-                    tokenDecimals: tokenDecimals,
-                    tokenSymbol: tokenSymbol,
-                  ),
-                ],
+              return BalanceCard(
+                balance: balance,
+                tokenDecimals: tokenDecimals,
+                tokenSymbol: tokenSymbol,
               );
             },
           );

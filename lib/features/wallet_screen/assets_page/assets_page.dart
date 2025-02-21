@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/asset_page_appbar.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/balance_section.dart';
-import 'package:threedpass/features/wallet_screen/assets_page/widgets/buttons_panel.dart';
+import 'package:threedpass/features/wallet_screen/assets_page/widgets/liquidity_pool_buttons.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/poscan_assets_column.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/objects_list_assets.dart';
+import 'package:threedpass/features/wallet_screen/assets_page/widgets/poscan_atomic_swap_buttons.dart';
 
 class AssetsPage extends StatelessWidget {
   const AssetsPage({final Key? key}) : super(key: key);
@@ -20,7 +22,12 @@ class AssetsPage extends StatelessWidget {
         const children = [
           BalanceSection(),
           // const H8(),
-          AssetPageButtonsPanel(),
+          Padding16(
+            child: LiquidityPoolButtons(),
+          ),
+          Padding16(
+            child: PoscanAtomicSwapButtons(),
+          ),
           PoscanAssetsColumn(),
           ObjectsListAssets(),
         ];

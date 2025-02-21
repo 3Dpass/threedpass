@@ -3,19 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/features/other/card_with_buttons/fast_card_button.dart';
 import 'package:threedpass/router/router.gr.dart';
 
-class RecieveButton extends StatelessWidget {
-  const RecieveButton({final Key? key}) : super(key: key);
-
-  void onPressed(final BuildContext context) {
-    context.router.push(const RecieveRoute());
-  }
+class ExplorePoolsCardButton extends StatelessWidget {
+  const ExplorePoolsCardButton({final Key? key}) : super(key: key);
 
   @override
   Widget build(final BuildContext context) {
     return FastCardButton(
-      title: 'Recieve',
-      iconData: Icons.qr_code_2_rounded,
-      onButtonPressed: () => onPressed(context),
+      iconData: Icons.explore_outlined,
+      title: 'open_pools_label',
+      onButtonPressed: () => context.router.push(
+        const PoolsRouteWrapper(),
+      ),
     );
   }
 }

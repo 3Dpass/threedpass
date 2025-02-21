@@ -22,6 +22,7 @@ class PoolsPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
+      // TODO Use D3PScaffold
       appBar: AppBar(
         title:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -29,7 +30,7 @@ class PoolsPage extends StatelessWidget {
           Text('pools_page_appbar'.tr()),
           D3pIconButton(
             iconData: Icons.refresh,
-            onPressed: () async => BlocProvider.of<PoolsCubit>(context).update(
+            onPressed: () => BlocProvider.of<PoolsCubit>(context).update(
               address: BlocProvider.of<AppServiceLoaderCubit>(context)
                   .state
                   .keyring
@@ -81,11 +82,6 @@ class PoolsPage extends StatelessWidget {
             return const D3pProgressIndicator(size: null);
           }
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        heroTag: 'create_pool',
-        onPressed: () => context.router.push(const CreatePoolRouteWrapper()),
       ),
     );
   }

@@ -7,7 +7,7 @@ class CustomBackButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return BackButton(
-      onPressed: () async => context.router.maybePop(),
+      onPressed: () => context.router.maybePop(),
     );
   }
 }

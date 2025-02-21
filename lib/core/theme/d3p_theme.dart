@@ -32,6 +32,7 @@ class D3pThemeData {
         hintStyle: TextStyle(color: D3pColors.disabled),
         focusedBorder: D3pTextInputTheme.focusedBorder,
         border: D3pTextInputTheme.border,
+        errorMaxLines: 3,
       ),
       useMaterial3: false,
       visualDensity: VisualDensity.adaptivePlatformDensity,

@@ -6,7 +6,7 @@ class _WarningCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return D3pSwitchFormField(
-      title: "I've saved the secret in a safe place.",
+      localizationKey: "i_saved_secret_atomic_swap",
     );
   }
 }

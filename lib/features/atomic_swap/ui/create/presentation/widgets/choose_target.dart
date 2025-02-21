@@ -13,7 +13,7 @@ class _ChooseTarget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Target account'),
+        Text('target_account'.tr()),
         H4(),
         D3pTextFormField(
           key: textFieldKey,

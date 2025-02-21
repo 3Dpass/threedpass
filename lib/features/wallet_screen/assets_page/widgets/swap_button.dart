@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
+import 'package:threedpass/features/other/card_with_buttons/fast_card_button.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 
@@ -22,10 +23,10 @@ class SwapButton extends StatelessWidget {
         buildWhen: (final previous, final current) =>
             previous.hasValue != current.hasValue,
         builder: (final context, final poolsState) {
-          return D3pElevatedButton(
+          return FastCardButton(
             iconData: Icons.swap_horiz_outlined,
-            text: '',
-            onPressed: poscanAssetsState.isLoading || !poolsState.hasValue
+            title: 'liquidity_pools_buttons_panel_swap_assets',
+            onButtonPressed: poscanAssetsState.isLoading || !poolsState.hasValue
                 ? null
                 : () => unawaited(
                       context.router.push(
