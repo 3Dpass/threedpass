@@ -27,26 +27,16 @@ class AssetPageAppbar extends AppBar {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // D3pIconButton.fake(),
-                // D3pAddressIcon(
-                //   account.address,
-                //   svg: account.icon,
-                // ),
-                // const SizedBox(width: 16),
+                D3pIconButton.fake(), // Just padding
                 _AccountName(
                   accountAddress: account.address,
                   accountName: account.name,
                 ),
-                // const SizedBox(width: 16),
-                // _CopyButton(
-                //   accountAddress: account.address,
-                // ),
               ],
             ),
           ),
           actions: const [
             _ContactsPageIcon(),
-            W8(),
             NotificationsIconButton(),
           ],
         );
@@ -67,8 +57,7 @@ class _OpenSelectAccountButton extends StatelessWidget {
           emptyContraints: true,
           iconData: Icons.switch_account_rounded,
           iconColor: theme.customColors.appBarButton,
-          onPressed: () async =>
-              context.router.push(const SelectAccountRoute()),
+          onPressed: () => context.router.push(const SelectAccountRoute()),
         ),
       ),
     );
@@ -89,7 +78,7 @@ class _AccountName extends StatelessWidget {
     final theme = Theme.of(context);
 
     return GestureDetector(
-      onTap: () async => copyAndNotify(
+      onTap: () => copyAndNotify(
         textToCopy: accountAddress ?? '',
         textToShow: 'address_copied_to_clipboard'.tr(),
       ),
@@ -118,13 +107,12 @@ class _ContactsPageIcon extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return SizedBox(
-      // width: D3pAddressIcon.defaultSize,
       height: kToolbarHeight,
       child: Align(
         child: D3pIconButton(
           emptyContraints: true,
           iconData: Icons.person_sharp,
-          onPressed: () async => context.router.push(const ContactsRoute()),
+          onPressed: () => context.router.push(const ContactsRoute()),
         ),
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';

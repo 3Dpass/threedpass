@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 import 'package:threedpass/core/widgets/paddings.dart';

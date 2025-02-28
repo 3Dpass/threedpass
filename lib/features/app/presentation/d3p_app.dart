@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 import 'package:threedpass/features/app/presentation/app_error_widget.dart';
 import 'package:threedpass/router/router.dart';
 

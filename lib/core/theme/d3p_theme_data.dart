@@ -27,18 +27,37 @@ class D3pThemeData {
 
   static ThemeData themeData(final Brightness brightness) {
     // return brightness == Brightness.light ? lightTheme : darkTheme;
-    final t = ThemeData(
+    final t0 = ThemeData.from(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: D3pColors.mainColor,
+        brightness: brightness,
+        // Make dark theme background less dark by adjusting surface colors
+        surface: brightness == Brightness.dark ? const Color(0xFF1F1F1F) : null,
+        surfaceDim:
+            brightness == Brightness.dark ? const Color(0xFF1F1F1F) : null,
+        surfaceContainerLowest:
+            brightness == Brightness.dark ? const Color(0xFF1F1F1F) : null,
+        surfaceContainerLow:
+            brightness == Brightness.dark ? const Color(0xFF242424) : null,
+        surfaceContainer:
+            brightness == Brightness.dark ? const Color(0xFF272727) : null,
+        surfaceContainerHigh:
+            brightness == Brightness.dark ? const Color(0xFF2C2C2C) : null,
+        surfaceContainerHighest:
+            brightness == Brightness.dark ? const Color(0xFF313131) : null,
+      ),
+      useMaterial3: true,
+    );
+    final t = t0.copyWith(
       inputDecorationTheme: const InputDecorationTheme(
         hintStyle: TextStyle(color: D3pColors.disabled),
         focusedBorder: D3pTextInputTheme.focusedBorder,
         border: D3pTextInputTheme.border,
         errorMaxLines: 3,
       ),
-      useMaterial3: false,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       brightness: brightness,
       disabledColor: D3pColors.disabled,
-      primarySwatch: D3pColors.mainColor,
       appBarTheme: const D3pAppBarTheme(),
       bottomSheetTheme: const D3pBottomSheetThemeData(),
       cardTheme: D3pCardTheme.theme,
@@ -63,11 +82,8 @@ class D3pThemeData {
       outlinedButtonTheme: D3pOutlinedButtonTheme(
         borderSideColor: t.colorScheme.primary,
       ),
-      colorScheme: t.colorScheme.copyWith(
-        secondary: D3pColors.mainColor,
-      ),
       floatingActionButtonTheme: D3pFloatingActionButtonThemeData(
-        foregroundColor: t.colorScheme.onPrimary,
+        foregroundColor: t.colorScheme.onPrimaryContainer,
       ),
     );
   }

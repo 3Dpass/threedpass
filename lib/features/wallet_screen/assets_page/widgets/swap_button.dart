@@ -28,10 +28,8 @@ class SwapButton extends StatelessWidget {
             title: 'liquidity_pools_buttons_panel_swap_assets',
             onButtonPressed: poscanAssetsState.isLoading || !poolsState.hasValue
                 ? null
-                : () => unawaited(
-                      context.router.push(
-                        const SwapRouteWrapper(),
-                      ),
+                : () => context.router.push(
+                      const SwapRouteWrapper(),
                     ),
           );
         },

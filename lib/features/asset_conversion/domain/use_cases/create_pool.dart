@@ -44,7 +44,7 @@ class CreatePool extends UseCase<void, CreatePoolParams> {
       AddNotification(notificationLoading),
     );
 
-    final res = await assetConversionRepository.createPool(
+    return assetConversionRepository.createPool(
       params: params,
       msgIdCallback: (final msgId) {
         webViewRunner.addGlobalHandler(
@@ -59,7 +59,6 @@ class CreatePool extends UseCase<void, CreatePoolParams> {
         );
       },
     );
-    return res;
   }
 }
 

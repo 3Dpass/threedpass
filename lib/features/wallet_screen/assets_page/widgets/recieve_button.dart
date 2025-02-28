@@ -6,16 +6,12 @@ import 'package:threedpass/router/router.gr.dart';
 class RecieveButton extends StatelessWidget {
   const RecieveButton({final Key? key}) : super(key: key);
 
-  void onPressed(final BuildContext context) {
-    context.router.push(const RecieveRoute());
-  }
-
   @override
   Widget build(final BuildContext context) {
     return FastCardButton(
-      title: 'Recieve',
+      title: 'recieve_button_label',
       iconData: Icons.qr_code_2_rounded,
-      onButtonPressed: () => onPressed(context),
+      onButtonPressed: () => context.router.push(const RecieveRoute()),
     );
   }
 }

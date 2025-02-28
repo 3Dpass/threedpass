@@ -21,7 +21,7 @@ class FromCardBasic extends StatelessWidget {
         FromAddressTextField(
           data: data,
         ),
-        const H4(),
+        const H8(),
         PasswordTextField(
           passwordController: data.passwordController,
           isFirst: isFirst,

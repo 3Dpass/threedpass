@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 
 class D3pSecondaryButton extends StatelessWidget {
   final IconData? iconData;

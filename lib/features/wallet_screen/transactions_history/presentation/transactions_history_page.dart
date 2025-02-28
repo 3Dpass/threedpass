@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/bloc/transfers_from_cubit.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/bloc/transfers_to_cubit.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/domain/entities/mapper_transfer_item.dart';

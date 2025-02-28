@@ -6,7 +6,7 @@ class CardWithButtons extends StatelessWidget {
   final List<Widget> buttons;
   final String title;
 
-  static const double padding = 8;
+  static const double padding = 16;
 
   const CardWithButtons({
     required this.buttons,
@@ -24,7 +24,7 @@ class CardWithButtons extends StatelessWidget {
         children: [
           SizedBox(height: padding),
           Padding(
-            padding: EdgeInsets.only(left: padding * 2),
+            padding: EdgeInsets.only(left: padding),
             child: Text(title.tr()),
           ),
           Padding(

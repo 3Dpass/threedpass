@@ -16,7 +16,7 @@ class BalanceButtons extends StatelessWidget {
       buttons: [
         CoinTransferButton(),
         FastCardButton(
-          title: 'Transfer history',
+          title: 'transfer_history_button_label',
           iconData: Icons.history,
           onButtonPressed: () =>
               context.router.push(const TransactionsHistoryRouteWrapper()),

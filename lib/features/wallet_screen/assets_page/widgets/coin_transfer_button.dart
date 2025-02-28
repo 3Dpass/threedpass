@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
@@ -30,7 +29,7 @@ class CoinTransferButton extends StatelessWidget {
     return IsAccountReadyBuilder(
       builder: (final BuildContext context, final bool isReady) {
         return FastCardButton(
-          title: 'transfer_coins_button_label'.tr(),
+          title: 'transfer_coins_button_label',
           iconData: Icons.arrow_upward_rounded,
           onButtonPressed: isReady ? () => onPressed(context) : null,
         );

@@ -571,5 +571,7 @@
     "poscan_atomic_swap_buttons_panel_cancel_swap": "Cancel swap",
     "liquidity_pools_buttons_panel_title": "Liquidity Pools",
     "liquidity_pools_buttons_panel_swap_assets": "Swap assets",
-    "liquidity_pools_buttons_panel_create_pool": "Create pool"
+    "liquidity_pools_buttons_panel_create_pool": "Create pool",
+    "recieve_button_label": "Recieve",
+    "transfer_history_button_label": "Transfer history"
 }

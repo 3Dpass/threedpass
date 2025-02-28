@@ -32,11 +32,12 @@ class ToCardOneToMany extends StatelessWidget {
       child: Column(
         children: [
           ToCardBasic(data: data),
-          const H4(),
+          const H8(),
           AmountTextFieldBuilder(
-              amountController: sendAmountData.amountController,
-              transferType: metaInfoType,
-              address: bloc.state.fromAddresses.first.data?.address ?? ''),
+            amountController: sendAmountData.amountController,
+            transferType: metaInfoType,
+            address: bloc.state.fromAddresses.first.data?.address ?? '',
+          ),
         ],
       ),
       dismiss: dismiss,

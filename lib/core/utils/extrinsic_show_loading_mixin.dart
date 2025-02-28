@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logger/logger.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';

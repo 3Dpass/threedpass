@@ -24,7 +24,7 @@ class BalanceCard extends StatelessWidget {
   final int tokenDecimals;
   final String tokenSymbol;
 
-  static const double height = 180 + CardButton.size;
+  static const double height = 184 + CardButton.size;
 
   @override
   Widget build(final BuildContext context) {

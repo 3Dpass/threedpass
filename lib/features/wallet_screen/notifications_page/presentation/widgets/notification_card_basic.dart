@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_large_text.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';

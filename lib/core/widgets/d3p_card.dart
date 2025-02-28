@@ -17,8 +17,7 @@ class D3pCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    // final bgColor = Theme.of(context).customColors.cardBackground;
-    return Card(
+    return Card.filled(
       shape: MapperCardShapeToBorder(
         cardShape: cardShape,
         side: side,

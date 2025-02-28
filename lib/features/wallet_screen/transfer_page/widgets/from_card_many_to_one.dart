@@ -31,7 +31,7 @@ class FromCardManyToOne extends StatelessWidget {
       child: Column(
         children: [
           FromCardBasic(data: data, isFirst: isFirst),
-          const H4(),
+          const H8(),
           AmountTextFieldBuilder(
             amountController: sendAmountData.amountController,
             transferType: metaInfoType,

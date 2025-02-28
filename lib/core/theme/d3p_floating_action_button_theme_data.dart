@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 
 class D3pFloatingActionButtonThemeData extends FloatingActionButtonThemeData {
   const D3pFloatingActionButtonThemeData({

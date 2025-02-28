@@ -19,6 +19,7 @@ class CardButton extends StatelessWidget {
         onPressed: data.onButtonPressed,
         style: TextButton.styleFrom(
           textStyle: Theme.of(context).textTheme.labelSmall,
+          backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
         ),
         child: data.icon,
       ),
