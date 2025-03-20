@@ -560,7 +560,7 @@
     "open_date_time_picker": "Select Date and Time",
     "no_date_time_chosen": "Date Required",
     "date_time_picker_error": "Error",
-    "error_only_true": "Please turn on this switch to proceed",
+    "error_only_true": "This is really important",
     "i_saved_secret_atomic_swap": "I have securely stored my secret key.",
     "poscan_atomic_swap_page_title": "Poscan Atomic Swap",
     "target_account": "Target account",

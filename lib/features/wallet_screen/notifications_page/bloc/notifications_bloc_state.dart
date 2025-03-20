@@ -10,7 +10,8 @@ enum NotificationType {
   createPool,
   addLiquidity,
   removeLiquidity,
-  swapAssets
+  swapAssets,
+  createAtomicSwap,
 }
 
 abstract class NotificationDTO {
@@ -211,6 +212,24 @@ class NotificationSwapAssets extends NotificationDTO {
 
   @override
   final NotificationType type = NotificationType.swapAssets;
+}
+
+@CopyWith()
+class NotificationCreateAtomicSwap extends NotificationDTO {
+  final KeyPairData from;
+  final KeyPairData to;
+  final bool isPoscan;
+
+  NotificationCreateAtomicSwap({
+    required this.from,
+    required this.to,
+    required super.status,
+    required super.message,
+    required this.isPoscan,
+  });
+
+  @override
+  final NotificationType type = NotificationType.createAtomicSwap;
 }
 
 @CopyWith()

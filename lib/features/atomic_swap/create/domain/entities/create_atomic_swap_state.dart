@@ -1,5 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:threedpass/features/atomic_swap/ui/create/domain/entities/pallet_atomic_swap_base_action.dart';
+import 'package:threedpass/core/utils/async_value.dart';
+import 'package:threedpass/features/atomic_swap/create/domain/entities/pallet_atomic_swap_base_action.dart';
 
 part 'create_atomic_swap_state.g.dart';
 
@@ -12,16 +13,16 @@ class CreateAtomicSwapState {
     required this.deadline,
   });
 
-  const CreateAtomicSwapState.initial()
+  CreateAtomicSwapState.initial()
       : this(
           target: null,
-          hashedProof: null,
+          hashedProof: AsyncValue.data(''),
           action: null,
           deadline: null,
         );
 
   final String? target;
-  final String? hashedProof;
+  final AsyncValue<String> hashedProof;
   final PalletAtomicSwapBaseAction? action;
   final DateTime? deadline;
 }

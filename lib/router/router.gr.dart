@@ -52,7 +52,7 @@ import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/present
     as _i49;
 import 'package:threedpass/features/asset_conversion/ui/swap/presentation/swap_page_wrapper.dart'
     as _i62;
-import 'package:threedpass/features/atomic_swap/ui/create/presentation/create_swap_page_wapper.dart'
+import 'package:threedpass/features/atomic_swap/create/presentation/create_swap_page_wapper.dart'
     as _i18;
 import 'package:threedpass/features/compare_page/presentation/pages/compare_page_wrapper.dart'
     as _i5;

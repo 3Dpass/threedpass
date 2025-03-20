@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/features/atomic_swap/ui/create/bloc/create_swap_cubit.dart';
+import 'package:threedpass/features/atomic_swap/create/bloc/create_atomic_swap_cubit.dart';
 import 'package:threedpass/features/other/choose_account/presentation/choose_account.dart';
 
 class ChooseAccountCreateAtomicSwap extends StatelessWidget {

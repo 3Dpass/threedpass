@@ -13,7 +13,6 @@ import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.da
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/presentation/widgets/pool_card.dart';
-import 'package:threedpass/router/router.gr.dart';
 
 @RoutePage()
 class PoolsPage extends StatelessWidget {

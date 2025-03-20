@@ -25,6 +25,7 @@ dart_code_linter:
     maximum-nesting-level: 5
   metrics-exclude:
     - test/**
+    - 'packages/rust_lzss/cargokit/**'
   rules:
     - prefer-commenting-analyzer-ignores: false
     - avoid-dynamic: false
@@ -37,6 +38,7 @@ dart_code_linter:
     - prefer-conditional-expressions: false
     - no-equal-arguments: false
     - prefer-extracting-callbacks: false
+    - dangling_library_doc_comments: false
     - member-ordering: false # TODO Enable this rule and below
     - newline-before-return: false
     - prefer-moving-to-variable: false

@@ -14,7 +14,7 @@ import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
-import 'package:threedpass/core/utils/list_extentions.dart';
+import 'package:threedpass/core/utils/list_extensions.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_meta_dto.dart';
@@ -171,12 +171,12 @@ class TransferInfoBloc
         symbols: metaDTO.name,
         decimals: metaDTO.decimals,
         transferType: state.transferType,
-        onStatusChange: (final p0) async {
+        onStatusChange: (final p0) {
           // print('onStatusChange: $p0, extrinsicAccepted = $extrinsicAccepted');
           if (!extrinsicAccepted) {
             extrinsicAccepted = true;
             DefaultLoadingDialog.hide(globalContext);
-            await context.router.pop();
+            context.router.pop();
           }
         },
       );
@@ -225,7 +225,7 @@ class TransferInfoBloc
       return;
     }
 
-    final newFromAddresses = List<FromAddressData>.from(state.fromAddresses);
+    final newFromAddresses = List<FromAddressData>.of(state.fromAddresses);
     final newAddressData = dataToChange.copyWith(data: acc);
 
     newFromAddresses.replace(dataToChange, newAddressData);

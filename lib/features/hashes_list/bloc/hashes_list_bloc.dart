@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:threedpass/core/utils/async_value.dart';
-import 'package:threedpass/core/utils/list_extentions.dart';
+import 'package:threedpass/core/utils/list_extensions.dart';
 
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';

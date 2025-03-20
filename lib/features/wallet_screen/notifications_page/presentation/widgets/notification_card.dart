@@ -6,6 +6,7 @@ import 'package:threedpass/features/asset_conversion/ui/swap/presentation/widget
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notfication_put_object.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_create_asset_card.dart';
+import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_create_atomic_swap_card.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_mint_asset_card.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_set_metadata_card.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_transfer.dart';
@@ -48,6 +49,9 @@ class NotificationCard extends StatelessWidget {
         ),
       NotificationType.swapAssets => SwapAssetsNotificationCard(
           notificationDTO as NotificationSwapAssets,
+        ),
+      NotificationType.createAtomicSwap => NotificationCreateAtomicSwapCard(
+          notificationDTO as NotificationCreateAtomicSwap,
         ),
     };
   }

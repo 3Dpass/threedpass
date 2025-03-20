@@ -9,7 +9,7 @@ part of 'create_atomic_swap_state.dart';
 abstract class _$CreateAtomicSwapStateCWProxy {
   CreateAtomicSwapState target(String? target);
 
-  CreateAtomicSwapState hashedProof(String? hashedProof);
+  CreateAtomicSwapState hashedProof(AsyncValue<String> hashedProof);
 
   CreateAtomicSwapState action(PalletAtomicSwapBaseAction? action);
 
@@ -23,7 +23,7 @@ abstract class _$CreateAtomicSwapStateCWProxy {
   /// ````
   CreateAtomicSwapState call({
     String? target,
-    String? hashedProof,
+    AsyncValue<String>? hashedProof,
     PalletAtomicSwapBaseAction? action,
     DateTime? deadline,
   });
@@ -40,7 +40,7 @@ class _$CreateAtomicSwapStateCWProxyImpl
   CreateAtomicSwapState target(String? target) => this(target: target);
 
   @override
-  CreateAtomicSwapState hashedProof(String? hashedProof) =>
+  CreateAtomicSwapState hashedProof(AsyncValue<String> hashedProof) =>
       this(hashedProof: hashedProof);
 
   @override
@@ -70,10 +70,11 @@ class _$CreateAtomicSwapStateCWProxyImpl
           ? _value.target
           // ignore: cast_nullable_to_non_nullable
           : target as String?,
-      hashedProof: hashedProof == const $CopyWithPlaceholder()
-          ? _value.hashedProof
-          // ignore: cast_nullable_to_non_nullable
-          : hashedProof as String?,
+      hashedProof:
+          hashedProof == const $CopyWithPlaceholder() || hashedProof == null
+              ? _value.hashedProof
+              // ignore: cast_nullable_to_non_nullable
+              : hashedProof as AsyncValue<String>,
       action: action == const $CopyWithPlaceholder()
           ? _value.action
           // ignore: cast_nullable_to_non_nullable

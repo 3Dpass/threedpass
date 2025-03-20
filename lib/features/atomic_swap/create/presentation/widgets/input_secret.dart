@@ -21,19 +21,20 @@ class _InputSecret extends StatelessWidget {
         const H8(),
         Text('input_secret_create_atomic_swap_result'.tr()),
         const H4(),
+        // TODO handle when hashed proof is loading
         BlocBuilder<CreateAtomicSwapCubit, CreateAtomicSwapState>(
           builder: (final context, final state) => ClickableCard(
             child: Row(
               children: [
                 Expanded(
-                  child: Text(state.hashedProof ?? ''),
+                  child: Text(state.hashedProof.value ?? ''),
                 ),
                 W8(),
                 Icon(Icons.copy),
               ],
             ),
             onTap: () => copyAndNotify(
-              textToCopy: state.hashedProof ?? '',
+              textToCopy: state.hashedProof.value ?? '',
             ),
           ),
           buildWhen: (previous, current) =>

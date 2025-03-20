@@ -30,6 +30,7 @@ class D3pThemeData {
     final t0 = ThemeData.from(
       colorScheme: ColorScheme.fromSeed(
         seedColor: D3pColors.mainColor,
+        dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
         brightness: brightness,
         // Make dark theme background less dark by adjusting surface colors
         surface: brightness == Brightness.dark ? const Color(0xFF1F1F1F) : null,
