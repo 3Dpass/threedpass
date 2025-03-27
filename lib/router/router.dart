@@ -40,7 +40,10 @@ class RootRouter extends $RootRouter {
     assetsConversionRoute,
     createPoolRoute,
     // Atomic swap
-    atomicSwapRoute,
+    createAtomicSwapRoute,
+    claimAtomicSwapRoute,
+    cancelAtomicSwapRoute,
+    pendingAtomicSwapRoute,
     // Set asset metadata
     setMetadataPageRoute,
     // Default loader
