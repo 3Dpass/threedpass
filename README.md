@@ -2,7 +2,7 @@
 
 3Dpass mobile light wallet for Android and iOS.
 Tha wallet connects to the Node via RPC/API endpoints:
-- wss://rpc.3dpscan.io
+- Mainnet: `wss://rpc.3dpass.org`
 
   ![put_object_mobile](https://github.com/user-attachments/assets/67545790-bb18-4cfd-bfc0-7c109fc4e528)
 
