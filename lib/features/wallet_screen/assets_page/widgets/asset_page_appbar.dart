@@ -88,7 +88,7 @@ class _AccountName extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            Fmt.shorterAddress(accountAddress),
+            Formatters.shorterAddress(accountAddress),
             style: theme.customTextStyles.accountAddress,
           ),
           const H4(),

@@ -31,7 +31,7 @@ void openContactsPicker({
         return PopupMenuItem<Contact>(
           value: contact,
           child: Text(
-            contact.name + ": " + Fmt.shorterAddress(contact.address),
+            contact.name + ": " + Formatters.shorterAddress(contact.address),
           ),
         );
       }).toList(),

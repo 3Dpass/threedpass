@@ -31,6 +31,7 @@ class CoinTransferButton extends StatelessWidget {
         return FastCardButton(
           title: 'transfer_coins_button_label',
           iconData: Icons.arrow_upward_rounded,
+          isLoading: !isReady,
           onButtonPressed: isReady ? () => onPressed(context) : null,
         );
       },

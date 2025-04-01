@@ -21,7 +21,7 @@ class UploadedObjectDropdownItem extends StatelessWidget {
         const SizedBox(width: 16),
         UTCTime(
           dateTime: object.statusDateUTC,
-          formatter: Fmt.shortDateFormat,
+          formatter: Formatters.shortDateFormat,
         ),
       ],
     );

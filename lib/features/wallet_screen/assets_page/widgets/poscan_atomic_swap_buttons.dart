@@ -18,16 +18,22 @@ class PoscanAtomicSwapButtons extends StatelessWidget {
           onButtonPressed: () => context.router.push(CreateSwapRouteWapper()),
         ),
         FastCardButton(
-          iconData: Icons.system_update_alt_rounded,
-          title: 'poscan_atomic_swap_buttons_panel_claim_swap',
-        ),
-        FastCardButton(
           iconData: Icons.pending,
           title: 'poscan_atomic_swap_buttons_panel_pending_swaps',
+          onButtonPressed: () =>
+              context.router.push(PendingAtomicSwapRouteWrapper()),
+        ),
+        FastCardButton(
+          iconData: Icons.system_update_alt_rounded,
+          title: 'poscan_atomic_swap_buttons_panel_claim_swap',
+          onButtonPressed: () =>
+              context.router.push(ClaimAtomicSwapRouteWrapper()),
         ),
         FastCardButton(
           iconData: Icons.cancel,
           title: 'poscan_atomic_swap_buttons_panel_cancel_swap',
+          onButtonPressed: () =>
+              context.router.push(CancelAtomicSwapRouteWarpper()),
         ),
       ],
     );

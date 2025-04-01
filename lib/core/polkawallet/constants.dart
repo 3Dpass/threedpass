@@ -6,6 +6,9 @@ const int ss58formatLive = 71;
 const String d3pLiveName = '3DP live';
 const String d3pTestName = '3DP test';
 
-const deprecatedD3pDefaultNodeUrl = 'wss://rpc2.3dpass.org';
-const d3pDefaultNodeUrl = 'wss://rpc.3dpscan.io';
+const deprecatedD3pDefaultNodeUrls = [
+  'wss://rpc2.3dpass.org',
+  'wss://rpc.3dpscan.io',
+];
+const d3pDefaultNodeUrl = 'wss://rpc.3dpass.org';
 const defaultCryptoType = CryptoType.sr25519;

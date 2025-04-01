@@ -43,7 +43,7 @@ class ObjectsListItem extends StatelessWidget {
               const SizedBox(width: 8),
               UTCTime(
                 dateTime: uploadedObject.statusDateUTC,
-                formatter: Fmt.shortDateFormat,
+                formatter: Formatters.shortDateFormat,
               ),
             ],
           ),

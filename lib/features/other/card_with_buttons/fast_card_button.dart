@@ -6,11 +6,13 @@ import 'package:threedpass/features/other/card_with_buttons/usual_card_button_ic
 class FastCardButton extends StatelessWidget {
   final IconData iconData;
   final String title;
+  final bool isLoading;
   final VoidCallback? onButtonPressed;
 
   const FastCardButton({
     required this.iconData,
     required this.title,
+    this.isLoading = false,
     this.onButtonPressed,
   });
 
@@ -21,6 +23,7 @@ class FastCardButton extends StatelessWidget {
         icon: UsualCardButtonIcon(
           iconData: iconData,
           title: title,
+          isLoading: isLoading,
         ),
         onButtonPressed: onButtonPressed,
       ),

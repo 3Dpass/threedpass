@@ -10,7 +10,7 @@ import 'package:threedpass/features/atomic_swap/claim/domain/entities/claim_atom
 
 class ClaimAtomicSwapBloc extends Cubit<ClaimAtomicSwapState>
     with ExtrinsicShowLoadingMixin<void, CancelAtomicSwapParams> {
-  ClaimAtomicSwapBloc(super.initialState);
+  ClaimAtomicSwapBloc() : super(ClaimAtomicSwapState.initial());
 
   @override
   // TODO: implement outerRouter

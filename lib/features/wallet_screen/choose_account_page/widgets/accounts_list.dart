@@ -71,7 +71,7 @@ class SelectableAccountsList extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 D3pBodyMediumText(
-                  Fmt.shorterAddress(acc.address),
+                  Formatters.shorterAddress(acc.address),
                   translate: false,
                 ),
                 D3pIconButton(

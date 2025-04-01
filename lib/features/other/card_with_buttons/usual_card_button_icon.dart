@@ -1,12 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 
 class UsualCardButtonIcon extends StatelessWidget {
   final IconData iconData;
   final String title;
+  final bool isLoading;
 
-  const UsualCardButtonIcon({required this.iconData, required this.title});
+  const UsualCardButtonIcon({
+    required this.iconData,
+    required this.title,
+    this.isLoading = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +20,26 @@ class UsualCardButtonIcon extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(iconData),
+        SizedBox(
+          height: 24,
+          width: 24,
+          child: isLoading
+              ? const D3pProgressIndicator(
+                  size: null,
+                  strokeWidth: 2,
+                )
+              : Icon(iconData),
+        ),
         H8(),
-        Text(
-          title.tr(),
-          textAlign: TextAlign.center,
+        SizedBox(
+          height: 32,
+          child: Center(
+            child: Text(
+              title.tr(),
+              maxLines: 2,
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
       ],
     );

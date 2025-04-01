@@ -63,7 +63,7 @@ class UploadedObjectPage extends StatelessWidget {
               const SizedBox(width: 16),
               UTCTime(
                 dateTime: uploadedObject.statusDateUTC,
-                formatter: Fmt.shortDateFormat,
+                formatter: Formatters.shortDateFormat,
               ),
             ],
           ),

@@ -10,7 +10,7 @@ import 'package:threedpass/features/atomic_swap/cancel/domain/entities/cancel_at
 
 class CancelAtomicSwapBloc extends Cubit<CancelAtomicSwapState>
     with ExtrinsicShowLoadingMixin<void, CancelAtomicSwapParams> {
-  CancelAtomicSwapBloc(super.initialState);
+  CancelAtomicSwapBloc() : super(CancelAtomicSwapState.initial());
 
   @override
   // TODO: implement outerRouter

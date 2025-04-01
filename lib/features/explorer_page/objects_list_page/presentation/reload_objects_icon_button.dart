@@ -10,8 +10,7 @@ class ReloadObjectsIconButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     return D3pIconButton(
       iconData: Icons.refresh,
-      onPressed: () async =>
-          BlocProvider.of<PoscanObjectsCubit>(context).refresh(),
+      onPressed: () => BlocProvider.of<PoscanObjectsCubit>(context).refresh(),
     );
   }
 }

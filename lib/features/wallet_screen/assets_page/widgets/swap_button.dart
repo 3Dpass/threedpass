@@ -23,10 +23,12 @@ class SwapButton extends StatelessWidget {
         buildWhen: (final previous, final current) =>
             previous.hasValue != current.hasValue,
         builder: (final context, final poolsState) {
+          final isLoading = poscanAssetsState.isLoading || !poolsState.hasValue;
           return FastCardButton(
             iconData: Icons.swap_horiz_outlined,
             title: 'liquidity_pools_buttons_panel_swap_assets',
-            onButtonPressed: poscanAssetsState.isLoading || !poolsState.hasValue
+            isLoading: isLoading,
+            onButtonPressed: isLoading
                 ? null
                 : () => context.router.push(
                       const SwapRouteWrapper(),

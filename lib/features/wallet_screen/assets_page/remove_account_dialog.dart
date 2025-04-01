@@ -54,7 +54,7 @@ class RemoveAccountDialog extends StatelessWidget {
     return D3pPlatformDialog(
       title: 'remove_accout_dialog_title'.tr(
         args: [
-          Fmt.shorterAddress(appService.keyring.current.address),
+          Formatters.shorterAddress(appService.keyring.current.address),
         ],
       ),
       content: const D3pBodyMediumText('remove_accout_dialog_text'),
@@ -64,7 +64,7 @@ class RemoveAccountDialog extends StatelessWidget {
           text: 'Cancel'.tr(),
         ),
         D3pTextButton(
-          onPressed: () async => deleteAccount(appServiceLoaderCubit, context),
+          onPressed: () => deleteAccount(appServiceLoaderCubit, context),
           text: 'Delete'.tr(),
           textColor: Theme.of(context).colorScheme.error,
         ),

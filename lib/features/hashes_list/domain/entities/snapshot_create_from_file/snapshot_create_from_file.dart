@@ -36,7 +36,7 @@ class SnapshotFileFactory {
   });
 
   static String snapshotName(final String rawObjName) {
-    return '$rawObjName ${Fmt.basicDateFormat.format(DateTime.now())}';
+    return '$rawObjName ${Formatters.basicDateFormat.format(DateTime.now())}';
   }
 
   Future<(HashObject?, Snapshot)> createSnapshotFromFile({

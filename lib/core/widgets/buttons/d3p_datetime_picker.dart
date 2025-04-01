@@ -40,7 +40,7 @@ class D3pDatetimePicker extends FormField<DateTime> {
     if (dateTime == null) {
       return ('open_date_time_picker', true);
     } else {
-      return (Fmt.shortDateFormat.format(dateTime), false);
+      return (Formatters.shortDateFormat.format(dateTime), false);
     }
   }
 

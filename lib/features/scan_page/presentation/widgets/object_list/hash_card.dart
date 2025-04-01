@@ -102,7 +102,7 @@ class SnapshotCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 D3pBodyMediumText(
-                  Fmt.basicDateFormat.format(snapshot.stamp),
+                  Formatters.basicDateFormat.format(snapshot.stamp),
                   translate: false,
                   color: D3pColors.disabled,
                 ),

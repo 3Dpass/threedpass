@@ -24,7 +24,7 @@ class WalletSettings {
   WalletSettings selfValidate() {
     // Fix deprecated URL
     String nodeUrl = this.nodeUrl;
-    if (nodeUrl == deprecatedD3pDefaultNodeUrl) {
+    if (deprecatedD3pDefaultNodeUrls.contains(nodeUrl)) {
       nodeUrl = d3pDefaultNodeUrl;
     }
 

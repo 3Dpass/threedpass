@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// TODO Create button with loader for async actions
 class D3pTextButton extends StatelessWidget {
   const D3pTextButton({
     required this.text,

@@ -34,7 +34,7 @@ class ContactsList extends StatelessWidget {
               children: [
                 Text(currentContact.name),
                 const Spacer(),
-                Text(Fmt.shorterAddress(currentContact.address)),
+                Text(Formatters.shorterAddress(currentContact.address)),
                 const SizedBox(width: 8),
                 D3pIconButton(
                   onPressed: () => context.router

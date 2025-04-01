@@ -16,6 +16,7 @@ class CreatePoolCardButton extends StatelessWidget {
         return FastCardButton(
           iconData: Icons.add,
           title: 'liquidity_pools_buttons_panel_create_pool',
+          isLoading: state.isLoading,
           onButtonPressed: state.isLoading
               ? null
               : () => context.router.push(const CreatePoolRouteWrapper()),
