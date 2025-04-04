@@ -6,7 +6,7 @@ import 'package:threedpass/features/settings_page/router/settings_page_route.dar
 import 'package:threedpass/features/wallet_screen/wallet_page_route.dart';
 import 'package:threedpass/router/router.gr.dart';
 
-AutoRoute initialAutoRoute = AutoRoute(
+final initialAutoRoute = AutoRoute(
   page: InitialWrapperRoute.page,
   path: '/',
   initial: true,

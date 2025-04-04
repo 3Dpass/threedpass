@@ -16,10 +16,11 @@ import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.d
 import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
 import 'package:threedpass/features/accounts/domain/account_info.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
+import 'package:threedpass/features/connection/polkadot/bloc/polkadot_node_url.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/data/poscan_local_repository.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/bloc/transfers_from_cubit.dart';
@@ -36,8 +37,17 @@ part 'dirty_after_init.dart';
 /// This class does [emit] just to notify listeners to rebuild widgets
 ///
 class AppServiceLoaderCubit extends Cubit<AppService> {
+  final SettingsCubit settingsConfigCubit;
+  final PolkadotNodeUrl polkadotNodeUrl;
+
+  double get fastAvailableBalance => BalanceUtils.balanceToDouble(
+        state.chosenAccountBalance.value.availableBalance.toString(),
+        state.networkStateData.safeDecimals,
+      );
+
   AppServiceLoaderCubit({
     required this.settingsConfigCubit,
+    required this.polkadotNodeUrl,
   }) : super(
           AppService(
             plugin: D3pLiveNetPlugin(),
@@ -45,10 +55,8 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
             status: AppServiceInitStatus.init,
           ),
         ) {
-    _init(settingsConfigCubit.state.walletSettings);
+    unawaited(_init(settingsConfigCubit.state.walletSettings));
   }
-
-  final SettingsConfigCubit settingsConfigCubit;
 
   Future<Map<dynamic, dynamic>> importAccount({
     required final AccountInfo account,
@@ -73,33 +81,6 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       return res;
     } else {
       throw Exception('Account was NOT imported');
-    }
-  }
-
-  static Future<AddressIconData> _getAddressForAccount({
-    required final AppService state,
-    required final AccountInfo account,
-    final CryptoType cryptoType = defaultCryptoType,
-    final String derivePath = '',
-  }) async {
-    if (account is AccountCreateMnemonic) {
-      return state.plugin.sdk.api.keyring.addressFromMnemonic(
-        state.networkStateData.ss58Format!,
-        cryptoType: cryptoType,
-        derivePath: derivePath,
-        mnemonic: account.mnemonic,
-      );
-    } else if (account is AccountCreateSeed) {
-      return state.plugin.sdk.api.keyring.addressFromRawSeed(
-        state.networkStateData.ss58Format!,
-        cryptoType: cryptoType,
-        derivePath: derivePath,
-        rawSeed: account.seed,
-      );
-    } else {
-      throw Exception(
-        'AccountInfo has undefined type AppserviceLoaderCubit._getAddressForAccount',
-      );
     }
   }
 
@@ -155,7 +136,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     final pseudoNewState =
         state.copyWith(status: AppServiceInitStatus.connected);
 
-    await pseudoNewState.subscribeToBalance();
+    pseudoNewState.subscribeToBalance();
     // TODO: Refactor. Make current accoutn a separate state. Listen to that state in poscanassets
     getIt<PoscanAssetsCubit>().switchAccount(state.keyring.current);
     // If only one account, load assets, otherwise just load balances
@@ -199,8 +180,8 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     }
     getIt.registerFactory<TransfersToCubit>(
       () => TransfersToCubit(
-        getTransfers: getIt<GetTransfers>(),
         toMultiAddressAccountId: userPubKey,
+        getTransfers: getIt<GetTransfers>(),
       ),
     );
 
@@ -209,8 +190,8 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     }
     getIt.registerFactory<TransfersFromCubit>(
       () => TransfersFromCubit(
-        getTransfers: getIt<GetTransfers>(),
         fromMultiAddressAccountId: userPubKey,
+        getTransfers: getIt<GetTransfers>(),
       ),
     );
   }
@@ -222,8 +203,8 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     state.plugin.sdk.webView!.addGlobalHandler(
       TxUpdateEventLogsHandler(
         msgId: msgId,
-        setTransactionResult: setTransactionResult,
         webViewRunner: state.plugin.sdk.webView!,
+        setTransactionResult: setTransactionResult,
       ),
     );
   }
@@ -242,8 +223,30 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     return true;
   }
 
-  double get fastAvailableBalance => BalanceUtils.balanceToDouble(
-        state.chosenAccountBalance.value.availableBalance.toString(),
-        state.networkStateData.safeDecimals,
+  static Future<AddressIconData> _getAddressForAccount({
+    required final AppService state,
+    required final AccountInfo account,
+    final CryptoType cryptoType = defaultCryptoType,
+    final String derivePath = '',
+  }) async {
+    if (account is AccountCreateMnemonic) {
+      return state.plugin.sdk.api.keyring.addressFromMnemonic(
+        state.networkStateData.ss58Format!,
+        cryptoType: cryptoType,
+        derivePath: derivePath,
+        mnemonic: account.mnemonic,
       );
+    } else if (account is AccountCreateSeed) {
+      return state.plugin.sdk.api.keyring.addressFromRawSeed(
+        state.networkStateData.ss58Format!,
+        cryptoType: cryptoType,
+        derivePath: derivePath,
+        rawSeed: account.seed,
+      );
+    } else {
+      throw Exception(
+        'AccountInfo has undefined type AppserviceLoaderCubit._getAddressForAccount',
+      );
+    }
+  }
 }

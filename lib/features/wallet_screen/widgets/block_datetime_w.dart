@@ -12,7 +12,7 @@ class BlockDateTimeW extends StatelessWidget {
     if (dateTime != null) {
       return UTCTime(
         dateTime: dateTime,
-        formatter: Fmt.transferDateFormat,
+        formatter: Formatters.transferDateFormat,
       );
     } else {
       return const SizedBox();

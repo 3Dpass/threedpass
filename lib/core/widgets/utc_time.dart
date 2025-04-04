@@ -31,10 +31,8 @@ class UTCTime extends StatelessWidget {
           WidgetSpan(
             child: Text(
               ' UTC',
-              textScaleFactor: 0.8,
-              style: small!.copyWith(
-                color: D3pColors.disabled,
-              ),
+              style: small!.copyWith(color: D3pColors.disabled),
+              textScaler: TextScaler.linear(0.8),
             ),
           ),
         ],

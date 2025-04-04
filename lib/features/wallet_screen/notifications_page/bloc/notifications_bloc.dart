@@ -24,7 +24,7 @@ class NotificationsBloc
     final AddNotification event,
     final Emitter<NotificationsState> emit,
   ) {
-    final newList = List<NotificationDTO>.from(state.notifications);
+    final newList = List<NotificationDTO>.of(state.notifications);
     newList.insert(0, event.notification);
     emit(state.copyWith(notifications: newList));
   }
@@ -33,7 +33,7 @@ class NotificationsBloc
     final UpdateNotification event,
     final Emitter<NotificationsState> emit,
   ) {
-    final newList = List<NotificationDTO>.from(state.notifications);
+    final newList = List<NotificationDTO>.of(state.notifications);
     final index = newList.indexOf(event.oldN);
     if (index == -1) {
       logger.e(

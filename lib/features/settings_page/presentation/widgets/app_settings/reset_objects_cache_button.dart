@@ -84,12 +84,12 @@ class _State extends State<ResetObjectsCacheButton> {
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            W16(),
+                            const W16(),
                             const Icon(
                               Icons.storage,
                               color: Colors.amber,
                             ),
-                            W16(),
+                            const W16(),
                             D3pBodyMediumText(
                               'reset_objects_cache_plural'.tr(
                                 args: [

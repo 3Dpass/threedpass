@@ -21,7 +21,7 @@ class AccountChooseTileText extends StatelessWidget {
   }
 
   String shortAddress() {
-    return Fmt.shorterAddress(address);
+    return Formatters.shorterAddress(address);
   }
 
   @override

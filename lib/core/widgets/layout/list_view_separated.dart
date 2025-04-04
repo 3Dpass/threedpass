@@ -13,9 +13,10 @@ class ListViewSeparated extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    // TODO Refactor to sliver
     return ListView.separated(
-      shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
       itemBuilder: (final context, final i) => children[i],
       separatorBuilder: (final context, final i) => separator,
       itemCount: children.length,

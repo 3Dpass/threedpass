@@ -25,10 +25,6 @@ class CreateAccountMnemonicConfirmPage extends StatelessWidget {
     return BlocProvider(
       create: (final context) => MnemonicInputCubit(mnemonic),
       child: AccountPageTemplate.create(
-        submitButton: const SizedBox(
-          width: double.infinity,
-          child: SubmitMnemonicConfirmButton(),
-        ),
         children: [
           const H16(),
           Text(
@@ -47,6 +43,10 @@ class CreateAccountMnemonicConfirmPage extends StatelessWidget {
           ),
           const MnemonicConfirmInput(),
         ],
+        submitButton: const SizedBox(
+          width: double.infinity,
+          child: SubmitMnemonicConfirmButton(),
+        ),
       ),
     );
   }

@@ -824,6 +824,105 @@ extension $NotificationSwapAssetsCopyWith on NotificationSwapAssets {
       _$NotificationSwapAssetsCWProxyImpl(this);
 }
 
+abstract class _$NotificationCreateAtomicSwapCWProxy {
+  NotificationCreateAtomicSwap from(KeyPairData from);
+
+  NotificationCreateAtomicSwap to(KeyPairData to);
+
+  NotificationCreateAtomicSwap status(ExtrinsicStatus status);
+
+  NotificationCreateAtomicSwap message(String? message);
+
+  NotificationCreateAtomicSwap isPoscan(bool isPoscan);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationCreateAtomicSwap(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationCreateAtomicSwap(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationCreateAtomicSwap call({
+    KeyPairData? from,
+    KeyPairData? to,
+    ExtrinsicStatus? status,
+    String? message,
+    bool? isPoscan,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNotificationCreateAtomicSwap.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfNotificationCreateAtomicSwap.copyWith.fieldName(...)`
+class _$NotificationCreateAtomicSwapCWProxyImpl
+    implements _$NotificationCreateAtomicSwapCWProxy {
+  const _$NotificationCreateAtomicSwapCWProxyImpl(this._value);
+
+  final NotificationCreateAtomicSwap _value;
+
+  @override
+  NotificationCreateAtomicSwap from(KeyPairData from) => this(from: from);
+
+  @override
+  NotificationCreateAtomicSwap to(KeyPairData to) => this(to: to);
+
+  @override
+  NotificationCreateAtomicSwap status(ExtrinsicStatus status) =>
+      this(status: status);
+
+  @override
+  NotificationCreateAtomicSwap message(String? message) =>
+      this(message: message);
+
+  @override
+  NotificationCreateAtomicSwap isPoscan(bool isPoscan) =>
+      this(isPoscan: isPoscan);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationCreateAtomicSwap(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationCreateAtomicSwap(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationCreateAtomicSwap call({
+    Object? from = const $CopyWithPlaceholder(),
+    Object? to = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+    Object? isPoscan = const $CopyWithPlaceholder(),
+  }) {
+    return NotificationCreateAtomicSwap(
+      from: from == const $CopyWithPlaceholder() || from == null
+          ? _value.from
+          // ignore: cast_nullable_to_non_nullable
+          : from as KeyPairData,
+      to: to == const $CopyWithPlaceholder() || to == null
+          ? _value.to
+          // ignore: cast_nullable_to_non_nullable
+          : to as KeyPairData,
+      status: status == const $CopyWithPlaceholder() || status == null
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as ExtrinsicStatus,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+      isPoscan: isPoscan == const $CopyWithPlaceholder() || isPoscan == null
+          ? _value.isPoscan
+          // ignore: cast_nullable_to_non_nullable
+          : isPoscan as bool,
+    );
+  }
+}
+
+extension $NotificationCreateAtomicSwapCopyWith
+    on NotificationCreateAtomicSwap {
+  /// Returns a callable class that can be used as follows: `instanceOfNotificationCreateAtomicSwap.copyWith(...)` or like so:`instanceOfNotificationCreateAtomicSwap.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$NotificationCreateAtomicSwapCWProxy get copyWith =>
+      _$NotificationCreateAtomicSwapCWProxyImpl(this);
+}
+
 abstract class _$NotificationsStateCWProxy {
   NotificationsState notifications(List<NotificationDTO> notifications);
 

@@ -20,20 +20,17 @@ class RenameObjectButton extends StatelessWidget {
 
     return Padding16(
       child: LineButton(
-        icon: Icon(
-          Icons.abc_rounded,
-          color: theme.colorScheme.onSurface,
+        onBasePressed: () => context.router.push(
+          RenameObjectRoute(
+            snapshot: snap,
+            hashObject: hashObj,
+          ),
         ),
+        icon: Icon(Icons.abc_rounded, color: theme.colorScheme.onSurface),
         localization_key: 'rename_object_button_label',
         goToBasicRight: LineButtonRightValue(
           chevronColor: theme.colorScheme.onSurface,
           value: '',
-        ),
-        onBasePressed: () => context.router.push(
-          RenameObjectRoute(
-            snapshot: snap,
-            hashObject: hashObj, // TODO Remove hashObject from path
-          ),
         ),
         cardShape: CardShape.all,
       ),

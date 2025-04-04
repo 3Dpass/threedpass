@@ -18,7 +18,7 @@ class UploadedObjectOwnerText extends StatelessWidget {
   Widget build(final BuildContext context) {
     return FastRichText(
       mainText: short
-          ? Fmt.shorterAddress(uploadedObject.owner)
+          ? Formatters.shorterAddress(uploadedObject.owner)
           : uploadedObject.owner,
       secondaryText: 'uploaded_object_owner'.tr(),
     );

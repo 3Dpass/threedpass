@@ -27,14 +27,12 @@ class ToCardOneToMany extends StatelessWidget {
     final dismissFunctionFabric = DismissFunctionFabric(context);
     final dismiss = isFirst ? null : dismissFunctionFabric.buildToAddress(data);
     final bloc = BlocProvider.of<TransferInfoBloc>(context);
+
     return BasicTransferBlock(
-      dismiss: dismiss,
       child: Column(
         children: [
-          ToCardBasic(
-            data: data,
-          ),
-          const H4(),
+          ToCardBasic(data: data),
+          const H8(),
           AmountTextFieldBuilder(
             amountController: sendAmountData.amountController,
             transferType: metaInfoType,
@@ -42,6 +40,7 @@ class ToCardOneToMany extends StatelessWidget {
           ),
         ],
       ),
+      dismiss: dismiss,
     );
   }
 }

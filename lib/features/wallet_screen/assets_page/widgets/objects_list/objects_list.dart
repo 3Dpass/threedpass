@@ -50,42 +50,37 @@ class _State extends State<AssetsUploadedObjectsList> {
     final userObjects = await uploadedObjectsCubit
         .getUserObjects(widget.appService.keyring.current.address!);
 
-    setState(() {
-      relatedObjects = userObjects;
-    });
+    if (mounted)
+      setState(() {
+        relatedObjects = userObjects;
+      });
   }
 
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<PoscanObjectsCubit, PoscanObjectsState>(
-      buildWhen: (final previous, final current) =>
-          previous.areOwnerObjectsLoading != current.areOwnerObjectsLoading,
       builder: (final context, final state) =>
           BlocBuilder<NotificationsBloc, NotificationsState>(
-        buildWhen: (final previous, final current) =>
-            hasPutObj(previous) != hasPutObj(current),
         builder: (final context, final notifState) {
           if ((relatedObjects?.isEmpty ?? false) && hasPutObj(notifState)) {
             return const ObjectsListEmptyRefresh();
           }
-
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Padding16(
-                child: ObjectsListHeaderFull(),
+          return Column(mainAxisSize: MainAxisSize.min, children: [
+            const Padding16(child: ObjectsListHeaderFull()),
+            const H8(),
+            Flexible(
+              child: _ActualObjectsListSection(
+                isLoading: state.areOwnerObjectsLoading,
+                objects: relatedObjects,
               ),
-              const H8(),
-              Flexible(
-                child: _ActualObjectsListSection(
-                  isLoading: state.areOwnerObjectsLoading,
-                  objects: relatedObjects,
-                ),
-              ),
-            ],
-          );
+            )
+          ]);
         },
+        buildWhen: (final previous, final current) =>
+            hasPutObj(previous) != hasPutObj(current),
       ),
+      buildWhen: (final previous, final current) =>
+          previous.areOwnerObjectsLoading != current.areOwnerObjectsLoading,
     );
   }
 

@@ -18,9 +18,8 @@ class FromsListView extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return ListView.builder(
-      shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: transferInfo.fromAddresses.length,
+      shrinkWrap: true,
       itemBuilder: (final context, final index) =>
           transferInfo.screenType == TransferScreenType.many_to_one
               ? FromCardManyToOne(
@@ -33,6 +32,7 @@ class FromsListView extends StatelessWidget {
                   data: transferInfo.fromAddresses[index],
                   isFirst: index == 0,
                 ),
+      itemCount: transferInfo.fromAddresses.length,
     );
   }
 }

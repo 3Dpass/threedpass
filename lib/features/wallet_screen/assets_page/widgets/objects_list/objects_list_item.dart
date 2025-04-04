@@ -43,7 +43,7 @@ class ObjectsListItem extends StatelessWidget {
               const SizedBox(width: 8),
               UTCTime(
                 dateTime: uploadedObject.statusDateUTC,
-                formatter: Fmt.shortDateFormat,
+                formatter: Formatters.shortDateFormat,
               ),
             ],
           ),
@@ -66,7 +66,7 @@ class ObjectsListItem extends StatelessWidget {
           ),
         ],
       ),
-      onTap: () async => context.router.push(
+      onTap: () => context.router.push(
         UploadedObjectWrapper(
           objectId: uploadedObject.id,
           uploadedObject: uploadedObject,

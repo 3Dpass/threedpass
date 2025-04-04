@@ -7,7 +7,7 @@ abstract class GetTransfersCubit extends Cubit<void> {
   GetTransfersCubit() : super(null) {
     pagingController = PagingController(firstPageKey: '1')
       ..addPageRequestListener((final String pageKey) async {
-        nextPage(pageKey);
+        await nextPage(pageKey);
       });
   }
 

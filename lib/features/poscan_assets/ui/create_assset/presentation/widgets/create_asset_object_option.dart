@@ -18,7 +18,7 @@ class CreateAssetObjectOption extends StatelessWidget {
       buildChildren: buildChildren,
       titleLocalizeKey: 'create_asset_options_label',
       initialValue: createPoscanAssetState.includeObject,
-      onChanged: (p0) =>
+      onChanged: (final _) =>
           bloc.switchIncludeObject(), // remove selected storage & prop value,
     );
   }

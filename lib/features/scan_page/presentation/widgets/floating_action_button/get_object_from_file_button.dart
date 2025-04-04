@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
@@ -12,15 +12,14 @@ import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/file_picker.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/snapshot_create_from_file.dart';
 import 'package:threedpass/features/scan_page/bloc/scan_isolate_cubit.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/setup.dart';
 
 class GetObjectFromFileFloatingButton extends StatelessWidget {
   const GetObjectFromFileFloatingButton({final Key? key}) : super(key: key);
 
-  void showToast(final String text, final BuildContext context) {
-    Fluttertoast.showToast(msg: text);
-  }
+  Future<void> showToast(final String text, final BuildContext context) async =>
+      Fluttertoast.showToast(msg: text);
 
   // void showLoader(final BuildContext context) {
   //   final homeContext = BlocProvider.of<HomeContextCubit>(context);
@@ -50,8 +49,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
     final snapFactory = SnapshotFileFactory(
       // showLoader: () => showLoader(context),
       hashesListBloc: BlocProvider.of<HashesListBloc>(context),
-      scanSettings:
-          BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings,
+      scanSettings: BlocProvider.of<SettingsCubit>(context).state.scanSettings,
       // objectsDirectory: getIt<ObjectsDirectory>(),
       scanIsolateCubit: BlocProvider.of<ScanIsolateCubit>(context),
       // recievePort: recievePort,
@@ -74,12 +72,12 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
       // hideLoader(context);
       isolateCubit.setNull();
 
-      if (pair.left == null) {
+      if (pair.$1 == null) {
         // Create new object
         final newObj = HashObject(
-          name: 'Object ${pair.right.fileHash}',
+          name: 'Object ${pair.$2.fileHash}',
           snapshots: [
-            pair.right,
+            pair.$2,
           ],
         );
         hashesListBloc.add(AddObject(object: newObj));
@@ -89,7 +87,7 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
         ));
       } else {
         // Add snapshot
-        hashesListBloc.add(SaveSnapshot(hash: pair.right, object: pair.left!));
+        hashesListBloc.add(SaveSnapshot(hash: pair.$2, object: pair.$1!));
         unawaited(
           Fluttertoast.showToast(
             msg: 'Object recognized',
@@ -98,16 +96,16 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
         );
       }
     } on FilePickerException catch (e) {
-      showToast(e.message, context);
+      unawaited(showToast(e.message, context));
       logger.e('Caught FilePickerException: $e');
     } on Exception catch (e) {
       logger.e('Caught Exception during file scan: $e');
 
       if (e.toString().contains(ScanIsolateCubit.cancelMsg)) {
-        showToast('Scanning canceled by user.', context);
+        unawaited(showToast('Scanning canceled by user.', context));
         // hideLoader(context);
       } else {
-        showToast('Error during file pick. $e', context);
+        unawaited(showToast('Error during file pick. $e', context));
       }
     }
   }
@@ -115,11 +113,9 @@ class GetObjectFromFileFloatingButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return FloatingActionButton(
-      heroTag: 'get_object_from_file',
       child: const Icon(Icons.folder_open_rounded),
-      onPressed: () => createHashFromFile(
-        context,
-      ),
+      heroTag: 'get_object_from_file',
+      onPressed: () async => createHashFromFile(context),
     );
   }
 }

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 import 'package:threedpass/features/app/presentation/app_error_widget.dart';
 import 'package:threedpass/router/router.dart';
 
@@ -17,7 +17,7 @@ class D3pPlatformApp extends StatelessWidget {
     super.key,
   });
 
-  Widget errorBuilder(final BuildContext context, final Widget? widget) {
+  Widget errorBuilder(final BuildContext _, final Widget? widget) {
     ErrorWidget.builder = (final errorDetails) => AppErrorWidget(
           errorDetails: errorDetails,
           isScaffold: widget is Scaffold || widget is Navigator,
@@ -32,27 +32,27 @@ class D3pPlatformApp extends StatelessWidget {
   Widget build(final BuildContext context) {
     if (Platform.isIOS) {
       return CupertinoApp.router(
-        debugShowCheckedModeBanner: false,
-        title: title,
-        builder: errorBuilder,
-        theme: D3pThemeData.cupertinoThemeData(brightness),
-        routerDelegate: rootRouter.delegate(),
         routeInformationParser: rootRouter.defaultRouteParser(),
+        routerDelegate: rootRouter.delegate(),
+        theme: D3pThemeData.cupertinoThemeData(brightness),
+        builder: errorBuilder,
+        title: title,
+        locale: context.locale,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
-        locale: context.locale,
+        debugShowCheckedModeBanner: false,
       );
     } else {
       return MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        title: title,
-        builder: errorBuilder,
-        theme: D3pThemeData.themeData(brightness),
-        routerDelegate: rootRouter.delegate(),
         routeInformationParser: rootRouter.defaultRouteParser(),
+        routerDelegate: rootRouter.delegate(),
+        builder: errorBuilder,
+        title: title,
+        theme: D3pThemeData.themeData(brightness),
+        locale: context.locale,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
-        locale: context.locale,
+        debugShowCheckedModeBanner: false,
       );
     }
   }

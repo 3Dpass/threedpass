@@ -27,7 +27,7 @@ class CopySpanWidget extends StatelessWidget {
           child: D3pIconButton(
             iconData: Icons.copy,
             size: 16,
-            onPressed: () => copyAndNotify(
+            onPressed: () async => copyAndNotify(
               textToCopy: textToCopy,
               textToShow: textToShow,
             ),

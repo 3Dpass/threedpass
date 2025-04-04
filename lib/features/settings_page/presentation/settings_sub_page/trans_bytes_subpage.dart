@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/enum_button.dart';
 import 'package:threedpass/core/widgets/buttons/enum_buttons_list.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/features/settings_page/presentation/settings_sub_page/setting_sub_page.dart';
@@ -43,14 +43,15 @@ class _TransBytesSubPageState extends State<TransBytesSubPage> {
 
   final _formKey = GlobalKey<FormState>();
 
-  void onSavePressed(final BuildContext context) {
+  bool onSavePressed(final BuildContext context) {
     if (_formKey.currentState!.validate()) {
       changeSettings(controller.text, context);
     }
+    return true;
   }
 
   void changeSettings(final String rawInput, final BuildContext context) {
-    final cubit = BlocProvider.of<SettingsConfigCubit>(context);
+    final cubit = BlocProvider.of<SettingsCubit>(context);
 
     // Set transBytes
     String newTransBytes = cubit.state.scanSettings.transBytes;
@@ -70,6 +71,7 @@ class _TransBytesSubPageState extends State<TransBytesSubPage> {
   void onEnumPressed(final TransBytesMode mode) {
     setState(() {
       chosennTBM = mode;
+      _formKey.currentState?.validate();
     });
   }
 

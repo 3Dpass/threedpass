@@ -3,7 +3,7 @@ import 'package:decimal/decimal.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:rational/rational.dart';
-import 'package:threedpass/core/polkawallet/utils/decimal_set_decimals.dart';
+import 'package:threedpass/core/polkawallet/utils/set_decimals.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
@@ -24,9 +24,9 @@ class PoscanAssetsState {
   List<PoscanAssetCombined> get combined => assets
       .map(
         (final e) => PoscanAssetCombined(
+          poscanAssetBalance: balances[e.id],
           poscanAssetData: e,
           poscanAssetMetadata: metadata[e.id],
-          poscanAssetBalance: balances[e.id],
         ),
       )
       .toList();

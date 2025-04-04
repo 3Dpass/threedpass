@@ -19,12 +19,10 @@ class FromCardOneToMany extends StatelessWidget {
     final dismissFunctionFabric = DismissFunctionFabric(context);
     final dismiss =
         isFirst ? null : dismissFunctionFabric.buildFromAddress(data);
+
     return BasicTransferBlock(
+      child: FromCardBasic(data: data, isFirst: isFirst),
       dismiss: dismiss,
-      child: FromCardBasic(
-        data: data,
-        isFirst: isFirst,
-      ),
     );
   }
 }

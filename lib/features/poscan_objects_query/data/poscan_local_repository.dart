@@ -78,7 +78,8 @@ class PoScanLocalRepository {
   }
 
   Future<UploadedObject?> firstIfContainsAnyHash(
-      final List<String> hashes) async {
+    final List<String> hashes,
+  ) async {
     return afterInit(() async {
       final filters = hashes
           .map<FilterCondition>(

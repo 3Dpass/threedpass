@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 
 class ThemeBuilder extends StatelessWidget {
@@ -16,7 +16,7 @@ class ThemeBuilder extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
+    return BlocBuilder<SettingsCubit, GlobalSettings>(
       buildWhen: (final previous, final current) =>
           previous.appSettings.darkTheme != current.appSettings.darkTheme,
       builder: (final BuildContext context, final GlobalSettings value) =>

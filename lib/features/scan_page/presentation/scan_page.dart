@@ -12,12 +12,12 @@ class ScanPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return const D3pScaffold(
+      body: ScanPageContent(),
       appBarTitle: 'recognize_your_objects',
+      floatingActionButton: ScanPageFloatingActionButton(),
       appBarActions: [
         SelectManyIconButton(),
       ],
-      floatingActionButton: ScanPageFloatingActionButton(),
-      body: ScanPageContent(),
     );
   }
 }

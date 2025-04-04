@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// TODO make async variation with loader
 class D3pIconButton extends StatelessWidget {
   const D3pIconButton({
     this.iconData,

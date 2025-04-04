@@ -36,16 +36,16 @@ class _State extends State<BasicPasswordTextField> {
   @override
   Widget build(final BuildContext context) {
     return BasicTransferTextField(
-      labelText: 'enter_password_label'.tr(),
       controller: widget.passwordController,
       hintText: 'enter_password_hint'.tr(),
-      validator: _passValidator,
-      obscureText: obscureText,
-      maxLines: 1,
-      suffixButton: obscureText ? Icons.visibility : Icons.visibility_off,
-      onSuffixButtonPressed: obscureTextPressed,
       labelButton: widget.labelButton,
+      labelText: 'enter_password_label'.tr(),
+      maxLines: 1,
+      obscureText: obscureText,
       onLabelButtonPressed: widget.onLabelButtonPressed,
+      onSuffixButtonPressed: obscureTextPressed,
+      suffixButton: obscureText ? Icons.visibility : Icons.visibility_off,
+      validator: _passValidator,
       bottomWidget: widget.bottomWidget,
     );
   }

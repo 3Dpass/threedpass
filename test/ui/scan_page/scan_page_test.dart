@@ -9,7 +9,7 @@ import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot_create_from_file/snapshot_create_from_file.dart';
 import 'package:threedpass/features/scan_page/bloc/scan_isolate_cubit.dart';
 // import 'package:threedpass/features/scan_page/presentation/widgets/get_object_from_file_button.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 import '../../test_app.dart';
@@ -20,10 +20,8 @@ void main() {
 
   group('Example test', () {
     testWidgets('MyWidget has a title and message', (final tester) async {
-      print('aaaaaaa1');
       // Initial pump
       await tester.pumpWidget(app);
-      print('aaaaaaa2');
 
       final filePath = '${Directory.current.path}/resources/3dpass-487203.obj';
       // final Uri basedir = (goldenFileComparator. as LocalFileComparator).basedir;
@@ -55,7 +53,7 @@ void main() {
         // showLoader: () {},
         hashesListBloc: BlocProvider.of<HashesListBloc>(context),
         scanSettings:
-            BlocProvider.of<SettingsConfigCubit>(context).state.scanSettings,
+            BlocProvider.of<SettingsCubit>(context).state.scanSettings,
         // objectsDirectory: getIt<ObjectsDirectory>(),
         scanIsolateCubit: BlocProvider.of<ScanIsolateCubit>(context),
         // recievePort: recievePort,
@@ -74,11 +72,7 @@ void main() {
       //   ),
       // );
 
-      print('aaaaaaa3');
-
       await tester.pumpAndSettle();
-
-      print('aaaaaaa4');
     });
   });
 }

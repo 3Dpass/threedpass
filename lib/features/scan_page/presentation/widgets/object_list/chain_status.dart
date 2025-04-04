@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 import 'package:threedpass/core/utils/empty_function.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
@@ -45,23 +45,21 @@ class _State extends State<ChainStatus> {
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<PoscanObjectsCubit, PoscanObjectsState>(
-      buildWhen: (final previous, final current) =>
-          previous.areOwnerObjectsLoading != current.areOwnerObjectsLoading,
       builder: (final context, final state) {
         if (loadedObject != null) {
           return Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: FastRichText(
-              mainText: 'chain_status_recognized'.tr(),
-              secondaryText: 'snapshot_chain_status'.tr(),
-              needSpace: true,
-              mainTextColor: D3pThemeData.mainColor,
-            ),
-          );
+              padding: const EdgeInsets.only(bottom: 8),
+              child: FastRichText(
+                  mainText: 'chain_status_recognized'.tr(),
+                  secondaryText: 'snapshot_chain_status'.tr(),
+                  needSpace: true,
+                  mainTextColor: D3pThemeData.mainColor));
         } else {
           return const SizedBox();
         }
       },
+      buildWhen: (final previous, final current) =>
+          previous.areOwnerObjectsLoading != current.areOwnerObjectsLoading,
     );
   }
 }

@@ -4,11 +4,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/utils/auto_route_getter.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/core/widgets/dialog/d3p_platform_dialog.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/preview/preview_page/bloc/outer_context_cubit.dart';
 import 'package:threedpass/features/preview/preview_page/bloc/preview_page_cubit.dart';
 
 @RoutePage()
@@ -25,8 +25,7 @@ class DeleteSnapshotDialog extends StatelessWidget {
       ),
     );
 
-    final outerContext = BlocProvider.of<OuterContextCubit>(context).state;
-    unawaited(outerContext.router.pop());
+    unawaited(context.rootRouter.maybePop());
   }
 
   @override
@@ -43,7 +42,7 @@ class DeleteSnapshotDialog extends StatelessWidget {
       actions: [
         D3pTextButton(
           text: 'Cancel'.tr(),
-          onPressed: () => context.router.pop(),
+          onPressed: () async => context.router.maybePop(),
         ),
         D3pTextButton(
           text: 'Delete'.tr(),

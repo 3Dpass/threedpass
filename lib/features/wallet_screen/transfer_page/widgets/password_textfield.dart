@@ -25,9 +25,9 @@ class PasswordTextField extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BasicPasswordTextField(
       passwordController: passwordController,
+      bottomWidget: isFirst ? null : const PasswordHint(),
       labelButton: isFirst ? null : Icons.content_paste_go,
       onLabelButtonPressed: () => onLabelButtonPressed(context),
-      bottomWidget: isFirst ? null : const PasswordHint(),
     );
   }
 }

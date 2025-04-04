@@ -23,8 +23,8 @@ class ScanProperties extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           CopyTextCard(
-            textToCopy: snapshot.settingsConfig.toRawString(),
             textToShow: 'scan_properties_copied_toast'.tr(),
+            textToCopy: snapshot.settingsConfig.toRawString(),
             child: Text.rich(snapshot.settingsConfig.toText(context)),
           ),
           D3pTextButton(

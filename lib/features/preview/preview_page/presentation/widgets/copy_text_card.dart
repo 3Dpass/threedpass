@@ -19,7 +19,7 @@ class CopyTextCard extends StatelessWidget {
   Widget build(final BuildContext context) {
     return ClickableCard(
       // side: BorderSide(color: Colors.grey),
-      onTap: () => copyAndNotify(
+      onTap: () async => copyAndNotify(
         textToCopy: textToCopy,
         textToShow: textToShow,
       ),

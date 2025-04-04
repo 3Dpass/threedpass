@@ -24,9 +24,11 @@ class _MainState extends State<_CreateAccountStateful> {
         [];
 
     if (realObjects.isEmpty) {
-      context.router.pop();
-      Fluttertoast.showToast(
-        msg: 'create_from_object_error_no_stable_hashes'.tr(),
+      unawaited(context.router.maybePop());
+      unawaited(
+        Fluttertoast.showToast(
+          msg: 'create_from_object_error_no_stable_hashes'.tr(),
+        ),
       );
     }
 

@@ -5,7 +5,7 @@ import 'package:threedpass/features/settings_page/domain/entities/scan_settings.
 
 const int $nbsp = 0x00A0; // Non-breaking space
 
-extension ToText on ScanSettings {
+extension SettingsText on ScanSettings {
   String get prettyTransBytes {
     if (transBytesMode == TransBytesMode.none) {
       return ScanSettings.noneTransBytesKey;
@@ -15,14 +15,13 @@ extension ToText on ScanSettings {
   }
 
   List<String> propertiesList() {
-    final res = <String>[
+    return <String>[
       '- ' + 'algorithm_span'.tr() + ': ' + algorithm + '\n',
       '- ' + 'grid_span'.tr() + ': ${gridSize}x$gridSize\n',
       '- ' + 'n_sections_span'.tr() + ': $nSections\n',
       '- ' + 'lib_version_span'.tr() + ': $libVersion\n',
       '- ' + 'trans_bytes_span'.tr() + ': $prettyTransBytes',
     ];
-    return res;
   }
 
   String toRawString() {
@@ -39,17 +38,14 @@ extension ToText on ScanSettings {
     final faded = Theme.of(context).customTextStyles.fadedBodyMedium;
     return TextSpan(
       text: tag,
-      style: faded,
       children: [
-        TextSpan(
-          text: text,
-          style: medium,
-        ),
+        TextSpan(text: text, style: medium),
         TextSpan(
           text: end,
           style: faded,
         ),
       ],
+      style: faded,
     );
   }
 
@@ -113,8 +109,8 @@ extension ToText on ScanSettings {
 
     return TextSpan(
       text: '',
-      style: style ?? Theme.of(context).textTheme.bodyMedium,
       children: children,
+      style: style ?? Theme.of(context).textTheme.bodyMedium,
     );
   }
 }

@@ -102,7 +102,7 @@ return res;
     final argCat = jsonEncode(params.categoryFabric.build());
     final argNApprovals = jsonEncode(params.nApprovals);
 
-    final hashesToHex = params.hashes.map((e) => '"0x' + e + '"');
+    final hashesToHex = params.hashes.map((final e) => '"0x' + e + '"');
     final hexHashesStr = hashesToHex.join(',');
     final argHashes = '[$hexHashesStr]';
 

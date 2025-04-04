@@ -8,8 +8,11 @@ extension _ on AppServiceLoaderCubit {
     // Init keyring
     await keyring.init([ss58formatLive, ss58formatTest]);
 
+    final nodeUr = await polkadotNodeUrl.initUrl();
+    final plugin = D3pLiveNetPlugin(nodeUrl: nodeUr);
+
     final appService = AppService(
-      plugin: _buildPlugin(walletSettings),
+      plugin: plugin,
       keyring: keyring,
       status: AppServiceInitStatus.connecting,
     );
@@ -23,12 +26,6 @@ extension _ on AppServiceLoaderCubit {
     await _startPlugin(appService);
 
     unawaited(_afterInit());
-  }
-
-  static D3pCorePlugin _buildPlugin(final WalletSettings walletSettings) {
-    return walletSettings.isTestNet
-        ? D3pTestNetPlugin(nodeUrl: walletSettings.nodeUrl)
-        : D3pLiveNetPlugin(nodeUrl: walletSettings.nodeUrl);
   }
 
   /// Connects to node, subscribes to balance and blocks updates.
@@ -54,7 +51,7 @@ extension _ on AppServiceLoaderCubit {
     //   }),
     // );
 
-    await newAppService.subscribeToBalance();
+    newAppService.subscribeToBalance();
     // await newAppService.setTokensData();
 
     AppServiceLoaderCubit.registerTransferCubits(newAppService);
@@ -88,17 +85,18 @@ extension _ on AppServiceLoaderCubit {
       // If you connected to test node and local settings are live or
       // you connected to live node and local settings are test,
       // then you need to change settings
-      final currentWalletSettings = settingsConfigCubit.state.walletSettings;
-      final isNodeTestNet = networkData.ss58Format == ss58formatTest;
-      if (currentWalletSettings.isTestNet != isNodeTestNet) {
-        settingsConfigCubit.updateSettings(
-          settingsConfigCubit.state.copyWith(
-            walletSettings: currentWalletSettings.copyWith(
-              isTestNet: isNodeTestNet,
-            ),
-          ),
-        );
-      }
+
+      // final currentWalletSettings = settingsConfigCubit.state.walletSettings;
+      // final isNodeTestNet = networkData.ss58Format == ss58formatTest;
+      // if (currentWalletSettings.isTestNet != isNodeTestNet) {
+      //   await settingsConfigCubit.updateSettings(
+      //     settingsConfigCubit.state.copyWith(
+      //       walletSettings: currentWalletSettings.copyWith(
+      //         isTestNet: isNodeTestNet,
+      //       ),
+      //     ),
+      //   );
+      // }
 
       newAppService = AppService(
         plugin: state.plugin,

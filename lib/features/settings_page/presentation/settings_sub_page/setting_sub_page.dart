@@ -14,11 +14,13 @@ class SettingSubPage extends StatelessWidget {
   final String appbarTitle;
   final Widget child;
 
-  final void Function(BuildContext context) onSavePressed;
+  final bool Function(BuildContext context) onSavePressed;
 
-  void saveAndExit(final BuildContext context) {
-    onSavePressed(context);
-    context.router.pop();
+  Future<void> saveAndExit(final BuildContext context) async {
+    final success = onSavePressed(context);
+    if (success) {
+      await context.router.maybePop();
+    }
   }
 
   @override
@@ -28,7 +30,7 @@ class SettingSubPage extends StatelessWidget {
       appBarActions: [
         D3pIconButton(
           iconData: Icons.check,
-          onPressed: () => saveAndExit(context),
+          onPressed: () async => saveAndExit(context),
         ),
       ],
       body: child,

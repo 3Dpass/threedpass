@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class D3pPlatformDialog extends StatelessWidget {
   const D3pPlatformDialog({
+    required this.title,
     required this.content,
     required this.actions,
-    required this.title,
     super.key,
   });
   final String title;

@@ -60,19 +60,23 @@ class PoolsCubit extends Cubit<PoolsState> {
           stackTrace,
         ),
       ),
-      onSuccess: (final List<BasicPoolEntity> data) async {
+      onSuccess: (final List<BasicPoolEntity> data) {
         logger.t(
           '[POOLS] Got basic pools len=${data.length}. Current: $currentCounter. Counter: $counter',
         );
-        for (final basic in data) {
+
+        for (int i = 0; i < data.length; ++i) {
+          final basic = data[i];
+
           if (currentCounter != counter) {
             logger.t(
               '[POOLS] Stop pools update. Current: $currentCounter. Counter: $counter',
             );
+
             return;
           }
 
-          await getFullPoolInfo.safeCall(
+          getFullPoolInfo.safeCall(
             params: GetFullPoolInfoParams(
               basicPool: basic,
               address: address,
@@ -89,7 +93,7 @@ class PoolsCubit extends Cubit<PoolsState> {
             },
             onSuccess: (final PoolFullInfo pool) {
               final poolsList = state.valueOrNull != null
-                  ? List<PoolFullInfo>.from(state.valueOrNull!.pools)
+                  ? List<PoolFullInfo>.of(state.valueOrNull!.pools)
                   : List<PoolFullInfo>.empty(growable: true);
               poolsList.add(pool);
               final resState = _State(
@@ -101,7 +105,8 @@ class PoolsCubit extends Cubit<PoolsState> {
                 );
                 return;
               }
-              if (basic == data.last) {
+
+              if (i == data.length - 1) {
                 emit(
                   AsyncValue.data(resState),
                 );

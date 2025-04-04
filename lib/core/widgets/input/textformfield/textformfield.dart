@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_special_styles.dart';
-import 'package:threedpass/core/theme/d3p_text_input_theme.dart';
+import 'package:threedpass/core/utils/get_theme.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 
@@ -13,6 +12,7 @@ part 'label.dart';
 
 class D3pTextFormField extends StatelessWidget {
   D3pTextFormField({
+    super.key,
     final TextEditingController? controller,
     this.hintText,
     this.labelText,
@@ -26,7 +26,7 @@ class D3pTextFormField extends StatelessWidget {
     this.inputFormatters,
     this.maxLen,
     this.bottomHelpText,
-    this.enabled,
+    this.enabled = true,
     this.obscureText = false,
     this.maxLines,
     this.isCollapsed = false,
@@ -36,11 +36,10 @@ class D3pTextFormField extends StatelessWidget {
     this.readOnly = false,
     this.enableInteractiveSelection = true,
     this.contentPadding =
-        const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+        const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
     // this.focusedBorder,
     // this.border,
     this.bottomWidget,
-    super.key,
   }) : controller = controller ?? TextEditingController();
 
   final void Function()? onLabelButtonPressed;
@@ -53,7 +52,7 @@ class D3pTextFormField extends StatelessWidget {
   final Widget? bottomWidget;
 
   final TextEditingController controller;
-  final bool? enabled;
+  final bool enabled;
   final String? hintText;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
@@ -80,7 +79,8 @@ class D3pTextFormField extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final textStyle = Theme.of(context).customTextStyles;
+    // final textStyle = Theme.of(context).customTextStyles;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,43 +90,40 @@ class D3pTextFormField extends StatelessWidget {
             children: [
               Text(
                 labelText ?? '',
-                style: textStyle.fadedBodyMedium,
+                // style: textStyle.fadedBodyMedium,
               ),
               const H4(),
             ],
           ),
         SizedBox(
           child: TextFormField(
-            // TODO Make CupertinoTextField
-            style: Theme.of(context).textTheme.bodyLarge,
+            controller: controller,
             decoration: InputDecoration(
-              isDense: false,
-              filled: true,
-              border: D3pTextInputTheme.border,
-              focusedBorder: D3pTextInputTheme.focusedBorder,
-              contentPadding: contentPadding,
               label: makeLabelOutside ? null : _Label(labelText).build(context),
+              hintText: hintText,
+              isCollapsed: isCollapsed,
+              isDense: false,
+              contentPadding: contentPadding,
               suffixIcon: _SuffixButton(
                 labelButton: labelButton,
                 suffixButton: suffixButton,
                 onLabelButtonPressed: onLabelButtonPressed,
                 onSuffixButtonPressed: onSuffixButtonPressed,
+                isTextFieldEnabled: enabled,
               ).build(context),
               suffixText: suffixText,
-              hintText: hintText,
-              isCollapsed: isCollapsed,
+              filled: true,
             ),
-            autofocus: autofocus,
-            controller: controller,
-            onChanged: onChanged,
-            inputFormatters: inputFormatters,
-            maxLength: maxLen,
-            enabled: enabled,
-            validator: validator,
-            maxLines: mMaxLines,
             keyboardType: keyboardType,
-            obscureText: obscureText,
+            autofocus: autofocus,
             readOnly: readOnly,
+            obscureText: obscureText,
+            maxLines: mMaxLines,
+            maxLength: maxLen,
+            onChanged: onChanged,
+            validator: validator,
+            inputFormatters: inputFormatters,
+            enabled: enabled,
             enableInteractiveSelection: enableInteractiveSelection,
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),

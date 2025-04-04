@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 
 class D3pElevatedButton extends StatelessWidget {
   const D3pElevatedButton({
@@ -28,13 +28,16 @@ class D3pElevatedButton extends StatelessWidget {
           text: text ?? '',
         );
     if (Platform.isIOS || Platform.isMacOS) {
-      return CupertinoButton.filled(onPressed: onPressed, child: realChild);
+      return CupertinoButton.filled(
+        child: realChild,
+        onPressed: onPressed,
+      );
     } else {
       return FilledButton(
         onPressed: onPressed,
         style: ButtonStyle(
           minimumSize: isInfinityWidth
-              ? MaterialStateProperty.all(
+              ? WidgetStateProperty.all(
                   const Size.fromHeight(D3pThemeData.buttonHeight),
                 )
               : null,
@@ -59,18 +62,15 @@ class _ElevatedButtonChild extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Row(
-      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         if (iconData != null)
           Padding(
             padding: EdgeInsets.only(right: padding),
             child: Icon(iconData),
           ),
-        if (text.isNotEmpty)
-          Text(
-            text,
-          ),
+        if (text.isNotEmpty) Text(text),
       ],
     );
   }

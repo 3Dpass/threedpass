@@ -10,11 +10,11 @@ class ScanPageFloatingActionButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<SelectSnapshotsCubit, SelectSnapshotsState>(
-      buildWhen: (final previous, final current) =>
-          previous.areSelectable != current.areSelectable,
       builder: (final _, final state) => state.areSelectable
           ? const DeleteSnaphotsButton()
           : const GetObjectFromFileFloatingButton(),
+      buildWhen: (final previous, final current) =>
+          previous.areSelectable != current.areSelectable,
     );
   }
 }

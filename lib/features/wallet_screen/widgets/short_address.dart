@@ -17,9 +17,10 @@ class ShortAddress extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final addressStr = Fmt.shorterAddress(address, pad: 10);
+    final addressStr = Formatters.shorterAddress(address, pad: 10);
     final medium = Theme.of(context).textTheme.bodyMedium;
     final faded = Theme.of(context).customTextStyles.fadedBodyMedium;
+
     return Row(
       children: [
         Flexible(

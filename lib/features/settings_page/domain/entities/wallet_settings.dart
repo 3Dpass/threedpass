@@ -1,6 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
+import 'package:threedpass/features/settings_page/domain/entities/connection_mode.dart';
 
 part 'wallet_settings.g.dart';
 
@@ -8,23 +9,27 @@ part 'wallet_settings.g.dart';
 @HiveType(typeId: 5)
 class WalletSettings {
   const WalletSettings({
-    required this.isTestNet,
+    required this.connectionMode,
     required this.nodeUrl,
   });
 
   const WalletSettings.defaultValues()
-      : isTestNet = false,
-        nodeUrl = d3pDefaultNodeUrl;
+      : nodeUrl = d3pDefaultNodeUrl,
+        connectionMode = ConnectionMode.defaultRandom;
 
-  @HiveField(0)
-  final bool isTestNet;
+  // @HiveField(0)
+  // final bool isTestNet;
+
   @HiveField(1)
   final String nodeUrl;
 
+  @HiveField(2, defaultValue: ConnectionMode.defaultRandom)
+  final ConnectionMode connectionMode;
+
   WalletSettings selfValidate() {
     // Fix deprecated URL
-    String nodeUrl = this.nodeUrl;
-    if (nodeUrl == deprecatedD3pDefaultNodeUrl) {
+    String nodeUrl = this.nodeUrl.trim();
+    if (deprecatedD3pDefaultNodeUrls.contains(nodeUrl)) {
       nodeUrl = d3pDefaultNodeUrl;
     }
 

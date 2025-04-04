@@ -2,8 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
+import 'package:threedpass/core/widgets/dialog/d3p_choose_datetime_modal.dart';
+import 'package:threedpass/core/widgets/dialog/d3p_notification_dialog.dart';
 import 'package:threedpass/features/accounts/router/create_account_page_route.dart';
 import 'package:threedpass/features/asset_conversion/router/asset_conversion_router.dart';
+import 'package:threedpass/features/asset_conversion/ui/create_pool/create_pool_route.dart';
 import 'package:threedpass/features/atomic_swap/atomic_swap_router.dart';
 import 'package:threedpass/features/home_page/router/home_page_route.dart';
 import 'package:threedpass/features/poscan_assets/ui/create_assset/router/create_asset_page_route.dart';
@@ -35,11 +38,20 @@ class RootRouter extends $RootRouter {
     mintAssetPageRoute,
     // Pools routes
     assetsConversionRoute,
-    atomicSwapRoute,
+    createPoolRoute,
+    // Atomic swap
+    createAtomicSwapRoute,
+    claimAtomicSwapRoute,
+    cancelAtomicSwapRoute,
+    pendingAtomicSwapRoute,
     // Set asset metadata
     setMetadataPageRoute,
     // Default loader
     defaultLoadingDialog,
+    // DateTime picker
+    dateTimeRoute,
+    // Basic notification
+    notificationRoute,
   ];
 }
 
@@ -56,16 +68,16 @@ Route<T> dialogBuilder<T>(
       return DialogRoute(
         context: context,
         builder: (final context) => child,
-        settings: page,
         barrierDismissible: false,
+        settings: page,
       );
     case TargetPlatform.macOS:
     case TargetPlatform.iOS:
       return CupertinoDialogRoute(
-        context: context,
         builder: (final context) => child,
-        settings: page,
+        context: context,
         barrierDismissible: false,
+        settings: page,
       );
   }
 }

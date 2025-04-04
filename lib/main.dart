@@ -23,6 +23,7 @@ Future<void> main() async {
 
   runApp(
     EasyLocalization(
+      child: ThreeDApp(),
       supportedLocales: const [
         Locale('en'),
         Locale('es'),
@@ -32,7 +33,6 @@ Future<void> main() async {
       path: 'assets/translations',
       fallbackLocale: const Locale('en'),
       useFallbackTranslations: true,
-      child: ThreeDApp(),
     ),
   );
 }

@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:rational/rational.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/polkawallet/utils/decimal_set_decimals.dart';
+import 'package:threedpass/core/polkawallet/utils/set_decimals.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/polkawallet/utils/rational_remove_decimals.dart';
 import 'package:threedpass/core/usecase.dart';
@@ -241,13 +241,13 @@ class AddLiquidityCubit extends Cubit<AddLiquidityState>
     return AddLiquidityParams(
       asset1: asset1,
       asset2: asset2,
+      updateStatus: () => updateStatus(context),
+      account: account,
+      password: passwordController.text,
       amount1Desired: info.asset1Desired,
       amount2Desired: info.asset2Desired,
       amount1Min: info.asset1Min.toBigInt().toDecimal(),
       amount2Min: info.asset2Min.toBigInt().toDecimal(),
-      account: account,
-      password: passwordController.text,
-      updateStatus: () => updateStatus(context),
     );
   }
 

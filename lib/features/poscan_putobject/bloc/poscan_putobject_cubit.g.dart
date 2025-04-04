@@ -17,7 +17,7 @@ abstract class _$D3PRPCCubitStateCWProxy {
 
   D3PRPCCubitState defaultProperties(List<PoscanProperty> defaultProperties);
 
-  D3PRPCCubitState isPrivate(bool isPrivate);
+  D3PRPCCubitState isPrivate(bool? isPrivate);
 
   D3PRPCCubitState isLoading(bool isLoading);
 
@@ -64,7 +64,7 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
       this(defaultProperties: defaultProperties);
 
   @override
-  D3PRPCCubitState isPrivate(bool isPrivate) => this(isPrivate: isPrivate);
+  D3PRPCCubitState isPrivate(bool? isPrivate) => this(isPrivate: isPrivate);
 
   @override
   D3PRPCCubitState isLoading(bool isLoading) => this(isLoading: isLoading);
@@ -111,10 +111,10 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
           ? _value.defaultProperties
           // ignore: cast_nullable_to_non_nullable
           : defaultProperties as List<PoscanProperty>,
-      isPrivate: isPrivate == const $CopyWithPlaceholder() || isPrivate == null
+      isPrivate: isPrivate == const $CopyWithPlaceholder()
           ? _value.isPrivate
           // ignore: cast_nullable_to_non_nullable
-          : isPrivate as bool,
+          : isPrivate as bool?,
       isLoading: isLoading == const $CopyWithPlaceholder() || isLoading == null
           ? _value.isLoading
           // ignore: cast_nullable_to_non_nullable

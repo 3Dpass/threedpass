@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
-import 'package:threedpass/core/widgets/input/switch_button.dart';
+import 'package:threedpass/core/widgets/input/d3p_switch_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/swap_method.dart';
@@ -33,40 +33,36 @@ class SwapForm extends StatelessWidget {
     return SomeForm(
       formKey: swapCubit.formKey,
       appbarTitle: 'swap_appbar_title',
-      submitButton: const SwapSubmit(),
       children: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const PoolsLoadingRow(),
-            AssetSelectCard(
-              chosenItem: state.firstAsset,
-              items: items,
-              controller: swapCubit.firstAssetAmountController,
-              isReadOnly: !isFirstTextFieldActive,
-              onSelected: swapCubit.setFirstAsset,
+        Column(mainAxisSize: MainAxisSize.min, children: [
+          const PoolsLoadingRow(),
+          AssetSelectCard(
+            items: items,
+            controller: swapCubit.firstAssetAmountController,
+            isReadOnly: !isFirstTextFieldActive,
+            onSelected: swapCubit.setFirstAsset,
+            chosenItem: state.firstAsset,
+          ),
+          const H4(),
+          D3pIconButton(
+            iconData: Icons.change_circle_outlined,
+            onPressed: () async => swapCubit.setChosenMethod(
+              state.chosenMethod == SwapMethod.swapExactTokensForTokens
+                  ? SwapMethod.swapTokensForExactTokens
+                  : SwapMethod.swapExactTokensForTokens,
             ),
-            const H4(),
-            D3pIconButton(
-              iconData: Icons.change_circle_outlined,
-              size: 30,
-              splashRadius: 24,
-              onPressed: () async => swapCubit.setChosenMethod(
-                state.chosenMethod == SwapMethod.swapExactTokensForTokens
-                    ? SwapMethod.swapTokensForExactTokens
-                    : SwapMethod.swapExactTokensForTokens,
-              ),
-            ),
-            const H4(),
-            AssetSelectCard(
-              chosenItem: state.secondAsset,
-              items: items,
-              controller: swapCubit.secondAssetAmountController,
-              isReadOnly: isFirstTextFieldActive,
-              onSelected: swapCubit.setSecondAsset,
-            ),
-          ],
-        ),
+            size: 30,
+            splashRadius: 24,
+          ),
+          const H4(),
+          AssetSelectCard(
+            items: items,
+            controller: swapCubit.secondAssetAmountController,
+            isReadOnly: isFirstTextFieldActive,
+            onSelected: swapCubit.setSecondAsset,
+            chosenItem: state.secondAsset,
+          ),
+        ]),
         SlippageTolerance(
           controller: swapCubit.slippageToleranceController,
           hintText: '${SwapCubit.defaultSlippage}%',
@@ -79,11 +75,12 @@ class SwapForm extends StatelessWidget {
         ),
         D3pSwitchButton(
           value: state.keepAlive,
-          helpText: 'transfer_keep_alive_help'.tr(),
           onChanged: (final value) => swapCubit.setKeepAlive(value),
           text: 'keep_alive_switch_label'.tr(),
+          helpText: 'transfer_keep_alive_help'.tr(),
         ),
       ],
+      submitButton: const SwapSubmit(),
     );
   }
 }

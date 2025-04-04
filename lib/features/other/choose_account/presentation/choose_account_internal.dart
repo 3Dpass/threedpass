@@ -13,8 +13,8 @@ class _ChooseAccountInternal extends StatelessWidget {
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         D3pBodyMediumText(title ?? 'choose_account_subtitle'),
         const H4(),
@@ -25,14 +25,13 @@ class _ChooseAccountInternal extends StatelessWidget {
                     .firstWhere((element) => element.address == state.address)
                 : null;
             return D3pDropdownButton<KeyPairData>(
-              isExpanded: true,
               items: cac.accounts
                   .map<DropdownMenuItem<KeyPairData>>(
                     (final e) => DropdownMenuItem(
                       value: e,
                       child: AccountChooseTileText(
-                        name: e.name,
                         address: e.address,
+                        name: e.name,
                       ),
                     ),
                   )
@@ -42,15 +41,14 @@ class _ChooseAccountInternal extends StatelessWidget {
                   : (final obj) =>
                       obj != null ? cac.setAcc(obj) : emptyFunction(),
               value: chosen,
+              isExpanded: true,
               validator: (final value) =>
                   value == null ? 'account_never_null'.tr() : null,
             );
           },
         ),
         const H4(),
-        BasicPasswordTextField(
-          passwordController: cac.passwordController,
-        ),
+        BasicPasswordTextField(passwordController: cac.passwordController),
       ],
     );
   }

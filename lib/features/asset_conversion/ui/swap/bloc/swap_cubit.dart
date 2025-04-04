@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/polkawallet/utils/decimal_set_decimals.dart';
+import 'package:threedpass/core/polkawallet/utils/set_decimals.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
@@ -230,11 +230,11 @@ class SwapCubit extends Cubit<SwapState>
   Future<(Decimal, Decimal)> get calcOnFirstChanged =>
       calcSwapOnFirstChanged.call(
         CalcSwapOnChangedParams(
-          assetAmountControllerText:
-              firstAssetAmountController.text.replaceAll(',', ''),
           firstAsset: state.firstAsset,
           secondAsset: state.secondAsset,
           metadata: metadata,
+          assetAmountControllerText:
+              firstAssetAmountController.text.replaceAll(',', ''),
           slippage: int.parse(slippageToleranceController.text),
           nativeTokenDecimals: nativeTokenDecimals,
         ),
@@ -261,11 +261,11 @@ class SwapCubit extends Cubit<SwapState>
   Future<(Decimal, Decimal)> get calcOnSecondChanged =>
       calcSwapOnSecondChanged.call(
         CalcSwapOnChangedParams(
-          assetAmountControllerText:
-              secondAssetAmountController.text.replaceAll(',', ''),
           firstAsset: state.firstAsset,
           secondAsset: state.secondAsset,
           metadata: metadata,
+          assetAmountControllerText:
+              secondAssetAmountController.text.replaceAll(',', ''),
           slippage: int.parse(slippageToleranceController.text),
           nativeTokenDecimals: nativeTokenDecimals,
         ),
@@ -328,12 +328,12 @@ class SwapCubit extends Cubit<SwapState>
     return SwapAssetsParams(
       asset1: state.firstAsset,
       asset2: state.secondAsset,
-      amount1: firstAmountToSend,
-      amount2: secondAmountToSend,
+      updateStatus: () => updateStatus(context),
       account: account,
       password: passwordController.text,
-      updateStatus: () => updateStatus(context),
       keepAlive: state.keepAlive,
+      amount1: firstAmountToSend,
+      amount2: secondAmountToSend,
       swapMethod: state.chosenMethod,
     );
   }
@@ -344,6 +344,7 @@ class SwapCubit extends Cubit<SwapState>
   @override
   Future<void> close() async {
     await subscription?.cancel();
+
     return super.close();
   }
 }

@@ -8,11 +8,11 @@ import 'package:threedpass/features/asset_conversion/domain/utils/calc_user_pool
 
 class CalcRemoveLiquidityMaxPercent
     extends UseCase<double, CalcRemoveLiquidityMaxPercentParams> {
+  final AssetConversionRepository assetConversionRepository;
+
   const CalcRemoveLiquidityMaxPercent({
     required this.assetConversionRepository,
   });
-
-  final AssetConversionRepository assetConversionRepository;
 
   @override
   Future<double> call(
@@ -21,8 +21,8 @@ class CalcRemoveLiquidityMaxPercent
     final assetUserBalances = params.poolFullInfo
         .userPoolReserves(nativeTokenDecimals: params.nativeTokenDecimals);
 
-    final asset1UserBalance = assetUserBalances.left;
-    final asset2UserBalance = assetUserBalances.right;
+    final asset1UserBalance = assetUserBalances.$1;
+    final asset2UserBalance = assetUserBalances.$2;
 
     // Call existential deposit only when one of assets is not native
     Rational? nativeMinBalance;

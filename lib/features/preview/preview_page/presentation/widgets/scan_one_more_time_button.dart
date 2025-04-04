@@ -6,10 +6,10 @@ class ScanOneMoreTimeButton extends StatelessWidget {
   const ScanOneMoreTimeButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return D3pElevatedButton(
       text: 'scan_one_more_time_button_label'.tr(),
-      onPressed: () {},
+      onPressed: () {}, // TODO Implement
     );
   }
 }

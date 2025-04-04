@@ -14,16 +14,18 @@ class DeleteSnaphotsButton extends StatelessWidget {
     return BlocBuilder<HashesListBloc, HashesListState>(
       builder: (final BuildContext context, final HashesListState state) {
         return FloatingActionButton(
-          heroTag: 'delete_snapshots',
+          child: const Icon(Icons.delete),
           backgroundColor: state.isLoading
               ? Theme.of(context).disabledColor
               : Theme.of(context).colorScheme.error,
+          heroTag: 'delete_snapshots',
           onPressed: state.isLoading
               ? null
-              : () async => context.router.push(
-                    DeleteSnapshotsRoute(selectSnapshotsCubit: selectBloc),
+              : () => context.router.push(
+                    DeleteSnapshotsRoute(
+                      selectSnapshotsCubit: selectBloc,
+                    ),
                   ),
-          child: const Icon(Icons.delete),
         );
       },
     );

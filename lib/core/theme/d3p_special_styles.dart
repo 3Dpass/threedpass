@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 
 extension SpecialStyles on ThemeData {
   CustomTextStyles get customTextStyles => CustomTextStyles(this);
@@ -14,10 +14,10 @@ class CustomTextStyles {
   final ThemeData themeData;
 
   TextStyle get tableHeader => TextStyle(
+        color: brightness == Brightness.light ? Colors.black : Colors.white,
         fontSize: 16,
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.italic,
-        color: brightness == Brightness.light ? Colors.black : Colors.white,
       );
 
   TextStyle get matchesHyperlink => themeData.textTheme.bodyMedium!

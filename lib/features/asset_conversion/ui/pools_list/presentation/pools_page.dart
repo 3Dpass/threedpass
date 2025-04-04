@@ -13,7 +13,6 @@ import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.da
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/presentation/widgets/pool_card.dart';
-import 'package:threedpass/router/router.gr.dart';
 
 @RoutePage()
 class PoolsPage extends StatelessWidget {
@@ -22,27 +21,25 @@ class PoolsPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
+      // TODO Use D3PScaffold
       appBar: AppBar(
-        titleSpacing: 0,
-        // leading:
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const CustomBackButton(),
-            Text('pools_page_appbar'.tr()),
-            D3pIconButton(
-              iconData: Icons.refresh,
-              onPressed: () => BlocProvider.of<PoolsCubit>(context).update(
-                address: BlocProvider.of<AppServiceLoaderCubit>(context)
-                    .state
-                    .keyring
-                    .current
-                    .address!,
-              ),
+        title:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          const CustomBackButton(),
+          Text('pools_page_appbar'.tr()),
+          D3pIconButton(
+            iconData: Icons.refresh,
+            onPressed: () => BlocProvider.of<PoolsCubit>(context).update(
+              address: BlocProvider.of<AppServiceLoaderCubit>(context)
+                  .state
+                  .keyring
+                  .current
+                  .address!,
             ),
-          ],
-        ),
+          ),
+        ]),
         centerTitle: true,
+        titleSpacing: 0,
       ),
       body: BlocBuilder<PoolsCubit, PoolsState>(
         builder: (final context, final state) {
@@ -57,27 +54,24 @@ class PoolsPage extends StatelessWidget {
           } else if (state.hasValue) {
             return SingleChildScrollView(
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                padding: const EdgeInsets.all(16),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const D3pBodyMediumText('pools_text'),
                     const H16(),
                     ListViewSeparated(
-                      separator: const H16(),
                       children: state.value!.pools
                           .map((final e) => PoolCard(e))
                           .toList(),
+                      separator: const H16(),
                     ),
                     const H16(),
                     if (state.isLoading)
                       const Padding(
                         padding: EdgeInsets.only(bottom: 16),
-                        child: D3pProgressIndicator(
-                          size: null,
-                        ),
+                        child: D3pProgressIndicator(size: null),
                       ),
                   ],
                 ),
@@ -87,11 +81,6 @@ class PoolsPage extends StatelessWidget {
             return const D3pProgressIndicator(size: null);
           }
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        heroTag: 'create_pool',
-        child: const Icon(Icons.add),
-        onPressed: () => context.router.push(const CreatePoolRouteWrapper()),
       ),
     );
   }

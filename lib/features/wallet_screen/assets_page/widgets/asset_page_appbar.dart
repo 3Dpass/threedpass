@@ -27,26 +27,16 @@ class AssetPageAppbar extends AppBar {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // D3pIconButton.fake(),
-                // D3pAddressIcon(
-                //   account.address,
-                //   svg: account.icon,
-                // ),
-                // const SizedBox(width: 16),
+                D3pIconButton.fake(), // Just padding
                 _AccountName(
                   accountAddress: account.address,
                   accountName: account.name,
                 ),
-                // const SizedBox(width: 16),
-                // _CopyButton(
-                //   accountAddress: account.address,
-                // ),
               ],
             ),
           ),
           actions: const [
             _ContactsPageIcon(),
-            W8(),
             NotificationsIconButton(),
           ],
         );
@@ -98,7 +88,7 @@ class _AccountName extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            Fmt.shorterAddress(accountAddress),
+            Formatters.shorterAddress(accountAddress),
             style: theme.customTextStyles.accountAddress,
           ),
           const H4(),
@@ -117,7 +107,6 @@ class _ContactsPageIcon extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return SizedBox(
-      // width: D3pAddressIcon.defaultSize,
       height: kToolbarHeight,
       child: Align(
         child: D3pIconButton(

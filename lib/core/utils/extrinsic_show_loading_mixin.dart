@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logger/logger.dart';
-import 'package:threedpass/core/theme/d3p_theme.dart';
+import 'package:threedpass/core/theme/d3p_theme_data.dart';
 import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
@@ -15,7 +15,7 @@ mixin ExtrinsicShowLoadingMixin<TResult, Params> {
   void updateStatus(final BuildContext context) {
     fastCheckPassed = true;
     DefaultLoadingDialog.hide(context);
-    outerRouter.pop();
+    unawaited(outerRouter.maybePop());
     unawaited(
       Fluttertoast.showToast(
         msg: 'Extrinsic signed and broadcasted',
@@ -32,7 +32,7 @@ mixin ExtrinsicShowLoadingMixin<TResult, Params> {
     required final Params params,
     required final SafeUseCaseCall<TResult, Params> safeCall,
   }) async {
-    unawaited(DefaultLoadingDialog.show(context));
+    DefaultLoadingDialog.show(context);
 
     fastCheckPassed = false;
 

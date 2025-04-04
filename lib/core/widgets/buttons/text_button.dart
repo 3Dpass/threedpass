@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// TODO Create button with loader for async actions
 class D3pTextButton extends StatelessWidget {
   const D3pTextButton({
     required this.text,
@@ -31,36 +32,30 @@ class D3pTextButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     final textWidget = Text(
       text,
-      softWrap: true,
-      maxLines: 2,
-      overflow: TextOverflow.ellipsis,
       style: textColor != null
           ? Theme.of(context).textTheme.labelLarge!.copyWith(color: textColor)
           : null,
+      softWrap: true,
+      overflow: TextOverflow.ellipsis,
+      maxLines: 2,
     );
     final flexedText = flexibleText ? Flexible(child: textWidget) : textWidget;
 
     final child = Row(
-      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: mainAxisAlignment,
+      mainAxisSize: MainAxisSize.min,
       children: [
         if (icon != null)
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Icon(icon),
-          ),
+          Padding(padding: const EdgeInsets.only(right: 8), child: Icon(icon)),
         flexedText,
       ],
     );
-    // return textWidget;
+
     return SizedBox(
-      height: height,
       width: width,
+      height: height,
       child: Platform.isIOS || Platform.isMacOS
-          ? CupertinoButton(
-              onPressed: onPressed,
-              child: child, // TODO set iconAlignment
-            )
+          ? CupertinoButton(child: child, onPressed: onPressed)
           : icon != null
               ? TextButton.icon(
                   onPressed: onPressed,
@@ -68,10 +63,7 @@ class D3pTextButton extends StatelessWidget {
                   label: flexedText,
                   iconAlignment: iconAlignment,
                 )
-              : TextButton(
-                  onPressed: onPressed,
-                  child: child,
-                ),
+              : TextButton(onPressed: onPressed, child: child),
     );
   }
 }

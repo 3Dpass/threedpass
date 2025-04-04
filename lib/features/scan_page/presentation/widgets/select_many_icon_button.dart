@@ -10,23 +10,19 @@ class SelectManyIconButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BlocBuilder<SelectSnapshotsCubit, SelectSnapshotsState>(
       builder: (final context, final state) {
-        if (state.areSelectable) {
-          return D3pIconButton(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            // emptyContraints: false,
-            iconData: Icons.close,
-            onPressed: () => BlocProvider.of<SelectSnapshotsCubit>(context)
-                .makeUnselectable(),
-          );
-        } else {
-          return D3pIconButton(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            // emptyContraints: true,
-            iconData: Icons.delete_sweep_outlined,
-            onPressed: () =>
-                BlocProvider.of<SelectSnapshotsCubit>(context).makeSelectable(),
-          );
-        }
+        return state.areSelectable
+            ? D3pIconButton(
+                iconData: Icons.close,
+                padding: const EdgeInsets.symmetric(horizontal: 14),
+                onPressed: () => BlocProvider.of<SelectSnapshotsCubit>(context)
+                    .makeUnselectable(),
+              )
+            : D3pIconButton(
+                iconData: Icons.delete_sweep_outlined,
+                padding: const EdgeInsets.symmetric(horizontal: 14),
+                onPressed: () => BlocProvider.of<SelectSnapshotsCubit>(context)
+                    .makeSelectable(),
+              );
       },
     );
   }

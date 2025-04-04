@@ -17,15 +17,13 @@ class D3pCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    // final bgColor = Theme.of(context).customColors.cardBackground;
-    return Card(
-      margin: EdgeInsets.zero,
+    return Card.filled(
       shape: MapperCardShapeToBorder(
         cardShape: cardShape,
         side: side,
         radius: radius,
       ).border(),
-      // color: bgColor,
+      margin: EdgeInsets.zero,
       child: child,
     );
   }
@@ -53,23 +51,23 @@ class MapperCardShapeToBorder {
     switch (cardShape) {
       case CardShape.top:
         return RoundedRectangleBorder(
-          borderRadius: borderRadius,
           side: side ?? BorderSide.none,
+          borderRadius: borderRadius,
         );
       case CardShape.bottom:
         return RoundedRectangleBorder(
-          borderRadius: borderRadius,
           side: side ?? BorderSide.none,
+          borderRadius: borderRadius,
         );
       case CardShape.middle:
         return RoundedRectangleBorder(
-          borderRadius: borderRadius,
           side: side ?? BorderSide.none,
+          borderRadius: borderRadius,
         );
       case CardShape.all:
         return RoundedRectangleBorder(
-          borderRadius: borderRadius,
           side: side ?? BorderSide.none,
+          borderRadius: borderRadius,
         );
     }
   }
