@@ -14,11 +14,13 @@ class SettingSubPage extends StatelessWidget {
   final String appbarTitle;
   final Widget child;
 
-  final void Function(BuildContext context) onSavePressed;
+  final bool Function(BuildContext context) onSavePressed;
 
   Future<void> saveAndExit(final BuildContext context) async {
-    onSavePressed(context);
-    await context.router.maybePop();
+    final success = onSavePressed(context);
+    if (success) {
+      await context.router.maybePop();
+    }
   }
 
   @override

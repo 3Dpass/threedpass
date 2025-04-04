@@ -10,7 +10,7 @@ publish_to: 'none'
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.17.3+48
+version: 2.18.0+49
 
 environment:
   sdk: ">=3.0.6 <4.0.0"
@@ -51,6 +51,7 @@ dependencies:
   rational: ^2.2.3
   async: ^2.11.0
   hashlib: ^1.21.0
+  dio: ^5.8.0+1
   # fpdart: ^1.1.0
 
   ## Code gen

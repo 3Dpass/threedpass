@@ -20,8 +20,9 @@ class SectionsSubPage extends StatelessWidget {
 
   late final TextEditingController controller;
 
-  void onSavePressed(final BuildContext context) {
+  bool onSavePressed(final BuildContext context) {
     _onFieldChanged(context, controller.text);
+    return true;
   }
 
   static Future<void> _onFieldChanged(

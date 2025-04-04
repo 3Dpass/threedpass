@@ -2,6 +2,7 @@ import 'package:app_install_date/app_install_date.dart';
 import 'package:ferry/ferry.dart';
 import 'package:get_it/get_it.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:threedpass/core/dio/di_dio.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/utils/logger.dart';
@@ -44,6 +45,8 @@ Future<void> setup() async {
   } on Object catch (_) {
     logger.d('Impossible to get app install date');
   }
+
+  await DIDio().setup(getIt);
 
   await DIHashesList().setup(getIt);
 

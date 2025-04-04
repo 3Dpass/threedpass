@@ -573,5 +573,11 @@
     "liquidity_pools_buttons_panel_swap_assets": "Swap assets",
     "liquidity_pools_buttons_panel_create_pool": "Create pool",
     "recieve_button_label": "Recieve",
-    "transfer_history_button_label": "Transfer history"
+    "transfer_history_button_label": "Transfer history",
+    "url_validation_error": "Bad URL",
+    "random_connection_mode_part_1": "A random node will be picked from the ",
+    "random_connection_mode_part_2": "list of public nodes",
+    "wallet_settings_select_connection_mode": "Select connection mode:",
+    "wallet_settings_currently_connected": "Currently connected to:"
+
 }

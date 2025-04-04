@@ -15,7 +15,7 @@ extension LocalizedConnectionMode on ConnectionMode {
   String get localizedName {
     switch (this) {
       case ConnectionMode.defaultRandom:
-        return 'Random trusted node';
+        return 'Random public node';
       case ConnectionMode.custom:
         return 'Your custom node';
     }

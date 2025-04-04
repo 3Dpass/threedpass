@@ -43,10 +43,11 @@ class _TransBytesSubPageState extends State<TransBytesSubPage> {
 
   final _formKey = GlobalKey<FormState>();
 
-  void onSavePressed(final BuildContext context) {
+  bool onSavePressed(final BuildContext context) {
     if (_formKey.currentState!.validate()) {
       changeSettings(controller.text, context);
     }
+    return true;
   }
 
   void changeSettings(final String rawInput, final BuildContext context) {

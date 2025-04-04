@@ -18,7 +18,7 @@ class SomeFormSubmitButton extends StatelessWidget {
     return D3pElevatedButton(
       text: 'sign_extrinsic'.tr(),
       onPressed:
-          isActive ? () async => extrinsicMixin.submitExtrinsic(context) : null,
+          isActive ? () => extrinsicMixin.submitExtrinsic(context) : null,
     );
   }
 }

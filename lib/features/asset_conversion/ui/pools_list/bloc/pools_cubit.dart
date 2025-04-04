@@ -64,7 +64,10 @@ class PoolsCubit extends Cubit<PoolsState> {
         logger.t(
           '[POOLS] Got basic pools len=${data.length}. Current: $currentCounter. Counter: $counter',
         );
-        for (final basic in data) {
+
+        for (int i = 0; i < data.length; ++i) {
+          final basic = data[i];
+
           if (currentCounter != counter) {
             logger.t(
               '[POOLS] Stop pools update. Current: $currentCounter. Counter: $counter',
@@ -102,7 +105,8 @@ class PoolsCubit extends Cubit<PoolsState> {
                 );
                 return;
               }
-              if (basic == data.last) {
+
+              if (i == data.length - 1) {
                 emit(
                   AsyncValue.data(resState),
                 );

@@ -7,7 +7,6 @@ const String d3pLiveName = '3DP live';
 const String d3pTestName = '3DP test';
 
 const deprecatedD3pDefaultNodeUrls = [
-  'wss://rpc2.3dpass.org',
   'wss://rpc.3dpscan.io',
 ];
 const d3pDefaultNodeUrl = 'wss://rpc.3dpass.org';

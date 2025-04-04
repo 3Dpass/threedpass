@@ -83,7 +83,9 @@ class WalletSettingsAdapter extends TypeAdapter<WalletSettings> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return WalletSettings(
-      connectionMode: fields[2] as ConnectionMode,
+      connectionMode: fields[2] == null
+          ? ConnectionMode.defaultRandom
+          : fields[2] as ConnectionMode,
       nodeUrl: fields[1] as String,
     );
   }

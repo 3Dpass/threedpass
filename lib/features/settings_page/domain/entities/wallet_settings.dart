@@ -23,10 +23,16 @@ class WalletSettings {
   @HiveField(1)
   final String nodeUrl;
 
-  @HiveField(2)
+  @HiveField(2, defaultValue: ConnectionMode.defaultRandom)
   final ConnectionMode connectionMode;
 
   WalletSettings selfValidate() {
+    // Fix deprecated URL
+    String nodeUrl = this.nodeUrl.trim();
+    if (deprecatedD3pDefaultNodeUrls.contains(nodeUrl)) {
+      nodeUrl = d3pDefaultNodeUrl;
+    }
+
     return this.copyWith(
       nodeUrl: nodeUrl,
     );

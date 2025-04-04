@@ -21,7 +21,6 @@ class AssetsPage extends StatelessWidget {
         // final theme = Theme.of(context);
         const children = [
           BalanceSection(),
-          // const H8(),
           Padding16(
             child: LiquidityPoolButtons(),
           ),
