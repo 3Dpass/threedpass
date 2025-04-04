@@ -11,13 +11,13 @@ import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 class TransBytesInputField extends StatelessWidget {
   const TransBytesInputField({
     required this.controller,
-    required this.enabled,
+    this.enabled = true,
     required this.validator,
     final Key? key,
   }) : super(key: key);
 
   final TextEditingController controller;
-  final bool? enabled;
+  final bool enabled;
   final String? Function(String?) validator;
 
   static final hexInputFormatter = TransBytesMaskTextInputFormatter();

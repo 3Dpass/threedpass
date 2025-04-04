@@ -8,7 +8,7 @@ import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.da
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_combined.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/assets_card.dart';
 
@@ -17,7 +17,7 @@ class NonNativeTokens extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return BlocBuilder<SettingsConfigCubit, GlobalSettings>(
+    return BlocBuilder<SettingsCubit, GlobalSettings>(
       buildWhen: (final previous, final current) =>
           previous.appSettings.showZeroAssets !=
           current.appSettings.showZeroAssets,

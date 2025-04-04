@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/app_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/presentation/settings_sub_page/setting_sub_page.dart';
@@ -41,7 +41,7 @@ class StableHashSubPage extends StatelessWidget {
       return;
     } // value is positive
 
-    final cubit = BlocProvider.of<SettingsConfigCubit>(context);
+    final cubit = BlocProvider.of<SettingsCubit>(context);
     final newAppConfig =
         cubit.state.appSettings.copyWith(stableRequirement: actualValue);
     final newState = cubit.state.copyWith(appSettings: newAppConfig);

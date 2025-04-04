@@ -7,6 +7,7 @@ class _SuffixButton {
     required this.suffixButton,
     required this.onLabelButtonPressed,
     required this.onSuffixButtonPressed,
+    required this.isTextFieldEnabled,
   });
 
   final IconData? labelButton;
@@ -15,8 +16,13 @@ class _SuffixButton {
   final void Function()? onLabelButtonPressed;
   final void Function()? onSuffixButtonPressed;
 
+  final bool isTextFieldEnabled;
+
   Widget? build(final BuildContext context) {
     final colors = Theme.of(context).customColors;
+    final iconColor = isTextFieldEnabled
+        ? colors.themeOpposite
+        : Theme.of(context).disabledColor;
     if (labelButton != null || suffixButton != null) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -26,7 +32,7 @@ class _SuffixButton {
             D3pIconButton(
               iconData: labelButton,
               onPressed: onLabelButtonPressed,
-              iconColor: colors.themeOpposite,
+              iconColor: iconColor,
               size: 20,
               emptyContraints: true,
             ),
@@ -37,7 +43,7 @@ class _SuffixButton {
             D3pIconButton(
               iconData: suffixButton,
               onPressed: onSuffixButtonPressed,
-              iconColor: colors.themeOpposite,
+              iconColor: iconColor,
               size: 20,
               emptyContraints: true,
             ),

@@ -25,9 +25,9 @@ class AssetsPage extends StatelessWidget {
           Padding16(
             child: LiquidityPoolButtons(),
           ),
-          Padding16(
-            child: PoscanAtomicSwapButtons(),
-          ),
+          // Padding16(
+          //   child: PoscanAtomicSwapButtons(),
+          // ),
           PoscanAssetsColumn(),
           ObjectsListAssets(),
         ];

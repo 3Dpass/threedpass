@@ -13,6 +13,7 @@ abstract class AsyncValue<T> {
   ) = AsyncError<T>;
 
   bool get hasValue => value != null;
+  bool get hasError => error != null;
 
   bool get isLoading;
   T? get value;

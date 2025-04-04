@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
+import 'package:threedpass/core/utils/get_theme.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 
@@ -25,7 +26,7 @@ class D3pTextFormField extends StatelessWidget {
     this.inputFormatters,
     this.maxLen,
     this.bottomHelpText,
-    this.enabled,
+    this.enabled = true,
     this.obscureText = false,
     this.maxLines,
     this.isCollapsed = false,
@@ -51,7 +52,7 @@ class D3pTextFormField extends StatelessWidget {
   final Widget? bottomWidget;
 
   final TextEditingController controller;
-  final bool? enabled;
+  final bool enabled;
   final String? hintText;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
@@ -108,12 +109,12 @@ class D3pTextFormField extends StatelessWidget {
                 suffixButton: suffixButton,
                 onLabelButtonPressed: onLabelButtonPressed,
                 onSuffixButtonPressed: onSuffixButtonPressed,
+                isTextFieldEnabled: enabled,
               ).build(context),
               suffixText: suffixText,
               filled: true,
             ),
             keyboardType: keyboardType,
-            style: Theme.of(context).textTheme.bodyLarge,
             autofocus: autofocus,
             readOnly: readOnly,
             obscureText: obscureText,

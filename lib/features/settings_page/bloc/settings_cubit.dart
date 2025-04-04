@@ -1,11 +1,9 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/repositories/settings_repository.dart';
 
-class SettingsConfigCubit extends Cubit<GlobalSettings> {
-  SettingsConfigCubit({
+class SettingsCubit extends Cubit<GlobalSettings> {
+  SettingsCubit({
     required final GlobalSettings config,
     required this.settingsRepository,
   }) : super(config);
@@ -17,8 +15,8 @@ class SettingsConfigCubit extends Cubit<GlobalSettings> {
   //   emit(SettingsConfigLoaded(settings: config));
   // }
 
-  Future<void> updateSettings(final GlobalSettings config) async {
-    unawaited(settingsRepository.setConfig(config));
+  void updateSettings(final GlobalSettings config) {
+    settingsRepository.setConfig(config);
     emit(config);
   }
 }

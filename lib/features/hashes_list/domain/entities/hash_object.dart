@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/setup.dart';
 
 part 'hash_object.g.dart';
@@ -66,7 +66,7 @@ class HashObject extends Equatable {
 
   /// Minimum number of hash matches to be considered stable
   int get minRequirement {
-    final settings = getIt<SettingsConfigCubit>();
+    final settings = getIt<SettingsCubit>();
     return settings.state.appSettings.stableRequirement;
   }
 

@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/enum_button.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/algorithm.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/grid_size.dart';
@@ -22,7 +22,7 @@ class _State extends CustomSelectSettingsSubPageState<int> {
 
   @override
   void initState() {
-    final settings = BlocProvider.of<SettingsConfigCubit>(context).state;
+    final settings = BlocProvider.of<SettingsCubit>(context).state;
     chosenValue = ValueNotifier(settings.scanSettings.gridSize);
     super.initState();
   }
@@ -55,7 +55,7 @@ class _State extends CustomSelectSettingsSubPageState<int> {
     setState(() {
       chosenValue.value = GridSizeMaster.list[index];
       final newValue = chosenValue.value;
-      final cubit = BlocProvider.of<SettingsConfigCubit>(context);
+      final cubit = BlocProvider.of<SettingsCubit>(context);
 
       final newScanConfig =
           cubit.state.scanSettings.copyWith(gridSize: newValue);

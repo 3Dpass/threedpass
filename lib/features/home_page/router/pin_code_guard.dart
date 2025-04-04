@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart';
 
@@ -10,7 +10,7 @@ class PinCodeGuard extends AutoRouteGuard {
     final StackRouter router,
   ) {
     final hasPinCode =
-        getIt<SettingsConfigCubit>().state.appSettings.pinCode.isNotEmpty;
+        getIt<SettingsCubit>().state.appSettings.pinCode.isNotEmpty;
 
     if (!hasPinCode) {
       resolver.next(true);

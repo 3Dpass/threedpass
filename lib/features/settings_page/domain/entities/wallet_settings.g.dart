@@ -7,7 +7,7 @@ part of 'wallet_settings.dart';
 // **************************************************************************
 
 abstract class _$WalletSettingsCWProxy {
-  WalletSettings isTestNet(bool isTestNet);
+  WalletSettings connectionMode(ConnectionMode connectionMode);
 
   WalletSettings nodeUrl(String nodeUrl);
 
@@ -18,7 +18,7 @@ abstract class _$WalletSettingsCWProxy {
   /// WalletSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   WalletSettings call({
-    bool? isTestNet,
+    ConnectionMode? connectionMode,
     String? nodeUrl,
   });
 }
@@ -30,7 +30,8 @@ class _$WalletSettingsCWProxyImpl implements _$WalletSettingsCWProxy {
   final WalletSettings _value;
 
   @override
-  WalletSettings isTestNet(bool isTestNet) => this(isTestNet: isTestNet);
+  WalletSettings connectionMode(ConnectionMode connectionMode) =>
+      this(connectionMode: connectionMode);
 
   @override
   WalletSettings nodeUrl(String nodeUrl) => this(nodeUrl: nodeUrl);
@@ -44,14 +45,15 @@ class _$WalletSettingsCWProxyImpl implements _$WalletSettingsCWProxy {
   /// WalletSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   WalletSettings call({
-    Object? isTestNet = const $CopyWithPlaceholder(),
+    Object? connectionMode = const $CopyWithPlaceholder(),
     Object? nodeUrl = const $CopyWithPlaceholder(),
   }) {
     return WalletSettings(
-      isTestNet: isTestNet == const $CopyWithPlaceholder() || isTestNet == null
-          ? _value.isTestNet
+      connectionMode: connectionMode == const $CopyWithPlaceholder() ||
+              connectionMode == null
+          ? _value.connectionMode
           // ignore: cast_nullable_to_non_nullable
-          : isTestNet as bool,
+          : connectionMode as ConnectionMode,
       nodeUrl: nodeUrl == const $CopyWithPlaceholder() || nodeUrl == null
           ? _value.nodeUrl
           // ignore: cast_nullable_to_non_nullable
@@ -81,7 +83,7 @@ class WalletSettingsAdapter extends TypeAdapter<WalletSettings> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return WalletSettings(
-      isTestNet: fields[0] as bool,
+      connectionMode: fields[2] as ConnectionMode,
       nodeUrl: fields[1] as String,
     );
   }
@@ -90,10 +92,10 @@ class WalletSettingsAdapter extends TypeAdapter<WalletSettings> {
   void write(BinaryWriter writer, WalletSettings obj) {
     writer
       ..writeByte(2)
-      ..writeByte(0)
-      ..write(obj.isTestNet)
       ..writeByte(1)
-      ..write(obj.nodeUrl);
+      ..write(obj.nodeUrl)
+      ..writeByte(2)
+      ..write(obj.connectionMode);
   }
 
   @override

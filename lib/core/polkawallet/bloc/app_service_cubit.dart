@@ -16,10 +16,11 @@ import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.d
 import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
 import 'package:threedpass/features/accounts/domain/account_info.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
+import 'package:threedpass/features/connection/polkadot/bloc/polkadot_node_url.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/data/poscan_local_repository.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_page_cubit.dart';
+import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/bloc/transfers_from_cubit.dart';
@@ -36,7 +37,8 @@ part 'dirty_after_init.dart';
 /// This class does [emit] just to notify listeners to rebuild widgets
 ///
 class AppServiceLoaderCubit extends Cubit<AppService> {
-  final SettingsConfigCubit settingsConfigCubit;
+  final SettingsCubit settingsConfigCubit;
+  final PolkadotNodeUrl polkadotNodeUrl;
 
   double get fastAvailableBalance => BalanceUtils.balanceToDouble(
         state.chosenAccountBalance.value.availableBalance.toString(),
@@ -45,6 +47,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
 
   AppServiceLoaderCubit({
     required this.settingsConfigCubit,
+    required this.polkadotNodeUrl,
   }) : super(
           AppService(
             plugin: D3pLiveNetPlugin(),
