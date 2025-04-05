@@ -101,7 +101,6 @@ class _SpecialRadioListTile extends RadioListTile<TwoRadioState> {
 }
 
 String? _defaultValidator(final TwoRadioState? value) {
-  print('VALIDATION $value');
   if (value == null || value == TwoRadioState.nothing) {
     return 'error_nothing_chosen_two_radio'.tr();
   } else {

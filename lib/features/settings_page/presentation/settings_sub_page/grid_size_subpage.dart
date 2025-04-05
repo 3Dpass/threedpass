@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/widgets/buttons/enum_button.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/algorithm.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
@@ -39,10 +38,11 @@ class _State extends CustomSelectSettingsSubPageState<int> {
       itemBuilder: (final context, final index) {
         final v = GridSizeMaster.list[index];
         final string = '${v}x${v}';
-        return EnumButton(
-          text: string,
-          isChosen: v == chosenValue.value,
-          onPressed: () => onPressed(context, index),
+        return RadioListTile.adaptive(
+          title: Text(string),
+          value: v,
+          groupValue: chosenValue.value,
+          onChanged: (_) => onPressed(context, index),
         );
       },
     );

@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/widgets/buttons/enum_button.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/algorithm.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
@@ -31,15 +30,16 @@ class _State extends CustomSelectSettingsSubPageState<String> {
 
   @override
   Widget bodyBuilderOverride(final BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: AlgorithmMaster.list.length,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (final context, final index) => EnumButton(
-        text: AlgorithmMaster.list[index],
-        isChosen: AlgorithmMaster.list[index] == chosenValue.value,
-        onPressed: () => onPressed(context, index),
-      ),
+    return Column(
+      children: AlgorithmMaster.list.map((algorithm) {
+        return RadioListTile.adaptive(
+          title: Text(algorithm),
+          value: algorithm,
+          groupValue: chosenValue.value,
+          onChanged: (value) =>
+              onPressed(context, AlgorithmMaster.list.indexOf(value!)),
+        );
+      }).toList(),
     );
   }
 

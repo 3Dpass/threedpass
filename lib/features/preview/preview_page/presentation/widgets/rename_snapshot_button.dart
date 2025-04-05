@@ -28,7 +28,7 @@ class RenameSnapshotButton extends StatelessWidget {
           chevronColor: theme.colorScheme.onSurface,
           value: '',
         ),
-        onBasePressed: () async => context.router.push(
+        onBasePressed: () => context.router.push(
           RenameSnapshotRoute(
             snapshot: snap,
             hashObject: hashObj,

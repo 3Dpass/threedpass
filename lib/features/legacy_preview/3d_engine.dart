@@ -1,5 +1,6 @@
 // ignore_for_file: prefer-first
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -209,15 +210,40 @@ class _ObjectPainter extends CustomPainter {
     // reusablePaint.color = Color.fromARGB(255, r, g, b);
     final shadedColor = computeShadedColor(color, brightness);
     reusablePaint.color = shadedColor;
-
     // Paint the face
-    final path = Path();
-    path.moveTo(v1.x, v1.y);
-    path.lineTo(v2.x, v2.y);
-    path.lineTo(v3.x, v3.y);
-    path.lineTo(v1.x, v1.y);
-    path.close();
-    canvas.drawPath(path, reusablePaint);
+    // final path = Path();
+    // path.moveTo(v1.x, v1.y);
+    // path.lineTo(v2.x, v2.y);
+    // path.lineTo(v3.x, v3.y);
+    // path.lineTo(v1.x, v1.y);
+    // path.close();
+    // canvas.drawPath(path, reusablePaint);
+
+    // Convert Vector3 to Offset for vertices
+    final positions = <Offset>[
+      Offset(v1.x, v1.y),
+      Offset(v2.x, v2.y),
+      Offset(v3.x, v3.y),
+    ];
+
+    final colors = <Color>[
+      shadedColor,
+      shadedColor,
+      shadedColor,
+    ];
+
+    final indices = <int>[0, 1, 2];
+
+    canvas.drawVertices(
+      Vertices(
+        VertexMode.triangles,
+        positions,
+        colors: colors,
+        indices: indices,
+      ),
+      BlendMode.srcOver,
+      reusablePaint,
+    );
   }
 
   /*
@@ -246,12 +272,17 @@ class _ObjectPainter extends CustomPainter {
    */
   @override
   void paint(final Canvas canvas, final Size size) {
+    final stopwatch = Stopwatch()..start();
+    final transformStart = stopwatch.elapsedMicroseconds;
+
     // Rotate and translate the vertices
     verts = model.verts
         .map((final v) => _calcVertex(math.Vector3.copy(v)))
         .toList();
+    final transformEnd = stopwatch.elapsedMicroseconds;
 
     // Sort
+    final sortStart = stopwatch.elapsedMicroseconds;
     final sorted = <Map<String, dynamic>>[];
     for (var i = 0; i < model.faces.length; i++) {
       final face = model.faces[i];
@@ -266,26 +297,36 @@ class _ObjectPainter extends CustomPainter {
 
       sorted.add(<String, dynamic>{
         "index": i,
-        "order": Utils.zIndex(
-          verts[face[0] - 1],
-          verts[face[1] - 1],
-          verts[face[2] - 1],
-        ),
+        "order": Utils.zIndex(v1, v2, v3),
       });
     }
     sorted.sort(
-      (final Map<dynamic, dynamic> a, final Map<dynamic, dynamic> b) =>
+      (final a, final b) =>
           (a["order"] as double).compareTo(b["order"] as double),
     );
+    final sortEnd = stopwatch.elapsedMicroseconds;
 
     // Render
+    final renderStart = stopwatch.elapsedMicroseconds;
     for (int i = 0; i < sorted.length; i++) {
       final face = model.faces[sorted[i]["index"] as int];
       // final color = model.colors[sorted[i]["index"] as int];
       _drawFace(canvas, face, color);
     }
+    final renderEnd = stopwatch.elapsedMicroseconds;
 
-    // print(' Keys: ${colorCache.length}');
+    stopwatch.stop();
+
+    print('''
+Performance metrics (microseconds):
+--------------------------------
+Transform time: ${transformEnd - transformStart}
+Sort time:     ${sortEnd - sortStart}
+Render time:   ${renderEnd - renderStart}
+Total time:    ${stopwatch.elapsedMicroseconds}
+Faces drawn:   ${sorted.length}
+FPS:           ${1000000 / stopwatch.elapsedMicroseconds}
+''');
   }
 
   /*

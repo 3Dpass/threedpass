@@ -10,7 +10,8 @@ class AppSettings {
     required this.darkTheme,
     required this.stableRequirement,
     required this.showZeroAssets,
-    required this.pinCode,
+    required this.oldPinCode,
+    required this.newPinHash,
   });
 
   const AppSettings.defaultValues()
@@ -18,8 +19,9 @@ class AppSettings {
         // Minimum number of hash matches to be considered stable
         stableRequirement = 3,
         darkTheme = false,
-        pinCode = '',
-        showZeroAssets = defaultShowZeroAssets;
+        oldPinCode = '',
+        newPinHash = null,
+        showZeroAssets = true;
 
   @HiveField(0)
   final int stableRequirement;
@@ -30,8 +32,13 @@ class AppSettings {
   @HiveField(2, defaultValue: false)
   final bool showZeroAssets;
 
+  // TODO remove after a long emough time. Deprecated 05.04.2025
+  @Deprecated('')
   @HiveField(3, defaultValue: '')
-  final String pinCode;
+  final String oldPinCode;
 
-  static const defaultShowZeroAssets = true;
+  @HiveField(4)
+  final int? newPinHash;
+
+  bool get isPinSet => oldPinCode.isNotEmpty || newPinHash != null;
 }

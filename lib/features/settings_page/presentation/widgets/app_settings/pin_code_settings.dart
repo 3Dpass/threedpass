@@ -5,8 +5,7 @@ import 'package:threedpass/core/theme/d3p_colors.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
-import 'package:threedpass/core/widgets/screen_lock/d3p_screen_lock_create_dialog.dart';
-import 'package:threedpass/features/home_page/bloc/home_context_cubit.dart';
+import 'package:threedpass/core/widgets/screen_lock/d3p_screen_lock_dialog.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/app_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
@@ -19,9 +18,9 @@ class PinCodeSettings extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BlocBuilder<SettingsCubit, GlobalSettings>(
       builder: (final BuildContext context, final GlobalSettings state) =>
-          state.appSettings.pinCode.isEmpty
-              ? const _NoPasswordSet()
-              : const _PasswordWasSet(),
+          state.appSettings.isPinSet
+              ? const _PasswordWasSet()
+              : const _NoPasswordSet(),
     );
   }
 }
@@ -30,23 +29,24 @@ class _NoPasswordSet extends StatelessWidget {
   const _NoPasswordSet({final Key? key}) : super(key: key);
 
   void onPressed(final BuildContext context) {
-    final homeContextBloc = BlocProvider.of<HomeContextCubit>(context);
-    final actualHomeContext = homeContextBloc.state.context;
-
     final screenLockDialog = D3pScreenLockDialog(
-      context: actualHomeContext,
+      context: context,
     );
     screenLockDialog.showScreenLockCreate(
-      onConfirmed: (final String res) {
+      onConfirmed: (final String rawPin) {
         final settings = BlocProvider.of<SettingsCubit>(context);
         final oldGlobal = settings.state;
         final oldAppSettings = oldGlobal.appSettings;
-        final newAppSettings = oldAppSettings.copyWith(pinCode: res);
+        final h = D3pScreenLockDialog.hashPin(rawPin);
+        final newAppSettings = oldAppSettings.copyWith(
+          oldPinCode: '',
+          newPinHash: h,
+        );
         final newGlobal = oldGlobal.copyWith(appSettings: newAppSettings);
         settings.updateSettings(newGlobal);
 
-        logger.i('Set new password $res');
-        actualHomeContext.router.pop();
+        context.maybePop();
+        logger.i('Set new password $h');
       },
     );
   }
@@ -75,27 +75,23 @@ class _PasswordWasSet extends StatelessWidget {
   const _PasswordWasSet({final Key? key}) : super(key: key);
 
   void onPressed(final BuildContext context) {
-    final homeContextBloc = BlocProvider.of<HomeContextCubit>(context);
-    final actualHomeContext = homeContextBloc.state.context;
-    final settings = BlocProvider.of<SettingsCubit>(context);
-    final appSettings = settings.state.appSettings;
-    final currentPin = appSettings.pinCode;
-
     final screenLockDialog = D3pScreenLockDialog(
-      context: actualHomeContext,
+      context: context,
     );
     screenLockDialog.showScreenLock(
-      correctString: currentPin,
       onUnlocked: () {
         final settings = BlocProvider.of<SettingsCubit>(context);
         final oldGlobal = settings.state;
         final oldAppSettings = oldGlobal.appSettings;
-        final newAppSettings = oldAppSettings.copyWith(pinCode: '');
+        final newAppSettings = oldAppSettings.copyWith(
+          oldPinCode: '',
+          newPinHash: null,
+        );
         final newGlobal = oldGlobal.copyWith(appSettings: newAppSettings);
         settings.updateSettings(newGlobal);
 
+        context.maybePop();
         logger.i('Pin code was removed');
-        actualHomeContext.router.pop();
       },
     );
   }

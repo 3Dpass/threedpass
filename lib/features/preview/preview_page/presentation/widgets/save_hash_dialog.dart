@@ -21,10 +21,10 @@ class SaveHashDialog extends StatelessWidget {
   final HashObject hashObject;
   final Snapshot snapshot;
 
-  Future<void> saveSnapshot(
+  void saveSnapshot(
     final String name,
     final BuildContext context,
-  ) async {
+  ) {
     final newNamedModel = snapshot.copyWith(name: name);
 
     BlocProvider.of<HashesListBloc>(context).add(
@@ -34,7 +34,7 @@ class SaveHashDialog extends StatelessWidget {
       ),
     );
 
-    unawaited(context.rootRouter.maybePop());
+    context.rootRouter.maybePop();
   }
 
   @override
@@ -42,7 +42,7 @@ class SaveHashDialog extends StatelessWidget {
     return CommonDialog(
       hashObject: hashObject,
       snapshot: snapshot,
-      action: (final value) async => saveSnapshot(value, context),
+      action: (final value) => saveSnapshot(value, context),
       actionText: 'Save'.tr(),
       title: 'save_snapshot_title'.tr(),
       initialText: snapshot.name,

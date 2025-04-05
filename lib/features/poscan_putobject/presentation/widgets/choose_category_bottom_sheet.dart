@@ -2,7 +2,6 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
-import 'package:threedpass/core/widgets/buttons/enum_button.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/poscan_putobject/bloc/poscan_putobject_cubit.dart';
@@ -61,11 +60,13 @@ class _CatsList extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: List.generate(
         cat.subCats.length,
-        (final index) => EnumButton(
-          text: cat.subCats[index].capitalizeFirst(),
-          isChosen: state.chosenCategory.cat == cat.catName &&
-              state.chosenCategory.subCat == cat.subCats[index],
-          onPressed: () =>
+        (final index) => RadioListTile.adaptive(
+          title: Text(cat.subCats[index].capitalizeFirst()),
+          value: cat.subCats[index],
+          groupValue: state.chosenCategory.cat == cat.catName
+              ? state.chosenCategory.subCat
+              : null,
+          onChanged: (_) =>
               BlocProvider.of<PoscanPutObjectCubit>(context).changeCategory(
             MapPoscanCategory(
               cat: cat.catName,

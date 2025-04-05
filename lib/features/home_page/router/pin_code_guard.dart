@@ -9,8 +9,7 @@ class PinCodeGuard extends AutoRouteGuard {
     final NavigationResolver resolver,
     final StackRouter router,
   ) {
-    final hasPinCode =
-        getIt<SettingsCubit>().state.appSettings.pinCode.isNotEmpty;
+    final hasPinCode = getIt<SettingsCubit>().state.appSettings.isPinSet;
 
     if (!hasPinCode) {
       resolver.next(true);
