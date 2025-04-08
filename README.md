@@ -1,8 +1,7 @@
 # Threedpass
 
-3Dpass mobile light wallet for Android and iOS.
-Tha wallet connects to the Node via RPC/API endpoints:
-- Mainnet: `wss://rpc.3dpass.org`
+3Dpass non-custodial light wallet for Android and iOS.
+The wallet is getting connected to the LoT network through one of the [RPC API endpoints](https://github.com/3Dpass/rpc-list).
 
   ![put_object_mobile](https://github.com/user-attachments/assets/67545790-bb18-4cfd-bfc0-7c109fc4e528)
 
