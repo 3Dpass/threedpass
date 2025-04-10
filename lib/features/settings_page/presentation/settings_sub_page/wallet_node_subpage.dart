@@ -128,8 +128,8 @@ class _State extends State<WalletNodeSubPage> {
                   ),
                   H8(),
                   RadioListTile.adaptive(
-                    title: Text(ConnectionMode.values[0].localizedName),
-                    value: ConnectionMode.values[0],
+                    title: Text(ConnectionMode.defaultRandom.localizedName),
+                    value: ConnectionMode.defaultRandom,
                     groupValue: connectionMode,
                     onChanged: (value) => onEnumPressed(value!),
                   ),
@@ -165,8 +165,8 @@ class _State extends State<WalletNodeSubPage> {
                   ),
                   H16(),
                   RadioListTile.adaptive(
-                    title: Text(ConnectionMode.values[1].localizedName),
-                    value: ConnectionMode.values[1],
+                    title: Text(ConnectionMode.custom.localizedName),
+                    value: ConnectionMode.custom,
                     groupValue: connectionMode,
                     onChanged: (value) => onEnumPressed(value!),
                   ),

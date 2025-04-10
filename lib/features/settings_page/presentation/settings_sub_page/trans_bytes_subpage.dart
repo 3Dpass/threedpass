@@ -2,8 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/widgets/buttons/enum_button.dart';
-import 'package:threedpass/core/widgets/buttons/enum_buttons_list.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
@@ -82,17 +80,14 @@ class _TransBytesSubPageState extends State<TransBytesSubPage> {
       onSavePressed: onSavePressed,
       child: Column(
         children: [
-          EnumButtonsList(
-            length: TransBytesMode.values.length,
-            itemBuilder: (final BuildContext context, final int index) {
-              final mode = TransBytesMode.values[index];
-              return EnumButton(
-                text: mode.localizedName,
-                isChosen: mode == chosennTBM,
-                onPressed: () => onEnumPressed(mode),
-              );
-            },
-          ),
+          ...TransBytesMode.values.map((mode) {
+            return RadioListTile.adaptive(
+              title: Text(mode.localizedName),
+              value: mode,
+              groupValue: chosennTBM,
+              onChanged: (value) => onEnumPressed(value!),
+            );
+          }).toList(),
           Form(
             key: _formKey,
             child: Padding(

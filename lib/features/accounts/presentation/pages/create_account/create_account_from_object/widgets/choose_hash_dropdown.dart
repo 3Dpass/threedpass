@@ -23,7 +23,7 @@ class _ChooseHashDropdown extends StatelessWidget {
           ValueListenableBuilder(
         valueListenable: chosenHash,
         builder: (final context, final _, final __) => SizedBox(
-          height: 55,
+          // height: 55,
           child: _DropdownButtonString(
             // context: context,
             hashObject: hashObject,
@@ -40,10 +40,8 @@ class _DropdownButtonString extends D3pDropdownButton<String> {
   _DropdownButtonString({
     required final HashObject hashObject,
     required super.onChanged,
-    // required final BuildContext context,
     required final ValueNotifier<String> chosenHash,
   }) : super(
-          // context: context,
           isExpanded: true,
           value: chosenHash.value,
           items: hashObject.stableHashes

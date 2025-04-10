@@ -21,6 +21,7 @@ class D3pDropdownButton<T> extends DropdownButtonFormField<T> {
             filled: true,
             focusedBorder: D3pDropdownTheme.focusedBorder,
             border: D3pDropdownTheme.border,
+            enabledBorder: D3pDropdownTheme.border,
           ),
         );
 }

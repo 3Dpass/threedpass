@@ -4,12 +4,12 @@ class PoscanCategories {
 
   const PoscanCategories._(this.catName, this.subCats);
 
-  static MapPoscanCategory first = MapPoscanCategory(
+  static final MapPoscanCategory first = MapPoscanCategory(
     cat: allCats.first.catName,
     subCat: allCats.first.subCats.first,
   );
 
-  static List<PoscanCategories> allCats = [
+  static const List<PoscanCategories> allCats = [
     objects3d,
     // drawings2d,
     // music,
@@ -17,16 +17,17 @@ class PoscanCategories {
     // movements,
   ];
 
-  static PoscanCategories objects3d = const PoscanCategories._(
+  static const PoscanCategories objects3d = const PoscanCategories._(
     'objects3d',
     ['grid2dLow'], // 'grid2dHigh'
   );
-  static PoscanCategories drawings2d =
+  static const PoscanCategories drawings2d =
       const PoscanCategories._('drawings2d', []);
-  static PoscanCategories music = const PoscanCategories._('music', []);
-  static PoscanCategories biometrics =
+  static const PoscanCategories music = const PoscanCategories._('music', []);
+  static const PoscanCategories biometrics =
       const PoscanCategories._('biometrics', []);
-  static PoscanCategories movements = const PoscanCategories._('movements', []);
+  static const PoscanCategories movements =
+      const PoscanCategories._('movements', []);
 }
 
 class MapPoscanCategory {

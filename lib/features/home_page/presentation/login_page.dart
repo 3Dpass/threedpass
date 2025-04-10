@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/screen_lock/d3p_screen_lock.dart';
-import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 
 @RoutePage<bool>()
 class LoginPage extends StatelessWidget {
@@ -16,8 +14,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final settings = BlocProvider.of<SettingsCubit>(context).state;
-    final correctString = settings.appSettings.pinCode;
-    return D3pScreenLock(correctString: correctString, onUnlocked: onUnlocked);
+    return D3pScreenLock(onUnlocked: onUnlocked);
   }
 }

@@ -1,13 +1,8 @@
-// part of '../../settings_page.dart';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 
-/// Empty input means, that trans bytes should be taken from chain.
-/// Else user's 8 len input will be used by calc library
 class TransBytesInputField extends StatelessWidget {
   const TransBytesInputField({
     required this.controller,
@@ -22,9 +17,8 @@ class TransBytesInputField extends StatelessWidget {
 
   static final hexInputFormatter = TransBytesMaskTextInputFormatter();
 
-  void onClearPressed(final BuildContext context) {
+  void onClearPressed() {
     controller.clear();
-    // changeSettings('', context);
   }
 
   @override
@@ -33,7 +27,7 @@ class TransBytesInputField extends StatelessWidget {
       controller: controller,
       labelText: 'trans_bytes_input_label'.tr(),
       suffixButton: Icons.clear,
-      onSuffixButtonPressed: () => onClearPressed(context),
+      onSuffixButtonPressed: onClearPressed,
       // onChanged: (final value) => changeSettings(value ?? '', context),
       validator: validator,
       inputFormatters: [hexInputFormatter],
@@ -64,7 +58,6 @@ class TransBytesInput {
     final realInput = hexInputFormatter.unmaskText(rawInput);
 
     if (int.tryParse(realInput, radix: 16) != null && realInput.length == 8) {
-      logger.t('Valid $realInput');
       return null;
     } else {
       return 'error_hex'.tr();

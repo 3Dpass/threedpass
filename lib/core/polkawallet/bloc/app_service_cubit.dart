@@ -23,8 +23,6 @@ import 'package:threedpass/features/poscan_objects_query/data/poscan_local_repos
 import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
-import 'package:threedpass/features/wallet_screen/transactions_history/bloc/transfers_from_cubit.dart';
-import 'package:threedpass/features/wallet_screen/transactions_history/bloc/transfers_to_cubit.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/domain/usecases/get_transfers.dart';
 import 'package:threedpass/setup.dart';
 
@@ -152,8 +150,6 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
       getIt<PoscanObjectsCubit>().downloadOwnerObjects(state.keyring.current),
     );
 
-    registerTransferCubits(pseudoNewState);
-
     emit(pseudoNewState);
   }
 
@@ -167,31 +163,6 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     emit(
       state.copyWith(
         status: AppServiceInitStatus.init,
-      ),
-    );
-  }
-
-  // Good id to test '0xc46140845e922cb3c2c10c55b90dc6a959ec5414835fb2d5e8f2bed89e7d4c6f'
-  static void registerTransferCubits(final AppService appService) {
-    final userPubKey = appService.keyring.current.pubKey ?? '';
-
-    if (getIt.isRegistered<TransfersToCubit>()) {
-      getIt.unregister<TransfersToCubit>();
-    }
-    getIt.registerFactory<TransfersToCubit>(
-      () => TransfersToCubit(
-        toMultiAddressAccountId: userPubKey,
-        getTransfers: getIt<GetTransfers>(),
-      ),
-    );
-
-    if (getIt.isRegistered<TransfersFromCubit>()) {
-      getIt.unregister<TransfersFromCubit>();
-    }
-    getIt.registerFactory<TransfersFromCubit>(
-      () => TransfersFromCubit(
-        fromMultiAddressAccountId: userPubKey,
-        getTransfers: getIt<GetTransfers>(),
       ),
     );
   }

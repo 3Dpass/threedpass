@@ -1,33 +1,73 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:threedpass/features/wallet_screen/transactions_history/domain/entities/transfer_item.dart';
-import 'package:threedpass/features/wallet_screen/transactions_history/domain/entities/transfers_dto.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
+import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
+import 'package:threedpass/features/rest/models/transfers_response.dart';
+import 'package:threedpass/features/wallet_screen/transactions_history/domain/entities/get_transfers_params.dart';
+import 'package:threedpass/features/wallet_screen/transactions_history/domain/usecases/get_transfers.dart';
+import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_history_ui.dart';
 
-abstract class GetTransfersCubit extends Cubit<void> {
-  GetTransfersCubit() : super(null) {
-    pagingController = PagingController(firstPageKey: '1')
-      ..addPageRequestListener((final String pageKey) async {
-        await nextPage(pageKey);
+class GetTransfersCubit extends Cubit<void> {
+  GetTransfersCubit({
+    required this.address,
+    required this.getTransfers,
+    required this.appServiceLoaderCubit,
+  }) : super(null) {
+    pagingController
+      ..addPageRequestListener((final int pageKey) {
+        nextPage(pageKey);
       });
   }
 
-  late final PagingController<String, TransferItem> pagingController;
+  final String address;
+  final GetTransfers getTransfers;
+  final AppServiceLoaderCubit appServiceLoaderCubit;
 
-  /// Override this method and call proper UseCase.
-  Future<TransfersDTO> getData(final String pageKey);
+  final PagingController<int, TransferHistoryUI> pagingController =
+      PagingController(firstPageKey: 0);
 
-  Future<void> nextPage(
-    final String pageKey,
-  ) async {
-    try {
-      final data = await getData(pageKey);
-      if (data.objects.isEmpty) {
-        pagingController.appendLastPage(data.objects);
-      } else {
-        pagingController.appendPage(data.objects, data.nextPageKey);
-      }
-    } on Object catch (e, _) {
-      pagingController.error = e;
-    }
-  }
+  void nextPage(
+    final int pageKey,
+  ) =>
+      getTransfers.safeCall(
+        params: GetTransfersParams(
+          address: address,
+          page: pageKey,
+        ),
+        onError: (final e, final st) {
+          pagingController.error = e;
+        },
+        onSuccess: (final data) {
+          final items = data.items
+              .map(
+                (item) => TransferHistoryUI(
+                  amount: BalanceUtils.balance(
+                    item.balance,
+                    appServiceLoaderCubit.state.networkStateData.safeDecimals,
+                  ),
+                  blockDateTime: DateTime.fromMillisecondsSinceEpoch(
+                    item.indexer.blockTime,
+                  ),
+                  fromAddress: item.from,
+                  toAddress: item.to,
+                  symbols: appServiceLoaderCubit
+                          .state.networkStateData.tokenSymbol?.first ??
+                      '?',
+                  direction: item.from == address
+                      ? TransferDirection.from
+                      : TransferDirection.to,
+                  extrisincStatus: null,
+                  decimals:
+                      appServiceLoaderCubit.state.networkStateData.safeDecimals,
+                ),
+              )
+              .toList();
+          if (items.isEmpty) {
+            pagingController.appendLastPage([]);
+          } else {
+            pagingController.appendPage(items, data.page + 1);
+          }
+        },
+      );
 }

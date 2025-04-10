@@ -13,7 +13,9 @@ abstract class _$AppSettingsCWProxy {
 
   AppSettings showZeroAssets(bool showZeroAssets);
 
-  AppSettings pinCode(String pinCode);
+  AppSettings oldPinCode(String oldPinCode);
+
+  AppSettings newPinHash(int? newPinHash);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AppSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -25,7 +27,8 @@ abstract class _$AppSettingsCWProxy {
     bool? darkTheme,
     int? stableRequirement,
     bool? showZeroAssets,
-    String? pinCode,
+    String? oldPinCode,
+    int? newPinHash,
   });
 }
 
@@ -47,7 +50,10 @@ class _$AppSettingsCWProxyImpl implements _$AppSettingsCWProxy {
       this(showZeroAssets: showZeroAssets);
 
   @override
-  AppSettings pinCode(String pinCode) => this(pinCode: pinCode);
+  AppSettings oldPinCode(String oldPinCode) => this(oldPinCode: oldPinCode);
+
+  @override
+  AppSettings newPinHash(int? newPinHash) => this(newPinHash: newPinHash);
 
   @override
 
@@ -61,7 +67,8 @@ class _$AppSettingsCWProxyImpl implements _$AppSettingsCWProxy {
     Object? darkTheme = const $CopyWithPlaceholder(),
     Object? stableRequirement = const $CopyWithPlaceholder(),
     Object? showZeroAssets = const $CopyWithPlaceholder(),
-    Object? pinCode = const $CopyWithPlaceholder(),
+    Object? oldPinCode = const $CopyWithPlaceholder(),
+    Object? newPinHash = const $CopyWithPlaceholder(),
   }) {
     return AppSettings(
       darkTheme: darkTheme == const $CopyWithPlaceholder() || darkTheme == null
@@ -78,10 +85,15 @@ class _$AppSettingsCWProxyImpl implements _$AppSettingsCWProxy {
           ? _value.showZeroAssets
           // ignore: cast_nullable_to_non_nullable
           : showZeroAssets as bool,
-      pinCode: pinCode == const $CopyWithPlaceholder() || pinCode == null
-          ? _value.pinCode
+      oldPinCode:
+          oldPinCode == const $CopyWithPlaceholder() || oldPinCode == null
+              ? _value.oldPinCode
+              // ignore: cast_nullable_to_non_nullable
+              : oldPinCode as String,
+      newPinHash: newPinHash == const $CopyWithPlaceholder()
+          ? _value.newPinHash
           // ignore: cast_nullable_to_non_nullable
-          : pinCode as String,
+          : newPinHash as int?,
     );
   }
 }
@@ -110,14 +122,15 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
       darkTheme: fields[1] as bool,
       stableRequirement: fields[0] as int,
       showZeroAssets: fields[2] == null ? false : fields[2] as bool,
-      pinCode: fields[3] == null ? '' : fields[3] as String,
+      oldPinCode: fields[3] == null ? '' : fields[3] as String,
+      newPinHash: fields[4] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, AppSettings obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.stableRequirement)
       ..writeByte(1)
@@ -125,7 +138,9 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
       ..writeByte(2)
       ..write(obj.showZeroAssets)
       ..writeByte(3)
-      ..write(obj.pinCode);
+      ..write(obj.oldPinCode)
+      ..writeByte(4)
+      ..write(obj.newPinHash);
   }
 
   @override

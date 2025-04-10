@@ -62,16 +62,6 @@ import 'package:threedpass/features/graphql/extrinsics/data/query/__generated__/
     show GGetExtrinsicsReq;
 import 'package:threedpass/features/graphql/extrinsics/data/query/__generated__/get_extrnsics.var.gql.dart'
     show GGetExtrinsicsVars;
-import 'package:threedpass/features/graphql/transfers_history/data/query/__generated__/get_transfers.data.gql.dart'
-    show
-        GGetTransfersData,
-        GGetTransfersData_getTransfers,
-        GGetTransfersData_getTransfers_objects,
-        GGetTransfersData_getTransfers_pageInfo;
-import 'package:threedpass/features/graphql/transfers_history/data/query/__generated__/get_transfers.req.gql.dart'
-    show GGetTransfersReq;
-import 'package:threedpass/features/graphql/transfers_history/data/query/__generated__/get_transfers.var.gql.dart'
-    show GGetTransfersVars;
 
 part 'serializers.gql.g.dart';
 
@@ -121,12 +111,6 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetExtrinsicsData_getExtrinsics_pageInfo,
   GGetExtrinsicsReq,
   GGetExtrinsicsVars,
-  GGetTransfersData,
-  GGetTransfersData_getTransfers,
-  GGetTransfersData_getTransfers_objects,
-  GGetTransfersData_getTransfers_pageInfo,
-  GGetTransfersReq,
-  GGetTransfersVars,
   GJSONString,
   GLogFilter,
   GTransferFilter,

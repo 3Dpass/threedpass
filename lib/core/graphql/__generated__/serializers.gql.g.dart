@@ -50,12 +50,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GGetExtrinsicsData_getExtrinsics_pageInfo.serializer)
       ..add(GGetExtrinsicsReq.serializer)
       ..add(GGetExtrinsicsVars.serializer)
-      ..add(GGetTransfersData.serializer)
-      ..add(GGetTransfersData_getTransfers.serializer)
-      ..add(GGetTransfersData_getTransfers_objects.serializer)
-      ..add(GGetTransfersData_getTransfers_pageInfo.serializer)
-      ..add(GGetTransfersReq.serializer)
-      ..add(GGetTransfersVars.serializer)
       ..add(GJSONString.serializer)
       ..add(GLogFilter.serializer)
       ..add(GTransferFilter.serializer)
@@ -290,12 +284,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [
             const FullType.nullable(GGetExtrinsicsData_getExtrinsics_objects)
           ]),
-          () => new ListBuilder<GGetExtrinsicsData_getExtrinsics_objects?>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType.nullable(GGetTransfersData_getTransfers_objects)
-          ]),
-          () => new ListBuilder<GGetTransfersData_getTransfers_objects?>()))
+          () => new ListBuilder<GGetExtrinsicsData_getExtrinsics_objects?>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint
