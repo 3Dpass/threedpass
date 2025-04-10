@@ -10,7 +10,7 @@ publish_to: 'none'
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.18.0+49
+version: 2.18.1+50
 
 environment:
   sdk: ">=3.0.6 <4.0.0"
@@ -38,8 +38,8 @@ dependencies:
   get_it: ^7.6.0
   flutter_bloc: ^8.1.3
   path_provider: ^2.1.0
-  hive: ^2.2.3
-  isar: 3.1.0+1 # TODO Move to isar 4.0.0-dev.14
+  hive: ^2.2.3 # TODO Migrate to hive_ce
+  isar: 3.1.0+1 # TODO Upgrade to isar 4.0.0-dev.14
   isar_flutter_libs: 3.1.0+1 # contains Isar Core
   flutter_inappwebview: ^5.7.2+3
   polkawallet_sdk: #0.5.1
@@ -52,6 +52,7 @@ dependencies:
   async: ^2.11.0
   hashlib: ^1.21.0
   dio: ^5.8.0+1
+  retrofit: ^4.4.2
   # fpdart: ^1.1.0
 
   ## Code gen
@@ -89,6 +90,7 @@ dev_dependencies:
 
   ## Generators
   build_runner:
+  retrofit_generator: ^8.2.0
   hive_generator: ^2.0.0
   isar_generator: 3.1.0+1
   copy_with_extension_gen: ^5.0.3

@@ -17,7 +17,7 @@ class UsualCardButtonIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
@@ -33,11 +33,12 @@ class UsualCardButtonIcon extends StatelessWidget {
         H8(),
         SizedBox(
           height: 32,
-          child: Center(
+          child: Align(
+            alignment: Alignment.bottomLeft,
             child: Text(
               title.tr(),
               maxLines: 2,
-              textAlign: TextAlign.center,
+              // textAlign: TextAlign.left,
             ),
           ),
         ),

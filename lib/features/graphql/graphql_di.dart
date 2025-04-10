@@ -4,7 +4,6 @@ import 'package:hive/hive.dart';
 import 'package:threedpass/core/utils/di_module.dart';
 
 import 'package:threedpass/features/graphql/extrinsics/data/repositories/extrinsic_datasource.dart';
-import 'package:threedpass/features/graphql/transfers_history/data/repositories/transfers_repo_remote.dart';
 import 'package:threedpass/features/graphql/utils/ferry_cache.dart';
 import 'package:threedpass/features/graphql/utils/init_graphql_client.dart';
 
@@ -21,10 +20,6 @@ class ThreedpGraphql extends DIModule {
       FerryClient(
         cache: getIt<Cache>(),
       ).client,
-    );
-
-    getIt.registerSingleton<TransfersDatasource>(
-      TransfersDatasource(client: getIt<Client>()),
     );
 
     getIt.registerSingleton<ExtrinsicDatasourceGQL>(
