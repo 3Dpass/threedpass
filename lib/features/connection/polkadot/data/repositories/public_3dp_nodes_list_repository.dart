@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:threedpass/core/utils/logger.dart';
+import 'package:threedpass/core/utils/validators.dart';
 
 abstract class Public3dpNodesListRepository {
   const Public3dpNodesListRepository();
@@ -19,7 +21,12 @@ class Public3dpNodesListRepositoryImpl implements Public3dpNodesListRepository {
   Future<List<String>> publicNodesList() async {
     final response =
         await dio.request(Public3dpNodesListRepository.listOfNodesUrl);
-    print(response.data);
-    return Future.value(response.data!.split('\n'));
+    final publicNodes = (response.data!.split('\n') as List<String>)
+        .where(
+          (final e) => Validators.nodeUrl(e),
+        )
+        .toList();
+    logger.t('Public nodes (${publicNodes.length}): $publicNodes');
+    return Future.value(publicNodes);
   }
 }

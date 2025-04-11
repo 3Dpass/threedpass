@@ -21,8 +21,8 @@ class UsualCardButtonIcon extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
-          height: 24,
-          width: 24,
+          // height: 24,
+          // width: 24,
           child: isLoading
               ? const D3pProgressIndicator(
                   size: null,

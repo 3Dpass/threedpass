@@ -25,8 +25,7 @@ class NodeUrlButton extends StatelessWidget {
         buildWhen: (final previous, final current) =>
             previous.walletSettings.nodeUrl != current.walletSettings.nodeUrl,
         builder: (final context, final state) {
-          final nodeUrlValue =
-              BlocProvider.of<PolkadotNodeUrl>(context).state.value ?? '?';
+          final nodeUrlValue = BlocProvider.of<PolkadotNodeUrl>(context).status;
 
           return LineButton(
             icon: const Icon(
