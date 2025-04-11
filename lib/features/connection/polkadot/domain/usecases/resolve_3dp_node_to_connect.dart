@@ -22,10 +22,13 @@ class Resolve3DPNodeToConnect extends UseCase<String, void> {
     switch (settings.walletSettings.connectionMode) {
       case ConnectionMode.defaultRandom:
         final public = await publicNodesRepo.publicNodesList();
+        if (public.isEmpty) {
+          throw Exception('No public nodes found');
+        }
         final rndIdx = Random().nextInt(public.length);
         final url = public[rndIdx];
         logger.t(
-          'Chosen random index=$rndIdx of ${public.length} public nodes. NodeUrl=$url',
+          'Chosen random index = $rndIdx of ${public.length} public nodes. NodeUrl=$url',
         );
         return url;
       case ConnectionMode.custom:

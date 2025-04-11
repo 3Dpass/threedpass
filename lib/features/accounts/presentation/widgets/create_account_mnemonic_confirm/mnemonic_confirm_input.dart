@@ -32,18 +32,13 @@ class _MnemonicGrid extends StatelessWidget {
       runSpacing: 8,
       children: List.generate(
         state.words.length,
-        (final index) =>
-            // ConstrainedBox(
-            //   constraints: BoxConstraints.loose(const Size(100, 50)),
-            //   child:
-            D3pElevatedButton(
+        (final index) => D3pElevatedButton(
           isInfinityWidth: false,
           text: state.words[index],
           onPressed: () =>
               BlocProvider.of<MnemonicInputCubit>(context).onWordPressed(index),
         ),
       ),
-      // ),
     );
   }
 }

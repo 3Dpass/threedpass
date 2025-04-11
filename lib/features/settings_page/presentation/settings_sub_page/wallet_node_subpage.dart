@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/utils/validators.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
@@ -181,8 +182,7 @@ class _State extends State<WalletNodeSubPage> {
                       enabled: connectionMode == ConnectionMode.custom,
                       validator: (final input) =>
                           connectionMode == ConnectionMode.custom
-                              ? Uri.tryParse(nodeUrlController.text) != null &&
-                                      nodeUrlController.text.startsWith('wss')
+                              ? Validators.nodeUrl(nodeUrlController.text)
                                   ? null
                                   : 'url_validation_error'.tr()
                               : null,

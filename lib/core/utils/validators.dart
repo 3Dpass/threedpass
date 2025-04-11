@@ -63,4 +63,7 @@ class Validators {
     }
     return null;
   }
+
+  static bool nodeUrl(final String p0) =>
+      Uri.tryParse(p0) != null && p0.startsWith('wss');
 }

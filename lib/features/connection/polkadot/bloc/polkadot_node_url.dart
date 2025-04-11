@@ -9,8 +9,23 @@ class PolkadotNodeUrl extends Cubit<PolkadotNodeUrlState> {
   final Resolve3DPNodeToConnect resolve3DPNode;
 
   Future<String> initUrl() async {
-    final url = await resolve3DPNode.call(null);
-    emit(AsyncValue.data(url));
-    return url;
+    try {
+      final url = await resolve3DPNode.call(null);
+      emit(AsyncValue.data(url));
+      return url;
+    } catch (e, st) {
+      emit(AsyncValue.error(e, st));
+      rethrow;
+    }
+  }
+
+  String get status {
+    if (state.hasError) {
+      return 'error';
+    }
+    if (state.hasValue) {
+      return state.value!;
+    }
+    return '?';
   }
 }
