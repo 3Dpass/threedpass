@@ -578,6 +578,8 @@
     "random_connection_mode_part_1": "A random node will be picked from the ",
     "random_connection_mode_part_2": "list of public nodes",
     "wallet_settings_select_connection_mode": "Select connection mode:",
-    "wallet_settings_currently_connected": "Currently connected to:"
-
+    "wallet_settings_currently_connected": "Currently connected to:",
+    
+    "@2.19.0": {},
+    "claim_atomic_swap_page_title": "Claim Atomic Swap"
 }

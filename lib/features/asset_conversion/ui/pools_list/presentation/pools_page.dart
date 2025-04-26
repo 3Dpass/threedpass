@@ -6,7 +6,7 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/async_value.dart';
 import 'package:threedpass/core/widgets/buttons/custom_back_button.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
-import 'package:threedpass/core/widgets/layout/list_view_separated.dart';
+import 'package:threedpass/core/widgets/layout/separated_column.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
@@ -61,7 +61,7 @@ class PoolsPage extends StatelessWidget {
                   children: [
                     const D3pBodyMediumText('pools_text'),
                     const H16(),
-                    ListViewSeparated(
+                    SeparatedColumn(
                       children: state.value!.pools
                           .map((final e) => PoolCard(e))
                           .toList(),

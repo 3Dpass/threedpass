@@ -1,13 +1,24 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/features/other/card_with_buttons/card_button_data.dart';
+import 'package:threedpass/core/utils/get_theme.dart';
+import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 
 class CardButton extends StatelessWidget {
-  final CardButtonData data;
+  final Widget icon;
+  final String title;
+  final bool isLoading;
+  final VoidCallback? onButtonPressed;
+  final int? badge;
 
   static const double size = 90;
 
   const CardButton({
-    required this.data,
+    required this.icon,
+    required this.title,
+    this.isLoading = false,
+    this.onButtonPressed,
+    this.badge,
   });
 
   @override
@@ -16,12 +27,38 @@ class CardButton extends StatelessWidget {
       height: size,
       width: size,
       child: TextButton(
-        onPressed: data.onButtonPressed,
+        onPressed: onButtonPressed,
         style: TextButton.styleFrom(
-          textStyle: Theme.of(context).textTheme.labelSmall,
-          backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+          textStyle: context.textTheme.labelSmall,
+          backgroundColor: context.theme.colorScheme.surfaceContainer,
         ),
-        child: data.icon,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: 24,
+              width: 24,
+              child: isLoading
+                  ? const D3pProgressIndicator(
+                      size: 24,
+                      strokeWidth: 2,
+                    )
+                  : icon,
+            ),
+            H8(),
+            SizedBox(
+              height: 32,
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  title.tr(),
+                  maxLines: 2,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

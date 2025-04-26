@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/widgets/layout/list_view_separated.dart';
+import 'package:threedpass/core/widgets/layout/separated_column.dart';
 import 'package:threedpass/core/widgets/other/copy_span_widget.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
@@ -42,6 +42,6 @@ class PoscanAssetDataWidget extends StatelessWidget {
         needSpace: true,
       ),
     ];
-    return ListViewSeparated(children: children);
+    return SeparatedColumn(children: children);
   }
 }

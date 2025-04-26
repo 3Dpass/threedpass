@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
-import 'package:threedpass/core/widgets/layout/list_view_separated.dart';
+import 'package:threedpass/core/widgets/layout/separated_column.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
 import 'package:threedpass/router/router.gr.dart';
@@ -43,6 +43,6 @@ class PoscanAssetMintWidget extends StatelessWidget {
       );
     }
 
-    return ListViewSeparated(children: children);
+    return SeparatedColumn(children: children);
   }
 }

@@ -52,13 +52,13 @@ import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/present
     as _i52;
 import 'package:threedpass/features/asset_conversion/ui/swap/presentation/swap_page_wrapper.dart'
     as _i65;
-import 'package:threedpass/features/atomic_swap/cancel/presentation/cancel_atomic_swap_page_warpper.dart'
+import 'package:threedpass/features/atomic_swap/poscan/cancel/presentation/cancel_atomic_swap_page_warpper.dart'
     as _i3;
-import 'package:threedpass/features/atomic_swap/claim/presentation/claim_atomic_swap_page_wrapper.dart'
+import 'package:threedpass/features/atomic_swap/poscan/claim/presentation/claim_atomic_swap_page_wrapper.dart'
     as _i6;
-import 'package:threedpass/features/atomic_swap/create/presentation/create_swap_page_wapper.dart'
+import 'package:threedpass/features/atomic_swap/poscan/create/presentation/create_swap_page_wapper.dart'
     as _i20;
-import 'package:threedpass/features/atomic_swap/pending/presentation/pending_atomic_swap_page_wrapper.dart'
+import 'package:threedpass/features/atomic_swap/poscan/pending/presentation/pending_atomic_swap_page_wrapper.dart'
     as _i44;
 import 'package:threedpass/features/compare_page/presentation/pages/compare_page_wrapper.dart'
     as _i7;

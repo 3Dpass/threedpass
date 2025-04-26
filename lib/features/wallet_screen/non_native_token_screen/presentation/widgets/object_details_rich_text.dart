@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/core/utils/list_extensions.dart';
 
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
-import 'package:threedpass/core/widgets/layout/list_view_separated.dart';
+import 'package:threedpass/core/widgets/layout/separated_column.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/core/widgets/other/fetch_builder.dart';
 import 'package:threedpass/core/widgets/other/vertical_line_left_border.dart';
@@ -26,7 +26,7 @@ class ObjectDetailsRichText extends StatelessWidget {
   Widget build(final BuildContext context) {
     if (objDetails != null) {
       return VerticalLineLeftBorder(
-        child: ListViewSeparated(
+        child: SeparatedColumn(
           children: [
             FastRichText(
               mainText: objDetails!.objIdx,

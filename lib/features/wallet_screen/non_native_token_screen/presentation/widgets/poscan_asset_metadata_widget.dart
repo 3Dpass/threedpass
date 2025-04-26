@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
-import 'package:threedpass/core/widgets/layout/list_view_separated.dart';
+import 'package:threedpass/core/widgets/layout/separated_column.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
@@ -105,7 +105,7 @@ class _HasMetadata extends StatelessWidget {
       // TODO Check if admin or owner sets the metadata
       children.add(_GoToSetMetadata(poscanAssetData: poscanAssetData));
     }
-    return ListViewSeparated(children: children);
+    return SeparatedColumn(children: children);
   }
 }
 

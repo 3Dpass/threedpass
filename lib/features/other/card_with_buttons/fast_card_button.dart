@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/features/other/card_with_buttons/card_button.dart';
-import 'package:threedpass/features/other/card_with_buttons/card_button_data.dart';
-import 'package:threedpass/features/other/card_with_buttons/usual_card_button_icon.dart';
 
 class FastCardButton extends StatelessWidget {
   final IconData iconData;
@@ -17,16 +15,11 @@ class FastCardButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return CardButton(
-      data: CardButtonData(
-        icon: UsualCardButtonIcon(
-          iconData: iconData,
-          title: title,
-          isLoading: isLoading,
-        ),
+  Widget build(BuildContext context) => CardButton(
+        icon: Icon(iconData),
+        title: title,
+        isLoading: isLoading,
         onButtonPressed: onButtonPressed,
-      ),
-    );
-  }
+        badge: null,
+      );
 }
