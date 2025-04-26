@@ -53,6 +53,7 @@ dependencies:
   hashlib: ^1.21.0
   dio: ^5.8.0+1
   retrofit: ^4.4.2
+  queue: ^3.4.0
   # fpdart: ^1.1.0
 
   ## Code gen

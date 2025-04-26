@@ -1216,6 +1216,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
+  queue:
+    dependency: "direct main"
+    description:
+      name: queue
+      sha256: "9bc29632072f4dac6cd0056acbb63361f654e2def9ceb4b08cfe0f9cf5618409"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.4.0"
   rational:
     dependency: "direct main"
     description:
