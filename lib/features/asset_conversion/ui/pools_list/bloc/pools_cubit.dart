@@ -1,3 +1,4 @@
+import 'package:queue/queue.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:threedpass/core/utils/async_value.dart';
@@ -31,29 +32,29 @@ class PoolsCubit extends Cubit<PoolsState> {
 
   final GetBasicPools getAllPools;
   final GetFullPoolInfo getFullPoolInfo;
+  Queue _queue = Queue(parallel: 5);
 
-  int counter = 0;
+  void killQueue() {
+    _queue.cancel();
+    _queue.dispose();
+    _queue = Queue(parallel: 5);
+  }
+
+  bool updating = false;
 
   Future<void> update({required final String address}) async {
-    counter++;
-
-    final currentCounter = counter;
-
-    emit(
-      const AsyncValue.loading(
-        _State(
-          pools: [],
-        ),
-      ),
-    );
-
-    logger.t(
-      '[POOLS] Start pools update. Current: $currentCounter. Counter: $counter',
-    );
+    if (updating) {
+      Fluttertoast.showToast(
+        msg: 'Already updating pools',
+        toastLength: Toast.LENGTH_SHORT,
+      );
+      return;
+    }
+    updating = true;
+    logger.t('[POOLS] Start pools update');
 
     await getAllPools.safeCall(
       params: null,
-      // params: GetAllPoolsParams(address: address),
       onError: (final e, final stackTrace) => emit(
         AsyncValue.error(
           e,
@@ -61,61 +62,45 @@ class PoolsCubit extends Cubit<PoolsState> {
         ),
       ),
       onSuccess: (final List<BasicPoolEntity> data) {
-        logger.t(
-          '[POOLS] Got basic pools len=${data.length}. Current: $currentCounter. Counter: $counter',
-        );
+        logger.t('[POOLS] Got basic pools len=${data.length}');
 
-        for (int i = 0; i < data.length; ++i) {
-          final basic = data[i];
+        killQueue();
+        emit(AsyncValue.loading(_State(pools: [])));
 
-          if (currentCounter != counter) {
-            logger.t(
-              '[POOLS] Stop pools update. Current: $currentCounter. Counter: $counter',
-            );
+        for (final basic in data) {
+          _queue.add(
+            () => getFullPoolInfo.safeCall(
+              params: GetFullPoolInfoParams(
+                basicPool: basic,
+                address: address,
+              ),
+              onError: (final e, final stackTrace) {
+                logger.e(
+                  e,
+                  stackTrace: stackTrace,
+                );
+                Fluttertoast.showToast(
+                  msg: 'Failed to fetch pool info. $e',
+                  toastLength: Toast.LENGTH_LONG,
+                );
+              },
+              onSuccess: (final PoolFullInfo pool) {
+                final poolsList = state.valueOrNull != null
+                    ? List<PoolFullInfo>.of(state.valueOrNull!.pools)
+                    : List<PoolFullInfo>.empty(growable: true);
+                poolsList.add(pool);
+                final resState = _State(pools: poolsList);
 
-            return;
-          }
-
-          getFullPoolInfo.safeCall(
-            params: GetFullPoolInfoParams(
-              basicPool: basic,
-              address: address,
+                if (_queue.remainingItemCount == 1) {
+                  emit(AsyncValue.data(resState));
+                  logger.t('[POOLS] Finish pools update');
+                  updating = false;
+                } else {
+                  emit(AsyncValue.loading(resState));
+                  logger.t('[POOLS] Yield pools');
+                }
+              },
             ),
-            onError: (final e, final stackTrace) {
-              logger.e(
-                e,
-                stackTrace: stackTrace,
-              );
-              Fluttertoast.showToast(
-                msg: 'Failed to fetch pool info. $e',
-                toastLength: Toast.LENGTH_LONG,
-              );
-            },
-            onSuccess: (final PoolFullInfo pool) {
-              final poolsList = state.valueOrNull != null
-                  ? List<PoolFullInfo>.of(state.valueOrNull!.pools)
-                  : List<PoolFullInfo>.empty(growable: true);
-              poolsList.add(pool);
-              final resState = _State(
-                pools: poolsList,
-              );
-              if (currentCounter != counter) {
-                logger.t(
-                  '[POOLS] Skip emit. Current: $currentCounter. Counter: $counter',
-                );
-                return;
-              }
-
-              if (i == data.length - 1) {
-                emit(
-                  AsyncValue.data(resState),
-                );
-              } else {
-                emit(
-                  AsyncValue.loading(resState),
-                );
-              }
-            },
           );
         }
       },
