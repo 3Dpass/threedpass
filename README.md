@@ -47,6 +47,7 @@ EasyLocalization(
 
 [Read more](https://pub.dev/packages/easy_localization) about easy localization.
 
-### Copyright
+### Responsibility disclaimer
+This is an open source free p2p software. Use it at your own risk. 3dpass platform is non-profit and community-supported.
 
-threedpass Copyright (C) 2025 3Dpass https://3dpass.org/
+Copyright (C) 2025 3Dpass
