@@ -11,7 +11,7 @@ abstract class _$CreateAtomicSwapStateCWProxy {
 
   CreateAtomicSwapState hashedProof(AsyncValue<String> hashedProof);
 
-  CreateAtomicSwapState action(PalletAtomicSwapBaseAction? action);
+  CreateAtomicSwapState assetId(int? assetId);
 
   CreateAtomicSwapState deadline(DateTime? deadline);
 
@@ -24,7 +24,7 @@ abstract class _$CreateAtomicSwapStateCWProxy {
   CreateAtomicSwapState call({
     String? target,
     AsyncValue<String>? hashedProof,
-    PalletAtomicSwapBaseAction? action,
+    int? assetId,
     DateTime? deadline,
   });
 }
@@ -44,8 +44,7 @@ class _$CreateAtomicSwapStateCWProxyImpl
       this(hashedProof: hashedProof);
 
   @override
-  CreateAtomicSwapState action(PalletAtomicSwapBaseAction? action) =>
-      this(action: action);
+  CreateAtomicSwapState assetId(int? assetId) => this(assetId: assetId);
 
   @override
   CreateAtomicSwapState deadline(DateTime? deadline) =>
@@ -62,7 +61,7 @@ class _$CreateAtomicSwapStateCWProxyImpl
   CreateAtomicSwapState call({
     Object? target = const $CopyWithPlaceholder(),
     Object? hashedProof = const $CopyWithPlaceholder(),
-    Object? action = const $CopyWithPlaceholder(),
+    Object? assetId = const $CopyWithPlaceholder(),
     Object? deadline = const $CopyWithPlaceholder(),
   }) {
     return CreateAtomicSwapState(
@@ -75,10 +74,10 @@ class _$CreateAtomicSwapStateCWProxyImpl
               ? _value.hashedProof
               // ignore: cast_nullable_to_non_nullable
               : hashedProof as AsyncValue<String>,
-      action: action == const $CopyWithPlaceholder()
-          ? _value.action
+      assetId: assetId == const $CopyWithPlaceholder()
+          ? _value.assetId
           // ignore: cast_nullable_to_non_nullable
-          : action as PalletAtomicSwapBaseAction?,
+          : assetId as int?,
       deadline: deadline == const $CopyWithPlaceholder()
           ? _value.deadline
           // ignore: cast_nullable_to_non_nullable

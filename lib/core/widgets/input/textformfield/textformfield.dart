@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:threedpass/core/theme/d3p_special_colors.dart';
-import 'package:threedpass/core/utils/get_theme.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 
@@ -87,6 +85,7 @@ class D3pTextFormField extends StatelessWidget {
       children: [
         if (makeLabelOutside)
           Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 labelText ?? '',

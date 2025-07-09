@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:threedpass/core/utils/cut_string.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_asset_metadata.dart';
 
@@ -29,7 +30,7 @@ class DropdownMetadataItem extends StatelessWidget {
         ),
         const SizedBox(width: 16),
         Text(
-          value.symbol,
+          value.symbol.cut(4),
           style:
               mainColor != null ? medium!.copyWith(color: mainColor) : medium,
         ),

@@ -10,6 +10,8 @@ import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/layout/separated_column.dart';
 import 'package:threedpass/core/widgets/other/padding_16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
+import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
+import 'package:threedpass/features/atomic_swap/poscan/common/ui/poscan_asset_swap_action_input.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/bloc/create_atomic_swap_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/create_atomic_swap_state.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/presentation/widgets/choose_account_create_atomic_swap.dart';
@@ -28,20 +30,31 @@ class CreateSwapPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final bloc = BlocProvider.of<CreateAtomicSwapCubit>(context);
     return SomeForm(
-      formKey: BlocProvider.of<CreateAtomicSwapCubit>(context).formKey,
+      formKey: bloc.formKey,
       appbarTitle: 'poscan_atomic_swap_page_title',
       children: [
         ChooseAccountCreateAtomicSwap(),
         _ChooseTarget(),
         _InputSecret(),
+        BlocBuilder<CreateAtomicSwapCubit, CreateAtomicSwapState>(
+          builder: (BuildContext context, CreateAtomicSwapState state) =>
+              PoscanAssetSwapActionInput(
+            controller: bloc.assetAmountController,
+            onSelected: (e) => bloc.selectAsset(e.assetId!),
+            chosenItem: state.assetId != null
+                ? PoolAssetField(isNative: false, assetId: state.assetId!)
+                : null,
+          ), // TODO Make action input choose only assetIds without native token,
+        ),
         _ChooseDeadline(),
         _WarningCheckbox(),
       ],
       submitButton: const Padding16(
         child: _CreateSwapSubmitButton(),
       ),
-      horizontalPadding: 0,
+      horizontalPadding: 16,
     );
   }
 }

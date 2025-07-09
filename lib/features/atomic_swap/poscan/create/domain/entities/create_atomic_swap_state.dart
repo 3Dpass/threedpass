@@ -1,6 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:threedpass/core/utils/async_value.dart';
-import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/pallet_atomic_swap_base_action.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
 
 part 'create_atomic_swap_state.g.dart';
 
@@ -9,7 +9,7 @@ class CreateAtomicSwapState {
   const CreateAtomicSwapState({
     required this.target,
     required this.hashedProof,
-    required this.action,
+    required this.assetId,
     required this.deadline,
   });
 
@@ -17,12 +17,13 @@ class CreateAtomicSwapState {
       : this(
           target: null,
           hashedProof: AsyncValue.data(''),
-          action: null,
+          assetId: null,
           deadline: null,
         );
 
   final String? target;
   final AsyncValue<String> hashedProof;
-  final PalletAtomicSwapBaseAction? action;
+  // final PalletAtomicSwapBaseAction? action;
   final DateTime? deadline;
+  final AssetId? assetId;
 }

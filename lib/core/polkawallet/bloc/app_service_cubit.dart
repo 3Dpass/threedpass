@@ -88,7 +88,6 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     final KeyType keyType = KeyType.mnemonic,
     final CryptoType cryptoType = defaultCryptoType,
     final String derivePath = '',
-    final bool isFromCreatePage = false,
   }) async {
     if (account.name.isEmpty) {
       throw Exception('Accont name or password is empty');

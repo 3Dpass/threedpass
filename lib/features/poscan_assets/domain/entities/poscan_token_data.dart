@@ -6,9 +6,11 @@ import 'package:threedpass/features/poscan_assets/domain/entities/obj_details.da
 
 part 'poscan_token_data.g.dart';
 
+typedef AssetId = int;
+
 @JsonSerializable()
 class PoscanAssetData {
-  final int id;
+  final AssetId id;
   final String owner;
   final String issuer;
   final String admin;

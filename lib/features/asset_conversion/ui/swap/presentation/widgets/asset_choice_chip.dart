@@ -13,7 +13,7 @@ class AssetChoiceChip extends StatelessWidget {
   });
 
   final List<(PoolAssetField, Widget)> menuItemList;
-  final PoolAssetField chosenItem;
+  final PoolAssetField? chosenItem;
   final void Function(PoolAssetField)? onSelected;
 
   static const double menuButtonHeight = 48;
@@ -46,10 +46,15 @@ class AssetChoiceChip extends StatelessWidget {
           elevation: 1,
           showCheckmark: false,
           // backgroundColor: Colors.green,
-          label: DropdownAssetItem(
-            value: chosenItem,
-            // prefixColor: Colors.white,
-            // mainColor: Colors.white,
+          label: SizedBox(
+            width: 85,
+            child: chosenItem != null
+                ? DropdownAssetItem(
+                    value: chosenItem!,
+                    // prefixColor: Colors.white,
+                    // mainColor: Colors.white,
+                  )
+                : Text('-'),
           ),
           // selected: true,
           onSelected: (final _) => onChipPressed(controller),

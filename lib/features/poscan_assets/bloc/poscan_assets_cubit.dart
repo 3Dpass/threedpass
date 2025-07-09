@@ -18,8 +18,8 @@ part 'poscan_assets_cubit.g.dart';
 @CopyWith()
 class PoscanAssetsState {
   final List<PoscanAssetData> assets;
-  final Map<int, PoscanAssetMetadata> metadata;
-  final Map<int, PoscanAssetBalance> balances;
+  final Map<AssetId, PoscanAssetMetadata> metadata;
+  final Map<AssetId, PoscanAssetBalance> balances;
 
   List<PoscanAssetCombined> get combined => assets
       .map(
@@ -132,6 +132,10 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
       },
     );
   }
+
+  List<PoolAssetField> get allAssets => state.assets
+      .map((e) => PoolAssetField(assetId: e.id, isNative: false))
+      .toList();
 
   static const nonFungiblePropId = '0';
 

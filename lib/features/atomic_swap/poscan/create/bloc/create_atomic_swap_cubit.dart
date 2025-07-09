@@ -11,8 +11,10 @@ import 'package:threedpass/core/utils/async_value.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/create_atomic_swap_params.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/create_atomic_swap_state.dart';
+import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/pallet_atomic_swap_base_action.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/usecases/calc_hashed_proof.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/usecases/create_atomic_swap.dart';
+import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
 
 class CreateAtomicSwapCubit extends Cubit<CreateAtomicSwapState>
     with ExtrinsicShowLoadingMixin<void, CreateAtomicSwapParams> {
@@ -25,6 +27,7 @@ class CreateAtomicSwapCubit extends Cubit<CreateAtomicSwapState>
 
   final secretInputController = TextEditingController();
   final toAccountController = TextEditingController();
+  final assetAmountController = TextEditingController();
   final CalcHashedProof calcHashedProof;
   final CreateAtomicSwap createAtomicSwap;
   final AppServiceLoaderCubit appServiceLoaderCubit;
@@ -36,10 +39,12 @@ class CreateAtomicSwapCubit extends Cubit<CreateAtomicSwapState>
   SafeUseCaseCall<void, CreateAtomicSwapParams> get safeCall =>
       createAtomicSwap.safeCall;
 
+  void selectAsset(AssetId assetId) => emit(state.copyWith(assetId: assetId));
+
   @override
   FutureOr<CreateAtomicSwapParams> params(BuildContext context) {
-    if (state.action == null) {
-      throw Exception('Action is null');
+    if (state.assetId == null) {
+      throw Exception('Asset is not chosen');
     }
     if (state.deadline == null) {
       throw Exception('Deadline is null');
@@ -56,7 +61,10 @@ class CreateAtomicSwapCubit extends Cubit<CreateAtomicSwapState>
         name: null,
       ), // TODO check if address correct, get name from contacts
       secret: state.hashedProof.value!,
-      action: state.action!,
+      action: PalletPoscanAssetsSwapTokenSwapAction(
+        assetId: state.assetId!,
+        value: double.parse(assetAmountController.text),
+      ),
       updateStatus: () => updateStatus(context),
       duration: blockNumberFromDateTime(state.deadline!),
     );

@@ -97,7 +97,9 @@ class PoolsCubit extends Cubit<PoolsState> {
                   updating = false;
                 } else {
                   emit(AsyncValue.loading(resState));
-                  logger.t('[POOLS] Yield pools');
+                  logger.t(
+                    '[POOLS] Yield pools. RemainingItemCount=${_queue.remainingItemCount}',
+                  );
                 }
               },
             ),

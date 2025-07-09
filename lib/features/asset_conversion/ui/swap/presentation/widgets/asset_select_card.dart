@@ -11,7 +11,7 @@ class AssetSelectCard extends StatelessWidget {
   // final int initialSelectionIndex;
   final TextEditingController controller;
   final bool isReadOnly;
-  final PoolAssetField chosenItem;
+  final PoolAssetField? chosenItem;
   final void Function(PoolAssetField) onSelected;
 
   const AssetSelectCard({
@@ -69,7 +69,7 @@ class AssetSelectCard extends StatelessWidget {
                     groupDigits: 3,
                     groupSeparator: ',',
                     allowNegative: false,
-                    overrideDecimalPoint: true,
+                    overrideDecimalPoint: false,
                     insertDecimalPoint: false,
                     insertDecimalDigits: false,
                   ),
