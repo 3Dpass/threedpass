@@ -300,15 +300,17 @@ class SwapCubit extends Cubit<SwapState>
       throw Exception('Can not swap same asset');
     }
 
+    if (asset1Decimal == null || asset2Decimal == null) {
+      throw Exception('Invalid amount');
+    }
+
     final secondAmountToSendResponse =
         await (state.chosenMethod == SwapMethod.swapExactTokensForTokens
             ? calcOnFirstChanged
             : calcOnSecondChanged);
 
-    final amount1 = Decimal.parse(firstAssetAmountController.text)
-        .setDecimalsForUserInput(asset1Decimals);
-    final amount2 = Decimal.parse(secondAssetAmountController.text)
-        .setDecimalsForUserInput(asset2Decimals);
+    final amount1 = asset1Decimal!;
+    final amount2 = asset2Decimal!;
 
     final firstAmountToSend =
         state.chosenMethod == SwapMethod.swapExactTokensForTokens

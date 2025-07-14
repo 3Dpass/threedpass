@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
+import 'package:threedpass/core/utils/big_int_json_helper.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/create_atomic_swap_params.dart';
 
 abstract class AtomicSwapRepository {
@@ -24,12 +28,15 @@ class AtomicSwapRepositoryImpl implements AtomicSwapRepository {
     required final void Function() updateStatus,
     required final void Function(String) msgIdCallback,
   }) async {
-    // final args = [
-    //   params.assetId,
-    //   params.admin.pubKey!,
-    //   params.minBalance,
-    //   // keys https://github.com/3Dpass/3DP/blob/3134dad0ed1502462620ba84a4dee4e1b109996b/pallets/poscan-assets/src/types.rs#L41
-    // ];
+    final args = [
+      params.target.address,
+      params.hashedProof,
+      jsonEncode({
+        'assetId': params.action.assetId,
+        'value': BigIntJsonHelper.encode(params.action.value),
+      }),
+      params.duration,
+    ];
 
     // if (params.objDetails != null) {
     //   final maxSupply = BigInt.parse(params.objDetails!.maxSupply);
@@ -43,16 +50,18 @@ class AtomicSwapRepositoryImpl implements AtomicSwapRepository {
     //   args.add(NoneMock());
     // }
 
-    // String argsEncoded = '';
-    // argsEncoded = const JsonEncoder().convert(args);
-    // argsEncoded = BigIntJsonHelper.replace(argsEncoded);
+    String argsEncoded = '';
+    argsEncoded = const JsonEncoder().convert(args);
+    argsEncoded = BigIntJsonHelper.replace(argsEncoded);
 
-    // logger.t(argsEncoded);
+    logger.t(argsEncoded);
+
+    return null;
 
     // return callSignExtrinsicUtil.abstractExtrinsicCall(
     //   argsEncoded: argsEncoded,
     //   calls: ['tx', 'poscanAssets', 'create'],
-    //   pubKey: params.admin.pubKey!,
+    //   pubKey: params.account.pubKey!,
     //   password: params.password,
     //   updateStatus: updateStatus,
     //   msgIdCallback: msgIdCallback,

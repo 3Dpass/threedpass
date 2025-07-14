@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Padding16 extends StatelessWidget {
+class PH16 extends StatelessWidget {
   final Widget child;
 
-  const Padding16({required this.child, super.key});
+  const PH16({
+    required this.child,
+    super.key,
+  });
 
   @override
   Widget build(final BuildContext context) => Padding(

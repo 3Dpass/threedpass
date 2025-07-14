@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/other/form_field_error_text.dart';
-import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/other/ph16.dart';
 
 class D3pSwitchFormField extends FormField<bool> {
   D3pSwitchFormField({
@@ -27,7 +27,7 @@ class D3pSwitchFormField extends FormField<bool> {
                   },
                   title: Text(localizationKey.tr()),
                 ),
-                Padding16(
+                PH16(
                   child: FormFieldErrorText(state),
                 ),
               ],

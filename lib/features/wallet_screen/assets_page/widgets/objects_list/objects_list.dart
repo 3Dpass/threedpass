@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/utils/logger.dart';
-import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
@@ -66,7 +66,7 @@ class _State extends State<AssetsUploadedObjectsList> {
             return const ObjectsListEmptyRefresh();
           }
           return Column(mainAxisSize: MainAxisSize.min, children: [
-            const Padding16(child: ObjectsListHeaderFull()),
+            const PH16(child: ObjectsListHeaderFull()),
             const H8(),
             Flexible(
               child: _ActualObjectsListSection(

@@ -3,11 +3,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
-import 'package:threedpass/core/utils/async_value.dart';
 import 'package:threedpass/core/widgets/buttons/custom_back_button.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/layout/separated_column.dart';
-import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
@@ -45,7 +44,7 @@ class PoolsPage extends StatelessWidget {
         builder: (final context, final state) {
           if (state.hasError) {
             return Center(
-              child: Padding16(
+              child: PH16(
                 child: Text(
                   state.error.toString(),
                 ),

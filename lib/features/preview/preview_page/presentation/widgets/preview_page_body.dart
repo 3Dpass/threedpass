@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/legacy_preview/preview_from_file.dart';
 import 'package:threedpass/features/preview/preview_page/bloc/preview_page_cubit.dart';
@@ -68,7 +68,7 @@ class PreviewPageBody extends StatelessWidget {
         const RenameSnapshotButton(),
         DeleteSnapshotButton(state: snapshot),
         const H16(),
-        const Padding16(
+        const PH16(
           child: Divider(),
         ),
         const RenameObjectButton(),

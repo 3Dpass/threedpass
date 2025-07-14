@@ -8,8 +8,8 @@ class CreateAtomicSwapParams extends ExtrinsicUseCaseParams {
   final KeyPairData account;
   final String password;
   final KeyPairData target;
-  final String secret;
-  final PalletAtomicSwapBaseAction action;
+  final String hashedProof;
+  final PalletPoscanAssetsSwapTokenSwapAction action;
   final int duration;
   @override
   final VoidCallback updateStatus;
@@ -18,7 +18,7 @@ class CreateAtomicSwapParams extends ExtrinsicUseCaseParams {
     required this.account,
     required this.password,
     required this.target,
-    required this.secret,
+    required this.hashedProof,
     required this.action,
     required this.duration,
     required this.updateStatus,

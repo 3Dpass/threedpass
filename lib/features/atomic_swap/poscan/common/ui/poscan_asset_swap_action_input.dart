@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/utils/validators.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
-import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
-import 'package:threedpass/features/asset_conversion/ui/swap/presentation/widgets/asset_choice_chip.dart';
-import 'package:threedpass/features/poscan_assets/ui/widgets/dropdown_asset_item.dart';
+import 'package:threedpass/features/asset_conversion/ui/swap/presentation/widgets/asset_picker.dart';
 
 class PoscanAssetSwapActionInput extends StatelessWidget {
+  final List<PoolAssetField> assetItems;
   final TextEditingController controller;
   final ValueChanged<PoolAssetField> onSelected;
   final PoolAssetField? chosenItem;
 
   const PoscanAssetSwapActionInput({
+    required this.assetItems,
     required this.controller,
     required this.onSelected,
     required this.chosenItem,
@@ -22,9 +22,6 @@ class PoscanAssetSwapActionInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pacBloc = BlocProvider.of<PoscanAssetsCubit>(context);
-    final assetItems = pacBloc.allAssets;
-    // final theme = Theme.of(context);
     return D3pCard(
       cardShape: CardShape.all,
       child: SizedBox(
@@ -35,25 +32,17 @@ class PoscanAssetSwapActionInput extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Poscan asset swap action'),
+              Text('Poscan asset swap action'), // TODO Localize
               H16(),
               Row(
                 children: [
                   SizedBox(
                     width: 100,
-                    child: Text('asset:'),
+                    child: Text('asset'), // TODO Localize
                   ),
-                  AssetChoiceChip(
-                    chosenItem: chosenItem,
+                  AssetPicker(
                     onSelected: onSelected,
-                    menuItemList: assetItems
-                        .map<(PoolAssetField, Widget)>(
-                          (e) => (
-                            e,
-                            DropdownAssetItem(value: e),
-                          ),
-                        )
-                        .toList(),
+                    assetItems: assetItems,
                   ),
                 ],
               ),
@@ -63,17 +52,13 @@ class PoscanAssetSwapActionInput extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: 100,
-                    child: Text('amount:'),
+                    child: Text('amount'), // TODO Localize
                   ),
                   Flexible(
-                    child: SizedBox(
-                      height: 48,
-                      child: D3pTextFormField(
-                        controller: controller,
-
-                        keyboardType: TextInputType.number,
-                        // style: theme.textTheme.bodyLarge,
-                      ),
+                    child: D3pTextFormField(
+                      controller: controller,
+                      keyboardType: TextInputType.number,
+                      validator: Validators.notEmpty,
                     ),
                   ),
                 ],

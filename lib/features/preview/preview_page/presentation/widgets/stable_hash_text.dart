@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/features/preview/preview_page/presentation/widgets/copy_text_card.dart';
 
 class StableHashText extends StatelessWidget {
@@ -34,7 +34,7 @@ class StableHashText extends StatelessWidget {
 
     final bodyMedium = Theme.of(context).textTheme.bodyMedium;
 
-    return Padding16(
+    return PH16(
       child: CopyTextCard(
         textToCopy: hashesStr.join('\n'),
         textToShow: 'stable_hashes_copied_toast'.tr(),

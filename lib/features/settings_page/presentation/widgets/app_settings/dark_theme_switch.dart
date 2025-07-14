@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
-import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/app_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
@@ -27,7 +27,7 @@ class DarkThemeSwitch extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Padding16(
+    return PH16(
       child: BlocBuilder<SettingsCubit, GlobalSettings>(
         buildWhen: (final previous, final current) =>
             previous.appSettings.darkTheme != current.appSettings.darkTheme,

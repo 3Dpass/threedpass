@@ -10,8 +10,6 @@ class SwapSubmit extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BlocBuilder<SwapCubit, SwapState>(
       builder: (final BuildContext context, final SwapState state) {
-        // print(
-        //     'COND ${state.isLoading} || ${state.errorUnlocalized.isNotEmpty}');
         return SomeFormSubmitWithErrorButton(
           extrinsicMixin: BlocProvider.of<SwapCubit>(context),
           isActive: !(state.isLoading || state.errorUnlocalized.isNotEmpty),

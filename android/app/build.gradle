@@ -64,9 +64,9 @@ android {
     defaultConfig {
         applicationId "com.threedpass.wallet"
         minSdkVersion 24
-        buildToolsVersion "34"
-        targetSdkVersion 34
-        compileSdk 34
+        buildToolsVersion "35"
+        targetSdkVersion 35
+        compileSdk 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 

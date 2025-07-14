@@ -10,6 +10,7 @@ import 'package:threedpass/features/atomic_swap/poscan/create/bloc/create_atomic
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/usecases/calc_hashed_proof.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/usecases/create_atomic_swap.dart';
 import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/pending_atomic_swap_bloc.dart';
+import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 
 class DiAtomicSwap extends DIModule {
@@ -36,6 +37,7 @@ class DiAtomicSwap extends DIModule {
         calcHashedProof: getIt<CalcHashedProof>(),
         createAtomicSwap: getIt<CreateAtomicSwap>(),
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        poscanAssetsCubit: getIt<PoscanAssetsCubit>(),
       ),
     );
 

@@ -14,7 +14,7 @@ class PalletAtomicSwapBalanceSwapAction extends PalletAtomicSwapBaseAction {
 
 class PalletPoscanAssetsSwapTokenSwapAction extends PalletAtomicSwapBaseAction {
   final int assetId;
-  final double value;
+  final BigInt value;
 
   @override
   final bool isPoscan = true;

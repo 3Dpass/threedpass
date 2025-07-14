@@ -3,7 +3,6 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
-import 'package:threedpass/features/rest/models/transfers_response.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/domain/entities/get_transfers_params.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/domain/usecases/get_transfers.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/domain/entities/transfer_history_ui.dart';

@@ -317,16 +317,16 @@ class _ObjectPainter extends CustomPainter {
 
     stopwatch.stop();
 
-    print('''
-Performance metrics (microseconds):
---------------------------------
-Transform time: ${transformEnd - transformStart}
-Sort time:     ${sortEnd - sortStart}
-Render time:   ${renderEnd - renderStart}
-Total time:    ${stopwatch.elapsedMicroseconds}
-Faces drawn:   ${sorted.length}
-FPS:           ${1000000 / stopwatch.elapsedMicroseconds}
-''');
+//     print('''
+// Performance metrics (microseconds):
+// --------------------------------
+// Transform time: ${transformEnd - transformStart}
+// Sort time:     ${sortEnd - sortStart}
+// Render time:   ${renderEnd - renderStart}
+// Total time:    ${stopwatch.elapsedMicroseconds}
+// Faces drawn:   ${sorted.length}
+// FPS:           ${1000000 / stopwatch.elapsedMicroseconds}
+// ''');
   }
 
   /*

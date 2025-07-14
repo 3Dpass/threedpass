@@ -46,7 +46,7 @@ class SwapForm extends StatelessWidget {
           const H4(),
           D3pIconButton(
             iconData: Icons.change_circle_outlined,
-            onPressed: () async => swapCubit.setChosenMethod(
+            onPressed: () => swapCubit.setChosenMethod(
               state.chosenMethod == SwapMethod.swapExactTokensForTokens
                   ? SwapMethod.swapTokensForExactTokens
                   : SwapMethod.swapExactTokensForTokens,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
-import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/core/widgets/other/right_chevron.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 
@@ -103,7 +103,7 @@ class LineButton extends StatelessWidget {
           )
         : D3pCard(
             cardShape: cardShape,
-            child: Padding16(
+            child: PH16(
               child: child,
             ),
           );

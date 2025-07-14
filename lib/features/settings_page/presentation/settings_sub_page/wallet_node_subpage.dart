@@ -10,7 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/validators.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
-import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/connection/polkadot/data/repositories/public_3dp_nodes_list_repository.dart';
 import 'package:threedpass/features/connection/polkadot/presentation/node_url_status.dart';
@@ -100,7 +100,7 @@ class _State extends State<WalletNodeSubPage> {
               key: _formKey,
               child: Column(
                 children: [
-                  Padding16(
+                  PH16(
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Row(
@@ -118,7 +118,7 @@ class _State extends State<WalletNodeSubPage> {
                     ),
                   ),
                   H16(),
-                  Padding16(
+                  PH16(
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(

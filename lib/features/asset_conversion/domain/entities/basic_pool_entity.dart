@@ -44,4 +44,6 @@ class PoolAssetField extends Equatable {
 
   @override
   List<Object?> get props => [isNative, assetId];
+
+  toStringDebug() => 'PoolAssetField(isNative: $isNative, assetId: $assetId)';
 }

@@ -8,7 +8,7 @@ import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
-import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
@@ -88,7 +88,7 @@ class _State extends State<PoscanResult> {
                 hasAccount &&
                 isCorrectSettings &&
                 !snap.scanFailed;
-            return Padding16(
+            return PH16(
               child: D3pElevatedButton(
                 iconData: Icons.upload,
                 text: '3d_rpc_button_label'.tr(),

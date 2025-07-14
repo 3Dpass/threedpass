@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:polkawallet_sdk/api/types/balanceData.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
-import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/features/other/card_with_buttons/card_button.dart';
 import 'package:threedpass/features/other/card_with_buttons/card_with_buttons.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/balance_card/avaliable_balance_card.dart';
@@ -30,7 +30,7 @@ class BalanceCard extends StatelessWidget {
   Widget build(final BuildContext context) {
     return SizedBox(
       height: height,
-      child: Padding16(
+      child: PH16(
         child: Card.filled(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
