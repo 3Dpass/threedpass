@@ -43,6 +43,9 @@ class PoscanAssetMintWidget extends StatelessWidget {
       );
     }
 
-    return SeparatedColumn(children: children);
+    return SeparatedColumn(
+      children: children,
+      crossAxisAlignment: CrossAxisAlignment.start,
+    );
   }
 }

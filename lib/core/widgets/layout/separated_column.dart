@@ -4,9 +4,11 @@ import 'package:threedpass/core/widgets/paddings.dart';
 class SeparatedColumn extends StatelessWidget {
   final List<Widget> children;
   final Widget separator;
+  final CrossAxisAlignment crossAxisAlignment;
 
   const SeparatedColumn({
     required this.children,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
     this.separator = const H8(),
     super.key,
   });
@@ -22,6 +24,7 @@ class SeparatedColumn extends StatelessWidget {
     }
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: crossAxisAlignment,
       children: result,
     );
   }

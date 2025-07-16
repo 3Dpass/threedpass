@@ -31,40 +31,25 @@ class AtomicSwapRepositoryImpl implements AtomicSwapRepository {
     final args = [
       params.target.address,
       params.hashedProof,
-      jsonEncode({
+      {
         'assetId': params.action.assetId,
         'value': BigIntJsonHelper.encode(params.action.value),
-      }),
+      },
       params.duration,
     ];
 
-    // if (params.objDetails != null) {
-    //   final maxSupply = BigInt.parse(params.objDetails!.maxSupply);
-    //   final objDataRaw = {
-    //     'obj_idx': int.parse(params.objDetails!.objIdx),
-    //     'prop_idx': int.parse(params.objDetails!.propIdx),
-    //     'max_supply': BigIntJsonHelper.encode(maxSupply),
-    //   };
-    //   args.add(objDataRaw);
-    // } else {
-    //   args.add(NoneMock());
-    // }
-
-    String argsEncoded = '';
-    argsEncoded = const JsonEncoder().convert(args);
-    argsEncoded = BigIntJsonHelper.replace(argsEncoded);
+    final midEncoding = const JsonEncoder().convert(args);
+    final argsEncoded = BigIntJsonHelper.replace(midEncoding);
 
     logger.t(argsEncoded);
 
-    return null;
-
-    // return callSignExtrinsicUtil.abstractExtrinsicCall(
-    //   argsEncoded: argsEncoded,
-    //   calls: ['tx', 'poscanAssets', 'create'],
-    //   pubKey: params.account.pubKey!,
-    //   password: params.password,
-    //   updateStatus: updateStatus,
-    //   msgIdCallback: msgIdCallback,
-    // );
+    return callSignExtrinsicUtil.abstractExtrinsicCall(
+      argsEncoded: argsEncoded,
+      calls: ['tx', 'poscanAtomicSwap', 'createSwap'],
+      pubKey: params.account.pubKey!,
+      password: params.password,
+      updateStatus: updateStatus,
+      msgIdCallback: msgIdCallback,
+    );
   }
 }

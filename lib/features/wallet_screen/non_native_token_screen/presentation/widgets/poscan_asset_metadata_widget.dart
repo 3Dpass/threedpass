@@ -105,7 +105,10 @@ class _HasMetadata extends StatelessWidget {
       // TODO Check if admin or owner sets the metadata
       children.add(_GoToSetMetadata(poscanAssetData: poscanAssetData));
     }
-    return SeparatedColumn(children: children);
+    return SeparatedColumn(
+      children: children,
+      crossAxisAlignment: CrossAxisAlignment.start,
+    );
   }
 }
 

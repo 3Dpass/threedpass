@@ -27,6 +27,7 @@ class ObjectDetailsRichText extends StatelessWidget {
     if (objDetails != null) {
       return VerticalLineLeftBorder(
         child: SeparatedColumn(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FastRichText(
               mainText: objDetails!.objIdx,
