@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/chains/bloc/current_account_cubit.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
 import 'package:threedpass/features/connection/polkadot/bloc/polkadot_node_url.dart';
@@ -56,6 +57,9 @@ class GlobalStatesProvider extends StatelessWidget {
         BlocProvider<PolkadotNodeUrl>(
           create: (final _) => di_setup.getIt<PolkadotNodeUrl>(),
         ),
+        BlocProvider<CurrentAccountCubit>(
+          create: (final _) => di_setup.getIt<CurrentAccountCubit>(),
+        )
       ],
       child: child,
     );

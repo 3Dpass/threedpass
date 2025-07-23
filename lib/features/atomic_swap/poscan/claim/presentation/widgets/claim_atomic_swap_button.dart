@@ -2,7 +2,7 @@
 part of '../claim_atomic_swap_page.dart';
 
 class _ClaimAtomicSwapSubmitButton extends StatelessWidget {
-  const _ClaimAtomicSwapSubmitButton({super.key});
+  const _ClaimAtomicSwapSubmitButton();
 
   @override
   Widget build(final BuildContext context) => SomeFormSubmitWithErrorButton(

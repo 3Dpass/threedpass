@@ -1,9 +1,6 @@
-import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
 import 'package:threedpass/features/other/card_with_buttons/fast_card_button.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';

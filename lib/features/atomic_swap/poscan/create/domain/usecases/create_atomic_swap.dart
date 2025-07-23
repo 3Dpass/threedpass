@@ -1,7 +1,7 @@
 import 'package:threedpass/core/call_extrinsic_usecase.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
-import 'package:threedpass/features/atomic_swap/poscan/common/data/atomic_swap_repository.dart';
+import 'package:threedpass/features/atomic_swap/poscan/common/data/poscan_atomic_swap_repository.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/create_atomic_swap_global_handler.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/create_atomic_swap_params.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
@@ -14,7 +14,7 @@ class CreateAtomicSwap extends CallExtrinsicUsecase<CreateAtomicSwapParams,
   @override
   final NotificationsBloc notificationsBloc;
 
-  final AtomicSwapRepository atomicSwapRepository;
+  final PoscanAtomicSwapRepository atomicSwapRepository;
 
   const CreateAtomicSwap({
     required this.appServiceLoaderCubit,

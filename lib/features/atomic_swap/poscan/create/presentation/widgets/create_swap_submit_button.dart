@@ -1,7 +1,7 @@
 part of '../create_swap_page.dart';
 
 class _CreateSwapSubmitButton extends StatelessWidget {
-  const _CreateSwapSubmitButton({super.key});
+  const _CreateSwapSubmitButton();
 
   @override
   Widget build(final BuildContext context) => SomeFormSubmitWithErrorButton(

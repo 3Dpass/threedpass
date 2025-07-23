@@ -16,7 +16,10 @@ class FastCardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CardButton(
-        icon: Icon(iconData),
+        icon: Icon(
+          iconData,
+          size: 24,
+        ),
         title: title,
         isLoading: isLoading,
         onButtonPressed: onButtonPressed,

@@ -1,6 +1,8 @@
 import 'package:app_install_date/app_install_date.dart';
 import 'package:get_it/get_it.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:threedpass/core/chains/bloc/current_account_cubit.dart';
+import 'package:threedpass/core/chains/domain/usecases/resolve_name_by_address.dart';
 import 'package:threedpass/core/dio/di_dio.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
@@ -53,7 +55,6 @@ Future<void> setup() async {
 
   await DIHashesList().setup(getIt);
 
-  // Repos
   getIt.registerSingleton<SettingsRepository>(
     SettingsRepositoryImpl(
       hiveSettingsStore: getIt<HiveSettingsStore>(),
@@ -62,7 +63,6 @@ Future<void> setup() async {
 
   await ThreedpGraphql().setup(getIt);
 
-  // BLoCs
   final settingsConfig = await getIt<SettingsRepository>().getConfig();
   getIt.registerSingleton<SettingsCubit>(
     SettingsCubit(
@@ -72,6 +72,10 @@ Future<void> setup() async {
   );
 
   await DIConnection().setup(getIt);
+
+  getIt.registerSingleton<CurrentAccountCubit>(
+    CurrentAccountCubit(),
+  );
 
   getIt.registerSingleton<AppServiceLoaderCubit>(
     AppServiceLoaderCubit(
@@ -128,6 +132,10 @@ Future<void> setup() async {
   await DIAssetConversion().setup(getIt);
 
   await DIPoscan().setup(getIt);
+
+  getIt.registerFactory<ResolveNameByAddress>(
+    () => ResolveNameByAddress(),
+  );
 
   await DiAtomicSwap().setup(getIt);
 }
