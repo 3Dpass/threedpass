@@ -115,8 +115,7 @@ class SwapCubit extends Cubit<SwapState>
 
   static const defaultSlippage = 15;
 
-  Map<int, PoscanAssetMetadata> get metadata =>
-      poscanAssetsCubit.state.metadata;
+  PoscanAssetMetadataMap get metadata => poscanAssetsCubit.state.metadata;
 
   int get asset1Decimals => state.firstAsset.isNative
       ? nativeTokenDecimals

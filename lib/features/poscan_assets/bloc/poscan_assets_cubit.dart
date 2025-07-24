@@ -67,6 +67,7 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
   final GetAllTokensData getAllTokensData;
   final GetAllTokensMetadata getAllTokensMetadata;
 
+  @Deprecated('Listen to currentAccountCubit instead')
   void switchAccount(final KeyPairData newAccount) {
     emit(state.copyWith(currentAccount: newAccount));
   }
@@ -110,7 +111,7 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
               errorMessage: e.toString(),
             ),
           ),
-          onSuccess: (final Map<int, PoscanAssetMetadata> metadata) async {
+          onSuccess: (final PoscanAssetMetadataMap metadata) async {
             final tokenIds = data.map((final e) => e.id);
 
             final balances = await repository.tokensBalancesForCurrentAccount(

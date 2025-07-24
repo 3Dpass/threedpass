@@ -21,6 +21,17 @@ class CardButton extends StatelessWidget {
     this.badge,
   });
 
+  CardButton.icon({
+    required final IconData iconData,
+    required this.title,
+    this.isLoading = false,
+    this.onButtonPressed,
+    this.badge,
+  }) : icon = Icon(
+          iconData,
+          size: 24,
+        );
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -32,30 +43,40 @@ class CardButton extends StatelessWidget {
           textStyle: context.textTheme.labelSmall,
           backgroundColor: context.theme.colorScheme.surfaceContainer,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
+        child: Stack(
           children: [
-            SizedBox(
-              height: 24,
-              width: 24,
-              child: isLoading
-                  ? const D3pProgressIndicator(
-                      size: 24,
-                      strokeWidth: 2,
-                    )
-                  : icon,
-            ),
-            H8(),
-            SizedBox(
-              height: 32,
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: Text(
-                  title.tr(),
-                  maxLines: 2,
-                ),
+            if (badge != null && badge! > 0)
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Badge.count(count: badge!),
               ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: isLoading
+                      ? const D3pProgressIndicator(
+                          size: 24,
+                          strokeWidth: 2,
+                        )
+                      : icon,
+                ),
+                H8(),
+                SizedBox(
+                  height: 32,
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      title.tr(),
+                      maxLines: 2,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

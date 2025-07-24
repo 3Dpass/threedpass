@@ -19,6 +19,17 @@ extension DirtyAfterInit on AppServiceLoaderCubit {
       );
 
       getIt<PoscanAssetsCubit>().switchAccount(state.keyring.current);
+
+      currentAccountCubit.switchAccount(
+        CurrentAccount(
+          nativeP3D: KeyPair(
+            address: state.keyring.current.address!,
+            name: state.keyring.current.name,
+            pubKey: state.keyring.current.pubKey!,
+          ),
+        ),
+      );
+
       unawaited(getIt<PoscanAssetsCubit>().init());
     }
   }

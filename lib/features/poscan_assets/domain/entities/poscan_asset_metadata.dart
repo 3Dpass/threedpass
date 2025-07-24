@@ -35,3 +35,5 @@ class PoscanAssetMetadata {
       _$PoscanAssetMetadataFromJson(json);
   Map<String, dynamic> toJson() => _$PoscanAssetMetadataToJson(this);
 }
+
+typedef PoscanAssetMetadataMap = Map<int, PoscanAssetMetadata>;

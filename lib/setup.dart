@@ -63,7 +63,8 @@ Future<void> setup() async {
 
   await ThreedpGraphql().setup(getIt);
 
-  final settingsConfig = await getIt<SettingsRepository>().getConfig();
+  final settingsConfig = await getIt<SettingsRepository>()
+      .getConfig(); // TODO refactor to lazy settings init
   getIt.registerSingleton<SettingsCubit>(
     SettingsCubit(
       config: settingsConfig,
@@ -73,14 +74,15 @@ Future<void> setup() async {
 
   await DIConnection().setup(getIt);
 
-  getIt.registerSingleton<CurrentAccountCubit>(
-    CurrentAccountCubit(),
+  getIt.registerLazySingleton<CurrentAccountCubit>(
+    () => CurrentAccountCubit(),
   );
 
-  getIt.registerSingleton<AppServiceLoaderCubit>(
-    AppServiceLoaderCubit(
+  getIt.registerLazySingleton<AppServiceLoaderCubit>(
+    () => AppServiceLoaderCubit(
       settingsConfigCubit: getIt<SettingsCubit>(),
       polkadotNodeUrl: getIt<PolkadotNodeUrl>(),
+      currentAccountCubit: getIt<CurrentAccountCubit>(),
     ),
   );
 

@@ -4,8 +4,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:rust_lzss/rust_lzss.dart';
+import 'package:threedpass/core/bloc/global_bloc_observer.dart';
 import 'package:threedpass/core/persistence/hive_setup.dart' as hive_setup;
 import 'package:threedpass/core/widgets/theme_builder.dart';
 import 'package:threedpass/features/app/presentation/d3p_app.dart';
@@ -20,6 +22,7 @@ Future<void> main() async {
   await hive_setup.hiveSetup();
   await di_setup.setup();
   await EasyLocalization.ensureInitialized();
+  Bloc.observer = GlobalBlocObserver();
 
   runApp(
     EasyLocalization(

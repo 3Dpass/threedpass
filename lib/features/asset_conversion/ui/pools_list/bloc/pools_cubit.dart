@@ -42,6 +42,7 @@ class PoolsCubit extends Cubit<PoolsState> {
 
   bool updating = false;
 
+  @Deprecated('Listen to current account change instead')
   Future<void> update({required final String address}) async {
     if (updating) {
       Fluttertoast.showToast(
@@ -97,9 +98,6 @@ class PoolsCubit extends Cubit<PoolsState> {
                   updating = false;
                 } else {
                   emit(AsyncValue.loading(resState));
-                  logger.t(
-                    '[POOLS] Yield pools. RemainingItemCount=${_queue.remainingItemCount}',
-                  );
                 }
               },
             ),

@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/pending_atomic_swap_cubit.dart';
+import 'package:threedpass/features/other/card_with_buttons/card_button.dart';
 import 'package:threedpass/features/other/card_with_buttons/card_with_buttons.dart';
-import 'package:threedpass/features/other/card_with_buttons/fast_card_button.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 
@@ -15,19 +16,14 @@ class PoscanAtomicSwapButtons extends StatelessWidget {
       title: 'poscan_atomic_swap_buttons_panel_title',
       buttons: [
         _CreateSwapButton(),
-        FastCardButton(
-          iconData: Icons.pending,
-          title: 'poscan_atomic_swap_buttons_panel_pending_swaps',
-          onButtonPressed: () =>
-              context.router.push(PendingAtomicSwapRouteWrapper()),
-        ),
-        FastCardButton(
+        _PendingPoscanSwapsButton(),
+        CardButton.icon(
           iconData: Icons.system_update_alt_rounded,
           title: 'poscan_atomic_swap_buttons_panel_claim_swap',
           onButtonPressed: () =>
               context.router.push(ClaimAtomicSwapRouteWrapper()),
         ),
-        FastCardButton(
+        CardButton.icon(
           iconData: Icons.cancel,
           title: 'poscan_atomic_swap_buttons_panel_cancel_swap',
           onButtonPressed: () =>
@@ -44,9 +40,7 @@ class _CreateSwapButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PoscanAssetsCubit, PoscanAssetsState>(
-      buildWhen: (final previous, final current) =>
-          previous.isLoading != current.isLoading,
-      builder: (final context, final poscanAssetsState) => FastCardButton(
+      builder: (final context, final poscanAssetsState) => CardButton.icon(
         iconData: Icons.swap_vert_circle,
         title: 'poscan_atomic_swap_buttons_panel_create_swap',
         isLoading: poscanAssetsState.isLoading,
@@ -55,6 +49,26 @@ class _CreateSwapButton extends StatelessWidget {
                 ? null
                 : () => context.router.push(CreateSwapRouteWapper()),
       ),
+    );
+  }
+}
+
+class _PendingPoscanSwapsButton extends StatelessWidget {
+  const _PendingPoscanSwapsButton();
+
+  @override
+  Widget build(BuildContext context) {
+    final pendingSwaps = context.watch<PendingAtomicSwapCubit>().state;
+    final pendingSwapsLen = pendingSwaps.value?.pendingSwaps.length ?? 0;
+    final isLoading = pendingSwaps.isLoading;
+    return CardButton.icon(
+      iconData: Icons.pending,
+      title: 'poscan_atomic_swap_buttons_panel_pending_swaps',
+      isLoading: isLoading,
+      onButtonPressed: isLoading
+          ? null
+          : () => context.router.push(PendingAtomicSwapRouteWrapper()),
+      badge: pendingSwapsLen > 0 ? pendingSwapsLen : null,
     );
   }
 }

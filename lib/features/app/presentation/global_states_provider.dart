@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/chains/bloc/current_account_cubit.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
+import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/pending_atomic_swap_cubit.dart';
 import 'package:threedpass/features/connection/polkadot/bloc/polkadot_node_url.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
@@ -59,7 +60,10 @@ class GlobalStatesProvider extends StatelessWidget {
         ),
         BlocProvider<CurrentAccountCubit>(
           create: (final _) => di_setup.getIt<CurrentAccountCubit>(),
-        )
+        ),
+        BlocProvider<PendingAtomicSwapCubit>(
+          create: (final _) => di_setup.getIt<PendingAtomicSwapCubit>(),
+        ),
       ],
       child: child,
     );

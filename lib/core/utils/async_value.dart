@@ -1,5 +1,4 @@
 import 'package:stack_trace/stack_trace.dart';
-import 'package:threedpass/core/utils/empty_function.dart';
 // THIS IS INSPIRED BY RIVERPOD
 // https://github.com/rrousselGit/riverpod/blob/4814c2ec8453a780212727ae59dd7b520c1ada26/packages/riverpod/lib/src/common.dart
 
@@ -8,7 +7,7 @@ abstract class AsyncValue<T> {
 
   const factory AsyncValue.data(final T value) = AsyncData<T>;
   const factory AsyncValue.loading([final T? value]) = AsyncLoading<T>;
-  const factory AsyncValue.initial([final T? value]) = AsyncInitial<T>;
+  // const factory AsyncValue.initial() = AsyncInitial<T>;
   const factory AsyncValue.error(
     final Object error,
     final StackTrace stackTrace,
@@ -18,6 +17,7 @@ abstract class AsyncValue<T> {
   bool get hasError => error != null;
 
   bool get isLoading;
+  bool get isInitial;
   T? get value;
   Object? get error;
   StackTrace? get stackTrace;
@@ -81,6 +81,9 @@ class AsyncInitial<T> extends AsyncValue<T> {
   bool get isLoading => false;
 
   @override
+  final bool isInitial = true;
+
+  @override
   final T? value;
 
   @override
@@ -121,6 +124,9 @@ class AsyncData<T> extends AsyncValue<T> {
   final bool isLoading;
 
   @override
+  final bool isInitial = false;
+
+  @override
   final Object? error;
 
   @override
@@ -146,6 +152,9 @@ class AsyncLoading<T> extends AsyncValue<T> {
 
   @override
   bool get isLoading => true;
+
+  @override
+  final bool isInitial = false;
 
   @override
   final T? value;
@@ -186,6 +195,9 @@ class AsyncError<T> extends AsyncValue<T> {
 
   @override
   final bool isLoading;
+
+  @override
+  final bool isInitial = false;
 
   final T? _value;
 
@@ -332,16 +344,5 @@ extension AsyncValueX<T> on AsyncValue<T> {
     }
 
     return data(requireValue);
-  }
-
-  void whenData(
-    final void Function(T data) onData, {
-    final void Function() onElse = emptyFunction,
-  }) {
-    if (this.runtimeType == AsyncData) {
-      onData(value!);
-    } else {
-      onElse();
-    }
   }
 }

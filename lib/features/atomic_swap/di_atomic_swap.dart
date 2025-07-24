@@ -10,7 +10,7 @@ import 'package:threedpass/features/atomic_swap/poscan/common/data/poscan_atomic
 import 'package:threedpass/features/atomic_swap/poscan/create/bloc/create_atomic_swap_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/usecases/calc_hashed_proof.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/usecases/create_atomic_swap.dart';
-import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/pending_atomic_swap_bloc.dart';
+import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/pending_atomic_swap_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/pending/domain/usecases/get_pending_poscan_atomic_swap.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
@@ -21,7 +21,7 @@ class DiAtomicSwap extends DIModule {
     getIt.registerLazySingleton<PoscanAtomicSwapRepository>(
       () => PoscanAtomicSwapRepositoryImpl(
         callSignExtrinsicUtil: getIt<CallSignExtrinsicUtil>(),
-        polkawalletSDK: getIt<AppServiceLoaderCubit>().state.plugin.sdk,
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
       ),
     );
 
@@ -56,8 +56,8 @@ class DiAtomicSwap extends DIModule {
         resolveNameByAddress: getIt<ResolveNameByAddress>(),
       ),
     );
-    getIt.registerSingletonAsync<PendingAtomicSwapBloc>(
-      () async => PendingAtomicSwapBloc(
+    getIt.registerSingletonAsync<PendingAtomicSwapCubit>(
+      () async => PendingAtomicSwapCubit(
         getPendingPoscanAtomicSwap: getIt<GetPendingPoscanAtomicSwap>(),
       ),
     );

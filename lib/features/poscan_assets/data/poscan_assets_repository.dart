@@ -34,7 +34,7 @@ abstract class PoscanAssetsRepository {
 
   // Future<void> transfer();
   Future<List<PoscanAssetData>> allTokens();
-  Future<Map<int, PoscanAssetMetadata>> tokensMetadata();
+  Future<PoscanAssetMetadataMap> tokensMetadata();
   Future<Map<int, PoscanAssetBalance>> tokensBalancesForCurrentAccount(
     final Iterable<int> tokenIds,
     final String address,
@@ -160,7 +160,7 @@ class PoscanAssetsRepositoryImpl implements PoscanAssetsRepository {
   }
 
   @override
-  Future<Map<int, PoscanAssetMetadata>> tokensMetadata() async {
+  Future<PoscanAssetMetadataMap> tokensMetadata() async {
     final utility = GetTokensInfoUtility<PoscanAssetMetadata>(
       call: 'metadata',
       webviewController: polkawalletSDK.webView!.webInstance!.webViewController,

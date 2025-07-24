@@ -26,7 +26,7 @@ class _State extends State<PoolAssetFieldChoice> {
   PoolAssetField? value;
 
   late final List<PoolAssetField> items;
-  late final Map<int, PoscanAssetMetadata> metadata;
+  late final PoscanAssetMetadataMap metadata;
 
   @override
   void initState() {

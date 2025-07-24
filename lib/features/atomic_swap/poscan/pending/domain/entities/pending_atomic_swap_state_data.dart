@@ -1,10 +1,10 @@
 import 'package:threedpass/core/utils/async_value.dart';
-import 'package:threedpass/features/atomic_swap/basic/domain/enitites/basic_pending_atomic_swap_data.dart';
+import 'package:threedpass/features/atomic_swap/poscan/pending/domain/entities/pending_poscan_atomic_swap.dart';
 
 typedef PendingAtomicSwapState = AsyncValue<PendingAtomicSwapStateData>;
 
 class PendingAtomicSwapStateData {
-  final List<BasicPendingAtomicSwapData> pendingSwaps;
+  final List<PendingPoscanAtomicSwap> pendingSwaps;
 
   const PendingAtomicSwapStateData({
     required this.pendingSwaps,

@@ -58,7 +58,7 @@ import 'package:threedpass/features/atomic_swap/poscan/claim/presentation/claim_
     as _i6;
 import 'package:threedpass/features/atomic_swap/poscan/create/presentation/create_swap_page_wapper.dart'
     as _i20;
-import 'package:threedpass/features/atomic_swap/poscan/pending/presentation/pending_atomic_swap_page_wrapper.dart'
+import 'package:threedpass/features/atomic_swap/poscan/pending/ui/pending_atomic_swap_page_wrapper.dart'
     as _i44;
 import 'package:threedpass/features/compare_page/presentation/pages/compare_page_wrapper.dart'
     as _i7;

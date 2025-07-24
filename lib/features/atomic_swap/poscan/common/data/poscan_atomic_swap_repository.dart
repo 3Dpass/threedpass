@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:polkawallet_sdk/polkawallet_sdk.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/utils/big_int_json_helper.dart';
 import 'package:threedpass/core/utils/logger.dart';
@@ -24,11 +24,11 @@ abstract class PoscanAtomicSwapRepository {
 class PoscanAtomicSwapRepositoryImpl implements PoscanAtomicSwapRepository {
   const PoscanAtomicSwapRepositoryImpl({
     required this.callSignExtrinsicUtil,
-    required this.polkawalletSDK,
+    required this.appServiceLoaderCubit,
   });
 
   final CallSignExtrinsicUtil callSignExtrinsicUtil;
-  final WalletSDK polkawalletSDK;
+  final AppServiceLoaderCubit appServiceLoaderCubit;
 
   @override
   Future<void> create({
@@ -65,16 +65,54 @@ class PoscanAtomicSwapRepositoryImpl implements PoscanAtomicSwapRepository {
   Future<List<RawPendingPoscanAtomicSwapData>> pendingSwaps({
     required String address,
   }) async {
-    final dynamic res = await polkawalletSDK.api.universal.callNoSign(
-      calls: ['query', 'poscanAtomicSwap', 'pendingSwaps', 'entries'],
-      args: '["$address"]',
-      sendNullAsArg: false,
+    // final dynamic res =
+    //     await appServiceLoaderCubit.state.plugin.sdk.api.universal.callNoSign(
+    //   calls: ['query', 'poscanAtomicSwap', 'pendingSwaps', 'entries'],
+    //   args: '["$address"]',
+    //   sendNullAsArg: false,
+    // );
+
+    // logger.t(
+    //     'pendingSwaps: $res, address: $address, res type: ${res.runtimeType}');
+
+    // return res
+    //     .map<RawPendingPoscanAtomicSwapData>(
+    //       (final e) => RawPendingPoscanAtomicSwapData.fromRaw(e),
+    //     )
+    //     .toList();
+
+    final String getBalanceFunc = """
+var entries = await api.query.poscanAtomicSwap.pendingSwaps.entries();  
+var result = [];  
+  
+entries.forEach(([keys, value]) => {  
+  const [targetAccount, hashedProof, lol, kek, azaz] = keys;  
+  const pendingSwap = value.unwrap ? value.unwrap() : value;  
+    
+  result.push({  
+    targetAccount: targetAccount,  
+    hashedProof: hashedProof.toString(),
+    lol: lol.toString(),
+    kek: kek.toString(),
+    azaz: azaz.toString(),
+    source: pendingSwap.source.toString(),  
+    action: {  
+      assetId: pendingSwap.action.assetId ? pendingSwap.action.assetId.toNumber() : null,  
+      value: pendingSwap.action.value ? pendingSwap.action.value.toString() : null  
+    },  
+    endBlock: pendingSwap.endBlock.toNumber()  
+  });  
+});  
+  
+return result;
+""";
+    final dynamic response = await appServiceLoaderCubit
+        .state.plugin.sdk.webView!.webInstance!.webViewController
+        .callAsyncJavaScript(
+      functionBody: getBalanceFunc,
     );
 
-    logger.t(res);
-
-    return res
-        .map((final e) => RawPendingPoscanAtomicSwapData.fromRaw(e))
-        .toList();
+    print(response);
+    return [];
   }
 }
