@@ -11,7 +11,8 @@ class PoscanAssetMetadata {
   final bool isFrozen;
   final String name;
 
-  int get idecimals => int.parse(decimals);
+  int get idecimals => int.parse(
+      decimals); // TODO: MAKE IT TRYPARSE AND HANDLE CASES WHEN DECIMALS ARE NOT AVAILABLE
 
   bool get isNull =>
       symbol == '' &&

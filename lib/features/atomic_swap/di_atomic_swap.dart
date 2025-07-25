@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:get_it/get_it.dart';
-import 'package:threedpass/core/chains/domain/usecases/resolve_name_by_address.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/utils/di_module.dart';
@@ -53,7 +52,6 @@ class DiAtomicSwap extends DIModule {
     getIt.registerFactory<GetPendingPoscanAtomicSwap>(
       () => GetPendingPoscanAtomicSwap(
         poscanAtomicSwapRepository: getIt<PoscanAtomicSwapRepository>(),
-        resolveNameByAddress: getIt<ResolveNameByAddress>(),
       ),
     );
     getIt.registerSingletonAsync<PendingAtomicSwapCubit>(

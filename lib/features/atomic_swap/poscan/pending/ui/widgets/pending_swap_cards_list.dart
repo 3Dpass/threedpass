@@ -8,19 +8,15 @@ class _PendingSwapsCardsList extends StatelessWidget {
     return BlocBuilder<PendingAtomicSwapCubit, PendingAtomicSwapState>(
       builder:
           (final BuildContext context, final PendingAtomicSwapState state) {
-        return FastSeparatedListView(
+        return Column(
+          spacing: 16,
           children: state.when(
-            data: (final data) => ((data.pendingSwaps) +
-                    (data.pendingSwaps) +
-                    (data.pendingSwaps) +
-                    (data.pendingSwaps))
-                .map((final swap) => _PendingSwapCard(swap: swap))
+            data: (final data) => data.pendingSwaps
+                .map((final swap) => PendingSwapCard(swap: swap))
                 .toList(),
             error: (final error, final stackTrace) => [],
             loading: () => [],
           ),
-          separator: const H8(),
-          padding: const EdgeInsets.all(16),
         );
       },
     );

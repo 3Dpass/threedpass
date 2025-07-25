@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 
+@Deprecated('Use Column spacing prop')
 class SeparatedColumn extends StatelessWidget {
   final List<Widget> children;
   final Widget separator;

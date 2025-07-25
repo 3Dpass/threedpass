@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
-import 'package:threedpass/core/polkawallet/utils/datetime_from_block_number.dart';
 import 'package:threedpass/core/polkawallet/utils/key_pair_data_fabric.dart';
 import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/async_value.dart';
@@ -75,7 +74,7 @@ class CreateAtomicSwapCubit extends Cubit<CreateAtomicSwapState>
         value: BalanceUtils.tokenInt(assetAmountController.text, assetDecimals),
       ),
       updateStatus: () => updateStatus(context),
-      duration: blockNumberFromDateTime(state.deadline!),
+      duration: state.deadline!.difference(DateTime.now()).inMinutes,
     );
   }
 

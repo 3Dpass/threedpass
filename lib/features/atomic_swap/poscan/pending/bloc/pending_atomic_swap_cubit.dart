@@ -32,6 +32,7 @@ class PendingAtomicSwapCubit extends Cubit<PendingAtomicSwapState> {
         ),
       );
 
-  Future<void> onAccSwitched(CurrentAccountState acc) =>
-      acc.when(data: _setData, error: _setError, loading: _setLoading);
+  Future<void> onAccSwitched(CurrentAccountState acc) {
+    return acc.when(data: _setData, error: _setError, loading: _setLoading);
+  }
 }

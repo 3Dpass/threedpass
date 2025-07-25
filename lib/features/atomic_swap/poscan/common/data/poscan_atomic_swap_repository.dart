@@ -65,54 +65,54 @@ class PoscanAtomicSwapRepositoryImpl implements PoscanAtomicSwapRepository {
   Future<List<RawPendingPoscanAtomicSwapData>> pendingSwaps({
     required String address,
   }) async {
-    // final dynamic res =
-    //     await appServiceLoaderCubit.state.plugin.sdk.api.universal.callNoSign(
-    //   calls: ['query', 'poscanAtomicSwap', 'pendingSwaps', 'entries'],
-    //   args: '["$address"]',
-    //   sendNullAsArg: false,
-    // );
-
-    // logger.t(
-    //     'pendingSwaps: $res, address: $address, res type: ${res.runtimeType}');
-
-    // return res
-    //     .map<RawPendingPoscanAtomicSwapData>(
-    //       (final e) => RawPendingPoscanAtomicSwapData.fromRaw(e),
-    //     )
-    //     .toList();
-
-    final String getBalanceFunc = """
-var entries = await api.query.poscanAtomicSwap.pendingSwaps.entries();  
-var result = [];  
-  
-entries.forEach(([keys, value]) => {  
-  const [targetAccount, hashedProof, lol, kek, azaz] = keys;  
-  const pendingSwap = value.unwrap ? value.unwrap() : value;  
-    
-  result.push({  
-    targetAccount: targetAccount,  
-    hashedProof: hashedProof.toString(),
-    lol: lol.toString(),
-    kek: kek.toString(),
-    azaz: azaz.toString(),
-    source: pendingSwap.source.toString(),  
-    action: {  
-      assetId: pendingSwap.action.assetId ? pendingSwap.action.assetId.toNumber() : null,  
-      value: pendingSwap.action.value ? pendingSwap.action.value.toString() : null  
-    },  
-    endBlock: pendingSwap.endBlock.toNumber()  
-  });  
-});  
-  
-return result;
-""";
-    final dynamic response = await appServiceLoaderCubit
-        .state.plugin.sdk.webView!.webInstance!.webViewController
-        .callAsyncJavaScript(
-      functionBody: getBalanceFunc,
+    final dynamic res =
+        await appServiceLoaderCubit.state.plugin.sdk.api.universal.callNoSign(
+      calls: ['query', 'poscanAtomicSwap', 'pendingSwaps', 'entries'],
+      args: '["$address"]',
+      sendNullAsArg: false,
     );
 
-    print(response);
-    return [];
+    logger.t(
+        'pendingSwaps: $res, address: $address, res type: ${res.runtimeType}');
+
+    return res
+        .map<RawPendingPoscanAtomicSwapData>(
+          (final e) => RawPendingPoscanAtomicSwapData.fromRaw(e),
+        )
+        .toList();
+
+//     final String getBalanceFunc = """
+// var entries = await api.query.poscanAtomicSwap.pendingSwaps.entries();
+// var result = [];
+
+// entries.forEach(([keys, value]) => {
+//   const [targetAccount, hashedProof, lol, kek, azaz] = keys;
+//   const pendingSwap = value.unwrap ? value.unwrap() : value;
+
+//   result.push({
+//     targetAccount: targetAccount,
+//     hashedProof: hashedProof.toString(),
+//     lol: lol.toString(),
+//     kek: kek.toString(),
+//     azaz: azaz.toString(),
+//     source: pendingSwap.source.toString(),
+//     action: {
+//       assetId: pendingSwap.action.assetId ? pendingSwap.action.assetId.toNumber() : null,
+//       value: pendingSwap.action.value ? pendingSwap.action.value.toString() : null
+//     },
+//     endBlock: pendingSwap.endBlock.toNumber()
+//   });
+// });
+
+// return result;
+// """;
+//     final dynamic response = await appServiceLoaderCubit
+//         .state.plugin.sdk.webView!.webInstance!.webViewController
+//         .callAsyncJavaScript(
+//       functionBody: getBalanceFunc,
+//     );
+
+//     print(response);
+//     return [];
   }
 }

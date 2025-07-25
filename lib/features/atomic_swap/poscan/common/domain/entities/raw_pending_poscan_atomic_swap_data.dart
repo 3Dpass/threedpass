@@ -1,6 +1,6 @@
 class RawPendingPoscanAtomicSwapAction {
   final int assetId;
-  final int value;
+  final BigInt value;
 
   const RawPendingPoscanAtomicSwapAction({
     required this.assetId,
@@ -11,7 +11,7 @@ class RawPendingPoscanAtomicSwapAction {
           final Map<String, dynamic> json) =>
       RawPendingPoscanAtomicSwapAction(
         assetId: json['assetId'],
-        value: json['value'],
+        value: BigInt.parse(json['value'].toString()),
       );
 }
 

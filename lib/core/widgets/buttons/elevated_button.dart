@@ -12,6 +12,7 @@ class D3pElevatedButton extends StatelessWidget {
     this.iconData,
     this.child,
     this.isInfinityWidth = true,
+    this.isDangerColor = false,
   }) : super(key: key);
 
   final void Function()? onPressed;
@@ -19,6 +20,7 @@ class D3pElevatedButton extends StatelessWidget {
   final IconData? iconData;
   final Widget? child;
   final bool isInfinityWidth;
+  final bool isDangerColor;
 
   @override
   Widget build(final BuildContext context) {
@@ -36,6 +38,12 @@ class D3pElevatedButton extends StatelessWidget {
       return FilledButton(
         onPressed: onPressed,
         style: ButtonStyle(
+          backgroundColor: isDangerColor
+              ? WidgetStateProperty.all(Theme.of(context).colorScheme.error)
+              : null,
+          foregroundColor: isDangerColor
+              ? WidgetStateProperty.all(Theme.of(context).colorScheme.onError)
+              : null,
           minimumSize: isInfinityWidth
               ? WidgetStateProperty.all(
                   const Size.fromHeight(D3pThemeData.buttonHeight),

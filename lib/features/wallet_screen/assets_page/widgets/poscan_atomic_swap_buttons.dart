@@ -1,11 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
+import 'package:threedpass/core/polkawallet/utils/decode_address.dart';
 import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/pending_atomic_swap_cubit.dart';
 import 'package:threedpass/features/other/card_with_buttons/card_button.dart';
 import 'package:threedpass/features/other/card_with_buttons/card_with_buttons.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
+import 'package:threedpass/setup.dart';
 
 class PoscanAtomicSwapButtons extends StatelessWidget {
   const PoscanAtomicSwapButtons();
@@ -17,17 +20,27 @@ class PoscanAtomicSwapButtons extends StatelessWidget {
       buttons: [
         _CreateSwapButton(),
         _PendingPoscanSwapsButton(),
+        // CardButton.icon(
+        //   iconData: Icons.system_update_alt_rounded,
+        //   title: 'poscan_atomic_swap_buttons_panel_claim_swap',
+        //   onButtonPressed: () =>
+        //       context.router.push(ClaimAtomicSwapRouteWrapper()),
+        // ),
+        // CardButton.icon(
+        //   iconData: Icons.cancel,
+        //   title: 'poscan_atomic_swap_buttons_panel_cancel_swap',
+        //   onButtonPressed: () =>
+        //       context.router.push(CancelAtomicSwapRouteWarpper()),
+        // ),
         CardButton.icon(
-          iconData: Icons.system_update_alt_rounded,
-          title: 'poscan_atomic_swap_buttons_panel_claim_swap',
-          onButtonPressed: () =>
-              context.router.push(ClaimAtomicSwapRouteWrapper()),
-        ),
-        CardButton.icon(
-          iconData: Icons.cancel,
-          title: 'poscan_atomic_swap_buttons_panel_cancel_swap',
-          onButtonPressed: () =>
-              context.router.push(CancelAtomicSwapRouteWarpper()),
+          iconData: Icons.bug_report,
+          title: 'DEBUG',
+          onButtonPressed: () async {
+            final state = getIt<AppServiceLoaderCubit>().state;
+            final address = state.keyring.current.address;
+            final decoded = await state.decodeAddress(address!);
+            print(decoded);
+          },
         ),
       ],
     );

@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/obj_details.dart';
+import 'package:threedpass/setup.dart';
 
 part 'poscan_token_data.g.dart';
 
@@ -53,12 +52,11 @@ class PoscanAssetData {
 
 extension PTD on PoscanAssetData {
   String foldAssetInfo(
-    final BuildContext context,
-    // final PoscanAssetData data,
-    // final PoscanAssetMetadata? metadata,
-  ) {
-    final metadata =
-        BlocProvider.of<PoscanAssetsCubit>(context).state.metadata[id];
+      // final BuildContext context,
+      // final PoscanAssetData data,
+      // final PoscanAssetMetadata? metadata,
+      ) {
+    final metadata = getIt<PoscanAssetsCubit>().state.metadata[id];
 
     if (metadata == null) {
       return 'id: ${id}';

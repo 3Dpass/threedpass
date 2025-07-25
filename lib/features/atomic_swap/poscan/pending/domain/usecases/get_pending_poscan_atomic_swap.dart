@@ -1,5 +1,4 @@
 import 'package:threedpass/core/chains/domain/entities/address.dart';
-import 'package:threedpass/core/chains/domain/usecases/resolve_name_by_address.dart';
 import 'package:threedpass/core/polkawallet/utils/datetime_from_block_number.dart';
 import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/features/atomic_swap/poscan/common/data/poscan_atomic_swap_repository.dart';
@@ -8,11 +7,9 @@ import 'package:threedpass/features/atomic_swap/poscan/pending/domain/entities/p
 class GetPendingPoscanAtomicSwap
     extends UseCase<List<PendingPoscanAtomicSwap>, Address> {
   final PoscanAtomicSwapRepository poscanAtomicSwapRepository;
-  final ResolveNameByAddress resolveNameByAddress;
 
   const GetPendingPoscanAtomicSwap({
     required this.poscanAtomicSwapRepository,
-    required this.resolveNameByAddress,
   });
 
   @override

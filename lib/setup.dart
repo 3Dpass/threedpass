@@ -46,7 +46,7 @@ Future<void> setup() async {
       instanceName: MAppInstallDate.instanceName,
     );
   } on Object catch (_) {
-    logger.d('Impossible to get app install date');
+    logger.w('Impossible to get app install date');
   }
 
   await DIDio().setup(getIt);
