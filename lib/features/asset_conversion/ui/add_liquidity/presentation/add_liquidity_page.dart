@@ -9,9 +9,9 @@ import 'package:threedpass/core/widgets/other/full_row_text.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/asset_conversion/ui/add_liquidity/bloc/add_liquidity_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/widgets/slippage_tolerance.dart';
-import 'package:threedpass/features/other/choose_account/presentation/choose_account.dart';
-import 'package:threedpass/features/other/some_form/some_form.dart';
-import 'package:threedpass/features/other/some_form/some_form_submit_button.dart';
+import 'package:threedpass/features/common/choose_account/presentation/choose_account.dart';
+import 'package:threedpass/features/common/some_form/some_form.dart';
+import 'package:threedpass/features/common/some_form/some_form_submit_button.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 
 class AddLiquidityPage extends StatelessWidget {

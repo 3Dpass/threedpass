@@ -2,6 +2,7 @@ import 'package:app_install_date/app_install_date.dart';
 import 'package:get_it/get_it.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:threedpass/core/chains/bloc/current_account_cubit.dart';
+import 'package:threedpass/core/chains/domain/usecases/encode_address.dart';
 import 'package:threedpass/core/chains/domain/usecases/resolve_name_by_address.dart';
 import 'package:threedpass/core/dio/di_dio.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
@@ -76,6 +77,12 @@ Future<void> setup() async {
 
   getIt.registerLazySingleton<CurrentAccountCubit>(
     () => CurrentAccountCubit(),
+  );
+
+  getIt.registerFactory<EncodeAddress>(
+    () => EncodeAddress(
+      appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+    ),
   );
 
   getIt.registerLazySingleton<AppServiceLoaderCubit>(

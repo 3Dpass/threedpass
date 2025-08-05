@@ -16,9 +16,7 @@ abstract class PoscanAtomicSwapRepository {
     required final void Function(String) msgIdCallback,
   });
 
-  Future<List<RawPendingPoscanAtomicSwapData>> pendingSwaps({
-    required String address,
-  });
+  Future<List<RawPendingPoscanAtomicSwapData>> pendingSwaps();
 }
 
 class PoscanAtomicSwapRepositoryImpl implements PoscanAtomicSwapRepository {
@@ -62,18 +60,15 @@ class PoscanAtomicSwapRepositoryImpl implements PoscanAtomicSwapRepository {
   }
 
   @override
-  Future<List<RawPendingPoscanAtomicSwapData>> pendingSwaps({
-    required String address,
-  }) async {
+  Future<List<RawPendingPoscanAtomicSwapData>> pendingSwaps() async {
     final dynamic res =
         await appServiceLoaderCubit.state.plugin.sdk.api.universal.callNoSign(
       calls: ['query', 'poscanAtomicSwap', 'pendingSwaps', 'entries'],
-      args: '["$address"]',
+      args: null, //'["$address"]',
       sendNullAsArg: false,
     );
 
-    logger.t(
-        'pendingSwaps: $res, address: $address, res type: ${res.runtimeType}');
+    logger.t('pendingSwaps: $res, res type: ${res.runtimeType}');
 
     return res
         .map<RawPendingPoscanAtomicSwapData>(

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/features/other/some_form/some_form.dart';
+import 'package:threedpass/features/common/some_form/some_form.dart';
 import 'package:threedpass/features/poscan_assets/ui/set_metadata/bloc/set_metadata_asset_cubit.dart';
 import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/widget/set_metadata_choose_account.dart';
 import 'package:threedpass/features/poscan_assets/ui/set_metadata/presentation/widget/set_metadata_choose_asset_id.dart';

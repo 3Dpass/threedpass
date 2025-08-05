@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/bloc/create_atomic_swap_cubit.dart';
-import 'package:threedpass/features/other/choose_account/presentation/choose_account.dart';
+import 'package:threedpass/features/common/choose_account/presentation/choose_account.dart';
 
 class ChooseAccountCreateAtomicSwap extends StatelessWidget {
   const ChooseAccountCreateAtomicSwap({super.key});

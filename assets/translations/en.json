@@ -581,6 +581,15 @@
     "wallet_settings_currently_connected": "Currently connected to:",
     
     "@2.19.0": {},
-    "claim_atomic_swap_page_title": "Claim Atomic Swap",
-    "pending_swaps_page_title": "Pending swaps"
+    "claim_poscan_atomic_swap_page_title": "Claim Poscan Atomic Swap",
+    "cancel_poscan_atomic_swap_page_title": "Cancel Poscan Atomic Swap",
+    "pending_swaps_page_title": "Pending swaps",
+    "asset_picker_placeholder": "Select asset",
+    "require_form_field": "Required",
+    "address_from_prefix": "From:",
+    "address_to_prefix" : "To:",
+    "deadline_prefix": "Deadline:",
+    "hash_proof_prefix": "Hash proof:",
+    "claim_atomic_swap_button_label": "Claim swap",
+    "cancel_atomic_swap_button_label": "Cancel swap"
 }

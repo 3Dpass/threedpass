@@ -1,15 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:get_it/get_it.dart';
+import 'package:threedpass/core/chains/bloc/current_account_cubit.dart';
+import 'package:threedpass/core/chains/domain/usecases/encode_address.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/utils/di_module.dart';
-import 'package:threedpass/features/atomic_swap/poscan/cancel/bloc/cancel_atomic_swap_bloc.dart';
-import 'package:threedpass/features/atomic_swap/poscan/claim/bloc/claim_atomic_swap_bloc.dart';
+import 'package:threedpass/features/atomic_swap/poscan/cancel/bloc/cancel_poscan_atomic_swap_bloc.dart';
+import 'package:threedpass/features/atomic_swap/poscan/claim/bloc/claim_poscan_atomic_swap_bloc.dart';
 import 'package:threedpass/features/atomic_swap/poscan/common/data/poscan_atomic_swap_repository.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/bloc/create_atomic_swap_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/usecases/calc_hashed_proof.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/usecases/create_atomic_swap.dart';
 import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/pending_atomic_swap_cubit.dart';
+import 'package:threedpass/features/atomic_swap/poscan/pending/domain/entities/pending_poscan_atomic_swap.dart';
 import 'package:threedpass/features/atomic_swap/poscan/pending/domain/usecases/get_pending_poscan_atomic_swap.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
@@ -43,19 +46,34 @@ class DiAtomicSwap extends DIModule {
       ),
     );
 
-    getIt.registerSingletonAsync<CancelAtomicSwapBloc>(
-      () async => CancelAtomicSwapBloc(),
+    getIt.registerFactoryParam<CancelPoscanAtomicSwapBloc,
+        PendingPoscanAtomicSwap, StackRouter>(
+      (
+        final PendingPoscanAtomicSwap p1,
+        final StackRouter p2,
+      ) =>
+          CancelPoscanAtomicSwapBloc(
+        pendingSwap: p1,
+        outerRouter: p2,
+        currentAccountCubit: getIt<CurrentAccountCubit>(),
+      ),
     );
-    getIt.registerSingletonAsync<ClaimAtomicSwapBloc>(
-      () async => ClaimAtomicSwapBloc(),
+    getIt.registerFactoryParam<ClaimPoscanAtomicSwapBloc,
+        PendingPoscanAtomicSwap, StackRouter>(
+      (final PendingPoscanAtomicSwap p1, final StackRouter p2) =>
+          ClaimPoscanAtomicSwapBloc(
+        pendingSwap: p1,
+        outerRouter: p2,
+      ),
     );
     getIt.registerFactory<GetPendingPoscanAtomicSwap>(
       () => GetPendingPoscanAtomicSwap(
         poscanAtomicSwapRepository: getIt<PoscanAtomicSwapRepository>(),
+        encodeAddress: getIt<EncodeAddress>(),
       ),
     );
-    getIt.registerSingletonAsync<PendingAtomicSwapCubit>(
-      () async => PendingAtomicSwapCubit(
+    getIt.registerLazySingleton<PendingAtomicSwapCubit>(
+      () => PendingAtomicSwapCubit(
         getPendingPoscanAtomicSwap: getIt<GetPendingPoscanAtomicSwap>(),
       ),
     );

@@ -7,9 +7,7 @@ part of 'cancel_atomic_swap_state.dart';
 // **************************************************************************
 
 abstract class _$CancelAtomicSwapStateCWProxy {
-  CancelAtomicSwapState target(KeyPairData? target);
-
-  CancelAtomicSwapState hashedProof(AsyncValue<String> hashedProof);
+  CancelAtomicSwapState target(KeyPair? target);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CancelAtomicSwapState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -18,8 +16,7 @@ abstract class _$CancelAtomicSwapStateCWProxy {
   /// CancelAtomicSwapState(...).copyWith(id: 12, name: "My name")
   /// ````
   CancelAtomicSwapState call({
-    KeyPairData? target,
-    AsyncValue<String>? hashedProof,
+    KeyPair? target,
   });
 }
 
@@ -31,11 +28,7 @@ class _$CancelAtomicSwapStateCWProxyImpl
   final CancelAtomicSwapState _value;
 
   @override
-  CancelAtomicSwapState target(KeyPairData? target) => this(target: target);
-
-  @override
-  CancelAtomicSwapState hashedProof(AsyncValue<String> hashedProof) =>
-      this(hashedProof: hashedProof);
+  CancelAtomicSwapState target(KeyPair? target) => this(target: target);
 
   @override
 
@@ -47,18 +40,12 @@ class _$CancelAtomicSwapStateCWProxyImpl
   /// ````
   CancelAtomicSwapState call({
     Object? target = const $CopyWithPlaceholder(),
-    Object? hashedProof = const $CopyWithPlaceholder(),
   }) {
     return CancelAtomicSwapState(
       target: target == const $CopyWithPlaceholder()
           ? _value.target
           // ignore: cast_nullable_to_non_nullable
-          : target as KeyPairData?,
-      hashedProof:
-          hashedProof == const $CopyWithPlaceholder() || hashedProof == null
-              ? _value.hashedProof
-              // ignore: cast_nullable_to_non_nullable
-              : hashedProof as AsyncValue<String>,
+          : target as KeyPair?,
     );
   }
 }

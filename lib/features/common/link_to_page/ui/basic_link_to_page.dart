@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/buttons/text_button.dart';
-import 'package:threedpass/features/other/link_to_page/entities/link_to_page_params.dart';
+import 'package:threedpass/features/common/link_to_page/entities/link_to_page_params.dart';
 
 class BasicLinkToPage extends StatelessWidget {
   const BasicLinkToPage({

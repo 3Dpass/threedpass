@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
-import 'package:threedpass/features/other/card_with_buttons/card_button.dart';
-import 'package:threedpass/features/other/sliver_separated_list.dart';
+import 'package:threedpass/features/common/card_with_buttons/card_button.dart';
+import 'package:threedpass/features/common/sliver_separated_list.dart';
 
 class CardButtonsList extends StatelessWidget {
   final List<Widget> buttons;

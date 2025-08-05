@@ -6,7 +6,7 @@ class _ClaimAtomicSwapSubmitButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => SomeFormSubmitWithErrorButton(
-        extrinsicMixin: BlocProvider.of<ClaimAtomicSwapBloc>(context),
+        extrinsicMixin: BlocProvider.of<ClaimPoscanAtomicSwapBloc>(context),
         isActive: true,
         unlocalizedError: '',
       );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+@Deprecated('Use Column spacer instead')
 class SliverSeparatedList extends StatelessWidget {
   final List<Widget> children;
   final Widget separator;

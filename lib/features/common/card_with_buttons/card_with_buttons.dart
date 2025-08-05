@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/features/other/card_with_buttons/card_buttons_list.dart';
+import 'package:threedpass/features/common/card_with_buttons/card_buttons_list.dart';
 
 class CardWithButtons extends StatelessWidget {
   final List<Widget> buttons;

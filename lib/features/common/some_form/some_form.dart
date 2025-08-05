@@ -46,6 +46,7 @@ class SomeForm extends StatelessWidget {
                   child: SeparatedColumn(
                     separator: const H16(),
                     children: children,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                   ),
                 ),
               ),
@@ -53,6 +54,7 @@ class SomeForm extends StatelessWidget {
               SeparatedColumn(
                 separator: const H16(),
                 children: afterForm,
+                crossAxisAlignment: CrossAxisAlignment.start,
               ),
               const H24(),
               submitButton,

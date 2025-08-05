@@ -16,13 +16,13 @@ class RawPendingPoscanAtomicSwapAction {
 }
 
 class RawPendingPoscanAtomicSwapData {
-  // final String hash;
+  final String keyHash;
   final String source;
   final RawPendingPoscanAtomicSwapAction action;
   final int endBlock;
 
   const RawPendingPoscanAtomicSwapData({
-    // required this.hash,
+    required this.keyHash,
     required this.source,
     required this.action,
     required this.endBlock,
@@ -30,7 +30,7 @@ class RawPendingPoscanAtomicSwapData {
 
   factory RawPendingPoscanAtomicSwapData.fromRaw(final List<dynamic> rawData) {
     return RawPendingPoscanAtomicSwapData(
-      // hash: rawData[0],
+      keyHash: rawData[0],
       source: rawData[1]['source'],
       action: RawPendingPoscanAtomicSwapAction.fromJson(rawData[1]['action']),
       endBlock: rawData[1]['endBlock'],

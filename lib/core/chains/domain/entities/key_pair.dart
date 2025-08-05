@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:threedpass/core/chains/domain/entities/address.dart';
 
-class KeyPair {
+class KeyPair extends Equatable {
   final String? name;
   final Address address;
   final String pubKey;
@@ -10,4 +11,7 @@ class KeyPair {
     required this.address,
     required this.pubKey,
   });
+
+  @override
+  List<Object?> get props => [name, address, pubKey];
 }

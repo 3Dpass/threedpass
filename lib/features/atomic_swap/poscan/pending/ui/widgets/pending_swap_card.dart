@@ -1,22 +1,19 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/chains/bloc/current_account_cubit.dart';
 import 'package:threedpass/core/chains/domain/entities/address.dart';
-import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/utils/formatters.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
-import 'package:threedpass/core/widgets/other/vertical_line_left_border.dart';
-import 'package:threedpass/features/atomic_swap/poscan/common/domain/entities/raw_pending_poscan_atomic_swap_data.dart';
+import 'package:threedpass/features/atomic_swap/poscan/common/ui/hash_proof_text.dart';
 import 'package:threedpass/features/atomic_swap/poscan/pending/domain/entities/pending_poscan_atomic_swap.dart';
-import 'package:threedpass/features/other/accounts_identity/account_idenity.dart';
-import 'package:threedpass/features/other/link_to_page/entities/link_to_poscan_asset_page_params.dart';
-import 'package:threedpass/features/other/link_to_page/ui/basic_link_to_page.dart';
-import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
+import 'package:threedpass/features/atomic_swap/poscan/pending/ui/widgets/poscan_atomic_swap_action.dart';
+import 'package:threedpass/features/common/accounts_identity/account_idenity.dart';
+import 'package:threedpass/router/router.gr.dart';
 
-part 'poscan_atomic_swap_action.dart';
 part 'pending_poscan_atomic_swap_action_button.dart';
 
 class PendingSwapCard extends StatelessWidget {
@@ -42,19 +39,20 @@ class PendingSwapCard extends StatelessWidget {
           children: [
             AccountIdentity(
               address: swap.from,
-              prefix: 'From:',
+              prefix: 'address_from_prefix'.tr(),
               colorSecondary: currentAddress == swap.from,
             ),
             AccountIdentity(
               address: swap.to,
-              prefix: 'To:',
+              prefix: 'address_to_prefix'.tr(),
               colorSecondary: currentAddress == swap.to,
             ),
-            _PoscanAtomicSwapAction(action: swap.action),
+            HashProofText(swap: swap),
+            PoscanAtomicSwapAction(action: swap.action),
             FastRichText(
               mainText: Formatters.shortDateFormat.format(swap.deadline),
               needSpace: true,
-              secondaryText: 'Deadline:', // TODO localize
+              secondaryText: 'deadline_prefix'.tr(),
             ),
             if (currentAddress == swap.from || currentAddress == swap.to)
               Align(

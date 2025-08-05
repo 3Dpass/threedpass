@@ -1,7 +1,16 @@
-part of 'pending_swap_card.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
+import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
+import 'package:threedpass/core/widgets/other/vertical_line_left_border.dart';
+import 'package:threedpass/features/atomic_swap/poscan/common/domain/entities/raw_pending_poscan_atomic_swap_data.dart';
+import 'package:threedpass/features/common/link_to_page/entities/link_to_poscan_asset_page_params.dart';
+import 'package:threedpass/features/common/link_to_page/ui/basic_link_to_page.dart';
+import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 
-class _PoscanAtomicSwapAction extends StatelessWidget {
-  const _PoscanAtomicSwapAction({
+class PoscanAtomicSwapAction extends StatelessWidget {
+  const PoscanAtomicSwapAction({
     required this.action,
   });
 

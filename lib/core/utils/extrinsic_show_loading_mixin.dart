@@ -25,6 +25,7 @@ mixin ExtrinsicShowLoadingMixin<TResult, Params> {
     );
   }
 
+  @Deprecated('Get router from getIt')
   StackRouter get outerRouter;
 
   Future<void> showLoader({

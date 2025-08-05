@@ -14,8 +14,8 @@ import 'package:threedpass/features/atomic_swap/poscan/common/ui/poscan_asset_sw
 import 'package:threedpass/features/atomic_swap/poscan/create/bloc/create_atomic_swap_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/create_atomic_swap_state.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/presentation/widgets/choose_account_create_atomic_swap.dart';
-import 'package:threedpass/features/other/some_form/some_form.dart';
-import 'package:threedpass/features/other/some_form/some_form_submit_with_error.dart';
+import 'package:threedpass/features/common/some_form/some_form.dart';
+import 'package:threedpass/features/common/some_form/some_form_submit_with_error.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/wallet_screen/contacts_page/utils/open_contacts_picker.dart';
 

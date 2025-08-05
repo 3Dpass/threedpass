@@ -5,9 +5,9 @@ import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/present
 import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/presentation/widgets/remove_liquidity_info_section.dart';
 import 'package:threedpass/features/asset_conversion/ui/remove_liquidity/presentation/widgets/remove_liquidity_percentage_selector.dart';
 import 'package:threedpass/features/asset_conversion/ui/widgets/slippage_tolerance.dart';
-import 'package:threedpass/features/other/choose_account/presentation/choose_account.dart';
-import 'package:threedpass/features/other/some_form/some_form.dart';
-import 'package:threedpass/features/other/some_form/some_form_submit_button.dart';
+import 'package:threedpass/features/common/choose_account/presentation/choose_account.dart';
+import 'package:threedpass/features/common/some_form/some_form.dart';
+import 'package:threedpass/features/common/some_form/some_form_submit_button.dart';
 
 class RemoveLiquidityPage extends StatelessWidget {
   const RemoveLiquidityPage({super.key});

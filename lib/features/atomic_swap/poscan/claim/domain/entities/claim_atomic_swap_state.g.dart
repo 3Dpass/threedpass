@@ -9,8 +9,6 @@ part of 'claim_atomic_swap_state.dart';
 abstract class _$ClaimAtomicSwapStateCWProxy {
   ClaimAtomicSwapState target(KeyPairData? target);
 
-  ClaimAtomicSwapState hashedProof(AsyncValue<String> hashedProof);
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ClaimAtomicSwapState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -19,7 +17,6 @@ abstract class _$ClaimAtomicSwapStateCWProxy {
   /// ````
   ClaimAtomicSwapState call({
     KeyPairData? target,
-    AsyncValue<String>? hashedProof,
   });
 }
 
@@ -34,10 +31,6 @@ class _$ClaimAtomicSwapStateCWProxyImpl
   ClaimAtomicSwapState target(KeyPairData? target) => this(target: target);
 
   @override
-  ClaimAtomicSwapState hashedProof(AsyncValue<String> hashedProof) =>
-      this(hashedProof: hashedProof);
-
-  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ClaimAtomicSwapState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -47,18 +40,12 @@ class _$ClaimAtomicSwapStateCWProxyImpl
   /// ````
   ClaimAtomicSwapState call({
     Object? target = const $CopyWithPlaceholder(),
-    Object? hashedProof = const $CopyWithPlaceholder(),
   }) {
     return ClaimAtomicSwapState(
       target: target == const $CopyWithPlaceholder()
           ? _value.target
           // ignore: cast_nullable_to_non_nullable
           : target as KeyPairData?,
-      hashedProof:
-          hashedProof == const $CopyWithPlaceholder() || hashedProof == null
-              ? _value.hashedProof
-              // ignore: cast_nullable_to_non_nullable
-              : hashedProof as AsyncValue<String>,
     );
   }
 }

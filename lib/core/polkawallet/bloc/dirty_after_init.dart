@@ -30,6 +30,8 @@ extension DirtyAfterInit on AppServiceLoaderCubit {
         ),
       );
 
+      getIt<PendingAtomicSwapCubit>().init();
+
       unawaited(getIt<PoscanAssetsCubit>().init());
     }
   }

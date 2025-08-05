@@ -13,16 +13,24 @@ class _PendingPoscanAtomicSwapActionButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     if (currentAddress == swap.from) {
       return D3pElevatedButton(
-        text: 'Cancel swap',
-        onPressed: () {},
+        text: 'cancel_atomic_swap_button_label'.tr(),
+        onPressed: () => context.router.push(
+          CancelAtomicSwapRouteWarpper(
+            pendingSwap: swap,
+          ),
+        ),
         isInfinityWidth: false,
         isDangerColor: true,
       );
     }
     if (currentAddress == swap.to) {
       return D3pElevatedButton(
-        text: 'Claim swap',
-        onPressed: () {},
+        text: 'claim_atomic_swap_button_label'.tr(),
+        onPressed: () => context.router.push(
+          ClaimAtomicSwapRouteWrapper(
+            pendingSwap: swap,
+          ),
+        ),
         isInfinityWidth: false,
       );
     }

@@ -6,14 +6,14 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/widgets/account_choose_tile_text.dart';
 import 'package:threedpass/core/utils/empty_function.dart';
 import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
-import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/other/choose_account/bloc/choose_account_cubit.dart';
+import 'package:threedpass/features/common/choose_account/bloc/choose_account_cubit.dart';
 import 'package:threedpass/features/wallet_screen/transfer_page/widgets/basic_password_text_field.dart';
 
 part 'choose_account_internal.dart';
 
 // TODO Refactor. This should not use AppServiceLoaderCubit and recieve list of accounts and initial one
+@Deprecated('Use ChooseNativeKeyPair')
 class ChooseAccount extends StatelessWidget {
   const ChooseAccount({
     required this.onAccountSelected,

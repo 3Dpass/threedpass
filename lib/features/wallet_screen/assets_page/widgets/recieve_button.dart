@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/features/other/card_with_buttons/card_button.dart';
+import 'package:threedpass/features/common/card_with_buttons/card_button.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 class RecieveButton extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/theme/d3p_special_styles.dart';
 import 'package:threedpass/core/utils/extrinsic_show_loading_mixin.dart';
-import 'package:threedpass/features/other/some_form/some_form_submit_button.dart';
+import 'package:threedpass/features/common/some_form/some_form_submit_button.dart';
 
 class SomeFormSubmitWithErrorButton extends StatelessWidget {
   const SomeFormSubmitWithErrorButton({

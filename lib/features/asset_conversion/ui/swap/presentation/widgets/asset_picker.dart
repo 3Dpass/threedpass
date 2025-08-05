@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/buttons/secondary_button.dart';
 import 'package:threedpass/core/widgets/other/form_field_error_text.dart';
@@ -40,7 +41,7 @@ class AssetPicker extends FormField<PoolAssetField?> {
                           ? DropdownAssetItem(
                               value: state.value!,
                             )
-                          : Text('Select asset'), // TODO Localize
+                          : Text('asset_picker_placeholder'.tr()),
                       onPressed: () => onChipPressed(controller),
                     ),
                     FormFieldErrorText(state, pt: 4, pl: 8),
@@ -88,5 +89,5 @@ class AssetPicker extends FormField<PoolAssetField?> {
 }
 
 String? _isNotEmpty(final PoolAssetField? p) {
-  return p == null ? 'Required' : null; // TODO Localize
+  return p == null ? 'require_form_field'.tr() : null;
 }

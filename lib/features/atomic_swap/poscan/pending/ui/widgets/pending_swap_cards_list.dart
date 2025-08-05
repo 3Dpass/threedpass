@@ -5,20 +5,24 @@ class _PendingSwapsCardsList extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return BlocBuilder<PendingAtomicSwapCubit, PendingAtomicSwapState>(
-      builder:
-          (final BuildContext context, final PendingAtomicSwapState state) {
-        return Column(
-          spacing: 16,
-          children: state.when(
-            data: (final data) => data.pendingSwaps
-                .map((final swap) => PendingSwapCard(swap: swap))
-                .toList(),
-            error: (final error, final stackTrace) => [],
-            loading: () => [],
-          ),
-        );
-      },
+    return WhenAddress(
+      builder: (final CurrentAccount account) =>
+          BlocBuilder<PendingAtomicSwapCubit, PendingAtomicSwapState>(
+        builder:
+            (final BuildContext context, final PendingAtomicSwapState state) {
+          return Column(
+            spacing: 16,
+            children: state.when(
+              data: (final data) => data
+                  .relatedToAcc(account.nativeP3D.address)
+                  .map((final swap) => PendingSwapCard(swap: swap))
+                  .toList(),
+              error: (final error, final stackTrace) => [],
+              loading: () => [],
+            ),
+          );
+        },
+      ),
     );
   }
 }
