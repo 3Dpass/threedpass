@@ -10,11 +10,13 @@ class AccountIdentity extends StatefulWidget {
   final Address address;
   final String prefix;
   final bool colorSecondary;
+  final bool needCopyButton;
 
   const AccountIdentity({
     required this.address,
     required this.prefix,
     required this.colorSecondary,
+    this.needCopyButton = true,
   });
 
   @override
@@ -58,12 +60,14 @@ class _AccountIdentityState extends State<AccountIdentity> {
         address: name!.name,
         colorSecondary: widget.colorSecondary,
         spanIcon: Icon(resolveIcon(name!.source)),
+        needCopyButton: widget.needCopyButton,
       );
     } else {
       return ShortAddress(
         prefix: widget.prefix,
         address: widget.address,
         colorSecondary: widget.colorSecondary,
+        needCopyButton: widget.needCopyButton,
       );
     }
   }

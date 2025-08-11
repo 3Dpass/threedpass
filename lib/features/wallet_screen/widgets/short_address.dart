@@ -8,6 +8,7 @@ class ShortAddress extends StatelessWidget {
     required this.prefix,
     required this.address,
     required this.colorSecondary,
+    this.needCopyButton = true,
     this.spanIcon,
     super.key,
   });
@@ -16,6 +17,7 @@ class ShortAddress extends StatelessWidget {
   final String prefix;
   final bool colorSecondary;
   final Widget? spanIcon;
+  final bool needCopyButton;
 
   @override
   Widget build(final BuildContext context) {
@@ -38,12 +40,13 @@ class ShortAddress extends StatelessWidget {
             style: colorSecondary ? faded : medium,
           ),
         ),
-        colorSecondary
-            ? const SizedBox()
-            : SizedBox(
-                height: 24,
-                child: CopyButton(address),
-              ),
+        if (needCopyButton)
+          colorSecondary
+              ? const SizedBox()
+              : SizedBox(
+                  height: 24,
+                  child: CopyButton(address),
+                ),
       ],
     );
   }

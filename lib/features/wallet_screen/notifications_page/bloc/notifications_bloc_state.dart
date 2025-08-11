@@ -12,6 +12,7 @@ enum NotificationType {
   removeLiquidity,
   swapAssets,
   createAtomicSwap,
+  claimAtomicSwap,
 }
 
 abstract class NotificationDTO {
@@ -230,6 +231,20 @@ class NotificationCreateAtomicSwap extends NotificationDTO {
 
   @override
   final NotificationType type = NotificationType.createAtomicSwap;
+}
+
+@CopyWith()
+class NotificationClaimPoscanAtomicSwap extends NotificationDTO {
+  final PendingPoscanAtomicSwap swap;
+
+  NotificationClaimPoscanAtomicSwap({
+    required this.swap,
+    required super.status,
+    required super.message,
+  });
+
+  @override
+  final NotificationType type = NotificationType.claimAtomicSwap;
 }
 
 @CopyWith()

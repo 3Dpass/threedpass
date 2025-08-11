@@ -1,3 +1,4 @@
+import 'package:threedpass/core/chains/domain/entities/hex_ex.dart';
 import 'package:threedpass/core/chains/domain/usecases/encode_address.dart';
 import 'package:threedpass/core/polkawallet/utils/datetime_from_block_number.dart';
 import 'package:threedpass/core/usecase.dart';
@@ -22,7 +23,7 @@ class GetPendingPoscanAtomicSwap
         (final e) async => PendingPoscanAtomicSwap(
           from: e.source,
           to: await encodeAddress(e.keyHash.substring(82, 146)),
-          hashProof: e.keyHash.substring(178, 242),
+          hashProof: HexEx(noPrefixValue: e.keyHash.substring(178, 242)),
           deadline: dateTimeFromBlockNumber(e.endBlock),
           action: e.action,
         ),

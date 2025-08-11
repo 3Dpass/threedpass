@@ -2,13 +2,14 @@ import 'dart:ui';
 
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/call_extrinsic_usecase.dart';
+import 'package:threedpass/core/chains/domain/entities/hex_ex.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/pallet_atomic_swap_base_action.dart';
 
 class ClaimAtomicSwapParams extends ExtrinsicUseCaseParams {
   final KeyPairData account;
   final String password;
-  final String proof;
-  final PalletAtomicSwapBalanceSwapAction action;
+  final HexEx proof;
+  final PalletPoscanAssetsSwapTokenSwapAction action;
 
   @override
   final VoidCallback updateStatus;

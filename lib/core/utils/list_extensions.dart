@@ -13,4 +13,10 @@ extension ListExtensions<E> on List<E> {
 
     return null;
   }
+
+  R whenNotEmpty<R>({
+    required final R Function(List<E> list) notEmpty,
+    required final R Function() empty,
+  }) =>
+      isEmpty ? empty() : notEmpty(this);
 }

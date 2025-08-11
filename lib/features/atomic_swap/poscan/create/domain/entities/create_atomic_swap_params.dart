@@ -8,6 +8,7 @@ class CreateAtomicSwapParams extends ExtrinsicUseCaseParams {
   final KeyPairData account;
   final String password;
   final KeyPairData target;
+  @Deprecated('Use HexEx')
   final String hashedProof;
   final PalletPoscanAssetsSwapTokenSwapAction action;
   final int duration;

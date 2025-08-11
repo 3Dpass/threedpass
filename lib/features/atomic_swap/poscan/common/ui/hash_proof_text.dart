@@ -13,7 +13,7 @@ class HashProofText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FastRichText(
-      mainText: '0x${swap.hashProof}',
+      mainText: swap.hashProof.prefixValue,
       needSpace: true,
       secondaryText: 'hash_proof_prefix'.tr(),
     );

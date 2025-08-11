@@ -1,7 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/bloc/build_or_loading.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
+import 'package:threedpass/core/utils/list_extensions.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/core/widgets/other/vertical_line_left_border.dart';
 import 'package:threedpass/features/atomic_swap/poscan/common/domain/entities/raw_pending_poscan_atomic_swap_data.dart';
@@ -18,9 +19,6 @@ class PoscanAtomicSwapAction extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final pas = BlocProvider.of<PoscanAssetsCubit>(context).state;
-    final asset = pas.combined
-        .firstWhere((final e) => e.poscanAssetData.id == action.assetId);
     return VerticalLineLeftBorder(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,20 +29,37 @@ class PoscanAtomicSwapAction extends StatelessWidget {
             secondaryText: 'set_metadata_notification_asset_id'.tr(),
             needSpace: true,
           ),
-          FastRichText(
-            mainText: BalanceUtils.formattedBigInt(
-              action.value,
-              asset.poscanAssetMetadata?.idecimals ?? 0,
-            ),
-            needSpace: true,
-            secondaryText:
-                asset.poscanAssetMetadata != null ? 'Amount:' : 'Raw amount:',
-          ),
-          BasicLinkToPage(
-            params: LinkToPoscanAssetPageParams(
-              asset: asset.poscanAssetData,
-              context: context,
-            ),
+          BuildOrLoading<PoscanAssetsCubit, PoscanAssetsState>(
+            builder: (final PoscanAssetsState state) {
+              final asset = state.combined.firstWhereOrNull(
+                  (final e) => e.poscanAssetData.id == action.assetId);
+              if (asset != null) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 4,
+                  children: [
+                    FastRichText(
+                      mainText: BalanceUtils.formattedBigInt(
+                        action.value,
+                        asset.poscanAssetMetadata?.idecimals ?? 0,
+                      ),
+                      needSpace: true,
+                      secondaryText: asset.poscanAssetMetadata != null
+                          ? 'Amount:'
+                          : 'Raw amount:',
+                    ),
+                    BasicLinkToPage(
+                      params: LinkToPoscanAssetPageParams(
+                        asset: asset.poscanAssetData,
+                        context: context,
+                      ),
+                    ),
+                  ],
+                );
+              } else {
+                return null;
+              }
+            },
           ),
         ],
       ),
