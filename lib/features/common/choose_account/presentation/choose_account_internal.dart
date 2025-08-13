@@ -17,7 +17,7 @@ class _ChooseAccountInternal extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 4,
       children: [
-        D3pBodyMediumText(title ?? 'choose_account_subtitle'),
+        D3pBodyMediumText(title ?? 'sign_extrinsic_with_this_account'),
         BlocBuilder<ChooseAccountCubit, KeyPairData?>(
           builder: (final context, final state) {
             final chosen = state != null

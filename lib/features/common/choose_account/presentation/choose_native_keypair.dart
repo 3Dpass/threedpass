@@ -10,7 +10,7 @@ import 'package:threedpass/setup.dart';
 
 class ChooseNativeKeypair extends StatelessWidget {
   final KeyPair? value;
-  final void Function(KeyPair?) onSelected;
+  final void Function(KeyPair?)? onSelected;
   final TextEditingController passwordController;
   final List<KeyPair> accounts;
 
@@ -36,7 +36,7 @@ class ChooseNativeKeypair extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 4,
       children: [
-        D3pBodyMediumText('choose_account_subtitle'),
+        D3pBodyMediumText('sign_extrinsic_with_this_account'),
         D3pDropdownButton<KeyPair>(
           items: accounts
               .map<DropdownMenuItem<KeyPair>>(

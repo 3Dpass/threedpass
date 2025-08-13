@@ -1,15 +1,15 @@
 import 'package:threedpass/core/call_extrinsic_usecase.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/features/atomic_swap/poscan/claim/domain/entities/claim_poscan_atomic_swap_params.dart';
 import 'package:threedpass/features/atomic_swap/poscan/common/data/poscan_atomic_swap_repository.dart';
-import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/create_atomic_swap_global_handler.dart';
-import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/create_atomic_swap_params.dart';
+import 'package:threedpass/features/atomic_swap/poscan/common/domain/entities/claim_poscan_atomic_swap_global_handler.dart';
 import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/pending_atomic_swap_cubit.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/utils/primitive_event_logs_handler.dart';
 
-class CreateAtomicSwap extends CallExtrinsicUsecase<CreateAtomicSwapParams,
-    NotificationCreateAtomicSwap> {
+class ClaimPoscanAtomicSwap extends CallExtrinsicUsecase<
+    ClaimPoscanAtomicSwapParams, NotificationClaimPoscanAtomicSwap> {
   @override
   final AppServiceLoaderCubit appServiceLoaderCubit;
   @override
@@ -18,7 +18,7 @@ class CreateAtomicSwap extends CallExtrinsicUsecase<CreateAtomicSwapParams,
   final PoscanAtomicSwapRepository atomicSwapRepository;
   final PendingAtomicSwapCubit pendingAtomicSwapCubit;
 
-  const CreateAtomicSwap({
+  const ClaimPoscanAtomicSwap({
     required this.appServiceLoaderCubit,
     required this.notificationsBloc,
     required this.atomicSwapRepository,
@@ -26,12 +26,12 @@ class CreateAtomicSwap extends CallExtrinsicUsecase<CreateAtomicSwapParams,
   });
 
   @override
-  PrimitiveEventLogsHandler<NotificationCreateAtomicSwap> globalHandler({
+  PrimitiveEventLogsHandler<NotificationClaimPoscanAtomicSwap> globalHandler({
     required String msgId,
     required NotificationsBloc notificationsBloc,
-    required NotificationCreateAtomicSwap initialN,
+    required NotificationClaimPoscanAtomicSwap initialN,
   }) =>
-      CreateAtomicSwapGlobalHandler(
+      ClaimPoscanAtomicSwapGlobalHandler(
         msgId: msgId,
         notificationsBloc: notificationsBloc,
         initialN: initialN,
@@ -41,18 +41,16 @@ class CreateAtomicSwap extends CallExtrinsicUsecase<CreateAtomicSwapParams,
       );
 
   @override
-  NotificationCreateAtomicSwap notificationLoading(
-    CreateAtomicSwapParams params,
+  NotificationClaimPoscanAtomicSwap notificationLoading(
+    ClaimPoscanAtomicSwapParams params,
   ) =>
-      NotificationCreateAtomicSwap(
-        from: params.account,
-        to: params.target,
+      NotificationClaimPoscanAtomicSwap(
+        swap: params.swap,
         status: ExtrinsicStatus.loading,
         message: null,
-        isPoscan: params.action.isPoscan,
       );
 
   @override
-  RepositoryCall<CreateAtomicSwapParams> get repositoryCall =>
-      atomicSwapRepository.create;
+  RepositoryCall<ClaimPoscanAtomicSwapParams> get repositoryCall =>
+      atomicSwapRepository.claim;
 }

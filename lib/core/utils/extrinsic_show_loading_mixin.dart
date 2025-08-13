@@ -9,13 +9,14 @@ import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 
+// TODO Add account field to this mixin
 mixin ExtrinsicShowLoadingMixin<TResult, Params> {
   bool fastCheckPassed = false;
 
   void updateStatus(final BuildContext context) {
     fastCheckPassed = true;
     DefaultLoadingDialog.hide(context);
-    unawaited(outerRouter.maybePop());
+    unawaited(outerRouter.maybePopTop());
     unawaited(
       Fluttertoast.showToast(
         msg: 'Extrinsic signed and broadcasted',

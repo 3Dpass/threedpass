@@ -9,9 +9,11 @@ import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/features/atomic_swap/poscan/common/ui/hash_proof_text.dart';
+import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/swap_in_progress.dart';
 import 'package:threedpass/features/atomic_swap/poscan/pending/domain/entities/pending_poscan_atomic_swap.dart';
 import 'package:threedpass/features/atomic_swap/poscan/pending/ui/widgets/poscan_atomic_swap_action.dart';
 import 'package:threedpass/features/common/accounts_identity/account_idenity.dart';
+import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 import 'package:threedpass/router/router.gr.dart';
 
 part 'pending_poscan_atomic_swap_action_button.dart';

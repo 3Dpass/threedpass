@@ -6,8 +6,9 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/utils/di_module.dart';
 import 'package:threedpass/features/atomic_swap/poscan/cancel/bloc/cancel_poscan_atomic_swap_bloc.dart';
-import 'package:threedpass/features/atomic_swap/poscan/claim/bloc/claim_poscan_atomic_swap_bloc.dart';
+import 'package:threedpass/features/atomic_swap/poscan/claim/bloc/claim_poscan_atomic_swap_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/common/data/poscan_atomic_swap_repository.dart';
+import 'package:threedpass/features/atomic_swap/poscan/common/domain/usecases/claim_poscan_atomic_swap.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/bloc/create_atomic_swap_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/usecases/calc_hashed_proof.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/usecases/create_atomic_swap.dart';
@@ -33,6 +34,7 @@ class DiAtomicSwap extends DIModule {
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         notificationsBloc: getIt<NotificationsBloc>(),
         atomicSwapRepository: getIt<PoscanAtomicSwapRepository>(),
+        pendingAtomicSwapCubit: getIt<PendingAtomicSwapCubit>(),
       ),
     );
 
@@ -58,12 +60,25 @@ class DiAtomicSwap extends DIModule {
         currentAccountCubit: getIt<CurrentAccountCubit>(),
       ),
     );
-    getIt.registerFactoryParam<ClaimPoscanAtomicSwapBloc,
+
+    getIt.registerFactory<ClaimPoscanAtomicSwap>(
+      () => ClaimPoscanAtomicSwap(
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        notificationsBloc: getIt<NotificationsBloc>(),
+        atomicSwapRepository: getIt<PoscanAtomicSwapRepository>(),
+        pendingAtomicSwapCubit: getIt<PendingAtomicSwapCubit>(),
+      ),
+    );
+
+    getIt.registerFactoryParam<ClaimPoscanAtomicSwapCubit,
         PendingPoscanAtomicSwap, StackRouter>(
       (final PendingPoscanAtomicSwap p1, final StackRouter p2) =>
-          ClaimPoscanAtomicSwapBloc(
+          ClaimPoscanAtomicSwapCubit(
         pendingSwap: p1,
         outerRouter: p2,
+        accountToSignExtrinsic:
+            getIt<CurrentAccountCubit>().state.value!.nativeP3D,
+        claimPoscanAtomicSwap: getIt<ClaimPoscanAtomicSwap>(),
       ),
     );
     getIt.registerFactory<GetPendingPoscanAtomicSwap>(

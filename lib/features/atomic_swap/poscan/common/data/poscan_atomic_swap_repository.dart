@@ -4,6 +4,7 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/utils/big_int_json_helper.dart';
 import 'package:threedpass/core/utils/logger.dart';
+import 'package:threedpass/features/atomic_swap/poscan/claim/domain/entities/claim_poscan_atomic_swap_params.dart';
 import 'package:threedpass/features/atomic_swap/poscan/common/domain/entities/raw_pending_poscan_atomic_swap_data.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/create_atomic_swap_params.dart';
 
@@ -12,6 +13,12 @@ abstract class PoscanAtomicSwapRepository {
 
   Future<void> create({
     required final CreateAtomicSwapParams params,
+    required final void Function() updateStatus,
+    required final void Function(String) msgIdCallback,
+  });
+
+  Future<void> claim({
+    required final ClaimPoscanAtomicSwapParams params,
     required final void Function() updateStatus,
     required final void Function(String) msgIdCallback,
   });
@@ -75,39 +82,34 @@ class PoscanAtomicSwapRepositoryImpl implements PoscanAtomicSwapRepository {
           (final e) => RawPendingPoscanAtomicSwapData.fromRaw(e),
         )
         .toList();
+  }
 
-//     final String getBalanceFunc = """
-// var entries = await api.query.poscanAtomicSwap.pendingSwaps.entries();
-// var result = [];
+  @override
+  Future<void> claim({
+    required ClaimPoscanAtomicSwapParams params,
+    required void Function() updateStatus,
+    required void Function(String p1) msgIdCallback,
+  }) {
+    final args = [
+      params.secret,
+      {
+        'assetId': params.swap.action.assetId,
+        'value': BigIntJsonHelper.encode(params.swap.action.value),
+      },
+    ];
 
-// entries.forEach(([keys, value]) => {
-//   const [targetAccount, hashedProof, lol, kek, azaz] = keys;
-//   const pendingSwap = value.unwrap ? value.unwrap() : value;
+    final midEncoding = const JsonEncoder().convert(args);
+    final argsEncoded = BigIntJsonHelper.replace(midEncoding);
 
-//   result.push({
-//     targetAccount: targetAccount,
-//     hashedProof: hashedProof.toString(),
-//     lol: lol.toString(),
-//     kek: kek.toString(),
-//     azaz: azaz.toString(),
-//     source: pendingSwap.source.toString(),
-//     action: {
-//       assetId: pendingSwap.action.assetId ? pendingSwap.action.assetId.toNumber() : null,
-//       value: pendingSwap.action.value ? pendingSwap.action.value.toString() : null
-//     },
-//     endBlock: pendingSwap.endBlock.toNumber()
-//   });
-// });
+    logger.t('args: $argsEncoded');
 
-// return result;
-// """;
-//     final dynamic response = await appServiceLoaderCubit
-//         .state.plugin.sdk.webView!.webInstance!.webViewController
-//         .callAsyncJavaScript(
-//       functionBody: getBalanceFunc,
-//     );
-
-//     print(response);
-//     return [];
+    return callSignExtrinsicUtil.abstractExtrinsicCall(
+      argsEncoded: argsEncoded,
+      calls: ['tx', 'poscanAtomicSwap', 'claimSwap'],
+      pubKey: params.account.pubKey,
+      password: params.password,
+      updateStatus: updateStatus,
+      msgIdCallback: msgIdCallback,
+    );
   }
 }

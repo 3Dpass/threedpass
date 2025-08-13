@@ -3,9 +3,9 @@ import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/pending_atom
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/utils/primitive_event_logs_handler.dart';
 
-class CreateAtomicSwapGlobalHandler
-    extends PrimitiveEventLogsHandler<NotificationCreateAtomicSwap> {
-  const CreateAtomicSwapGlobalHandler({
+class ClaimPoscanAtomicSwapGlobalHandler
+    extends PrimitiveEventLogsHandler<NotificationClaimPoscanAtomicSwap> {
+  const ClaimPoscanAtomicSwapGlobalHandler({
     required super.msgId,
     required super.notificationsBloc,
     required super.initialN,
@@ -16,8 +16,8 @@ class CreateAtomicSwapGlobalHandler
   final PendingAtomicSwapCubit pendingAtomicSwapCubit;
 
   @override
-  NotificationCreateAtomicSwap customCopyWith(
-    final NotificationCreateAtomicSwap initialN,
+  NotificationClaimPoscanAtomicSwap customCopyWith(
+    final NotificationClaimPoscanAtomicSwap initialN,
     final ExtrinsicStatus status,
     final String? message,
   ) {

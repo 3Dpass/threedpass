@@ -7,10 +7,10 @@ import 'package:threedpass/features/wallet_screen/notifications_page/presentatio
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_card_basic.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/presentation/widgets/notification_card_body_basic.dart';
 
-class NotificationClaimPoscanAtomicSwapCard extends StatelessWidget {
-  final NotificationClaimPoscanAtomicSwap notificationDTO;
+class NotificationCancelPoscanAtomicSwapCard extends StatelessWidget {
+  final NotificationCancelPoscanAtomicSwap notificationDTO;
 
-  const NotificationClaimPoscanAtomicSwapCard(this.notificationDTO,
+  const NotificationCancelPoscanAtomicSwapCard(this.notificationDTO,
       {super.key});
 
   @override
@@ -26,7 +26,7 @@ class NotificationClaimPoscanAtomicSwapCard extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  final NotificationClaimPoscanAtomicSwap notificationDTO;
+  final NotificationCancelPoscanAtomicSwap notificationDTO;
 
   const _Body({required this.notificationDTO});
 
@@ -37,7 +37,7 @@ class _Body extends StatelessWidget {
         FastNotificationTile(
           iconData: Icons.keyboard_double_arrow_right,
           child: D3pBodyMediumText(
-            'poscanAtomicSwap.claimSwap',
+            'poscanAtomicSwap.cancelSwap',
             translate: false,
           ),
         ),

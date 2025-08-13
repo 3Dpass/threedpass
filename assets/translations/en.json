@@ -561,7 +561,7 @@
     "no_date_time_chosen": "Date Required",
     "date_time_picker_error": "Error",
     "error_only_true": "This is really important",
-    "i_saved_secret_atomic_swap": "I have securely stored my secret key.",
+    "i_saved_secret_atomic_swap": "I have stored my secret in a safe place",
     "poscan_atomic_swap_page_title": "Poscan Atomic Swap",
     "target_account": "Target account",
     "poscan_atomic_swap_buttons_panel_title": "Poscan Atomic Swap",
@@ -591,5 +591,7 @@
     "deadline_prefix": "Deadline:",
     "hash_proof_prefix": "Hash proof:",
     "claim_atomic_swap_button_label": "Claim swap",
-    "cancel_atomic_swap_button_label": "Cancel swap"
+    "cancel_atomic_swap_button_label": "Cancel swap",
+    "sign_extrinsic_with_this_account": "Sign extrinsic with the selected account",
+    "no_pending_swaps_available": "No pending swaps found for this account"
 }

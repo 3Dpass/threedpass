@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/bloc/build_or_loading.dart';
+import 'package:threedpass/core/widgets/states/build_or_loading.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/utils/list_extensions.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';

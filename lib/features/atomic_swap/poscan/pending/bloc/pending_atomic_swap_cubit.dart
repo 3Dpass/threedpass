@@ -13,15 +13,18 @@ class PendingAtomicSwapCubit extends Cubit<PendingAtomicSwapState> {
   Future<void> _setError(final Object e, final StackTrace st) async =>
       emit(AsyncValue.error(e, st));
 
-  Future<void> init() async => getPendingPoscanAtomicSwap.safeCall(
-        params: null,
-        onError: _setError,
-        onSuccess: (final pendingSwaps) => emit(
-          AsyncValue.data(
-            PendingAtomicSwapStateData(
-              pendingSwaps: pendingSwaps,
-            ),
+  void init() {
+    emit(AsyncValue.loading());
+    getPendingPoscanAtomicSwap.safeCall(
+      params: null,
+      onError: _setError,
+      onSuccess: (final pendingSwaps) => emit(
+        AsyncValue.data(
+          PendingAtomicSwapStateData(
+            pendingSwaps: pendingSwaps,
           ),
         ),
-      );
+      ),
+    );
+  }
 }

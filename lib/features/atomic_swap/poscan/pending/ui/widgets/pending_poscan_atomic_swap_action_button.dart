@@ -11,14 +11,19 @@ class _PendingPoscanAtomicSwapActionButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final swapInProgress = BlocProvider.of<NotificationsBloc>(context)
+        .isSwapInProgress(swap.hashProof);
+
     if (currentAddress == swap.from) {
       return D3pElevatedButton(
         text: 'cancel_atomic_swap_button_label'.tr(),
-        onPressed: () => context.router.push(
-          CancelAtomicSwapRouteWarpper(
-            pendingSwap: swap,
-          ),
-        ),
+        onPressed: swapInProgress
+            ? null
+            : () => context.router.push(
+                  CancelAtomicSwapRouteWarpper(
+                    pendingSwap: swap,
+                  ),
+                ),
         isInfinityWidth: false,
         isDangerColor: true,
       );
@@ -26,11 +31,13 @@ class _PendingPoscanAtomicSwapActionButton extends StatelessWidget {
     if (currentAddress == swap.to) {
       return D3pElevatedButton(
         text: 'claim_atomic_swap_button_label'.tr(),
-        onPressed: () => context.router.push(
-          ClaimAtomicSwapRouteWrapper(
-            pendingSwap: swap,
-          ),
-        ),
+        onPressed: swapInProgress
+            ? null
+            : () => context.router.push(
+                  ClaimAtomicSwapRouteWrapper(
+                    pendingSwap: swap,
+                  ),
+                ),
         isInfinityWidth: false,
       );
     }
