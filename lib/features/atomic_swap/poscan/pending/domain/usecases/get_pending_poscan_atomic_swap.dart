@@ -23,6 +23,7 @@ class GetPendingPoscanAtomicSwap
         (final e) async => PendingPoscanAtomicSwap(
           from: e.source,
           to: await encodeAddress(e.keyHash.substring(82, 146)),
+          decodedTo: e.keyHash.substring(82, 146),
           hashProof: HexEx(noPrefixValue: e.keyHash.substring(178, 242)),
           deadline: dateTimeFromBlockNumber(e.endBlock),
           action: e.action,

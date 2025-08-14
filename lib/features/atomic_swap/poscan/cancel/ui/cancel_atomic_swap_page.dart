@@ -23,8 +23,8 @@ class CancelAtomicSwapPage extends StatelessWidget {
       appbarTitle: 'cancel_poscan_atomic_swap_page_title',
       children: [
         ChooseNativeKeypair(
-          value: cancelPASBloc.state.target,
-          onSelected: cancelPASBloc.onAccountSelected,
+          value: cancelPASBloc.accountToSignExtrinsic,
+          onSelected: null, //cancelPASBloc.onAccountSelected,
           passwordController: cancelPASBloc.passwordController,
         ),
       ],

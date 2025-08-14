@@ -6,16 +6,18 @@ import 'package:threedpass/features/atomic_swap/basic/domain/enitites/basic_pend
 class HashProofText extends StatelessWidget {
   const HashProofText({
     required this.swap,
+    this.secondaryText,
   });
 
   final BasicPendingAtomicSwapData swap;
+  final String? secondaryText;
 
   @override
   Widget build(BuildContext context) {
     return FastRichText(
       mainText: swap.hashProof.prefixValue,
       needSpace: true,
-      secondaryText: 'hash_proof_prefix'.tr(),
+      secondaryText: secondaryText?.tr() ?? 'hash_proof_prefix'.tr(),
     );
   }
 }

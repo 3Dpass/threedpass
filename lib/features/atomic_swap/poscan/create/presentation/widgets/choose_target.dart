@@ -12,12 +12,13 @@ class _ChooseTarget extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 4,
       children: [
         Text('target_account'.tr()),
-        H4(),
         D3pTextFormField(
           key: textFieldKey,
           controller: textController,
+          hintText: 'Enter address', // TODO Localize
           suffixButton: Icons.person,
           onSuffixButtonPressed: () => openContactsPicker(
             context: context,

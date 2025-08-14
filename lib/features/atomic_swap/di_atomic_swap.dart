@@ -5,10 +5,11 @@ import 'package:threedpass/core/chains/domain/usecases/encode_address.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/utils/di_module.dart';
+import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/cancel/bloc/cancel_poscan_atomic_swap_bloc.dart';
 import 'package:threedpass/features/atomic_swap/poscan/claim/bloc/claim_poscan_atomic_swap_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/common/data/poscan_atomic_swap_repository.dart';
-import 'package:threedpass/features/atomic_swap/poscan/common/domain/usecases/claim_poscan_atomic_swap.dart';
+import 'package:threedpass/features/atomic_swap/poscan/claim/domain/usecases/claim_poscan_atomic_swap.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/bloc/create_atomic_swap_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/usecases/calc_hashed_proof.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/usecases/create_atomic_swap.dart';
@@ -41,7 +42,6 @@ class DiAtomicSwap extends DIModule {
     getIt.registerFactoryParam<CreateAtomicSwapCubit, int, StackRouter>(
       (final initialAssetId, final router) => CreateAtomicSwapCubit(
         outerRouter: router,
-        calcHashedProof: getIt<CalcHashedProof>(),
         createAtomicSwap: getIt<CreateAtomicSwap>(),
         appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
         poscanAssetsCubit: getIt<PoscanAssetsCubit>(),
@@ -57,7 +57,8 @@ class DiAtomicSwap extends DIModule {
           CancelPoscanAtomicSwapBloc(
         pendingSwap: p1,
         outerRouter: p2,
-        currentAccountCubit: getIt<CurrentAccountCubit>(),
+        accountToSignExtrinsic:
+            getIt<CurrentAccountCubit>().state.value!.nativeP3D,
       ),
     );
 
@@ -67,6 +68,8 @@ class DiAtomicSwap extends DIModule {
         notificationsBloc: getIt<NotificationsBloc>(),
         atomicSwapRepository: getIt<PoscanAtomicSwapRepository>(),
         pendingAtomicSwapCubit: getIt<PendingAtomicSwapCubit>(),
+        poscanAssetsCubit: getIt<PoscanAssetsCubit>(),
+        poolsCubit: getIt<PoolsCubit>(),
       ),
     );
 

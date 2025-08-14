@@ -1,9 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/utils/copy_and_notify.dart';
 import 'package:threedpass/core/utils/validators.dart';
-import 'package:threedpass/core/widgets/buttons/clickable_card.dart';
 import 'package:threedpass/core/widgets/buttons/d3p_datetime_picker.dart';
 import 'package:threedpass/core/widgets/input/d3p_switch_form_field.dart';
 import 'package:threedpass/core/widgets/input/textformfield/textformfield.dart';
@@ -14,6 +12,7 @@ import 'package:threedpass/features/atomic_swap/poscan/common/ui/poscan_asset_sw
 import 'package:threedpass/features/atomic_swap/poscan/create/bloc/create_atomic_swap_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/create_atomic_swap_state.dart';
 import 'package:threedpass/features/atomic_swap/poscan/create/presentation/widgets/choose_account_create_atomic_swap.dart';
+import 'package:threedpass/features/atomic_swap/poscan/create/presentation/widgets/poscan_atomic_swap_secret_input.dart';
 import 'package:threedpass/features/common/some_form/some_form.dart';
 import 'package:threedpass/features/common/some_form/some_form_submit_with_error.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
@@ -21,7 +20,6 @@ import 'package:threedpass/features/wallet_screen/contacts_page/utils/open_conta
 
 part 'widgets/choose_deadline.dart';
 part 'widgets/choose_target.dart';
-part 'widgets/input_secret.dart';
 part 'widgets/create_swap_submit_button.dart';
 part 'widgets/warning_checkbox.dart';
 part 'widgets/create_swap_input.dart';
@@ -43,7 +41,10 @@ class CreateSwapPage extends StatelessWidget {
           child: _ChooseTarget(),
         ),
         PH16(
-          child: _InputSecret(),
+          child: PoscanAtomicSwapSecretInput(
+            proofController: bloc.hashProofController,
+            secretController: bloc.secretInputController,
+          ),
         ),
         PH16(
           child: _CreateSwapInput(),

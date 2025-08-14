@@ -7,6 +7,7 @@ final class PendingPoscanAtomicSwap extends BasicPendingAtomicSwapData {
   const PendingPoscanAtomicSwap({
     required super.from,
     required super.to,
+    required super.decodedTo,
     required super.hashProof,
     required super.deadline,
     required this.action,

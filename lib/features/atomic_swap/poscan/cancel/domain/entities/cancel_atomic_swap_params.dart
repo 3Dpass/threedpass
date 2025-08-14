@@ -1,22 +1,21 @@
 import 'dart:ui';
 
-import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:threedpass/core/call_extrinsic_usecase.dart';
+import 'package:threedpass/core/chains/domain/entities/key_pair.dart';
+import 'package:threedpass/features/atomic_swap/poscan/pending/domain/entities/pending_poscan_atomic_swap.dart';
 
-class CancelAtomicSwapParams extends ExtrinsicUseCaseParams {
-  final KeyPairData account;
+class CancelPoscanAtomicSwapParams extends ExtrinsicUseCaseParams {
+  final KeyPair account;
   final String password;
-  final KeyPairData target;
-  final String hashedProof;
+  final PendingPoscanAtomicSwap swap;
 
   @override
   final VoidCallback updateStatus;
 
-  const CancelAtomicSwapParams({
+  const CancelPoscanAtomicSwapParams({
     required this.account,
     required this.password,
-    required this.target,
-    required this.hashedProof,
+    required this.swap,
     required this.updateStatus,
   });
 }

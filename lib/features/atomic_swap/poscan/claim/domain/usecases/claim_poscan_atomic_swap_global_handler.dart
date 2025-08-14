@@ -1,5 +1,8 @@
+import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/extrinsic_status.dart';
+import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/pending_atomic_swap_cubit.dart';
+import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/bloc/notifications_bloc.dart';
 import 'package:threedpass/features/wallet_screen/notifications_page/utils/primitive_event_logs_handler.dart';
 
@@ -11,8 +14,14 @@ class ClaimPoscanAtomicSwapGlobalHandler
     required super.initialN,
     required super.webViewRunner,
     required this.pendingAtomicSwapCubit,
+    required this.poolsCubit,
+    required this.poscanAssetsCubit,
+    required this.appServiceLoaderCubit,
   });
 
+  final PoolsCubit poolsCubit;
+  final PoscanAssetsCubit poscanAssetsCubit;
+  final AppServiceLoaderCubit appServiceLoaderCubit;
   final PendingAtomicSwapCubit pendingAtomicSwapCubit;
 
   @override
@@ -26,6 +35,11 @@ class ClaimPoscanAtomicSwapGlobalHandler
 
   @override
   void onExtrinsicSuccess() {
+    // TODO do not update pools if NFT was claimed
+    poolsCubit.update(
+      address: appServiceLoaderCubit.state.keyring.current.address!,
+    );
+    poscanAssetsCubit.updateBalances();
     updateNotification(ExtrinsicStatus.success, null);
     pendingAtomicSwapCubit.init();
   }

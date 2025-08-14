@@ -16,7 +16,7 @@ mixin ExtrinsicShowLoadingMixin<TResult, Params> {
   void updateStatus(final BuildContext context) {
     fastCheckPassed = true;
     DefaultLoadingDialog.hide(context);
-    unawaited(outerRouter.maybePopTop());
+    unawaited(outerRouter.maybePop());
     unawaited(
       Fluttertoast.showToast(
         msg: 'Extrinsic signed and broadcasted',

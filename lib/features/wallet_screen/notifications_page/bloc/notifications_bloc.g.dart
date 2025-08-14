@@ -1000,6 +1000,83 @@ extension $NotificationClaimPoscanAtomicSwapCopyWith
       _$NotificationClaimPoscanAtomicSwapCWProxyImpl(this);
 }
 
+abstract class _$NotificationCancelPoscanAtomicSwapCWProxy {
+  NotificationCancelPoscanAtomicSwap swap(PendingPoscanAtomicSwap swap);
+
+  NotificationCancelPoscanAtomicSwap status(ExtrinsicStatus status);
+
+  NotificationCancelPoscanAtomicSwap message(String? message);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationCancelPoscanAtomicSwap(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationCancelPoscanAtomicSwap(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationCancelPoscanAtomicSwap call({
+    PendingPoscanAtomicSwap? swap,
+    ExtrinsicStatus? status,
+    String? message,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNotificationCancelPoscanAtomicSwap.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfNotificationCancelPoscanAtomicSwap.copyWith.fieldName(...)`
+class _$NotificationCancelPoscanAtomicSwapCWProxyImpl
+    implements _$NotificationCancelPoscanAtomicSwapCWProxy {
+  const _$NotificationCancelPoscanAtomicSwapCWProxyImpl(this._value);
+
+  final NotificationCancelPoscanAtomicSwap _value;
+
+  @override
+  NotificationCancelPoscanAtomicSwap swap(PendingPoscanAtomicSwap swap) =>
+      this(swap: swap);
+
+  @override
+  NotificationCancelPoscanAtomicSwap status(ExtrinsicStatus status) =>
+      this(status: status);
+
+  @override
+  NotificationCancelPoscanAtomicSwap message(String? message) =>
+      this(message: message);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NotificationCancelPoscanAtomicSwap(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// NotificationCancelPoscanAtomicSwap(...).copyWith(id: 12, name: "My name")
+  /// ````
+  NotificationCancelPoscanAtomicSwap call({
+    Object? swap = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+  }) {
+    return NotificationCancelPoscanAtomicSwap(
+      swap: swap == const $CopyWithPlaceholder() || swap == null
+          ? _value.swap
+          // ignore: cast_nullable_to_non_nullable
+          : swap as PendingPoscanAtomicSwap,
+      status: status == const $CopyWithPlaceholder() || status == null
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as ExtrinsicStatus,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+    );
+  }
+}
+
+extension $NotificationCancelPoscanAtomicSwapCopyWith
+    on NotificationCancelPoscanAtomicSwap {
+  /// Returns a callable class that can be used as follows: `instanceOfNotificationCancelPoscanAtomicSwap.copyWith(...)` or like so:`instanceOfNotificationCancelPoscanAtomicSwap.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$NotificationCancelPoscanAtomicSwapCWProxy get copyWith =>
+      _$NotificationCancelPoscanAtomicSwapCWProxyImpl(this);
+}
+
 abstract class _$NotificationsStateCWProxy {
   NotificationsState notifications(List<NotificationDTO> notifications);
 

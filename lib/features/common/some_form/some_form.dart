@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/buttons/custom_back_button.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
-import 'package:threedpass/core/widgets/layout/separated_column.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 
 class SomeForm extends StatelessWidget {
@@ -39,20 +38,21 @@ class SomeForm extends StatelessWidget {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Flexible(
                 child: Form(
                   key: formKey,
-                  child: SeparatedColumn(
-                    separator: const H16(),
+                  child: Column(
+                    spacing: 16,
                     children: children,
                     crossAxisAlignment: CrossAxisAlignment.start,
                   ),
                 ),
               ),
               const H16(),
-              SeparatedColumn(
-                separator: const H16(),
+              Column(
+                spacing: 16,
                 children: afterForm,
                 crossAxisAlignment: CrossAxisAlignment.start,
               ),

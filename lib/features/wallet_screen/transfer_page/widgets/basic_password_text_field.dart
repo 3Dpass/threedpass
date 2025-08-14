@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/utils/validators.dart';
-import 'package:threedpass/features/wallet_screen/transfer_page/widgets/basic_transfer_textfield.dart';
+import 'package:threedpass/features/common/form_option/obscure_text_field.dart';
 
-class BasicPasswordTextField extends StatefulWidget {
+class BasicPasswordTextField extends StatelessWidget {
   const BasicPasswordTextField({
     required this.passwordController,
     this.bottomWidget,
@@ -16,16 +16,7 @@ class BasicPasswordTextField extends StatefulWidget {
   final Widget? bottomWidget;
   final IconData? labelButton;
 
-  // final bool isFirst;
-  // final FromAddressData data;
   final TextEditingController passwordController;
-
-  @override
-  State<StatefulWidget> createState() => _State();
-}
-
-class _State extends State<BasicPasswordTextField> {
-  bool obscureText = true;
 
   String? _passValidator(final String? v) {
     return v != null && Validators.checkPassword(v)
@@ -34,25 +25,14 @@ class _State extends State<BasicPasswordTextField> {
   }
 
   @override
-  Widget build(final BuildContext context) {
-    return BasicTransferTextField(
-      controller: widget.passwordController,
-      hintText: 'enter_password_hint'.tr(),
-      labelButton: widget.labelButton,
-      labelText: 'enter_password_label'.tr(),
-      maxLines: 1,
-      obscureText: obscureText,
-      onLabelButtonPressed: widget.onLabelButtonPressed,
-      onSuffixButtonPressed: obscureTextPressed,
-      suffixButton: obscureText ? Icons.visibility : Icons.visibility_off,
-      validator: _passValidator,
-      bottomWidget: widget.bottomWidget,
-    );
-  }
-
-  void obscureTextPressed() {
-    setState(() {
-      obscureText = !obscureText;
-    });
-  }
+  Widget build(BuildContext context) => ObscureTextField(
+        controller: passwordController,
+        bottomWidget: bottomWidget,
+        labelButton: labelButton,
+        onLabelButtonPressed: onLabelButtonPressed,
+        validator: _passValidator,
+        hint: 'enter_password_hint'.tr(),
+        labelText: 'enter_password_label'.tr(),
+        isLabelOutside: true,
+      );
 }
