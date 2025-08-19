@@ -30,9 +30,9 @@ class CancelAtomicSwapPage extends StatelessWidget {
       ],
       afterForm: [
         FastRichText(
-          mainText: 'Target:',
+          secondaryText: 'Target:',
           needSpace: true,
-          secondaryText: swap.to,
+          mainText: swap.to,
         ),
         HashProofText(swap: swap),
         PoscanAtomicSwapAction(

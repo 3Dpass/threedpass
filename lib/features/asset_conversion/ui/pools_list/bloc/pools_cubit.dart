@@ -45,10 +45,7 @@ class PoolsCubit extends Cubit<PoolsState> {
   @Deprecated('Listen to current account change instead')
   Future<void> update({required final String address}) async {
     if (updating) {
-      Fluttertoast.showToast(
-        msg: 'Already updating pools',
-        toastLength: Toast.LENGTH_SHORT,
-      );
+      logger.w('[POOLS] Already updating pools');
       return;
     }
     updating = true;

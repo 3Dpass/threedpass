@@ -82,7 +82,7 @@ mixin ExtrinsicShowLoadingMixin<TResult, Params> {
         error: e,
         stackTrace: stackTrace,
       );
-      await Fluttertoast.showToast(msg: 'Error: $e');
+      Fluttertoast.showToast(msg: '$e');
     }
   }
 }

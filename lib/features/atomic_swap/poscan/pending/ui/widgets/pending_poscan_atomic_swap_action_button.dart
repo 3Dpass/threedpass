@@ -18,17 +18,23 @@ class _PendingPoscanAtomicSwapActionButton extends StatelessWidget {
             notificationsState.isSwapInProgress(swap.hashProof);
 
         if (currentAddress == swap.from) {
+          final isBeforeDeadline =
+              DateTime.now().difference(swap.deadline).isNegative;
           return D3pElevatedButton(
-            text: 'cancel_atomic_swap_button_label'.tr(),
-            onPressed: swapInProgress
+            text: isBeforeDeadline
+                ? 'atomic_swap_deadline_not_reached'.tr()
+                : 'cancel_atomic_swap_button_label'.tr(),
+            onPressed: isBeforeDeadline
                 ? null
-                : () => context.router.push(
-                      CancelAtomicSwapRouteWarpper(
-                        pendingSwap: swap,
-                      ),
-                    ),
+                : swapInProgress
+                    ? null
+                    : () => context.router.push(
+                          CancelAtomicSwapRouteWarpper(
+                            pendingSwap: swap,
+                          ),
+                        ),
             isInfinityWidth: false,
-            isDangerColor: true,
+            isDangerColor: !swapInProgress,
           );
         }
         if (currentAddress == swap.to) {

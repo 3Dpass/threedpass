@@ -594,5 +594,6 @@
     "cancel_atomic_swap_button_label": "Cancel swap",
     "sign_extrinsic_with_this_account": "Sign extrinsic with the selected account",
     "no_pending_swaps_available": "No pending swaps found for this account",
-    "hash_proof_of_the_claiming_swap": "Hashed proof of the claiming swap:"
+    "hash_proof_of_the_claiming_swap": "Hashed proof of the claiming swap:",
+    "atomic_swap_deadline_not_reached": "Deadline not reached"
 }

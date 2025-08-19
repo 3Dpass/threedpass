@@ -7,10 +7,12 @@ import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 class DisableRefreshButton extends StatefulWidget {
   final void Function()? onPressed;
   final int coolDownSeconds;
+  final bool emptyContraints;
 
   DisableRefreshButton({
     required this.onPressed,
     this.coolDownSeconds = 120,
+    this.emptyContraints = false,
   });
 
   @override
@@ -53,6 +55,7 @@ class _DisableButtonState extends State<DisableRefreshButton> {
     return D3pIconButton(
       onPressed: _onPressed,
       iconData: Icons.refresh,
+      emptyContraints: widget.emptyContraints,
     );
   }
 }

@@ -127,7 +127,7 @@ class PoscanAtomicSwapRepositoryImpl implements PoscanAtomicSwapRepository {
     required void Function(String p1) msgIdCallback,
   }) {
     final args = [
-      params.swap.decodedTo,
+      params.swap.to,
       params.swap.hashProof.prefixValue,
     ];
 

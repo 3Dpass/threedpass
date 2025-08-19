@@ -7,6 +7,7 @@ import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/utils/di_module.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/cancel/bloc/cancel_poscan_atomic_swap_bloc.dart';
+import 'package:threedpass/features/atomic_swap/poscan/cancel/domain/usecases/cancel_poscan_atomic_swap.dart';
 import 'package:threedpass/features/atomic_swap/poscan/claim/bloc/claim_poscan_atomic_swap_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/common/data/poscan_atomic_swap_repository.dart';
 import 'package:threedpass/features/atomic_swap/poscan/claim/domain/usecases/claim_poscan_atomic_swap.dart';
@@ -48,6 +49,14 @@ class DiAtomicSwap extends DIModule {
       ),
     );
 
+    getIt.registerFactory<CancelPoscanAtomicSwap>(
+      () => CancelPoscanAtomicSwap(
+        appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+        notificationsBloc: getIt<NotificationsBloc>(),
+        atomicSwapRepository: getIt<PoscanAtomicSwapRepository>(),
+        pendingAtomicSwapCubit: getIt<PendingAtomicSwapCubit>(),
+      ),
+    );
     getIt.registerFactoryParam<CancelPoscanAtomicSwapBloc,
         PendingPoscanAtomicSwap, StackRouter>(
       (
@@ -59,6 +68,7 @@ class DiAtomicSwap extends DIModule {
         outerRouter: p2,
         accountToSignExtrinsic:
             getIt<CurrentAccountCubit>().state.value!.nativeP3D,
+        cancelPoscanAtomicSwap: getIt<CancelPoscanAtomicSwap>(),
       ),
     );
 
