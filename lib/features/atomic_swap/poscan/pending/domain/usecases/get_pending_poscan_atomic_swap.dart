@@ -1,5 +1,5 @@
-import 'package:threedpass/core/chains/domain/entities/hex_ex.dart';
-import 'package:threedpass/core/chains/domain/usecases/encode_address.dart';
+import 'package:threedpass/features/chains/domain/entities/hex_ex.dart';
+import 'package:threedpass/features/chains/domain/usecases/encode_address.dart';
 import 'package:threedpass/core/polkawallet/utils/datetime_from_block_number.dart';
 import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/features/atomic_swap/poscan/common/data/poscan_atomic_swap_repository.dart';

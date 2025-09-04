@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/core/chains/domain/entities/current_account.dart';
+import 'package:threedpass/features/chains/domain/entities/current_account.dart';
 import 'package:threedpass/core/utils/async_value.dart';
 import 'package:threedpass/setup.dart';
 

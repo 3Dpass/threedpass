@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:get_it/get_it.dart';
-import 'package:threedpass/core/chains/bloc/current_account_cubit.dart';
-import 'package:threedpass/core/chains/domain/usecases/encode_address.dart';
+import 'package:threedpass/features/chains/bloc/current_account_cubit.dart';
+import 'package:threedpass/features/chains/domain/usecases/encode_address.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/utils/di_module.dart';

@@ -9,8 +9,6 @@ class GetOwnedObjectsIds extends UseCase<List<int>, String> {
   });
 
   @override
-  Future<List<int>> call(
-    final String accountId,
-  ) =>
+  Future<List<int>> call(final String accountId) =>
       repository.owners(accountId);
 }

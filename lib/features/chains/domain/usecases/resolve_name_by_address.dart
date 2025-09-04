@@ -1,5 +1,5 @@
-import 'package:threedpass/core/chains/domain/entities/address.dart';
-import 'package:threedpass/core/chains/domain/entities/resolved_account_name.dart';
+import 'package:threedpass/features/chains/domain/entities/address.dart';
+import 'package:threedpass/features/chains/domain/entities/resolved_account_name.dart';
 import 'package:threedpass/core/usecase.dart';
 
 class ResolveNameByAddress extends UseCase<ResolvedAccountName?, Address> {

@@ -2,7 +2,7 @@ import 'package:stack_trace/stack_trace.dart';
 // THIS IS INSPIRED BY RIVERPOD
 // https://github.com/rrousselGit/riverpod/blob/4814c2ec8453a780212727ae59dd7b520c1ada26/packages/riverpod/lib/src/common.dart
 
-abstract class AsyncValue<T> {
+sealed class AsyncValue<T> {
   const AsyncValue._();
 
   const factory AsyncValue.data(final T value) = AsyncData<T>;

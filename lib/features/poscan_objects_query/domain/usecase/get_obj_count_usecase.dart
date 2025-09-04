@@ -9,8 +9,5 @@ class GetObjCount extends UseCase<int, void> {
   });
 
   @override
-  Future<int> call(
-    final void params,
-  ) =>
-      repository.objCount();
+  Future<int> call(final void params) => repository.objCount();
 }

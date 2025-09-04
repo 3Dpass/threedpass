@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/chains/domain/entities/key_pair.dart';
+import 'package:threedpass/features/chains/domain/entities/key_pair.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/widgets/account_choose_tile_text.dart';
 import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';

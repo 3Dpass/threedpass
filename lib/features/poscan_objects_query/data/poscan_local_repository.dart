@@ -1,97 +1,156 @@
 import 'dart:async';
+import 'dart:convert';
 
-import 'package:isar/isar.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:threedpass/core/utils/logger.dart';
+import 'package:drift/drift.dart';
+import 'package:threedpass/features/app/data/cache_database.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 
-// TODO Refactor. Make use cases insted of calling this from cubit
-class PoScanLocalRepository {
-  PoScanLocalRepository();
+abstract class PoScanLocalRepository {
+  const PoScanLocalRepository({required this.ss58});
 
-  final Completer<void> initialized = Completer<
-      void>(); // TODO Create state to handle store init AND remove objects changed stream
-  bool _isInitialized = false;
-  late Isar isar;
+  final int ss58;
 
-  Future<Stream<void>> get objectsChanged async {
-    await initialized.future;
-    return isar.uploadedObjects.watchLazy();
+  Future<void> clear();
+
+  Future<int> countEntries();
+
+  Future<void> put(final UploadedObject object, final ObjectContent content);
+
+  Future<UploadedObject?> getMeta(final int id);
+  Future<ObjectContent?> getData(final int id);
+
+  Future<List<UploadedObject>> filterByOwner(final String address);
+
+  Future<List<UploadedObject>> containAnyHash(
+    final List<String> hashes,
+  );
+}
+
+typedef _Filter = Expression<bool> Function($UploadedObjectCachesTable);
+
+class PoScanLocalRepositoryImpl extends PoScanLocalRepository {
+  final CacheDatabase db;
+
+  const PoScanLocalRepositoryImpl({
+    required this.db,
+    required super.ss58,
+  });
+
+  Expression<bool> get filterBySS58 =>
+      db.uploadedObjectCaches.ss58.equals(ss58);
+
+  GeneratedColumn<int> get idCol => db.uploadedObjectCaches.id;
+  GeneratedColumn<int> get ss58Col => db.uploadedObjectCaches.ss58;
+
+  _Filter exprTemplate(final _Filter other) => (final tbl) => Expression.and(
+        [
+          filterBySS58,
+          other(tbl),
+        ],
+      );
+
+  @override
+  Future<void> clear() => Future.wait([
+        db.delete(db.uploadedObjectCaches).go(),
+        db.delete(db.uploadedObjectContents).go(),
+      ]);
+
+  Future<List<UploadedObject>> filterObjects(
+    final _Filter cond,
+  ) async {
+    final queryObjects = db.select(db.uploadedObjectCaches)
+      ..where(exprTemplate(cond));
+
+    final res = await queryObjects.get();
+    return res.map((e) => UploadedObject.fromCache(e)).toList();
   }
 
-  Future<void> open(final int ss58) async {
-    _isInitialized = false;
-
-    final dir = await getApplicationDocumentsDirectory();
-    isar = await Isar.open(
-      [UploadedObjectSchema],
-      directory: dir.path,
-      name: 'isar_objects_cache_$ss58',
-    );
-
-    _isInitialized = true;
-    initialized.complete();
-  }
-
-  Future<void> clear() async {
-    return afterInit(
-      () async => isar.writeTxn(
-        () async {
-          return isar.clear();
-        },
-      ),
-    );
-  }
-
+  @override
   Future<int> countEntries() async {
-    return afterInit(
-      () async => isar.uploadedObjects.where().count(),
+    final countExp = db.uploadedObjectCaches.id.count();
+    final query = db.selectOnly(db.uploadedObjectCaches)
+      ..addColumns([idCol, ss58Col])
+      ..where(filterBySS58)
+      ..addColumns([countExp]);
+
+    final result = await query.getSingle();
+    return result.read(countExp) ?? 0;
+  }
+
+  @override
+  Future<List<UploadedObject>> filterByOwner(String address) => filterObjects(
+        (final tbl) => tbl.owner.equals(address),
+      );
+
+  @override
+  Future<List<UploadedObject>> containAnyHash(List<String> hashes) {
+    final filter = (final $UploadedObjectCachesTable tbl) => Expression.or(
+          hashes.map(
+            (e) => db.uploadedObjectCaches.joinedHashes.contains(e),
+          ),
+        );
+    return filterObjects(filter);
+  }
+
+  @override
+  Future<UploadedObject?> getMeta(int id) async {
+    final query = await filterObjects(
+      (final $UploadedObjectCachesTable tbl) => tbl.id.equals(id),
     );
-  }
 
-  Future<int> put(final UploadedObject object) async {
-    return afterInit(
-      () async => isar.writeTxn(() async {
-        return isar.uploadedObjects.put(object);
-      }),
-    );
-  }
-
-  Future<UploadedObject?> get(final int id) async {
-    return afterInit(() async => isar.uploadedObjects.get(id));
-  }
-
-  Future<T> afterInit<T>(final Future<T> Function() func) async {
-    if (_isInitialized) {
-      return func();
+    if (query.isNotEmpty) {
+      return query.first;
     } else {
-      logger.e('ObjectsStore is not initialized');
-
-      throw Exception('ObjectsStore is not initialized');
+      return null;
     }
   }
 
-  Future<List<UploadedObject>> filterByOwner(final String address) async {
-    return afterInit(() async {
-      return isar.uploadedObjects.filter().ownerEqualTo(address).findAll();
-    });
+  @override
+  Future<void> put(
+    final UploadedObject object,
+    final ObjectContent content,
+  ) async {
+    await db.into(db.uploadedObjectCaches).insert(
+        UploadedObjectCachesCompanion.insert(
+          id: object.id,
+          ss58: ss58,
+          stateName: object.stateName,
+          stateBlockJson: jsonEncode(object.stateBlock),
+          compressedWith: object.compressedWith,
+          categoryJson: jsonEncode(object.category),
+          whenCreated: object.whenCreated,
+          owner: object.owner,
+          propsJson: jsonEncode(object.propsRaw),
+          joinedHashes: object.hashes.join('\n'),
+        ),
+        mode: InsertMode.insertOrReplace);
+    await db.into(db.uploadedObjectContents).insert(
+          UploadedObjectContentsCompanion.insert(
+            id: content.id,
+            ss58: ss58,
+            obj: Uint8List.fromList(content.obj.codeUnits),
+          ),
+          mode: InsertMode.insertOrReplace,
+        );
   }
 
-  Future<UploadedObject?> firstIfContainsAnyHash(
-    final List<String> hashes,
-  ) async {
-    return afterInit(() async {
-      final filters = hashes
-          .map<FilterCondition>(
-            (final h) => FilterCondition.contains(
-              property: 'hashesListJoined',
-              value: h,
-            ),
-          )
-          .toList();
-      return isar.uploadedObjects
-          .buildQuery<UploadedObject>(filter: FilterGroup.or(filters))
-          .findFirst();
-    });
+  @override
+  Future<ObjectContent?> getData(int id) async {
+    final queryObjects = db.select(db.uploadedObjectContents)
+      ..where(
+        (final uot) => Expression.and(
+          [
+            uot.id.equals(id),
+            uot.ss58.equals(ss58),
+          ],
+        ),
+      );
+
+    final res = await queryObjects.getSingleOrNull();
+    if (res != null) {
+      return ObjectContent(id: res.id, obj: String.fromCharCodes(res.obj));
+    } else {
+      return null;
+    }
   }
 }

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:threedpass/core/chains/domain/entities/address.dart';
+import 'package:threedpass/features/chains/domain/entities/address.dart';
 
 class KeyPair extends Equatable {
   final String? name;

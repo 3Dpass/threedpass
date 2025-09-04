@@ -10,7 +10,7 @@ import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
-import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
+import 'package:threedpass/features/poscan_objects_query/bloc/remote_objects_count_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 import 'package:threedpass/features/preview/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';

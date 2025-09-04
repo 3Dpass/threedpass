@@ -1,4 +1,4 @@
-import 'package:threedpass/core/chains/domain/entities/resolved_account_name.dart';
+import 'package:threedpass/features/chains/domain/entities/resolved_account_name.dart';
 
 class DisplayAccount {
   final String address;

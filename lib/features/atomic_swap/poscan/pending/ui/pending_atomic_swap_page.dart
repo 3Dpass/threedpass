@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/chains/domain/entities/current_account.dart';
-import 'package:threedpass/core/chains/ui/when_address.dart';
+import 'package:threedpass/features/chains/domain/entities/current_account.dart';
+import 'package:threedpass/features/chains/ui/when_address.dart';
 import 'package:threedpass/core/utils/list_extensions.dart';
 import 'package:threedpass/core/widgets/d3p_scaffold.dart';
 import 'package:threedpass/core/widgets/other/ph16.dart';

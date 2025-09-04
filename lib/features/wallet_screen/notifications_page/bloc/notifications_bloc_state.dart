@@ -16,7 +16,7 @@ enum NotificationType {
   cancelPoscanAtomicSwap,
 }
 
-abstract class NotificationDTO {
+sealed class NotificationDTO {
   final DateTime notificationCreated = DateTime.now().toUtc();
   final ExtrinsicStatus status;
   final String? message;

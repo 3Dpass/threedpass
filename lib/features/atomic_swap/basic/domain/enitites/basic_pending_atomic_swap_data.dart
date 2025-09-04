@@ -1,5 +1,5 @@
-import 'package:threedpass/core/chains/domain/entities/address.dart';
-import 'package:threedpass/core/chains/domain/entities/hex_ex.dart';
+import 'package:threedpass/features/chains/domain/entities/address.dart';
+import 'package:threedpass/features/chains/domain/entities/hex_ex.dart';
 
 class BasicPendingAtomicSwapData {
   final Address from;

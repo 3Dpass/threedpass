@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:threedpass/core/call_extrinsic_usecase.dart';
-import 'package:threedpass/core/chains/domain/entities/key_pair.dart';
+import 'package:threedpass/features/chains/domain/entities/key_pair.dart';
 // ignore: unused_import
 import 'package:threedpass/features/atomic_swap/poscan/create/domain/entities/pallet_atomic_swap_base_action.dart';
 import 'package:threedpass/features/atomic_swap/poscan/pending/domain/entities/pending_poscan_atomic_swap.dart';

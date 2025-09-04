@@ -5,7 +5,7 @@ import 'package:threedpass/core/theme/d3p_theme_data.dart';
 import 'package:threedpass/core/utils/empty_function.dart';
 import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
+import 'package:threedpass/features/poscan_objects_query/bloc/remote_objects_count_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 
 class ChainStatus extends StatefulWidget {

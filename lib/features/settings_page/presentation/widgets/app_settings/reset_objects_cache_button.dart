@@ -8,7 +8,7 @@ import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
-import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
+import 'package:threedpass/features/poscan_objects_query/bloc/remote_objects_count_cubit.dart';
 
 class ResetObjectsCacheButton extends StatefulWidget {
   const ResetObjectsCacheButton({super.key});
@@ -18,49 +18,12 @@ class ResetObjectsCacheButton extends StatefulWidget {
 }
 
 class _State extends State<ResetObjectsCacheButton> {
-  int? cachedObjects;
-  bool isListenerSet = false;
-
-  @override
-  void initState() {
-    super.initState();
-    setListener();
-  }
-
-  Future<void> setListener() async {
-    (await BlocProvider.of<PoscanObjectsCubit>(context).store.objectsChanged)
-        .asBroadcastStream()
-        .listen((final _) async {
-      unawaited(setCount());
-    });
-    unawaited(setCount());
-    if (mounted) {
-      setState(() {
-        isListenerSet = true;
-      });
-    }
-  }
-
-  Future<void> setCount() async {
-    final count =
-        await BlocProvider.of<PoscanObjectsCubit>(context).store.countEntries();
-    if (mounted) {
-      setState(() {
-        cachedObjects = count;
-      });
-    }
-  }
-
-  Future<void> clearCache(final BuildContext context) async {
-    final bloc = BlocProvider.of<PoscanObjectsCubit>(context);
-    await bloc.store.clear();
-  }
+  Future<void> clearCache(final BuildContext context) =>
+      BlocProvider.of<PoscanObjectsCubit>(context).clearLocalCache();
 
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<PoscanObjectsCubit, PoscanObjectsState>(
-      buildWhen: (final previous, final current) =>
-          previous.isLoading != current.isLoading,
       builder: (final context, final state) {
         // if (!state.isLoading) {
         //   loadCachedObjects();
@@ -93,8 +56,9 @@ class _State extends State<ResetObjectsCacheButton> {
                             D3pBodyMediumText(
                               'reset_objects_cache_plural'.tr(
                                 args: [
-                                  cachedObjects != null
-                                      ? 'objects_plural'.plural(cachedObjects!)
+                                  state.storageCount != null
+                                      ? 'objects_plural'
+                                          .plural(state.storageCount!)
                                       : '...',
                                 ],
                               ),
@@ -107,8 +71,7 @@ class _State extends State<ResetObjectsCacheButton> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           icon: Icons.clear,
                           text: 'Clear'.tr(),
-                          onPressed:
-                              isListenerSet ? () => clearCache(context) : null,
+                          onPressed: () => clearCache(context),
                         ),
                       ],
                       // const SizedBox(width: 16),

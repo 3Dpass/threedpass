@@ -1,5 +1,5 @@
-import 'package:threedpass/core/chains/domain/entities/account_id.dart';
-import 'package:threedpass/core/chains/domain/entities/address.dart';
+import 'package:threedpass/features/chains/domain/entities/account_id.dart';
+import 'package:threedpass/features/chains/domain/entities/address.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/logger.dart';

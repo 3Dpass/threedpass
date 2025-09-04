@@ -6,9 +6,9 @@ import 'package:polkawallet_sdk/api/types/addressIconData.dart';
 import 'package:polkawallet_sdk/api/types/networkParams.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
-import 'package:threedpass/core/chains/bloc/current_account_cubit.dart';
-import 'package:threedpass/core/chains/domain/entities/current_account.dart';
-import 'package:threedpass/core/chains/domain/entities/key_pair.dart';
+import 'package:threedpass/features/chains/bloc/current_account_cubit.dart';
+import 'package:threedpass/features/chains/domain/entities/current_account.dart';
+import 'package:threedpass/features/chains/domain/entities/key_pair.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
@@ -20,7 +20,7 @@ import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cu
 import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/pending_atomic_swap_cubit.dart';
 import 'package:threedpass/features/connection/polkadot/bloc/polkadot_node_url.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
-import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
+import 'package:threedpass/features/poscan_objects_query/bloc/remote_objects_count_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/data/poscan_local_repository.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
@@ -146,9 +146,6 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     }
     unawaited(
       getIt<PoolsCubit>().update(address: state.keyring.current.address!),
-    );
-    unawaited(
-      getIt<PoscanObjectsCubit>().downloadOwnerObjects(state.keyring.current),
     );
 
     currentAccountCubit.switchAccount(

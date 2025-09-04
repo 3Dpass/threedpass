@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:threedpass/core/chains/domain/entities/address.dart';
-import 'package:threedpass/core/chains/domain/entities/resolved_account_name.dart';
-import 'package:threedpass/core/chains/domain/usecases/resolve_name_by_address.dart';
+import 'package:threedpass/features/chains/domain/entities/address.dart';
+import 'package:threedpass/features/chains/domain/entities/resolved_account_name.dart';
+import 'package:threedpass/features/chains/domain/usecases/resolve_name_by_address.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/wallet_screen/widgets/short_address.dart';
 import 'package:threedpass/setup.dart';

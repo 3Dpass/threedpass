@@ -1,9 +1,11 @@
 import 'package:app_install_date/app_install_date.dart';
 import 'package:get_it/get_it.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:threedpass/core/chains/bloc/current_account_cubit.dart';
-import 'package:threedpass/core/chains/domain/usecases/encode_address.dart';
-import 'package:threedpass/core/chains/domain/usecases/resolve_name_by_address.dart';
+import 'package:threedpass/features/app/data/cache_database.dart';
+import 'package:threedpass/features/chains/bloc/current_account_cubit.dart';
+import 'package:threedpass/features/chains/domain/usecases/encode_address.dart';
+import 'package:threedpass/features/chains/domain/usecases/get_ss58.dart';
+import 'package:threedpass/features/chains/domain/usecases/resolve_name_by_address.dart';
 import 'package:threedpass/core/dio/di_dio.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
@@ -21,7 +23,7 @@ import 'package:threedpass/features/poscan_assets/di_poscan_assets.dart';
 import 'package:threedpass/features/poscan_objects_query/di_polkadot_query.dart';
 import 'package:threedpass/features/poscan_putobject/di_preview_page.dart';
 import 'package:threedpass/features/rest/di_rest.dart';
-import 'package:threedpass/features/rest/rest_client.dart';
+import 'package:threedpass/features/rest/explorer_rest.dart';
 import 'package:threedpass/features/scan_page/di_scan_page.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/data/repositories/settings_store.dart';
@@ -53,6 +55,8 @@ Future<void> setup() async {
   await DIDio().setup(getIt);
 
   await DIRest().setup(getIt);
+
+  getIt.registerLazySingleton<CacheDatabase>(() => CacheDatabase());
 
   await DIHashesList().setup(getIt);
 
@@ -93,9 +97,15 @@ Future<void> setup() async {
     ),
   );
 
+  getIt.registerFactory<GetSS58>(
+    () => GetSS58(
+      appServiceLoaderCubit: getIt<AppServiceLoaderCubit>(),
+    ),
+  );
+
   getIt.registerLazySingleton<TransfersRepository>(
     () => TransfersRepository(
-      rest: getIt<RestClient>(),
+      rest: getIt<ExplorerRest>(),
     ),
   );
 
