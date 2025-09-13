@@ -48,9 +48,10 @@ class _State extends State<PoscanObjectPreview> {
     // print('Decompressed string:');
     // print(decompressedString);
     content = decompressedString;
-    setState(() {
-      isLoaded = true;
-    });
+    if (mounted)
+      setState(() {
+        isLoaded = true;
+      });
   }
 
   @override

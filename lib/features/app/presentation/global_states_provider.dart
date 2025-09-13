@@ -8,6 +8,7 @@ import 'package:threedpass/features/connection/polkadot/bloc/polkadot_node_url.d
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/remote_objects_count_cubit.dart';
+import 'package:threedpass/features/poscan_objects_query/bloc/user_objects_list_cubit.dart';
 import 'package:threedpass/features/scan_page/bloc/scan_isolate_cubit.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/wallet_screen/add_contact_page/bloc/contacts_bloc.dart';
@@ -42,8 +43,8 @@ class GlobalStatesProvider extends StatelessWidget {
         BlocProvider<ScanIsolateCubit>(
           create: (final _) => ScanIsolateCubit(),
         ),
-        BlocProvider<PoscanObjectsCubit>(
-          create: (final _) => di_setup.getIt<PoscanObjectsCubit>(),
+        BlocProvider<RemoteObjectsCountCubit>(
+          create: (final _) => di_setup.getIt<RemoteObjectsCountCubit>(),
           lazy: false,
         ),
         BlocProvider<NotificationsBloc>(
@@ -63,6 +64,9 @@ class GlobalStatesProvider extends StatelessWidget {
         ),
         BlocProvider<PendingAtomicSwapCubit>(
           create: (final _) => di_setup.getIt<PendingAtomicSwapCubit>(),
+        ),
+        BlocProvider<UserObjectsListCubit>(
+          create: (final _) => di_setup.getIt<UserObjectsListCubit>(),
         ),
       ],
       child: child,

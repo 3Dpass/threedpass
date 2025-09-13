@@ -21,6 +21,7 @@ import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/pending_atom
 import 'package:threedpass/features/connection/polkadot/bloc/polkadot_node_url.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/remote_objects_count_cubit.dart';
+import 'package:threedpass/features/poscan_objects_query/bloc/user_objects_list_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/data/poscan_local_repository.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
@@ -157,6 +158,8 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
         ),
       ),
     );
+
+    getIt<UserObjectsListCubit>().load();
 
     emit(pseudoNewState);
   }

@@ -39,21 +39,21 @@ class ChooseAssetIdState extends State<ChooseAssetId> {
   void init() {
     final loadedAssets =
         BlocProvider.of<PoscanAssetsCubit>(context).state.combined;
+    if (mounted)
+      setState(() {
+        assets.clear();
+        assets.addAll(loadedAssets);
 
-    setState(() {
-      assets.clear();
-      assets.addAll(loadedAssets);
+        chosenAsset = loadedAssets.firstWhere(
+          (final element) => element.poscanAssetData.id == widget.initialAsset,
+        );
 
-      chosenAsset = loadedAssets.firstWhere(
-        (final element) => element.poscanAssetData.id == widget.initialAsset,
-      );
-
-      isLoading = false;
-    });
+        isLoading = false;
+      });
   }
 
   void onChanged(final PoscanAssetCombined? newData) {
-    if (newData != null) {
+    if (newData != null && mounted) {
       setState(() {
         chosenAsset = newData;
         widget.onChoose!(newData);

@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:drift/drift.dart';
+import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/app/data/cache_database.dart';
+import 'package:threedpass/features/chains/domain/entities/hex_ex.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 
 abstract class PoScanLocalRepository {
@@ -22,7 +24,7 @@ abstract class PoScanLocalRepository {
   Future<List<UploadedObject>> filterByOwner(final String address);
 
   Future<List<UploadedObject>> containAnyHash(
-    final List<String> hashes,
+    final List<HexEx> hashes,
   );
 }
 
@@ -74,7 +76,9 @@ class PoScanLocalRepositoryImpl extends PoScanLocalRepository {
       ..addColumns([countExp]);
 
     final result = await query.getSingle();
-    return result.read(countExp) ?? 0;
+    final res = result.read(countExp) ?? 0;
+    logger.t("Found $res entries in objects cache");
+    return res;
   }
 
   @override
@@ -83,10 +87,11 @@ class PoScanLocalRepositoryImpl extends PoScanLocalRepository {
       );
 
   @override
-  Future<List<UploadedObject>> containAnyHash(List<String> hashes) {
+  Future<List<UploadedObject>> containAnyHash(List<HexEx> hashes) {
     final filter = (final $UploadedObjectCachesTable tbl) => Expression.or(
           hashes.map(
-            (e) => db.uploadedObjectCaches.joinedHashes.contains(e),
+            (e) =>
+                db.uploadedObjectCaches.joinedHashes.contains(e.noPrefixValue),
           ),
         );
     return filterObjects(filter);
@@ -97,8 +102,8 @@ class PoScanLocalRepositoryImpl extends PoScanLocalRepository {
     final query = await filterObjects(
       (final $UploadedObjectCachesTable tbl) => tbl.id.equals(id),
     );
-
     if (query.isNotEmpty) {
+      logger.t("Found meta for $id in objects cache");
       return query.first;
     } else {
       return null;
@@ -110,23 +115,28 @@ class PoScanLocalRepositoryImpl extends PoScanLocalRepository {
     final UploadedObject object,
     final ObjectContent content,
   ) async {
+    logger.t(
+        "Put full object info for contentId=${content.id} objectId=${object.id}");
     await db.into(db.uploadedObjectCaches).insert(
-        UploadedObjectCachesCompanion.insert(
-          id: object.id,
-          ss58: ss58,
-          stateName: object.stateName,
-          stateBlockJson: jsonEncode(object.stateBlock),
-          compressedWith: object.compressedWith,
-          categoryJson: jsonEncode(object.category),
-          whenCreated: object.whenCreated,
-          owner: object.owner,
-          propsJson: jsonEncode(object.propsRaw),
-          joinedHashes: object.hashes.join('\n'),
-        ),
-        mode: InsertMode.insertOrReplace);
+          UploadedObjectCachesCompanion.insert(
+            id: Value(object.id),
+            ss58: ss58,
+            stateName: object.stateName,
+            stateBlockJson: jsonEncode(object.stateBlock),
+            compressedWith: object.compressedWith,
+            categoryJson: jsonEncode(object.category),
+            whenCreated: object.whenCreated,
+            whenApproved: Value(object.whenApproved),
+            owner: object.owner,
+            propsJson: jsonEncode(object.propsRaw),
+            joinedHashes:
+                object.hashes.map((final e) => e.noPrefixValue).join('\n'),
+          ),
+          mode: InsertMode.insertOrReplace,
+        );
     await db.into(db.uploadedObjectContents).insert(
           UploadedObjectContentsCompanion.insert(
-            id: content.id,
+            id: Value(content.id),
             ss58: ss58,
             obj: Uint8List.fromList(content.obj.codeUnits),
           ),
@@ -147,8 +157,14 @@ class PoScanLocalRepositoryImpl extends PoScanLocalRepository {
       );
 
     final res = await queryObjects.getSingleOrNull();
+    // logger.d(
+    //     '[DEBUG] Found ${res.length} results for getData for id $id ${res.map((e) => e.obj.sublist(0, 5)).toList().join(', ')}');
     if (res != null) {
-      return ObjectContent(id: res.id, obj: String.fromCharCodes(res.obj));
+      logger.t("Found obj data for $id in objects cache");
+      return ObjectContent(
+        id: res.id,
+        obj: String.fromCharCodes(res.obj),
+      );
     } else {
       return null;
     }

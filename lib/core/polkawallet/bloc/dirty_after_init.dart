@@ -2,7 +2,7 @@ part of './app_service_cubit.dart';
 
 extension DirtyAfterInit on AppServiceLoaderCubit {
   Future<void> _afterInit() async {
-    unawaited(getIt<PoscanObjectsCubit>().init());
+    unawaited(getIt<RemoteObjectsCountCubit>().setObjCount());
 
     if (state.keyring.current.address != null) {
       unawaited(
@@ -26,6 +26,8 @@ extension DirtyAfterInit on AppServiceLoaderCubit {
       getIt<PendingAtomicSwapCubit>().init();
 
       unawaited(getIt<PoscanAssetsCubit>().init());
+
+      getIt<UserObjectsListCubit>().load();
     }
   }
 }

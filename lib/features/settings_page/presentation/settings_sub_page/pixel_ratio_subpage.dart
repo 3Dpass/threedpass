@@ -43,13 +43,15 @@ class _State extends CustomSelectSettingsSubPageState<double> {
   late final ValueNotifier<double> chosenValue;
 
   void onPressed(final BuildContext context) {
-    setState(() {
-      final newValue = chosenValue.value;
-      final cubit = BlocProvider.of<SettingsCubit>(context);
-      final newPreviewConfig =
-          cubit.state.previewSettings.copyWith(pixelRatio: newValue);
-      final newState = cubit.state.copyWith(previewSettings: newPreviewConfig);
-      cubit.updateSettings(newState);
-    });
+    if (mounted)
+      setState(() {
+        final newValue = chosenValue.value;
+        final cubit = BlocProvider.of<SettingsCubit>(context);
+        final newPreviewConfig =
+            cubit.state.previewSettings.copyWith(pixelRatio: newValue);
+        final newState =
+            cubit.state.copyWith(previewSettings: newPreviewConfig);
+        cubit.updateSettings(newState);
+      });
   }
 }

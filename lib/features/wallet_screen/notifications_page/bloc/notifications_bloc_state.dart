@@ -276,4 +276,7 @@ class NotificationsState {
   const NotificationsState.initial()
       : notifications = const [],
         isLoading = true;
+
+  bool hasPutObj() =>
+      notifications.any((final e) => e.type == NotificationType.putObject);
 }

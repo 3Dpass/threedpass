@@ -2,11 +2,14 @@
 
 import 'dart:convert';
 
+import 'package:json_annotation/json_annotation.dart';
 import 'package:threedpass/core/polkawallet/utils/datetime_from_block_number.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/app/data/cache_database.dart';
 import 'package:threedpass/features/chains/domain/entities/hex_ex.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
+
+part 'uploaded_object.g.dart';
 
 class UploadedObject {
   final int id;
@@ -37,7 +40,7 @@ class UploadedObject {
       UploadedObject(
         id: e.id,
         owner: e.owner,
-        stateBlock: jsonDecode(e.stateBlockJson),
+        stateBlock: decodeStateBlock(e.stateBlockJson),
         stateName: e.stateName,
         hashes: e.joinedHashes
             .split('\n')
@@ -48,8 +51,25 @@ class UploadedObject {
         category: jsonDecode(e.categoryJson),
         whenApproved: e.whenApproved,
         whenCreated: e.whenCreated,
-        propsRaw: jsonDecode(e.propsJson),
+        propsRaw: decodeProps(e.propsJson),
       );
+
+  static List<int> decodeStateBlock(final String stateBlock) {
+    final ld = jsonDecode(stateBlock) as List<dynamic>;
+    return ld.map<int>((final e) => e as int).toList();
+  }
+
+  static List<PropValueRaw> decodeProps(final String rawProps) {
+    final ld = jsonDecode(rawProps) as List<dynamic>;
+    return ld
+        .map<PropValueRaw>(
+          (final e) => PropValueRaw(
+            propIdx: e['propIdx'],
+            maxValue: e['maxValue'],
+          ),
+        )
+        .toList();
+  }
 
   factory UploadedObject.fromJson(
     final Map<String, dynamic> json,
@@ -89,7 +109,8 @@ class UploadedObject {
         .toList();
 
     final hashes = (json['hashes'] as List<dynamic>)
-        .map<String>((final dynamic e) => e.toString())
+        .map<HexEx>((final dynamic e) =>
+            HexEx(noPrefixValue: e.toString().substring(2)))
         .toList();
 
     return UploadedObject(
@@ -102,9 +123,7 @@ class UploadedObject {
       whenApproved: whenApproved,
       owner: json['owner'] as String,
       propsRaw: props,
-      hashes: hashes
-          .map((final e) => HexEx(noPrefixValue: e))
-          .toList(), // TODO CHECK IF SUBSTRING CALL NEEDED
+      hashes: hashes,
     );
   }
 }
@@ -126,6 +145,7 @@ enum UploadedObjectStatus {
   unknown,
 }
 
+@JsonSerializable(explicitToJson: true)
 class PropValueRaw {
   final String? propIdx;
   final String? maxValue;
@@ -134,6 +154,8 @@ class PropValueRaw {
     this.propIdx,
     this.maxValue,
   });
+
+  Map<String, dynamic> toJson() => _$PropValueRawToJson(this);
 }
 
 extension Getters on UploadedObject {

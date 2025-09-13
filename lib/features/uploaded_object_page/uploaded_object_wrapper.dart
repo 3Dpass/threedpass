@@ -44,12 +44,16 @@ class _State extends State<UploadedObjectWrapper> {
 
     await getUploadedObject.safeCall(
       params: widget.objectId,
-      onError: (final Object e, final StackTrace st) {
-        Fluttertoast.showToast(msg: 'Failed to load object. $e');
+      onError: (final Object e, final StackTrace st) => Fluttertoast.showToast(
+        msg: 'Failed to load object. $e',
+        toastLength: Toast.LENGTH_LONG,
+      ),
+      onSuccess: (final UploadedObject object) {
+        if (mounted)
+          setState(() {
+            uploadedObject = object;
+          });
       },
-      onSuccess: (final UploadedObject object) => setState(() {
-        uploadedObject = object;
-      }),
     );
   }
 

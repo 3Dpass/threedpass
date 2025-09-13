@@ -3,34 +3,33 @@ import 'package:threedpass/features/poscan_objects_query/data/poscan_local_repos
 import 'package:threedpass/features/poscan_objects_query/data/poscan_remote_repository.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 
-class GetUploadedObject extends BasicGetDataUseCase<UploadedObject, int,
-    UploadedObject, (UploadedObject, ObjectContent)> {
+class GetObjectContent extends BasicGetDataUseCase<ObjectContent, int,
+    ObjectContent, (UploadedObject, ObjectContent)> {
   final PoScanRemoteRepository remote;
   final PoScanLocalRepository local;
 
-  const GetUploadedObject({
+  const GetObjectContent({
     required this.remote,
     required this.local,
   });
 
   @override
-  Future<UploadedObject> fallback(int params) {
+  Future<ObjectContent> fallback(int params) {
     throw Exception('Object not found');
   }
 
   @override
-  Future<UploadedObject?> getCache(int id) => local.getMeta(id);
+  Future<ObjectContent?> getCache(int id) => local.getData(id);
 
   @override
   Future<(UploadedObject, ObjectContent)> getRemote(int id) =>
       remote.object(id);
 
   @override
-  UploadedObject mapCacheData(UploadedObject cacheData, int params) =>
-      cacheData;
+  ObjectContent mapCacheData(ObjectContent cacheData, int params) => cacheData;
 
   @override
-  Future<UploadedObject> storeRemote(
+  Future<ObjectContent> storeRemote(
     (UploadedObject, ObjectContent) remoteData,
     int _,
   ) {
@@ -38,6 +37,6 @@ class GetUploadedObject extends BasicGetDataUseCase<UploadedObject, int,
     if (meta.isFinished) {
       local.put(meta, content);
     }
-    return Future.value(meta);
+    return Future.value(content);
   }
 }

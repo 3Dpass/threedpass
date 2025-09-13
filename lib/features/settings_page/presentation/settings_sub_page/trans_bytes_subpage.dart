@@ -67,10 +67,11 @@ class _TransBytesSubPageState extends State<TransBytesSubPage> {
   }
 
   void onEnumPressed(final TransBytesMode mode) {
-    setState(() {
-      chosennTBM = mode;
-      _formKey.currentState?.validate();
-    });
+    if (mounted)
+      setState(() {
+        chosennTBM = mode;
+        _formKey.currentState?.validate();
+      });
   }
 
   @override

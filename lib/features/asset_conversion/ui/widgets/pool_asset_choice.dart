@@ -71,9 +71,10 @@ class _State extends State<PoolAssetFieldChoice> {
   }
 
   void onChange(final PoolAssetField? p0) {
-    setState(() {
-      value = p0;
-      widget.onChanged?.call(p0);
-    });
+    if (mounted)
+      setState(() {
+        value = p0;
+        widget.onChanged?.call(p0);
+      });
   }
 }

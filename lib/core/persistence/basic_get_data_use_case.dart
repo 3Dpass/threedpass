@@ -5,9 +5,8 @@ abstract class BasicGetDataUseCase<TRes, TParam, TCacheData, TRemoteData>
     extends UseCase<TRes, TParam> {
   Future<TCacheData?> getCache(TParam params);
   Future<TRemoteData> getRemote(TParam params);
-  Future<TCacheData?> storeRemote(TRemoteData remoteData, TParam params);
+  Future<TRes> storeRemote(TRemoteData remoteData, TParam params);
   TRes mapCacheData(TCacheData cacheData, TParam params);
-  TRes mapRemoteData(TRemoteData remoteData, TParam params);
   Future<TRes> fallback(TParam params);
 
   const BasicGetDataUseCase();
@@ -21,12 +20,7 @@ abstract class BasicGetDataUseCase<TRes, TParam, TCacheData, TRemoteData>
     } else {
       try {
         final remoteData = await getRemote(params);
-        final savedCache = await storeRemote(remoteData, params);
-        if (savedCache != null) {
-          return mapCacheData(savedCache, params);
-        } else {
-          return mapRemoteData(remoteData, params);
-        }
+        return await storeRemote(remoteData, params);
       } on DioException catch (_) {
         return fallback(params);
       }

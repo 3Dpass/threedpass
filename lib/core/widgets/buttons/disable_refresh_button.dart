@@ -30,14 +30,16 @@ class _DisableButtonState extends State<DisableRefreshButton> {
     }
 
     widget.onPressed?.call();
-    setState(() {
-      _remainingSeconds = widget.coolDownSeconds;
-    });
+    if (mounted)
+      setState(() {
+        _remainingSeconds = widget.coolDownSeconds;
+      });
 
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {
-        _remainingSeconds--;
-      });
+      if (mounted)
+        setState(() {
+          _remainingSeconds--;
+        });
       if (_remainingSeconds <= 0) {
         timer.cancel();
       }

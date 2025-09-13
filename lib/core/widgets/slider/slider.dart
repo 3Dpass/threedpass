@@ -86,7 +86,7 @@ class _State extends State<D3pSlider> {
   }
 
   void onChanged(final double? newValue) {
-    if (newValue != null) {
+    if (newValue != null && mounted) {
       setState(() {
         widget.valueNotifier.value = newValue;
       });

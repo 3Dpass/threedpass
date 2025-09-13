@@ -15,7 +15,7 @@ class ObjectsListEmptyRefresh extends StatelessWidget {
         H16(),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
-          child: ObjectsListHeaderFull(),
+          child: UserObjectsListHeaderFull(),
         ),
         PH16(
           child: D3pBodyMediumText('no_owned_objects_found'),

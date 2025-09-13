@@ -95,27 +95,23 @@ class GetCachedBlockTime extends BasicGetDataUseCase<BlockTime, BlockTimeParams,
       );
 
   @override
-  Future<BlockTimeCache?> storeRemote(
+  Future<BlockTime> storeRemote(
     (DateTime, bool) remoteData,
     BlockTimeParams params,
-  ) =>
-      remoteData.$2
-          ? blockTimeRepo.insertReturning(
-              chain: params.chain,
-              blockNumber: params.blockNumber,
-              time: remoteData.$1,
-            )
-          : Future.value(null);
-
-  @override
-  BlockTime mapRemoteData(
-    (DateTime, bool) cacheData,
-    BlockTimeParams params,
-  ) =>
-      ExactTime(
-          time: cacheData.$1,
-          blockHeight: params.blockNumber,
-          chain: params.chain);
+  ) async {
+    if (remoteData.$2) {
+      blockTimeRepo.insertReturning(
+        chain: params.chain,
+        blockNumber: params.blockNumber,
+        time: remoteData.$1,
+      );
+    }
+    return ExactTime(
+      time: remoteData.$1,
+      blockHeight: params.blockNumber,
+      chain: params.chain,
+    );
+  }
 }
 
 class GetLatestKnownBlockTime extends UseCase<BlockTime, ChainType> {

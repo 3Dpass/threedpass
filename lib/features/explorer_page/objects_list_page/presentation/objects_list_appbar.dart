@@ -8,11 +8,9 @@ class ObjectsListAppbar extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return BlocBuilder<PoscanObjectsCubit, PoscanObjectsState>(
-      buildWhen: (final previous, final current) =>
-          previous.storageCount != current.storageCount,
+    return BlocBuilder<RemoteObjectsCountCubit, RemoteObjectsCountState>(
       builder: (final context, final state) {
-        final objectsCount = state.storageCount ?? 0;
+        final objectsCount = state.value ?? 0;
         return Text(
           objectsCount == 0
               ? 'No info about storage...'

@@ -10,12 +10,13 @@ import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
 import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
-import 'package:threedpass/features/poscan_objects_query/bloc/remote_objects_count_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
+import 'package:threedpass/features/poscan_objects_query/domain/usecase/find_objects_by_hash.dart';
 import 'package:threedpass/features/preview/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/objects_list_item.dart';
 import 'package:threedpass/router/router.gr.dart';
+import 'package:threedpass/setup.dart';
 
 class PoscanResult extends StatefulWidget {
   const PoscanResult({super.key});
@@ -32,19 +33,21 @@ class _State extends State<PoscanResult> {
   }
 
   bool isLoaded = false;
-  UploadedObject? loadedObject;
+  List<UploadedObject>? loadedObject;
 
   Future<void> findObj() async {
     final snap = BlocProvider.of<PreviewPageCubit>(context).state;
-    final foundObj = await BlocProvider.of<PoscanObjectsCubit>(context)
-        .findObjectByHashes(snap.hashesWithPrefix);
+    // final foundObj = await BlocProvider.of<PoscanObjectsCubit>(context)
+    //     .findObjectByHashes(snap.hashesWithPrefix);
 
-    logger.t('FIND OBJ BY HASHES ${snap.hashesWithPrefix} $foundObj');
+    final objects = await getIt<FindObjectsByHash>()(snap.typedHashes);
+
+    logger.t('FIND OBJ BY HASHES ${snap.hashesWithPrefix} ${objects.length}');
 
     if (mounted) {
       setState(() {
         isLoaded = true;
-        this.loadedObject = foundObj;
+        this.loadedObject = objects;
       });
     }
   }
@@ -68,19 +71,24 @@ class _State extends State<PoscanResult> {
     return Column(
       children: [
         const SizedBox(height: 2),
-        if (loadedObject != null)
+        if (loadedObject?.isNotEmpty ?? false)
           Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 2),
-            child: ObjectsListItem(
-              uploadedObject: loadedObject!,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              spacing: 8,
+              children: loadedObject!
+                  .map((e) => ObjectsListItem(uploadedObject: e))
+                  .toList(),
             ),
           ),
         BlocBuilder<AppServiceLoaderCubit, AppService>(
           builder: (final context, final state) {
             final isNodeConnected =
                 state.status == AppServiceInitStatus.connected;
-            final isObjectAlreadyApproved = loadedObject != null &&
-                loadedObject!.status == UploadedObjectStatus.approved;
+            final isObjectAlreadyApproved = loadedObject?.any(
+                    (final e) => e.status == UploadedObjectStatus.approved) ??
+                false;
             final hasAccount = state.keyring.allAccounts.isNotEmpty;
 
             final allConditions = isNodeConnected &&

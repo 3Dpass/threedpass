@@ -1,4 +1,5 @@
 import 'package:logger/logger.dart';
+import 'package:threedpass/core/utils/empty_function.dart';
 import 'package:threedpass/core/utils/logger.dart';
 
 typedef SafeUseCaseCall<TResult, Params> = Future<void> Function({
@@ -56,10 +57,12 @@ abstract class UseCase<TResult, Params>
   Future<T?> safeReturn<T>({
     required final Params params,
     required final T Function(TResult) onSuccess,
+    void Function(Object e, StackTrace st) onError = emptyOnError,
   }) async {
     try {
       return onSuccess(await call(params));
     } on Object catch (e, stackTrace) {
+      onError(e, stackTrace);
       logger.log(
         Level.error,
         'Error in usecase',

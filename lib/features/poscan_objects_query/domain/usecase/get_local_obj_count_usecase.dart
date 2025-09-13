@@ -1,10 +1,10 @@
 import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/features/poscan_objects_query/data/poscan_remote_repository.dart';
 
-class GetObjCount extends UseCase<int, void> {
+class GetLocalObjCount extends UseCase<int, void> {
   final PoScanRemoteRepository repository;
 
-  const GetObjCount({
+  const GetLocalObjCount({
     required this.repository,
   });
 

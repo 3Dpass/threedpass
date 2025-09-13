@@ -16,10 +16,16 @@ class UploadedObjectCaches extends Table {
   TextColumn get owner => text()();
   TextColumn get propsJson => text()();
   TextColumn get joinedHashes => text()();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
 }
 
 class UploadedObjectContents extends Table {
   IntColumn get id => integer()();
   IntColumn get ss58 => integer()();
   BlobColumn get obj => blob()();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
 }

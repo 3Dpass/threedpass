@@ -53,8 +53,9 @@ class _State extends State<ObscureTextField> {
   }
 
   void obscureTextPressed() {
-    setState(() {
-      obscureText = !obscureText;
-    });
+    if (mounted)
+      setState(() {
+        obscureText = !obscureText;
+      });
   }
 }

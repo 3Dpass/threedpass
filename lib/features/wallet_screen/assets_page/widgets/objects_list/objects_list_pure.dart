@@ -11,6 +11,7 @@ class ObjectsListPure extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return ListView.separated(
+      // TODO refactor to column with spacing
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
       shrinkWrap: true,

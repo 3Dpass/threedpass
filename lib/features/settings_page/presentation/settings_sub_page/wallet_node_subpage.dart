@@ -47,10 +47,11 @@ class _State extends State<WalletNodeSubPage> {
   }
 
   void onEnumPressed(ConnectionMode mode) {
-    setState(() {
-      connectionMode = mode;
-      _formKey.currentState?.validate();
-    });
+    if (mounted)
+      setState(() {
+        connectionMode = mode;
+        _formKey.currentState?.validate();
+      });
   }
 
   bool apply(final String text, final BuildContext context) {

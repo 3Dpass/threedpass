@@ -1,9 +1,10 @@
 import 'package:threedpass/core/persistence/basic_get_data_use_case.dart';
+import 'package:threedpass/features/chains/domain/entities/hex_ex.dart';
 import 'package:threedpass/features/poscan_objects_query/data/poscan_local_repository.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 
 class FindObjectsByHash extends BasicGetDataUseCase<List<UploadedObject>,
-    List<String>, List<UploadedObject>, List<UploadedObject>> {
+    List<HexEx>, List<UploadedObject>, List<UploadedObject>> {
   final PoScanLocalRepository localRepo;
 
   const FindObjectsByHash({
@@ -11,15 +12,14 @@ class FindObjectsByHash extends BasicGetDataUseCase<List<UploadedObject>,
   });
 
   @override
-  Future<List<UploadedObject>> fallback(List<String> params) =>
-      Future.value([]);
+  Future<List<UploadedObject>> fallback(List<HexEx> params) => Future.value([]);
 
   @override
-  Future<List<UploadedObject>?> getCache(List<String> params) =>
+  Future<List<UploadedObject>?> getCache(List<HexEx> params) =>
       localRepo.containAnyHash(params);
 
   @override
-  Future<List<UploadedObject>> getRemote(List<String> params) {
+  Future<List<UploadedObject>> getRemote(List<HexEx> params) {
     // TODO: implement getRemote
     return Future.value([]);
   }
@@ -27,21 +27,16 @@ class FindObjectsByHash extends BasicGetDataUseCase<List<UploadedObject>,
   @override
   List<UploadedObject> mapCacheData(
     List<UploadedObject> cacheData,
-    List<String> params,
+    List<HexEx> params,
   ) =>
       cacheData;
 
   @override
-  List<UploadedObject> mapRemoteData(
-          List<UploadedObject> remoteData, List<String> params) =>
-      remoteData;
-
-  @override
-  Future<List<UploadedObject>?> storeRemote(
+  Future<List<UploadedObject>> storeRemote(
     List<UploadedObject> remoteData,
-    List<String> params,
+    List<HexEx> params,
   ) {
-    // remoteData.forEach((final object) => localRepo.put(object)); // TODO batch
-    return Future.value(null);
+    // remoteData.forEach((final object) => localRepo.put(object)); // TODO batch // Implement when getRemote is ready
+    return Future.value(remoteData);
   }
 }

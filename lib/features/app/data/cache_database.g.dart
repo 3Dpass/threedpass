@@ -282,7 +282,7 @@ class $UploadedObjectCachesTable extends UploadedObjectCaches
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
       'id', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: false);
   static const VerificationMeta _ss58Meta = const VerificationMeta('ss58');
   @override
   late final GeneratedColumn<int> ss58 = GeneratedColumn<int>(
@@ -368,8 +368,6 @@ class $UploadedObjectCachesTable extends UploadedObjectCaches
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    } else if (isInserting) {
-      context.missing(_idMeta);
     }
     if (data.containsKey('ss58')) {
       context.handle(
@@ -445,7 +443,7 @@ class $UploadedObjectCachesTable extends UploadedObjectCaches
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => const {};
+  Set<GeneratedColumn> get $primaryKey => {id};
   @override
   UploadedObjectCache map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -692,7 +690,6 @@ class UploadedObjectCachesCompanion
   final Value<String> owner;
   final Value<String> propsJson;
   final Value<String> joinedHashes;
-  final Value<int> rowid;
   const UploadedObjectCachesCompanion({
     this.id = const Value.absent(),
     this.ss58 = const Value.absent(),
@@ -705,10 +702,9 @@ class UploadedObjectCachesCompanion
     this.owner = const Value.absent(),
     this.propsJson = const Value.absent(),
     this.joinedHashes = const Value.absent(),
-    this.rowid = const Value.absent(),
   });
   UploadedObjectCachesCompanion.insert({
-    required int id,
+    this.id = const Value.absent(),
     required int ss58,
     required String stateName,
     required String stateBlockJson,
@@ -719,9 +715,7 @@ class UploadedObjectCachesCompanion
     required String owner,
     required String propsJson,
     required String joinedHashes,
-    this.rowid = const Value.absent(),
-  })  : id = Value(id),
-        ss58 = Value(ss58),
+  })  : ss58 = Value(ss58),
         stateName = Value(stateName),
         stateBlockJson = Value(stateBlockJson),
         compressedWith = Value(compressedWith),
@@ -742,7 +736,6 @@ class UploadedObjectCachesCompanion
     Expression<String>? owner,
     Expression<String>? propsJson,
     Expression<String>? joinedHashes,
-    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -756,7 +749,6 @@ class UploadedObjectCachesCompanion
       if (owner != null) 'owner': owner,
       if (propsJson != null) 'props_json': propsJson,
       if (joinedHashes != null) 'joined_hashes': joinedHashes,
-      if (rowid != null) 'rowid': rowid,
     });
   }
 
@@ -771,8 +763,7 @@ class UploadedObjectCachesCompanion
       Value<int?>? whenApproved,
       Value<String>? owner,
       Value<String>? propsJson,
-      Value<String>? joinedHashes,
-      Value<int>? rowid}) {
+      Value<String>? joinedHashes}) {
     return UploadedObjectCachesCompanion(
       id: id ?? this.id,
       ss58: ss58 ?? this.ss58,
@@ -785,7 +776,6 @@ class UploadedObjectCachesCompanion
       owner: owner ?? this.owner,
       propsJson: propsJson ?? this.propsJson,
       joinedHashes: joinedHashes ?? this.joinedHashes,
-      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -825,9 +815,6 @@ class UploadedObjectCachesCompanion
     if (joinedHashes.present) {
       map['joined_hashes'] = Variable<String>(joinedHashes.value);
     }
-    if (rowid.present) {
-      map['rowid'] = Variable<int>(rowid.value);
-    }
     return map;
   }
 
@@ -844,8 +831,7 @@ class UploadedObjectCachesCompanion
           ..write('whenApproved: $whenApproved, ')
           ..write('owner: $owner, ')
           ..write('propsJson: $propsJson, ')
-          ..write('joinedHashes: $joinedHashes, ')
-          ..write('rowid: $rowid')
+          ..write('joinedHashes: $joinedHashes')
           ..write(')'))
         .toString();
   }
@@ -861,7 +847,7 @@ class $UploadedObjectContentsTable extends UploadedObjectContents
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
       'id', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: false);
   static const VerificationMeta _ss58Meta = const VerificationMeta('ss58');
   @override
   late final GeneratedColumn<int> ss58 = GeneratedColumn<int>(
@@ -887,8 +873,6 @@ class $UploadedObjectContentsTable extends UploadedObjectContents
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    } else if (isInserting) {
-      context.missing(_idMeta);
     }
     if (data.containsKey('ss58')) {
       context.handle(
@@ -906,7 +890,7 @@ class $UploadedObjectContentsTable extends UploadedObjectContents
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => const {};
+  Set<GeneratedColumn> get $primaryKey => {id};
   @override
   UploadedObjectContent map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -1010,45 +994,35 @@ class UploadedObjectContentsCompanion
   final Value<int> id;
   final Value<int> ss58;
   final Value<Uint8List> obj;
-  final Value<int> rowid;
   const UploadedObjectContentsCompanion({
     this.id = const Value.absent(),
     this.ss58 = const Value.absent(),
     this.obj = const Value.absent(),
-    this.rowid = const Value.absent(),
   });
   UploadedObjectContentsCompanion.insert({
-    required int id,
+    this.id = const Value.absent(),
     required int ss58,
     required Uint8List obj,
-    this.rowid = const Value.absent(),
-  })  : id = Value(id),
-        ss58 = Value(ss58),
+  })  : ss58 = Value(ss58),
         obj = Value(obj);
   static Insertable<UploadedObjectContent> custom({
     Expression<int>? id,
     Expression<int>? ss58,
     Expression<Uint8List>? obj,
-    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (ss58 != null) 'ss58': ss58,
       if (obj != null) 'obj': obj,
-      if (rowid != null) 'rowid': rowid,
     });
   }
 
   UploadedObjectContentsCompanion copyWith(
-      {Value<int>? id,
-      Value<int>? ss58,
-      Value<Uint8List>? obj,
-      Value<int>? rowid}) {
+      {Value<int>? id, Value<int>? ss58, Value<Uint8List>? obj}) {
     return UploadedObjectContentsCompanion(
       id: id ?? this.id,
       ss58: ss58 ?? this.ss58,
       obj: obj ?? this.obj,
-      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -1064,9 +1038,6 @@ class UploadedObjectContentsCompanion
     if (obj.present) {
       map['obj'] = Variable<Uint8List>(obj.value);
     }
-    if (rowid.present) {
-      map['rowid'] = Variable<int>(rowid.value);
-    }
     return map;
   }
 
@@ -1075,8 +1046,7 @@ class UploadedObjectContentsCompanion
     return (StringBuffer('UploadedObjectContentsCompanion(')
           ..write('id: $id, ')
           ..write('ss58: $ss58, ')
-          ..write('obj: $obj, ')
-          ..write('rowid: $rowid')
+          ..write('obj: $obj')
           ..write(')'))
         .toString();
   }
@@ -1266,7 +1236,7 @@ typedef $$BlockTimeCachesTableProcessedTableManager = ProcessedTableManager<
     PrefetchHooks Function()>;
 typedef $$UploadedObjectCachesTableCreateCompanionBuilder
     = UploadedObjectCachesCompanion Function({
-  required int id,
+  Value<int> id,
   required int ss58,
   required String stateName,
   required String stateBlockJson,
@@ -1277,7 +1247,6 @@ typedef $$UploadedObjectCachesTableCreateCompanionBuilder
   required String owner,
   required String propsJson,
   required String joinedHashes,
-  Value<int> rowid,
 });
 typedef $$UploadedObjectCachesTableUpdateCompanionBuilder
     = UploadedObjectCachesCompanion Function({
@@ -1292,7 +1261,6 @@ typedef $$UploadedObjectCachesTableUpdateCompanionBuilder
   Value<String> owner,
   Value<String> propsJson,
   Value<String> joinedHashes,
-  Value<int> rowid,
 });
 
 class $$UploadedObjectCachesTableFilterComposer
@@ -1472,7 +1440,6 @@ class $$UploadedObjectCachesTableTableManager extends RootTableManager<
             Value<String> owner = const Value.absent(),
             Value<String> propsJson = const Value.absent(),
             Value<String> joinedHashes = const Value.absent(),
-            Value<int> rowid = const Value.absent(),
           }) =>
               UploadedObjectCachesCompanion(
             id: id,
@@ -1486,10 +1453,9 @@ class $$UploadedObjectCachesTableTableManager extends RootTableManager<
             owner: owner,
             propsJson: propsJson,
             joinedHashes: joinedHashes,
-            rowid: rowid,
           ),
           createCompanionCallback: ({
-            required int id,
+            Value<int> id = const Value.absent(),
             required int ss58,
             required String stateName,
             required String stateBlockJson,
@@ -1500,7 +1466,6 @@ class $$UploadedObjectCachesTableTableManager extends RootTableManager<
             required String owner,
             required String propsJson,
             required String joinedHashes,
-            Value<int> rowid = const Value.absent(),
           }) =>
               UploadedObjectCachesCompanion.insert(
             id: id,
@@ -1514,7 +1479,6 @@ class $$UploadedObjectCachesTableTableManager extends RootTableManager<
             owner: owner,
             propsJson: propsJson,
             joinedHashes: joinedHashes,
-            rowid: rowid,
           ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
@@ -1542,17 +1506,15 @@ typedef $$UploadedObjectCachesTableProcessedTableManager
         PrefetchHooks Function()>;
 typedef $$UploadedObjectContentsTableCreateCompanionBuilder
     = UploadedObjectContentsCompanion Function({
-  required int id,
+  Value<int> id,
   required int ss58,
   required Uint8List obj,
-  Value<int> rowid,
 });
 typedef $$UploadedObjectContentsTableUpdateCompanionBuilder
     = UploadedObjectContentsCompanion Function({
   Value<int> id,
   Value<int> ss58,
   Value<Uint8List> obj,
-  Value<int> rowid,
 });
 
 class $$UploadedObjectContentsTableFilterComposer
@@ -1646,25 +1608,21 @@ class $$UploadedObjectContentsTableTableManager extends RootTableManager<
             Value<int> id = const Value.absent(),
             Value<int> ss58 = const Value.absent(),
             Value<Uint8List> obj = const Value.absent(),
-            Value<int> rowid = const Value.absent(),
           }) =>
               UploadedObjectContentsCompanion(
             id: id,
             ss58: ss58,
             obj: obj,
-            rowid: rowid,
           ),
           createCompanionCallback: ({
-            required int id,
+            Value<int> id = const Value.absent(),
             required int ss58,
             required Uint8List obj,
-            Value<int> rowid = const Value.absent(),
           }) =>
               UploadedObjectContentsCompanion.insert(
             id: id,
             ss58: ss58,
             obj: obj,
-            rowid: rowid,
           ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))

@@ -2,6 +2,7 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:threedpass/core/utils/hash2.dart';
+import 'package:threedpass/features/chains/domain/entities/hex_ex.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/objects_directory.dart';
 import 'package:threedpass/features/settings_page/domain/entities/scan_settings.dart';
@@ -92,8 +93,11 @@ class Snapshot {
     return hashes.isEmpty || (hashes.first.isEmpty && hashes.length == 1);
   }
 
+  @Deprecated('use typedHashes')
   List<String> get hashesWithPrefix =>
       hashes.map((final String e) => '0x' + e).toList();
+  List<HexEx> get typedHashes =>
+      hashes.map((e) => HexEx(noPrefixValue: e)).toList();
 
   bool get scanFailed => hashes.contains('Error');
 }

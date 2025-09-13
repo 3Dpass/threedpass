@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
 import 'package:threedpass/features/poscan_assets/ui/create_assset/bloc/create_poscan_asset_cubit.dart';
 import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/uploaded_object_dropdown_item.dart';
-import 'package:threedpass/features/poscan_objects_query/bloc/remote_objects_count_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
+import 'package:threedpass/features/poscan_objects_query/domain/usecase/get_user_objects_meta.dart';
+import 'package:threedpass/setup.dart';
 
 class CreateAssetChooseObject extends StatefulWidget {
   const CreateAssetChooseObject({super.key});
@@ -23,30 +25,28 @@ class _State extends State<CreateAssetChooseObject> {
     loadObjects();
   }
 
-  // TODO Load objects without obj content
   Future<void> loadObjects() async {
-    final uploadedObjectsCubit = BlocProvider.of<PoscanObjectsCubit>(context);
-    final currentAcc =
-        BlocProvider.of<CreatePoscanAssetCubit>(context).state.keyPairData;
+    try {
+      final userObjs = await getIt<GetCurrentUserObjectsMeta>()(null);
+      final approved = userObjs.where(
+        (final e) => e.status == UploadedObjectStatus.approved,
+      );
+      final res = approved
+          .map(
+            (final e) => DropdownMenuItem<UploadedObject>(
+              value: e,
+              child: UploadedObjectDropdownItem(e),
+            ),
+          )
+          .toList();
 
-    final userObjects =
-        await uploadedObjectsCubit.getUserObjects(currentAcc.address!);
-    final approvedUserObjects = userObjects.where(
-      (final element) => element.status == UploadedObjectStatus.approved,
-    );
-
-    final res = approvedUserObjects
-        .map(
-          (final e) => DropdownMenuItem<UploadedObject>(
-            value: e,
-            child: UploadedObjectDropdownItem(e),
-          ),
-        )
-        .toList();
-
-    setState(() {
-      items = res;
-    });
+      if (mounted)
+        setState(() {
+          items = res;
+        });
+    } catch (e) {
+      Fluttertoast.showToast(msg: 'Failed to load objects. $e');
+    }
   }
 
   List<DropdownMenuItem<UploadedObject>>? items;

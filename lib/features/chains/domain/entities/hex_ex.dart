@@ -11,4 +11,7 @@ class HexEx extends Equatable {
 
   @override
   List<Object?> get props => [noPrefixValue];
+
+  @override
+  String toString() => throw Exception('Should not be called');
 }

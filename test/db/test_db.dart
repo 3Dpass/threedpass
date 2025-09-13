@@ -6,6 +6,7 @@ import 'package:threedpass/core/polkawallet/constants.dart';
 import 'package:threedpass/features/app/data/cache_database.dart';
 import 'package:threedpass/features/chains/data/block_time_repository.dart';
 import 'package:threedpass/features/chains/domain/entities/chain_type.dart';
+import 'package:threedpass/features/chains/domain/entities/hex_ex.dart';
 import 'package:threedpass/features/chains/domain/usecases/block_time.dart';
 import 'package:threedpass/features/poscan_objects_query/data/poscan_local_repository.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
@@ -36,7 +37,7 @@ Future<void> main() async {
       final nullLatest = await blockTimeRepo.getLatest();
       expect(nullLatest, null);
 
-      final date1Time = DateTime.fromMillisecondsSinceEpoch(1337);
+      final date1Time = DateTime.fromMillisecondsSinceEpoch(1000);
       final date1 = await blockTimeRepo.insertReturning(
         chain: ChainType.native3DPass,
         blockNumber: 228,
@@ -60,7 +61,7 @@ Future<void> main() async {
       );
       expect(dateSearch2, null);
 
-      final date2Time = DateTime.fromMillisecondsSinceEpoch(13377);
+      final date2Time = DateTime.fromMillisecondsSinceEpoch(13000);
       final date2 = await blockTimeRepo.insertReturning(
         chain: ChainType.native3DPass,
         blockNumber: 420,
@@ -76,8 +77,8 @@ Future<void> main() async {
       final count1 = await poscanRepoLive.countEntries();
       expect(count1, 0);
 
-      final testHash1 = "testhhhhash";
-      final testHash2 = "tessssst";
+      final testHash1 = HexEx(noPrefixValue: "testhhhhash");
+      final testHash2 = HexEx(noPrefixValue: "tessssst");
       final testOwner1 = "owner1";
       final testId1 = 42;
 
@@ -85,16 +86,18 @@ Future<void> main() async {
         id: testId1,
         stateName: "doesn't matter",
         stateBlock: [],
-        obj: Uint8List(0),
         compressedWith: "doesn't matter",
         category: {"who": "cares?"},
         whenCreated: 420,
         whenApproved: 421,
         owner: testOwner1,
-        propsRaw: [],
+        propsRaw: [
+          PropValueRaw(maxValue: "1", propIdx: "1"),
+        ],
         hashes: [testHash1, testHash2],
       );
-      await poscanRepoLive.put(testObj1);
+      final testContent1 = ObjectContent(id: testId1, obj: "test content 1");
+      await poscanRepoLive.put(testObj1, testContent1);
 
       final count2 = await poscanRepoLive.countEntries();
       expect(count2, 1);
@@ -103,11 +106,14 @@ Future<void> main() async {
       expect(count3, 0);
 
       final queryHashes1 = await poscanRepoLive.containAnyHash([testHash1]);
-      expect(listEquals(queryHashes1, [testId1]), true);
+      final queryHashes1Id = queryHashes1.map((e) => e.id).toList();
+      expect(listEquals(queryHashes1Id, [testId1]), true);
 
-      final queryHashes2 =
-          await poscanRepoLive.containAnyHash(["hashDoesNotExists"]);
-      expect(listEquals(queryHashes2, []), true);
+      final queryHashes2 = await poscanRepoLive.containAnyHash(
+        [HexEx(noPrefixValue: "hashDoesNotExists")],
+      );
+      final queryHashes2Id = queryHashes2.map((e) => e.id).toList();
+      expect(listEquals(queryHashes2Id, []), true);
 
       await poscanRepoLive.clear();
       final count4 = await poscanRepoLive.countEntries();
@@ -118,7 +124,6 @@ Future<void> main() async {
         id: testId2,
         stateName: "doesn't matter",
         stateBlock: [],
-        obj: Uint8List(0),
         compressedWith: "doesn't matter",
         category: {"who": "cares?"},
         whenCreated: 420,
@@ -127,38 +132,44 @@ Future<void> main() async {
         propsRaw: [],
         hashes: [testHash2],
       );
+      final testContent2 = ObjectContent(id: testId2, obj: "test content 2");
       final testId3 = 12345;
       final testStateName3 = "matters";
       final testObj3 = UploadedObject(
         id: testId3,
         stateName: testStateName3,
         stateBlock: [],
-        obj: Uint8List(0),
         compressedWith: "doesn't matter",
         category: {"who": "cares?"},
         whenCreated: 420,
         whenApproved: 421,
         owner: testOwner1,
         propsRaw: [],
-        hashes: ['OtherImpossibleHash'],
+        hashes: [HexEx(noPrefixValue: 'OtherImpossibleHash')],
       );
-
-      await poscanRepoLive.put(testObj1);
-      await poscanRepoLive.put(testObj2);
-      await poscanRepoLive.put(testObj3);
+      final testContent3 = ObjectContent(id: testId3, obj: "test content 2");
+      await poscanRepoLive.put(testObj1, testContent1);
+      await poscanRepoLive.put(testObj2, testContent2);
+      await poscanRepoLive.put(testObj3, testContent3);
+      await poscanRepoLive.put(testObj3, testContent3);
+      await poscanRepoLive.put(testObj3, testContent3);
 
       final count5 = await poscanRepoLive.countEntries();
       expect(count5, 3);
 
       final queryHashes3 =
           await poscanRepoLive.containAnyHash([testHash1, testHash2]);
-      expect(listEquals(queryHashes3, [testId1, testId2]), true);
+      final queryHashes3Id = queryHashes3.map((e) => e.id).toList();
+      expect(listEquals(queryHashes3Id, [testId1, testId2]), true);
 
       final queryOwner = await poscanRepoLive.filterByOwner(testOwner1);
-      expect(listEquals(queryOwner, [testId1, testId3]), true);
+      final queryOwnerIds = queryOwner.map((e) => e.id).toList();
+      expect(listEquals(queryOwnerIds, [testId1, testId3]), true);
 
-      final queryObj = await poscanRepoLive.get(testId3);
+      final queryObj = await poscanRepoLive.getMeta(testId3);
       expect(queryObj?.stateName, testStateName3);
+      final queryData = await poscanRepoLive.getData(testId3);
+      expect(queryData?.obj, testContent3.obj);
     });
   });
 
