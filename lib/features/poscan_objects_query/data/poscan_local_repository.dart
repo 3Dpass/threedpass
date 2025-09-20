@@ -116,7 +116,8 @@ class PoScanLocalRepositoryImpl extends PoScanLocalRepository {
     final ObjectContent content,
   ) async {
     logger.t(
-        "Put full object info for contentId=${content.id} objectId=${object.id}");
+      "Put full object info for contentId=${content.id} objectId=${object.id}",
+    );
     await db.into(db.uploadedObjectCaches).insert(
           UploadedObjectCachesCompanion.insert(
             id: Value(object.id),

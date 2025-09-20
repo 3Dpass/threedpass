@@ -42,7 +42,8 @@ class _State extends State<PoscanResult> {
 
     final objects = await getIt<FindObjectsByHash>()(snap.typedHashes);
 
-    logger.t('FIND OBJ BY HASHES ${snap.hashesWithPrefix} ${objects.length}');
+    logger.t(
+        'Poscan result. Find by hashes: ${snap.hashesWithPrefix} \nObjects len: ${objects.length}');
 
     if (mounted) {
       setState(() {

@@ -2,6 +2,7 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:threedpass/features/chains/domain/entities/hex_ex.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
 import 'package:threedpass/setup.dart';
@@ -71,7 +72,7 @@ class HashObject extends Equatable {
   }
 
   /// To get self object self hashes
-  List<String> get stableHashes {
+  List<HexEx> get stableHashes {
     final hashFreq = _hashFreq;
 
     return hashFreq.keys
@@ -80,10 +81,11 @@ class HashObject extends Equatable {
   }
 
   /// When you need to compare external snapshot with object stable hashes
-  List<String> stableHashesPlusNew(final Snapshot snapshot) {
+  List<HexEx> stableHashesPlusNew(final Snapshot snapshot) {
     final hashFreq = _hashFreq;
 
-    for (final hash in snapshot.hashes) {
+    for (final hash in snapshot.typedHashes) {
+      // TODO remove repeating code with _hashFreq
       if (hashFreq[hash] == null) {
         hashFreq[hash] = 1;
       } else {
@@ -98,11 +100,11 @@ class HashObject extends Equatable {
   }
 
   /// How many times each hash appears in all snapshots
-  Map<String, int> get _hashFreq {
-    final Map<String, int> hashFreq = {};
+  Map<HexEx, int> get _hashFreq {
+    final Map<HexEx, int> hashFreq = {};
 
     for (final snapshot in snapshots) {
-      for (final hash in snapshot.hashes) {
+      for (final hash in snapshot.typedHashes) {
         if (hashFreq[hash] == null) {
           hashFreq[hash] = 1;
         } else {

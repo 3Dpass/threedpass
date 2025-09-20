@@ -10,7 +10,8 @@ class _CreateAccountStateful extends StatefulWidget {
 class _MainState extends State<_CreateAccountStateful> {
   late final ValueNotifier<HashObject> objectValueNotifier;
   late final List<HashObject> objectsToUse;
-  final ValueNotifier<String> chosenHash = ValueNotifier<String>('');
+  final ValueNotifier<HexEx> chosenHash =
+      ValueNotifier<HexEx>(HexEx(noPrefixValue: ''));
 
   @override
   void initState() {

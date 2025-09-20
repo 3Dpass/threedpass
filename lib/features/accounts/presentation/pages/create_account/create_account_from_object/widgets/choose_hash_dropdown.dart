@@ -7,9 +7,9 @@ class _ChooseHashDropdown extends StatelessWidget {
   });
 
   final ValueNotifier<HashObject> objectValueNotifier;
-  final ValueNotifier<String> chosenHash;
+  final ValueNotifier<HexEx> chosenHash;
 
-  void onHashChoose(final String? value) {
+  void onHashChoose(final HexEx? value) {
     if (value != null) {
       chosenHash.value = value;
     }
@@ -28,7 +28,7 @@ class _ChooseHashDropdown extends StatelessWidget {
             // context: context,
             hashObject: hashObject,
             chosenHash: chosenHash,
-            onChanged: (final String? modelChosen) => onHashChoose(modelChosen),
+            onChanged: (final HexEx? modelChosen) => onHashChoose(modelChosen),
           ),
         ),
       ),
@@ -36,22 +36,22 @@ class _ChooseHashDropdown extends StatelessWidget {
   }
 }
 
-class _DropdownButtonString extends D3pDropdownButton<String> {
+class _DropdownButtonString extends D3pDropdownButton<HexEx> {
   _DropdownButtonString({
     required final HashObject hashObject,
     required super.onChanged,
-    required final ValueNotifier<String> chosenHash,
+    required final ValueNotifier<HexEx> chosenHash,
   }) : super(
           isExpanded: true,
           value: chosenHash.value,
           items: hashObject.stableHashes
               .map(
-                (final e) => DropdownMenuItem<String>(
+                (final e) => DropdownMenuItem<HexEx>(
                   value: e,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 2),
                     child: Text(
-                      e,
+                      e.prefixValue,
                       maxLines: 3,
                     ),
                   ),

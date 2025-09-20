@@ -26,8 +26,17 @@ class PoolCard extends StatelessWidget {
 
     const String nativeSymbol = 'P3D';
 
-    final String symbols1 = poolFullInfo.asset1Meta?.symbol ?? nativeSymbol;
-    final String symbols2 = poolFullInfo.asset2Meta?.symbol ?? nativeSymbol;
+    final String symbols1 = poolFullInfo.basicInfo.firstAsset.isNative
+        ? nativeSymbol
+        : poolFullInfo.asset1Meta?.symbol ??
+            poolFullInfo.basicInfo.firstAsset.assetId?.toString() ??
+            '';
+    final String symbols2 = poolFullInfo.basicInfo.secondAsset.isNative
+        ? nativeSymbol
+        : poolFullInfo.asset2Meta?.symbol ??
+            poolFullInfo.basicInfo.secondAsset.assetId
+                ?.toString() ?? // TODO set string to id:<assetId>
+            '';
 
     return D3pCard(
       child: Padding(
@@ -45,8 +54,7 @@ class PoolCard extends StatelessWidget {
                   //   child: SizedBox(width: 8),
                   // ),
                   TextSpan(
-                    text:
-                        '${poolFullInfo.asset1Meta?.symbol ?? 'P3D'} / ${poolFullInfo.asset2Meta?.symbol ?? 'P3D'}',
+                    text: '$symbols1 / $symbols2',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ],

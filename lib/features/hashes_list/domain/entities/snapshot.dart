@@ -19,6 +19,7 @@ class Snapshot {
   @HiveField(1)
   final DateTime stamp;
 
+  @Deprecated('use typedHashes')
   @HiveField(2)
   final List<String> hashes;
 

@@ -42,12 +42,14 @@ class _State extends State<ChainStatus> {
   Widget build(final BuildContext context) => Padding(
         padding: const EdgeInsets.only(bottom: 8),
         child: loadedObject.when<Widget>(
-          data: (final List<UploadedObject> data) => FastRichText(
-            mainText: 'chain_status_recognized'.tr(),
-            secondaryText: 'snapshot_chain_status'.tr(),
-            needSpace: true,
-            mainTextColor: D3pThemeData.mainColor,
-          ),
+          data: (final List<UploadedObject> data) => data.isNotEmpty
+              ? FastRichText(
+                  mainText: 'chain_status_recognized'.tr(),
+                  secondaryText: 'snapshot_chain_status'.tr(),
+                  needSpace: true,
+                  mainTextColor: D3pThemeData.mainColor,
+                )
+              : SizedBox(),
           error: (Object error, StackTrace stackTrace) => Icon(Icons.error),
           loading: () => D3pProgressIndicator(size: 12),
         ),

@@ -16,6 +16,7 @@ import 'package:threedpass/features/accounts/domain/rawseed_text.dart';
 import 'package:threedpass/features/accounts/presentation/pages/account_page_template.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/header_info.dart';
 import 'package:threedpass/features/accounts/presentation/widgets/text_info.dart';
+import 'package:threedpass/features/chains/domain/entities/hex_ex.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/hash_object.dart';
 import 'package:threedpass/router/router.gr.dart';

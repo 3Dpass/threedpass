@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/other/ph16.dart';
+import 'package:threedpass/features/chains/domain/entities/hex_ex.dart';
 import 'package:threedpass/features/preview/preview_page/presentation/widgets/copy_text_card.dart';
 
 class StableHashText extends StatelessWidget {
@@ -9,14 +10,14 @@ class StableHashText extends StatelessWidget {
     final Key? key,
   }) : super(key: key);
 
-  final List<String> hashes;
+  final List<HexEx> hashes;
 
   @override
   Widget build(final BuildContext context) {
     final hashesStr = <String>[];
     // Build pattern "1. hash\n2. hash\n3. hash"
     for (int i = 0; i < hashes.length; i++) {
-      String str = (i + 1).toString() + '. ' + hashes[i];
+      String str = (i + 1).toString() + '. ' + hashes[i].prefixValue;
       if (i < hashes.length - 1) {
         str += '\n';
       }

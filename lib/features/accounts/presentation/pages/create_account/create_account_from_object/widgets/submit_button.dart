@@ -1,13 +1,13 @@
 part of '../create_account_from_object.dart';
 
 class _SubmitButton extends StatelessWidget {
-  final ValueNotifier<String> chosenHash;
+  final ValueNotifier<HexEx> chosenHash;
 
   const _SubmitButton(this.chosenHash);
 
   void onSubmit(final BuildContext context) {
     BlocProvider.of<AccountStoreBloc>(context).add(
-      SetRawseed(RawseedText(chosenHash.value)),
+      SetRawseed(RawseedText(chosenHash.value.prefixValue)),
     );
 
     unawaited(

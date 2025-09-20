@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 
 class DisableRefreshButton extends StatefulWidget {
@@ -24,10 +23,10 @@ class _DisableButtonState extends State<DisableRefreshButton> {
   Timer? _timer;
 
   void _onPressed() {
-    if (_remainingSeconds > 0) {
-      Fluttertoast.showToast(msg: 'Please wait ${_remainingSeconds}s');
-      return;
-    }
+    // if (_remainingSeconds > 0) {
+    //   Fluttertoast.showToast(msg: 'Please wait ${_remainingSeconds}s');
+    //   return;
+    // }
 
     widget.onPressed?.call();
     if (mounted)
@@ -55,7 +54,7 @@ class _DisableButtonState extends State<DisableRefreshButton> {
   @override
   Widget build(BuildContext context) {
     return D3pIconButton(
-      onPressed: _onPressed,
+      onPressed: _remainingSeconds > 0 ? null : _onPressed,
       iconData: Icons.refresh,
       emptyContraints: widget.emptyContraints,
     );

@@ -86,6 +86,8 @@ class PoolsCubit extends Cubit<PoolsState> {
                 final poolsList = state.valueOrNull != null
                     ? List<PoolFullInfo>.of(state.valueOrNull!.pools)
                     : List<PoolFullInfo>.empty(growable: true);
+                logger.t(
+                    '[POOLS] Add pool ${pool.asset1Meta?.name} / ${pool.asset2Meta?.name} ${pool.basicInfo.firstAsset.assetId} / ${pool.basicInfo.secondAsset.assetId}');
                 poolsList.add(pool);
                 final resState = _State(pools: poolsList);
 

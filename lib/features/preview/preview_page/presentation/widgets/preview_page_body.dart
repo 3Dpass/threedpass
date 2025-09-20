@@ -63,7 +63,7 @@ class PreviewPageBody extends StatelessWidget {
         const H16(),
         const TopHashesTitle(),
         const SizedBox(height: 2),
-        TopHashesCard(hashes: snapshot.hashes),
+        TopHashesCard(hashes: snapshot.typedHashes),
         const H16(),
         const RenameSnapshotButton(),
         DeleteSnapshotButton(state: snapshot),

@@ -64,18 +64,14 @@ class Model {
     lines.forEach((final line) {
       // Parse a vertex
       if (line.startsWith("v ")) {
-        try {
-          final values = line.substring(2).trim().split(" ");
-          verts.add(
-            Vector3(
-              double.parse(values[0]),
-              double.parse(values[1]),
-              double.parse(values[2]),
-            ),
-          );
-        } catch (e) {
-          print('Error parsing vertex: $line, $e');
-        }
+        final values = line.substring(2).trim().split(" ");
+        verts.add(
+          Vector3(
+            double.parse(values[0]),
+            double.parse(values[1]),
+            double.parse(values[2]),
+          ),
+        );
       }
       // Parse a material reference
       // else if (line.startsWith("usemtl ")) {

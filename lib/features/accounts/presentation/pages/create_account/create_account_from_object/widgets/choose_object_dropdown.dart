@@ -9,7 +9,7 @@ class _ChooseObjectDropdown extends StatelessWidget {
 
   final ValueNotifier<HashObject> objectValueNotifier;
   final List<HashObject> objectsToUse;
-  final ValueNotifier<String> chosenHash;
+  final ValueNotifier<HexEx> chosenHash;
 
   void onObjectChoose(final HashObject? hashObject) {
     if (hashObject != null) {
