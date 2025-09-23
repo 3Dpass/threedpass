@@ -6,24 +6,25 @@ import 'package:polkawallet_sdk/api/types/addressIconData.dart';
 import 'package:polkawallet_sdk/api/types/networkParams.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
+import 'package:threedpass/features/chains/bloc/current_account_cubit.dart';
+import 'package:threedpass/features/chains/domain/entities/current_account.dart';
+import 'package:threedpass/features/chains/domain/entities/key_pair.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/constants.dart';
-import 'package:threedpass/core/polkawallet/plugins/d3p_core_plugin.dart';
 import 'package:threedpass/core/polkawallet/plugins/d3p_live_net_plugin.dart';
-import 'package:threedpass/core/polkawallet/plugins/d3p_test_net_plugin.dart';
 import 'package:threedpass/core/polkawallet/utils/balance_utils.dart';
 import 'package:threedpass/core/polkawallet/utils/network_state_data_extension.dart';
 import 'package:threedpass/core/polkawallet/utils/tx_update_event_logs_handler.dart';
 import 'package:threedpass/features/accounts/domain/account_info.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
+import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/pending_atomic_swap_cubit.dart';
 import 'package:threedpass/features/connection/polkadot/bloc/polkadot_node_url.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
-import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
+import 'package:threedpass/features/poscan_objects_query/bloc/remote_objects_count_cubit.dart';
+import 'package:threedpass/features/poscan_objects_query/bloc/user_objects_list_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/data/poscan_local_repository.dart';
 import 'package:threedpass/features/settings_page/bloc/settings_cubit.dart';
-import 'package:threedpass/features/settings_page/domain/entities/global_settings.dart';
 import 'package:threedpass/features/settings_page/domain/entities/wallet_settings.dart';
-import 'package:threedpass/features/wallet_screen/transactions_history/domain/usecases/get_transfers.dart';
 import 'package:threedpass/setup.dart';
 
 part 'init_app_service_extension.dart';
@@ -37,6 +38,7 @@ part 'dirty_after_init.dart';
 class AppServiceLoaderCubit extends Cubit<AppService> {
   final SettingsCubit settingsConfigCubit;
   final PolkadotNodeUrl polkadotNodeUrl;
+  final CurrentAccountCubit currentAccountCubit;
 
   double get fastAvailableBalance => BalanceUtils.balanceToDouble(
         state.chosenAccountBalance.value.availableBalance.toString(),
@@ -46,6 +48,7 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
   AppServiceLoaderCubit({
     required this.settingsConfigCubit,
     required this.polkadotNodeUrl,
+    required this.currentAccountCubit,
   }) : super(
           AppService(
             plugin: D3pLiveNetPlugin(),
@@ -88,7 +91,6 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     final KeyType keyType = KeyType.mnemonic,
     final CryptoType cryptoType = defaultCryptoType,
     final String derivePath = '',
-    final bool isFromCreatePage = false,
   }) async {
     if (account.name.isEmpty) {
       throw Exception('Accont name or password is empty');
@@ -146,9 +148,18 @@ class AppServiceLoaderCubit extends Cubit<AppService> {
     unawaited(
       getIt<PoolsCubit>().update(address: state.keyring.current.address!),
     );
-    unawaited(
-      getIt<PoscanObjectsCubit>().downloadOwnerObjects(state.keyring.current),
+
+    currentAccountCubit.switchAccount(
+      CurrentAccount(
+        nativeP3D: KeyPair(
+          address: state.keyring.current.address!,
+          name: state.keyring.current.name,
+          pubKey: state.keyring.current.pubKey!,
+        ),
+      ),
     );
+
+    getIt<UserObjectsListCubit>().load();
 
     emit(pseudoNewState);
   }

@@ -11,10 +11,12 @@ enum NotificationType {
   addLiquidity,
   removeLiquidity,
   swapAssets,
-  createAtomicSwap,
+  createPoscanAtomicSwap,
+  claimPoscanAtomicSwap,
+  cancelPoscanAtomicSwap,
 }
 
-abstract class NotificationDTO {
+sealed class NotificationDTO {
   final DateTime notificationCreated = DateTime.now().toUtc();
   final ExtrinsicStatus status;
   final String? message;
@@ -229,7 +231,35 @@ class NotificationCreateAtomicSwap extends NotificationDTO {
   });
 
   @override
-  final NotificationType type = NotificationType.createAtomicSwap;
+  final NotificationType type = NotificationType.createPoscanAtomicSwap;
+}
+
+@CopyWith()
+class NotificationClaimPoscanAtomicSwap extends NotificationDTO {
+  final PendingPoscanAtomicSwap swap;
+
+  NotificationClaimPoscanAtomicSwap({
+    required this.swap,
+    required super.status,
+    required super.message,
+  });
+
+  @override
+  final NotificationType type = NotificationType.claimPoscanAtomicSwap;
+}
+
+@CopyWith()
+class NotificationCancelPoscanAtomicSwap extends NotificationDTO {
+  final PendingPoscanAtomicSwap swap;
+
+  NotificationCancelPoscanAtomicSwap({
+    required this.swap,
+    required super.status,
+    required super.message,
+  });
+
+  @override
+  final NotificationType type = NotificationType.cancelPoscanAtomicSwap;
 }
 
 @CopyWith()
@@ -246,4 +276,7 @@ class NotificationsState {
   const NotificationsState.initial()
       : notifications = const [],
         isLoading = true;
+
+  bool hasPutObj() =>
+      notifications.any((final e) => e.type == NotificationType.putObject);
 }

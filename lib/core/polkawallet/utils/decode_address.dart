@@ -1,7 +1,7 @@
 import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/utils/logger.dart';
 
-extension DecodeAddress on AppService {
+extension AddressUtils on AppService {
   Future<String> decodeAddress(
     final String address,
   ) async {

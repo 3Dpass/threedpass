@@ -6,15 +6,14 @@ import 'package:threedpass/core/widgets/other/fast_rich_text.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/utc_time.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
-import 'package:threedpass/features/legacy_preview/poscan_object_preview.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/poscan_token_data.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
-import 'package:threedpass/features/preview/preview_page/presentation/widgets/preview_page_body.dart';
 import 'package:threedpass/features/uploaded_object_page/widgets/links_data_wapper.dart';
 import 'package:threedpass/features/uploaded_object_page/widgets/uploaded_object_id_text.dart';
 import 'package:threedpass/features/uploaded_object_page/widgets/uploaded_object_links.dart';
 import 'package:threedpass/features/uploaded_object_page/widgets/uploaded_object_owner_text.dart';
 import 'package:threedpass/features/uploaded_object_page/widgets/uploaded_object_status_text.dart';
+import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/poscan_obj_preview_wrapper.dart';
 
 class UploadedObjectPage extends StatelessWidget {
   const UploadedObjectPage({required this.uploadedObject, super.key});
@@ -29,13 +28,7 @@ class UploadedObjectPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [
           const H16(),
-          PoscanObjectPreview(
-            uploadedObject: uploadedObject,
-            size: Size(
-              MediaQuery.of(context).size.width - 16 * 2,
-              PreviewPageBody.objectPreviewHeight,
-            ),
-          ),
+          PoscanObjPreviewWrapper(id: uploadedObject.id),
           const H16(),
           LinksDataWrapper(
             uploadedObject: uploadedObject,
@@ -71,7 +64,8 @@ class UploadedObjectPage extends StatelessWidget {
           UploadedObjectOwnerText(uploadedObject: uploadedObject),
           const H16(),
           FastRichText(
-            mainText: '\n' + uploadedObject.hashesListJoined,
+            mainText: '\n' +
+                uploadedObject.hashes.map((e) => e.prefixValue).join('\n'),
             secondaryText: 'uploaded_object_hashes'.tr(),
           ),
           const H16(),

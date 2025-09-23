@@ -10,7 +10,7 @@ class CalcSwapOnChangedParams {
   // final PoolFullInfo poolFullInfo;
   final PoolAssetField firstAsset;
   final PoolAssetField secondAsset;
-  final Map<int, PoscanAssetMetadata>
+  final PoscanAssetMetadataMap
       metadata; // TODO Get metadata from use case, not from params
   final String assetAmountControllerText;
   final int slippage;

@@ -52,15 +52,16 @@ class _State extends CustomSelectSettingsSubPageState<int> {
   late final ValueNotifier<int> chosenValue;
 
   void onPressed(final BuildContext context, final int index) {
-    setState(() {
-      chosenValue.value = GridSizeMaster.list[index];
-      final newValue = chosenValue.value;
-      final cubit = BlocProvider.of<SettingsCubit>(context);
+    if (mounted)
+      setState(() {
+        chosenValue.value = GridSizeMaster.list[index];
+        final newValue = chosenValue.value;
+        final cubit = BlocProvider.of<SettingsCubit>(context);
 
-      final newScanConfig =
-          cubit.state.scanSettings.copyWith(gridSize: newValue);
-      final newState = cubit.state.copyWith(scanSettings: newScanConfig);
-      cubit.updateSettings(newState);
-    });
+        final newScanConfig =
+            cubit.state.scanSettings.copyWith(gridSize: newValue);
+        final newState = cubit.state.copyWith(scanSettings: newScanConfig);
+        cubit.updateSettings(newState);
+      });
   }
 }

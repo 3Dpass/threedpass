@@ -7,7 +7,7 @@ class _CopyButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Padding16(
+    return PH16(
       child: D3pElevatedButton(
         text: 'Copy'.tr(),
         iconData: Icons.copy,

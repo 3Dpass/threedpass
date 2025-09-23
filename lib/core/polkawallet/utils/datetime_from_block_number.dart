@@ -1,4 +1,4 @@
-final initialBlockDate = DateTime(2022, DateTime.august, 30, 21, 36);
+final initialBlockDate = DateTime(2022, DateTime.august, 31, 0, 36, 30);
 
 DateTime dateTimeFromBlockNumber(int blockNumber) =>
     initialBlockDate.add(Duration(minutes: blockNumber));

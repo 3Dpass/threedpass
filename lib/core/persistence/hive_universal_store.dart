@@ -61,11 +61,16 @@ class HiveUniversalStore<T> {
     }
   }
 
+  T? get(dynamic key, {T? defaultValue}) => _box.get(
+        key,
+        defaultValue: defaultValue,
+      );
+
   T? getAt(final int index) {
     return _box.length > 0 ? _box.getAt(index) : null;
   }
 
-  Future<void> put(final int index, final T value) async {
+  Future<void> put(final dynamic index, final T value) async {
     await _box.put(index, value);
     await _box.flush();
   }

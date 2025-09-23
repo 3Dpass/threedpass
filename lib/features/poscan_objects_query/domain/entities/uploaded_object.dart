@@ -1,49 +1,75 @@
 // ignore_for_file: avoid_dynamic_calls
 
-import 'package:isar/isar.dart';
+import 'dart:convert';
+
+import 'package:json_annotation/json_annotation.dart';
 import 'package:threedpass/core/polkawallet/utils/datetime_from_block_number.dart';
 import 'package:threedpass/core/utils/logger.dart';
+import 'package:threedpass/features/app/data/cache_database.dart';
+import 'package:threedpass/features/chains/domain/entities/hex_ex.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/prop_value.dart';
 
 part 'uploaded_object.g.dart';
 
-// @HiveType(typeId: 9)
-@collection
 class UploadedObject {
+  final int id;
   final String stateName; // Approved: 565,330
   final List<int> stateBlock;
-
-  final String obj;
   final String compressedWith;
-  final String categoryExternal;
-  final String categoryInternal;
-  @Index()
-  final String hashesListJoined;
+  final Map<String, dynamic> category;
   final int whenCreated;
   final int? whenApproved;
-  @Index()
   final String owner;
   final List<PropValueRaw> propsRaw;
-
-  // final Map<dynamic, dynamic> raw;
-  final Id id;
-  final DateTime cacheDate;
+  final List<HexEx> hashes;
 
   const UploadedObject({
     required this.id,
     required this.stateName,
     required this.stateBlock,
-    required this.obj,
     required this.compressedWith,
-    required this.categoryExternal,
-    required this.categoryInternal,
-    required this.hashesListJoined,
+    required this.category,
     required this.whenCreated,
     required this.whenApproved,
     required this.owner,
     required this.propsRaw,
-    required this.cacheDate,
+    required this.hashes,
   });
+
+  factory UploadedObject.fromCache(final UploadedObjectCache e) =>
+      UploadedObject(
+        id: e.id,
+        owner: e.owner,
+        stateBlock: decodeStateBlock(e.stateBlockJson),
+        stateName: e.stateName,
+        hashes: e.joinedHashes
+            .split('\n')
+            .map<HexEx>((final e) => HexEx(noPrefixValue: e))
+            .toList(),
+        // obj: e.obj,
+        compressedWith: e.compressedWith,
+        category: jsonDecode(e.categoryJson),
+        whenApproved: e.whenApproved,
+        whenCreated: e.whenCreated,
+        propsRaw: decodeProps(e.propsJson),
+      );
+
+  static List<int> decodeStateBlock(final String stateBlock) {
+    final ld = jsonDecode(stateBlock) as List<dynamic>;
+    return ld.map<int>((final e) => e as int).toList();
+  }
+
+  static List<PropValueRaw> decodeProps(final String rawProps) {
+    final ld = jsonDecode(rawProps) as List<dynamic>;
+    return ld
+        .map<PropValueRaw>(
+          (final e) => PropValueRaw(
+            propIdx: e['propIdx'],
+            maxValue: e['maxValue'],
+          ),
+        )
+        .toList();
+  }
 
   factory UploadedObject.fromJson(
     final Map<String, dynamic> json,
@@ -83,56 +109,33 @@ class UploadedObject {
         .toList();
 
     final hashes = (json['hashes'] as List<dynamic>)
-        .map<String>((final dynamic e) => e.toString())
+        .map<HexEx>((final dynamic e) =>
+            HexEx(noPrefixValue: e.toString().substring(2)))
         .toList();
 
     return UploadedObject(
       id: id,
       stateName: state.keys.first,
       stateBlock: stateValueRes,
-      obj: json['obj'] as String,
       compressedWith: json['compressedWith'] as String,
-      categoryExternal: category.keys.first,
-      categoryInternal: category.values.first as String,
-      hashesListJoined: hashes.join('\n'),
+      category: category,
       whenCreated: whenCreated,
       whenApproved: whenApproved,
       owner: json['owner'] as String,
       propsRaw: props,
-      cacheDate: cacheDate,
+      hashes: hashes,
     );
   }
+}
 
-  // PropValue get propValue => props[0].propValue;
+class ObjectContent {
+  final int id;
+  final String obj;
 
-  // String get owner => raw['owner'] as String;
-
-  // List<String> get hashes => (raw['hashes'] as List<dynamic>)
-  //     .map((final dynamic e) => e.toString().substring(2))
-  //     .toList();
-
-  // String get statusRaw => (raw['state'] as Map).keys.first.toString();
-
-  // List<PropValue> get props {
-  //   try {
-  //     final list = raw['prop'] as List<dynamic>;
-
-  //     final res = list.map(
-  //       (final dynamic e) {
-  //         e as Map<dynamic, dynamic>;
-  //         final typed = e.map<String, dynamic>(
-  //           (final dynamic key, final dynamic value) =>
-  //               MapEntry<String, dynamic>(key.toString(), value),
-  //         );
-  //         return PropValue.fromJson(typed);
-  //       },
-  //     ).toList();
-  //     return res;
-  //   } on Object catch (e) {
-  //     logE(e.toString() + ' ' + raw['prop'].toString());
-  //     return [];
-  //   }
-  // }
+  const ObjectContent({
+    required this.id,
+    required this.obj,
+  });
 }
 
 enum UploadedObjectStatus {
@@ -142,7 +145,7 @@ enum UploadedObjectStatus {
   unknown,
 }
 
-@embedded
+@JsonSerializable(explicitToJson: true)
 class PropValueRaw {
   final String? propIdx;
   final String? maxValue;
@@ -151,6 +154,8 @@ class PropValueRaw {
     this.propIdx,
     this.maxValue,
   });
+
+  Map<String, dynamic> toJson() => _$PropValueRawToJson(this);
 }
 
 extension Getters on UploadedObject {

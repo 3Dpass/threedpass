@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
-import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/features/preview/preview_page/bloc/preview_page_cubit.dart';
 import 'package:threedpass/router/router.gr.dart';
 
@@ -21,7 +21,7 @@ class ExploreHashesButton extends StatelessWidget {
 
     final isActive = state.hashObject.snapshots.length > 1;
 
-    return Padding16(
+    return PH16(
       child: D3pElevatedButton(
         text: 'explore_hashes_button_title'.tr(),
         onPressed: isActive

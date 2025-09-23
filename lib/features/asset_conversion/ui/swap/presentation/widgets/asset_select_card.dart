@@ -3,15 +3,14 @@ import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_entity.dart';
-import 'package:threedpass/features/asset_conversion/ui/swap/presentation/widgets/asset_choice_chip.dart';
-import 'package:threedpass/features/poscan_assets/ui/widgets/dropdown_asset_item.dart';
+import 'package:threedpass/features/asset_conversion/ui/swap/presentation/widgets/asset_picker.dart';
 
 class AssetSelectCard extends StatelessWidget {
   final List<PoolAssetField> items;
   // final int initialSelectionIndex;
   final TextEditingController controller;
   final bool isReadOnly;
-  final PoolAssetField chosenItem;
+  final PoolAssetField? chosenItem;
   final void Function(PoolAssetField) onSelected;
 
   const AssetSelectCard({
@@ -26,23 +25,16 @@ class AssetSelectCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-
     return D3pCard(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Row(
           children: [
-            AssetChoiceChip(
-              chosenItem: chosenItem,
+            AssetPicker(
+              key: ValueKey(chosenItem),
+              initialValue: chosenItem,
               onSelected: onSelected,
-              menuItemList: items
-                  .map<(PoolAssetField, Widget)>(
-                    (final e) => (
-                      e,
-                      DropdownAssetItem(value: e),
-                    ),
-                  )
-                  .toList(),
+              assetItems: items,
             ),
             const W16(),
             Flexible(
@@ -69,7 +61,7 @@ class AssetSelectCard extends StatelessWidget {
                     groupDigits: 3,
                     groupSeparator: ',',
                     allowNegative: false,
-                    overrideDecimalPoint: true,
+                    overrideDecimalPoint: false,
                     insertDecimalPoint: false,
                     insertDecimalDigits: false,
                   ),

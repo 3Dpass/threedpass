@@ -26,7 +26,7 @@ class _State extends State<PoolAssetFieldChoice> {
   PoolAssetField? value;
 
   late final List<PoolAssetField> items;
-  late final Map<int, PoscanAssetMetadata> metadata;
+  late final PoscanAssetMetadataMap metadata;
 
   @override
   void initState() {
@@ -71,9 +71,10 @@ class _State extends State<PoolAssetFieldChoice> {
   }
 
   void onChange(final PoolAssetField? p0) {
-    setState(() {
-      value = p0;
-      widget.onChanged?.call(p0);
-    });
+    if (mounted)
+      setState(() {
+        value = p0;
+        widget.onChanged?.call(p0);
+      });
   }
 }

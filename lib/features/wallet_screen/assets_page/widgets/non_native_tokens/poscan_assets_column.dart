@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threedpass/core/widgets/buttons/disable_refresh_button.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
-import 'package:threedpass/core/widgets/buttons/icon_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/non_native_tokens.dart';
@@ -28,11 +28,10 @@ class PoscanAssetsColumn extends StatelessWidget {
                 'assets_title'.tr(),
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              D3pIconButton(
-                emptyContraints: true,
-                iconData: Icons.refresh,
+              DisableRefreshButton(
                 onPressed: () =>
                     BlocProvider.of<PoscanAssetsCubit>(context).init(),
+                emptyContraints: true,
               ),
             ],
           ),

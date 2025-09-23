@@ -45,7 +45,7 @@ class PoScanRemoteRepository {
     return resList;
   }
 
-  Future<UploadedObject> objects(
+  Future<(UploadedObject, ObjectContent)> object(
     final int id,
   ) async {
     if (appServiceLoaderCubit.state.status != AppServiceInitStatus.connected) {
@@ -59,10 +59,16 @@ class PoScanRemoteRepository {
       sendNullAsArg: false,
     );
 
-    return UploadedObject.fromJson(
-      (res as Map).toMapStringDynamic(),
-      DateTime.now(),
-      id,
+    return (
+      UploadedObject.fromJson(
+        (res as Map).toMapStringDynamic(),
+        DateTime.now(),
+        id,
+      ),
+      ObjectContent(
+        id: id,
+        obj: ((res['obj'] as String).substring(2)),
+      ),
     );
   }
 }

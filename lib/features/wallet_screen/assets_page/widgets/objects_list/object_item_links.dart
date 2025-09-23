@@ -24,8 +24,7 @@ class ObjectItemLinks extends StatelessWidget {
           FastRichText(
             secondaryText: 'linked_assets_helper'
                 .tr(args: ['assets_plural'.plural(assets.length)]),
-            mainText:
-                assets.map((final e) => e.foldAssetInfo(context)).join(', '),
+            mainText: assets.map((final e) => e.foldAssetInfo()).join(', '),
             needSpace: true,
           ),
         if (snapshots.isNotEmpty)

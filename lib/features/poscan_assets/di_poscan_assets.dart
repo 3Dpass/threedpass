@@ -6,6 +6,8 @@ import 'package:threedpass/core/polkawallet/utils/call_signed_extrinsic.dart';
 import 'package:threedpass/core/utils/di_module.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_assets/data/poscan_assets_repository.dart';
+import 'package:threedpass/features/poscan_assets/data/tokens_asset_data_inmem_cache.dart';
+import 'package:threedpass/features/poscan_assets/data/tokens_metadata_inmem_cache.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/create_asset.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/get_all_tokens_data.dart';
 import 'package:threedpass/features/poscan_assets/domain/use_cases/get_all_tokens_metadata.dart';
@@ -26,15 +28,25 @@ class DIPoscanAssets extends DIModule {
       ),
     );
 
+    getIt.registerLazySingleton<TokensAssetDataInMemCache>(
+      () => TokensAssetDataInMemCache(),
+    );
+
     getIt.registerLazySingleton<GetAllTokensData>(
       () => GetAllTokensData(
         poscanAssetsRepo: getIt<PoscanAssetsRepository>(),
+        tokensAssetDataInMemCache: getIt<TokensAssetDataInMemCache>(),
       ),
+    );
+
+    getIt.registerLazySingleton<TokensMetadataInMemCache>(
+      () => TokensMetadataInMemCache(),
     );
 
     getIt.registerLazySingleton<GetAllTokensMetadata>(
       () => GetAllTokensMetadata(
         poscanAssetsRepo: getIt<PoscanAssetsRepository>(),
+        tokensMetadataInMemCache: getIt<TokensMetadataInMemCache>(),
       ),
     );
 

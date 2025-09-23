@@ -1,9 +1,10 @@
-import 'package:threedpass/core/usecase.dart';
+import 'package:threedpass/core/persistence/basic_get_data_use_case.dart';
 import 'package:threedpass/features/poscan_objects_query/data/poscan_local_repository.dart';
 import 'package:threedpass/features/poscan_objects_query/data/poscan_remote_repository.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 
-class GetUploadedObject extends UseCase<UploadedObject, int> {
+class GetUploadedObject extends BasicGetDataUseCase<UploadedObject, int,
+    UploadedObject, (UploadedObject, ObjectContent)> {
   final PoScanRemoteRepository remote;
   final PoScanLocalRepository local;
 
@@ -13,17 +14,30 @@ class GetUploadedObject extends UseCase<UploadedObject, int> {
   });
 
   @override
-  Future<UploadedObject> call(
-    final int id,
-  ) async {
-    final localRes = await local.get(id);
+  Future<UploadedObject> fallback(int params) {
+    throw Exception('Object not found');
+  }
 
-    if (localRes == null || !localRes.isFinished) {
-      final remoteObj = await remote.objects(id);
-      await local.put(remoteObj);
-      return remoteObj;
-    } else {
-      return localRes;
+  @override
+  Future<UploadedObject?> getCache(int id) => local.getMeta(id);
+
+  @override
+  Future<(UploadedObject, ObjectContent)> getRemote(int id) =>
+      remote.object(id);
+
+  @override
+  UploadedObject mapCacheData(UploadedObject cacheData, int params) =>
+      cacheData;
+
+  @override
+  Future<UploadedObject> storeRemote(
+    (UploadedObject, ObjectContent) remoteData,
+    int _,
+  ) {
+    final (meta, content) = remoteData;
+    if (meta.isFinished) {
+      local.put(meta, content);
     }
+    return Future.value(meta);
   }
 }

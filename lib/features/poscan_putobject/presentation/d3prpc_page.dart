@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/features/other/some_form/some_form.dart';
+import 'package:threedpass/features/common/some_form/some_form.dart';
 import 'package:threedpass/features/poscan_putobject/bloc/poscan_putobject_cubit.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_approvals.dart';
 import 'package:threedpass/features/poscan_putobject/presentation/widgets/choose_category.dart';

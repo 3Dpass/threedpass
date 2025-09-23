@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:threedpass/features/other/form_option/form_option.dart';
+import 'package:threedpass/features/common/form_option/form_option.dart';
 import 'package:threedpass/features/poscan_assets/ui/create_assset/bloc/create_poscan_asset_cubit.dart';
 import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_choose_object.dart';
 import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/create_asset_choose_prop_value.dart';

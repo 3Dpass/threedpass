@@ -9,6 +9,7 @@ import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/default_loading_dialog.dart';
 
+// TODO Add account field to this mixin
 mixin ExtrinsicShowLoadingMixin<TResult, Params> {
   bool fastCheckPassed = false;
 
@@ -80,7 +81,7 @@ mixin ExtrinsicShowLoadingMixin<TResult, Params> {
         error: e,
         stackTrace: stackTrace,
       );
-      await Fluttertoast.showToast(msg: 'Error: $e');
+      Fluttertoast.showToast(msg: '$e');
     }
   }
 }

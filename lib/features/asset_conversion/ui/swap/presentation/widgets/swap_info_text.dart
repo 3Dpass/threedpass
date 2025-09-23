@@ -16,7 +16,7 @@ class SwapInfoText extends StatelessWidget {
     final swapCubit = BlocProvider.of<SwapCubit>(context);
     return BlocBuilder<SwapCubit, SwapState>(
       builder: (final context, final state) => SizedBox(
-        height: 36,
+        height: 44,
         child: state.slippageValue == null
             ? null
             : Column(

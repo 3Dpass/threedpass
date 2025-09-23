@@ -4,23 +4,26 @@ import 'package:threedpass/core/theme/d3p_theme_data.dart';
 
 class D3pSecondaryButton extends StatelessWidget {
   final IconData? iconData;
-  final String localizedTextKey;
+  final String? localizedTextKey;
   final VoidCallback? onPressed;
   final bool isInfinityWidth;
   final bool translate;
   final Color? color;
+  final Widget? customChild;
 
   const D3pSecondaryButton({
-    required this.localizedTextKey,
+    this.localizedTextKey,
     this.iconData,
     this.onPressed,
     this.isInfinityWidth = true,
     this.translate = true,
     this.color,
+    this.customChild,
     super.key,
-  });
+  }) : assert(customChild != null || localizedTextKey != null);
 
-  String get textToShow => translate ? localizedTextKey.tr() : localizedTextKey;
+  String get textToShow =>
+      translate ? localizedTextKey!.tr() : localizedTextKey!;
 
   @override
   Widget build(final BuildContext context) {
@@ -33,14 +36,15 @@ class D3pSecondaryButton extends StatelessWidget {
         foregroundColor: color,
         side: color != null ? BorderSide(color: color!) : null,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (iconData != null) Icon(iconData),
-          if (iconData != null) const SizedBox(width: 8),
-          Text(textToShow),
-        ],
-      ),
+      child: customChild ??
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (iconData != null) Icon(iconData),
+              if (iconData != null) const SizedBox(width: 8),
+              Text(textToShow),
+            ],
+          ),
     );
   }
 }

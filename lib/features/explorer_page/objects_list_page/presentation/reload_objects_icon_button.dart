@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/widgets/buttons/icon_button.dart';
-import 'package:threedpass/features/poscan_objects_query/bloc/poscan_objects_cubit.dart';
+import 'package:threedpass/features/poscan_objects_query/bloc/remote_objects_count_cubit.dart';
 
 class ReloadObjectsIconButton extends StatelessWidget {
   const ReloadObjectsIconButton({super.key});
@@ -10,7 +10,8 @@ class ReloadObjectsIconButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     return D3pIconButton(
       iconData: Icons.refresh,
-      onPressed: () => BlocProvider.of<PoscanObjectsCubit>(context).refresh(),
+      onPressed: () =>
+          BlocProvider.of<RemoteObjectsCountCubit>(context).setObjCount(),
     );
   }
 }

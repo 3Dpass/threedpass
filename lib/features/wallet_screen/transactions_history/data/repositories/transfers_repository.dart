@@ -1,9 +1,9 @@
 import 'package:threedpass/features/rest/models/transfers_response.dart';
 import 'package:threedpass/features/wallet_screen/transactions_history/domain/entities/get_transfers_params.dart';
-import 'package:threedpass/features/rest/rest_client.dart';
+import 'package:threedpass/features/rest/explorer_rest.dart';
 
 class TransfersRepository {
-  final RestClient rest;
+  final ExplorerRest rest;
 
   const TransfersRepository({
     required this.rest,

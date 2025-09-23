@@ -1,0 +1,57 @@
+part of 'pending_swap_card.dart';
+
+class _PendingPoscanAtomicSwapActionButton extends StatelessWidget {
+  const _PendingPoscanAtomicSwapActionButton({
+    required this.swap,
+    required this.currentAddress,
+  });
+
+  final PendingPoscanAtomicSwap swap;
+  final Address currentAddress;
+
+  @override
+  Widget build(final BuildContext context) {
+    return BlocBuilder<NotificationsBloc, NotificationsState>(
+      builder:
+          (BuildContext context, final NotificationsState notificationsState) {
+        final swapInProgress =
+            notificationsState.isSwapInProgress(swap.hashProof);
+
+        if (currentAddress == swap.from) {
+          final isBeforeDeadline =
+              DateTime.now().difference(swap.deadline).isNegative;
+          return D3pElevatedButton(
+            text: isBeforeDeadline
+                ? 'atomic_swap_deadline_not_reached'.tr()
+                : 'cancel_atomic_swap_button_label'.tr(),
+            onPressed: isBeforeDeadline
+                ? null
+                : swapInProgress
+                    ? null
+                    : () => context.router.push(
+                          CancelAtomicSwapRouteWarpper(
+                            pendingSwap: swap,
+                          ),
+                        ),
+            isInfinityWidth: false,
+            isDangerColor: !swapInProgress,
+          );
+        }
+        if (currentAddress == swap.to) {
+          return D3pElevatedButton(
+            text: 'claim_atomic_swap_button_label'.tr(),
+            onPressed: swapInProgress
+                ? null
+                : () => context.router.push(
+                      ClaimAtomicSwapRouteWrapper(
+                        pendingSwap: swap,
+                      ),
+                    ),
+            isInfinityWidth: false,
+          );
+        }
+        throw Exception('Current address is not in the swap');
+      },
+    );
+  }
+}

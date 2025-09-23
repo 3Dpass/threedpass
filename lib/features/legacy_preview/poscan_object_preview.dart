@@ -8,7 +8,7 @@ import 'package:threedpass/features/legacy_preview/3d_engine.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
 
 class PoscanObjectPreview extends StatefulWidget {
-  final UploadedObject uploadedObject;
+  final ObjectContent uploadedObject;
   final Size size;
 
   const PoscanObjectPreview({
@@ -36,7 +36,7 @@ class _State extends State<PoscanObjectPreview> {
     final encodedBytesRaw = widget.uploadedObject.obj;
     // print('EncodedRaw:');
     // print(encodedBytesRaw);
-    final encodedBytes = hexToUint8List(encodedBytesRaw.substring(2));
+    final encodedBytes = hexToUint8List(encodedBytesRaw);
     // print('Encoded:');
     // print(encodedBytes);
     // final encodedBytes = en
@@ -48,9 +48,10 @@ class _State extends State<PoscanObjectPreview> {
     // print('Decompressed string:');
     // print(decompressedString);
     content = decompressedString;
-    setState(() {
-      isLoaded = true;
-    });
+    if (mounted)
+      setState(() {
+        isLoaded = true;
+      });
   }
 
   @override

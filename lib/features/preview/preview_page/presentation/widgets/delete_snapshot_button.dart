@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/d3p_card.dart';
-import 'package:threedpass/core/widgets/other/padding_16.dart';
+import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/features/hashes_list/domain/entities/snapshot.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/default_settings_button.dart';
 import 'package:threedpass/router/router.gr.dart';
@@ -18,7 +18,7 @@ class DeleteSnapshotButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
 
-    return Padding16(
+    return PH16(
       child: LineButton(
         icon: Icon(
           Icons.delete_outline_rounded,

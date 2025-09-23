@@ -26,7 +26,9 @@ class ComparePageWrapper extends StatelessWidget {
         comparisons.first,
         origObj: origObj,
         snapshotsToCompare: comparisons,
-        stableHashes: hashObject.stableHashes,
+        stableHashes: hashObject.stableHashes
+            .map((final hash) => hash.prefixValue)
+            .toList(),
       ),
       child: const ComparePage(),
     );

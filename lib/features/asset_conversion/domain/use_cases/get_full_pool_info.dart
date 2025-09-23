@@ -22,7 +22,7 @@ class GetFullPoolInfo extends UseCase<PoolFullInfo, GetFullPoolInfoParams> {
     final GetFullPoolInfoParams params,
   ) async {
     final pool = params.basicPool;
-    final metadatas = await getAllTokensMetadata.call(null);
+    final metadatas = await getAllTokensMetadata(null);
 
     final reserve = await assetConversionRepository.poolReserve(pool);
     final lpBalance = await assetConversionRepository.lpTokens(

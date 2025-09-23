@@ -32,9 +32,10 @@ class _State extends State<PreviewFromFile> {
     unawaited(
       File(widget.path).readAsString().then((final value) {
         // print('D READ FILE');
-        setState(() {
-          fileContent = value;
-        });
+        if (mounted)
+          setState(() {
+            fileContent = value;
+          });
       }),
     );
     super.initState();

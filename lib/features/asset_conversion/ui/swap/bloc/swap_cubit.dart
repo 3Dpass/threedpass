@@ -115,8 +115,7 @@ class SwapCubit extends Cubit<SwapState>
 
   static const defaultSlippage = 15;
 
-  Map<int, PoscanAssetMetadata> get metadata =>
-      poscanAssetsCubit.state.metadata;
+  PoscanAssetMetadataMap get metadata => poscanAssetsCubit.state.metadata;
 
   int get asset1Decimals => state.firstAsset.isNative
       ? nativeTokenDecimals
@@ -300,15 +299,17 @@ class SwapCubit extends Cubit<SwapState>
       throw Exception('Can not swap same asset');
     }
 
+    if (asset1Decimal == null || asset2Decimal == null) {
+      throw Exception('Invalid amount');
+    }
+
     final secondAmountToSendResponse =
         await (state.chosenMethod == SwapMethod.swapExactTokensForTokens
             ? calcOnFirstChanged
             : calcOnSecondChanged);
 
-    final amount1 = Decimal.parse(firstAssetAmountController.text)
-        .setDecimalsForUserInput(asset1Decimals);
-    final amount2 = Decimal.parse(secondAssetAmountController.text)
-        .setDecimalsForUserInput(asset2Decimals);
+    final amount1 = asset1Decimal!;
+    final amount2 = asset2Decimal!;
 
     final firstAmountToSend =
         state.chosenMethod == SwapMethod.swapExactTokensForTokens

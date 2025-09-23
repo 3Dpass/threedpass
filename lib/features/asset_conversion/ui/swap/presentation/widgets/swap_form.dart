@@ -11,8 +11,8 @@ import 'package:threedpass/features/asset_conversion/ui/swap/presentation/widget
 import 'package:threedpass/features/asset_conversion/ui/swap/presentation/widgets/swap_info_text.dart';
 import 'package:threedpass/features/asset_conversion/ui/swap/presentation/widgets/swap_submit.dart';
 import 'package:threedpass/features/asset_conversion/ui/widgets/slippage_tolerance.dart';
-import 'package:threedpass/features/other/choose_account/presentation/choose_account.dart';
-import 'package:threedpass/features/other/some_form/some_form.dart';
+import 'package:threedpass/features/common/choose_account/presentation/choose_account.dart';
+import 'package:threedpass/features/common/some_form/some_form.dart';
 
 class SwapForm extends StatelessWidget {
   const SwapForm({
@@ -46,7 +46,7 @@ class SwapForm extends StatelessWidget {
           const H4(),
           D3pIconButton(
             iconData: Icons.change_circle_outlined,
-            onPressed: () async => swapCubit.setChosenMethod(
+            onPressed: () => swapCubit.setChosenMethod(
               state.chosenMethod == SwapMethod.swapExactTokensForTokens
                   ? SwapMethod.swapTokensForExactTokens
                   : SwapMethod.swapExactTokensForTokens,

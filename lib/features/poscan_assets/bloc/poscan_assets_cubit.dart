@@ -18,8 +18,8 @@ part 'poscan_assets_cubit.g.dart';
 @CopyWith()
 class PoscanAssetsState {
   final List<PoscanAssetData> assets;
-  final Map<int, PoscanAssetMetadata> metadata;
-  final Map<int, PoscanAssetBalance> balances;
+  final Map<AssetId, PoscanAssetMetadata> metadata;
+  final Map<AssetId, PoscanAssetBalance> balances;
 
   List<PoscanAssetCombined> get combined => assets
       .map(
@@ -67,6 +67,7 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
   final GetAllTokensData getAllTokensData;
   final GetAllTokensMetadata getAllTokensMetadata;
 
+  @Deprecated('Listen to currentAccountCubit instead')
   void switchAccount(final KeyPairData newAccount) {
     emit(state.copyWith(currentAccount: newAccount));
   }
@@ -110,7 +111,7 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
               errorMessage: e.toString(),
             ),
           ),
-          onSuccess: (final Map<int, PoscanAssetMetadata> metadata) async {
+          onSuccess: (final PoscanAssetMetadataMap metadata) async {
             final tokenIds = data.map((final e) => e.id);
 
             final balances = await repository.tokensBalancesForCurrentAccount(
@@ -132,6 +133,10 @@ class PoscanAssetsCubit extends Cubit<PoscanAssetsState> {
       },
     );
   }
+
+  List<PoolAssetField> get allAssets => state.assets
+      .map((e) => PoolAssetField(assetId: e.id, isNative: false))
+      .toList();
 
   static const nonFungiblePropId = '0';
 

@@ -1,0 +1,1 @@
+typedef Address = String;

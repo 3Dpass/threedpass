@@ -7,6 +7,7 @@ import 'package:threedpass/features/asset_conversion/domain/entities/basic_pool_
 import 'package:threedpass/features/asset_conversion/domain/use_cases/add_liquidity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/remove_liquidity.dart';
 import 'package:threedpass/features/asset_conversion/domain/use_cases/swap_assets.dart';
+import 'package:threedpass/features/atomic_swap/poscan/pending/domain/entities/pending_poscan_atomic_swap.dart';
 import 'package:threedpass/features/poscan_assets/domain/entities/obj_details.dart';
 
 part 'notifications_bloc.g.dart';

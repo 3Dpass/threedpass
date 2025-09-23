@@ -8,12 +8,16 @@ class ShortAddress extends StatelessWidget {
     required this.prefix,
     required this.address,
     required this.colorSecondary,
+    this.needCopyButton = true,
+    this.spanIcon,
     super.key,
   });
 
   final String? address;
   final String prefix;
   final bool colorSecondary;
+  final Widget? spanIcon;
+  final bool needCopyButton;
 
   @override
   Widget build(final BuildContext context) {
@@ -24,17 +28,25 @@ class ShortAddress extends StatelessWidget {
     return Row(
       children: [
         Flexible(
-          child: Text(
-            '$prefix $addressStr',
+          child: Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(text: prefix, style: faded),
+                WidgetSpan(child: SizedBox(width: 4)),
+                TextSpan(text: addressStr),
+                if (spanIcon != null) WidgetSpan(child: spanIcon!),
+              ],
+            ),
             style: colorSecondary ? faded : medium,
           ),
         ),
-        colorSecondary
-            ? const SizedBox()
-            : SizedBox(
-                height: 24,
-                child: CopyButton(address),
-              ),
+        if (needCopyButton)
+          colorSecondary
+              ? const SizedBox()
+              : SizedBox(
+                  height: 24,
+                  child: CopyButton(address),
+                ),
       ],
     );
   }

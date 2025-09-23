@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/features/asset_conversion/ui/create_pool/bloc/create_pool_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/widgets/stateful_pool_asset_choice.dart';
-import 'package:threedpass/features/other/choose_account/presentation/choose_account.dart';
-import 'package:threedpass/features/other/some_form/some_form.dart';
-import 'package:threedpass/features/other/some_form/some_form_submit_button.dart';
+import 'package:threedpass/features/common/choose_account/presentation/choose_account.dart';
+import 'package:threedpass/features/common/some_form/some_form.dart';
+import 'package:threedpass/features/common/some_form/some_form_submit_button.dart';
 
 class CreatePoolPage extends StatelessWidget {
   const CreatePoolPage({super.key});
