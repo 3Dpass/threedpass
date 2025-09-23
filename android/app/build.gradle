@@ -38,7 +38,11 @@ android {
 
     splits {
         abi {
-            enable true
+            def isBuildingBundle = gradle.startParameter.taskNames.any { t ->
+                t?.toLowerCase()?.contains("bundle")
+            }
+
+            enable !isBuildingBundle
             reset()
             include ("arm64-v8a", "x86", "x86_64", "armeabi-v7a")
             it.universalApk = true
@@ -69,7 +73,7 @@ android {
         compileSdk 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-
+        setProperty("archivesBaseName", "threedpass" + "-" + versionName)
         multiDexEnabled true
     }
 
@@ -104,6 +108,10 @@ android {
             def abiFilter = output.getFilter(com.android.build.OutputFile.ABI)
             def abiVariant = abiFilter != null ? abiFilter : "universal"
             outputFileName = "threedpass" + "-" + versionName + "-" + abiVariant + ".apk"
+
+            if (output.outputFileName != null && output.outputFileName.endsWith(".aab")) {
+                outputFileName = "threedpass-${variant.versionName}.aab"
+            }
         }
     }
 }
