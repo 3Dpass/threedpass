@@ -597,5 +597,8 @@
     "hash_proof_of_the_claiming_swap": "Hashed proof of the claiming swap:",
     "atomic_swap_deadline_not_reached": "Deadline not reached",
     "reset_objects_cache_success": "Objects cache cleared",
-    "clear_local_obj_cache": "Local objects cache"
+    "clear_local_obj_cache": "Local objects cache",
+
+    "@2.19.1":{},
+    "could_not_get_user_account_to_load_objects": "Could not get account to load user objects"
 }
