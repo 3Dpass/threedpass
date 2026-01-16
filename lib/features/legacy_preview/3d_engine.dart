@@ -2,9 +2,9 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:threedpass/features/legacy_preview/no_scroll_wrapper.dart';
 import 'package:vector_math/vector_math.dart' as math;
 
 import 'model.dart';
@@ -67,8 +67,15 @@ class _Object3DState extends State<Object3D> {
 
   @override
   Widget build(final BuildContext context) {
-    return NoScrollWrapper(
-      size: widget.size,
+    return RawGestureDetector(
+      behavior: HitTestBehavior.opaque,
+      gestures: {
+        EagerGestureRecognizer:
+            GestureRecognizerFactoryWithHandlers<EagerGestureRecognizer>(
+          () => EagerGestureRecognizer(),
+          (final EagerGestureRecognizer instance) {},
+        ),
+      },
       child: Listener(
         onPointerMove: onPointerMove,
         child: CustomPaint(
@@ -88,12 +95,12 @@ class _Object3DState extends State<Object3D> {
     );
   }
 
-  void onPointerMove(final PointerMoveEvent moveEvent) {
+  void onPointerMove(final PointerMoveEvent event) {
     setState(() {
-      _dragX(moveEvent.delta);
-      _dragY(moveEvent.delta);
+      _dragX(event.delta);
+      _dragY(event.delta);
       // print(
-      //     'Set state. moveX: ${moveEvent.delta.dx}, moveY: ${moveEvent.delta.dy}. Diff: ${now.difference(lastUpdate).inMilliseconds}');
+      //     'Set state. moveX: ${event.delta.dx}, moveY: ${event.delta.dy}. Diff: ${now.difference(lastUpdate).inMilliseconds}');
     });
   }
 }
