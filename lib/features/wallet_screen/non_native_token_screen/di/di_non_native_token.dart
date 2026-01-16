@@ -49,12 +49,12 @@ class DINonNativeToken extends DIModule {
     );
 
     // BLoC
-    getIt.registerFactoryParam<AssetsGetExtrinsicsCubit, AssetsGetExtrinsics,
-        GetEventsUseCase>(
-      (final param1, final param2) => AssetsGetExtrinsicsCubit(
-        getExtrinsics: param1,
-        getEvents: param2,
-      ),
-    );
+    // getIt.registerFactoryParam<AssetsGetExtrinsicsCubit, AssetsGetExtrinsics,
+    //     GetEventsUseCase>(
+    //   (final param1, final param2) => AssetsGetExtrinsicsCubit(
+    //     getExtrinsics: param1,
+    //     getEvents: param2,
+    //   ),
+    // );
   }
 }

@@ -26,15 +26,18 @@ class FileHashesList extends StatelessWidget {
           padding: EdgeInsets.zero,
           itemBuilder: (final _, final index) {
             return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  FileHashHeader(fileHash: fileHashes[index]),
-                  Flexible(
-                      child: SnapshotsList(
-                          currentObject: currentObject,
-                          allowedFileHash: fileHashes[index]))
-                ]);
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FileHashHeader(fileHash: fileHashes[index]),
+                Flexible(
+                  child: SnapshotsList(
+                    currentObject: currentObject,
+                    allowedFileHash: fileHashes[index],
+                  ),
+                ),
+              ],
+            );
           },
           separatorBuilder: (final context, final index) => const H4(),
           itemCount: fileHashes.length,

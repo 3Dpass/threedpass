@@ -7,7 +7,7 @@ part of 'get_events.req.gql.dart';
 // **************************************************************************
 
 Serializer<GGetEventsReq> _$gGetEventsReqSerializer =
-    new _$GGetEventsReqSerializer();
+    _$GGetEventsReqSerializer();
 
 class _$GGetEventsReqSerializer implements StructuredSerializer<GGetEventsReq> {
   @override
@@ -73,7 +73,7 @@ class _$GGetEventsReqSerializer implements StructuredSerializer<GGetEventsReq> {
   GGetEventsReq deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetEventsReqBuilder();
+    final result = GGetEventsReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -150,7 +150,7 @@ class _$GGetEventsReq extends GGetEventsReq {
   final _i4.Context? context;
 
   factory _$GGetEventsReq([void Function(GGetEventsReqBuilder)? updates]) =>
-      (new GGetEventsReqBuilder()..update(updates))._build();
+      (GGetEventsReqBuilder()..update(updates))._build();
 
   _$GGetEventsReq._(
       {required this.vars,
@@ -163,20 +163,13 @@ class _$GGetEventsReq extends GGetEventsReq {
       this.fetchPolicy,
       required this.executeOnListen,
       this.context})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(vars, r'GGetEventsReq', 'vars');
-    BuiltValueNullFieldError.checkNotNull(
-        operation, r'GGetEventsReq', 'operation');
-    BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, r'GGetEventsReq', 'executeOnListen');
-  }
-
+      : super._();
   @override
   GGetEventsReq rebuild(void Function(GGetEventsReqBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GGetEventsReqBuilder toBuilder() => new GGetEventsReqBuilder()..replace(this);
+  GGetEventsReqBuilder toBuilder() => GGetEventsReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -235,7 +228,7 @@ class GGetEventsReqBuilder
 
   _i3.GGetEventsVarsBuilder? _vars;
   _i3.GGetEventsVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GGetEventsVarsBuilder();
+      _$this._vars ??= _i3.GGetEventsVarsBuilder();
   set vars(_i3.GGetEventsVarsBuilder? vars) => _$this._vars = vars;
 
   _i4.Operation? _operation;
@@ -258,7 +251,7 @@ class GGetEventsReqBuilder
 
   _i2.GGetEventsDataBuilder? _optimisticResponse;
   _i2.GGetEventsDataBuilder get optimisticResponse =>
-      _$this._optimisticResponse ??= new _i2.GGetEventsDataBuilder();
+      _$this._optimisticResponse ??= _i2.GGetEventsDataBuilder();
   set optimisticResponse(_i2.GGetEventsDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
@@ -312,7 +305,6 @@ class GGetEventsReqBuilder
 
   @override
   void replace(GGetEventsReq other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GGetEventsReq;
   }
 
@@ -328,19 +320,20 @@ class GGetEventsReqBuilder
     _$GGetEventsReq _$result;
     try {
       _$result = _$v ??
-          new _$GGetEventsReq._(
-              vars: vars.build(),
-              operation: BuiltValueNullFieldError.checkNotNull(
-                  operation, r'GGetEventsReq', 'operation'),
-              requestId: requestId,
-              updateResult: updateResult,
-              optimisticResponse: _optimisticResponse?.build(),
-              updateCacheHandlerKey: updateCacheHandlerKey,
-              updateCacheHandlerContext: updateCacheHandlerContext,
-              fetchPolicy: fetchPolicy,
-              executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                  executeOnListen, r'GGetEventsReq', 'executeOnListen'),
-              context: context);
+          _$GGetEventsReq._(
+            vars: vars.build(),
+            operation: BuiltValueNullFieldError.checkNotNull(
+                operation, r'GGetEventsReq', 'operation'),
+            requestId: requestId,
+            updateResult: updateResult,
+            optimisticResponse: _optimisticResponse?.build(),
+            updateCacheHandlerKey: updateCacheHandlerKey,
+            updateCacheHandlerContext: updateCacheHandlerContext,
+            fetchPolicy: fetchPolicy,
+            executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                executeOnListen, r'GGetEventsReq', 'executeOnListen'),
+            context: context,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -350,7 +343,7 @@ class GGetEventsReqBuilder
         _$failedField = 'optimisticResponse';
         _optimisticResponse?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GGetEventsReq', _$failedField, e.toString());
       }
       rethrow;

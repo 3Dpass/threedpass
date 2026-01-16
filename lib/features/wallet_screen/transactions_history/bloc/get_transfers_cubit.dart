@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
@@ -12,61 +14,58 @@ class GetTransfersCubit extends Cubit<void> {
     required this.address,
     required this.getTransfers,
     required this.appServiceLoaderCubit,
-  }) : super(null) {
-    pagingController
-      ..addPageRequestListener((final int pageKey) {
-        nextPage(pageKey);
-      });
-  }
+  })  : pagingController = PagingController(
+          getNextPageKey: (final state) => state.nextIntPageKey,
+          fetchPage: (i) => nextPage(
+            address: address,
+            getTransfers: getTransfers,
+            appServiceLoaderCubit: appServiceLoaderCubit,
+            pageKey: i,
+          ),
+        ),
+        super(null);
 
   final String address;
   final GetTransfers getTransfers;
   final AppServiceLoaderCubit appServiceLoaderCubit;
 
-  final PagingController<int, TransferHistoryUI> pagingController =
-      PagingController(firstPageKey: 0);
+  final PagingController<int, TransferHistoryUI> pagingController;
 
-  void nextPage(
-    final int pageKey,
-  ) =>
-      getTransfers.safeCall(
-        params: GetTransfersParams(
-          address: address,
-          page: pageKey,
-        ),
-        onError: (final e, final st) {
-          pagingController.error = e;
-        },
-        onSuccess: (final data) {
-          final items = data.items
-              .map(
-                (item) => TransferHistoryUI(
-                  amount: BalanceUtils.balance(
-                    item.balance,
-                    appServiceLoaderCubit.state.networkStateData.safeDecimals,
-                  ),
-                  blockDateTime: DateTime.fromMillisecondsSinceEpoch(
-                    item.indexer.blockTime,
-                  ),
-                  fromAddress: item.from,
-                  toAddress: item.to,
-                  symbols: appServiceLoaderCubit
-                          .state.networkStateData.tokenSymbol?.first ??
-                      '?',
-                  direction: item.from == address
-                      ? TransferDirection.from
-                      : TransferDirection.to,
-                  extrisincStatus: null,
-                  decimals:
+  static Future<List<TransferHistoryUI>> nextPage({
+    required final String address,
+    required final GetTransfers getTransfers,
+    required final AppServiceLoaderCubit appServiceLoaderCubit,
+    required final int pageKey,
+  }) =>
+      getTransfers
+          .call(GetTransfersParams(
+            address: address,
+            page: pageKey,
+          ))
+          .then(
+            (final data) => data.items
+                .map(
+                  (item) => TransferHistoryUI(
+                    amount: BalanceUtils.balance(
+                      item.balance,
                       appServiceLoaderCubit.state.networkStateData.safeDecimals,
-                ),
-              )
-              .toList();
-          if (items.isEmpty) {
-            pagingController.appendLastPage([]);
-          } else {
-            pagingController.appendPage(items, data.page + 1);
-          }
-        },
-      );
+                    ),
+                    blockDateTime: DateTime.fromMillisecondsSinceEpoch(
+                      item.indexer.blockTime,
+                    ),
+                    fromAddress: item.from,
+                    toAddress: item.to,
+                    symbols: appServiceLoaderCubit
+                            .state.networkStateData.tokenSymbol?.first ??
+                        '?',
+                    direction: item.from == address
+                        ? TransferDirection.from
+                        : TransferDirection.to,
+                    extrisincStatus: null,
+                    decimals: appServiceLoaderCubit
+                        .state.networkStateData.safeDecimals,
+                  ),
+                )
+                .toList(),
+          );
 }

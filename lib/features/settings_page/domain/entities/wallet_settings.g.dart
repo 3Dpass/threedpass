@@ -18,8 +18,8 @@ abstract class _$WalletSettingsCWProxy {
   /// WalletSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   WalletSettings call({
-    ConnectionMode? connectionMode,
-    String? nodeUrl,
+    ConnectionMode connectionMode,
+    String nodeUrl,
   });
 }
 
@@ -49,12 +49,11 @@ class _$WalletSettingsCWProxyImpl implements _$WalletSettingsCWProxy {
     Object? nodeUrl = const $CopyWithPlaceholder(),
   }) {
     return WalletSettings(
-      connectionMode: connectionMode == const $CopyWithPlaceholder() ||
-              connectionMode == null
+      connectionMode: connectionMode == const $CopyWithPlaceholder()
           ? _value.connectionMode
           // ignore: cast_nullable_to_non_nullable
           : connectionMode as ConnectionMode,
-      nodeUrl: nodeUrl == const $CopyWithPlaceholder() || nodeUrl == null
+      nodeUrl: nodeUrl == const $CopyWithPlaceholder()
           ? _value.nodeUrl
           // ignore: cast_nullable_to_non_nullable
           : nodeUrl as String,

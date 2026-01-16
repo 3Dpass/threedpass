@@ -600,5 +600,6 @@
     "clear_local_obj_cache": "Local objects cache",
 
     "@2.19.1":{},
-    "could_not_get_user_account_to_load_objects": "Could not get account to load user objects"
+    "could_not_get_user_account_to_load_objects": "Could not get account to load user objects",
+    "open_poscan_conditions_button_label": "Why can't I upload this?"
 }

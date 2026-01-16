@@ -23,15 +23,15 @@ abstract class AccountInfo {
   }) {
     if (this is AccountCreateMnemonic) {
       return (this as AccountCreateMnemonic).copyWith(
-        name: name,
-        password: password,
-        mnemonic: mnemonicKey,
+        name: name!,
+        password: password!,
+        mnemonic: mnemonicKey!,
       );
     } else if (this is AccountCreateSeed) {
       return (this as AccountCreateSeed).copyWith(
-        name: name,
-        password: password,
-        seed: seedKey,
+        name: name!,
+        password: password!,
+        seed: seedKey!,
       );
     } else {
       throw Exception('Unknown AccountInfo type');
@@ -69,7 +69,7 @@ class AccountCreateSeed extends AccountInfo {
         super.intial();
 }
 
-// Short cuts :)
+// Shortcuts :)
 extension S on AccountInfo {
   String get mnemonicKey {
     return (this as AccountCreateMnemonic).mnemonic;

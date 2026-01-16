@@ -7,7 +7,7 @@ part of 'get_extrnsics.req.gql.dart';
 // **************************************************************************
 
 Serializer<GGetExtrinsicsReq> _$gGetExtrinsicsReqSerializer =
-    new _$GGetExtrinsicsReqSerializer();
+    _$GGetExtrinsicsReqSerializer();
 
 class _$GGetExtrinsicsReqSerializer
     implements StructuredSerializer<GGetExtrinsicsReq> {
@@ -74,7 +74,7 @@ class _$GGetExtrinsicsReqSerializer
   GGetExtrinsicsReq deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetExtrinsicsReqBuilder();
+    final result = GGetExtrinsicsReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -152,7 +152,7 @@ class _$GGetExtrinsicsReq extends GGetExtrinsicsReq {
 
   factory _$GGetExtrinsicsReq(
           [void Function(GGetExtrinsicsReqBuilder)? updates]) =>
-      (new GGetExtrinsicsReqBuilder()..update(updates))._build();
+      (GGetExtrinsicsReqBuilder()..update(updates))._build();
 
   _$GGetExtrinsicsReq._(
       {required this.vars,
@@ -165,21 +165,14 @@ class _$GGetExtrinsicsReq extends GGetExtrinsicsReq {
       this.fetchPolicy,
       required this.executeOnListen,
       this.context})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(vars, r'GGetExtrinsicsReq', 'vars');
-    BuiltValueNullFieldError.checkNotNull(
-        operation, r'GGetExtrinsicsReq', 'operation');
-    BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, r'GGetExtrinsicsReq', 'executeOnListen');
-  }
-
+      : super._();
   @override
   GGetExtrinsicsReq rebuild(void Function(GGetExtrinsicsReqBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GGetExtrinsicsReqBuilder toBuilder() =>
-      new GGetExtrinsicsReqBuilder()..replace(this);
+      GGetExtrinsicsReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -238,7 +231,7 @@ class GGetExtrinsicsReqBuilder
 
   _i3.GGetExtrinsicsVarsBuilder? _vars;
   _i3.GGetExtrinsicsVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GGetExtrinsicsVarsBuilder();
+      _$this._vars ??= _i3.GGetExtrinsicsVarsBuilder();
   set vars(_i3.GGetExtrinsicsVarsBuilder? vars) => _$this._vars = vars;
 
   _i4.Operation? _operation;
@@ -262,7 +255,7 @@ class GGetExtrinsicsReqBuilder
 
   _i2.GGetExtrinsicsDataBuilder? _optimisticResponse;
   _i2.GGetExtrinsicsDataBuilder get optimisticResponse =>
-      _$this._optimisticResponse ??= new _i2.GGetExtrinsicsDataBuilder();
+      _$this._optimisticResponse ??= _i2.GGetExtrinsicsDataBuilder();
   set optimisticResponse(_i2.GGetExtrinsicsDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
@@ -316,7 +309,6 @@ class GGetExtrinsicsReqBuilder
 
   @override
   void replace(GGetExtrinsicsReq other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GGetExtrinsicsReq;
   }
 
@@ -332,19 +324,20 @@ class GGetExtrinsicsReqBuilder
     _$GGetExtrinsicsReq _$result;
     try {
       _$result = _$v ??
-          new _$GGetExtrinsicsReq._(
-              vars: vars.build(),
-              operation: BuiltValueNullFieldError.checkNotNull(
-                  operation, r'GGetExtrinsicsReq', 'operation'),
-              requestId: requestId,
-              updateResult: updateResult,
-              optimisticResponse: _optimisticResponse?.build(),
-              updateCacheHandlerKey: updateCacheHandlerKey,
-              updateCacheHandlerContext: updateCacheHandlerContext,
-              fetchPolicy: fetchPolicy,
-              executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                  executeOnListen, r'GGetExtrinsicsReq', 'executeOnListen'),
-              context: context);
+          _$GGetExtrinsicsReq._(
+            vars: vars.build(),
+            operation: BuiltValueNullFieldError.checkNotNull(
+                operation, r'GGetExtrinsicsReq', 'operation'),
+            requestId: requestId,
+            updateResult: updateResult,
+            optimisticResponse: _optimisticResponse?.build(),
+            updateCacheHandlerKey: updateCacheHandlerKey,
+            updateCacheHandlerContext: updateCacheHandlerContext,
+            fetchPolicy: fetchPolicy,
+            executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                executeOnListen, r'GGetExtrinsicsReq', 'executeOnListen'),
+            context: context,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -354,7 +347,7 @@ class GGetExtrinsicsReqBuilder
         _$failedField = 'optimisticResponse';
         _optimisticResponse?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GGetExtrinsicsReq', _$failedField, e.toString());
       }
       rethrow;

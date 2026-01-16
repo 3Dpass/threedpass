@@ -7,7 +7,7 @@ part of 'get_extrnsics.var.gql.dart';
 // **************************************************************************
 
 Serializer<GGetExtrinsicsVars> _$gGetExtrinsicsVarsSerializer =
-    new _$GGetExtrinsicsVarsSerializer();
+    _$GGetExtrinsicsVarsSerializer();
 
 class _$GGetExtrinsicsVarsSerializer
     implements StructuredSerializer<GGetExtrinsicsVars> {
@@ -39,7 +39,7 @@ class _$GGetExtrinsicsVarsSerializer
   GGetExtrinsicsVars deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetExtrinsicsVarsBuilder();
+    final result = GGetExtrinsicsVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -77,19 +77,11 @@ class _$GGetExtrinsicsVars extends GGetExtrinsicsVars {
 
   factory _$GGetExtrinsicsVars(
           [void Function(GGetExtrinsicsVarsBuilder)? updates]) =>
-      (new GGetExtrinsicsVarsBuilder()..update(updates))._build();
+      (GGetExtrinsicsVarsBuilder()..update(updates))._build();
 
   _$GGetExtrinsicsVars._(
       {required this.pageKey, required this.pageSize, required this.filters})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        pageKey, r'GGetExtrinsicsVars', 'pageKey');
-    BuiltValueNullFieldError.checkNotNull(
-        pageSize, r'GGetExtrinsicsVars', 'pageSize');
-    BuiltValueNullFieldError.checkNotNull(
-        filters, r'GGetExtrinsicsVars', 'filters');
-  }
-
+      : super._();
   @override
   GGetExtrinsicsVars rebuild(
           void Function(GGetExtrinsicsVarsBuilder) updates) =>
@@ -97,7 +89,7 @@ class _$GGetExtrinsicsVars extends GGetExtrinsicsVars {
 
   @override
   GGetExtrinsicsVarsBuilder toBuilder() =>
-      new GGetExtrinsicsVarsBuilder()..replace(this);
+      GGetExtrinsicsVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -142,7 +134,7 @@ class GGetExtrinsicsVarsBuilder
 
   _i1.GExtrinsicFilterBuilder? _filters;
   _i1.GExtrinsicFilterBuilder get filters =>
-      _$this._filters ??= new _i1.GExtrinsicFilterBuilder();
+      _$this._filters ??= _i1.GExtrinsicFilterBuilder();
   set filters(_i1.GExtrinsicFilterBuilder? filters) =>
       _$this._filters = filters;
 
@@ -161,7 +153,6 @@ class GGetExtrinsicsVarsBuilder
 
   @override
   void replace(GGetExtrinsicsVars other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GGetExtrinsicsVars;
   }
 
@@ -177,19 +168,20 @@ class GGetExtrinsicsVarsBuilder
     _$GGetExtrinsicsVars _$result;
     try {
       _$result = _$v ??
-          new _$GGetExtrinsicsVars._(
-              pageKey: BuiltValueNullFieldError.checkNotNull(
-                  pageKey, r'GGetExtrinsicsVars', 'pageKey'),
-              pageSize: BuiltValueNullFieldError.checkNotNull(
-                  pageSize, r'GGetExtrinsicsVars', 'pageSize'),
-              filters: filters.build());
+          _$GGetExtrinsicsVars._(
+            pageKey: BuiltValueNullFieldError.checkNotNull(
+                pageKey, r'GGetExtrinsicsVars', 'pageKey'),
+            pageSize: BuiltValueNullFieldError.checkNotNull(
+                pageSize, r'GGetExtrinsicsVars', 'pageSize'),
+            filters: filters.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'filters';
         filters.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GGetExtrinsicsVars', _$failedField, e.toString());
       }
       rethrow;

@@ -17,7 +17,7 @@ class SelectAccountPage extends StatelessWidget {
 
   void onSelectAccount(final BuildContext context, final KeyPairData p0) {
     BlocProvider.of<AppServiceLoaderCubit>(context).changeAccount(p0);
-    context.router.pop();
+    context.router.maybePop();
   }
 
   @override

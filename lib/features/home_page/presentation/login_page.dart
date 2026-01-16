@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:threedpass/core/widgets/screen_lock/d3p_screen_lock.dart';
 
-@RoutePage<bool>()
+@RoutePage()
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key, this.onLoginResult});
 

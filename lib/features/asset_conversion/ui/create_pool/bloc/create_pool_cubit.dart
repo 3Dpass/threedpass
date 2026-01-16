@@ -45,10 +45,12 @@ class CreatePoolCubit extends Cubit<CreatePoolState>
       createPoolUseCase.safeCall;
 
   void setAsset1(final PoolAssetField? value) {
+    if (value == null) return;
     emit(state.copyWith(asset1: value));
   }
 
   void setAsset2(final PoolAssetField? value) {
+    if (value == null) return;
     emit(state.copyWith(asset2: value));
   }
 

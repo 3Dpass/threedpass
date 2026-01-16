@@ -6,7 +6,7 @@ part of 'serializers.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializers _$serializers = (new Serializers().toBuilder()
+Serializers _$serializers = (Serializers().toBuilder()
       ..add(FetchPolicy.serializer)
       ..add(GBlocksFilter.serializer)
       ..add(GDateTime.serializer)
@@ -55,236 +55,236 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GTransferFilter.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GBlocksFilter)]),
-          () => new ListBuilder<GBlocksFilter>())
+          () => ListBuilder<GBlocksFilter>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GBlocksFilter)]),
-          () => new ListBuilder<GBlocksFilter>())
+          () => ListBuilder<GBlocksFilter>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GEventsFilter)]),
-          () => new ListBuilder<GEventsFilter>())
+          () => ListBuilder<GEventsFilter>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GEventsFilter)]),
-          () => new ListBuilder<GEventsFilter>())
+          () => ListBuilder<GEventsFilter>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GExtrinsicFilter)]),
-          () => new ListBuilder<GExtrinsicFilter>())
+          () => ListBuilder<GExtrinsicFilter>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GExtrinsicFilter)]),
-          () => new ListBuilder<GExtrinsicFilter>())
+          () => ListBuilder<GExtrinsicFilter>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetBlock)]),
-          () => new ListBuilder<GFilterGetBlock>())
+          () => ListBuilder<GFilterGetBlock>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetBlock)]),
-          () => new ListBuilder<GFilterGetBlock>())
+          () => ListBuilder<GFilterGetBlock>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetEvent)]),
-          () => new ListBuilder<GFilterGetEvent>())
+          () => ListBuilder<GFilterGetEvent>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetEvent)]),
-          () => new ListBuilder<GFilterGetEvent>())
+          () => ListBuilder<GFilterGetEvent>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetEvents)]),
-          () => new ListBuilder<GFilterGetEvents>())
+          () => ListBuilder<GFilterGetEvents>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetEvents)]),
-          () => new ListBuilder<GFilterGetEvents>())
+          () => ListBuilder<GFilterGetEvents>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetLog)]),
-          () => new ListBuilder<GFilterGetLog>())
+          () => ListBuilder<GFilterGetLog>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetLog)]),
-          () => new ListBuilder<GFilterGetLog>())
+          () => ListBuilder<GFilterGetLog>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetLogs)]),
-          () => new ListBuilder<GFilterGetLogs>())
+          () => ListBuilder<GFilterGetLogs>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetLogs)]),
-          () => new ListBuilder<GFilterGetLogs>())
+          () => ListBuilder<GFilterGetLogs>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetRuntime)]),
-          () => new ListBuilder<GFilterGetRuntime>())
+          () => ListBuilder<GFilterGetRuntime>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetRuntime)]),
-          () => new ListBuilder<GFilterGetRuntime>())
+          () => ListBuilder<GFilterGetRuntime>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeCall)]),
-          () => new ListBuilder<GFilterGetRuntimeCall>())
+          () => ListBuilder<GFilterGetRuntimeCall>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeCall)]),
-          () => new ListBuilder<GFilterGetRuntimeCall>())
+          () => ListBuilder<GFilterGetRuntimeCall>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GFilterGetRuntimeCallArguments)]),
-          () => new ListBuilder<GFilterGetRuntimeCallArguments>())
+          () => ListBuilder<GFilterGetRuntimeCallArguments>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GFilterGetRuntimeCallArguments)]),
-          () => new ListBuilder<GFilterGetRuntimeCallArguments>())
+          () => ListBuilder<GFilterGetRuntimeCallArguments>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeCalls)]),
-          () => new ListBuilder<GFilterGetRuntimeCalls>())
+          () => ListBuilder<GFilterGetRuntimeCalls>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeCalls)]),
-          () => new ListBuilder<GFilterGetRuntimeCalls>())
+          () => ListBuilder<GFilterGetRuntimeCalls>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeConstant)]),
-          () => new ListBuilder<GFilterGetRuntimeConstant>())
+          () => ListBuilder<GFilterGetRuntimeConstant>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeConstant)]),
-          () => new ListBuilder<GFilterGetRuntimeConstant>())
+          () => ListBuilder<GFilterGetRuntimeConstant>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeConstants)]),
-          () => new ListBuilder<GFilterGetRuntimeConstants>())
+          () => ListBuilder<GFilterGetRuntimeConstants>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeConstants)]),
-          () => new ListBuilder<GFilterGetRuntimeConstants>())
+          () => ListBuilder<GFilterGetRuntimeConstants>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeErrorMessage)]),
-          () => new ListBuilder<GFilterGetRuntimeErrorMessage>())
+          () => ListBuilder<GFilterGetRuntimeErrorMessage>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeErrorMessage)]),
-          () => new ListBuilder<GFilterGetRuntimeErrorMessage>())
+          () => ListBuilder<GFilterGetRuntimeErrorMessage>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GFilterGetRuntimeErrorMessages)]),
-          () => new ListBuilder<GFilterGetRuntimeErrorMessages>())
+          () => ListBuilder<GFilterGetRuntimeErrorMessages>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GFilterGetRuntimeErrorMessages)]),
-          () => new ListBuilder<GFilterGetRuntimeErrorMessages>())
+          () => ListBuilder<GFilterGetRuntimeErrorMessages>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeEvent)]),
-          () => new ListBuilder<GFilterGetRuntimeEvent>())
+          () => ListBuilder<GFilterGetRuntimeEvent>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeEvent)]),
-          () => new ListBuilder<GFilterGetRuntimeEvent>())
+          () => ListBuilder<GFilterGetRuntimeEvent>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GFilterGetRuntimeEventAttributes)]),
-          () => new ListBuilder<GFilterGetRuntimeEventAttributes>())
+          () => ListBuilder<GFilterGetRuntimeEventAttributes>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GFilterGetRuntimeEventAttributes)]),
-          () => new ListBuilder<GFilterGetRuntimeEventAttributes>())
+          () => ListBuilder<GFilterGetRuntimeEventAttributes>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeEvents)]),
-          () => new ListBuilder<GFilterGetRuntimeEvents>())
+          () => ListBuilder<GFilterGetRuntimeEvents>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeEvents)]),
-          () => new ListBuilder<GFilterGetRuntimeEvents>())
+          () => ListBuilder<GFilterGetRuntimeEvents>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimePallet)]),
-          () => new ListBuilder<GFilterGetRuntimePallet>())
+          () => ListBuilder<GFilterGetRuntimePallet>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimePallet)]),
-          () => new ListBuilder<GFilterGetRuntimePallet>())
+          () => ListBuilder<GFilterGetRuntimePallet>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimePallets)]),
-          () => new ListBuilder<GFilterGetRuntimePallets>())
+          () => ListBuilder<GFilterGetRuntimePallets>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimePallets)]),
-          () => new ListBuilder<GFilterGetRuntimePallets>())
+          () => ListBuilder<GFilterGetRuntimePallets>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeStorage)]),
-          () => new ListBuilder<GFilterGetRuntimeStorage>())
+          () => ListBuilder<GFilterGetRuntimeStorage>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeStorage)]),
-          () => new ListBuilder<GFilterGetRuntimeStorage>())
+          () => ListBuilder<GFilterGetRuntimeStorage>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeStorages)]),
-          () => new ListBuilder<GFilterGetRuntimeStorages>())
+          () => ListBuilder<GFilterGetRuntimeStorages>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeStorages)]),
-          () => new ListBuilder<GFilterGetRuntimeStorages>())
+          () => ListBuilder<GFilterGetRuntimeStorages>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeType)]),
-          () => new ListBuilder<GFilterGetRuntimeType>())
+          () => ListBuilder<GFilterGetRuntimeType>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeType)]),
-          () => new ListBuilder<GFilterGetRuntimeType>())
+          () => ListBuilder<GFilterGetRuntimeType>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeTypes)]),
-          () => new ListBuilder<GFilterGetRuntimeTypes>())
+          () => ListBuilder<GFilterGetRuntimeTypes>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetRuntimeTypes)]),
-          () => new ListBuilder<GFilterGetRuntimeTypes>())
+          () => ListBuilder<GFilterGetRuntimeTypes>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetRuntimes)]),
-          () => new ListBuilder<GFilterGetRuntimes>())
+          () => ListBuilder<GFilterGetRuntimes>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetRuntimes)]),
-          () => new ListBuilder<GFilterGetRuntimes>())
+          () => ListBuilder<GFilterGetRuntimes>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetTaggedAccount)]),
-          () => new ListBuilder<GFilterGetTaggedAccount>())
+          () => ListBuilder<GFilterGetTaggedAccount>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetTaggedAccount)]),
-          () => new ListBuilder<GFilterGetTaggedAccount>())
+          () => ListBuilder<GFilterGetTaggedAccount>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetTransfer)]),
-          () => new ListBuilder<GFilterGetTransfer>())
+          () => ListBuilder<GFilterGetTransfer>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterGetTransfer)]),
-          () => new ListBuilder<GFilterGetTransfer>())
+          () => ListBuilder<GFilterGetTransfer>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetTransfers)]),
-          () => new ListBuilder<GFilterGetTransfers>())
+          () => ListBuilder<GFilterGetTransfers>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFilterGetTransfers)]),
-          () => new ListBuilder<GFilterGetTransfers>())
+          () => ListBuilder<GFilterGetTransfers>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GLogFilter)]),
-          () => new ListBuilder<GLogFilter>())
+          () => ListBuilder<GLogFilter>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GLogFilter)]),
-          () => new ListBuilder<GLogFilter>())
+          () => ListBuilder<GLogFilter>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GTransferFilter)]),
-          () => new ListBuilder<GTransferFilter>())
+          () => ListBuilder<GTransferFilter>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GTransferFilter)]),
-          () => new ListBuilder<GTransferFilter>())
+          () => ListBuilder<GTransferFilter>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType.nullable(GGetEventsData_getEvents_objects)
           ]),
-          () => new ListBuilder<GGetEventsData_getEvents_objects?>())
+          () => ListBuilder<GGetEventsData_getEvents_objects?>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType.nullable(GGetExtrinsicsData_getExtrinsics_objects)
           ]),
-          () => new ListBuilder<GGetExtrinsicsData_getExtrinsics_objects?>()))
+          () => ListBuilder<GGetExtrinsicsData_getExtrinsics_objects?>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

@@ -177,584 +177,6 @@ import 'package:threedpass/features/wallet_screen/wallet_page/wallet_page.dart'
 import 'package:threedpass/features/wallet_screen/wallet_page/wallet_page_wrapper.dart'
     as _i73;
 
-abstract class $RootRouter extends _i74.RootStackRouter {
-  $RootRouter({super.navigatorKey});
-
-  @override
-  final Map<String, _i74.PageFactory> pagesMap = {
-    AddContactRoute.name: (routeData) {
-      final args = routeData.argsAs<AddContactRouteArgs>(
-          orElse: () => const AddContactRouteArgs());
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i1.AddContactPage(key: args.key),
-      );
-    },
-    AddLiquidityRouteWrapper.name: (routeData) {
-      final args = routeData.argsAs<AddLiquidityRouteWrapperArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i2.AddLiquidityPageWrapper(
-          poolFullInfo: args.poolFullInfo,
-          key: args.key,
-        ),
-      );
-    },
-    CancelAtomicSwapRouteWarpper.name: (routeData) {
-      final args = routeData.argsAs<CancelAtomicSwapRouteWarpperArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i74.WrappedRoute(
-            child: _i3.CancelAtomicSwapPageWarpper(
-          pendingSwap: args.pendingSwap,
-          key: args.key,
-        )),
-      );
-    },
-    ChooseAlgorithmSubRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i4.ChooseAlgorithmSubPage(),
-      );
-    },
-    ChooseCategoryBottomSheetRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i5.ChooseCategoryBottomSheet(),
-      );
-    },
-    ClaimAtomicSwapRouteWrapper.name: (routeData) {
-      final args = routeData.argsAs<ClaimAtomicSwapRouteWrapperArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i74.WrappedRoute(
-            child: _i6.ClaimAtomicSwapPageWrapper(
-          pendingSwap: args.pendingSwap,
-          key: args.key,
-        )),
-      );
-    },
-    CompareRouteWrapper.name: (routeData) {
-      final args = routeData.argsAs<CompareRouteWrapperArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i7.ComparePageWrapper(
-          origObj: args.origObj,
-          hashObject: args.hashObject,
-          key: args.key,
-        ),
-      );
-    },
-    ContactsRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i8.ContactsPage(),
-      );
-    },
-    CreateAccountCredentialsRoute.name: (routeData) {
-      final args = routeData.argsAs<CreateAccountCredentialsRouteArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i9.CreateAccountCredentialsPage(
-          appbarText: args.appbarText,
-          key: args.key,
-        ),
-      );
-    },
-    CreateAccountFromObjectRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i10.CreateAccountFromObjectPage(),
-      );
-    },
-    CreateAccountInfoRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i11.CreateAccountInfoPage(),
-      );
-    },
-    CreateAccountLoaderRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i12.CreateAccountLoaderPage(),
-      );
-    },
-    CreateAccountMnemonicBackupRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i13.CreateAccountMnemonicBackupPage(),
-      );
-    },
-    CreateAccountMnemonicConfirmRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i14.CreateAccountMnemonicConfirmPage(),
-      );
-    },
-    CreateAccountRouteWrapper.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i74.WrappedRoute(child: const _i15.CreateAccountPageWrapper()),
-      );
-    },
-    CreateAccountTypeRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i16.CreateAccountTypePage(),
-      );
-    },
-    CreateAssetRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i17.CreateAssetPage(),
-      );
-    },
-    CreateAssetRouteWrapper.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i74.WrappedRoute(child: const _i18.CreateAssetPageWrapper()),
-      );
-    },
-    CreatePoolRouteWrapper.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i19.CreatePoolPageWrapper(),
-      );
-    },
-    CreateSwapRouteWapper.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i74.WrappedRoute(child: const _i20.CreateSwapPageWapper()),
-      );
-    },
-    D3PRPCRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i21.D3PRPCPage(),
-      );
-    },
-    D3PRPCRouteWrapper.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i74.WrappedRoute(child: const _i22.D3PRPCPageWrapper()),
-      );
-    },
-    ChooseDateTimeRoute.name: (routeData) {
-      final args = routeData.argsAs<ChooseDateTimeRouteArgs>(
-          orElse: () => const ChooseDateTimeRouteArgs());
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i23.D3pChooseDateTimeModal(
-          key: args.key,
-          initialDate: args.initialDate,
-          firstDate: args.firstDate,
-          lastDate: args.lastDate,
-          onDone: args.onDone,
-          onCancel: args.onCancel,
-        ),
-      );
-    },
-    NotificationDialogRoute.name: (routeData) {
-      final args = routeData.argsAs<NotificationDialogRouteArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i24.D3pNotificationDialog(
-          key: args.key,
-          title: args.title,
-          message: args.message,
-        ),
-      );
-    },
-    DefaultLoadingRoute.name: (routeData) {
-      final args = routeData.argsAs<DefaultLoadingRouteArgs>(
-          orElse: () => const DefaultLoadingRouteArgs());
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i25.DefaultLoadingDialog(
-          key: args.key,
-          text: args.text,
-        ),
-      );
-    },
-    DeleteContactRoute.name: (routeData) {
-      final args = routeData.argsAs<DeleteContactRouteArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i26.DeleteContactDialog(
-          contact: args.contact,
-          key: args.key,
-        ),
-      );
-    },
-    DeleteSnapshotRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i27.DeleteSnapshotDialog(),
-      );
-    },
-    DeleteSnapshotsRoute.name: (routeData) {
-      final args = routeData.argsAs<DeleteSnapshotsRouteArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i28.DeleteSnapshotsDialog(
-          selectSnapshotsCubit: args.selectSnapshotsCubit,
-          key: args.key,
-        ),
-      );
-    },
-    InitialWrapperRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i29.EmptyInitialRoute(),
-      );
-    },
-    SettingsWrapperRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i30.EmptySettingsRoute(),
-      );
-    },
-    ExplainPutObjectRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i31.ExplainPutObjectPage(),
-      );
-    },
-    ExplorerRouteWrapper.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i74.WrappedRoute(child: const _i32.ExplorerPageWrapper()),
-      );
-    },
-    GridSizeSubRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i33.GridSizeSubPage(),
-      );
-    },
-    HomeRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i34.HomePage(),
-      );
-    },
-    ImportMnemonicFormRoute.name: (routeData) {
-      final args = routeData.argsAs<ImportMnemonicFormRouteArgs>(
-          orElse: () => const ImportMnemonicFormRouteArgs());
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i35.ImportMnemonicFormPage(key: args.key),
-      );
-    },
-    ImportRawseedFormRoute.name: (routeData) {
-      final args = routeData.argsAs<ImportRawseedFormRouteArgs>(
-          orElse: () => const ImportRawseedFormRouteArgs());
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i36.ImportRawseedFormPage(key: args.key),
-      );
-    },
-    LoginRoute.name: (routeData) {
-      final args = routeData.argsAs<LoginRouteArgs>(
-          orElse: () => const LoginRouteArgs());
-      return _i74.AutoRoutePage<bool>(
-        routeData: routeData,
-        child: _i37.LoginPage(
-          key: args.key,
-          onLoginResult: args.onLoginResult,
-        ),
-      );
-    },
-    MintAssetRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i38.MintAssetPage(),
-      );
-    },
-    MintAssetRouteWrapper.name: (routeData) {
-      final args = routeData.argsAs<MintAssetRouteWrapperArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i74.WrappedRoute(
-            child: _i39.MintAssetPageWrapper(
-          initialAssetId: args.initialAssetId,
-          key: args.key,
-        )),
-      );
-    },
-    NoStableHashRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i40.NoStableHashDialog(),
-      );
-    },
-    NonNativeTokenRouteWrapper.name: (routeData) {
-      final args = routeData.argsAs<NonNativeTokenRouteWrapperArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i41.NonNativeTokenPageWrapper(
-          args.params,
-          key: args.key,
-        ),
-      );
-    },
-    NotificationsRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i42.NotificationsPage(),
-      );
-    },
-    ObjectsListRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i43.ObjectsListPage(),
-      );
-    },
-    PendingAtomicSwapRouteWrapper.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child:
-            _i74.WrappedRoute(child: const _i44.PendingAtomicSwapPageWrapper()),
-      );
-    },
-    PixelRatioSubRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i45.PixelRatioSubPage(),
-      );
-    },
-    PoolsRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i46.PoolsPage(),
-      );
-    },
-    PoolsRouteWrapper.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i74.WrappedRoute(child: const _i47.PoolsPageWrapper()),
-      );
-    },
-    PreviewRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i48.PreviewPage(),
-      );
-    },
-    PreviewRouteWrapper.name: (routeData) {
-      final args = routeData.argsAs<PreviewRouteWrapperArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i74.WrappedRoute(
-            child: _i49.PreviewPageWrapper(
-          snapshot: args.snapshot,
-          key: args.key,
-        )),
-      );
-    },
-    RecieveRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i50.RecievePage(),
-      );
-    },
-    RemoveAccountRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i51.RemoveAccountDialog(),
-      );
-    },
-    RemoveLiquidityRouteWrapper.name: (routeData) {
-      final args = routeData.argsAs<RemoveLiquidityRouteWrapperArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i52.RemoveLiquidityPageWrapper(
-          poolFullInfo: args.poolFullInfo,
-          key: args.key,
-        ),
-      );
-    },
-    RenameObjectRoute.name: (routeData) {
-      final args = routeData.argsAs<RenameObjectRouteArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i53.RenameObjectDialog(
-          snapshot: args.snapshot,
-          hashObject: args.hashObject,
-          key: args.key,
-        ),
-      );
-    },
-    RenameSnapshotRoute.name: (routeData) {
-      final args = routeData.argsAs<RenameSnapshotRouteArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i54.RenameSnapshotDialog(
-          snapshot: args.snapshot,
-          hashObject: args.hashObject,
-          key: args.key,
-        ),
-      );
-    },
-    SaveHashRoute.name: (routeData) {
-      final args = routeData.argsAs<SaveHashRouteArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i55.SaveHashDialog(
-          snapshot: args.snapshot,
-          hashObject: args.hashObject,
-          key: args.key,
-        ),
-      );
-    },
-    SaveObjectRoute.name: (routeData) {
-      final args = routeData.argsAs<SaveObjectRouteArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i56.SaveObjectDialog(
-          snapshot: args.snapshot,
-          key: args.key,
-        ),
-      );
-    },
-    ScanRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i57.ScanPage(),
-      );
-    },
-    ScanRouteWrapper.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i74.WrappedRoute(child: const _i58.ScanPageWrapper()),
-      );
-    },
-    SectionsSubRoute.name: (routeData) {
-      final args = routeData.argsAs<SectionsSubRouteArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i59.SectionsSubPage(
-          initialState: args.initialState,
-          key: args.key,
-        ),
-      );
-    },
-    SelectAccountRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i60.SelectAccountPage(),
-      );
-    },
-    SetMetadataRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i61.SetMetadataPage(),
-      );
-    },
-    SetMetadataRouteWrapper.name: (routeData) {
-      final args = routeData.argsAs<SetMetadataRouteWrapperArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i74.WrappedRoute(
-            child: _i62.SetMetadataPageWrapper(
-          initialAssetId: args.initialAssetId,
-          key: args.key,
-        )),
-      );
-    },
-    SettingsRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i63.SettingsPage(),
-      );
-    },
-    StableHashSubRoute.name: (routeData) {
-      final args = routeData.argsAs<StableHashSubRouteArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i64.StableHashSubPage(
-          initialState: args.initialState,
-          key: args.key,
-        ),
-      );
-    },
-    SwapRouteWrapper.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i65.SwapPageWrapper(),
-      );
-    },
-    TransBytesSubRoute.name: (routeData) {
-      final args = routeData.argsAs<TransBytesSubRouteArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i66.TransBytesSubPage(
-          initialState: args.initialState,
-          key: args.key,
-        ),
-      );
-    },
-    TransactionsHistoryRouteWrapper.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i67.TransactionsHistoryPageWrapper(),
-      );
-    },
-    TransferRoute.name: (routeData) {
-      final args = routeData.argsAs<TransferRouteArgs>(
-          orElse: () => const TransferRouteArgs());
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i68.TransferPage(key: args.key),
-      );
-    },
-    TransferRouteWrapper.name: (routeData) {
-      final args = routeData.argsAs<TransferRouteWrapperArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i74.WrappedRoute(
-            child: _i69.TransferPageWrapper(
-          metadata: args.metadata,
-          key: args.key,
-        )),
-      );
-    },
-    UploadedObjectWrapper.name: (routeData) {
-      final args = routeData.argsAs<UploadedObjectWrapperArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i70.UploadedObjectWrapper(
-          objectId: args.objectId,
-          uploadedObject: args.uploadedObject,
-          key: args.key,
-        ),
-      );
-    },
-    WalletNodeSubRoute.name: (routeData) {
-      final args = routeData.argsAs<WalletNodeSubRouteArgs>();
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i71.WalletNodeSubPage(
-          initialState: args.initialState,
-          key: args.key,
-        ),
-      );
-    },
-    WalletRoute.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i72.WalletPage(),
-      );
-    },
-    WalletRouteWrapper.name: (routeData) {
-      return _i74.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i74.WrappedRoute(child: const _i73.WalletPageWrapper()),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [_i1.AddContactPage]
 class AddContactRoute extends _i74.PageRouteInfo<AddContactRouteArgs> {
@@ -769,8 +191,14 @@ class AddContactRoute extends _i74.PageRouteInfo<AddContactRouteArgs> {
 
   static const String name = 'AddContactRoute';
 
-  static const _i74.PageInfo<AddContactRouteArgs> page =
-      _i74.PageInfo<AddContactRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<AddContactRouteArgs>(
+          orElse: () => const AddContactRouteArgs());
+      return _i1.AddContactPage(key: args.key);
+    },
+  );
 }
 
 class AddContactRouteArgs {
@@ -803,8 +231,16 @@ class AddLiquidityRouteWrapper
 
   static const String name = 'AddLiquidityRouteWrapper';
 
-  static const _i74.PageInfo<AddLiquidityRouteWrapperArgs> page =
-      _i74.PageInfo<AddLiquidityRouteWrapperArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<AddLiquidityRouteWrapperArgs>();
+      return _i2.AddLiquidityPageWrapper(
+        poolFullInfo: args.poolFullInfo,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class AddLiquidityRouteWrapperArgs {
@@ -842,8 +278,17 @@ class CancelAtomicSwapRouteWarpper
 
   static const String name = 'CancelAtomicSwapRouteWarpper';
 
-  static const _i74.PageInfo<CancelAtomicSwapRouteWarpperArgs> page =
-      _i74.PageInfo<CancelAtomicSwapRouteWarpperArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CancelAtomicSwapRouteWarpperArgs>();
+      return _i74.WrappedRoute(
+          child: _i3.CancelAtomicSwapPageWarpper(
+        pendingSwap: args.pendingSwap,
+        key: args.key,
+      ));
+    },
+  );
 }
 
 class CancelAtomicSwapRouteWarpperArgs {
@@ -873,7 +318,12 @@ class ChooseAlgorithmSubRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'ChooseAlgorithmSubRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i4.ChooseAlgorithmSubPage();
+    },
+  );
 }
 
 /// generated route for
@@ -887,7 +337,12 @@ class ChooseCategoryBottomSheetRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'ChooseCategoryBottomSheetRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i5.ChooseCategoryBottomSheet();
+    },
+  );
 }
 
 /// generated route for
@@ -909,8 +364,17 @@ class ClaimAtomicSwapRouteWrapper
 
   static const String name = 'ClaimAtomicSwapRouteWrapper';
 
-  static const _i74.PageInfo<ClaimAtomicSwapRouteWrapperArgs> page =
-      _i74.PageInfo<ClaimAtomicSwapRouteWrapperArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ClaimAtomicSwapRouteWrapperArgs>();
+      return _i74.WrappedRoute(
+          child: _i6.ClaimAtomicSwapPageWrapper(
+        pendingSwap: args.pendingSwap,
+        key: args.key,
+      ));
+    },
+  );
 }
 
 class ClaimAtomicSwapRouteWrapperArgs {
@@ -949,8 +413,17 @@ class CompareRouteWrapper extends _i74.PageRouteInfo<CompareRouteWrapperArgs> {
 
   static const String name = 'CompareRouteWrapper';
 
-  static const _i74.PageInfo<CompareRouteWrapperArgs> page =
-      _i74.PageInfo<CompareRouteWrapperArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CompareRouteWrapperArgs>();
+      return _i7.ComparePageWrapper(
+        origObj: args.origObj,
+        hashObject: args.hashObject,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class CompareRouteWrapperArgs {
@@ -983,7 +456,12 @@ class ContactsRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'ContactsRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i8.ContactsPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1005,8 +483,16 @@ class CreateAccountCredentialsRoute
 
   static const String name = 'CreateAccountCredentialsRoute';
 
-  static const _i74.PageInfo<CreateAccountCredentialsRouteArgs> page =
-      _i74.PageInfo<CreateAccountCredentialsRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CreateAccountCredentialsRouteArgs>();
+      return _i9.CreateAccountCredentialsPage(
+        appbarText: args.appbarText,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class CreateAccountCredentialsRouteArgs {
@@ -1036,7 +522,12 @@ class CreateAccountFromObjectRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'CreateAccountFromObjectRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i10.CreateAccountFromObjectPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1050,7 +541,12 @@ class CreateAccountInfoRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'CreateAccountInfoRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i11.CreateAccountInfoPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1064,7 +560,12 @@ class CreateAccountLoaderRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'CreateAccountLoaderRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i12.CreateAccountLoaderPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1078,7 +579,12 @@ class CreateAccountMnemonicBackupRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'CreateAccountMnemonicBackupRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i13.CreateAccountMnemonicBackupPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1092,7 +598,12 @@ class CreateAccountMnemonicConfirmRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'CreateAccountMnemonicConfirmRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i14.CreateAccountMnemonicConfirmPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1106,7 +617,12 @@ class CreateAccountRouteWrapper extends _i74.PageRouteInfo<void> {
 
   static const String name = 'CreateAccountRouteWrapper';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return _i74.WrappedRoute(child: const _i15.CreateAccountPageWrapper());
+    },
+  );
 }
 
 /// generated route for
@@ -1120,7 +636,12 @@ class CreateAccountTypeRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'CreateAccountTypeRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i16.CreateAccountTypePage();
+    },
+  );
 }
 
 /// generated route for
@@ -1134,7 +655,12 @@ class CreateAssetRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'CreateAssetRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i17.CreateAssetPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1148,7 +674,12 @@ class CreateAssetRouteWrapper extends _i74.PageRouteInfo<void> {
 
   static const String name = 'CreateAssetRouteWrapper';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return _i74.WrappedRoute(child: const _i18.CreateAssetPageWrapper());
+    },
+  );
 }
 
 /// generated route for
@@ -1162,7 +693,12 @@ class CreatePoolRouteWrapper extends _i74.PageRouteInfo<void> {
 
   static const String name = 'CreatePoolRouteWrapper';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i19.CreatePoolPageWrapper();
+    },
+  );
 }
 
 /// generated route for
@@ -1176,7 +712,12 @@ class CreateSwapRouteWapper extends _i74.PageRouteInfo<void> {
 
   static const String name = 'CreateSwapRouteWapper';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return _i74.WrappedRoute(child: const _i20.CreateSwapPageWapper());
+    },
+  );
 }
 
 /// generated route for
@@ -1190,7 +731,12 @@ class D3PRPCRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'D3PRPCRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i21.D3PRPCPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1204,7 +750,12 @@ class D3PRPCRouteWrapper extends _i74.PageRouteInfo<void> {
 
   static const String name = 'D3PRPCRouteWrapper';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return _i74.WrappedRoute(child: const _i22.D3PRPCPageWrapper());
+    },
+  );
 }
 
 /// generated route for
@@ -1233,8 +784,21 @@ class ChooseDateTimeRoute extends _i74.PageRouteInfo<ChooseDateTimeRouteArgs> {
 
   static const String name = 'ChooseDateTimeRoute';
 
-  static const _i74.PageInfo<ChooseDateTimeRouteArgs> page =
-      _i74.PageInfo<ChooseDateTimeRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ChooseDateTimeRouteArgs>(
+          orElse: () => const ChooseDateTimeRouteArgs());
+      return _i23.D3pChooseDateTimeModal(
+        key: args.key,
+        initialDate: args.initialDate,
+        firstDate: args.firstDate,
+        lastDate: args.lastDate,
+        onDone: args.onDone,
+        onCancel: args.onCancel,
+      );
+    },
+  );
 }
 
 class ChooseDateTimeRouteArgs {
@@ -1286,8 +850,17 @@ class NotificationDialogRoute
 
   static const String name = 'NotificationDialogRoute';
 
-  static const _i74.PageInfo<NotificationDialogRouteArgs> page =
-      _i74.PageInfo<NotificationDialogRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<NotificationDialogRouteArgs>();
+      return _i24.D3pNotificationDialog(
+        key: args.key,
+        title: args.title,
+        message: args.message,
+      );
+    },
+  );
 }
 
 class NotificationDialogRouteArgs {
@@ -1327,8 +900,17 @@ class DefaultLoadingRoute extends _i74.PageRouteInfo<DefaultLoadingRouteArgs> {
 
   static const String name = 'DefaultLoadingRoute';
 
-  static const _i74.PageInfo<DefaultLoadingRouteArgs> page =
-      _i74.PageInfo<DefaultLoadingRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<DefaultLoadingRouteArgs>(
+          orElse: () => const DefaultLoadingRouteArgs());
+      return _i25.DefaultLoadingDialog(
+        key: args.key,
+        text: args.text,
+      );
+    },
+  );
 }
 
 class DefaultLoadingRouteArgs {
@@ -1365,8 +947,16 @@ class DeleteContactRoute extends _i74.PageRouteInfo<DeleteContactRouteArgs> {
 
   static const String name = 'DeleteContactRoute';
 
-  static const _i74.PageInfo<DeleteContactRouteArgs> page =
-      _i74.PageInfo<DeleteContactRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<DeleteContactRouteArgs>();
+      return _i26.DeleteContactDialog(
+        contact: args.contact,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class DeleteContactRouteArgs {
@@ -1396,7 +986,12 @@ class DeleteSnapshotRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'DeleteSnapshotRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i27.DeleteSnapshotDialog();
+    },
+  );
 }
 
 /// generated route for
@@ -1418,8 +1013,16 @@ class DeleteSnapshotsRoute
 
   static const String name = 'DeleteSnapshotsRoute';
 
-  static const _i74.PageInfo<DeleteSnapshotsRouteArgs> page =
-      _i74.PageInfo<DeleteSnapshotsRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<DeleteSnapshotsRouteArgs>();
+      return _i28.DeleteSnapshotsDialog(
+        selectSnapshotsCubit: args.selectSnapshotsCubit,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class DeleteSnapshotsRouteArgs {
@@ -1449,7 +1052,12 @@ class InitialWrapperRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'InitialWrapperRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i29.EmptyInitialRoute();
+    },
+  );
 }
 
 /// generated route for
@@ -1463,7 +1071,12 @@ class SettingsWrapperRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'SettingsWrapperRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i30.EmptySettingsRoute();
+    },
+  );
 }
 
 /// generated route for
@@ -1477,7 +1090,12 @@ class ExplainPutObjectRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'ExplainPutObjectRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i31.ExplainPutObjectPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1491,7 +1109,12 @@ class ExplorerRouteWrapper extends _i74.PageRouteInfo<void> {
 
   static const String name = 'ExplorerRouteWrapper';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return _i74.WrappedRoute(child: const _i32.ExplorerPageWrapper());
+    },
+  );
 }
 
 /// generated route for
@@ -1505,7 +1128,12 @@ class GridSizeSubRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'GridSizeSubRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i33.GridSizeSubPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1519,7 +1147,12 @@ class HomeRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i34.HomePage();
+    },
+  );
 }
 
 /// generated route for
@@ -1537,8 +1170,14 @@ class ImportMnemonicFormRoute
 
   static const String name = 'ImportMnemonicFormRoute';
 
-  static const _i74.PageInfo<ImportMnemonicFormRouteArgs> page =
-      _i74.PageInfo<ImportMnemonicFormRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ImportMnemonicFormRouteArgs>(
+          orElse: () => const ImportMnemonicFormRouteArgs());
+      return _i35.ImportMnemonicFormPage(key: args.key);
+    },
+  );
 }
 
 class ImportMnemonicFormRouteArgs {
@@ -1567,8 +1206,14 @@ class ImportRawseedFormRoute
 
   static const String name = 'ImportRawseedFormRoute';
 
-  static const _i74.PageInfo<ImportRawseedFormRouteArgs> page =
-      _i74.PageInfo<ImportRawseedFormRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ImportRawseedFormRouteArgs>(
+          orElse: () => const ImportRawseedFormRouteArgs());
+      return _i36.ImportRawseedFormPage(key: args.key);
+    },
+  );
 }
 
 class ImportRawseedFormRouteArgs {
@@ -1600,8 +1245,17 @@ class LoginRoute extends _i74.PageRouteInfo<LoginRouteArgs> {
 
   static const String name = 'LoginRoute';
 
-  static const _i74.PageInfo<LoginRouteArgs> page =
-      _i74.PageInfo<LoginRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args =
+          data.argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
+      return _i37.LoginPage(
+        key: args.key,
+        onLoginResult: args.onLoginResult,
+      );
+    },
+  );
 }
 
 class LoginRouteArgs {
@@ -1631,7 +1285,12 @@ class MintAssetRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'MintAssetRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i38.MintAssetPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1653,8 +1312,17 @@ class MintAssetRouteWrapper
 
   static const String name = 'MintAssetRouteWrapper';
 
-  static const _i74.PageInfo<MintAssetRouteWrapperArgs> page =
-      _i74.PageInfo<MintAssetRouteWrapperArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<MintAssetRouteWrapperArgs>();
+      return _i74.WrappedRoute(
+          child: _i39.MintAssetPageWrapper(
+        initialAssetId: args.initialAssetId,
+        key: args.key,
+      ));
+    },
+  );
 }
 
 class MintAssetRouteWrapperArgs {
@@ -1684,7 +1352,12 @@ class NoStableHashRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'NoStableHashRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i40.NoStableHashDialog();
+    },
+  );
 }
 
 /// generated route for
@@ -1706,8 +1379,16 @@ class NonNativeTokenRouteWrapper
 
   static const String name = 'NonNativeTokenRouteWrapper';
 
-  static const _i74.PageInfo<NonNativeTokenRouteWrapperArgs> page =
-      _i74.PageInfo<NonNativeTokenRouteWrapperArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<NonNativeTokenRouteWrapperArgs>();
+      return _i41.NonNativeTokenPageWrapper(
+        args.params,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class NonNativeTokenRouteWrapperArgs {
@@ -1737,7 +1418,12 @@ class NotificationsRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'NotificationsRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i42.NotificationsPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1751,7 +1437,12 @@ class ObjectsListRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'ObjectsListRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i43.ObjectsListPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1765,7 +1456,13 @@ class PendingAtomicSwapRouteWrapper extends _i74.PageRouteInfo<void> {
 
   static const String name = 'PendingAtomicSwapRouteWrapper';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return _i74.WrappedRoute(
+          child: const _i44.PendingAtomicSwapPageWrapper());
+    },
+  );
 }
 
 /// generated route for
@@ -1779,7 +1476,12 @@ class PixelRatioSubRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'PixelRatioSubRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i45.PixelRatioSubPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1793,7 +1495,12 @@ class PoolsRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'PoolsRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i46.PoolsPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1807,7 +1514,12 @@ class PoolsRouteWrapper extends _i74.PageRouteInfo<void> {
 
   static const String name = 'PoolsRouteWrapper';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return _i74.WrappedRoute(child: const _i47.PoolsPageWrapper());
+    },
+  );
 }
 
 /// generated route for
@@ -1821,7 +1533,12 @@ class PreviewRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'PreviewRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i48.PreviewPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1842,8 +1559,17 @@ class PreviewRouteWrapper extends _i74.PageRouteInfo<PreviewRouteWrapperArgs> {
 
   static const String name = 'PreviewRouteWrapper';
 
-  static const _i74.PageInfo<PreviewRouteWrapperArgs> page =
-      _i74.PageInfo<PreviewRouteWrapperArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PreviewRouteWrapperArgs>();
+      return _i74.WrappedRoute(
+          child: _i49.PreviewPageWrapper(
+        snapshot: args.snapshot,
+        key: args.key,
+      ));
+    },
+  );
 }
 
 class PreviewRouteWrapperArgs {
@@ -1873,7 +1599,12 @@ class RecieveRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'RecieveRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i50.RecievePage();
+    },
+  );
 }
 
 /// generated route for
@@ -1887,7 +1618,12 @@ class RemoveAccountRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'RemoveAccountRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i51.RemoveAccountDialog();
+    },
+  );
 }
 
 /// generated route for
@@ -1909,8 +1645,16 @@ class RemoveLiquidityRouteWrapper
 
   static const String name = 'RemoveLiquidityRouteWrapper';
 
-  static const _i74.PageInfo<RemoveLiquidityRouteWrapperArgs> page =
-      _i74.PageInfo<RemoveLiquidityRouteWrapperArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<RemoveLiquidityRouteWrapperArgs>();
+      return _i52.RemoveLiquidityPageWrapper(
+        poolFullInfo: args.poolFullInfo,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class RemoveLiquidityRouteWrapperArgs {
@@ -1949,8 +1693,17 @@ class RenameObjectRoute extends _i74.PageRouteInfo<RenameObjectRouteArgs> {
 
   static const String name = 'RenameObjectRoute';
 
-  static const _i74.PageInfo<RenameObjectRouteArgs> page =
-      _i74.PageInfo<RenameObjectRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<RenameObjectRouteArgs>();
+      return _i53.RenameObjectDialog(
+        snapshot: args.snapshot,
+        hashObject: args.hashObject,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class RenameObjectRouteArgs {
@@ -1992,8 +1745,17 @@ class RenameSnapshotRoute extends _i74.PageRouteInfo<RenameSnapshotRouteArgs> {
 
   static const String name = 'RenameSnapshotRoute';
 
-  static const _i74.PageInfo<RenameSnapshotRouteArgs> page =
-      _i74.PageInfo<RenameSnapshotRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<RenameSnapshotRouteArgs>();
+      return _i54.RenameSnapshotDialog(
+        snapshot: args.snapshot,
+        hashObject: args.hashObject,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class RenameSnapshotRouteArgs {
@@ -2035,8 +1797,17 @@ class SaveHashRoute extends _i74.PageRouteInfo<SaveHashRouteArgs> {
 
   static const String name = 'SaveHashRoute';
 
-  static const _i74.PageInfo<SaveHashRouteArgs> page =
-      _i74.PageInfo<SaveHashRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<SaveHashRouteArgs>();
+      return _i55.SaveHashDialog(
+        snapshot: args.snapshot,
+        hashObject: args.hashObject,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class SaveHashRouteArgs {
@@ -2076,8 +1847,16 @@ class SaveObjectRoute extends _i74.PageRouteInfo<SaveObjectRouteArgs> {
 
   static const String name = 'SaveObjectRoute';
 
-  static const _i74.PageInfo<SaveObjectRouteArgs> page =
-      _i74.PageInfo<SaveObjectRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<SaveObjectRouteArgs>();
+      return _i56.SaveObjectDialog(
+        snapshot: args.snapshot,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class SaveObjectRouteArgs {
@@ -2107,7 +1886,12 @@ class ScanRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'ScanRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i57.ScanPage();
+    },
+  );
 }
 
 /// generated route for
@@ -2121,7 +1905,12 @@ class ScanRouteWrapper extends _i74.PageRouteInfo<void> {
 
   static const String name = 'ScanRouteWrapper';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return _i74.WrappedRoute(child: const _i58.ScanPageWrapper());
+    },
+  );
 }
 
 /// generated route for
@@ -2142,8 +1931,16 @@ class SectionsSubRoute extends _i74.PageRouteInfo<SectionsSubRouteArgs> {
 
   static const String name = 'SectionsSubRoute';
 
-  static const _i74.PageInfo<SectionsSubRouteArgs> page =
-      _i74.PageInfo<SectionsSubRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<SectionsSubRouteArgs>();
+      return _i59.SectionsSubPage(
+        initialState: args.initialState,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class SectionsSubRouteArgs {
@@ -2173,7 +1970,12 @@ class SelectAccountRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'SelectAccountRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i60.SelectAccountPage();
+    },
+  );
 }
 
 /// generated route for
@@ -2187,7 +1989,12 @@ class SetMetadataRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'SetMetadataRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i61.SetMetadataPage();
+    },
+  );
 }
 
 /// generated route for
@@ -2209,8 +2016,17 @@ class SetMetadataRouteWrapper
 
   static const String name = 'SetMetadataRouteWrapper';
 
-  static const _i74.PageInfo<SetMetadataRouteWrapperArgs> page =
-      _i74.PageInfo<SetMetadataRouteWrapperArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<SetMetadataRouteWrapperArgs>();
+      return _i74.WrappedRoute(
+          child: _i62.SetMetadataPageWrapper(
+        initialAssetId: args.initialAssetId,
+        key: args.key,
+      ));
+    },
+  );
 }
 
 class SetMetadataRouteWrapperArgs {
@@ -2240,7 +2056,12 @@ class SettingsRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'SettingsRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i63.SettingsPage();
+    },
+  );
 }
 
 /// generated route for
@@ -2261,8 +2082,16 @@ class StableHashSubRoute extends _i74.PageRouteInfo<StableHashSubRouteArgs> {
 
   static const String name = 'StableHashSubRoute';
 
-  static const _i74.PageInfo<StableHashSubRouteArgs> page =
-      _i74.PageInfo<StableHashSubRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<StableHashSubRouteArgs>();
+      return _i64.StableHashSubPage(
+        initialState: args.initialState,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class StableHashSubRouteArgs {
@@ -2292,7 +2121,12 @@ class SwapRouteWrapper extends _i74.PageRouteInfo<void> {
 
   static const String name = 'SwapRouteWrapper';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i65.SwapPageWrapper();
+    },
+  );
 }
 
 /// generated route for
@@ -2313,8 +2147,16 @@ class TransBytesSubRoute extends _i74.PageRouteInfo<TransBytesSubRouteArgs> {
 
   static const String name = 'TransBytesSubRoute';
 
-  static const _i74.PageInfo<TransBytesSubRouteArgs> page =
-      _i74.PageInfo<TransBytesSubRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<TransBytesSubRouteArgs>();
+      return _i66.TransBytesSubPage(
+        initialState: args.initialState,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class TransBytesSubRouteArgs {
@@ -2344,7 +2186,12 @@ class TransactionsHistoryRouteWrapper extends _i74.PageRouteInfo<void> {
 
   static const String name = 'TransactionsHistoryRouteWrapper';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i67.TransactionsHistoryPageWrapper();
+    },
+  );
 }
 
 /// generated route for
@@ -2361,8 +2208,14 @@ class TransferRoute extends _i74.PageRouteInfo<TransferRouteArgs> {
 
   static const String name = 'TransferRoute';
 
-  static const _i74.PageInfo<TransferRouteArgs> page =
-      _i74.PageInfo<TransferRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<TransferRouteArgs>(
+          orElse: () => const TransferRouteArgs());
+      return _i68.TransferPage(key: args.key);
+    },
+  );
 }
 
 class TransferRouteArgs {
@@ -2395,8 +2248,17 @@ class TransferRouteWrapper
 
   static const String name = 'TransferRouteWrapper';
 
-  static const _i74.PageInfo<TransferRouteWrapperArgs> page =
-      _i74.PageInfo<TransferRouteWrapperArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<TransferRouteWrapperArgs>();
+      return _i74.WrappedRoute(
+          child: _i69.TransferPageWrapper(
+        metadata: args.metadata,
+        key: args.key,
+      ));
+    },
+  );
 }
 
 class TransferRouteWrapperArgs {
@@ -2436,8 +2298,17 @@ class UploadedObjectWrapper
 
   static const String name = 'UploadedObjectWrapper';
 
-  static const _i74.PageInfo<UploadedObjectWrapperArgs> page =
-      _i74.PageInfo<UploadedObjectWrapperArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<UploadedObjectWrapperArgs>();
+      return _i70.UploadedObjectWrapper(
+        objectId: args.objectId,
+        uploadedObject: args.uploadedObject,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class UploadedObjectWrapperArgs {
@@ -2477,8 +2348,16 @@ class WalletNodeSubRoute extends _i74.PageRouteInfo<WalletNodeSubRouteArgs> {
 
   static const String name = 'WalletNodeSubRoute';
 
-  static const _i74.PageInfo<WalletNodeSubRouteArgs> page =
-      _i74.PageInfo<WalletNodeSubRouteArgs>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<WalletNodeSubRouteArgs>();
+      return _i71.WalletNodeSubPage(
+        initialState: args.initialState,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class WalletNodeSubRouteArgs {
@@ -2508,7 +2387,12 @@ class WalletRoute extends _i74.PageRouteInfo<void> {
 
   static const String name = 'WalletRoute';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return const _i72.WalletPage();
+    },
+  );
 }
 
 /// generated route for
@@ -2522,5 +2406,10 @@ class WalletRouteWrapper extends _i74.PageRouteInfo<void> {
 
   static const String name = 'WalletRouteWrapper';
 
-  static const _i74.PageInfo<void> page = _i74.PageInfo<void>(name);
+  static _i74.PageInfo page = _i74.PageInfo(
+    name,
+    builder: (data) {
+      return _i74.WrappedRoute(child: const _i73.WalletPageWrapper());
+    },
+  );
 }

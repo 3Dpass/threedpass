@@ -7,70 +7,70 @@ part of 'threedpass.schema.schema.gql.dart';
 // **************************************************************************
 
 Serializer<GFilterGetBlock> _$gFilterGetBlockSerializer =
-    new _$GFilterGetBlockSerializer();
+    _$GFilterGetBlockSerializer();
 Serializer<GBlocksFilter> _$gBlocksFilterSerializer =
-    new _$GBlocksFilterSerializer();
+    _$GBlocksFilterSerializer();
 Serializer<GExtrinsicFilter> _$gExtrinsicFilterSerializer =
-    new _$GExtrinsicFilterSerializer();
+    _$GExtrinsicFilterSerializer();
 Serializer<GFilterGetEvent> _$gFilterGetEventSerializer =
-    new _$GFilterGetEventSerializer();
+    _$GFilterGetEventSerializer();
 Serializer<GFilterGetEvents> _$gFilterGetEventsSerializer =
-    new _$GFilterGetEventsSerializer();
+    _$GFilterGetEventsSerializer();
 Serializer<GFilterGetRuntime> _$gFilterGetRuntimeSerializer =
-    new _$GFilterGetRuntimeSerializer();
+    _$GFilterGetRuntimeSerializer();
 Serializer<GFilterGetRuntimes> _$gFilterGetRuntimesSerializer =
-    new _$GFilterGetRuntimesSerializer();
+    _$GFilterGetRuntimesSerializer();
 Serializer<GFilterGetRuntimeCall> _$gFilterGetRuntimeCallSerializer =
-    new _$GFilterGetRuntimeCallSerializer();
+    _$GFilterGetRuntimeCallSerializer();
 Serializer<GFilterGetRuntimeCalls> _$gFilterGetRuntimeCallsSerializer =
-    new _$GFilterGetRuntimeCallsSerializer();
+    _$GFilterGetRuntimeCallsSerializer();
 Serializer<GFilterGetRuntimeCallArguments>
     _$gFilterGetRuntimeCallArgumentsSerializer =
-    new _$GFilterGetRuntimeCallArgumentsSerializer();
+    _$GFilterGetRuntimeCallArgumentsSerializer();
 Serializer<GFilterGetRuntimeConstant> _$gFilterGetRuntimeConstantSerializer =
-    new _$GFilterGetRuntimeConstantSerializer();
+    _$GFilterGetRuntimeConstantSerializer();
 Serializer<GFilterGetRuntimeConstants> _$gFilterGetRuntimeConstantsSerializer =
-    new _$GFilterGetRuntimeConstantsSerializer();
+    _$GFilterGetRuntimeConstantsSerializer();
 Serializer<GFilterGetRuntimeErrorMessage>
     _$gFilterGetRuntimeErrorMessageSerializer =
-    new _$GFilterGetRuntimeErrorMessageSerializer();
+    _$GFilterGetRuntimeErrorMessageSerializer();
 Serializer<GFilterGetRuntimeErrorMessages>
     _$gFilterGetRuntimeErrorMessagesSerializer =
-    new _$GFilterGetRuntimeErrorMessagesSerializer();
+    _$GFilterGetRuntimeErrorMessagesSerializer();
 Serializer<GFilterGetRuntimeEvent> _$gFilterGetRuntimeEventSerializer =
-    new _$GFilterGetRuntimeEventSerializer();
+    _$GFilterGetRuntimeEventSerializer();
 Serializer<GFilterGetRuntimeEvents> _$gFilterGetRuntimeEventsSerializer =
-    new _$GFilterGetRuntimeEventsSerializer();
+    _$GFilterGetRuntimeEventsSerializer();
 Serializer<GFilterGetRuntimeEventAttributes>
     _$gFilterGetRuntimeEventAttributesSerializer =
-    new _$GFilterGetRuntimeEventAttributesSerializer();
+    _$GFilterGetRuntimeEventAttributesSerializer();
 Serializer<GFilterGetRuntimePallet> _$gFilterGetRuntimePalletSerializer =
-    new _$GFilterGetRuntimePalletSerializer();
+    _$GFilterGetRuntimePalletSerializer();
 Serializer<GFilterGetRuntimePallets> _$gFilterGetRuntimePalletsSerializer =
-    new _$GFilterGetRuntimePalletsSerializer();
+    _$GFilterGetRuntimePalletsSerializer();
 Serializer<GFilterGetRuntimeStorage> _$gFilterGetRuntimeStorageSerializer =
-    new _$GFilterGetRuntimeStorageSerializer();
+    _$GFilterGetRuntimeStorageSerializer();
 Serializer<GFilterGetRuntimeStorages> _$gFilterGetRuntimeStoragesSerializer =
-    new _$GFilterGetRuntimeStoragesSerializer();
+    _$GFilterGetRuntimeStoragesSerializer();
 Serializer<GFilterGetRuntimeType> _$gFilterGetRuntimeTypeSerializer =
-    new _$GFilterGetRuntimeTypeSerializer();
+    _$GFilterGetRuntimeTypeSerializer();
 Serializer<GFilterGetRuntimeTypes> _$gFilterGetRuntimeTypesSerializer =
-    new _$GFilterGetRuntimeTypesSerializer();
+    _$GFilterGetRuntimeTypesSerializer();
 Serializer<GFilterGetLog> _$gFilterGetLogSerializer =
-    new _$GFilterGetLogSerializer();
+    _$GFilterGetLogSerializer();
 Serializer<GFilterGetLogs> _$gFilterGetLogsSerializer =
-    new _$GFilterGetLogsSerializer();
+    _$GFilterGetLogsSerializer();
 Serializer<GFilterGetTransfer> _$gFilterGetTransferSerializer =
-    new _$GFilterGetTransferSerializer();
+    _$GFilterGetTransferSerializer();
 Serializer<GFilterGetTransfers> _$gFilterGetTransfersSerializer =
-    new _$GFilterGetTransfersSerializer();
+    _$GFilterGetTransfersSerializer();
 Serializer<GFilterGetTaggedAccount> _$gFilterGetTaggedAccountSerializer =
-    new _$GFilterGetTaggedAccountSerializer();
+    _$GFilterGetTaggedAccountSerializer();
 Serializer<GEventsFilter> _$gEventsFilterSerializer =
-    new _$GEventsFilterSerializer();
+    _$GEventsFilterSerializer();
 Serializer<GTransferFilter> _$gTransferFilterSerializer =
-    new _$GTransferFilterSerializer();
-Serializer<GLogFilter> _$gLogFilterSerializer = new _$GLogFilterSerializer();
+    _$GTransferFilterSerializer();
+Serializer<GLogFilter> _$gLogFilterSerializer = _$GLogFilterSerializer();
 
 class _$GFilterGetBlockSerializer
     implements StructuredSerializer<GFilterGetBlock> {
@@ -163,7 +163,7 @@ class _$GFilterGetBlockSerializer
   GFilterGetBlock deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetBlockBuilder();
+    final result = GFilterGetBlockBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -341,7 +341,7 @@ class _$GBlocksFilterSerializer implements StructuredSerializer<GBlocksFilter> {
   GBlocksFilter deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GBlocksFilterBuilder();
+    final result = GBlocksFilterBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -534,7 +534,7 @@ class _$GExtrinsicFilterSerializer
   GExtrinsicFilter deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GExtrinsicFilterBuilder();
+    final result = GExtrinsicFilterBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -701,7 +701,7 @@ class _$GFilterGetEventSerializer
   GFilterGetEvent deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetEventBuilder();
+    final result = GFilterGetEventBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -865,7 +865,7 @@ class _$GFilterGetEventsSerializer
   GFilterGetEvents deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetEventsBuilder();
+    final result = GFilterGetEventsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -989,7 +989,7 @@ class _$GFilterGetRuntimeSerializer
   GFilterGetRuntime deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeBuilder();
+    final result = GFilterGetRuntimeBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1086,7 +1086,7 @@ class _$GFilterGetRuntimesSerializer
   GFilterGetRuntimes deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimesBuilder();
+    final result = GFilterGetRuntimesBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1193,7 +1193,7 @@ class _$GFilterGetRuntimeCallSerializer
   GFilterGetRuntimeCall deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeCallBuilder();
+    final result = GFilterGetRuntimeCallBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1304,7 +1304,7 @@ class _$GFilterGetRuntimeCallsSerializer
   GFilterGetRuntimeCalls deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeCallsBuilder();
+    final result = GFilterGetRuntimeCallsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1422,7 +1422,7 @@ class _$GFilterGetRuntimeCallArgumentsSerializer
   GFilterGetRuntimeCallArguments deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeCallArgumentsBuilder();
+    final result = GFilterGetRuntimeCallArgumentsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1545,7 +1545,7 @@ class _$GFilterGetRuntimeConstantSerializer
   GFilterGetRuntimeConstant deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeConstantBuilder();
+    final result = GFilterGetRuntimeConstantBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1667,7 +1667,7 @@ class _$GFilterGetRuntimeConstantsSerializer
   GFilterGetRuntimeConstants deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeConstantsBuilder();
+    final result = GFilterGetRuntimeConstantsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1789,7 +1789,7 @@ class _$GFilterGetRuntimeErrorMessageSerializer
   GFilterGetRuntimeErrorMessage deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeErrorMessageBuilder();
+    final result = GFilterGetRuntimeErrorMessageBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1911,7 +1911,7 @@ class _$GFilterGetRuntimeErrorMessagesSerializer
   GFilterGetRuntimeErrorMessages deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeErrorMessagesBuilder();
+    final result = GFilterGetRuntimeErrorMessagesBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -2034,7 +2034,7 @@ class _$GFilterGetRuntimeEventSerializer
   GFilterGetRuntimeEvent deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeEventBuilder();
+    final result = GFilterGetRuntimeEventBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -2156,7 +2156,7 @@ class _$GFilterGetRuntimeEventsSerializer
   GFilterGetRuntimeEvents deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeEventsBuilder();
+    final result = GFilterGetRuntimeEventsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -2278,7 +2278,7 @@ class _$GFilterGetRuntimeEventAttributesSerializer
   GFilterGetRuntimeEventAttributes deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeEventAttributesBuilder();
+    final result = GFilterGetRuntimeEventAttributesBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -2394,7 +2394,7 @@ class _$GFilterGetRuntimePalletSerializer
   GFilterGetRuntimePallet deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimePalletBuilder();
+    final result = GFilterGetRuntimePalletBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -2505,7 +2505,7 @@ class _$GFilterGetRuntimePalletsSerializer
   GFilterGetRuntimePallets deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimePalletsBuilder();
+    final result = GFilterGetRuntimePalletsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -2623,7 +2623,7 @@ class _$GFilterGetRuntimeStorageSerializer
   GFilterGetRuntimeStorage deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeStorageBuilder();
+    final result = GFilterGetRuntimeStorageBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -2745,7 +2745,7 @@ class _$GFilterGetRuntimeStoragesSerializer
   GFilterGetRuntimeStorages deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeStoragesBuilder();
+    final result = GFilterGetRuntimeStoragesBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -2860,7 +2860,7 @@ class _$GFilterGetRuntimeTypeSerializer
   GFilterGetRuntimeType deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeTypeBuilder();
+    final result = GFilterGetRuntimeTypeBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -2971,7 +2971,7 @@ class _$GFilterGetRuntimeTypesSerializer
   GFilterGetRuntimeTypes deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetRuntimeTypesBuilder();
+    final result = GFilterGetRuntimeTypesBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -3145,7 +3145,7 @@ class _$GFilterGetLogSerializer implements StructuredSerializer<GFilterGetLog> {
   GFilterGetLog deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetLogBuilder();
+    final result = GFilterGetLogBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -3352,7 +3352,7 @@ class _$GFilterGetLogsSerializer
   GFilterGetLogs deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetLogsBuilder();
+    final result = GFilterGetLogsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -3586,7 +3586,7 @@ class _$GFilterGetTransferSerializer
   GFilterGetTransfer deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetTransferBuilder();
+    final result = GFilterGetTransferBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -3839,7 +3839,7 @@ class _$GFilterGetTransfersSerializer
   GFilterGetTransfers deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetTransfersBuilder();
+    final result = GFilterGetTransfersBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -3988,7 +3988,7 @@ class _$GFilterGetTaggedAccountSerializer
   GFilterGetTaggedAccount deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterGetTaggedAccountBuilder();
+    final result = GFilterGetTaggedAccountBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -4121,7 +4121,7 @@ class _$GEventsFilterSerializer implements StructuredSerializer<GEventsFilter> {
   GEventsFilter deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GEventsFilterBuilder();
+    final result = GEventsFilterBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -4289,7 +4289,7 @@ class _$GTransferFilterSerializer
   GTransferFilter deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GTransferFilterBuilder();
+    final result = GTransferFilterBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -4452,7 +4452,7 @@ class _$GLogFilterSerializer implements StructuredSerializer<GLogFilter> {
   @override
   GLogFilter deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GLogFilterBuilder();
+    final result = GLogFilterBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -4520,18 +4520,15 @@ class _$GDateTime extends GDateTime {
   final String value;
 
   factory _$GDateTime([void Function(GDateTimeBuilder)? updates]) =>
-      (new GDateTimeBuilder()..update(updates))._build();
+      (GDateTimeBuilder()..update(updates))._build();
 
-  _$GDateTime._({required this.value}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(value, r'GDateTime', 'value');
-  }
-
+  _$GDateTime._({required this.value}) : super._();
   @override
   GDateTime rebuild(void Function(GDateTimeBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GDateTimeBuilder toBuilder() => new GDateTimeBuilder()..replace(this);
+  GDateTimeBuilder toBuilder() => GDateTimeBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -4574,7 +4571,6 @@ class GDateTimeBuilder implements Builder<GDateTime, GDateTimeBuilder> {
 
   @override
   void replace(GDateTime other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GDateTime;
   }
 
@@ -4588,9 +4584,10 @@ class GDateTimeBuilder implements Builder<GDateTime, GDateTimeBuilder> {
 
   _$GDateTime _build() {
     final _$result = _$v ??
-        new _$GDateTime._(
-            value: BuiltValueNullFieldError.checkNotNull(
-                value, r'GDateTime', 'value'));
+        _$GDateTime._(
+          value: BuiltValueNullFieldError.checkNotNull(
+              value, r'GDateTime', 'value'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -4619,7 +4616,7 @@ class _$GFilterGetBlock extends GFilterGetBlock {
   final GFilterGetBlock? not;
 
   factory _$GFilterGetBlock([void Function(GFilterGetBlockBuilder)? updates]) =>
-      (new GFilterGetBlockBuilder()..update(updates))._build();
+      (GFilterGetBlockBuilder()..update(updates))._build();
 
   _$GFilterGetBlock._(
       {this.number,
@@ -4633,14 +4630,12 @@ class _$GFilterGetBlock extends GFilterGetBlock {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetBlock rebuild(void Function(GFilterGetBlockBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GFilterGetBlockBuilder toBuilder() =>
-      new GFilterGetBlockBuilder()..replace(this);
+  GFilterGetBlockBuilder toBuilder() => GFilterGetBlockBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -4705,46 +4700,43 @@ class GFilterGetBlockBuilder
   set hash(String? hash) => _$this._hash = hash;
 
   GDateTimeBuilder? _datetime;
-  GDateTimeBuilder get datetime => _$this._datetime ??= new GDateTimeBuilder();
+  GDateTimeBuilder get datetime => _$this._datetime ??= GDateTimeBuilder();
   set datetime(GDateTimeBuilder? datetime) => _$this._datetime = datetime;
 
   GDateTimeBuilder? _datetimeGt;
-  GDateTimeBuilder get datetimeGt =>
-      _$this._datetimeGt ??= new GDateTimeBuilder();
+  GDateTimeBuilder get datetimeGt => _$this._datetimeGt ??= GDateTimeBuilder();
   set datetimeGt(GDateTimeBuilder? datetimeGt) =>
       _$this._datetimeGt = datetimeGt;
 
   GDateTimeBuilder? _datetimeLt;
-  GDateTimeBuilder get datetimeLt =>
-      _$this._datetimeLt ??= new GDateTimeBuilder();
+  GDateTimeBuilder get datetimeLt => _$this._datetimeLt ??= GDateTimeBuilder();
   set datetimeLt(GDateTimeBuilder? datetimeLt) =>
       _$this._datetimeLt = datetimeLt;
 
   GDateTimeBuilder? _datetimeGte;
   GDateTimeBuilder get datetimeGte =>
-      _$this._datetimeGte ??= new GDateTimeBuilder();
+      _$this._datetimeGte ??= GDateTimeBuilder();
   set datetimeGte(GDateTimeBuilder? datetimeGte) =>
       _$this._datetimeGte = datetimeGte;
 
   GDateTimeBuilder? _datetimeLte;
   GDateTimeBuilder get datetimeLte =>
-      _$this._datetimeLte ??= new GDateTimeBuilder();
+      _$this._datetimeLte ??= GDateTimeBuilder();
   set datetimeLte(GDateTimeBuilder? datetimeLte) =>
       _$this._datetimeLte = datetimeLte;
 
   ListBuilder<GFilterGetBlock>? _and;
   ListBuilder<GFilterGetBlock> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetBlock>();
+      _$this._and ??= ListBuilder<GFilterGetBlock>();
   set and(ListBuilder<GFilterGetBlock>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetBlock>? _or;
   ListBuilder<GFilterGetBlock> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetBlock>();
+      _$this._or ??= ListBuilder<GFilterGetBlock>();
   set or(ListBuilder<GFilterGetBlock>? or) => _$this._or = or;
 
   GFilterGetBlockBuilder? _not;
-  GFilterGetBlockBuilder get not =>
-      _$this._not ??= new GFilterGetBlockBuilder();
+  GFilterGetBlockBuilder get not => _$this._not ??= GFilterGetBlockBuilder();
   set not(GFilterGetBlockBuilder? not) => _$this._not = not;
 
   GFilterGetBlockBuilder();
@@ -4769,7 +4761,6 @@ class GFilterGetBlockBuilder
 
   @override
   void replace(GFilterGetBlock other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetBlock;
   }
 
@@ -4785,17 +4776,18 @@ class GFilterGetBlockBuilder
     _$GFilterGetBlock _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetBlock._(
-              number: number,
-              hash: hash,
-              datetime: _datetime?.build(),
-              datetimeGt: _datetimeGt?.build(),
-              datetimeLt: _datetimeLt?.build(),
-              datetimeGte: _datetimeGte?.build(),
-              datetimeLte: _datetimeLte?.build(),
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetBlock._(
+            number: number,
+            hash: hash,
+            datetime: _datetime?.build(),
+            datetimeGt: _datetimeGt?.build(),
+            datetimeLt: _datetimeLt?.build(),
+            datetimeGte: _datetimeGte?.build(),
+            datetimeLte: _datetimeLte?.build(),
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -4816,7 +4808,7 @@ class GFilterGetBlockBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetBlock', _$failedField, e.toString());
       }
       rethrow;
@@ -4857,7 +4849,7 @@ class _$GBlocksFilter extends GBlocksFilter {
   final GBlocksFilter? not;
 
   factory _$GBlocksFilter([void Function(GBlocksFilterBuilder)? updates]) =>
-      (new GBlocksFilterBuilder()..update(updates))._build();
+      (GBlocksFilterBuilder()..update(updates))._build();
 
   _$GBlocksFilter._(
       {this.number,
@@ -4875,13 +4867,12 @@ class _$GBlocksFilter extends GBlocksFilter {
       this.or,
       this.not})
       : super._();
-
   @override
   GBlocksFilter rebuild(void Function(GBlocksFilterBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GBlocksFilterBuilder toBuilder() => new GBlocksFilterBuilder()..replace(this);
+  GBlocksFilterBuilder toBuilder() => GBlocksFilterBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -4974,45 +4965,43 @@ class GBlocksFilterBuilder
   set hash(String? hash) => _$this._hash = hash;
 
   GDateTimeBuilder? _datetime;
-  GDateTimeBuilder get datetime => _$this._datetime ??= new GDateTimeBuilder();
+  GDateTimeBuilder get datetime => _$this._datetime ??= GDateTimeBuilder();
   set datetime(GDateTimeBuilder? datetime) => _$this._datetime = datetime;
 
   GDateTimeBuilder? _datetimeGt;
-  GDateTimeBuilder get datetimeGt =>
-      _$this._datetimeGt ??= new GDateTimeBuilder();
+  GDateTimeBuilder get datetimeGt => _$this._datetimeGt ??= GDateTimeBuilder();
   set datetimeGt(GDateTimeBuilder? datetimeGt) =>
       _$this._datetimeGt = datetimeGt;
 
   GDateTimeBuilder? _datetimeLt;
-  GDateTimeBuilder get datetimeLt =>
-      _$this._datetimeLt ??= new GDateTimeBuilder();
+  GDateTimeBuilder get datetimeLt => _$this._datetimeLt ??= GDateTimeBuilder();
   set datetimeLt(GDateTimeBuilder? datetimeLt) =>
       _$this._datetimeLt = datetimeLt;
 
   GDateTimeBuilder? _datetimeGte;
   GDateTimeBuilder get datetimeGte =>
-      _$this._datetimeGte ??= new GDateTimeBuilder();
+      _$this._datetimeGte ??= GDateTimeBuilder();
   set datetimeGte(GDateTimeBuilder? datetimeGte) =>
       _$this._datetimeGte = datetimeGte;
 
   GDateTimeBuilder? _datetimeLte;
   GDateTimeBuilder get datetimeLte =>
-      _$this._datetimeLte ??= new GDateTimeBuilder();
+      _$this._datetimeLte ??= GDateTimeBuilder();
   set datetimeLte(GDateTimeBuilder? datetimeLte) =>
       _$this._datetimeLte = datetimeLte;
 
   ListBuilder<GBlocksFilter>? _and;
   ListBuilder<GBlocksFilter> get and =>
-      _$this._and ??= new ListBuilder<GBlocksFilter>();
+      _$this._and ??= ListBuilder<GBlocksFilter>();
   set and(ListBuilder<GBlocksFilter>? and) => _$this._and = and;
 
   ListBuilder<GBlocksFilter>? _or;
   ListBuilder<GBlocksFilter> get or =>
-      _$this._or ??= new ListBuilder<GBlocksFilter>();
+      _$this._or ??= ListBuilder<GBlocksFilter>();
   set or(ListBuilder<GBlocksFilter>? or) => _$this._or = or;
 
   GBlocksFilterBuilder? _not;
-  GBlocksFilterBuilder get not => _$this._not ??= new GBlocksFilterBuilder();
+  GBlocksFilterBuilder get not => _$this._not ??= GBlocksFilterBuilder();
   set not(GBlocksFilterBuilder? not) => _$this._not = not;
 
   GBlocksFilterBuilder();
@@ -5041,7 +5030,6 @@ class GBlocksFilterBuilder
 
   @override
   void replace(GBlocksFilter other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GBlocksFilter;
   }
 
@@ -5057,21 +5045,22 @@ class GBlocksFilterBuilder
     _$GBlocksFilter _$result;
     try {
       _$result = _$v ??
-          new _$GBlocksFilter._(
-              number: number,
-              numberGt: numberGt,
-              numberLt: numberLt,
-              numberGte: numberGte,
-              numberLte: numberLte,
-              hash: hash,
-              datetime: _datetime?.build(),
-              datetimeGt: _datetimeGt?.build(),
-              datetimeLt: _datetimeLt?.build(),
-              datetimeGte: _datetimeGte?.build(),
-              datetimeLte: _datetimeLte?.build(),
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GBlocksFilter._(
+            number: number,
+            numberGt: numberGt,
+            numberLt: numberLt,
+            numberGte: numberGte,
+            numberLte: numberLte,
+            hash: hash,
+            datetime: _datetime?.build(),
+            datetimeGt: _datetimeGt?.build(),
+            datetimeLt: _datetimeLt?.build(),
+            datetimeGte: _datetimeGte?.build(),
+            datetimeLte: _datetimeLte?.build(),
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -5092,7 +5081,7 @@ class GBlocksFilterBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GBlocksFilter', _$failedField, e.toString());
       }
       rethrow;
@@ -5107,18 +5096,15 @@ class _$GJSONString extends GJSONString {
   final String value;
 
   factory _$GJSONString([void Function(GJSONStringBuilder)? updates]) =>
-      (new GJSONStringBuilder()..update(updates))._build();
+      (GJSONStringBuilder()..update(updates))._build();
 
-  _$GJSONString._({required this.value}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(value, r'GJSONString', 'value');
-  }
-
+  _$GJSONString._({required this.value}) : super._();
   @override
   GJSONString rebuild(void Function(GJSONStringBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GJSONStringBuilder toBuilder() => new GJSONStringBuilder()..replace(this);
+  GJSONStringBuilder toBuilder() => GJSONStringBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -5161,7 +5147,6 @@ class GJSONStringBuilder implements Builder<GJSONString, GJSONStringBuilder> {
 
   @override
   void replace(GJSONString other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GJSONString;
   }
 
@@ -5175,9 +5160,10 @@ class GJSONStringBuilder implements Builder<GJSONString, GJSONStringBuilder> {
 
   _$GJSONString _build() {
     final _$result = _$v ??
-        new _$GJSONString._(
-            value: BuiltValueNullFieldError.checkNotNull(
-                value, r'GJSONString', 'value'));
+        _$GJSONString._(
+          value: BuiltValueNullFieldError.checkNotNull(
+              value, r'GJSONString', 'value'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -5215,7 +5201,7 @@ class _$GExtrinsicFilter extends GExtrinsicFilter {
 
   factory _$GExtrinsicFilter(
           [void Function(GExtrinsicFilterBuilder)? updates]) =>
-      (new GExtrinsicFilterBuilder()..update(updates))._build();
+      (GExtrinsicFilterBuilder()..update(updates))._build();
 
   _$GExtrinsicFilter._(
       {this.blockNumber,
@@ -5233,14 +5219,13 @@ class _$GExtrinsicFilter extends GExtrinsicFilter {
       this.not,
       this.multiAddressAccountId})
       : super._();
-
   @override
   GExtrinsicFilter rebuild(void Function(GExtrinsicFilterBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GExtrinsicFilterBuilder toBuilder() =>
-      new GExtrinsicFilterBuilder()..replace(this);
+      GExtrinsicFilterBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -5330,47 +5315,46 @@ class GExtrinsicFilterBuilder
 
   GDateTimeBuilder? _blockDatetime;
   GDateTimeBuilder get blockDatetime =>
-      _$this._blockDatetime ??= new GDateTimeBuilder();
+      _$this._blockDatetime ??= GDateTimeBuilder();
   set blockDatetime(GDateTimeBuilder? blockDatetime) =>
       _$this._blockDatetime = blockDatetime;
 
   GDateTimeBuilder? _blockDatetimeGt;
   GDateTimeBuilder get blockDatetimeGt =>
-      _$this._blockDatetimeGt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGt ??= GDateTimeBuilder();
   set blockDatetimeGt(GDateTimeBuilder? blockDatetimeGt) =>
       _$this._blockDatetimeGt = blockDatetimeGt;
 
   GDateTimeBuilder? _blockDatetimeLt;
   GDateTimeBuilder get blockDatetimeLt =>
-      _$this._blockDatetimeLt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLt ??= GDateTimeBuilder();
   set blockDatetimeLt(GDateTimeBuilder? blockDatetimeLt) =>
       _$this._blockDatetimeLt = blockDatetimeLt;
 
   GDateTimeBuilder? _blockDatetimeGte;
   GDateTimeBuilder get blockDatetimeGte =>
-      _$this._blockDatetimeGte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGte ??= GDateTimeBuilder();
   set blockDatetimeGte(GDateTimeBuilder? blockDatetimeGte) =>
       _$this._blockDatetimeGte = blockDatetimeGte;
 
   GDateTimeBuilder? _blockDatetimeLte;
   GDateTimeBuilder get blockDatetimeLte =>
-      _$this._blockDatetimeLte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLte ??= GDateTimeBuilder();
   set blockDatetimeLte(GDateTimeBuilder? blockDatetimeLte) =>
       _$this._blockDatetimeLte = blockDatetimeLte;
 
   ListBuilder<GExtrinsicFilter>? _and;
   ListBuilder<GExtrinsicFilter> get and =>
-      _$this._and ??= new ListBuilder<GExtrinsicFilter>();
+      _$this._and ??= ListBuilder<GExtrinsicFilter>();
   set and(ListBuilder<GExtrinsicFilter>? and) => _$this._and = and;
 
   ListBuilder<GExtrinsicFilter>? _or;
   ListBuilder<GExtrinsicFilter> get or =>
-      _$this._or ??= new ListBuilder<GExtrinsicFilter>();
+      _$this._or ??= ListBuilder<GExtrinsicFilter>();
   set or(ListBuilder<GExtrinsicFilter>? or) => _$this._or = or;
 
   GExtrinsicFilterBuilder? _not;
-  GExtrinsicFilterBuilder get not =>
-      _$this._not ??= new GExtrinsicFilterBuilder();
+  GExtrinsicFilterBuilder get not => _$this._not ??= GExtrinsicFilterBuilder();
   set not(GExtrinsicFilterBuilder? not) => _$this._not = not;
 
   String? _multiAddressAccountId;
@@ -5404,7 +5388,6 @@ class GExtrinsicFilterBuilder
 
   @override
   void replace(GExtrinsicFilter other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GExtrinsicFilter;
   }
 
@@ -5420,21 +5403,22 @@ class GExtrinsicFilterBuilder
     _$GExtrinsicFilter _$result;
     try {
       _$result = _$v ??
-          new _$GExtrinsicFilter._(
-              blockNumber: blockNumber,
-              extrinsicIdx: extrinsicIdx,
-              callModule: callModule,
-              callName: callName,
-              signed: signed,
-              blockDatetime: _blockDatetime?.build(),
-              blockDatetimeGt: _blockDatetimeGt?.build(),
-              blockDatetimeLt: _blockDatetimeLt?.build(),
-              blockDatetimeGte: _blockDatetimeGte?.build(),
-              blockDatetimeLte: _blockDatetimeLte?.build(),
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build(),
-              multiAddressAccountId: multiAddressAccountId);
+          _$GExtrinsicFilter._(
+            blockNumber: blockNumber,
+            extrinsicIdx: extrinsicIdx,
+            callModule: callModule,
+            callName: callName,
+            signed: signed,
+            blockDatetime: _blockDatetime?.build(),
+            blockDatetimeGt: _blockDatetimeGt?.build(),
+            blockDatetimeLt: _blockDatetimeLt?.build(),
+            blockDatetimeGte: _blockDatetimeGte?.build(),
+            blockDatetimeLte: _blockDatetimeLte?.build(),
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+            multiAddressAccountId: multiAddressAccountId,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -5455,7 +5439,7 @@ class GExtrinsicFilterBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GExtrinsicFilter', _$failedField, e.toString());
       }
       rethrow;
@@ -5488,7 +5472,7 @@ class _$GFilterGetEvent extends GFilterGetEvent {
   final GFilterGetEvent? not;
 
   factory _$GFilterGetEvent([void Function(GFilterGetEventBuilder)? updates]) =>
-      (new GFilterGetEventBuilder()..update(updates))._build();
+      (GFilterGetEventBuilder()..update(updates))._build();
 
   _$GFilterGetEvent._(
       {this.blockNumber,
@@ -5502,14 +5486,12 @@ class _$GFilterGetEvent extends GFilterGetEvent {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetEvent rebuild(void Function(GFilterGetEventBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GFilterGetEventBuilder toBuilder() =>
-      new GFilterGetEventBuilder()..replace(this);
+  GFilterGetEventBuilder toBuilder() => GFilterGetEventBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -5575,47 +5557,46 @@ class GFilterGetEventBuilder
 
   GDateTimeBuilder? _blockDatetime;
   GDateTimeBuilder get blockDatetime =>
-      _$this._blockDatetime ??= new GDateTimeBuilder();
+      _$this._blockDatetime ??= GDateTimeBuilder();
   set blockDatetime(GDateTimeBuilder? blockDatetime) =>
       _$this._blockDatetime = blockDatetime;
 
   GDateTimeBuilder? _blockDatetimeGt;
   GDateTimeBuilder get blockDatetimeGt =>
-      _$this._blockDatetimeGt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGt ??= GDateTimeBuilder();
   set blockDatetimeGt(GDateTimeBuilder? blockDatetimeGt) =>
       _$this._blockDatetimeGt = blockDatetimeGt;
 
   GDateTimeBuilder? _blockDatetimeLt;
   GDateTimeBuilder get blockDatetimeLt =>
-      _$this._blockDatetimeLt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLt ??= GDateTimeBuilder();
   set blockDatetimeLt(GDateTimeBuilder? blockDatetimeLt) =>
       _$this._blockDatetimeLt = blockDatetimeLt;
 
   GDateTimeBuilder? _blockDatetimeGte;
   GDateTimeBuilder get blockDatetimeGte =>
-      _$this._blockDatetimeGte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGte ??= GDateTimeBuilder();
   set blockDatetimeGte(GDateTimeBuilder? blockDatetimeGte) =>
       _$this._blockDatetimeGte = blockDatetimeGte;
 
   GDateTimeBuilder? _blockDatetimeLte;
   GDateTimeBuilder get blockDatetimeLte =>
-      _$this._blockDatetimeLte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLte ??= GDateTimeBuilder();
   set blockDatetimeLte(GDateTimeBuilder? blockDatetimeLte) =>
       _$this._blockDatetimeLte = blockDatetimeLte;
 
   ListBuilder<GFilterGetEvent>? _and;
   ListBuilder<GFilterGetEvent> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetEvent>();
+      _$this._and ??= ListBuilder<GFilterGetEvent>();
   set and(ListBuilder<GFilterGetEvent>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetEvent>? _or;
   ListBuilder<GFilterGetEvent> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetEvent>();
+      _$this._or ??= ListBuilder<GFilterGetEvent>();
   set or(ListBuilder<GFilterGetEvent>? or) => _$this._or = or;
 
   GFilterGetEventBuilder? _not;
-  GFilterGetEventBuilder get not =>
-      _$this._not ??= new GFilterGetEventBuilder();
+  GFilterGetEventBuilder get not => _$this._not ??= GFilterGetEventBuilder();
   set not(GFilterGetEventBuilder? not) => _$this._not = not;
 
   GFilterGetEventBuilder();
@@ -5640,7 +5621,6 @@ class GFilterGetEventBuilder
 
   @override
   void replace(GFilterGetEvent other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetEvent;
   }
 
@@ -5656,17 +5636,18 @@ class GFilterGetEventBuilder
     _$GFilterGetEvent _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetEvent._(
-              blockNumber: blockNumber,
-              eventIdx: eventIdx,
-              blockDatetime: _blockDatetime?.build(),
-              blockDatetimeGt: _blockDatetimeGt?.build(),
-              blockDatetimeLt: _blockDatetimeLt?.build(),
-              blockDatetimeGte: _blockDatetimeGte?.build(),
-              blockDatetimeLte: _blockDatetimeLte?.build(),
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetEvent._(
+            blockNumber: blockNumber,
+            eventIdx: eventIdx,
+            blockDatetime: _blockDatetime?.build(),
+            blockDatetimeGt: _blockDatetimeGt?.build(),
+            blockDatetimeLt: _blockDatetimeLt?.build(),
+            blockDatetimeGte: _blockDatetimeGte?.build(),
+            blockDatetimeLte: _blockDatetimeLte?.build(),
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -5687,7 +5668,7 @@ class GFilterGetEventBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetEvent', _$failedField, e.toString());
       }
       rethrow;
@@ -5725,7 +5706,7 @@ class _$GFilterGetEvents extends GFilterGetEvents {
 
   factory _$GFilterGetEvents(
           [void Function(GFilterGetEventsBuilder)? updates]) =>
-      (new GFilterGetEventsBuilder()..update(updates))._build();
+      (GFilterGetEventsBuilder()..update(updates))._build();
 
   _$GFilterGetEvents._(
       {this.blockNumber,
@@ -5741,14 +5722,13 @@ class _$GFilterGetEvents extends GFilterGetEvents {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetEvents rebuild(void Function(GFilterGetEventsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GFilterGetEventsBuilder toBuilder() =>
-      new GFilterGetEventsBuilder()..replace(this);
+      GFilterGetEventsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -5828,47 +5808,46 @@ class GFilterGetEventsBuilder
 
   GDateTimeBuilder? _blockDatetime;
   GDateTimeBuilder get blockDatetime =>
-      _$this._blockDatetime ??= new GDateTimeBuilder();
+      _$this._blockDatetime ??= GDateTimeBuilder();
   set blockDatetime(GDateTimeBuilder? blockDatetime) =>
       _$this._blockDatetime = blockDatetime;
 
   GDateTimeBuilder? _blockDatetimeGt;
   GDateTimeBuilder get blockDatetimeGt =>
-      _$this._blockDatetimeGt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGt ??= GDateTimeBuilder();
   set blockDatetimeGt(GDateTimeBuilder? blockDatetimeGt) =>
       _$this._blockDatetimeGt = blockDatetimeGt;
 
   GDateTimeBuilder? _blockDatetimeLt;
   GDateTimeBuilder get blockDatetimeLt =>
-      _$this._blockDatetimeLt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLt ??= GDateTimeBuilder();
   set blockDatetimeLt(GDateTimeBuilder? blockDatetimeLt) =>
       _$this._blockDatetimeLt = blockDatetimeLt;
 
   GDateTimeBuilder? _blockDatetimeGte;
   GDateTimeBuilder get blockDatetimeGte =>
-      _$this._blockDatetimeGte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGte ??= GDateTimeBuilder();
   set blockDatetimeGte(GDateTimeBuilder? blockDatetimeGte) =>
       _$this._blockDatetimeGte = blockDatetimeGte;
 
   GDateTimeBuilder? _blockDatetimeLte;
   GDateTimeBuilder get blockDatetimeLte =>
-      _$this._blockDatetimeLte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLte ??= GDateTimeBuilder();
   set blockDatetimeLte(GDateTimeBuilder? blockDatetimeLte) =>
       _$this._blockDatetimeLte = blockDatetimeLte;
 
   ListBuilder<GFilterGetEvents>? _and;
   ListBuilder<GFilterGetEvents> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetEvents>();
+      _$this._and ??= ListBuilder<GFilterGetEvents>();
   set and(ListBuilder<GFilterGetEvents>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetEvents>? _or;
   ListBuilder<GFilterGetEvents> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetEvents>();
+      _$this._or ??= ListBuilder<GFilterGetEvents>();
   set or(ListBuilder<GFilterGetEvents>? or) => _$this._or = or;
 
   GFilterGetEventsBuilder? _not;
-  GFilterGetEventsBuilder get not =>
-      _$this._not ??= new GFilterGetEventsBuilder();
+  GFilterGetEventsBuilder get not => _$this._not ??= GFilterGetEventsBuilder();
   set not(GFilterGetEventsBuilder? not) => _$this._not = not;
 
   GFilterGetEventsBuilder();
@@ -5895,7 +5874,6 @@ class GFilterGetEventsBuilder
 
   @override
   void replace(GFilterGetEvents other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetEvents;
   }
 
@@ -5911,19 +5889,20 @@ class GFilterGetEventsBuilder
     _$GFilterGetEvents _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetEvents._(
-              blockNumber: blockNumber,
-              extrinsicIdx: extrinsicIdx,
-              eventModule: eventModule,
-              eventName: eventName,
-              blockDatetime: _blockDatetime?.build(),
-              blockDatetimeGt: _blockDatetimeGt?.build(),
-              blockDatetimeLt: _blockDatetimeLt?.build(),
-              blockDatetimeGte: _blockDatetimeGte?.build(),
-              blockDatetimeLte: _blockDatetimeLte?.build(),
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetEvents._(
+            blockNumber: blockNumber,
+            extrinsicIdx: extrinsicIdx,
+            eventModule: eventModule,
+            eventName: eventName,
+            blockDatetime: _blockDatetime?.build(),
+            blockDatetimeGt: _blockDatetimeGt?.build(),
+            blockDatetimeLt: _blockDatetimeLt?.build(),
+            blockDatetimeGte: _blockDatetimeGte?.build(),
+            blockDatetimeLte: _blockDatetimeLte?.build(),
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -5944,7 +5923,7 @@ class GFilterGetEventsBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetEvents', _$failedField, e.toString());
       }
       rethrow;
@@ -5968,19 +5947,18 @@ class _$GFilterGetRuntime extends GFilterGetRuntime {
 
   factory _$GFilterGetRuntime(
           [void Function(GFilterGetRuntimeBuilder)? updates]) =>
-      (new GFilterGetRuntimeBuilder()..update(updates))._build();
+      (GFilterGetRuntimeBuilder()..update(updates))._build();
 
   _$GFilterGetRuntime._(
       {this.specName, this.specVersion, this.and, this.or, this.not})
       : super._();
-
   @override
   GFilterGetRuntime rebuild(void Function(GFilterGetRuntimeBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GFilterGetRuntimeBuilder toBuilder() =>
-      new GFilterGetRuntimeBuilder()..replace(this);
+      GFilterGetRuntimeBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -6031,17 +6009,17 @@ class GFilterGetRuntimeBuilder
 
   ListBuilder<GFilterGetRuntime>? _and;
   ListBuilder<GFilterGetRuntime> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntime>();
+      _$this._and ??= ListBuilder<GFilterGetRuntime>();
   set and(ListBuilder<GFilterGetRuntime>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntime>? _or;
   ListBuilder<GFilterGetRuntime> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntime>();
+      _$this._or ??= ListBuilder<GFilterGetRuntime>();
   set or(ListBuilder<GFilterGetRuntime>? or) => _$this._or = or;
 
   GFilterGetRuntimeBuilder? _not;
   GFilterGetRuntimeBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeBuilder();
+      _$this._not ??= GFilterGetRuntimeBuilder();
   set not(GFilterGetRuntimeBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeBuilder();
@@ -6061,7 +6039,6 @@ class GFilterGetRuntimeBuilder
 
   @override
   void replace(GFilterGetRuntime other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntime;
   }
 
@@ -6077,12 +6054,13 @@ class GFilterGetRuntimeBuilder
     _$GFilterGetRuntime _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntime._(
-              specName: specName,
-              specVersion: specVersion,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntime._(
+            specName: specName,
+            specVersion: specVersion,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -6093,7 +6071,7 @@ class GFilterGetRuntimeBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntime', _$failedField, e.toString());
       }
       rethrow;
@@ -6117,12 +6095,11 @@ class _$GFilterGetRuntimes extends GFilterGetRuntimes {
 
   factory _$GFilterGetRuntimes(
           [void Function(GFilterGetRuntimesBuilder)? updates]) =>
-      (new GFilterGetRuntimesBuilder()..update(updates))._build();
+      (GFilterGetRuntimesBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimes._(
       {this.specName, this.specVersion, this.and, this.or, this.not})
       : super._();
-
   @override
   GFilterGetRuntimes rebuild(
           void Function(GFilterGetRuntimesBuilder) updates) =>
@@ -6130,7 +6107,7 @@ class _$GFilterGetRuntimes extends GFilterGetRuntimes {
 
   @override
   GFilterGetRuntimesBuilder toBuilder() =>
-      new GFilterGetRuntimesBuilder()..replace(this);
+      GFilterGetRuntimesBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -6181,17 +6158,17 @@ class GFilterGetRuntimesBuilder
 
   ListBuilder<GFilterGetRuntimes>? _and;
   ListBuilder<GFilterGetRuntimes> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimes>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimes>();
   set and(ListBuilder<GFilterGetRuntimes>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntimes>? _or;
   ListBuilder<GFilterGetRuntimes> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimes>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimes>();
   set or(ListBuilder<GFilterGetRuntimes>? or) => _$this._or = or;
 
   GFilterGetRuntimesBuilder? _not;
   GFilterGetRuntimesBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimesBuilder();
+      _$this._not ??= GFilterGetRuntimesBuilder();
   set not(GFilterGetRuntimesBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimesBuilder();
@@ -6211,7 +6188,6 @@ class GFilterGetRuntimesBuilder
 
   @override
   void replace(GFilterGetRuntimes other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimes;
   }
 
@@ -6227,12 +6203,13 @@ class GFilterGetRuntimesBuilder
     _$GFilterGetRuntimes _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimes._(
-              specName: specName,
-              specVersion: specVersion,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimes._(
+            specName: specName,
+            specVersion: specVersion,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -6243,7 +6220,7 @@ class GFilterGetRuntimesBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimes', _$failedField, e.toString());
       }
       rethrow;
@@ -6269,7 +6246,7 @@ class _$GFilterGetRuntimeCall extends GFilterGetRuntimeCall {
 
   factory _$GFilterGetRuntimeCall(
           [void Function(GFilterGetRuntimeCallBuilder)? updates]) =>
-      (new GFilterGetRuntimeCallBuilder()..update(updates))._build();
+      (GFilterGetRuntimeCallBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimeCall._(
       {this.specName,
@@ -6279,7 +6256,6 @@ class _$GFilterGetRuntimeCall extends GFilterGetRuntimeCall {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimeCall rebuild(
           void Function(GFilterGetRuntimeCallBuilder) updates) =>
@@ -6287,7 +6263,7 @@ class _$GFilterGetRuntimeCall extends GFilterGetRuntimeCall {
 
   @override
   GFilterGetRuntimeCallBuilder toBuilder() =>
-      new GFilterGetRuntimeCallBuilder()..replace(this);
+      GFilterGetRuntimeCallBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -6345,17 +6321,17 @@ class GFilterGetRuntimeCallBuilder
 
   ListBuilder<GFilterGetRuntimeCall>? _and;
   ListBuilder<GFilterGetRuntimeCall> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimeCall>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimeCall>();
   set and(ListBuilder<GFilterGetRuntimeCall>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntimeCall>? _or;
   ListBuilder<GFilterGetRuntimeCall> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimeCall>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimeCall>();
   set or(ListBuilder<GFilterGetRuntimeCall>? or) => _$this._or = or;
 
   GFilterGetRuntimeCallBuilder? _not;
   GFilterGetRuntimeCallBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeCallBuilder();
+      _$this._not ??= GFilterGetRuntimeCallBuilder();
   set not(GFilterGetRuntimeCallBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeCallBuilder();
@@ -6376,7 +6352,6 @@ class GFilterGetRuntimeCallBuilder
 
   @override
   void replace(GFilterGetRuntimeCall other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimeCall;
   }
 
@@ -6392,13 +6367,14 @@ class GFilterGetRuntimeCallBuilder
     _$GFilterGetRuntimeCall _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimeCall._(
-              specName: specName,
-              specVersion: specVersion,
-              pallet: pallet,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimeCall._(
+            specName: specName,
+            specVersion: specVersion,
+            pallet: pallet,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -6409,7 +6385,7 @@ class GFilterGetRuntimeCallBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimeCall', _$failedField, e.toString());
       }
       rethrow;
@@ -6435,7 +6411,7 @@ class _$GFilterGetRuntimeCalls extends GFilterGetRuntimeCalls {
 
   factory _$GFilterGetRuntimeCalls(
           [void Function(GFilterGetRuntimeCallsBuilder)? updates]) =>
-      (new GFilterGetRuntimeCallsBuilder()..update(updates))._build();
+      (GFilterGetRuntimeCallsBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimeCalls._(
       {this.specName,
@@ -6445,7 +6421,6 @@ class _$GFilterGetRuntimeCalls extends GFilterGetRuntimeCalls {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimeCalls rebuild(
           void Function(GFilterGetRuntimeCallsBuilder) updates) =>
@@ -6453,7 +6428,7 @@ class _$GFilterGetRuntimeCalls extends GFilterGetRuntimeCalls {
 
   @override
   GFilterGetRuntimeCallsBuilder toBuilder() =>
-      new GFilterGetRuntimeCallsBuilder()..replace(this);
+      GFilterGetRuntimeCallsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -6511,17 +6486,17 @@ class GFilterGetRuntimeCallsBuilder
 
   ListBuilder<GFilterGetRuntimeCalls>? _and;
   ListBuilder<GFilterGetRuntimeCalls> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimeCalls>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimeCalls>();
   set and(ListBuilder<GFilterGetRuntimeCalls>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntimeCalls>? _or;
   ListBuilder<GFilterGetRuntimeCalls> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimeCalls>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimeCalls>();
   set or(ListBuilder<GFilterGetRuntimeCalls>? or) => _$this._or = or;
 
   GFilterGetRuntimeCallsBuilder? _not;
   GFilterGetRuntimeCallsBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeCallsBuilder();
+      _$this._not ??= GFilterGetRuntimeCallsBuilder();
   set not(GFilterGetRuntimeCallsBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeCallsBuilder();
@@ -6542,7 +6517,6 @@ class GFilterGetRuntimeCallsBuilder
 
   @override
   void replace(GFilterGetRuntimeCalls other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimeCalls;
   }
 
@@ -6558,13 +6532,14 @@ class GFilterGetRuntimeCallsBuilder
     _$GFilterGetRuntimeCalls _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimeCalls._(
-              specName: specName,
-              specVersion: specVersion,
-              pallet: pallet,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimeCalls._(
+            specName: specName,
+            specVersion: specVersion,
+            pallet: pallet,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -6575,7 +6550,7 @@ class GFilterGetRuntimeCallsBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimeCalls', _$failedField, e.toString());
       }
       rethrow;
@@ -6603,7 +6578,7 @@ class _$GFilterGetRuntimeCallArguments extends GFilterGetRuntimeCallArguments {
 
   factory _$GFilterGetRuntimeCallArguments(
           [void Function(GFilterGetRuntimeCallArgumentsBuilder)? updates]) =>
-      (new GFilterGetRuntimeCallArgumentsBuilder()..update(updates))._build();
+      (GFilterGetRuntimeCallArgumentsBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimeCallArguments._(
       {this.specName,
@@ -6614,7 +6589,6 @@ class _$GFilterGetRuntimeCallArguments extends GFilterGetRuntimeCallArguments {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimeCallArguments rebuild(
           void Function(GFilterGetRuntimeCallArgumentsBuilder) updates) =>
@@ -6622,7 +6596,7 @@ class _$GFilterGetRuntimeCallArguments extends GFilterGetRuntimeCallArguments {
 
   @override
   GFilterGetRuntimeCallArgumentsBuilder toBuilder() =>
-      new GFilterGetRuntimeCallArgumentsBuilder()..replace(this);
+      GFilterGetRuntimeCallArgumentsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -6689,18 +6663,18 @@ class GFilterGetRuntimeCallArgumentsBuilder
 
   ListBuilder<GFilterGetRuntimeCallArguments>? _and;
   ListBuilder<GFilterGetRuntimeCallArguments> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimeCallArguments>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimeCallArguments>();
   set and(ListBuilder<GFilterGetRuntimeCallArguments>? and) =>
       _$this._and = and;
 
   ListBuilder<GFilterGetRuntimeCallArguments>? _or;
   ListBuilder<GFilterGetRuntimeCallArguments> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimeCallArguments>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimeCallArguments>();
   set or(ListBuilder<GFilterGetRuntimeCallArguments>? or) => _$this._or = or;
 
   GFilterGetRuntimeCallArgumentsBuilder? _not;
   GFilterGetRuntimeCallArgumentsBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeCallArgumentsBuilder();
+      _$this._not ??= GFilterGetRuntimeCallArgumentsBuilder();
   set not(GFilterGetRuntimeCallArgumentsBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeCallArgumentsBuilder();
@@ -6722,7 +6696,6 @@ class GFilterGetRuntimeCallArgumentsBuilder
 
   @override
   void replace(GFilterGetRuntimeCallArguments other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimeCallArguments;
   }
 
@@ -6738,14 +6711,15 @@ class GFilterGetRuntimeCallArgumentsBuilder
     _$GFilterGetRuntimeCallArguments _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimeCallArguments._(
-              specName: specName,
-              specVersion: specVersion,
-              pallet: pallet,
-              callName: callName,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimeCallArguments._(
+            specName: specName,
+            specVersion: specVersion,
+            pallet: pallet,
+            callName: callName,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -6756,7 +6730,7 @@ class GFilterGetRuntimeCallArgumentsBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimeCallArguments', _$failedField, e.toString());
       }
       rethrow;
@@ -6784,7 +6758,7 @@ class _$GFilterGetRuntimeConstant extends GFilterGetRuntimeConstant {
 
   factory _$GFilterGetRuntimeConstant(
           [void Function(GFilterGetRuntimeConstantBuilder)? updates]) =>
-      (new GFilterGetRuntimeConstantBuilder()..update(updates))._build();
+      (GFilterGetRuntimeConstantBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimeConstant._(
       {this.specName,
@@ -6795,7 +6769,6 @@ class _$GFilterGetRuntimeConstant extends GFilterGetRuntimeConstant {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimeConstant rebuild(
           void Function(GFilterGetRuntimeConstantBuilder) updates) =>
@@ -6803,7 +6776,7 @@ class _$GFilterGetRuntimeConstant extends GFilterGetRuntimeConstant {
 
   @override
   GFilterGetRuntimeConstantBuilder toBuilder() =>
-      new GFilterGetRuntimeConstantBuilder()..replace(this);
+      GFilterGetRuntimeConstantBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -6869,17 +6842,17 @@ class GFilterGetRuntimeConstantBuilder
 
   ListBuilder<GFilterGetRuntimeConstant>? _and;
   ListBuilder<GFilterGetRuntimeConstant> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimeConstant>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimeConstant>();
   set and(ListBuilder<GFilterGetRuntimeConstant>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntimeConstant>? _or;
   ListBuilder<GFilterGetRuntimeConstant> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimeConstant>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimeConstant>();
   set or(ListBuilder<GFilterGetRuntimeConstant>? or) => _$this._or = or;
 
   GFilterGetRuntimeConstantBuilder? _not;
   GFilterGetRuntimeConstantBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeConstantBuilder();
+      _$this._not ??= GFilterGetRuntimeConstantBuilder();
   set not(GFilterGetRuntimeConstantBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeConstantBuilder();
@@ -6901,7 +6874,6 @@ class GFilterGetRuntimeConstantBuilder
 
   @override
   void replace(GFilterGetRuntimeConstant other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimeConstant;
   }
 
@@ -6917,14 +6889,15 @@ class GFilterGetRuntimeConstantBuilder
     _$GFilterGetRuntimeConstant _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimeConstant._(
-              specName: specName,
-              specVersion: specVersion,
-              pallet: pallet,
-              constantName: constantName,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimeConstant._(
+            specName: specName,
+            specVersion: specVersion,
+            pallet: pallet,
+            constantName: constantName,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -6935,7 +6908,7 @@ class GFilterGetRuntimeConstantBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimeConstant', _$failedField, e.toString());
       }
       rethrow;
@@ -6963,7 +6936,7 @@ class _$GFilterGetRuntimeConstants extends GFilterGetRuntimeConstants {
 
   factory _$GFilterGetRuntimeConstants(
           [void Function(GFilterGetRuntimeConstantsBuilder)? updates]) =>
-      (new GFilterGetRuntimeConstantsBuilder()..update(updates))._build();
+      (GFilterGetRuntimeConstantsBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimeConstants._(
       {this.specName,
@@ -6974,7 +6947,6 @@ class _$GFilterGetRuntimeConstants extends GFilterGetRuntimeConstants {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimeConstants rebuild(
           void Function(GFilterGetRuntimeConstantsBuilder) updates) =>
@@ -6982,7 +6954,7 @@ class _$GFilterGetRuntimeConstants extends GFilterGetRuntimeConstants {
 
   @override
   GFilterGetRuntimeConstantsBuilder toBuilder() =>
-      new GFilterGetRuntimeConstantsBuilder()..replace(this);
+      GFilterGetRuntimeConstantsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -7048,17 +7020,17 @@ class GFilterGetRuntimeConstantsBuilder
 
   ListBuilder<GFilterGetRuntimeConstants>? _and;
   ListBuilder<GFilterGetRuntimeConstants> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimeConstants>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimeConstants>();
   set and(ListBuilder<GFilterGetRuntimeConstants>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntimeConstants>? _or;
   ListBuilder<GFilterGetRuntimeConstants> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimeConstants>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimeConstants>();
   set or(ListBuilder<GFilterGetRuntimeConstants>? or) => _$this._or = or;
 
   GFilterGetRuntimeConstantsBuilder? _not;
   GFilterGetRuntimeConstantsBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeConstantsBuilder();
+      _$this._not ??= GFilterGetRuntimeConstantsBuilder();
   set not(GFilterGetRuntimeConstantsBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeConstantsBuilder();
@@ -7080,7 +7052,6 @@ class GFilterGetRuntimeConstantsBuilder
 
   @override
   void replace(GFilterGetRuntimeConstants other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimeConstants;
   }
 
@@ -7096,14 +7067,15 @@ class GFilterGetRuntimeConstantsBuilder
     _$GFilterGetRuntimeConstants _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimeConstants._(
-              specName: specName,
-              specVersion: specVersion,
-              pallet: pallet,
-              constantName: constantName,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimeConstants._(
+            specName: specName,
+            specVersion: specVersion,
+            pallet: pallet,
+            constantName: constantName,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -7114,7 +7086,7 @@ class GFilterGetRuntimeConstantsBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimeConstants', _$failedField, e.toString());
       }
       rethrow;
@@ -7142,7 +7114,7 @@ class _$GFilterGetRuntimeErrorMessage extends GFilterGetRuntimeErrorMessage {
 
   factory _$GFilterGetRuntimeErrorMessage(
           [void Function(GFilterGetRuntimeErrorMessageBuilder)? updates]) =>
-      (new GFilterGetRuntimeErrorMessageBuilder()..update(updates))._build();
+      (GFilterGetRuntimeErrorMessageBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimeErrorMessage._(
       {this.specName,
@@ -7153,7 +7125,6 @@ class _$GFilterGetRuntimeErrorMessage extends GFilterGetRuntimeErrorMessage {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimeErrorMessage rebuild(
           void Function(GFilterGetRuntimeErrorMessageBuilder) updates) =>
@@ -7161,7 +7132,7 @@ class _$GFilterGetRuntimeErrorMessage extends GFilterGetRuntimeErrorMessage {
 
   @override
   GFilterGetRuntimeErrorMessageBuilder toBuilder() =>
-      new GFilterGetRuntimeErrorMessageBuilder()..replace(this);
+      GFilterGetRuntimeErrorMessageBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -7228,17 +7199,17 @@ class GFilterGetRuntimeErrorMessageBuilder
 
   ListBuilder<GFilterGetRuntimeErrorMessage>? _and;
   ListBuilder<GFilterGetRuntimeErrorMessage> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimeErrorMessage>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimeErrorMessage>();
   set and(ListBuilder<GFilterGetRuntimeErrorMessage>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntimeErrorMessage>? _or;
   ListBuilder<GFilterGetRuntimeErrorMessage> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimeErrorMessage>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimeErrorMessage>();
   set or(ListBuilder<GFilterGetRuntimeErrorMessage>? or) => _$this._or = or;
 
   GFilterGetRuntimeErrorMessageBuilder? _not;
   GFilterGetRuntimeErrorMessageBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeErrorMessageBuilder();
+      _$this._not ??= GFilterGetRuntimeErrorMessageBuilder();
   set not(GFilterGetRuntimeErrorMessageBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeErrorMessageBuilder();
@@ -7260,7 +7231,6 @@ class GFilterGetRuntimeErrorMessageBuilder
 
   @override
   void replace(GFilterGetRuntimeErrorMessage other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimeErrorMessage;
   }
 
@@ -7276,14 +7246,15 @@ class GFilterGetRuntimeErrorMessageBuilder
     _$GFilterGetRuntimeErrorMessage _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimeErrorMessage._(
-              specName: specName,
-              specVersion: specVersion,
-              pallet: pallet,
-              errorName: errorName,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimeErrorMessage._(
+            specName: specName,
+            specVersion: specVersion,
+            pallet: pallet,
+            errorName: errorName,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -7294,7 +7265,7 @@ class GFilterGetRuntimeErrorMessageBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimeErrorMessage', _$failedField, e.toString());
       }
       rethrow;
@@ -7322,7 +7293,7 @@ class _$GFilterGetRuntimeErrorMessages extends GFilterGetRuntimeErrorMessages {
 
   factory _$GFilterGetRuntimeErrorMessages(
           [void Function(GFilterGetRuntimeErrorMessagesBuilder)? updates]) =>
-      (new GFilterGetRuntimeErrorMessagesBuilder()..update(updates))._build();
+      (GFilterGetRuntimeErrorMessagesBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimeErrorMessages._(
       {this.specName,
@@ -7333,7 +7304,6 @@ class _$GFilterGetRuntimeErrorMessages extends GFilterGetRuntimeErrorMessages {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimeErrorMessages rebuild(
           void Function(GFilterGetRuntimeErrorMessagesBuilder) updates) =>
@@ -7341,7 +7311,7 @@ class _$GFilterGetRuntimeErrorMessages extends GFilterGetRuntimeErrorMessages {
 
   @override
   GFilterGetRuntimeErrorMessagesBuilder toBuilder() =>
-      new GFilterGetRuntimeErrorMessagesBuilder()..replace(this);
+      GFilterGetRuntimeErrorMessagesBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -7408,18 +7378,18 @@ class GFilterGetRuntimeErrorMessagesBuilder
 
   ListBuilder<GFilterGetRuntimeErrorMessages>? _and;
   ListBuilder<GFilterGetRuntimeErrorMessages> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimeErrorMessages>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimeErrorMessages>();
   set and(ListBuilder<GFilterGetRuntimeErrorMessages>? and) =>
       _$this._and = and;
 
   ListBuilder<GFilterGetRuntimeErrorMessages>? _or;
   ListBuilder<GFilterGetRuntimeErrorMessages> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimeErrorMessages>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimeErrorMessages>();
   set or(ListBuilder<GFilterGetRuntimeErrorMessages>? or) => _$this._or = or;
 
   GFilterGetRuntimeErrorMessagesBuilder? _not;
   GFilterGetRuntimeErrorMessagesBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeErrorMessagesBuilder();
+      _$this._not ??= GFilterGetRuntimeErrorMessagesBuilder();
   set not(GFilterGetRuntimeErrorMessagesBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeErrorMessagesBuilder();
@@ -7441,7 +7411,6 @@ class GFilterGetRuntimeErrorMessagesBuilder
 
   @override
   void replace(GFilterGetRuntimeErrorMessages other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimeErrorMessages;
   }
 
@@ -7457,14 +7426,15 @@ class GFilterGetRuntimeErrorMessagesBuilder
     _$GFilterGetRuntimeErrorMessages _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimeErrorMessages._(
-              specName: specName,
-              specVersion: specVersion,
-              pallet: pallet,
-              errorName: errorName,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimeErrorMessages._(
+            specName: specName,
+            specVersion: specVersion,
+            pallet: pallet,
+            errorName: errorName,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -7475,7 +7445,7 @@ class GFilterGetRuntimeErrorMessagesBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimeErrorMessages', _$failedField, e.toString());
       }
       rethrow;
@@ -7503,7 +7473,7 @@ class _$GFilterGetRuntimeEvent extends GFilterGetRuntimeEvent {
 
   factory _$GFilterGetRuntimeEvent(
           [void Function(GFilterGetRuntimeEventBuilder)? updates]) =>
-      (new GFilterGetRuntimeEventBuilder()..update(updates))._build();
+      (GFilterGetRuntimeEventBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimeEvent._(
       {this.specName,
@@ -7514,7 +7484,6 @@ class _$GFilterGetRuntimeEvent extends GFilterGetRuntimeEvent {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimeEvent rebuild(
           void Function(GFilterGetRuntimeEventBuilder) updates) =>
@@ -7522,7 +7491,7 @@ class _$GFilterGetRuntimeEvent extends GFilterGetRuntimeEvent {
 
   @override
   GFilterGetRuntimeEventBuilder toBuilder() =>
-      new GFilterGetRuntimeEventBuilder()..replace(this);
+      GFilterGetRuntimeEventBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -7587,17 +7556,17 @@ class GFilterGetRuntimeEventBuilder
 
   ListBuilder<GFilterGetRuntimeEvent>? _and;
   ListBuilder<GFilterGetRuntimeEvent> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimeEvent>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimeEvent>();
   set and(ListBuilder<GFilterGetRuntimeEvent>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntimeEvent>? _or;
   ListBuilder<GFilterGetRuntimeEvent> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimeEvent>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimeEvent>();
   set or(ListBuilder<GFilterGetRuntimeEvent>? or) => _$this._or = or;
 
   GFilterGetRuntimeEventBuilder? _not;
   GFilterGetRuntimeEventBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeEventBuilder();
+      _$this._not ??= GFilterGetRuntimeEventBuilder();
   set not(GFilterGetRuntimeEventBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeEventBuilder();
@@ -7619,7 +7588,6 @@ class GFilterGetRuntimeEventBuilder
 
   @override
   void replace(GFilterGetRuntimeEvent other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimeEvent;
   }
 
@@ -7635,14 +7603,15 @@ class GFilterGetRuntimeEventBuilder
     _$GFilterGetRuntimeEvent _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimeEvent._(
-              specName: specName,
-              specVersion: specVersion,
-              pallet: pallet,
-              eventName: eventName,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimeEvent._(
+            specName: specName,
+            specVersion: specVersion,
+            pallet: pallet,
+            eventName: eventName,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -7653,7 +7622,7 @@ class GFilterGetRuntimeEventBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimeEvent', _$failedField, e.toString());
       }
       rethrow;
@@ -7681,7 +7650,7 @@ class _$GFilterGetRuntimeEvents extends GFilterGetRuntimeEvents {
 
   factory _$GFilterGetRuntimeEvents(
           [void Function(GFilterGetRuntimeEventsBuilder)? updates]) =>
-      (new GFilterGetRuntimeEventsBuilder()..update(updates))._build();
+      (GFilterGetRuntimeEventsBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimeEvents._(
       {this.specName,
@@ -7692,7 +7661,6 @@ class _$GFilterGetRuntimeEvents extends GFilterGetRuntimeEvents {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimeEvents rebuild(
           void Function(GFilterGetRuntimeEventsBuilder) updates) =>
@@ -7700,7 +7668,7 @@ class _$GFilterGetRuntimeEvents extends GFilterGetRuntimeEvents {
 
   @override
   GFilterGetRuntimeEventsBuilder toBuilder() =>
-      new GFilterGetRuntimeEventsBuilder()..replace(this);
+      GFilterGetRuntimeEventsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -7766,17 +7734,17 @@ class GFilterGetRuntimeEventsBuilder
 
   ListBuilder<GFilterGetRuntimeEvents>? _and;
   ListBuilder<GFilterGetRuntimeEvents> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimeEvents>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimeEvents>();
   set and(ListBuilder<GFilterGetRuntimeEvents>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntimeEvents>? _or;
   ListBuilder<GFilterGetRuntimeEvents> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimeEvents>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimeEvents>();
   set or(ListBuilder<GFilterGetRuntimeEvents>? or) => _$this._or = or;
 
   GFilterGetRuntimeEventsBuilder? _not;
   GFilterGetRuntimeEventsBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeEventsBuilder();
+      _$this._not ??= GFilterGetRuntimeEventsBuilder();
   set not(GFilterGetRuntimeEventsBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeEventsBuilder();
@@ -7798,7 +7766,6 @@ class GFilterGetRuntimeEventsBuilder
 
   @override
   void replace(GFilterGetRuntimeEvents other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimeEvents;
   }
 
@@ -7814,14 +7781,15 @@ class GFilterGetRuntimeEventsBuilder
     _$GFilterGetRuntimeEvents _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimeEvents._(
-              specName: specName,
-              specVersion: specVersion,
-              pallet: pallet,
-              eventName: eventName,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimeEvents._(
+            specName: specName,
+            specVersion: specVersion,
+            pallet: pallet,
+            eventName: eventName,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -7832,7 +7800,7 @@ class GFilterGetRuntimeEventsBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimeEvents', _$failedField, e.toString());
       }
       rethrow;
@@ -7861,7 +7829,7 @@ class _$GFilterGetRuntimeEventAttributes
 
   factory _$GFilterGetRuntimeEventAttributes(
           [void Function(GFilterGetRuntimeEventAttributesBuilder)? updates]) =>
-      (new GFilterGetRuntimeEventAttributesBuilder()..update(updates))._build();
+      (GFilterGetRuntimeEventAttributesBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimeEventAttributes._(
       {this.specName,
@@ -7872,7 +7840,6 @@ class _$GFilterGetRuntimeEventAttributes
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimeEventAttributes rebuild(
           void Function(GFilterGetRuntimeEventAttributesBuilder) updates) =>
@@ -7880,7 +7847,7 @@ class _$GFilterGetRuntimeEventAttributes
 
   @override
   GFilterGetRuntimeEventAttributesBuilder toBuilder() =>
-      new GFilterGetRuntimeEventAttributesBuilder()..replace(this);
+      GFilterGetRuntimeEventAttributesBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -7947,18 +7914,18 @@ class GFilterGetRuntimeEventAttributesBuilder
 
   ListBuilder<GFilterGetRuntimeEventAttributes>? _and;
   ListBuilder<GFilterGetRuntimeEventAttributes> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimeEventAttributes>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimeEventAttributes>();
   set and(ListBuilder<GFilterGetRuntimeEventAttributes>? and) =>
       _$this._and = and;
 
   ListBuilder<GFilterGetRuntimeEventAttributes>? _or;
   ListBuilder<GFilterGetRuntimeEventAttributes> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimeEventAttributes>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimeEventAttributes>();
   set or(ListBuilder<GFilterGetRuntimeEventAttributes>? or) => _$this._or = or;
 
   GFilterGetRuntimeEventAttributesBuilder? _not;
   GFilterGetRuntimeEventAttributesBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeEventAttributesBuilder();
+      _$this._not ??= GFilterGetRuntimeEventAttributesBuilder();
   set not(GFilterGetRuntimeEventAttributesBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeEventAttributesBuilder();
@@ -7980,7 +7947,6 @@ class GFilterGetRuntimeEventAttributesBuilder
 
   @override
   void replace(GFilterGetRuntimeEventAttributes other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimeEventAttributes;
   }
 
@@ -7996,14 +7962,15 @@ class GFilterGetRuntimeEventAttributesBuilder
     _$GFilterGetRuntimeEventAttributes _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimeEventAttributes._(
-              specName: specName,
-              specVersion: specVersion,
-              pallet: pallet,
-              eventName: eventName,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimeEventAttributes._(
+            specName: specName,
+            specVersion: specVersion,
+            pallet: pallet,
+            eventName: eventName,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -8014,7 +7981,7 @@ class GFilterGetRuntimeEventAttributesBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimeEventAttributes', _$failedField, e.toString());
       }
       rethrow;
@@ -8040,7 +8007,7 @@ class _$GFilterGetRuntimePallet extends GFilterGetRuntimePallet {
 
   factory _$GFilterGetRuntimePallet(
           [void Function(GFilterGetRuntimePalletBuilder)? updates]) =>
-      (new GFilterGetRuntimePalletBuilder()..update(updates))._build();
+      (GFilterGetRuntimePalletBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimePallet._(
       {this.specName,
@@ -8050,7 +8017,6 @@ class _$GFilterGetRuntimePallet extends GFilterGetRuntimePallet {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimePallet rebuild(
           void Function(GFilterGetRuntimePalletBuilder) updates) =>
@@ -8058,7 +8024,7 @@ class _$GFilterGetRuntimePallet extends GFilterGetRuntimePallet {
 
   @override
   GFilterGetRuntimePalletBuilder toBuilder() =>
-      new GFilterGetRuntimePalletBuilder()..replace(this);
+      GFilterGetRuntimePalletBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -8117,17 +8083,17 @@ class GFilterGetRuntimePalletBuilder
 
   ListBuilder<GFilterGetRuntimePallet>? _and;
   ListBuilder<GFilterGetRuntimePallet> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimePallet>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimePallet>();
   set and(ListBuilder<GFilterGetRuntimePallet>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntimePallet>? _or;
   ListBuilder<GFilterGetRuntimePallet> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimePallet>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimePallet>();
   set or(ListBuilder<GFilterGetRuntimePallet>? or) => _$this._or = or;
 
   GFilterGetRuntimePalletBuilder? _not;
   GFilterGetRuntimePalletBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimePalletBuilder();
+      _$this._not ??= GFilterGetRuntimePalletBuilder();
   set not(GFilterGetRuntimePalletBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimePalletBuilder();
@@ -8148,7 +8114,6 @@ class GFilterGetRuntimePalletBuilder
 
   @override
   void replace(GFilterGetRuntimePallet other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimePallet;
   }
 
@@ -8164,13 +8129,14 @@ class GFilterGetRuntimePalletBuilder
     _$GFilterGetRuntimePallet _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimePallet._(
-              specName: specName,
-              specVersion: specVersion,
-              pallet: pallet,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimePallet._(
+            specName: specName,
+            specVersion: specVersion,
+            pallet: pallet,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -8181,7 +8147,7 @@ class GFilterGetRuntimePalletBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimePallet', _$failedField, e.toString());
       }
       rethrow;
@@ -8207,7 +8173,7 @@ class _$GFilterGetRuntimePallets extends GFilterGetRuntimePallets {
 
   factory _$GFilterGetRuntimePallets(
           [void Function(GFilterGetRuntimePalletsBuilder)? updates]) =>
-      (new GFilterGetRuntimePalletsBuilder()..update(updates))._build();
+      (GFilterGetRuntimePalletsBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimePallets._(
       {this.specName,
@@ -8217,7 +8183,6 @@ class _$GFilterGetRuntimePallets extends GFilterGetRuntimePallets {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimePallets rebuild(
           void Function(GFilterGetRuntimePalletsBuilder) updates) =>
@@ -8225,7 +8190,7 @@ class _$GFilterGetRuntimePallets extends GFilterGetRuntimePallets {
 
   @override
   GFilterGetRuntimePalletsBuilder toBuilder() =>
-      new GFilterGetRuntimePalletsBuilder()..replace(this);
+      GFilterGetRuntimePalletsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -8284,17 +8249,17 @@ class GFilterGetRuntimePalletsBuilder
 
   ListBuilder<GFilterGetRuntimePallets>? _and;
   ListBuilder<GFilterGetRuntimePallets> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimePallets>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimePallets>();
   set and(ListBuilder<GFilterGetRuntimePallets>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntimePallets>? _or;
   ListBuilder<GFilterGetRuntimePallets> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimePallets>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimePallets>();
   set or(ListBuilder<GFilterGetRuntimePallets>? or) => _$this._or = or;
 
   GFilterGetRuntimePalletsBuilder? _not;
   GFilterGetRuntimePalletsBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimePalletsBuilder();
+      _$this._not ??= GFilterGetRuntimePalletsBuilder();
   set not(GFilterGetRuntimePalletsBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimePalletsBuilder();
@@ -8315,7 +8280,6 @@ class GFilterGetRuntimePalletsBuilder
 
   @override
   void replace(GFilterGetRuntimePallets other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimePallets;
   }
 
@@ -8331,13 +8295,14 @@ class GFilterGetRuntimePalletsBuilder
     _$GFilterGetRuntimePallets _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimePallets._(
-              specName: specName,
-              specVersion: specVersion,
-              pallet: pallet,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimePallets._(
+            specName: specName,
+            specVersion: specVersion,
+            pallet: pallet,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -8348,7 +8313,7 @@ class GFilterGetRuntimePalletsBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimePallets', _$failedField, e.toString());
       }
       rethrow;
@@ -8376,7 +8341,7 @@ class _$GFilterGetRuntimeStorage extends GFilterGetRuntimeStorage {
 
   factory _$GFilterGetRuntimeStorage(
           [void Function(GFilterGetRuntimeStorageBuilder)? updates]) =>
-      (new GFilterGetRuntimeStorageBuilder()..update(updates))._build();
+      (GFilterGetRuntimeStorageBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimeStorage._(
       {this.specName,
@@ -8387,7 +8352,6 @@ class _$GFilterGetRuntimeStorage extends GFilterGetRuntimeStorage {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimeStorage rebuild(
           void Function(GFilterGetRuntimeStorageBuilder) updates) =>
@@ -8395,7 +8359,7 @@ class _$GFilterGetRuntimeStorage extends GFilterGetRuntimeStorage {
 
   @override
   GFilterGetRuntimeStorageBuilder toBuilder() =>
-      new GFilterGetRuntimeStorageBuilder()..replace(this);
+      GFilterGetRuntimeStorageBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -8461,17 +8425,17 @@ class GFilterGetRuntimeStorageBuilder
 
   ListBuilder<GFilterGetRuntimeStorage>? _and;
   ListBuilder<GFilterGetRuntimeStorage> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimeStorage>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimeStorage>();
   set and(ListBuilder<GFilterGetRuntimeStorage>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntimeStorage>? _or;
   ListBuilder<GFilterGetRuntimeStorage> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimeStorage>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimeStorage>();
   set or(ListBuilder<GFilterGetRuntimeStorage>? or) => _$this._or = or;
 
   GFilterGetRuntimeStorageBuilder? _not;
   GFilterGetRuntimeStorageBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeStorageBuilder();
+      _$this._not ??= GFilterGetRuntimeStorageBuilder();
   set not(GFilterGetRuntimeStorageBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeStorageBuilder();
@@ -8493,7 +8457,6 @@ class GFilterGetRuntimeStorageBuilder
 
   @override
   void replace(GFilterGetRuntimeStorage other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimeStorage;
   }
 
@@ -8509,14 +8472,15 @@ class GFilterGetRuntimeStorageBuilder
     _$GFilterGetRuntimeStorage _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimeStorage._(
-              specName: specName,
-              specVersion: specVersion,
-              pallet: pallet,
-              storageName: storageName,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimeStorage._(
+            specName: specName,
+            specVersion: specVersion,
+            pallet: pallet,
+            storageName: storageName,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -8527,7 +8491,7 @@ class GFilterGetRuntimeStorageBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimeStorage', _$failedField, e.toString());
       }
       rethrow;
@@ -8555,7 +8519,7 @@ class _$GFilterGetRuntimeStorages extends GFilterGetRuntimeStorages {
 
   factory _$GFilterGetRuntimeStorages(
           [void Function(GFilterGetRuntimeStoragesBuilder)? updates]) =>
-      (new GFilterGetRuntimeStoragesBuilder()..update(updates))._build();
+      (GFilterGetRuntimeStoragesBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimeStorages._(
       {this.specName,
@@ -8566,7 +8530,6 @@ class _$GFilterGetRuntimeStorages extends GFilterGetRuntimeStorages {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimeStorages rebuild(
           void Function(GFilterGetRuntimeStoragesBuilder) updates) =>
@@ -8574,7 +8537,7 @@ class _$GFilterGetRuntimeStorages extends GFilterGetRuntimeStorages {
 
   @override
   GFilterGetRuntimeStoragesBuilder toBuilder() =>
-      new GFilterGetRuntimeStoragesBuilder()..replace(this);
+      GFilterGetRuntimeStoragesBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -8640,17 +8603,17 @@ class GFilterGetRuntimeStoragesBuilder
 
   ListBuilder<GFilterGetRuntimeStorages>? _and;
   ListBuilder<GFilterGetRuntimeStorages> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimeStorages>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimeStorages>();
   set and(ListBuilder<GFilterGetRuntimeStorages>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntimeStorages>? _or;
   ListBuilder<GFilterGetRuntimeStorages> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimeStorages>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimeStorages>();
   set or(ListBuilder<GFilterGetRuntimeStorages>? or) => _$this._or = or;
 
   GFilterGetRuntimeStoragesBuilder? _not;
   GFilterGetRuntimeStoragesBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeStoragesBuilder();
+      _$this._not ??= GFilterGetRuntimeStoragesBuilder();
   set not(GFilterGetRuntimeStoragesBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeStoragesBuilder();
@@ -8672,7 +8635,6 @@ class GFilterGetRuntimeStoragesBuilder
 
   @override
   void replace(GFilterGetRuntimeStorages other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimeStorages;
   }
 
@@ -8688,14 +8650,15 @@ class GFilterGetRuntimeStoragesBuilder
     _$GFilterGetRuntimeStorages _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimeStorages._(
-              specName: specName,
-              specVersion: specVersion,
-              pallet: pallet,
-              storageName: storageName,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimeStorages._(
+            specName: specName,
+            specVersion: specVersion,
+            pallet: pallet,
+            storageName: storageName,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -8706,7 +8669,7 @@ class GFilterGetRuntimeStoragesBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimeStorages', _$failedField, e.toString());
       }
       rethrow;
@@ -8732,7 +8695,7 @@ class _$GFilterGetRuntimeType extends GFilterGetRuntimeType {
 
   factory _$GFilterGetRuntimeType(
           [void Function(GFilterGetRuntimeTypeBuilder)? updates]) =>
-      (new GFilterGetRuntimeTypeBuilder()..update(updates))._build();
+      (GFilterGetRuntimeTypeBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimeType._(
       {this.specName,
@@ -8742,7 +8705,6 @@ class _$GFilterGetRuntimeType extends GFilterGetRuntimeType {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimeType rebuild(
           void Function(GFilterGetRuntimeTypeBuilder) updates) =>
@@ -8750,7 +8712,7 @@ class _$GFilterGetRuntimeType extends GFilterGetRuntimeType {
 
   @override
   GFilterGetRuntimeTypeBuilder toBuilder() =>
-      new GFilterGetRuntimeTypeBuilder()..replace(this);
+      GFilterGetRuntimeTypeBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -8808,17 +8770,17 @@ class GFilterGetRuntimeTypeBuilder
 
   ListBuilder<GFilterGetRuntimeType>? _and;
   ListBuilder<GFilterGetRuntimeType> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimeType>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimeType>();
   set and(ListBuilder<GFilterGetRuntimeType>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntimeType>? _or;
   ListBuilder<GFilterGetRuntimeType> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimeType>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimeType>();
   set or(ListBuilder<GFilterGetRuntimeType>? or) => _$this._or = or;
 
   GFilterGetRuntimeTypeBuilder? _not;
   GFilterGetRuntimeTypeBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeTypeBuilder();
+      _$this._not ??= GFilterGetRuntimeTypeBuilder();
   set not(GFilterGetRuntimeTypeBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeTypeBuilder();
@@ -8839,7 +8801,6 @@ class GFilterGetRuntimeTypeBuilder
 
   @override
   void replace(GFilterGetRuntimeType other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimeType;
   }
 
@@ -8855,13 +8816,14 @@ class GFilterGetRuntimeTypeBuilder
     _$GFilterGetRuntimeType _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimeType._(
-              specName: specName,
-              specVersion: specVersion,
-              scaleType: scaleType,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimeType._(
+            specName: specName,
+            specVersion: specVersion,
+            scaleType: scaleType,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -8872,7 +8834,7 @@ class GFilterGetRuntimeTypeBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimeType', _$failedField, e.toString());
       }
       rethrow;
@@ -8898,7 +8860,7 @@ class _$GFilterGetRuntimeTypes extends GFilterGetRuntimeTypes {
 
   factory _$GFilterGetRuntimeTypes(
           [void Function(GFilterGetRuntimeTypesBuilder)? updates]) =>
-      (new GFilterGetRuntimeTypesBuilder()..update(updates))._build();
+      (GFilterGetRuntimeTypesBuilder()..update(updates))._build();
 
   _$GFilterGetRuntimeTypes._(
       {this.specName,
@@ -8908,7 +8870,6 @@ class _$GFilterGetRuntimeTypes extends GFilterGetRuntimeTypes {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetRuntimeTypes rebuild(
           void Function(GFilterGetRuntimeTypesBuilder) updates) =>
@@ -8916,7 +8877,7 @@ class _$GFilterGetRuntimeTypes extends GFilterGetRuntimeTypes {
 
   @override
   GFilterGetRuntimeTypesBuilder toBuilder() =>
-      new GFilterGetRuntimeTypesBuilder()..replace(this);
+      GFilterGetRuntimeTypesBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -8974,17 +8935,17 @@ class GFilterGetRuntimeTypesBuilder
 
   ListBuilder<GFilterGetRuntimeTypes>? _and;
   ListBuilder<GFilterGetRuntimeTypes> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetRuntimeTypes>();
+      _$this._and ??= ListBuilder<GFilterGetRuntimeTypes>();
   set and(ListBuilder<GFilterGetRuntimeTypes>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetRuntimeTypes>? _or;
   ListBuilder<GFilterGetRuntimeTypes> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetRuntimeTypes>();
+      _$this._or ??= ListBuilder<GFilterGetRuntimeTypes>();
   set or(ListBuilder<GFilterGetRuntimeTypes>? or) => _$this._or = or;
 
   GFilterGetRuntimeTypesBuilder? _not;
   GFilterGetRuntimeTypesBuilder get not =>
-      _$this._not ??= new GFilterGetRuntimeTypesBuilder();
+      _$this._not ??= GFilterGetRuntimeTypesBuilder();
   set not(GFilterGetRuntimeTypesBuilder? not) => _$this._not = not;
 
   GFilterGetRuntimeTypesBuilder();
@@ -9005,7 +8966,6 @@ class GFilterGetRuntimeTypesBuilder
 
   @override
   void replace(GFilterGetRuntimeTypes other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetRuntimeTypes;
   }
 
@@ -9021,13 +8981,14 @@ class GFilterGetRuntimeTypesBuilder
     _$GFilterGetRuntimeTypes _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetRuntimeTypes._(
-              specName: specName,
-              specVersion: specVersion,
-              scaleType: scaleType,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetRuntimeTypes._(
+            specName: specName,
+            specVersion: specVersion,
+            scaleType: scaleType,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -9038,7 +8999,7 @@ class GFilterGetRuntimeTypesBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetRuntimeTypes', _$failedField, e.toString());
       }
       rethrow;
@@ -9083,7 +9044,7 @@ class _$GFilterGetLog extends GFilterGetLog {
   final GFilterGetLog? not;
 
   factory _$GFilterGetLog([void Function(GFilterGetLogBuilder)? updates]) =>
-      (new GFilterGetLogBuilder()..update(updates))._build();
+      (GFilterGetLogBuilder()..update(updates))._build();
 
   _$GFilterGetLog._(
       {this.blockNumber,
@@ -9103,13 +9064,12 @@ class _$GFilterGetLog extends GFilterGetLog {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetLog rebuild(void Function(GFilterGetLogBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GFilterGetLogBuilder toBuilder() => new GFilterGetLogBuilder()..replace(this);
+  GFilterGetLogBuilder toBuilder() => GFilterGetLogBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -9201,31 +9161,31 @@ class GFilterGetLogBuilder
 
   GDateTimeBuilder? _blockDatetime;
   GDateTimeBuilder get blockDatetime =>
-      _$this._blockDatetime ??= new GDateTimeBuilder();
+      _$this._blockDatetime ??= GDateTimeBuilder();
   set blockDatetime(GDateTimeBuilder? blockDatetime) =>
       _$this._blockDatetime = blockDatetime;
 
   GDateTimeBuilder? _blockDatetimeLt;
   GDateTimeBuilder get blockDatetimeLt =>
-      _$this._blockDatetimeLt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLt ??= GDateTimeBuilder();
   set blockDatetimeLt(GDateTimeBuilder? blockDatetimeLt) =>
       _$this._blockDatetimeLt = blockDatetimeLt;
 
   GDateTimeBuilder? _blockDatetimeLte;
   GDateTimeBuilder get blockDatetimeLte =>
-      _$this._blockDatetimeLte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLte ??= GDateTimeBuilder();
   set blockDatetimeLte(GDateTimeBuilder? blockDatetimeLte) =>
       _$this._blockDatetimeLte = blockDatetimeLte;
 
   GDateTimeBuilder? _blockDatetimeGt;
   GDateTimeBuilder get blockDatetimeGt =>
-      _$this._blockDatetimeGt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGt ??= GDateTimeBuilder();
   set blockDatetimeGt(GDateTimeBuilder? blockDatetimeGt) =>
       _$this._blockDatetimeGt = blockDatetimeGt;
 
   GDateTimeBuilder? _blockDatetimeGte;
   GDateTimeBuilder get blockDatetimeGte =>
-      _$this._blockDatetimeGte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGte ??= GDateTimeBuilder();
   set blockDatetimeGte(GDateTimeBuilder? blockDatetimeGte) =>
       _$this._blockDatetimeGte = blockDatetimeGte;
 
@@ -9247,16 +9207,16 @@ class GFilterGetLogBuilder
 
   ListBuilder<GFilterGetLog>? _and;
   ListBuilder<GFilterGetLog> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetLog>();
+      _$this._and ??= ListBuilder<GFilterGetLog>();
   set and(ListBuilder<GFilterGetLog>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetLog>? _or;
   ListBuilder<GFilterGetLog> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetLog>();
+      _$this._or ??= ListBuilder<GFilterGetLog>();
   set or(ListBuilder<GFilterGetLog>? or) => _$this._or = or;
 
   GFilterGetLogBuilder? _not;
-  GFilterGetLogBuilder get not => _$this._not ??= new GFilterGetLogBuilder();
+  GFilterGetLogBuilder get not => _$this._not ??= GFilterGetLogBuilder();
   set not(GFilterGetLogBuilder? not) => _$this._not = not;
 
   GFilterGetLogBuilder();
@@ -9287,7 +9247,6 @@ class GFilterGetLogBuilder
 
   @override
   void replace(GFilterGetLog other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetLog;
   }
 
@@ -9303,23 +9262,24 @@ class GFilterGetLogBuilder
     _$GFilterGetLog _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetLog._(
-              blockNumber: blockNumber,
-              logIdx: logIdx,
-              typeId: typeId,
-              typeName: typeName,
-              blockDatetime: _blockDatetime?.build(),
-              blockDatetimeLt: _blockDatetimeLt?.build(),
-              blockDatetimeLte: _blockDatetimeLte?.build(),
-              blockDatetimeGt: _blockDatetimeGt?.build(),
-              blockDatetimeGte: _blockDatetimeGte?.build(),
-              blockHash: blockHash,
-              specName: specName,
-              specVersion: specVersion,
-              complete: complete,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetLog._(
+            blockNumber: blockNumber,
+            logIdx: logIdx,
+            typeId: typeId,
+            typeName: typeName,
+            blockDatetime: _blockDatetime?.build(),
+            blockDatetimeLt: _blockDatetimeLt?.build(),
+            blockDatetimeLte: _blockDatetimeLte?.build(),
+            blockDatetimeGt: _blockDatetimeGt?.build(),
+            blockDatetimeGte: _blockDatetimeGte?.build(),
+            blockHash: blockHash,
+            specName: specName,
+            specVersion: specVersion,
+            complete: complete,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -9341,7 +9301,7 @@ class GFilterGetLogBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetLog', _$failedField, e.toString());
       }
       rethrow;
@@ -9384,7 +9344,7 @@ class _$GFilterGetLogs extends GFilterGetLogs {
   final GFilterGetLogs? not;
 
   factory _$GFilterGetLogs([void Function(GFilterGetLogsBuilder)? updates]) =>
-      (new GFilterGetLogsBuilder()..update(updates))._build();
+      (GFilterGetLogsBuilder()..update(updates))._build();
 
   _$GFilterGetLogs._(
       {this.blockNumber,
@@ -9403,14 +9363,12 @@ class _$GFilterGetLogs extends GFilterGetLogs {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetLogs rebuild(void Function(GFilterGetLogsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GFilterGetLogsBuilder toBuilder() =>
-      new GFilterGetLogsBuilder()..replace(this);
+  GFilterGetLogsBuilder toBuilder() => GFilterGetLogsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -9495,31 +9453,31 @@ class GFilterGetLogsBuilder
 
   GDateTimeBuilder? _blockDatetime;
   GDateTimeBuilder get blockDatetime =>
-      _$this._blockDatetime ??= new GDateTimeBuilder();
+      _$this._blockDatetime ??= GDateTimeBuilder();
   set blockDatetime(GDateTimeBuilder? blockDatetime) =>
       _$this._blockDatetime = blockDatetime;
 
   GDateTimeBuilder? _blockDatetimeLt;
   GDateTimeBuilder get blockDatetimeLt =>
-      _$this._blockDatetimeLt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLt ??= GDateTimeBuilder();
   set blockDatetimeLt(GDateTimeBuilder? blockDatetimeLt) =>
       _$this._blockDatetimeLt = blockDatetimeLt;
 
   GDateTimeBuilder? _blockDatetimeLte;
   GDateTimeBuilder get blockDatetimeLte =>
-      _$this._blockDatetimeLte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLte ??= GDateTimeBuilder();
   set blockDatetimeLte(GDateTimeBuilder? blockDatetimeLte) =>
       _$this._blockDatetimeLte = blockDatetimeLte;
 
   GDateTimeBuilder? _blockDatetimeGt;
   GDateTimeBuilder get blockDatetimeGt =>
-      _$this._blockDatetimeGt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGt ??= GDateTimeBuilder();
   set blockDatetimeGt(GDateTimeBuilder? blockDatetimeGt) =>
       _$this._blockDatetimeGt = blockDatetimeGt;
 
   GDateTimeBuilder? _blockDatetimeGte;
   GDateTimeBuilder get blockDatetimeGte =>
-      _$this._blockDatetimeGte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGte ??= GDateTimeBuilder();
   set blockDatetimeGte(GDateTimeBuilder? blockDatetimeGte) =>
       _$this._blockDatetimeGte = blockDatetimeGte;
 
@@ -9541,16 +9499,16 @@ class GFilterGetLogsBuilder
 
   ListBuilder<GFilterGetLogs>? _and;
   ListBuilder<GFilterGetLogs> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetLogs>();
+      _$this._and ??= ListBuilder<GFilterGetLogs>();
   set and(ListBuilder<GFilterGetLogs>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetLogs>? _or;
   ListBuilder<GFilterGetLogs> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetLogs>();
+      _$this._or ??= ListBuilder<GFilterGetLogs>();
   set or(ListBuilder<GFilterGetLogs>? or) => _$this._or = or;
 
   GFilterGetLogsBuilder? _not;
-  GFilterGetLogsBuilder get not => _$this._not ??= new GFilterGetLogsBuilder();
+  GFilterGetLogsBuilder get not => _$this._not ??= GFilterGetLogsBuilder();
   set not(GFilterGetLogsBuilder? not) => _$this._not = not;
 
   GFilterGetLogsBuilder();
@@ -9580,7 +9538,6 @@ class GFilterGetLogsBuilder
 
   @override
   void replace(GFilterGetLogs other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetLogs;
   }
 
@@ -9596,22 +9553,23 @@ class GFilterGetLogsBuilder
     _$GFilterGetLogs _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetLogs._(
-              blockNumber: blockNumber,
-              typeId: typeId,
-              typeName: typeName,
-              blockDatetime: _blockDatetime?.build(),
-              blockDatetimeLt: _blockDatetimeLt?.build(),
-              blockDatetimeLte: _blockDatetimeLte?.build(),
-              blockDatetimeGt: _blockDatetimeGt?.build(),
-              blockDatetimeGte: _blockDatetimeGte?.build(),
-              blockHash: blockHash,
-              specName: specName,
-              specVersion: specVersion,
-              complete: complete,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetLogs._(
+            blockNumber: blockNumber,
+            typeId: typeId,
+            typeName: typeName,
+            blockDatetime: _blockDatetime?.build(),
+            blockDatetimeLt: _blockDatetimeLt?.build(),
+            blockDatetimeLte: _blockDatetimeLte?.build(),
+            blockDatetimeGt: _blockDatetimeGt?.build(),
+            blockDatetimeGte: _blockDatetimeGte?.build(),
+            blockHash: blockHash,
+            specName: specName,
+            specVersion: specVersion,
+            complete: complete,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -9633,7 +9591,7 @@ class GFilterGetLogsBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetLogs', _$failedField, e.toString());
       }
       rethrow;
@@ -9685,7 +9643,7 @@ class _$GFilterGetTransfer extends GFilterGetTransfer {
 
   factory _$GFilterGetTransfer(
           [void Function(GFilterGetTransferBuilder)? updates]) =>
-      (new GFilterGetTransferBuilder()..update(updates))._build();
+      (GFilterGetTransferBuilder()..update(updates))._build();
 
   _$GFilterGetTransfer._(
       {this.blockNumber,
@@ -9708,7 +9666,6 @@ class _$GFilterGetTransfer extends GFilterGetTransfer {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetTransfer rebuild(
           void Function(GFilterGetTransferBuilder) updates) =>
@@ -9716,7 +9673,7 @@ class _$GFilterGetTransfer extends GFilterGetTransfer {
 
   @override
   GFilterGetTransferBuilder toBuilder() =>
-      new GFilterGetTransferBuilder()..replace(this);
+      GFilterGetTransferBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -9853,47 +9810,47 @@ class GFilterGetTransferBuilder
 
   GDateTimeBuilder? _blockDatetime;
   GDateTimeBuilder get blockDatetime =>
-      _$this._blockDatetime ??= new GDateTimeBuilder();
+      _$this._blockDatetime ??= GDateTimeBuilder();
   set blockDatetime(GDateTimeBuilder? blockDatetime) =>
       _$this._blockDatetime = blockDatetime;
 
   GDateTimeBuilder? _blockDatetimeLt;
   GDateTimeBuilder get blockDatetimeLt =>
-      _$this._blockDatetimeLt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLt ??= GDateTimeBuilder();
   set blockDatetimeLt(GDateTimeBuilder? blockDatetimeLt) =>
       _$this._blockDatetimeLt = blockDatetimeLt;
 
   GDateTimeBuilder? _blockDatetimeLte;
   GDateTimeBuilder get blockDatetimeLte =>
-      _$this._blockDatetimeLte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLte ??= GDateTimeBuilder();
   set blockDatetimeLte(GDateTimeBuilder? blockDatetimeLte) =>
       _$this._blockDatetimeLte = blockDatetimeLte;
 
   GDateTimeBuilder? _blockDatetimeGt;
   GDateTimeBuilder get blockDatetimeGt =>
-      _$this._blockDatetimeGt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGt ??= GDateTimeBuilder();
   set blockDatetimeGt(GDateTimeBuilder? blockDatetimeGt) =>
       _$this._blockDatetimeGt = blockDatetimeGt;
 
   GDateTimeBuilder? _blockDatetimeGte;
   GDateTimeBuilder get blockDatetimeGte =>
-      _$this._blockDatetimeGte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGte ??= GDateTimeBuilder();
   set blockDatetimeGte(GDateTimeBuilder? blockDatetimeGte) =>
       _$this._blockDatetimeGte = blockDatetimeGte;
 
   ListBuilder<GFilterGetTransfer>? _and;
   ListBuilder<GFilterGetTransfer> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetTransfer>();
+      _$this._and ??= ListBuilder<GFilterGetTransfer>();
   set and(ListBuilder<GFilterGetTransfer>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetTransfer>? _or;
   ListBuilder<GFilterGetTransfer> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetTransfer>();
+      _$this._or ??= ListBuilder<GFilterGetTransfer>();
   set or(ListBuilder<GFilterGetTransfer>? or) => _$this._or = or;
 
   GFilterGetTransferBuilder? _not;
   GFilterGetTransferBuilder get not =>
-      _$this._not ??= new GFilterGetTransferBuilder();
+      _$this._not ??= GFilterGetTransferBuilder();
   set not(GFilterGetTransferBuilder? not) => _$this._not = not;
 
   GFilterGetTransferBuilder();
@@ -9927,7 +9884,6 @@ class GFilterGetTransferBuilder
 
   @override
   void replace(GFilterGetTransfer other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetTransfer;
   }
 
@@ -9943,26 +9899,27 @@ class GFilterGetTransferBuilder
     _$GFilterGetTransfer _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetTransfer._(
-              blockNumber: blockNumber,
-              eventIdx: eventIdx,
-              extrinsicIdx: extrinsicIdx,
-              fromMultiAddressType: fromMultiAddressType,
-              fromMultiAddressAccountId: fromMultiAddressAccountId,
-              fromMultiAddressAddress32: fromMultiAddressAddress32,
-              fromMultiAddressAddress20: fromMultiAddressAddress20,
-              toMultiAddressType: toMultiAddressType,
-              toMultiAddressAccountId: toMultiAddressAccountId,
-              toMultiAddressAddress32: toMultiAddressAddress32,
-              toMultiAddressAddress20: toMultiAddressAddress20,
-              blockDatetime: _blockDatetime?.build(),
-              blockDatetimeLt: _blockDatetimeLt?.build(),
-              blockDatetimeLte: _blockDatetimeLte?.build(),
-              blockDatetimeGt: _blockDatetimeGt?.build(),
-              blockDatetimeGte: _blockDatetimeGte?.build(),
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetTransfer._(
+            blockNumber: blockNumber,
+            eventIdx: eventIdx,
+            extrinsicIdx: extrinsicIdx,
+            fromMultiAddressType: fromMultiAddressType,
+            fromMultiAddressAccountId: fromMultiAddressAccountId,
+            fromMultiAddressAddress32: fromMultiAddressAddress32,
+            fromMultiAddressAddress20: fromMultiAddressAddress20,
+            toMultiAddressType: toMultiAddressType,
+            toMultiAddressAccountId: toMultiAddressAccountId,
+            toMultiAddressAddress32: toMultiAddressAddress32,
+            toMultiAddressAddress20: toMultiAddressAddress20,
+            blockDatetime: _blockDatetime?.build(),
+            blockDatetimeLt: _blockDatetimeLt?.build(),
+            blockDatetimeLte: _blockDatetimeLte?.build(),
+            blockDatetimeGt: _blockDatetimeGt?.build(),
+            blockDatetimeGte: _blockDatetimeGte?.build(),
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -9983,7 +9940,7 @@ class GFilterGetTransferBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetTransfer', _$failedField, e.toString());
       }
       rethrow;
@@ -10035,7 +9992,7 @@ class _$GFilterGetTransfers extends GFilterGetTransfers {
 
   factory _$GFilterGetTransfers(
           [void Function(GFilterGetTransfersBuilder)? updates]) =>
-      (new GFilterGetTransfersBuilder()..update(updates))._build();
+      (GFilterGetTransfersBuilder()..update(updates))._build();
 
   _$GFilterGetTransfers._(
       {this.blockNumber,
@@ -10058,7 +10015,6 @@ class _$GFilterGetTransfers extends GFilterGetTransfers {
       this.or,
       this.not})
       : super._();
-
   @override
   GFilterGetTransfers rebuild(
           void Function(GFilterGetTransfersBuilder) updates) =>
@@ -10066,7 +10022,7 @@ class _$GFilterGetTransfers extends GFilterGetTransfers {
 
   @override
   GFilterGetTransfersBuilder toBuilder() =>
-      new GFilterGetTransfersBuilder()..replace(this);
+      GFilterGetTransfersBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -10203,47 +10159,47 @@ class GFilterGetTransfersBuilder
 
   GDateTimeBuilder? _blockDatetime;
   GDateTimeBuilder get blockDatetime =>
-      _$this._blockDatetime ??= new GDateTimeBuilder();
+      _$this._blockDatetime ??= GDateTimeBuilder();
   set blockDatetime(GDateTimeBuilder? blockDatetime) =>
       _$this._blockDatetime = blockDatetime;
 
   GDateTimeBuilder? _blockDatetimeLt;
   GDateTimeBuilder get blockDatetimeLt =>
-      _$this._blockDatetimeLt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLt ??= GDateTimeBuilder();
   set blockDatetimeLt(GDateTimeBuilder? blockDatetimeLt) =>
       _$this._blockDatetimeLt = blockDatetimeLt;
 
   GDateTimeBuilder? _blockDatetimeLte;
   GDateTimeBuilder get blockDatetimeLte =>
-      _$this._blockDatetimeLte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLte ??= GDateTimeBuilder();
   set blockDatetimeLte(GDateTimeBuilder? blockDatetimeLte) =>
       _$this._blockDatetimeLte = blockDatetimeLte;
 
   GDateTimeBuilder? _blockDatetimeGt;
   GDateTimeBuilder get blockDatetimeGt =>
-      _$this._blockDatetimeGt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGt ??= GDateTimeBuilder();
   set blockDatetimeGt(GDateTimeBuilder? blockDatetimeGt) =>
       _$this._blockDatetimeGt = blockDatetimeGt;
 
   GDateTimeBuilder? _blockDatetimeGte;
   GDateTimeBuilder get blockDatetimeGte =>
-      _$this._blockDatetimeGte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGte ??= GDateTimeBuilder();
   set blockDatetimeGte(GDateTimeBuilder? blockDatetimeGte) =>
       _$this._blockDatetimeGte = blockDatetimeGte;
 
   ListBuilder<GFilterGetTransfers>? _and;
   ListBuilder<GFilterGetTransfers> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetTransfers>();
+      _$this._and ??= ListBuilder<GFilterGetTransfers>();
   set and(ListBuilder<GFilterGetTransfers>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetTransfers>? _or;
   ListBuilder<GFilterGetTransfers> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetTransfers>();
+      _$this._or ??= ListBuilder<GFilterGetTransfers>();
   set or(ListBuilder<GFilterGetTransfers>? or) => _$this._or = or;
 
   GFilterGetTransfersBuilder? _not;
   GFilterGetTransfersBuilder get not =>
-      _$this._not ??= new GFilterGetTransfersBuilder();
+      _$this._not ??= GFilterGetTransfersBuilder();
   set not(GFilterGetTransfersBuilder? not) => _$this._not = not;
 
   GFilterGetTransfersBuilder();
@@ -10277,7 +10233,6 @@ class GFilterGetTransfersBuilder
 
   @override
   void replace(GFilterGetTransfers other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetTransfers;
   }
 
@@ -10293,26 +10248,27 @@ class GFilterGetTransfersBuilder
     _$GFilterGetTransfers _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetTransfers._(
-              blockNumber: blockNumber,
-              eventIdx: eventIdx,
-              extrinsicIdx: extrinsicIdx,
-              fromMultiAddressType: fromMultiAddressType,
-              fromMultiAddressAccountId: fromMultiAddressAccountId,
-              fromMultiAddressAddress32: fromMultiAddressAddress32,
-              fromMultiAddressAddress20: fromMultiAddressAddress20,
-              toMultiAddressType: toMultiAddressType,
-              toMultiAddressAccountId: toMultiAddressAccountId,
-              toMultiAddressAddress32: toMultiAddressAddress32,
-              toMultiAddressAddress20: toMultiAddressAddress20,
-              blockDatetime: _blockDatetime?.build(),
-              blockDatetimeLt: _blockDatetimeLt?.build(),
-              blockDatetimeLte: _blockDatetimeLte?.build(),
-              blockDatetimeGt: _blockDatetimeGt?.build(),
-              blockDatetimeGte: _blockDatetimeGte?.build(),
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetTransfers._(
+            blockNumber: blockNumber,
+            eventIdx: eventIdx,
+            extrinsicIdx: extrinsicIdx,
+            fromMultiAddressType: fromMultiAddressType,
+            fromMultiAddressAccountId: fromMultiAddressAccountId,
+            fromMultiAddressAddress32: fromMultiAddressAddress32,
+            fromMultiAddressAddress20: fromMultiAddressAddress20,
+            toMultiAddressType: toMultiAddressType,
+            toMultiAddressAccountId: toMultiAddressAccountId,
+            toMultiAddressAddress32: toMultiAddressAddress32,
+            toMultiAddressAddress20: toMultiAddressAddress20,
+            blockDatetime: _blockDatetime?.build(),
+            blockDatetimeLt: _blockDatetimeLt?.build(),
+            blockDatetimeLte: _blockDatetimeLte?.build(),
+            blockDatetimeGt: _blockDatetimeGt?.build(),
+            blockDatetimeGte: _blockDatetimeGte?.build(),
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -10333,7 +10289,7 @@ class GFilterGetTransfersBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetTransfers', _$failedField, e.toString());
       }
       rethrow;
@@ -10355,11 +10311,10 @@ class _$GFilterGetTaggedAccount extends GFilterGetTaggedAccount {
 
   factory _$GFilterGetTaggedAccount(
           [void Function(GFilterGetTaggedAccountBuilder)? updates]) =>
-      (new GFilterGetTaggedAccountBuilder()..update(updates))._build();
+      (GFilterGetTaggedAccountBuilder()..update(updates))._build();
 
   _$GFilterGetTaggedAccount._({this.accountId, this.and, this.or, this.not})
       : super._();
-
   @override
   GFilterGetTaggedAccount rebuild(
           void Function(GFilterGetTaggedAccountBuilder) updates) =>
@@ -10367,7 +10322,7 @@ class _$GFilterGetTaggedAccount extends GFilterGetTaggedAccount {
 
   @override
   GFilterGetTaggedAccountBuilder toBuilder() =>
-      new GFilterGetTaggedAccountBuilder()..replace(this);
+      GFilterGetTaggedAccountBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -10412,17 +10367,17 @@ class GFilterGetTaggedAccountBuilder
 
   ListBuilder<GFilterGetTaggedAccount>? _and;
   ListBuilder<GFilterGetTaggedAccount> get and =>
-      _$this._and ??= new ListBuilder<GFilterGetTaggedAccount>();
+      _$this._and ??= ListBuilder<GFilterGetTaggedAccount>();
   set and(ListBuilder<GFilterGetTaggedAccount>? and) => _$this._and = and;
 
   ListBuilder<GFilterGetTaggedAccount>? _or;
   ListBuilder<GFilterGetTaggedAccount> get or =>
-      _$this._or ??= new ListBuilder<GFilterGetTaggedAccount>();
+      _$this._or ??= ListBuilder<GFilterGetTaggedAccount>();
   set or(ListBuilder<GFilterGetTaggedAccount>? or) => _$this._or = or;
 
   GFilterGetTaggedAccountBuilder? _not;
   GFilterGetTaggedAccountBuilder get not =>
-      _$this._not ??= new GFilterGetTaggedAccountBuilder();
+      _$this._not ??= GFilterGetTaggedAccountBuilder();
   set not(GFilterGetTaggedAccountBuilder? not) => _$this._not = not;
 
   GFilterGetTaggedAccountBuilder();
@@ -10441,7 +10396,6 @@ class GFilterGetTaggedAccountBuilder
 
   @override
   void replace(GFilterGetTaggedAccount other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterGetTaggedAccount;
   }
 
@@ -10457,11 +10411,12 @@ class GFilterGetTaggedAccountBuilder
     _$GFilterGetTaggedAccount _$result;
     try {
       _$result = _$v ??
-          new _$GFilterGetTaggedAccount._(
-              accountId: accountId,
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GFilterGetTaggedAccount._(
+            accountId: accountId,
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -10472,7 +10427,7 @@ class GFilterGetTaggedAccountBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GFilterGetTaggedAccount', _$failedField, e.toString());
       }
       rethrow;
@@ -10507,7 +10462,7 @@ class _$GEventsFilter extends GEventsFilter {
   final GEventsFilter? not;
 
   factory _$GEventsFilter([void Function(GEventsFilterBuilder)? updates]) =>
-      (new GEventsFilterBuilder()..update(updates))._build();
+      (GEventsFilterBuilder()..update(updates))._build();
 
   _$GEventsFilter._(
       {this.blockNumber,
@@ -10522,13 +10477,12 @@ class _$GEventsFilter extends GEventsFilter {
       this.or,
       this.not})
       : super._();
-
   @override
   GEventsFilter rebuild(void Function(GEventsFilterBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GEventsFilterBuilder toBuilder() => new GEventsFilterBuilder()..replace(this);
+  GEventsFilterBuilder toBuilder() => GEventsFilterBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -10601,46 +10555,46 @@ class GEventsFilterBuilder
 
   GDateTimeBuilder? _blockDatetime;
   GDateTimeBuilder get blockDatetime =>
-      _$this._blockDatetime ??= new GDateTimeBuilder();
+      _$this._blockDatetime ??= GDateTimeBuilder();
   set blockDatetime(GDateTimeBuilder? blockDatetime) =>
       _$this._blockDatetime = blockDatetime;
 
   GDateTimeBuilder? _blockDatetimeGt;
   GDateTimeBuilder get blockDatetimeGt =>
-      _$this._blockDatetimeGt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGt ??= GDateTimeBuilder();
   set blockDatetimeGt(GDateTimeBuilder? blockDatetimeGt) =>
       _$this._blockDatetimeGt = blockDatetimeGt;
 
   GDateTimeBuilder? _blockDatetimeLt;
   GDateTimeBuilder get blockDatetimeLt =>
-      _$this._blockDatetimeLt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLt ??= GDateTimeBuilder();
   set blockDatetimeLt(GDateTimeBuilder? blockDatetimeLt) =>
       _$this._blockDatetimeLt = blockDatetimeLt;
 
   GDateTimeBuilder? _blockDatetimeGte;
   GDateTimeBuilder get blockDatetimeGte =>
-      _$this._blockDatetimeGte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGte ??= GDateTimeBuilder();
   set blockDatetimeGte(GDateTimeBuilder? blockDatetimeGte) =>
       _$this._blockDatetimeGte = blockDatetimeGte;
 
   GDateTimeBuilder? _blockDatetimeLte;
   GDateTimeBuilder get blockDatetimeLte =>
-      _$this._blockDatetimeLte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLte ??= GDateTimeBuilder();
   set blockDatetimeLte(GDateTimeBuilder? blockDatetimeLte) =>
       _$this._blockDatetimeLte = blockDatetimeLte;
 
   ListBuilder<GEventsFilter>? _and;
   ListBuilder<GEventsFilter> get and =>
-      _$this._and ??= new ListBuilder<GEventsFilter>();
+      _$this._and ??= ListBuilder<GEventsFilter>();
   set and(ListBuilder<GEventsFilter>? and) => _$this._and = and;
 
   ListBuilder<GEventsFilter>? _or;
   ListBuilder<GEventsFilter> get or =>
-      _$this._or ??= new ListBuilder<GEventsFilter>();
+      _$this._or ??= ListBuilder<GEventsFilter>();
   set or(ListBuilder<GEventsFilter>? or) => _$this._or = or;
 
   GEventsFilterBuilder? _not;
-  GEventsFilterBuilder get not => _$this._not ??= new GEventsFilterBuilder();
+  GEventsFilterBuilder get not => _$this._not ??= GEventsFilterBuilder();
   set not(GEventsFilterBuilder? not) => _$this._not = not;
 
   GEventsFilterBuilder();
@@ -10666,7 +10620,6 @@ class GEventsFilterBuilder
 
   @override
   void replace(GEventsFilter other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GEventsFilter;
   }
 
@@ -10682,18 +10635,19 @@ class GEventsFilterBuilder
     _$GEventsFilter _$result;
     try {
       _$result = _$v ??
-          new _$GEventsFilter._(
-              blockNumber: blockNumber,
-              eventModule: eventModule,
-              eventName: eventName,
-              blockDatetime: _blockDatetime?.build(),
-              blockDatetimeGt: _blockDatetimeGt?.build(),
-              blockDatetimeLt: _blockDatetimeLt?.build(),
-              blockDatetimeGte: _blockDatetimeGte?.build(),
-              blockDatetimeLte: _blockDatetimeLte?.build(),
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GEventsFilter._(
+            blockNumber: blockNumber,
+            eventModule: eventModule,
+            eventName: eventName,
+            blockDatetime: _blockDatetime?.build(),
+            blockDatetimeGt: _blockDatetimeGt?.build(),
+            blockDatetimeLt: _blockDatetimeLt?.build(),
+            blockDatetimeGte: _blockDatetimeGte?.build(),
+            blockDatetimeLte: _blockDatetimeLte?.build(),
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -10714,7 +10668,7 @@ class GEventsFilterBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GEventsFilter', _$failedField, e.toString());
       }
       rethrow;
@@ -10751,7 +10705,7 @@ class _$GTransferFilter extends GTransferFilter {
   final String? toMultiAddressAccountId;
 
   factory _$GTransferFilter([void Function(GTransferFilterBuilder)? updates]) =>
-      (new GTransferFilterBuilder()..update(updates))._build();
+      (GTransferFilterBuilder()..update(updates))._build();
 
   _$GTransferFilter._(
       {this.blockNumber,
@@ -10767,14 +10721,12 @@ class _$GTransferFilter extends GTransferFilter {
       this.fromMultiAddressAccountId,
       this.toMultiAddressAccountId})
       : super._();
-
   @override
   GTransferFilter rebuild(void Function(GTransferFilterBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GTransferFilterBuilder toBuilder() =>
-      new GTransferFilterBuilder()..replace(this);
+  GTransferFilterBuilder toBuilder() => GTransferFilterBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -10846,47 +10798,46 @@ class GTransferFilterBuilder
 
   GDateTimeBuilder? _blockDatetime;
   GDateTimeBuilder get blockDatetime =>
-      _$this._blockDatetime ??= new GDateTimeBuilder();
+      _$this._blockDatetime ??= GDateTimeBuilder();
   set blockDatetime(GDateTimeBuilder? blockDatetime) =>
       _$this._blockDatetime = blockDatetime;
 
   GDateTimeBuilder? _blockDatetimeGt;
   GDateTimeBuilder get blockDatetimeGt =>
-      _$this._blockDatetimeGt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGt ??= GDateTimeBuilder();
   set blockDatetimeGt(GDateTimeBuilder? blockDatetimeGt) =>
       _$this._blockDatetimeGt = blockDatetimeGt;
 
   GDateTimeBuilder? _blockDatetimeLt;
   GDateTimeBuilder get blockDatetimeLt =>
-      _$this._blockDatetimeLt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLt ??= GDateTimeBuilder();
   set blockDatetimeLt(GDateTimeBuilder? blockDatetimeLt) =>
       _$this._blockDatetimeLt = blockDatetimeLt;
 
   GDateTimeBuilder? _blockDatetimeGte;
   GDateTimeBuilder get blockDatetimeGte =>
-      _$this._blockDatetimeGte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGte ??= GDateTimeBuilder();
   set blockDatetimeGte(GDateTimeBuilder? blockDatetimeGte) =>
       _$this._blockDatetimeGte = blockDatetimeGte;
 
   GDateTimeBuilder? _blockDatetimeLte;
   GDateTimeBuilder get blockDatetimeLte =>
-      _$this._blockDatetimeLte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLte ??= GDateTimeBuilder();
   set blockDatetimeLte(GDateTimeBuilder? blockDatetimeLte) =>
       _$this._blockDatetimeLte = blockDatetimeLte;
 
   ListBuilder<GTransferFilter>? _and;
   ListBuilder<GTransferFilter> get and =>
-      _$this._and ??= new ListBuilder<GTransferFilter>();
+      _$this._and ??= ListBuilder<GTransferFilter>();
   set and(ListBuilder<GTransferFilter>? and) => _$this._and = and;
 
   ListBuilder<GTransferFilter>? _or;
   ListBuilder<GTransferFilter> get or =>
-      _$this._or ??= new ListBuilder<GTransferFilter>();
+      _$this._or ??= ListBuilder<GTransferFilter>();
   set or(ListBuilder<GTransferFilter>? or) => _$this._or = or;
 
   GTransferFilterBuilder? _not;
-  GTransferFilterBuilder get not =>
-      _$this._not ??= new GTransferFilterBuilder();
+  GTransferFilterBuilder get not => _$this._not ??= GTransferFilterBuilder();
   set not(GTransferFilterBuilder? not) => _$this._not = not;
 
   String? _fromMultiAddressAccountId;
@@ -10923,7 +10874,6 @@ class GTransferFilterBuilder
 
   @override
   void replace(GTransferFilter other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GTransferFilter;
   }
 
@@ -10939,19 +10889,20 @@ class GTransferFilterBuilder
     _$GTransferFilter _$result;
     try {
       _$result = _$v ??
-          new _$GTransferFilter._(
-              blockNumber: blockNumber,
-              eventIdx: eventIdx,
-              blockDatetime: _blockDatetime?.build(),
-              blockDatetimeGt: _blockDatetimeGt?.build(),
-              blockDatetimeLt: _blockDatetimeLt?.build(),
-              blockDatetimeGte: _blockDatetimeGte?.build(),
-              blockDatetimeLte: _blockDatetimeLte?.build(),
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build(),
-              fromMultiAddressAccountId: fromMultiAddressAccountId,
-              toMultiAddressAccountId: toMultiAddressAccountId);
+          _$GTransferFilter._(
+            blockNumber: blockNumber,
+            eventIdx: eventIdx,
+            blockDatetime: _blockDatetime?.build(),
+            blockDatetimeGt: _blockDatetimeGt?.build(),
+            blockDatetimeLt: _blockDatetimeLt?.build(),
+            blockDatetimeGte: _blockDatetimeGte?.build(),
+            blockDatetimeLte: _blockDatetimeLte?.build(),
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+            fromMultiAddressAccountId: fromMultiAddressAccountId,
+            toMultiAddressAccountId: toMultiAddressAccountId,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -10972,7 +10923,7 @@ class GTransferFilterBuilder
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GTransferFilter', _$failedField, e.toString());
       }
       rethrow;
@@ -11007,7 +10958,7 @@ class _$GLogFilter extends GLogFilter {
   final GLogFilter? not;
 
   factory _$GLogFilter([void Function(GLogFilterBuilder)? updates]) =>
-      (new GLogFilterBuilder()..update(updates))._build();
+      (GLogFilterBuilder()..update(updates))._build();
 
   _$GLogFilter._(
       {this.blockNumber,
@@ -11022,13 +10973,12 @@ class _$GLogFilter extends GLogFilter {
       this.or,
       this.not})
       : super._();
-
   @override
   GLogFilter rebuild(void Function(GLogFilterBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GLogFilterBuilder toBuilder() => new GLogFilterBuilder()..replace(this);
+  GLogFilterBuilder toBuilder() => GLogFilterBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -11100,46 +11050,44 @@ class GLogFilterBuilder implements Builder<GLogFilter, GLogFilterBuilder> {
 
   GDateTimeBuilder? _blockDatetime;
   GDateTimeBuilder get blockDatetime =>
-      _$this._blockDatetime ??= new GDateTimeBuilder();
+      _$this._blockDatetime ??= GDateTimeBuilder();
   set blockDatetime(GDateTimeBuilder? blockDatetime) =>
       _$this._blockDatetime = blockDatetime;
 
   GDateTimeBuilder? _blockDatetimeGt;
   GDateTimeBuilder get blockDatetimeGt =>
-      _$this._blockDatetimeGt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGt ??= GDateTimeBuilder();
   set blockDatetimeGt(GDateTimeBuilder? blockDatetimeGt) =>
       _$this._blockDatetimeGt = blockDatetimeGt;
 
   GDateTimeBuilder? _blockDatetimeLt;
   GDateTimeBuilder get blockDatetimeLt =>
-      _$this._blockDatetimeLt ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLt ??= GDateTimeBuilder();
   set blockDatetimeLt(GDateTimeBuilder? blockDatetimeLt) =>
       _$this._blockDatetimeLt = blockDatetimeLt;
 
   GDateTimeBuilder? _blockDatetimeGte;
   GDateTimeBuilder get blockDatetimeGte =>
-      _$this._blockDatetimeGte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeGte ??= GDateTimeBuilder();
   set blockDatetimeGte(GDateTimeBuilder? blockDatetimeGte) =>
       _$this._blockDatetimeGte = blockDatetimeGte;
 
   GDateTimeBuilder? _blockDatetimeLte;
   GDateTimeBuilder get blockDatetimeLte =>
-      _$this._blockDatetimeLte ??= new GDateTimeBuilder();
+      _$this._blockDatetimeLte ??= GDateTimeBuilder();
   set blockDatetimeLte(GDateTimeBuilder? blockDatetimeLte) =>
       _$this._blockDatetimeLte = blockDatetimeLte;
 
   ListBuilder<GLogFilter>? _and;
-  ListBuilder<GLogFilter> get and =>
-      _$this._and ??= new ListBuilder<GLogFilter>();
+  ListBuilder<GLogFilter> get and => _$this._and ??= ListBuilder<GLogFilter>();
   set and(ListBuilder<GLogFilter>? and) => _$this._and = and;
 
   ListBuilder<GLogFilter>? _or;
-  ListBuilder<GLogFilter> get or =>
-      _$this._or ??= new ListBuilder<GLogFilter>();
+  ListBuilder<GLogFilter> get or => _$this._or ??= ListBuilder<GLogFilter>();
   set or(ListBuilder<GLogFilter>? or) => _$this._or = or;
 
   GLogFilterBuilder? _not;
-  GLogFilterBuilder get not => _$this._not ??= new GLogFilterBuilder();
+  GLogFilterBuilder get not => _$this._not ??= GLogFilterBuilder();
   set not(GLogFilterBuilder? not) => _$this._not = not;
 
   GLogFilterBuilder();
@@ -11165,7 +11113,6 @@ class GLogFilterBuilder implements Builder<GLogFilter, GLogFilterBuilder> {
 
   @override
   void replace(GLogFilter other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GLogFilter;
   }
 
@@ -11181,18 +11128,19 @@ class GLogFilterBuilder implements Builder<GLogFilter, GLogFilterBuilder> {
     _$GLogFilter _$result;
     try {
       _$result = _$v ??
-          new _$GLogFilter._(
-              blockNumber: blockNumber,
-              logIdx: logIdx,
-              typeId: typeId,
-              blockDatetime: _blockDatetime?.build(),
-              blockDatetimeGt: _blockDatetimeGt?.build(),
-              blockDatetimeLt: _blockDatetimeLt?.build(),
-              blockDatetimeGte: _blockDatetimeGte?.build(),
-              blockDatetimeLte: _blockDatetimeLte?.build(),
-              and: _and?.build(),
-              or: _or?.build(),
-              not: _not?.build());
+          _$GLogFilter._(
+            blockNumber: blockNumber,
+            logIdx: logIdx,
+            typeId: typeId,
+            blockDatetime: _blockDatetime?.build(),
+            blockDatetimeGt: _blockDatetimeGt?.build(),
+            blockDatetimeLt: _blockDatetimeLt?.build(),
+            blockDatetimeGte: _blockDatetimeGte?.build(),
+            blockDatetimeLte: _blockDatetimeLte?.build(),
+            and: _and?.build(),
+            or: _or?.build(),
+            not: _not?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -11213,7 +11161,7 @@ class GLogFilterBuilder implements Builder<GLogFilter, GLogFilterBuilder> {
         _$failedField = 'not';
         _not?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GLogFilter', _$failedField, e.toString());
       }
       rethrow;

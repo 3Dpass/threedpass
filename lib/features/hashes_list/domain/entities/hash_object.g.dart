@@ -18,8 +18,8 @@ abstract class _$HashObjectCWProxy {
   /// HashObject(...).copyWith(id: 12, name: "My name")
   /// ````
   HashObject call({
-    String? name,
-    List<Snapshot>? snapshots,
+    String name,
+    List<Snapshot> snapshots,
   });
 }
 
@@ -48,11 +48,11 @@ class _$HashObjectCWProxyImpl implements _$HashObjectCWProxy {
     Object? snapshots = const $CopyWithPlaceholder(),
   }) {
     return HashObject(
-      name: name == const $CopyWithPlaceholder() || name == null
+      name: name == const $CopyWithPlaceholder()
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
           : name as String,
-      snapshots: snapshots == const $CopyWithPlaceholder() || snapshots == null
+      snapshots: snapshots == const $CopyWithPlaceholder()
           ? _value.snapshots
           // ignore: cast_nullable_to_non_nullable
           : snapshots as List<Snapshot>,

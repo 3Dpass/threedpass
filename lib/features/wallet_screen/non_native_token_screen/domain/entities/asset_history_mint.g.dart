@@ -26,12 +26,12 @@ abstract class _$AssetHistoryMintCWProxy {
   /// AssetHistoryMint(...).copyWith(id: 12, name: "My name")
   /// ````
   AssetHistoryMint call({
-    DateTime? blockDatetime,
-    int? extrinsicIdx,
-    String? authorAddress,
-    String? value,
-    ExtrinsicStatus? extrisincStatus,
-    int? blockNumber,
+    DateTime blockDatetime,
+    int extrinsicIdx,
+    String authorAddress,
+    String value,
+    ExtrinsicStatus extrisincStatus,
+    int blockNumber,
   });
 }
 
@@ -81,35 +81,30 @@ class _$AssetHistoryMintCWProxyImpl implements _$AssetHistoryMintCWProxy {
     Object? blockNumber = const $CopyWithPlaceholder(),
   }) {
     return AssetHistoryMint(
-      blockDatetime:
-          blockDatetime == const $CopyWithPlaceholder() || blockDatetime == null
-              ? _value.blockDatetime
-              // ignore: cast_nullable_to_non_nullable
-              : blockDatetime as DateTime,
-      extrinsicIdx:
-          extrinsicIdx == const $CopyWithPlaceholder() || extrinsicIdx == null
-              ? _value.extrinsicIdx
-              // ignore: cast_nullable_to_non_nullable
-              : extrinsicIdx as int,
-      authorAddress:
-          authorAddress == const $CopyWithPlaceholder() || authorAddress == null
-              ? _value.authorAddress
-              // ignore: cast_nullable_to_non_nullable
-              : authorAddress as String,
-      value: value == const $CopyWithPlaceholder() || value == null
+      blockDatetime: blockDatetime == const $CopyWithPlaceholder()
+          ? _value.blockDatetime
+          // ignore: cast_nullable_to_non_nullable
+          : blockDatetime as DateTime,
+      extrinsicIdx: extrinsicIdx == const $CopyWithPlaceholder()
+          ? _value.extrinsicIdx
+          // ignore: cast_nullable_to_non_nullable
+          : extrinsicIdx as int,
+      authorAddress: authorAddress == const $CopyWithPlaceholder()
+          ? _value.authorAddress
+          // ignore: cast_nullable_to_non_nullable
+          : authorAddress as String,
+      value: value == const $CopyWithPlaceholder()
           ? _value.value
           // ignore: cast_nullable_to_non_nullable
           : value as String,
-      extrisincStatus: extrisincStatus == const $CopyWithPlaceholder() ||
-              extrisincStatus == null
+      extrisincStatus: extrisincStatus == const $CopyWithPlaceholder()
           ? _value.extrisincStatus
           // ignore: cast_nullable_to_non_nullable
           : extrisincStatus as ExtrinsicStatus,
-      blockNumber:
-          blockNumber == const $CopyWithPlaceholder() || blockNumber == null
-              ? _value.blockNumber
-              // ignore: cast_nullable_to_non_nullable
-              : blockNumber as int,
+      blockNumber: blockNumber == const $CopyWithPlaceholder()
+          ? _value.blockNumber
+          // ignore: cast_nullable_to_non_nullable
+          : blockNumber as int,
     );
   }
 }

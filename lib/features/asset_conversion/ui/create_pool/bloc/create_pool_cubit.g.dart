@@ -18,8 +18,8 @@ abstract class _$CreatePoolStateCWProxy {
   /// CreatePoolState(...).copyWith(id: 12, name: "My name")
   /// ````
   CreatePoolState call({
-    PoolAssetField? asset1,
-    PoolAssetField? asset2,
+    PoolAssetField asset1,
+    PoolAssetField asset2,
   });
 }
 
@@ -48,11 +48,11 @@ class _$CreatePoolStateCWProxyImpl implements _$CreatePoolStateCWProxy {
     Object? asset2 = const $CopyWithPlaceholder(),
   }) {
     return CreatePoolState(
-      asset1: asset1 == const $CopyWithPlaceholder() || asset1 == null
+      asset1: asset1 == const $CopyWithPlaceholder()
           ? _value.asset1
           // ignore: cast_nullable_to_non_nullable
           : asset1 as PoolAssetField,
-      asset2: asset2 == const $CopyWithPlaceholder() || asset2 == null
+      asset2: asset2 == const $CopyWithPlaceholder()
           ? _value.asset2
           // ignore: cast_nullable_to_non_nullable
           : asset2 as PoolAssetField,
