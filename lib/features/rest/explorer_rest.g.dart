@@ -14,7 +14,7 @@ class _ExplorerRest implements ExplorerRest {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'https://api.3dpscan.xyz';
+    baseUrl ??= 'https://scan.p3d.top/';
   }
 
   final Dio _dio;

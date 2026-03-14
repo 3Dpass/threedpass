@@ -66,4 +66,12 @@ class Validators {
 
   static bool nodeUrl(final String p0) =>
       Uri.tryParse(p0) != null && p0.startsWith('wss');
+
+  static bool explorerUrl(final String p0) {
+    final uri = Uri.tryParse(p0.trim());
+    return uri != null &&
+        uri.hasScheme &&
+        (uri.scheme == 'http' || uri.scheme == 'https') &&
+        uri.host.isNotEmpty;
+  }
 }

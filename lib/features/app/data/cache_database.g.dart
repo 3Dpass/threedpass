@@ -18,6 +18,8 @@ class $BlockTimeCachesTable extends BlockTimeCaches
       requiredDuringInsert: false,
       defaultConstraints:
           GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _chainIndexMeta =
+      const VerificationMeta('chainIndex');
   @override
   late final GeneratedColumnWithTypeConverter<ChainType, int> chainIndex =
       GeneratedColumn<int>('chain_index', aliasedName, false,
@@ -51,6 +53,7 @@ class $BlockTimeCachesTable extends BlockTimeCaches
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
+    context.handle(_chainIndexMeta, const VerificationResult.success());
     if (data.containsKey('block_number')) {
       context.handle(
           _blockNumberMeta,

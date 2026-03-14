@@ -50,4 +50,4 @@ EasyLocalization(
 ### Responsibility disclaimer
 This is an open source free p2p software. Use it at your own risk. 3dpass platform is non-profit and community-supported.
 
-Copyright (C) 2025 3Dpass
+Copyright (C) 2026 3Dpass

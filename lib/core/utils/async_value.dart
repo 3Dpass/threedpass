@@ -202,12 +202,7 @@ class AsyncError<T> extends AsyncValue<T> {
   final T? _value;
 
   @override
-  T? get value {
-    if (!hasValue) {
-      Error.throwWithStackTrace(Exception('No value'), Trace.current().vmTrace);
-    }
-    return _value;
-  }
+  T? get value => _value;
 
   @override
   final Object error;

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threedpass/core/polkawallet/app_service.dart';
@@ -27,14 +28,32 @@ class ConnectStatus extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return BlocBuilder<AppServiceLoaderCubit, AppService>(
-      builder: (final context, final state) => Row(
+      builder: (final context, final state) => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _Indicator(state.status),
-          const SizedBox(width: 8),
-          D3pBodyMediumText(
-            text(state.status),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _Indicator(state.status),
+              const SizedBox(width: 8),
+              D3pBodyMediumText(
+                text(state.status),
+              ),
+            ],
           ),
+          if (state.status == AppServiceInitStatus.connecting) ...[
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Text(
+                'init_status_connecting_hint'.tr(),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
         ],
       ),
     );

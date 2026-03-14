@@ -7,7 +7,7 @@ class OpenPoscanConditionsButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     return D3pTextButton(
       text: 'open_poscan_conditions_button_label'.tr(),
-      onPressed: () {},
+      onPressed: () => context.router.push(const ExplainPutObjectRoute()),
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app_install_date/app_install_date.dart';
 import 'package:get_it/get_it.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -16,6 +18,7 @@ import 'package:threedpass/features/asset_conversion/di_asset_conversion.dart';
 import 'package:threedpass/features/atomic_swap/di_atomic_swap.dart';
 import 'package:threedpass/features/connection/di_connection.dart';
 import 'package:threedpass/features/connection/polkadot/bloc/polkadot_node_url.dart';
+import 'package:threedpass/features/rest/bloc/explorer_url_cubit.dart';
 import 'package:threedpass/features/graphql/graphql_di.dart';
 import 'package:threedpass/features/hashes_list/di/di_hashes_list.dart';
 import 'package:threedpass/features/poscan/di_poscan.dart';
@@ -79,6 +82,8 @@ Future<void> setup() async {
 
   await DIConnection().setup(getIt);
 
+  unawaited(getIt<ExplorerUrlCubit>().initUrl());
+
   getIt.registerLazySingleton<CurrentAccountCubit>(
     () => CurrentAccountCubit(),
   );
@@ -103,13 +108,13 @@ Future<void> setup() async {
     ),
   );
 
-  getIt.registerLazySingleton<TransfersRepository>(
+  getIt.registerFactory<TransfersRepository>(
     () => TransfersRepository(
       rest: getIt<ExplorerRest>(),
     ),
   );
 
-  getIt.registerLazySingleton<GetTransfers>(
+  getIt.registerFactory<GetTransfers>(
     () => GetTransfers(
       repository: getIt<TransfersRepository>(),
     ),

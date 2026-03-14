@@ -5,17 +5,23 @@ import 'package:threedpass/features/settings_page/domain/entities/connection_mod
 
 part 'wallet_settings.g.dart';
 
+const kDefaultExplorerUrl = 'https://scan.p3d.top/';
+
 @CopyWith()
 @HiveType(typeId: 5)
 class WalletSettings {
   const WalletSettings({
     required this.connectionMode,
     required this.nodeUrl,
+    required this.explorerUrl,
+    required this.explorerConnectionMode,
   });
 
   const WalletSettings.defaultValues()
       : nodeUrl = d3pDefaultNodeUrl,
-        connectionMode = ConnectionMode.defaultRandom;
+        connectionMode = ConnectionMode.defaultRandom,
+        explorerUrl = kDefaultExplorerUrl,
+        explorerConnectionMode = ConnectionMode.defaultRandom;
 
   // @HiveField(0)
   // final bool isTestNet;
@@ -26,6 +32,12 @@ class WalletSettings {
   @HiveField(2, defaultValue: ConnectionMode.defaultRandom)
   final ConnectionMode connectionMode;
 
+  @HiveField(3)
+  final String? explorerUrl;
+
+  @HiveField(4)
+  final ConnectionMode? explorerConnectionMode;
+
   WalletSettings selfValidate() {
     // Fix deprecated URL
     String nodeUrl = this.nodeUrl.trim();
@@ -33,8 +45,14 @@ class WalletSettings {
       nodeUrl = d3pDefaultNodeUrl;
     }
 
+    String explorerUrl = this.explorerUrl?.trim() ?? kDefaultExplorerUrl;
+    ConnectionMode explorerConnectionMode =
+        this.explorerConnectionMode ?? ConnectionMode.defaultRandom;
+
     return this.copyWith(
       nodeUrl: nodeUrl,
+      explorerUrl: explorerUrl,
+      explorerConnectionMode: explorerConnectionMode,
     );
   }
 }

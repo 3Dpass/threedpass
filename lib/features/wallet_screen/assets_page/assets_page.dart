@@ -6,6 +6,7 @@ import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/asset_page_appbar.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/balance_section.dart';
+import 'package:threedpass/features/wallet_screen/assets_page/widgets/explorer_error_banner.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/liquidity_pool_buttons.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/non_native_tokens/poscan_assets_column.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/objects_list_assets.dart';
@@ -20,6 +21,7 @@ class AssetsPage extends StatelessWidget {
       builder: (final context, final state) {
         // final theme = Theme.of(context);
         const children = [
+          ExplorerErrorBanner(),
           BalanceSection(),
           PH16(
             child: LiquidityPoolButtons(),
@@ -38,7 +40,7 @@ class AssetsPage extends StatelessWidget {
           ),
           body: ListView.separated(
             shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.only(bottom: 16),
             itemBuilder: (final context, final index) => children[index],
             separatorBuilder: (final context, final index) => const H16(),
             itemCount: children.length,

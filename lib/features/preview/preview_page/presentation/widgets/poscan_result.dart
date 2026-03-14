@@ -102,14 +102,14 @@ class _State extends State<PoscanResult> {
                 !snap.scanFailed;
             return PH16(
               child: allConditions
-                  ? OpenPoscanConditionsButton()
-                  : D3pElevatedButton(
+                  ? D3pElevatedButton(
                       iconData: Icons.upload,
                       text: '3d_rpc_button_label'.tr(),
                       onPressed: () async => context.router.push(
                         const D3PRPCRouteWrapper(),
                       ),
-                    ),
+                    )
+                  : OpenPoscanConditionsButton(),
             );
           },
         ),
