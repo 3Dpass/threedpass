@@ -5,6 +5,7 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/asset_conversion/ui/pools_list/bloc/pools_cubit.dart';
 import 'package:threedpass/features/atomic_swap/poscan/pending/bloc/pending_atomic_swap_cubit.dart';
 import 'package:threedpass/features/connection/polkadot/bloc/polkadot_node_url.dart';
+import 'package:threedpass/features/rest/bloc/explorer_url_cubit.dart';
 import 'package:threedpass/features/hashes_list/bloc/hashes_list_bloc.dart';
 import 'package:threedpass/features/poscan_assets/bloc/poscan_assets_cubit.dart';
 import 'package:threedpass/features/poscan_objects_query/bloc/remote_objects_count_cubit.dart';
@@ -58,6 +59,9 @@ class GlobalStatesProvider extends StatelessWidget {
         ),
         BlocProvider<PolkadotNodeUrl>(
           create: (final _) => di_setup.getIt<PolkadotNodeUrl>(),
+        ),
+        BlocProvider<ExplorerUrlCubit>(
+          create: (final _) => di_setup.getIt<ExplorerUrlCubit>(),
         ),
         BlocProvider<CurrentAccountCubit>(
           create: (final _) => di_setup.getIt<CurrentAccountCubit>(),

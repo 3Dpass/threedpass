@@ -22,7 +22,7 @@ class ObjectsListPage extends StatelessWidget {
             itemBuilder: (final context, final index) => SizedBox(
               height: 386,
               child: ObjectsListItemWrapper(
-                id: index,
+                id: count - 1 - index,
               ),
             ),
             separatorBuilder: (_, __) => H16(),

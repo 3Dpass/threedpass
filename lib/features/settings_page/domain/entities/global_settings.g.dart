@@ -22,10 +22,10 @@ abstract class _$GlobalSettingsCWProxy {
   /// GlobalSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   GlobalSettings call({
-    ScanSettings? scanSettings,
-    WalletSettings? walletSettings,
-    PreviewSettings? previewSettings,
-    AppSettings? appSettings,
+    ScanSettings scanSettings,
+    WalletSettings walletSettings,
+    PreviewSettings previewSettings,
+    AppSettings appSettings,
   });
 }
 
@@ -66,26 +66,22 @@ class _$GlobalSettingsCWProxyImpl implements _$GlobalSettingsCWProxy {
     Object? appSettings = const $CopyWithPlaceholder(),
   }) {
     return GlobalSettings(
-      scanSettings:
-          scanSettings == const $CopyWithPlaceholder() || scanSettings == null
-              ? _value.scanSettings
-              // ignore: cast_nullable_to_non_nullable
-              : scanSettings as ScanSettings,
-      walletSettings: walletSettings == const $CopyWithPlaceholder() ||
-              walletSettings == null
+      scanSettings: scanSettings == const $CopyWithPlaceholder()
+          ? _value.scanSettings
+          // ignore: cast_nullable_to_non_nullable
+          : scanSettings as ScanSettings,
+      walletSettings: walletSettings == const $CopyWithPlaceholder()
           ? _value.walletSettings
           // ignore: cast_nullable_to_non_nullable
           : walletSettings as WalletSettings,
-      previewSettings: previewSettings == const $CopyWithPlaceholder() ||
-              previewSettings == null
+      previewSettings: previewSettings == const $CopyWithPlaceholder()
           ? _value.previewSettings
           // ignore: cast_nullable_to_non_nullable
           : previewSettings as PreviewSettings,
-      appSettings:
-          appSettings == const $CopyWithPlaceholder() || appSettings == null
-              ? _value.appSettings
-              // ignore: cast_nullable_to_non_nullable
-              : appSettings as AppSettings,
+      appSettings: appSettings == const $CopyWithPlaceholder()
+          ? _value.appSettings
+          // ignore: cast_nullable_to_non_nullable
+          : appSettings as AppSettings,
     );
   }
 }

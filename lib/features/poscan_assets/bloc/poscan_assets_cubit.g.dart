@@ -26,12 +26,12 @@ abstract class _$PoscanAssetsStateCWProxy {
   /// PoscanAssetsState(...).copyWith(id: 12, name: "My name")
   /// ````
   PoscanAssetsState call({
-    List<PoscanAssetData>? assets,
-    Map<int, PoscanAssetMetadata>? metadata,
-    Map<int, PoscanAssetBalance>? balances,
-    KeyPairData? currentAccount,
-    bool? isLoading,
-    String? errorMessage,
+    List<PoscanAssetData> assets,
+    Map<int, PoscanAssetMetadata> metadata,
+    Map<int, PoscanAssetBalance> balances,
+    KeyPairData currentAccount,
+    bool isLoading,
+    String errorMessage,
   });
 }
 
@@ -81,32 +81,30 @@ class _$PoscanAssetsStateCWProxyImpl implements _$PoscanAssetsStateCWProxy {
     Object? errorMessage = const $CopyWithPlaceholder(),
   }) {
     return PoscanAssetsState(
-      assets: assets == const $CopyWithPlaceholder() || assets == null
+      assets: assets == const $CopyWithPlaceholder()
           ? _value.assets
           // ignore: cast_nullable_to_non_nullable
           : assets as List<PoscanAssetData>,
-      metadata: metadata == const $CopyWithPlaceholder() || metadata == null
+      metadata: metadata == const $CopyWithPlaceholder()
           ? _value.metadata
           // ignore: cast_nullable_to_non_nullable
           : metadata as Map<int, PoscanAssetMetadata>,
-      balances: balances == const $CopyWithPlaceholder() || balances == null
+      balances: balances == const $CopyWithPlaceholder()
           ? _value.balances
           // ignore: cast_nullable_to_non_nullable
           : balances as Map<int, PoscanAssetBalance>,
-      currentAccount: currentAccount == const $CopyWithPlaceholder() ||
-              currentAccount == null
+      currentAccount: currentAccount == const $CopyWithPlaceholder()
           ? _value.currentAccount
           // ignore: cast_nullable_to_non_nullable
           : currentAccount as KeyPairData,
-      isLoading: isLoading == const $CopyWithPlaceholder() || isLoading == null
+      isLoading: isLoading == const $CopyWithPlaceholder()
           ? _value.isLoading
           // ignore: cast_nullable_to_non_nullable
           : isLoading as bool,
-      errorMessage:
-          errorMessage == const $CopyWithPlaceholder() || errorMessage == null
-              ? _value.errorMessage
-              // ignore: cast_nullable_to_non_nullable
-              : errorMessage as String,
+      errorMessage: errorMessage == const $CopyWithPlaceholder()
+          ? _value.errorMessage
+          // ignore: cast_nullable_to_non_nullable
+          : errorMessage as String,
     );
   }
 }

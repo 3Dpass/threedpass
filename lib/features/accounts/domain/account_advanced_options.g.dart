@@ -18,8 +18,8 @@ abstract class _$AccountAdvancedOptionsCWProxy {
   /// AccountAdvancedOptions(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountAdvancedOptions call({
-    String? path,
-    CryptoType? type,
+    String path,
+    CryptoType type,
   });
 }
 
@@ -49,11 +49,11 @@ class _$AccountAdvancedOptionsCWProxyImpl
     Object? type = const $CopyWithPlaceholder(),
   }) {
     return AccountAdvancedOptions(
-      path: path == const $CopyWithPlaceholder() || path == null
+      path: path == const $CopyWithPlaceholder()
           ? _value.path
           // ignore: cast_nullable_to_non_nullable
           : path as String,
-      type: type == const $CopyWithPlaceholder() || type == null
+      type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
           : type as CryptoType,

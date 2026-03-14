@@ -66,10 +66,10 @@ abstract class _TransferRepository {
   //   }
 
   //   try {
-  //     unawaited(context.router.pop());
+  //     unawaited(context.router.maybePop());
   //   } on Object catch (_) {
   //     // DIALOG WAS CLOSED
-  //     debugPrint('FINISH TRANSFER SCREEN. Catch. context.router.pop();');
+  //     debugPrint('FINISH TRANSFER SCREEN. Catch. context.router.maybePop();');
   //   }
   // }
 
@@ -88,7 +88,7 @@ abstract class _TransferRepository {
   //   //       debugPrint('Check if already got ready status');
   //   //       final ___ = context.router.stack;
   //   //       DefaultLoadingDialog.hide(globalContext);
-  //   //       context.router.pop();
+  //   //       context.router.maybePop();
   //   //       Fluttertoast.showToast(msg: 'transfer_success_text'.tr());
   //   //       // DIALOG WAS NOT CLOSED
   //   //     } on Object catch (_) {

@@ -6,7 +6,7 @@ part of 'explorer_rest.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
 
 class _ExplorerRest implements ExplorerRest {
   _ExplorerRest(
@@ -14,7 +14,7 @@ class _ExplorerRest implements ExplorerRest {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'https://api.3dpscan.xyz';
+    baseUrl ??= 'https://scan.p3d.top/';
   }
 
   final Dio _dio;

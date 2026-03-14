@@ -22,9 +22,9 @@ abstract class _$AppServiceCWProxy {
   /// AppService(...).copyWith(id: 12, name: "My name")
   /// ````
   AppService call({
-    PolkawalletPlugin? plugin,
-    Keyring? keyring,
-    AppServiceInitStatus? status,
+    PolkawalletPlugin plugin,
+    Keyring keyring,
+    AppServiceInitStatus status,
     NetworkStateData? networkStateData,
   });
 }
@@ -63,15 +63,15 @@ class _$AppServiceCWProxyImpl implements _$AppServiceCWProxy {
     Object? networkStateData = const $CopyWithPlaceholder(),
   }) {
     return AppService(
-      plugin: plugin == const $CopyWithPlaceholder() || plugin == null
+      plugin: plugin == const $CopyWithPlaceholder()
           ? _value.plugin
           // ignore: cast_nullable_to_non_nullable
           : plugin as PolkawalletPlugin,
-      keyring: keyring == const $CopyWithPlaceholder() || keyring == null
+      keyring: keyring == const $CopyWithPlaceholder()
           ? _value.keyring
           // ignore: cast_nullable_to_non_nullable
           : keyring as Keyring,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as AppServiceInitStatus,

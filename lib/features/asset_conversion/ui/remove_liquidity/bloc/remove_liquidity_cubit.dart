@@ -72,7 +72,8 @@ class RemoveLiquidityCubit extends Cubit<RemoveLiquidityState>
       logger.d(
         'Adjustment current percentage after max is calculated. max: ${state.maxPercent}',
       );
-      emit(state.copyWith(percentage: state.maxPercent));
+      if (state.maxPercent == null) return;
+      emit(state.copyWith(percentage: state.maxPercent!));
     }
   }
 

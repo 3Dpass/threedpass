@@ -176,7 +176,7 @@ class TransferInfoBloc
           if (!extrinsicAccepted) {
             extrinsicAccepted = true;
             DefaultLoadingDialog.hide(globalContext);
-            context.router.pop();
+            context.router.maybePop();
           }
         },
       );

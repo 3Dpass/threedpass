@@ -7,16 +7,16 @@ part of 'get_extrnsics.data.gql.dart';
 // **************************************************************************
 
 Serializer<GGetExtrinsicsData> _$gGetExtrinsicsDataSerializer =
-    new _$GGetExtrinsicsDataSerializer();
+    _$GGetExtrinsicsDataSerializer();
 Serializer<GGetExtrinsicsData_getExtrinsics>
     _$gGetExtrinsicsDataGetExtrinsicsSerializer =
-    new _$GGetExtrinsicsData_getExtrinsicsSerializer();
+    _$GGetExtrinsicsData_getExtrinsicsSerializer();
 Serializer<GGetExtrinsicsData_getExtrinsics_pageInfo>
     _$gGetExtrinsicsDataGetExtrinsicsPageInfoSerializer =
-    new _$GGetExtrinsicsData_getExtrinsics_pageInfoSerializer();
+    _$GGetExtrinsicsData_getExtrinsics_pageInfoSerializer();
 Serializer<GGetExtrinsicsData_getExtrinsics_objects>
     _$gGetExtrinsicsDataGetExtrinsicsObjectsSerializer =
-    new _$GGetExtrinsicsData_getExtrinsics_objectsSerializer();
+    _$GGetExtrinsicsData_getExtrinsics_objectsSerializer();
 
 class _$GGetExtrinsicsDataSerializer
     implements StructuredSerializer<GGetExtrinsicsData> {
@@ -49,7 +49,7 @@ class _$GGetExtrinsicsDataSerializer
   GGetExtrinsicsData deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetExtrinsicsDataBuilder();
+    final result = GGetExtrinsicsDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -118,7 +118,7 @@ class _$GGetExtrinsicsData_getExtrinsicsSerializer
   GGetExtrinsicsData_getExtrinsics deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetExtrinsicsData_getExtrinsicsBuilder();
+    final result = GGetExtrinsicsData_getExtrinsicsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -197,7 +197,7 @@ class _$GGetExtrinsicsData_getExtrinsics_pageInfoSerializer
   GGetExtrinsicsData_getExtrinsics_pageInfo deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetExtrinsicsData_getExtrinsics_pageInfoBuilder();
+    final result = GGetExtrinsicsData_getExtrinsics_pageInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -305,7 +305,7 @@ class _$GGetExtrinsicsData_getExtrinsics_objectsSerializer
   GGetExtrinsicsData_getExtrinsics_objects deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetExtrinsicsData_getExtrinsics_objectsBuilder();
+    final result = GGetExtrinsicsData_getExtrinsics_objectsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -365,14 +365,10 @@ class _$GGetExtrinsicsData extends GGetExtrinsicsData {
 
   factory _$GGetExtrinsicsData(
           [void Function(GGetExtrinsicsDataBuilder)? updates]) =>
-      (new GGetExtrinsicsDataBuilder()..update(updates))._build();
+      (GGetExtrinsicsDataBuilder()..update(updates))._build();
 
   _$GGetExtrinsicsData._({required this.G__typename, this.getExtrinsics})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GGetExtrinsicsData', 'G__typename');
-  }
-
+      : super._();
   @override
   GGetExtrinsicsData rebuild(
           void Function(GGetExtrinsicsDataBuilder) updates) =>
@@ -380,7 +376,7 @@ class _$GGetExtrinsicsData extends GGetExtrinsicsData {
 
   @override
   GGetExtrinsicsDataBuilder toBuilder() =>
-      new GGetExtrinsicsDataBuilder()..replace(this);
+      GGetExtrinsicsDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -418,7 +414,7 @@ class GGetExtrinsicsDataBuilder
 
   GGetExtrinsicsData_getExtrinsicsBuilder? _getExtrinsics;
   GGetExtrinsicsData_getExtrinsicsBuilder get getExtrinsics =>
-      _$this._getExtrinsics ??= new GGetExtrinsicsData_getExtrinsicsBuilder();
+      _$this._getExtrinsics ??= GGetExtrinsicsData_getExtrinsicsBuilder();
   set getExtrinsics(GGetExtrinsicsData_getExtrinsicsBuilder? getExtrinsics) =>
       _$this._getExtrinsics = getExtrinsics;
 
@@ -438,7 +434,6 @@ class GGetExtrinsicsDataBuilder
 
   @override
   void replace(GGetExtrinsicsData other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GGetExtrinsicsData;
   }
 
@@ -454,17 +449,18 @@ class GGetExtrinsicsDataBuilder
     _$GGetExtrinsicsData _$result;
     try {
       _$result = _$v ??
-          new _$GGetExtrinsicsData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GGetExtrinsicsData', 'G__typename'),
-              getExtrinsics: _getExtrinsics?.build());
+          _$GGetExtrinsicsData._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GGetExtrinsicsData', 'G__typename'),
+            getExtrinsics: _getExtrinsics?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'getExtrinsics';
         _getExtrinsics?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GGetExtrinsicsData', _$failedField, e.toString());
       }
       rethrow;
@@ -485,15 +481,11 @@ class _$GGetExtrinsicsData_getExtrinsics
 
   factory _$GGetExtrinsicsData_getExtrinsics(
           [void Function(GGetExtrinsicsData_getExtrinsicsBuilder)? updates]) =>
-      (new GGetExtrinsicsData_getExtrinsicsBuilder()..update(updates))._build();
+      (GGetExtrinsicsData_getExtrinsicsBuilder()..update(updates))._build();
 
   _$GGetExtrinsicsData_getExtrinsics._(
       {required this.G__typename, this.pageInfo, this.objects})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GGetExtrinsicsData_getExtrinsics', 'G__typename');
-  }
-
+      : super._();
   @override
   GGetExtrinsicsData_getExtrinsics rebuild(
           void Function(GGetExtrinsicsData_getExtrinsicsBuilder) updates) =>
@@ -501,7 +493,7 @@ class _$GGetExtrinsicsData_getExtrinsics
 
   @override
   GGetExtrinsicsData_getExtrinsicsBuilder toBuilder() =>
-      new GGetExtrinsicsData_getExtrinsicsBuilder()..replace(this);
+      GGetExtrinsicsData_getExtrinsicsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -544,15 +536,14 @@ class GGetExtrinsicsData_getExtrinsicsBuilder
 
   GGetExtrinsicsData_getExtrinsics_pageInfoBuilder? _pageInfo;
   GGetExtrinsicsData_getExtrinsics_pageInfoBuilder get pageInfo =>
-      _$this._pageInfo ??=
-          new GGetExtrinsicsData_getExtrinsics_pageInfoBuilder();
+      _$this._pageInfo ??= GGetExtrinsicsData_getExtrinsics_pageInfoBuilder();
   set pageInfo(GGetExtrinsicsData_getExtrinsics_pageInfoBuilder? pageInfo) =>
       _$this._pageInfo = pageInfo;
 
   ListBuilder<GGetExtrinsicsData_getExtrinsics_objects?>? _objects;
   ListBuilder<GGetExtrinsicsData_getExtrinsics_objects?> get objects =>
       _$this._objects ??=
-          new ListBuilder<GGetExtrinsicsData_getExtrinsics_objects?>();
+          ListBuilder<GGetExtrinsicsData_getExtrinsics_objects?>();
   set objects(
           ListBuilder<GGetExtrinsicsData_getExtrinsics_objects?>? objects) =>
       _$this._objects = objects;
@@ -574,7 +565,6 @@ class GGetExtrinsicsData_getExtrinsicsBuilder
 
   @override
   void replace(GGetExtrinsicsData_getExtrinsics other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GGetExtrinsicsData_getExtrinsics;
   }
 
@@ -590,11 +580,12 @@ class GGetExtrinsicsData_getExtrinsicsBuilder
     _$GGetExtrinsicsData_getExtrinsics _$result;
     try {
       _$result = _$v ??
-          new _$GGetExtrinsicsData_getExtrinsics._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GGetExtrinsicsData_getExtrinsics', 'G__typename'),
-              pageInfo: _pageInfo?.build(),
-              objects: _objects?.build());
+          _$GGetExtrinsicsData_getExtrinsics._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GGetExtrinsicsData_getExtrinsics', 'G__typename'),
+            pageInfo: _pageInfo?.build(),
+            objects: _objects?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -603,7 +594,7 @@ class GGetExtrinsicsData_getExtrinsicsBuilder
         _$failedField = 'objects';
         _objects?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GGetExtrinsicsData_getExtrinsics', _$failedField, e.toString());
       }
       rethrow;
@@ -627,16 +618,12 @@ class _$GGetExtrinsicsData_getExtrinsics_pageInfo
   factory _$GGetExtrinsicsData_getExtrinsics_pageInfo(
           [void Function(GGetExtrinsicsData_getExtrinsics_pageInfoBuilder)?
               updates]) =>
-      (new GGetExtrinsicsData_getExtrinsics_pageInfoBuilder()..update(updates))
+      (GGetExtrinsicsData_getExtrinsics_pageInfoBuilder()..update(updates))
           ._build();
 
   _$GGetExtrinsicsData_getExtrinsics_pageInfo._(
       {required this.G__typename, this.pageSize, this.pageNext, this.pagePrev})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(G__typename,
-        r'GGetExtrinsicsData_getExtrinsics_pageInfo', 'G__typename');
-  }
-
+      : super._();
   @override
   GGetExtrinsicsData_getExtrinsics_pageInfo rebuild(
           void Function(GGetExtrinsicsData_getExtrinsics_pageInfoBuilder)
@@ -645,7 +632,7 @@ class _$GGetExtrinsicsData_getExtrinsics_pageInfo
 
   @override
   GGetExtrinsicsData_getExtrinsics_pageInfoBuilder toBuilder() =>
-      new GGetExtrinsicsData_getExtrinsics_pageInfoBuilder()..replace(this);
+      GGetExtrinsicsData_getExtrinsics_pageInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -720,7 +707,6 @@ class GGetExtrinsicsData_getExtrinsics_pageInfoBuilder
 
   @override
   void replace(GGetExtrinsicsData_getExtrinsics_pageInfo other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GGetExtrinsicsData_getExtrinsics_pageInfo;
   }
 
@@ -736,12 +722,13 @@ class GGetExtrinsicsData_getExtrinsics_pageInfoBuilder
 
   _$GGetExtrinsicsData_getExtrinsics_pageInfo _build() {
     final _$result = _$v ??
-        new _$GGetExtrinsicsData_getExtrinsics_pageInfo._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GGetExtrinsicsData_getExtrinsics_pageInfo', 'G__typename'),
-            pageSize: pageSize,
-            pageNext: pageNext,
-            pagePrev: pagePrev);
+        _$GGetExtrinsicsData_getExtrinsics_pageInfo._(
+          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+              r'GGetExtrinsicsData_getExtrinsics_pageInfo', 'G__typename'),
+          pageSize: pageSize,
+          pageNext: pageNext,
+          pagePrev: pagePrev,
+        );
     replace(_$result);
     return _$result;
   }
@@ -771,7 +758,7 @@ class _$GGetExtrinsicsData_getExtrinsics_objects
   factory _$GGetExtrinsicsData_getExtrinsics_objects(
           [void Function(GGetExtrinsicsData_getExtrinsics_objectsBuilder)?
               updates]) =>
-      (new GGetExtrinsicsData_getExtrinsics_objectsBuilder()..update(updates))
+      (GGetExtrinsicsData_getExtrinsics_objectsBuilder()..update(updates))
           ._build();
 
   _$GGetExtrinsicsData_getExtrinsics_objects._(
@@ -784,13 +771,7 @@ class _$GGetExtrinsicsData_getExtrinsics_objects
       this.callArguments,
       this.blockDatetime,
       required this.complete})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(G__typename,
-        r'GGetExtrinsicsData_getExtrinsics_objects', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(
-        complete, r'GGetExtrinsicsData_getExtrinsics_objects', 'complete');
-  }
-
+      : super._();
   @override
   GGetExtrinsicsData_getExtrinsics_objects rebuild(
           void Function(GGetExtrinsicsData_getExtrinsics_objectsBuilder)
@@ -799,7 +780,7 @@ class _$GGetExtrinsicsData_getExtrinsics_objects
 
   @override
   GGetExtrinsicsData_getExtrinsics_objectsBuilder toBuilder() =>
-      new GGetExtrinsicsData_getExtrinsics_objectsBuilder()..replace(this);
+      GGetExtrinsicsData_getExtrinsics_objectsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -882,13 +863,13 @@ class GGetExtrinsicsData_getExtrinsics_objectsBuilder
 
   _i2.GJSONStringBuilder? _callArguments;
   _i2.GJSONStringBuilder get callArguments =>
-      _$this._callArguments ??= new _i2.GJSONStringBuilder();
+      _$this._callArguments ??= _i2.GJSONStringBuilder();
   set callArguments(_i2.GJSONStringBuilder? callArguments) =>
       _$this._callArguments = callArguments;
 
   _i2.GDateTimeBuilder? _blockDatetime;
   _i2.GDateTimeBuilder get blockDatetime =>
-      _$this._blockDatetime ??= new _i2.GDateTimeBuilder();
+      _$this._blockDatetime ??= _i2.GDateTimeBuilder();
   set blockDatetime(_i2.GDateTimeBuilder? blockDatetime) =>
       _$this._blockDatetime = blockDatetime;
 
@@ -919,7 +900,6 @@ class GGetExtrinsicsData_getExtrinsics_objectsBuilder
 
   @override
   void replace(GGetExtrinsicsData_getExtrinsics_objects other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GGetExtrinsicsData_getExtrinsics_objects;
   }
 
@@ -936,18 +916,19 @@ class GGetExtrinsicsData_getExtrinsics_objectsBuilder
     _$GGetExtrinsicsData_getExtrinsics_objects _$result;
     try {
       _$result = _$v ??
-          new _$GGetExtrinsicsData_getExtrinsics_objects._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GGetExtrinsicsData_getExtrinsics_objects', 'G__typename'),
-              multiAddressAccountId: multiAddressAccountId,
-              extrinsicIdx: extrinsicIdx,
-              blockNumber: blockNumber,
-              callModule: callModule,
-              callName: callName,
-              callArguments: _callArguments?.build(),
-              blockDatetime: _blockDatetime?.build(),
-              complete: BuiltValueNullFieldError.checkNotNull(complete,
-                  r'GGetExtrinsicsData_getExtrinsics_objects', 'complete'));
+          _$GGetExtrinsicsData_getExtrinsics_objects._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GGetExtrinsicsData_getExtrinsics_objects', 'G__typename'),
+            multiAddressAccountId: multiAddressAccountId,
+            extrinsicIdx: extrinsicIdx,
+            blockNumber: blockNumber,
+            callModule: callModule,
+            callName: callName,
+            callArguments: _callArguments?.build(),
+            blockDatetime: _blockDatetime?.build(),
+            complete: BuiltValueNullFieldError.checkNotNull(complete,
+                r'GGetExtrinsicsData_getExtrinsics_objects', 'complete'),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -956,7 +937,7 @@ class GGetExtrinsicsData_getExtrinsics_objectsBuilder
         _$failedField = 'blockDatetime';
         _blockDatetime?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GGetExtrinsicsData_getExtrinsics_objects',
             _$failedField,
             e.toString());

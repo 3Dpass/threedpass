@@ -5,6 +5,7 @@ import 'package:threedpass/core/widgets/buttons/dropdown_button.dart';
 import 'package:threedpass/core/widgets/paddings.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/core/widgets/text/d3p_body_medium_text.dart';
+import 'package:threedpass/features/chains/bloc/current_account_cubit.dart';
 import 'package:threedpass/features/poscan_assets/ui/create_assset/bloc/create_poscan_asset_cubit.dart';
 import 'package:threedpass/features/poscan_assets/ui/create_assset/presentation/widgets/uploaded_object_dropdown_item.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
@@ -27,7 +28,9 @@ class _State extends State<CreateAssetChooseObject> {
 
   Future<void> loadObjects() async {
     try {
-      final userObjs = await getIt<GetCurrentUserObjectsMeta>()(null);
+      final currentAcc =
+          getIt<CurrentAccountCubit>().state.value!.nativeP3D.address;
+      final userObjs = await getIt<GetUserObjectsMeta>()(currentAcc);
       final approved = userObjs.where(
         (final e) => e.status == UploadedObjectStatus.approved,
       );

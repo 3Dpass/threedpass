@@ -25,11 +25,11 @@ abstract class _$TransferInfoBlocStateCWProxy {
   /// TransferInfoBlocState(...).copyWith(id: 12, name: "My name")
   /// ````
   TransferInfoBlocState call({
-    List<FromAddressData>? fromAddresses,
-    List<ToAddressData>? toAddresses,
+    List<FromAddressData> fromAddresses,
+    List<ToAddressData> toAddresses,
     TxFeeEstimateResult? fees,
-    BalanceTransactionType? transactionOption,
-    List<SendAmountData>? amounts,
+    BalanceTransactionType transactionOption,
+    List<SendAmountData> amounts,
   });
 }
 
@@ -76,26 +76,23 @@ class _$TransferInfoBlocStateCWProxyImpl
     Object? amounts = const $CopyWithPlaceholder(),
   }) {
     return TransferInfoBlocState(
-      fromAddresses:
-          fromAddresses == const $CopyWithPlaceholder() || fromAddresses == null
-              ? _value.fromAddresses
-              // ignore: cast_nullable_to_non_nullable
-              : fromAddresses as List<FromAddressData>,
-      toAddresses:
-          toAddresses == const $CopyWithPlaceholder() || toAddresses == null
-              ? _value.toAddresses
-              // ignore: cast_nullable_to_non_nullable
-              : toAddresses as List<ToAddressData>,
+      fromAddresses: fromAddresses == const $CopyWithPlaceholder()
+          ? _value.fromAddresses
+          // ignore: cast_nullable_to_non_nullable
+          : fromAddresses as List<FromAddressData>,
+      toAddresses: toAddresses == const $CopyWithPlaceholder()
+          ? _value.toAddresses
+          // ignore: cast_nullable_to_non_nullable
+          : toAddresses as List<ToAddressData>,
       fees: fees == const $CopyWithPlaceholder()
           ? _value.fees
           // ignore: cast_nullable_to_non_nullable
           : fees as TxFeeEstimateResult?,
-      transactionOption: transactionOption == const $CopyWithPlaceholder() ||
-              transactionOption == null
+      transactionOption: transactionOption == const $CopyWithPlaceholder()
           ? _value.transactionOption
           // ignore: cast_nullable_to_non_nullable
           : transactionOption as BalanceTransactionType,
-      amounts: amounts == const $CopyWithPlaceholder() || amounts == null
+      amounts: amounts == const $CopyWithPlaceholder()
           ? _value.amounts
           // ignore: cast_nullable_to_non_nullable
           : amounts as List<SendAmountData>,
@@ -123,7 +120,7 @@ abstract class _$FromAddressDataCWProxy {
   /// ````
   FromAddressData call({
     KeyPairData? data,
-    TextEditingController? passwordController,
+    TextEditingController passwordController,
   });
 }
 
@@ -158,8 +155,7 @@ class _$FromAddressDataCWProxyImpl implements _$FromAddressDataCWProxy {
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
           : data as KeyPairData?,
-      passwordController: passwordController == const $CopyWithPlaceholder() ||
-              passwordController == null
+      passwordController: passwordController == const $CopyWithPlaceholder()
           ? _value.passwordController
           // ignore: cast_nullable_to_non_nullable
           : passwordController as TextEditingController,
@@ -183,7 +179,7 @@ abstract class _$ToAddressDataCWProxy {
   /// ToAddressData(...).copyWith(id: 12, name: "My name")
   /// ````
   ToAddressData call({
-    TextEditingController? toAddressController,
+    TextEditingController toAddressController,
   });
 }
 
@@ -210,12 +206,10 @@ class _$ToAddressDataCWProxyImpl implements _$ToAddressDataCWProxy {
     Object? toAddressController = const $CopyWithPlaceholder(),
   }) {
     return ToAddressData(
-      toAddressController:
-          toAddressController == const $CopyWithPlaceholder() ||
-                  toAddressController == null
-              ? _value.toAddressController
-              // ignore: cast_nullable_to_non_nullable
-              : toAddressController as TextEditingController,
+      toAddressController: toAddressController == const $CopyWithPlaceholder()
+          ? _value.toAddressController
+          // ignore: cast_nullable_to_non_nullable
+          : toAddressController as TextEditingController,
     );
   }
 }
@@ -236,7 +230,7 @@ abstract class _$SendAmountDataCWProxy {
   /// SendAmountData(...).copyWith(id: 12, name: "My name")
   /// ````
   SendAmountData call({
-    TextEditingController? amountController,
+    TextEditingController amountController,
   });
 }
 
@@ -262,8 +256,7 @@ class _$SendAmountDataCWProxyImpl implements _$SendAmountDataCWProxy {
     Object? amountController = const $CopyWithPlaceholder(),
   }) {
     return SendAmountData(
-      amountController: amountController == const $CopyWithPlaceholder() ||
-              amountController == null
+      amountController: amountController == const $CopyWithPlaceholder()
           ? _value.amountController
           // ignore: cast_nullable_to_non_nullable
           : amountController as TextEditingController,

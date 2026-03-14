@@ -24,10 +24,10 @@ abstract class _$AppSettingsCWProxy {
   /// AppSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   AppSettings call({
-    bool? darkTheme,
-    int? stableRequirement,
-    bool? showZeroAssets,
-    String? oldPinCode,
+    bool darkTheme,
+    int stableRequirement,
+    bool showZeroAssets,
+    String oldPinCode,
     int? newPinHash,
   });
 }
@@ -71,25 +71,22 @@ class _$AppSettingsCWProxyImpl implements _$AppSettingsCWProxy {
     Object? newPinHash = const $CopyWithPlaceholder(),
   }) {
     return AppSettings(
-      darkTheme: darkTheme == const $CopyWithPlaceholder() || darkTheme == null
+      darkTheme: darkTheme == const $CopyWithPlaceholder()
           ? _value.darkTheme
           // ignore: cast_nullable_to_non_nullable
           : darkTheme as bool,
-      stableRequirement: stableRequirement == const $CopyWithPlaceholder() ||
-              stableRequirement == null
+      stableRequirement: stableRequirement == const $CopyWithPlaceholder()
           ? _value.stableRequirement
           // ignore: cast_nullable_to_non_nullable
           : stableRequirement as int,
-      showZeroAssets: showZeroAssets == const $CopyWithPlaceholder() ||
-              showZeroAssets == null
+      showZeroAssets: showZeroAssets == const $CopyWithPlaceholder()
           ? _value.showZeroAssets
           // ignore: cast_nullable_to_non_nullable
           : showZeroAssets as bool,
-      oldPinCode:
-          oldPinCode == const $CopyWithPlaceholder() || oldPinCode == null
-              ? _value.oldPinCode
-              // ignore: cast_nullable_to_non_nullable
-              : oldPinCode as String,
+      oldPinCode: oldPinCode == const $CopyWithPlaceholder()
+          ? _value.oldPinCode
+          // ignore: cast_nullable_to_non_nullable
+          : oldPinCode as String,
       newPinHash: newPinHash == const $CopyWithPlaceholder()
           ? _value.newPinHash
           // ignore: cast_nullable_to_non_nullable

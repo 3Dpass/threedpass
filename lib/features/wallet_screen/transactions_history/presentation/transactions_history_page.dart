@@ -16,18 +16,23 @@ class TransactionsHistoryPage extends StatelessWidget {
     final bloc = BlocProvider.of<GetTransfersCubit>(context);
     return D3pScaffold(
       appBarTitle: 'transfers_history_title',
-      body: PagedListView<int, TransferHistoryUI>.separated(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        pagingController: bloc.pagingController,
-        separatorBuilder: (final context, final index) => const Divider(),
-        builderDelegate: PagedChildBuilderDelegate<TransferHistoryUI>(
-          itemBuilder: (final context, final item, final index) =>
-              TransactionItem(object: item),
-          noItemsFoundIndicatorBuilder: (final context) =>
-              const NoTransferItemsFound(),
-          firstPageErrorIndicatorBuilder: (final context) =>
-              FirstPageExceptionIndicator(
-            onTryAgain: bloc.pagingController.refresh,
+      body: PagingListener(
+        controller: bloc.pagingController,
+        builder: (context, state, fetchNextPage) =>
+            PagedListView<int, TransferHistoryUI>.separated(
+          state: state,
+          fetchNextPage: fetchNextPage,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          separatorBuilder: (final context, final index) => const Divider(),
+          builderDelegate: PagedChildBuilderDelegate<TransferHistoryUI>(
+            itemBuilder: (final context, final item, final index) =>
+                TransactionItem(object: item),
+            noItemsFoundIndicatorBuilder: (final context) =>
+                const NoTransferItemsFound(),
+            firstPageErrorIndicatorBuilder: (final context) =>
+                FirstPageExceptionIndicator(
+              onTryAgain: bloc.pagingController.refresh,
+            ),
           ),
         ),
       ),

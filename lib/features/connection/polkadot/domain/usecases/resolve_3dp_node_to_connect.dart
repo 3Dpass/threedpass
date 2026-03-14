@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:threedpass/core/usecase.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/features/connection/polkadot/data/repositories/public_3dp_nodes_list_repository.dart';
@@ -25,12 +23,17 @@ class Resolve3DPNodeToConnect extends UseCase<String, void> {
         if (public.isEmpty) {
           throw Exception('No public nodes found');
         }
-        final rndIdx = Random().nextInt(public.length);
-        final url = public[rndIdx];
-        logger.t(
-          'Chosen random index = $rndIdx of ${public.length} public nodes. NodeUrl=$url',
-        );
-        return url;
+        public.shuffle();
+        for (final url in public) {
+          final reachable = await publicNodesRepo.checkReachable(url);
+          if (reachable) {
+            logger.t(
+              'Chosen reachable node from ${public.length} candidates. NodeUrl=$url',
+            );
+            return url;
+          }
+        }
+        throw Exception('No reachable public nodes found');
       case ConnectionMode.custom:
         return settings.walletSettings.nodeUrl;
     }

@@ -19,7 +19,7 @@ import 'package:threedpass/router/router.gr.dart';
 part 'bottom_sheet_route.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Page|Screen|Dialog|BottomSheet,Route')
-class RootRouter extends $RootRouter {
+class RootRouter extends RootStackRouter {
   @override
   RouteType defaultRouteType = const RouteType.adaptive();
 

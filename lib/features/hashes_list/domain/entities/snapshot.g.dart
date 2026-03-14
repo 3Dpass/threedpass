@@ -30,14 +30,14 @@ abstract class _$SnapshotCWProxy {
   /// Snapshot(...).copyWith(id: 12, name: "My name")
   /// ````
   Snapshot call({
-    String? name,
-    DateTime? stamp,
-    List<String>? hashes,
-    ScanSettings? settingsConfig,
-    int? fileHash,
+    String name,
+    DateTime stamp,
+    List<String> hashes,
+    ScanSettings settingsConfig,
+    int fileHash,
     String? relativePath,
     String? externalPathToObj,
-    bool? isNew,
+    bool isNew,
   });
 }
 
@@ -93,24 +93,23 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
     Object? isNew = const $CopyWithPlaceholder(),
   }) {
     return Snapshot(
-      name: name == const $CopyWithPlaceholder() || name == null
+      name: name == const $CopyWithPlaceholder()
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
           : name as String,
-      stamp: stamp == const $CopyWithPlaceholder() || stamp == null
+      stamp: stamp == const $CopyWithPlaceholder()
           ? _value.stamp
           // ignore: cast_nullable_to_non_nullable
           : stamp as DateTime,
-      hashes: hashes == const $CopyWithPlaceholder() || hashes == null
+      hashes: hashes == const $CopyWithPlaceholder()
           ? _value.hashes
           // ignore: cast_nullable_to_non_nullable
           : hashes as List<String>,
-      settingsConfig: settingsConfig == const $CopyWithPlaceholder() ||
-              settingsConfig == null
+      settingsConfig: settingsConfig == const $CopyWithPlaceholder()
           ? _value.settingsConfig
           // ignore: cast_nullable_to_non_nullable
           : settingsConfig as ScanSettings,
-      fileHash: fileHash == const $CopyWithPlaceholder() || fileHash == null
+      fileHash: fileHash == const $CopyWithPlaceholder()
           ? _value.fileHash
           // ignore: cast_nullable_to_non_nullable
           : fileHash as int,
@@ -122,7 +121,7 @@ class _$SnapshotCWProxyImpl implements _$SnapshotCWProxy {
           ? _value.externalPathToObj
           // ignore: cast_nullable_to_non_nullable
           : externalPathToObj as String?,
-      isNew: isNew == const $CopyWithPlaceholder() || isNew == null
+      isNew: isNew == const $CopyWithPlaceholder()
           ? _value.isNew
           // ignore: cast_nullable_to_non_nullable
           : isNew as bool,

@@ -24,8 +24,8 @@ abstract class _$CreatePoscanAssetStateCWProxy {
   CreatePoscanAssetState call({
     PropValue? propValue,
     UploadedObject? uploadedObject,
-    KeyPairData? keyPairData,
-    bool? includeObject,
+    KeyPairData keyPairData,
+    bool includeObject,
   });
 }
 
@@ -75,16 +75,14 @@ class _$CreatePoscanAssetStateCWProxyImpl
           ? _value.uploadedObject
           // ignore: cast_nullable_to_non_nullable
           : uploadedObject as UploadedObject?,
-      keyPairData:
-          keyPairData == const $CopyWithPlaceholder() || keyPairData == null
-              ? _value.keyPairData
-              // ignore: cast_nullable_to_non_nullable
-              : keyPairData as KeyPairData,
-      includeObject:
-          includeObject == const $CopyWithPlaceholder() || includeObject == null
-              ? _value.includeObject
-              // ignore: cast_nullable_to_non_nullable
-              : includeObject as bool,
+      keyPairData: keyPairData == const $CopyWithPlaceholder()
+          ? _value.keyPairData
+          // ignore: cast_nullable_to_non_nullable
+          : keyPairData as KeyPairData,
+      includeObject: includeObject == const $CopyWithPlaceholder()
+          ? _value.includeObject
+          // ignore: cast_nullable_to_non_nullable
+          : includeObject as bool,
     );
   }
 }

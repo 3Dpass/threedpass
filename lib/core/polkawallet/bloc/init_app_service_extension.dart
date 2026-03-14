@@ -8,7 +8,20 @@ extension _ on AppServiceLoaderCubit {
     // Init keyring
     await keyring.init([ss58formatLive, ss58formatTest]);
 
-    final nodeUr = await polkadotNodeUrl.initUrl();
+    late final String nodeUr;
+    try {
+      nodeUr = await polkadotNodeUrl.initUrl();
+    } catch (_) {
+      emit(
+        AppService(
+          plugin: state.plugin,
+          keyring: keyring,
+          status: AppServiceInitStatus.error,
+        ),
+      );
+      return;
+    }
+
     final plugin = D3pLiveNetPlugin(nodeUrl: nodeUr);
 
     final appService = AppService(

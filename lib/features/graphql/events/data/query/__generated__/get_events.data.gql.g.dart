@@ -7,15 +7,15 @@ part of 'get_events.data.gql.dart';
 // **************************************************************************
 
 Serializer<GGetEventsData> _$gGetEventsDataSerializer =
-    new _$GGetEventsDataSerializer();
+    _$GGetEventsDataSerializer();
 Serializer<GGetEventsData_getEvents> _$gGetEventsDataGetEventsSerializer =
-    new _$GGetEventsData_getEventsSerializer();
+    _$GGetEventsData_getEventsSerializer();
 Serializer<GGetEventsData_getEvents_pageInfo>
     _$gGetEventsDataGetEventsPageInfoSerializer =
-    new _$GGetEventsData_getEvents_pageInfoSerializer();
+    _$GGetEventsData_getEvents_pageInfoSerializer();
 Serializer<GGetEventsData_getEvents_objects>
     _$gGetEventsDataGetEventsObjectsSerializer =
-    new _$GGetEventsData_getEvents_objectsSerializer();
+    _$GGetEventsData_getEvents_objectsSerializer();
 
 class _$GGetEventsDataSerializer
     implements StructuredSerializer<GGetEventsData> {
@@ -47,7 +47,7 @@ class _$GGetEventsDataSerializer
   GGetEventsData deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetEventsDataBuilder();
+    final result = GGetEventsDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -114,7 +114,7 @@ class _$GGetEventsData_getEventsSerializer
   GGetEventsData_getEvents deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetEventsData_getEventsBuilder();
+    final result = GGetEventsData_getEventsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -192,7 +192,7 @@ class _$GGetEventsData_getEvents_pageInfoSerializer
   GGetEventsData_getEvents_pageInfo deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetEventsData_getEvents_pageInfoBuilder();
+    final result = GGetEventsData_getEvents_pageInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -316,7 +316,7 @@ class _$GGetEventsData_getEvents_objectsSerializer
   GGetEventsData_getEvents_objects deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetEventsData_getEvents_objectsBuilder();
+    final result = GGetEventsData_getEvents_objectsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -384,20 +384,15 @@ class _$GGetEventsData extends GGetEventsData {
   final GGetEventsData_getEvents? getEvents;
 
   factory _$GGetEventsData([void Function(GGetEventsDataBuilder)? updates]) =>
-      (new GGetEventsDataBuilder()..update(updates))._build();
+      (GGetEventsDataBuilder()..update(updates))._build();
 
-  _$GGetEventsData._({required this.G__typename, this.getEvents}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GGetEventsData', 'G__typename');
-  }
-
+  _$GGetEventsData._({required this.G__typename, this.getEvents}) : super._();
   @override
   GGetEventsData rebuild(void Function(GGetEventsDataBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GGetEventsDataBuilder toBuilder() =>
-      new GGetEventsDataBuilder()..replace(this);
+  GGetEventsDataBuilder toBuilder() => GGetEventsDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -435,7 +430,7 @@ class GGetEventsDataBuilder
 
   GGetEventsData_getEventsBuilder? _getEvents;
   GGetEventsData_getEventsBuilder get getEvents =>
-      _$this._getEvents ??= new GGetEventsData_getEventsBuilder();
+      _$this._getEvents ??= GGetEventsData_getEventsBuilder();
   set getEvents(GGetEventsData_getEventsBuilder? getEvents) =>
       _$this._getEvents = getEvents;
 
@@ -455,7 +450,6 @@ class GGetEventsDataBuilder
 
   @override
   void replace(GGetEventsData other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GGetEventsData;
   }
 
@@ -471,17 +465,18 @@ class GGetEventsDataBuilder
     _$GGetEventsData _$result;
     try {
       _$result = _$v ??
-          new _$GGetEventsData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GGetEventsData', 'G__typename'),
-              getEvents: _getEvents?.build());
+          _$GGetEventsData._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GGetEventsData', 'G__typename'),
+            getEvents: _getEvents?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'getEvents';
         _getEvents?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GGetEventsData', _$failedField, e.toString());
       }
       rethrow;
@@ -501,15 +496,11 @@ class _$GGetEventsData_getEvents extends GGetEventsData_getEvents {
 
   factory _$GGetEventsData_getEvents(
           [void Function(GGetEventsData_getEventsBuilder)? updates]) =>
-      (new GGetEventsData_getEventsBuilder()..update(updates))._build();
+      (GGetEventsData_getEventsBuilder()..update(updates))._build();
 
   _$GGetEventsData_getEvents._(
       {required this.G__typename, this.pageInfo, this.objects})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GGetEventsData_getEvents', 'G__typename');
-  }
-
+      : super._();
   @override
   GGetEventsData_getEvents rebuild(
           void Function(GGetEventsData_getEventsBuilder) updates) =>
@@ -517,7 +508,7 @@ class _$GGetEventsData_getEvents extends GGetEventsData_getEvents {
 
   @override
   GGetEventsData_getEventsBuilder toBuilder() =>
-      new GGetEventsData_getEventsBuilder()..replace(this);
+      GGetEventsData_getEventsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -559,13 +550,13 @@ class GGetEventsData_getEventsBuilder
 
   GGetEventsData_getEvents_pageInfoBuilder? _pageInfo;
   GGetEventsData_getEvents_pageInfoBuilder get pageInfo =>
-      _$this._pageInfo ??= new GGetEventsData_getEvents_pageInfoBuilder();
+      _$this._pageInfo ??= GGetEventsData_getEvents_pageInfoBuilder();
   set pageInfo(GGetEventsData_getEvents_pageInfoBuilder? pageInfo) =>
       _$this._pageInfo = pageInfo;
 
   ListBuilder<GGetEventsData_getEvents_objects?>? _objects;
   ListBuilder<GGetEventsData_getEvents_objects?> get objects =>
-      _$this._objects ??= new ListBuilder<GGetEventsData_getEvents_objects?>();
+      _$this._objects ??= ListBuilder<GGetEventsData_getEvents_objects?>();
   set objects(ListBuilder<GGetEventsData_getEvents_objects?>? objects) =>
       _$this._objects = objects;
 
@@ -586,7 +577,6 @@ class GGetEventsData_getEventsBuilder
 
   @override
   void replace(GGetEventsData_getEvents other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GGetEventsData_getEvents;
   }
 
@@ -602,11 +592,12 @@ class GGetEventsData_getEventsBuilder
     _$GGetEventsData_getEvents _$result;
     try {
       _$result = _$v ??
-          new _$GGetEventsData_getEvents._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GGetEventsData_getEvents', 'G__typename'),
-              pageInfo: _pageInfo?.build(),
-              objects: _objects?.build());
+          _$GGetEventsData_getEvents._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GGetEventsData_getEvents', 'G__typename'),
+            pageInfo: _pageInfo?.build(),
+            objects: _objects?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -615,7 +606,7 @@ class GGetEventsData_getEventsBuilder
         _$failedField = 'objects';
         _objects?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GGetEventsData_getEvents', _$failedField, e.toString());
       }
       rethrow;
@@ -638,16 +629,11 @@ class _$GGetEventsData_getEvents_pageInfo
 
   factory _$GGetEventsData_getEvents_pageInfo(
           [void Function(GGetEventsData_getEvents_pageInfoBuilder)? updates]) =>
-      (new GGetEventsData_getEvents_pageInfoBuilder()..update(updates))
-          ._build();
+      (GGetEventsData_getEvents_pageInfoBuilder()..update(updates))._build();
 
   _$GGetEventsData_getEvents_pageInfo._(
       {required this.G__typename, this.pageSize, this.pageNext, this.pagePrev})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GGetEventsData_getEvents_pageInfo', 'G__typename');
-  }
-
+      : super._();
   @override
   GGetEventsData_getEvents_pageInfo rebuild(
           void Function(GGetEventsData_getEvents_pageInfoBuilder) updates) =>
@@ -655,7 +641,7 @@ class _$GGetEventsData_getEvents_pageInfo
 
   @override
   GGetEventsData_getEvents_pageInfoBuilder toBuilder() =>
-      new GGetEventsData_getEvents_pageInfoBuilder()..replace(this);
+      GGetEventsData_getEvents_pageInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -729,7 +715,6 @@ class GGetEventsData_getEvents_pageInfoBuilder
 
   @override
   void replace(GGetEventsData_getEvents_pageInfo other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GGetEventsData_getEvents_pageInfo;
   }
 
@@ -744,12 +729,13 @@ class GGetEventsData_getEvents_pageInfoBuilder
 
   _$GGetEventsData_getEvents_pageInfo _build() {
     final _$result = _$v ??
-        new _$GGetEventsData_getEvents_pageInfo._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GGetEventsData_getEvents_pageInfo', 'G__typename'),
-            pageSize: pageSize,
-            pageNext: pageNext,
-            pagePrev: pagePrev);
+        _$GGetEventsData_getEvents_pageInfo._(
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GGetEventsData_getEvents_pageInfo', 'G__typename'),
+          pageSize: pageSize,
+          pageNext: pageNext,
+          pagePrev: pagePrev,
+        );
     replace(_$result);
     return _$result;
   }
@@ -782,7 +768,7 @@ class _$GGetEventsData_getEvents_objects
 
   factory _$GGetEventsData_getEvents_objects(
           [void Function(GGetEventsData_getEvents_objectsBuilder)? updates]) =>
-      (new GGetEventsData_getEvents_objectsBuilder()..update(updates))._build();
+      (GGetEventsData_getEvents_objectsBuilder()..update(updates))._build();
 
   _$GGetEventsData_getEvents_objects._(
       {required this.G__typename,
@@ -796,11 +782,7 @@ class _$GGetEventsData_getEvents_objects
       this.phaseName,
       this.attributes,
       this.topics})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GGetEventsData_getEvents_objects', 'G__typename');
-  }
-
+      : super._();
   @override
   GGetEventsData_getEvents_objects rebuild(
           void Function(GGetEventsData_getEvents_objectsBuilder) updates) =>
@@ -808,7 +790,7 @@ class _$GGetEventsData_getEvents_objects
 
   @override
   GGetEventsData_getEvents_objectsBuilder toBuilder() =>
-      new GGetEventsData_getEvents_objectsBuilder()..replace(this);
+      GGetEventsData_getEvents_objectsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -907,13 +889,13 @@ class GGetEventsData_getEvents_objectsBuilder
 
   _i2.GJSONStringBuilder? _attributes;
   _i2.GJSONStringBuilder get attributes =>
-      _$this._attributes ??= new _i2.GJSONStringBuilder();
+      _$this._attributes ??= _i2.GJSONStringBuilder();
   set attributes(_i2.GJSONStringBuilder? attributes) =>
       _$this._attributes = attributes;
 
   _i2.GJSONStringBuilder? _topics;
   _i2.GJSONStringBuilder get topics =>
-      _$this._topics ??= new _i2.GJSONStringBuilder();
+      _$this._topics ??= _i2.GJSONStringBuilder();
   set topics(_i2.GJSONStringBuilder? topics) => _$this._topics = topics;
 
   GGetEventsData_getEvents_objectsBuilder() {
@@ -941,7 +923,6 @@ class GGetEventsData_getEvents_objectsBuilder
 
   @override
   void replace(GGetEventsData_getEvents_objects other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GGetEventsData_getEvents_objects;
   }
 
@@ -957,19 +938,20 @@ class GGetEventsData_getEvents_objectsBuilder
     _$GGetEventsData_getEvents_objects _$result;
     try {
       _$result = _$v ??
-          new _$GGetEventsData_getEvents_objects._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GGetEventsData_getEvents_objects', 'G__typename'),
-              blockNumber: blockNumber,
-              eventIdx: eventIdx,
-              extrinsicIdx: extrinsicIdx,
-              event: event,
-              eventModule: eventModule,
-              eventName: eventName,
-              phaseIdx: phaseIdx,
-              phaseName: phaseName,
-              attributes: _attributes?.build(),
-              topics: _topics?.build());
+          _$GGetEventsData_getEvents_objects._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GGetEventsData_getEvents_objects', 'G__typename'),
+            blockNumber: blockNumber,
+            eventIdx: eventIdx,
+            extrinsicIdx: extrinsicIdx,
+            event: event,
+            eventModule: eventModule,
+            eventName: eventName,
+            phaseIdx: phaseIdx,
+            phaseName: phaseName,
+            attributes: _attributes?.build(),
+            topics: _topics?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -978,7 +960,7 @@ class GGetEventsData_getEvents_objectsBuilder
         _$failedField = 'topics';
         _topics?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GGetEventsData_getEvents_objects', _$failedField, e.toString());
       }
       rethrow;

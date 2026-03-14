@@ -18,8 +18,8 @@ abstract class _$PreviewSettingsCWProxy {
   /// PreviewSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   PreviewSettings call({
-    double? pixelRatio,
-    bool? antialias,
+    double pixelRatio,
+    bool antialias,
   });
 }
 
@@ -48,12 +48,11 @@ class _$PreviewSettingsCWProxyImpl implements _$PreviewSettingsCWProxy {
     Object? antialias = const $CopyWithPlaceholder(),
   }) {
     return PreviewSettings(
-      pixelRatio:
-          pixelRatio == const $CopyWithPlaceholder() || pixelRatio == null
-              ? _value.pixelRatio
-              // ignore: cast_nullable_to_non_nullable
-              : pixelRatio as double,
-      antialias: antialias == const $CopyWithPlaceholder() || antialias == null
+      pixelRatio: pixelRatio == const $CopyWithPlaceholder()
+          ? _value.pixelRatio
+          // ignore: cast_nullable_to_non_nullable
+          : pixelRatio as double,
+      antialias: antialias == const $CopyWithPlaceholder()
           ? _value.antialias
           // ignore: cast_nullable_to_non_nullable
           : antialias as bool,

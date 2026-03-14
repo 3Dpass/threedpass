@@ -22,7 +22,7 @@ class DeleteContactDialog extends StatelessWidget {
         contact: contact,
       ),
     );
-    unawaited(context.router.pop());
+    unawaited(context.router.maybePop());
   }
 
   @override
@@ -36,7 +36,7 @@ class DeleteContactDialog extends StatelessWidget {
       actions: [
         D3pTextButton(
           text: 'Cancel'.tr(),
-          onPressed: () => context.router.pop(),
+          onPressed: () => context.router.maybePop(),
         ),
         D3pTextButton(
           text: 'Delete'.tr(),

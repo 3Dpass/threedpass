@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/settings_section_header.dart';
+import 'package:threedpass/features/settings_page/presentation/widgets/wallet_settings/explorer_url_button.dart';
 import 'package:threedpass/features/settings_page/presentation/widgets/wallet_settings/node_url_button.dart';
 
 class WalletSettingsBlock extends StatelessWidget {
@@ -15,6 +16,7 @@ class WalletSettingsBlock extends StatelessWidget {
           title: 'wallet_settings_title',
         ),
         NodeUrlButton(),
+        ExplorerUrlButton(),
       ],
     );
   }

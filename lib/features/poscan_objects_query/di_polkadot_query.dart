@@ -45,9 +45,8 @@ class DIPoscanQuery extends DIModule {
         ),
       ),
     );
-    getIt.registerFactory<GetCurrentUserObjectsMeta>(
-      () => GetCurrentUserObjectsMeta(
-        currentAccountCubit: getIt<CurrentAccountCubit>(),
+    getIt.registerFactory<GetUserObjectsMeta>(
+      () => GetUserObjectsMeta(
         ownedObjectsIds: getIt<GetOwnedObjectsIds>(),
         uploadedObject: getIt<GetUploadedObject>(),
       ),
@@ -85,7 +84,9 @@ class DIPoscanQuery extends DIModule {
     );
 
     getIt.registerLazySingleton<UserObjectsListCubit>(
-      () => UserObjectsListCubit(),
+      () => UserObjectsListCubit(
+        currentAccountCubit: getIt<CurrentAccountCubit>(),
+      ),
     );
   }
 }

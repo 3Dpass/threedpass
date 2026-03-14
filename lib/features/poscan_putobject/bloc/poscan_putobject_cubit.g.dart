@@ -28,13 +28,13 @@ abstract class _$D3PRPCCubitStateCWProxy {
   /// D3PRPCCubitState(...).copyWith(id: 12, name: "My name")
   /// ````
   D3PRPCCubitState call({
-    KeyPairData? account,
-    List<String>? chosenHashes,
-    List<PoscanProperty>? chosenProperties,
-    MapPoscanCategory? chosenCategory,
-    List<PoscanProperty>? defaultProperties,
+    KeyPairData account,
+    List<String> chosenHashes,
+    List<PoscanProperty> chosenProperties,
+    MapPoscanCategory chosenCategory,
+    List<PoscanProperty> defaultProperties,
     bool? isPrivate,
-    bool? isLoading,
+    bool isLoading,
   });
 }
 
@@ -87,27 +87,23 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
     Object? isLoading = const $CopyWithPlaceholder(),
   }) {
     return D3PRPCCubitState(
-      account: account == const $CopyWithPlaceholder() || account == null
+      account: account == const $CopyWithPlaceholder()
           ? _value.account
           // ignore: cast_nullable_to_non_nullable
           : account as KeyPairData,
-      chosenHashes:
-          chosenHashes == const $CopyWithPlaceholder() || chosenHashes == null
-              ? _value.chosenHashes
-              // ignore: cast_nullable_to_non_nullable
-              : chosenHashes as List<String>,
-      chosenProperties: chosenProperties == const $CopyWithPlaceholder() ||
-              chosenProperties == null
+      chosenHashes: chosenHashes == const $CopyWithPlaceholder()
+          ? _value.chosenHashes
+          // ignore: cast_nullable_to_non_nullable
+          : chosenHashes as List<String>,
+      chosenProperties: chosenProperties == const $CopyWithPlaceholder()
           ? _value.chosenProperties
           // ignore: cast_nullable_to_non_nullable
           : chosenProperties as List<PoscanProperty>,
-      chosenCategory: chosenCategory == const $CopyWithPlaceholder() ||
-              chosenCategory == null
+      chosenCategory: chosenCategory == const $CopyWithPlaceholder()
           ? _value.chosenCategory
           // ignore: cast_nullable_to_non_nullable
           : chosenCategory as MapPoscanCategory,
-      defaultProperties: defaultProperties == const $CopyWithPlaceholder() ||
-              defaultProperties == null
+      defaultProperties: defaultProperties == const $CopyWithPlaceholder()
           ? _value.defaultProperties
           // ignore: cast_nullable_to_non_nullable
           : defaultProperties as List<PoscanProperty>,
@@ -115,7 +111,7 @@ class _$D3PRPCCubitStateCWProxyImpl implements _$D3PRPCCubitStateCWProxy {
           ? _value.isPrivate
           // ignore: cast_nullable_to_non_nullable
           : isPrivate as bool?,
-      isLoading: isLoading == const $CopyWithPlaceholder() || isLoading == null
+      isLoading: isLoading == const $CopyWithPlaceholder()
           ? _value.isLoading
           // ignore: cast_nullable_to_non_nullable
           : isLoading as bool,

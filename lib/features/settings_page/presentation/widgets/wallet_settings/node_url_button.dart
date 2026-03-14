@@ -38,7 +38,7 @@ class NodeUrlButton extends StatelessWidget {
               value: nodeUrlValue,
             ),
             onBasePressed: () => onPressed(context),
-            cardShape: CardShape.all,
+            cardShape: CardShape.top,
           );
         },
       ),

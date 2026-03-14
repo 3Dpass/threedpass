@@ -20,9 +20,9 @@ abstract class _$AccountCreateMnemonicCWProxy {
   /// AccountCreateMnemonic(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountCreateMnemonic call({
-    String? mnemonic,
-    String? name,
-    String? password,
+    String mnemonic,
+    String name,
+    String password,
   });
 }
 
@@ -56,15 +56,15 @@ class _$AccountCreateMnemonicCWProxyImpl
     Object? password = const $CopyWithPlaceholder(),
   }) {
     return AccountCreateMnemonic(
-      mnemonic: mnemonic == const $CopyWithPlaceholder() || mnemonic == null
+      mnemonic: mnemonic == const $CopyWithPlaceholder()
           ? _value.mnemonic
           // ignore: cast_nullable_to_non_nullable
           : mnemonic as String,
-      name: name == const $CopyWithPlaceholder() || name == null
+      name: name == const $CopyWithPlaceholder()
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
           : name as String,
-      password: password == const $CopyWithPlaceholder() || password == null
+      password: password == const $CopyWithPlaceholder()
           ? _value.password
           // ignore: cast_nullable_to_non_nullable
           : password as String,
@@ -93,9 +93,9 @@ abstract class _$AccountCreateSeedCWProxy {
   /// AccountCreateSeed(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountCreateSeed call({
-    String? seed,
-    String? name,
-    String? password,
+    String seed,
+    String name,
+    String password,
   });
 }
 
@@ -128,15 +128,15 @@ class _$AccountCreateSeedCWProxyImpl implements _$AccountCreateSeedCWProxy {
     Object? password = const $CopyWithPlaceholder(),
   }) {
     return AccountCreateSeed(
-      seed: seed == const $CopyWithPlaceholder() || seed == null
+      seed: seed == const $CopyWithPlaceholder()
           ? _value.seed
           // ignore: cast_nullable_to_non_nullable
           : seed as String,
-      name: name == const $CopyWithPlaceholder() || name == null
+      name: name == const $CopyWithPlaceholder()
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
           : name as String,
-      password: password == const $CopyWithPlaceholder() || password == null
+      password: password == const $CopyWithPlaceholder()
           ? _value.password
           // ignore: cast_nullable_to_non_nullable
           : password as String,

@@ -25,11 +25,11 @@ abstract class _$RemoveLiquidityStateCWProxy {
   /// RemoveLiquidityState(...).copyWith(id: 12, name: "My name")
   /// ````
   RemoveLiquidityState call({
-    int? percentage,
-    bool? isLoading,
+    int percentage,
+    bool isLoading,
     RemoveLiquidityInfo? removeLiquidityInfo,
     int? maxPercent,
-    bool? isMaxChosen,
+    bool isMaxChosen,
   });
 }
 
@@ -76,12 +76,11 @@ class _$RemoveLiquidityStateCWProxyImpl
     Object? isMaxChosen = const $CopyWithPlaceholder(),
   }) {
     return RemoveLiquidityState(
-      percentage:
-          percentage == const $CopyWithPlaceholder() || percentage == null
-              ? _value.percentage
-              // ignore: cast_nullable_to_non_nullable
-              : percentage as int,
-      isLoading: isLoading == const $CopyWithPlaceholder() || isLoading == null
+      percentage: percentage == const $CopyWithPlaceholder()
+          ? _value.percentage
+          // ignore: cast_nullable_to_non_nullable
+          : percentage as int,
+      isLoading: isLoading == const $CopyWithPlaceholder()
           ? _value.isLoading
           // ignore: cast_nullable_to_non_nullable
           : isLoading as bool,
@@ -93,11 +92,10 @@ class _$RemoveLiquidityStateCWProxyImpl
           ? _value.maxPercent
           // ignore: cast_nullable_to_non_nullable
           : maxPercent as int?,
-      isMaxChosen:
-          isMaxChosen == const $CopyWithPlaceholder() || isMaxChosen == null
-              ? _value.isMaxChosen
-              // ignore: cast_nullable_to_non_nullable
-              : isMaxChosen as bool,
+      isMaxChosen: isMaxChosen == const $CopyWithPlaceholder()
+          ? _value.isMaxChosen
+          // ignore: cast_nullable_to_non_nullable
+          : isMaxChosen as bool,
     );
   }
 }

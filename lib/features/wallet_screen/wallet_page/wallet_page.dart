@@ -6,24 +6,21 @@ import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/features/wallet_screen/assets_page/assets_page.dart';
 import 'package:threedpass/features/wallet_screen/init_page/appservice_init_loader_page.dart';
 import 'package:threedpass/features/wallet_screen/no_accounts_page/no_accounts_page.dart';
+import 'package:threedpass/features/wallet_screen/no_node_page/no_node_page.dart';
 
 @RoutePage()
 class WalletPage extends StatelessWidget {
   const WalletPage({final Key? key}) : super(key: key);
 
   bool buildWhen(final AppService previous, final AppService current) {
-    // State changes from init sdk to no accounts or hub
-    if (previous.status == AppServiceInitStatus.init) {
+    // Rebuild on any status change
+    if (previous.status != current.status) {
       return true;
     }
 
-    // If new account was created. Otherwise, IF above condition is met and works fine
-    if (current.keyring.allAccounts.length == 1) {
-      return true;
-    }
-
-    // If last account was removed
-    if (current.keyring.allAccounts.isEmpty) {
+    // If new account was created or last account was removed
+    if (previous.keyring.allAccounts.length !=
+        current.keyring.allAccounts.length) {
       return true;
     }
 
@@ -36,10 +33,11 @@ class WalletPage extends StatelessWidget {
       builder: (final context, final state) {
         switch (state.status) {
           case AppServiceInitStatus.init:
-            return const AppServiceInitLoaderPage();
           case AppServiceInitStatus.connecting:
-          case AppServiceInitStatus.connected:
+            return const AppServiceInitLoaderPage();
           case AppServiceInitStatus.error:
+            return const NoNodePage();
+          case AppServiceInitStatus.connected:
             return state.keyring.allAccounts.isEmpty
                 ? const NoAccountsPage()
                 : const AssetsPage();

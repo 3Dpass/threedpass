@@ -17,7 +17,7 @@ class NoStableHashDialog extends StatelessWidget {
       actions: [
         D3pTextButton(
           text: 'OK'.tr(),
-          onPressed: () => context.router.pop(),
+          onPressed: () => context.router.maybePop(),
         ),
       ],
     );

@@ -8,6 +8,7 @@ import 'package:threedpass/core/polkawallet/app_service.dart';
 import 'package:threedpass/core/polkawallet/bloc/app_service_cubit.dart';
 import 'package:threedpass/core/utils/logger.dart';
 import 'package:threedpass/core/widgets/buttons/elevated_button.dart';
+import 'package:threedpass/core/widgets/buttons/text_button.dart';
 import 'package:threedpass/core/widgets/other/ph16.dart';
 import 'package:threedpass/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:threedpass/features/poscan_objects_query/domain/entities/uploaded_object.dart';
@@ -17,6 +18,8 @@ import 'package:threedpass/features/settings_page/domain/entities/scan_settings.
 import 'package:threedpass/features/wallet_screen/assets_page/widgets/objects_list/objects_list_item.dart';
 import 'package:threedpass/router/router.gr.dart';
 import 'package:threedpass/setup.dart';
+
+part 'open_poscan_conditions_button.dart';
 
 class PoscanResult extends StatefulWidget {
   const PoscanResult({super.key});
@@ -98,14 +101,15 @@ class _State extends State<PoscanResult> {
                 isCorrectSettings &&
                 !snap.scanFailed;
             return PH16(
-              child: D3pElevatedButton(
-                iconData: Icons.upload,
-                text: '3d_rpc_button_label'.tr(),
-                onPressed: allConditions
-                    ? () async =>
-                        context.router.push(const D3PRPCRouteWrapper())
-                    : null,
-              ),
+              child: allConditions
+                  ? D3pElevatedButton(
+                      iconData: Icons.upload,
+                      text: '3d_rpc_button_label'.tr(),
+                      onPressed: () async => context.router.push(
+                        const D3PRPCRouteWrapper(),
+                      ),
+                    )
+                  : OpenPoscanConditionsButton(),
             );
           },
         ),

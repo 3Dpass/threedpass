@@ -28,12 +28,12 @@ abstract class _$NotificationTransferCWProxy {
   /// NotificationTransfer(...).copyWith(id: 12, name: "My name")
   /// ````
   NotificationTransfer call({
-    String? amount,
-    String? fromAddress,
-    String? symbols,
-    String? toAddress,
+    String amount,
+    String fromAddress,
+    String symbols,
+    String toAddress,
     String? message,
-    ExtrinsicStatus? status,
+    ExtrinsicStatus status,
     DateTime? blockDateTime,
   });
 }
@@ -87,20 +87,19 @@ class _$NotificationTransferCWProxyImpl
     Object? blockDateTime = const $CopyWithPlaceholder(),
   }) {
     return NotificationTransfer(
-      amount: amount == const $CopyWithPlaceholder() || amount == null
+      amount: amount == const $CopyWithPlaceholder()
           ? _value.amount
           // ignore: cast_nullable_to_non_nullable
           : amount as String,
-      fromAddress:
-          fromAddress == const $CopyWithPlaceholder() || fromAddress == null
-              ? _value.fromAddress
-              // ignore: cast_nullable_to_non_nullable
-              : fromAddress as String,
-      symbols: symbols == const $CopyWithPlaceholder() || symbols == null
+      fromAddress: fromAddress == const $CopyWithPlaceholder()
+          ? _value.fromAddress
+          // ignore: cast_nullable_to_non_nullable
+          : fromAddress as String,
+      symbols: symbols == const $CopyWithPlaceholder()
           ? _value.symbols
           // ignore: cast_nullable_to_non_nullable
           : symbols as String,
-      toAddress: toAddress == const $CopyWithPlaceholder() || toAddress == null
+      toAddress: toAddress == const $CopyWithPlaceholder()
           ? _value.toAddress
           // ignore: cast_nullable_to_non_nullable
           : toAddress as String,
@@ -108,7 +107,7 @@ class _$NotificationTransferCWProxyImpl
           ? _value.message
           // ignore: cast_nullable_to_non_nullable
           : message as String?,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as ExtrinsicStatus,
@@ -149,12 +148,12 @@ abstract class _$NotificationTransferBatchCWProxy {
   /// NotificationTransferBatch(...).copyWith(id: 12, name: "My name")
   /// ````
   NotificationTransferBatch call({
-    List<String>? amount,
-    String? fromAddress,
-    String? symbols,
-    List<String>? toAddress,
+    List<String> amount,
+    String fromAddress,
+    String symbols,
+    List<String> toAddress,
     String? message,
-    ExtrinsicStatus? status,
+    ExtrinsicStatus status,
     DateTime? blockDateTime,
   });
 }
@@ -209,20 +208,19 @@ class _$NotificationTransferBatchCWProxyImpl
     Object? blockDateTime = const $CopyWithPlaceholder(),
   }) {
     return NotificationTransferBatch(
-      amount: amount == const $CopyWithPlaceholder() || amount == null
+      amount: amount == const $CopyWithPlaceholder()
           ? _value.amount
           // ignore: cast_nullable_to_non_nullable
           : amount as List<String>,
-      fromAddress:
-          fromAddress == const $CopyWithPlaceholder() || fromAddress == null
-              ? _value.fromAddress
-              // ignore: cast_nullable_to_non_nullable
-              : fromAddress as String,
-      symbols: symbols == const $CopyWithPlaceholder() || symbols == null
+      fromAddress: fromAddress == const $CopyWithPlaceholder()
+          ? _value.fromAddress
+          // ignore: cast_nullable_to_non_nullable
+          : fromAddress as String,
+      symbols: symbols == const $CopyWithPlaceholder()
           ? _value.symbols
           // ignore: cast_nullable_to_non_nullable
           : symbols as String,
-      toAddress: toAddress == const $CopyWithPlaceholder() || toAddress == null
+      toAddress: toAddress == const $CopyWithPlaceholder()
           ? _value.toAddress
           // ignore: cast_nullable_to_non_nullable
           : toAddress as List<String>,
@@ -230,7 +228,7 @@ class _$NotificationTransferBatchCWProxyImpl
           ? _value.message
           // ignore: cast_nullable_to_non_nullable
           : message as String?,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as ExtrinsicStatus,
@@ -265,9 +263,9 @@ abstract class _$NotificationPutObjectCWProxy {
   /// NotificationPutObject(...).copyWith(id: 12, name: "My name")
   /// ````
   NotificationPutObject call({
-    KeyPairData? account,
-    String? localSnapshotName,
-    ExtrinsicStatus? status,
+    KeyPairData account,
+    String localSnapshotName,
+    ExtrinsicStatus status,
     String? message,
   });
 }
@@ -307,16 +305,15 @@ class _$NotificationPutObjectCWProxyImpl
     Object? message = const $CopyWithPlaceholder(),
   }) {
     return NotificationPutObject(
-      account: account == const $CopyWithPlaceholder() || account == null
+      account: account == const $CopyWithPlaceholder()
           ? _value.account
           // ignore: cast_nullable_to_non_nullable
           : account as KeyPairData,
-      localSnapshotName: localSnapshotName == const $CopyWithPlaceholder() ||
-              localSnapshotName == null
+      localSnapshotName: localSnapshotName == const $CopyWithPlaceholder()
           ? _value.localSnapshotName
           // ignore: cast_nullable_to_non_nullable
           : localSnapshotName as String,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as ExtrinsicStatus,
@@ -351,9 +348,9 @@ abstract class _$NotificationSetMetadataCWProxy {
   /// NotificationSetMetadata(...).copyWith(id: 12, name: "My name")
   /// ````
   NotificationSetMetadata call({
-    KeyPairData? admin,
-    String? assetId,
-    ExtrinsicStatus? status,
+    KeyPairData admin,
+    String assetId,
+    ExtrinsicStatus status,
     String? message,
   });
 }
@@ -393,15 +390,15 @@ class _$NotificationSetMetadataCWProxyImpl
     Object? message = const $CopyWithPlaceholder(),
   }) {
     return NotificationSetMetadata(
-      admin: admin == const $CopyWithPlaceholder() || admin == null
+      admin: admin == const $CopyWithPlaceholder()
           ? _value.admin
           // ignore: cast_nullable_to_non_nullable
           : admin as KeyPairData,
-      assetId: assetId == const $CopyWithPlaceholder() || assetId == null
+      assetId: assetId == const $CopyWithPlaceholder()
           ? _value.assetId
           // ignore: cast_nullable_to_non_nullable
           : assetId as String,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as ExtrinsicStatus,
@@ -436,9 +433,9 @@ abstract class _$NotificationMintAssetCWProxy {
   /// NotificationMintAsset(...).copyWith(id: 12, name: "My name")
   /// ````
   NotificationMintAsset call({
-    KeyPairData? admin,
-    String? assetId,
-    ExtrinsicStatus? status,
+    KeyPairData admin,
+    String assetId,
+    ExtrinsicStatus status,
     String? message,
   });
 }
@@ -477,15 +474,15 @@ class _$NotificationMintAssetCWProxyImpl
     Object? message = const $CopyWithPlaceholder(),
   }) {
     return NotificationMintAsset(
-      admin: admin == const $CopyWithPlaceholder() || admin == null
+      admin: admin == const $CopyWithPlaceholder()
           ? _value.admin
           // ignore: cast_nullable_to_non_nullable
           : admin as KeyPairData,
-      assetId: assetId == const $CopyWithPlaceholder() || assetId == null
+      assetId: assetId == const $CopyWithPlaceholder()
           ? _value.assetId
           // ignore: cast_nullable_to_non_nullable
           : assetId as String,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as ExtrinsicStatus,
@@ -522,10 +519,10 @@ abstract class _$NotificationCreatePoolCWProxy {
   /// NotificationCreatePool(...).copyWith(id: 12, name: "My name")
   /// ````
   NotificationCreatePool call({
-    KeyPairData? admin,
-    PoolAssetField? asset1,
-    PoolAssetField? asset2,
-    ExtrinsicStatus? status,
+    KeyPairData admin,
+    PoolAssetField asset1,
+    PoolAssetField asset2,
+    ExtrinsicStatus status,
     String? message,
   });
 }
@@ -568,19 +565,19 @@ class _$NotificationCreatePoolCWProxyImpl
     Object? message = const $CopyWithPlaceholder(),
   }) {
     return NotificationCreatePool(
-      admin: admin == const $CopyWithPlaceholder() || admin == null
+      admin: admin == const $CopyWithPlaceholder()
           ? _value.admin
           // ignore: cast_nullable_to_non_nullable
           : admin as KeyPairData,
-      asset1: asset1 == const $CopyWithPlaceholder() || asset1 == null
+      asset1: asset1 == const $CopyWithPlaceholder()
           ? _value.asset1
           // ignore: cast_nullable_to_non_nullable
           : asset1 as PoolAssetField,
-      asset2: asset2 == const $CopyWithPlaceholder() || asset2 == null
+      asset2: asset2 == const $CopyWithPlaceholder()
           ? _value.asset2
           // ignore: cast_nullable_to_non_nullable
           : asset2 as PoolAssetField,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as ExtrinsicStatus,
@@ -613,8 +610,8 @@ abstract class _$NotificationAddLiquidityCWProxy {
   /// NotificationAddLiquidity(...).copyWith(id: 12, name: "My name")
   /// ````
   NotificationAddLiquidity call({
-    AddLiquidityParams? params,
-    ExtrinsicStatus? status,
+    AddLiquidityParams params,
+    ExtrinsicStatus status,
     String? message,
   });
 }
@@ -651,11 +648,11 @@ class _$NotificationAddLiquidityCWProxyImpl
     Object? message = const $CopyWithPlaceholder(),
   }) {
     return NotificationAddLiquidity(
-      params: params == const $CopyWithPlaceholder() || params == null
+      params: params == const $CopyWithPlaceholder()
           ? _value.params
           // ignore: cast_nullable_to_non_nullable
           : params as AddLiquidityParams,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as ExtrinsicStatus,
@@ -688,8 +685,8 @@ abstract class _$NotificationRemoveLiquidityCWProxy {
   /// NotificationRemoveLiquidity(...).copyWith(id: 12, name: "My name")
   /// ````
   NotificationRemoveLiquidity call({
-    RemoveLiquidityParams? params,
-    ExtrinsicStatus? status,
+    RemoveLiquidityParams params,
+    ExtrinsicStatus status,
     String? message,
   });
 }
@@ -727,11 +724,11 @@ class _$NotificationRemoveLiquidityCWProxyImpl
     Object? message = const $CopyWithPlaceholder(),
   }) {
     return NotificationRemoveLiquidity(
-      params: params == const $CopyWithPlaceholder() || params == null
+      params: params == const $CopyWithPlaceholder()
           ? _value.params
           // ignore: cast_nullable_to_non_nullable
           : params as RemoveLiquidityParams,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as ExtrinsicStatus,
@@ -764,8 +761,8 @@ abstract class _$NotificationSwapAssetsCWProxy {
   /// NotificationSwapAssets(...).copyWith(id: 12, name: "My name")
   /// ````
   NotificationSwapAssets call({
-    SwapAssetsParams? params,
-    ExtrinsicStatus? status,
+    SwapAssetsParams params,
+    ExtrinsicStatus status,
     String? message,
   });
 }
@@ -801,11 +798,11 @@ class _$NotificationSwapAssetsCWProxyImpl
     Object? message = const $CopyWithPlaceholder(),
   }) {
     return NotificationSwapAssets(
-      params: params == const $CopyWithPlaceholder() || params == null
+      params: params == const $CopyWithPlaceholder()
           ? _value.params
           // ignore: cast_nullable_to_non_nullable
           : params as SwapAssetsParams,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as ExtrinsicStatus,
@@ -842,11 +839,11 @@ abstract class _$NotificationCreateAtomicSwapCWProxy {
   /// NotificationCreateAtomicSwap(...).copyWith(id: 12, name: "My name")
   /// ````
   NotificationCreateAtomicSwap call({
-    KeyPairData? from,
-    KeyPairData? to,
-    ExtrinsicStatus? status,
+    KeyPairData from,
+    KeyPairData to,
+    ExtrinsicStatus status,
     String? message,
-    bool? isPoscan,
+    bool isPoscan,
   });
 }
 
@@ -891,15 +888,15 @@ class _$NotificationCreateAtomicSwapCWProxyImpl
     Object? isPoscan = const $CopyWithPlaceholder(),
   }) {
     return NotificationCreateAtomicSwap(
-      from: from == const $CopyWithPlaceholder() || from == null
+      from: from == const $CopyWithPlaceholder()
           ? _value.from
           // ignore: cast_nullable_to_non_nullable
           : from as KeyPairData,
-      to: to == const $CopyWithPlaceholder() || to == null
+      to: to == const $CopyWithPlaceholder()
           ? _value.to
           // ignore: cast_nullable_to_non_nullable
           : to as KeyPairData,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as ExtrinsicStatus,
@@ -907,7 +904,7 @@ class _$NotificationCreateAtomicSwapCWProxyImpl
           ? _value.message
           // ignore: cast_nullable_to_non_nullable
           : message as String?,
-      isPoscan: isPoscan == const $CopyWithPlaceholder() || isPoscan == null
+      isPoscan: isPoscan == const $CopyWithPlaceholder()
           ? _value.isPoscan
           // ignore: cast_nullable_to_non_nullable
           : isPoscan as bool,
@@ -937,8 +934,8 @@ abstract class _$NotificationClaimPoscanAtomicSwapCWProxy {
   /// NotificationClaimPoscanAtomicSwap(...).copyWith(id: 12, name: "My name")
   /// ````
   NotificationClaimPoscanAtomicSwap call({
-    PendingPoscanAtomicSwap? swap,
-    ExtrinsicStatus? status,
+    PendingPoscanAtomicSwap swap,
+    ExtrinsicStatus status,
     String? message,
   });
 }
@@ -976,11 +973,11 @@ class _$NotificationClaimPoscanAtomicSwapCWProxyImpl
     Object? message = const $CopyWithPlaceholder(),
   }) {
     return NotificationClaimPoscanAtomicSwap(
-      swap: swap == const $CopyWithPlaceholder() || swap == null
+      swap: swap == const $CopyWithPlaceholder()
           ? _value.swap
           // ignore: cast_nullable_to_non_nullable
           : swap as PendingPoscanAtomicSwap,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as ExtrinsicStatus,
@@ -1014,8 +1011,8 @@ abstract class _$NotificationCancelPoscanAtomicSwapCWProxy {
   /// NotificationCancelPoscanAtomicSwap(...).copyWith(id: 12, name: "My name")
   /// ````
   NotificationCancelPoscanAtomicSwap call({
-    PendingPoscanAtomicSwap? swap,
-    ExtrinsicStatus? status,
+    PendingPoscanAtomicSwap swap,
+    ExtrinsicStatus status,
     String? message,
   });
 }
@@ -1053,11 +1050,11 @@ class _$NotificationCancelPoscanAtomicSwapCWProxyImpl
     Object? message = const $CopyWithPlaceholder(),
   }) {
     return NotificationCancelPoscanAtomicSwap(
-      swap: swap == const $CopyWithPlaceholder() || swap == null
+      swap: swap == const $CopyWithPlaceholder()
           ? _value.swap
           // ignore: cast_nullable_to_non_nullable
           : swap as PendingPoscanAtomicSwap,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as ExtrinsicStatus,
@@ -1089,8 +1086,8 @@ abstract class _$NotificationsStateCWProxy {
   /// NotificationsState(...).copyWith(id: 12, name: "My name")
   /// ````
   NotificationsState call({
-    List<NotificationDTO>? notifications,
-    bool? isLoading,
+    List<NotificationDTO> notifications,
+    bool isLoading,
   });
 }
 
@@ -1120,12 +1117,11 @@ class _$NotificationsStateCWProxyImpl implements _$NotificationsStateCWProxy {
     Object? isLoading = const $CopyWithPlaceholder(),
   }) {
     return NotificationsState(
-      notifications:
-          notifications == const $CopyWithPlaceholder() || notifications == null
-              ? _value.notifications
-              // ignore: cast_nullable_to_non_nullable
-              : notifications as List<NotificationDTO>,
-      isLoading: isLoading == const $CopyWithPlaceholder() || isLoading == null
+      notifications: notifications == const $CopyWithPlaceholder()
+          ? _value.notifications
+          // ignore: cast_nullable_to_non_nullable
+          : notifications as List<NotificationDTO>,
+      isLoading: isLoading == const $CopyWithPlaceholder()
           ? _value.isLoading
           // ignore: cast_nullable_to_non_nullable
           : isLoading as bool,

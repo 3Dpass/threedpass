@@ -20,8 +20,10 @@ class PreviewPage extends StatelessWidget {
       appBarLeading: const CustomBackButton(),
       appBarTitle: object.name,
       translateAppbar: false,
-      body: const SingleChildScrollView(
-        child: PreviewPageBody(),
+      body: SafeArea(
+        child: const SingleChildScrollView(
+          child: PreviewPageBody(),
+        ),
       ),
     );
   }

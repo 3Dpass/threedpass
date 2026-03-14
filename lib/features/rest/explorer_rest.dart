@@ -5,9 +5,9 @@ import 'package:threedpass/features/rest/models/transfers_response.dart';
 
 part 'explorer_rest.g.dart';
 
-@RestApi(baseUrl: 'https://api.3dpscan.xyz')
+@RestApi(baseUrl: 'https://scan.p3d.top/')
 abstract class ExplorerRest {
-  factory ExplorerRest(Dio dio) = _ExplorerRest;
+  factory ExplorerRest(Dio dio, {String? baseUrl}) = _ExplorerRest;
 
   @GET('/accounts/{address}/transfers')
   Future<TransfersResponse> getTransfers(

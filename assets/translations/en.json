@@ -129,6 +129,7 @@
     "init_status_connecting_to_node": "Connecting to node...",
     "init_status_completed": "Successfully connected",
     "init_status_connecting_to_node_failed": "Failed to connect to node",
+    "init_status_connecting_hint": "If connection is taking too long, try setting a trusted node URL manually in Settings",
 
     "address_copied_to_clipboard": "Address copied",
     "choose_account_assets_page_drawer": "Choose account",
@@ -597,5 +598,31 @@
     "hash_proof_of_the_claiming_swap": "Hashed proof of the claiming swap:",
     "atomic_swap_deadline_not_reached": "Deadline not reached",
     "reset_objects_cache_success": "Objects cache cleared",
-    "clear_local_obj_cache": "Local objects cache"
+    "clear_local_obj_cache": "Local objects cache",
+
+    "@2.19.1":{},
+    "could_not_get_user_account_to_load_objects": "Could not get account to load user objects",
+
+    "@upload_requirements":{},
+    "upload_req_page_title": "Upload Requirements",
+    "upload_req_node_connected": "Connected to node",
+    "upload_req_has_account": "Account available",
+    "upload_req_scan_succeeded": "Scan succeeded",
+    "upload_req_algorithm": "Algorithm {}",
+    "upload_req_grid_size": "Grid size {}",
+    "upload_req_n_sections": "nSections {}",
+    "upload_req_trans_bytes_none": "Rotation bytes set to None",
+    "upload_req_mismatch_hint": "Current: {} · Required: {}",
+    "open_poscan_conditions_button_label": "View upload requirements",
+    "explorer_url_button_label": "Explorer URL",
+    "explorer_url_subpage_label": "Explorer URL",
+    "explorer_url_label": "Explorer URL",
+    "wallet_settings_current_explorer": "Current explorer:",
+    "explorer_settings_changed": "Explorer settings changed",
+    "no_node_error_title": "Could not connect to node",
+    "no_node_error_hint": "Please set custom node URL in wallet settings",
+
+    "explorer_error_banner_title": "Explorer Unavailable",
+    "explorer_error_banner_body": "Could not establish a connection to the Explorer. Please set a custom Explorer URL in Settings.\n\nBalances and transfers still work, but some other features may be limited.",
+    "explorer_error_banner_action": "Open Settings"
 }

@@ -26,12 +26,12 @@ abstract class _$ScanSettingsCWProxy {
   /// ScanSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   ScanSettings call({
-    int? gridSize,
-    int? nSections,
-    String? algorithm,
-    String? libVersion,
-    String? transBytes,
-    TransBytesMode? transBytesMode,
+    int gridSize,
+    int nSections,
+    String algorithm,
+    String libVersion,
+    String transBytes,
+    TransBytesMode transBytesMode,
   });
 }
 
@@ -77,30 +77,27 @@ class _$ScanSettingsCWProxyImpl implements _$ScanSettingsCWProxy {
     Object? transBytesMode = const $CopyWithPlaceholder(),
   }) {
     return ScanSettings(
-      gridSize: gridSize == const $CopyWithPlaceholder() || gridSize == null
+      gridSize: gridSize == const $CopyWithPlaceholder()
           ? _value.gridSize
           // ignore: cast_nullable_to_non_nullable
           : gridSize as int,
-      nSections: nSections == const $CopyWithPlaceholder() || nSections == null
+      nSections: nSections == const $CopyWithPlaceholder()
           ? _value.nSections
           // ignore: cast_nullable_to_non_nullable
           : nSections as int,
-      algorithm: algorithm == const $CopyWithPlaceholder() || algorithm == null
+      algorithm: algorithm == const $CopyWithPlaceholder()
           ? _value.algorithm
           // ignore: cast_nullable_to_non_nullable
           : algorithm as String,
-      libVersion:
-          libVersion == const $CopyWithPlaceholder() || libVersion == null
-              ? _value.libVersion
-              // ignore: cast_nullable_to_non_nullable
-              : libVersion as String,
-      transBytes:
-          transBytes == const $CopyWithPlaceholder() || transBytes == null
-              ? _value.transBytes
-              // ignore: cast_nullable_to_non_nullable
-              : transBytes as String,
-      transBytesMode: transBytesMode == const $CopyWithPlaceholder() ||
-              transBytesMode == null
+      libVersion: libVersion == const $CopyWithPlaceholder()
+          ? _value.libVersion
+          // ignore: cast_nullable_to_non_nullable
+          : libVersion as String,
+      transBytes: transBytes == const $CopyWithPlaceholder()
+          ? _value.transBytes
+          // ignore: cast_nullable_to_non_nullable
+          : transBytes as String,
+      transBytesMode: transBytesMode == const $CopyWithPlaceholder()
           ? _value.transBytesMode
           // ignore: cast_nullable_to_non_nullable
           : transBytesMode as TransBytesMode,

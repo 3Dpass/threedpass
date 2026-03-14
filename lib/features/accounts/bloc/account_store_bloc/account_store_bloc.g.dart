@@ -26,11 +26,11 @@ abstract class _$AccountStoreStateCWProxy {
   /// AccountStoreState(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountStoreState call({
-    Map<String, String>? addressIconsMap,
-    AccountInfo? newAccount,
-    Map<int, Map<String, String>>? pubKeyAddressMap,
-    RecoveryInfo? recoveryInfo,
-    AccountAdvancedOptions? accountAdvancedOptions,
+    Map<String, String> addressIconsMap,
+    AccountInfo newAccount,
+    Map<int, Map<String, String>> pubKeyAddressMap,
+    RecoveryInfo recoveryInfo,
+    AccountAdvancedOptions accountAdvancedOptions,
   });
 }
 
@@ -78,29 +78,24 @@ class _$AccountStoreStateCWProxyImpl implements _$AccountStoreStateCWProxy {
     Object? accountAdvancedOptions = const $CopyWithPlaceholder(),
   }) {
     return AccountStoreState(
-      addressIconsMap: addressIconsMap == const $CopyWithPlaceholder() ||
-              addressIconsMap == null
+      addressIconsMap: addressIconsMap == const $CopyWithPlaceholder()
           ? _value.addressIconsMap
           // ignore: cast_nullable_to_non_nullable
           : addressIconsMap as Map<String, String>,
-      newAccount:
-          newAccount == const $CopyWithPlaceholder() || newAccount == null
-              ? _value.newAccount
-              // ignore: cast_nullable_to_non_nullable
-              : newAccount as AccountInfo,
-      pubKeyAddressMap: pubKeyAddressMap == const $CopyWithPlaceholder() ||
-              pubKeyAddressMap == null
+      newAccount: newAccount == const $CopyWithPlaceholder()
+          ? _value.newAccount
+          // ignore: cast_nullable_to_non_nullable
+          : newAccount as AccountInfo,
+      pubKeyAddressMap: pubKeyAddressMap == const $CopyWithPlaceholder()
           ? _value.pubKeyAddressMap
           // ignore: cast_nullable_to_non_nullable
           : pubKeyAddressMap as Map<int, Map<String, String>>,
-      recoveryInfo:
-          recoveryInfo == const $CopyWithPlaceholder() || recoveryInfo == null
-              ? _value.recoveryInfo
-              // ignore: cast_nullable_to_non_nullable
-              : recoveryInfo as RecoveryInfo,
+      recoveryInfo: recoveryInfo == const $CopyWithPlaceholder()
+          ? _value.recoveryInfo
+          // ignore: cast_nullable_to_non_nullable
+          : recoveryInfo as RecoveryInfo,
       accountAdvancedOptions:
-          accountAdvancedOptions == const $CopyWithPlaceholder() ||
-                  accountAdvancedOptions == null
+          accountAdvancedOptions == const $CopyWithPlaceholder()
               ? _value.accountAdvancedOptions
               // ignore: cast_nullable_to_non_nullable
               : accountAdvancedOptions as AccountAdvancedOptions,

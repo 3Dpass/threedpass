@@ -7,7 +7,7 @@ part of 'get_events.var.gql.dart';
 // **************************************************************************
 
 Serializer<GGetEventsVars> _$gGetEventsVarsSerializer =
-    new _$GGetEventsVarsSerializer();
+    _$GGetEventsVarsSerializer();
 
 class _$GGetEventsVarsSerializer
     implements StructuredSerializer<GGetEventsVars> {
@@ -38,7 +38,7 @@ class _$GGetEventsVarsSerializer
   GGetEventsVars deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetEventsVarsBuilder();
+    final result = GGetEventsVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -75,26 +75,17 @@ class _$GGetEventsVars extends GGetEventsVars {
   final _i1.GFilterGetEvents filters;
 
   factory _$GGetEventsVars([void Function(GGetEventsVarsBuilder)? updates]) =>
-      (new GGetEventsVarsBuilder()..update(updates))._build();
+      (GGetEventsVarsBuilder()..update(updates))._build();
 
   _$GGetEventsVars._(
       {required this.pageKey, required this.pageSize, required this.filters})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        pageKey, r'GGetEventsVars', 'pageKey');
-    BuiltValueNullFieldError.checkNotNull(
-        pageSize, r'GGetEventsVars', 'pageSize');
-    BuiltValueNullFieldError.checkNotNull(
-        filters, r'GGetEventsVars', 'filters');
-  }
-
+      : super._();
   @override
   GGetEventsVars rebuild(void Function(GGetEventsVarsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GGetEventsVarsBuilder toBuilder() =>
-      new GGetEventsVarsBuilder()..replace(this);
+  GGetEventsVarsBuilder toBuilder() => GGetEventsVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -139,7 +130,7 @@ class GGetEventsVarsBuilder
 
   _i1.GFilterGetEventsBuilder? _filters;
   _i1.GFilterGetEventsBuilder get filters =>
-      _$this._filters ??= new _i1.GFilterGetEventsBuilder();
+      _$this._filters ??= _i1.GFilterGetEventsBuilder();
   set filters(_i1.GFilterGetEventsBuilder? filters) =>
       _$this._filters = filters;
 
@@ -158,7 +149,6 @@ class GGetEventsVarsBuilder
 
   @override
   void replace(GGetEventsVars other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GGetEventsVars;
   }
 
@@ -174,19 +164,20 @@ class GGetEventsVarsBuilder
     _$GGetEventsVars _$result;
     try {
       _$result = _$v ??
-          new _$GGetEventsVars._(
-              pageKey: BuiltValueNullFieldError.checkNotNull(
-                  pageKey, r'GGetEventsVars', 'pageKey'),
-              pageSize: BuiltValueNullFieldError.checkNotNull(
-                  pageSize, r'GGetEventsVars', 'pageSize'),
-              filters: filters.build());
+          _$GGetEventsVars._(
+            pageKey: BuiltValueNullFieldError.checkNotNull(
+                pageKey, r'GGetEventsVars', 'pageKey'),
+            pageSize: BuiltValueNullFieldError.checkNotNull(
+                pageSize, r'GGetEventsVars', 'pageSize'),
+            filters: filters.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'filters';
         filters.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'GGetEventsVars', _$failedField, e.toString());
       }
       rethrow;

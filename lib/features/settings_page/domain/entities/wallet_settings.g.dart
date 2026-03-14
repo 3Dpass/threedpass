@@ -11,6 +11,10 @@ abstract class _$WalletSettingsCWProxy {
 
   WalletSettings nodeUrl(String nodeUrl);
 
+  WalletSettings explorerUrl(String? explorerUrl);
+
+  WalletSettings explorerConnectionMode(ConnectionMode? explorerConnectionMode);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WalletSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -18,8 +22,10 @@ abstract class _$WalletSettingsCWProxy {
   /// WalletSettings(...).copyWith(id: 12, name: "My name")
   /// ````
   WalletSettings call({
-    ConnectionMode? connectionMode,
-    String? nodeUrl,
+    ConnectionMode connectionMode,
+    String nodeUrl,
+    String? explorerUrl,
+    ConnectionMode? explorerConnectionMode,
   });
 }
 
@@ -37,6 +43,15 @@ class _$WalletSettingsCWProxyImpl implements _$WalletSettingsCWProxy {
   WalletSettings nodeUrl(String nodeUrl) => this(nodeUrl: nodeUrl);
 
   @override
+  WalletSettings explorerUrl(String? explorerUrl) =>
+      this(explorerUrl: explorerUrl);
+
+  @override
+  WalletSettings explorerConnectionMode(
+          ConnectionMode? explorerConnectionMode) =>
+      this(explorerConnectionMode: explorerConnectionMode);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WalletSettings(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -47,17 +62,27 @@ class _$WalletSettingsCWProxyImpl implements _$WalletSettingsCWProxy {
   WalletSettings call({
     Object? connectionMode = const $CopyWithPlaceholder(),
     Object? nodeUrl = const $CopyWithPlaceholder(),
+    Object? explorerUrl = const $CopyWithPlaceholder(),
+    Object? explorerConnectionMode = const $CopyWithPlaceholder(),
   }) {
     return WalletSettings(
-      connectionMode: connectionMode == const $CopyWithPlaceholder() ||
-              connectionMode == null
+      connectionMode: connectionMode == const $CopyWithPlaceholder()
           ? _value.connectionMode
           // ignore: cast_nullable_to_non_nullable
           : connectionMode as ConnectionMode,
-      nodeUrl: nodeUrl == const $CopyWithPlaceholder() || nodeUrl == null
+      nodeUrl: nodeUrl == const $CopyWithPlaceholder()
           ? _value.nodeUrl
           // ignore: cast_nullable_to_non_nullable
           : nodeUrl as String,
+      explorerUrl: explorerUrl == const $CopyWithPlaceholder()
+          ? _value.explorerUrl
+          // ignore: cast_nullable_to_non_nullable
+          : explorerUrl as String?,
+      explorerConnectionMode:
+          explorerConnectionMode == const $CopyWithPlaceholder()
+              ? _value.explorerConnectionMode
+              // ignore: cast_nullable_to_non_nullable
+              : explorerConnectionMode as ConnectionMode?,
     );
   }
 }
@@ -87,17 +112,23 @@ class WalletSettingsAdapter extends TypeAdapter<WalletSettings> {
           ? ConnectionMode.defaultRandom
           : fields[2] as ConnectionMode,
       nodeUrl: fields[1] as String,
+      explorerUrl: fields[3] as String?,
+      explorerConnectionMode: fields[4] as ConnectionMode?,
     );
   }
 
   @override
   void write(BinaryWriter writer, WalletSettings obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(4)
       ..writeByte(1)
       ..write(obj.nodeUrl)
       ..writeByte(2)
-      ..write(obj.connectionMode);
+      ..write(obj.connectionMode)
+      ..writeByte(3)
+      ..write(obj.explorerUrl)
+      ..writeByte(4)
+      ..write(obj.explorerConnectionMode);
   }
 
   @override
